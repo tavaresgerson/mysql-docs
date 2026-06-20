@@ -1,12 +1,8 @@
 ### 2.4.3 Installing and Using the MySQL Launch Daemon
 
-macOS uses launch daemons to automatically start, stop, and manage
-processes and applications such as MySQL.
+macOS uses launch daemons to automatically start, stop, and manage processes and applications such as MySQL.
 
-By default, the installation package (DMG) on macOS installs a
-launchd file named
-`/Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist`
-that contains a plist definition similar to:
+By default, the installation package (DMG) on macOS installs a launchd file named `/Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist` that contains a plist definition similar to:
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -43,28 +39,17 @@ that contains a plist definition similar to:
 
 Note
 
-Some users report that adding a plist DOCTYPE declaration causes
-the launchd operation to fail, despite it passing the lint
-check. We suspect it's a copy-n-paste error. The md5 checksum of
-a file containing the above snippet is
-*d925f05f6d1b6ee5ce5451b596d6baed*.
+Some users report that adding a plist DOCTYPE declaration causes the launchd operation to fail, despite it passing the lint check. We suspect it's a copy-n-paste error. The md5 checksum of a file containing the above snippet is *d925f05f6d1b6ee5ce5451b596d6baed*.
 
 To enable the launchd service, you can either:
 
-* Open macOS system preferences and select the MySQL preference
-  panel, and then execute Start MySQL
-  Server.
+* Open macOS system preferences and select the MySQL preference panel, and then execute Start MySQL Server.
 
   **Figure 2.18 MySQL Preference Pane: Location**
 
   ![Shows "MySQL" typed into the macOS System Preferences search box, and a highlighted "MySQL" icon in the bottom left portion of the MySQL Preference Pane.](images/mac-installer-preference-pane-location.png)
 
-  The Instances page includes an option to
-  start or stop MySQL, and Initialize
-  Database recreates the `data/`
-  directory. Uninstall uninstalls MySQL
-  Server and optionally the MySQL preference panel and launchd
-  information.
+  The Instances page includes an option to start or stop MySQL, and Initialize Database recreates the `data/` directory. Uninstall uninstalls MySQL Server and optionally the MySQL preference panel and launchd information.
 
   **Figure 2.19 MySQL Preference Pane: Instances**
 
@@ -85,40 +70,21 @@ To enable the launchd service, you can either:
 
 Note
 
-When upgrading MySQL server, the launchd installation process
-removes the old startup items that were installed with MySQL
-server 5.7.7 and below.
+When upgrading MySQL server, the launchd installation process removes the old startup items that were installed with MySQL server 5.7.7 and below.
 
-Upgrading also replaces your existing launchd file named
-`com.oracle.oss.mysql.mysqld.plist`.
+Upgrading also replaces your existing launchd file named `com.oracle.oss.mysql.mysqld.plist`.
 
 Additional launchd related information:
 
-* The plist entries override `my.cnf`
-  entries, because they are passed in as command line arguments.
-  For additional information about passing in program options,
-  see [Section 6.2.2, “Specifying Program Options”](program-options.html "6.2.2 Specifying Program Options").
+* The plist entries override `my.cnf` entries, because they are passed in as command line arguments. For additional information about passing in program options, see Section 6.2.2, “Specifying Program Options”.
 
-* The **ProgramArguments** section
-  defines the command line options that are passed into the
-  program, which is the `mysqld` binary in
-  this case.
+* The **ProgramArguments** section defines the command line options that are passed into the program, which is the `mysqld` binary in this case.
 
-* The default plist definition is written with less
-  sophisticated use cases in mind. For more complicated setups,
-  you may want to remove some of the arguments and instead rely
-  on a MySQL configuration file, such as
-  `my.cnf`.
+* The default plist definition is written with less sophisticated use cases in mind. For more complicated setups, you may want to remove some of the arguments and instead rely on a MySQL configuration file, such as `my.cnf`.
 
-* If you edit the plist file, then uncheck the installer option
-  when reinstalling or upgrading MySQL. Otherwise, your edited
-  plist file is overwritten, and all edits are lost.
+* If you edit the plist file, then uncheck the installer option when reinstalling or upgrading MySQL. Otherwise, your edited plist file is overwritten, and all edits are lost.
 
-Because the default plist definition defines several
-**ProgramArguments**, you might
-remove most of these arguments and instead rely upon your
-`my.cnf` MySQL configuration file to define
-them. For example:
+Because the default plist definition defines several **ProgramArguments**, you might remove most of these arguments and instead rely upon your `my.cnf` MySQL configuration file to define them. For example:
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -153,13 +119,4 @@ them. For example:
 </plist>
 ```
 
-In this case, the [`basedir`](server-system-variables.html#sysvar_basedir),
-[`datadir`](server-system-variables.html#sysvar_datadir),
-[`plugin_dir`](server-system-variables.html#sysvar_plugin_dir),
-[`log_error`](server-system-variables.html#sysvar_log_error),
-[`pid_file`](server-system-variables.html#sysvar_pid_file),
-[`keyring_file_data`](keyring-system-variables.html#sysvar_keyring_file_data), and
-﻿[`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) options were
-removed from the default plist
-*ProgramArguments* definition, which you might
-have defined in `my.cnf` instead.
+In this case, the `basedir`, `datadir`, `plugin_dir`, `log_error`, `pid_file`, `keyring_file_data`, and ﻿`--early-plugin-load` options were removed from the default plist *ProgramArguments* definition, which you might have defined in `my.cnf` instead.

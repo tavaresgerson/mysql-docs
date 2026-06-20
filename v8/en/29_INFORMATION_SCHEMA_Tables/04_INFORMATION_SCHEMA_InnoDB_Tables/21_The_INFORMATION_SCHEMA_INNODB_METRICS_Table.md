@@ -1,34 +1,14 @@
-### 28.4.21 The INFORMATION\_SCHEMA INNODB\_METRICS Table
+### 28.4.21 The INFORMATION_SCHEMA INNODB_METRICS Table
 
-The [`INNODB_METRICS`](information-schema-innodb-metrics-table.html "28.4.21 The INFORMATION_SCHEMA INNODB_METRICS Table") table provides a
-wide variety of `InnoDB` performance information,
-complementing the specific focus areas of the Performance Schema
-tables for `InnoDB`. With simple queries, you can
-check the overall health of the system. With more detailed
-queries, you can diagnose issues such as performance bottlenecks,
-resource shortages, and application issues.
+The `INNODB_METRICS` table provides a wide variety of `InnoDB` performance information, complementing the specific focus areas of the Performance Schema tables for `InnoDB`. With simple queries, you can check the overall health of the system. With more detailed queries, you can diagnose issues such as performance bottlenecks, resource shortages, and application issues.
 
-Each monitor represents a point within the
-`InnoDB` source code that is instrumented to
-gather counter information. Each counter can be started, stopped,
-and reset. You can also perform these actions for a group of
-counters using their common module name.
+Each monitor represents a point within the `InnoDB` source code that is instrumented to gather counter information. Each counter can be started, stopped, and reset. You can also perform these actions for a group of counters using their common module name.
 
-By default, relatively little data is collected. To start, stop,
-and reset counters, set one of the system variables
-[`innodb_monitor_enable`](innodb-parameters.html#sysvar_innodb_monitor_enable),
-[`innodb_monitor_disable`](innodb-parameters.html#sysvar_innodb_monitor_disable),
-[`innodb_monitor_reset`](innodb-parameters.html#sysvar_innodb_monitor_reset), or
-[`innodb_monitor_reset_all`](innodb-parameters.html#sysvar_innodb_monitor_reset_all), using
-the name of the counter, the name of the module, a wildcard match
-for such a name using the “%” character, or the
-special keyword `all`.
+By default, relatively little data is collected. To start, stop, and reset counters, set one of the system variables `innodb_monitor_enable`, `innodb_monitor_disable`, `innodb_monitor_reset`, or `innodb_monitor_reset_all`, using the name of the counter, the name of the module, a wildcard match for such a name using the “%” character, or the special keyword `all`.
 
-For usage information, see
-[Section 17.15.6, “InnoDB INFORMATION\_SCHEMA Metrics Table”](innodb-information-schema-metrics-table.html "17.15.6 InnoDB INFORMATION_SCHEMA Metrics Table").
+For usage information, see Section 17.15.6, “InnoDB INFORMATION_SCHEMA Metrics Table”.
 
-The [`INNODB_METRICS`](information-schema-innodb-metrics-table.html "28.4.21 The INFORMATION_SCHEMA INNODB_METRICS Table") table has these
-columns:
+The `INNODB_METRICS` table has these columns:
 
 * `NAME`
 
@@ -36,8 +16,7 @@ columns:
 
 * `SUBSYSTEM`
 
-  The aspect of `InnoDB` that the metric
-  applies to.
+  The aspect of `InnoDB` that the metric applies to.
 
 * `COUNT`
 
@@ -57,12 +36,7 @@ columns:
 
 * `COUNT_RESET`
 
-  The counter value since it was last reset. (The
-  `_RESET` columns act like the lap counter on
-  a stopwatch: you can measure the activity during some time
-  interval, while the cumulative figures are still available in
-  `COUNT`, `MAX_COUNT`, and so
-  on.)
+  The counter value since it was last reset. (The `_RESET` columns act like the lap counter on a stopwatch: you can measure the activity during some time interval, while the cumulative figures are still available in `COUNT`, `MAX_COUNT`, and so on.)
 
 * `MAX_COUNT_RESET`
 
@@ -94,14 +68,11 @@ columns:
 
 * `STATUS`
 
-  Whether the counter is still running
-  (`enabled`) or stopped
-  (`disabled`).
+  Whether the counter is still running (`enabled`) or stopped (`disabled`).
 
 * `TYPE`
 
-  Whether the item is a cumulative counter, or measures the
-  current value of some resource.
+  Whether the item is a cumulative counter, or measures the current value of some resource.
 
 * `COMMENT`
 
@@ -133,19 +104,8 @@ AVG_COUNT_RESET: NULL
 
 #### Notes
 
-* You must have the [`PROCESS`](privileges-provided.html#priv_process)
-  privilege to query this table.
+* You must have the `PROCESS` privilege to query this table.
 
-* Use the `INFORMATION_SCHEMA`
-  [`COLUMNS`](information-schema-columns-table.html "28.3.8 The INFORMATION_SCHEMA COLUMNS Table") table or the
-  [`SHOW COLUMNS`](show-columns.html "15.7.7.5 SHOW COLUMNS Statement") statement to view
-  additional information about the columns of this table,
-  including data types and default values.
+* Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.
 
-* Transaction counter `COUNT` values may differ
-  from the number of transaction events reported in Performance
-  Schema `EVENTS_TRANSACTIONS_SUMMARY` tables.
-  `InnoDB` counts only those transactions that
-  it executes, whereas Performance Schema collects events for
-  all non-aborted transactions initiated by the server,
-  including empty transactions.
+* Transaction counter `COUNT` values may differ from the number of transaction events reported in Performance Schema `EVENTS_TRANSACTIONS_SUMMARY` tables. `InnoDB` counts only those transactions that it executes, whereas Performance Schema collects events for all non-aborted transactions initiated by the server, including empty transactions.

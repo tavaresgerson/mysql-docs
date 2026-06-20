@@ -1,24 +1,10 @@
 ### 12.14.3 Adding a Simple Collation to an 8-Bit Character Set
 
-This section describes how to add a simple collation for an
-8-bit character set by writing the
-`<collation>` elements associated with a
-`<charset>` character set description in
-the MySQL `Index.xml` file. The procedure
-described here does not require recompiling MySQL. The example
-adds a collation named `latin1_test_ci` to the
-`latin1` character set.
+This section describes how to add a simple collation for an 8-bit character set by writing the `<collation>` elements associated with a `<charset>` character set description in the MySQL `Index.xml` file. The procedure described here does not require recompiling MySQL. The example adds a collation named `latin1_test_ci` to the `latin1` character set.
 
-1. Choose a collation ID, as shown in
-   [Section 12.14.2, “Choosing a Collation ID”](adding-collation-choosing-id.html "12.14.2 Choosing a Collation ID"). The
-   following steps use an ID of 1024.
+1. Choose a collation ID, as shown in Section 12.14.2, “Choosing a Collation ID”. The following steps use an ID of 1024.
 
-2. Modify the `Index.xml` and
-   `latin1.xml` configuration files. These
-   files are located in the directory named by the
-   [`character_sets_dir`](server-system-variables.html#sysvar_character_sets_dir) system
-   variable. You can check the variable value as follows,
-   although the path name might be different on your system:
+2. Modify the `Index.xml` and `latin1.xml` configuration files. These files are located in the directory named by the `character_sets_dir` system variable. You can check the variable value as follows, although the path name might be different on your system:
 
    ```
    mysql> SHOW VARIABLES LIKE 'character_sets_dir';
@@ -29,13 +15,7 @@ adds a collation named `latin1_test_ci` to the
    +--------------------+-----------------------------------------+
    ```
 
-3. Choose a name for the collation and list it in the
-   `Index.xml` file. Find the
-   `<charset>` element for the character
-   set to which the collation is being added, and add a
-   `<collation>` element that indicates
-   the collation name and ID, to associate the name with the
-   ID. For example:
+3. Choose a name for the collation and list it in the `Index.xml` file. Find the `<charset>` element for the character set to which the collation is being added, and add a `<collation>` element that indicates the collation name and ID, to associate the name with the ID. For example:
 
    ```
    <charset name="latin1">
@@ -45,13 +25,7 @@ adds a collation named `latin1_test_ci` to the
    </charset>
    ```
 
-4. In the `latin1.xml` configuration file,
-   add a `<collation>` element that
-   names the collation and that contains a
-   `<map>` element that defines a
-   character code-to-weight mapping table for character codes 0
-   to 255. Each value within the `<map>`
-   element must be a number in hexadecimal format.
+4. In the `latin1.xml` configuration file, add a `<collation>` element that names the collation and that contains a `<map>` element that defines a character code-to-weight mapping table for character codes 0 to 255. Each value within the `<map>` element must be a number in hexadecimal format.
 
    ```
    <collation name="latin1_test_ci">
@@ -76,8 +50,7 @@ adds a collation named `latin1_test_ci` to the
    </collation>
    ```
 
-5. Restart the server and use this statement to verify that the
-   collation is present:
+5. Restart the server and use this statement to verify that the collation is present:
 
    ```
    mysql> SHOW COLLATION WHERE Collation = 'latin1_test_ci';

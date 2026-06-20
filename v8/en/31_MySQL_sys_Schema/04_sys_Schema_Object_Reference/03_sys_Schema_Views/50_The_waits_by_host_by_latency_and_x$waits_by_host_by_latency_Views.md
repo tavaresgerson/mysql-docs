@@ -1,12 +1,8 @@
-#### 30.4.3.50 The waits\_by\_host\_by\_latency and x$waits\_by\_host\_by\_latency Views
+#### 30.4.3.50 The waits_by_host_by_latency and x$waits_by_host_by_latency Views
 
-These views summarize wait events, grouped by host and event.
-By default, rows are sorted by host and descending total
-latency. Idle events are ignored.
+These views summarize wait events, grouped by host and event. By default, rows are sorted by host and descending total latency. Idle events are ignored.
 
-The [`waits_by_host_by_latency`](sys-waits-by-host-by-latency.html "30.4.3.50 The waits_by_host_by_latency and x$waits_by_host_by_latency Views") and
-[`x$waits_by_host_by_latency`](sys-waits-by-host-by-latency.html "30.4.3.50 The waits_by_host_by_latency and x$waits_by_host_by_latency Views") views
-have these columns:
+The `waits_by_host_by_latency` and `x$waits_by_host_by_latency` views have these columns:
 
 * `host`
 
@@ -22,15 +18,12 @@ have these columns:
 
 * `total_latency`
 
-  The total wait time of timed occurrences of the event for
-  the host.
+  The total wait time of timed occurrences of the event for the host.
 
 * `avg_latency`
 
-  The average wait time per timed occurrence of the event
-  for the host.
+  The average wait time per timed occurrence of the event for the host.
 
 * `max_latency`
 
-  The maximum single wait time of timed occurrences of the
-  event for the host.
+  The maximum single wait time of timed occurrences of the event for the host.

@@ -1,20 +1,10 @@
 #### 19.2.3.1 Monitoring Replication Main Threads
 
-The [`SHOW PROCESSLIST`](show-processlist.html "15.7.7.29 SHOW PROCESSLIST Statement") statement
-provides information that tells you what is happening on the
-source and on the replica regarding replication. For information
-on source states, see [Section 10.14.4, “Replication Source Thread States”](source-thread-states.html "10.14.4 Replication Source Thread States").
-For replica states, see
-[Section 10.14.5, “Replication I/O (Receiver) Thread States”](replica-io-thread-states.html "10.14.5 Replication I/O (Receiver) Thread States"), and
-[Section 10.14.6, “Replication SQL Thread States”](replica-sql-thread-states.html "10.14.6 Replication SQL Thread States").
+The `SHOW PROCESSLIST` statement provides information that tells you what is happening on the source and on the replica regarding replication. For information on source states, see Section 10.14.4, “Replication Source Thread States”. For replica states, see Section 10.14.5, “Replication I/O (Receiver) Thread States” Thread States"), and Section 10.14.6, “Replication SQL Thread States”.
 
-The following example illustrates how the three main replication
-threads, the binary log dump thread, replication I/O (receiver)
-thread, and replication SQL (applier) thread, show up in the
-output from [`SHOW PROCESSLIST`](show-processlist.html "15.7.7.29 SHOW PROCESSLIST Statement").
+The following example illustrates how the three main replication threads, the binary log dump thread, replication I/O (receiver) thread, and replication SQL (applier) thread, show up in the output from `SHOW PROCESSLIST`.
 
-On the source server, the output from [`SHOW
-PROCESSLIST`](show-processlist.html "15.7.7.29 SHOW PROCESSLIST Statement") looks like this:
+On the source server, the output from [`SHOW PROCESSLIST`](show-processlist.html "15.7.7.29 SHOW PROCESSLIST Statement") looks like this:
 
 ```
 mysql> SHOW PROCESSLIST\G
@@ -30,16 +20,9 @@ Command: Binlog Dump
    Info: NULL
 ```
 
-Here, thread 2 is a `Binlog Dump` thread that
-services a connected replica. The `State`
-information indicates that all outstanding updates have been
-sent to the replica and that the source is waiting for more
-updates to occur. If you see no `Binlog Dump`
-threads on a source server, this means that replication is not
-running; that is, no replicas are currently connected.
+Here, thread 2 is a `Binlog Dump` thread that services a connected replica. The `State` information indicates that all outstanding updates have been sent to the replica and that the source is waiting for more updates to occur. If you see no `Binlog Dump` threads on a source server, this means that replication is not running; that is, no replicas are currently connected.
 
-On a replica server, the output from [`SHOW
-PROCESSLIST`](show-processlist.html "15.7.7.29 SHOW PROCESSLIST Statement") looks like this:
+On a replica server, the output from [`SHOW PROCESSLIST`](show-processlist.html "15.7.7.29 SHOW PROCESSLIST Statement") looks like this:
 
 ```
 mysql> SHOW PROCESSLIST\G
@@ -64,26 +47,8 @@ Command: Connect
    Info: NULL
 ```
 
-The `State` information indicates that thread
-10 is the replication I/O (receiver) thread that is
-communicating with the source server, and thread 11 is the
-replication SQL (applier) thread that is processing the updates
-stored in the relay logs. At the time that
-[`SHOW PROCESSLIST`](show-processlist.html "15.7.7.29 SHOW PROCESSLIST Statement") was run, both
-threads were idle, waiting for further updates.
+The `State` information indicates that thread 10 is the replication I/O (receiver) thread that is communicating with the source server, and thread 11 is the replication SQL (applier) thread that is processing the updates stored in the relay logs. At the time that `SHOW PROCESSLIST` was run, both threads were idle, waiting for further updates.
 
-The value in the `Time` column can show how
-late the replica is compared to the source. See
-[Section A.14, “MySQL 8.0 FAQ: Replication”](faqs-replication.html "A.14 MySQL 8.0 FAQ: Replication"). If sufficient time elapses
-on the source side without activity on the `Binlog
-Dump` thread, the source determines that the replica is
-no longer connected. As for any other client connection, the
-timeouts for this depend on the values of
-`net_write_timeout` and
-`net_retry_count`; for more information about
-these, see [Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables").
+The value in the `Time` column can show how late the replica is compared to the source. See Section A.14, “MySQL 8.0 FAQ: Replication”. If sufficient time elapses on the source side without activity on the `Binlog Dump` thread, the source determines that the replica is no longer connected. As for any other client connection, the timeouts for this depend on the values of `net_write_timeout` and `net_retry_count`; for more information about these, see Section 7.1.8, “Server System Variables”.
 
-The [`SHOW
-REPLICA STATUS`](show-replica-status.html "15.7.7.35 SHOW REPLICA STATUS Statement") statement provides additional
-information about replication processing on a replica server.
-See [Section 19.1.7.1, “Checking Replication Status”](replication-administration-status.html "19.1.7.1 Checking Replication Status").
+The [`SHOW REPLICA STATUS`](show-replica-status.html "15.7.7.35 SHOW REPLICA STATUS Statement") statement provides additional information about replication processing on a replica server. See Section 19.1.7.1, “Checking Replication Status”.

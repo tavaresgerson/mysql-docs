@@ -1,22 +1,10 @@
-#### 30.4.5.3 The format\_bytes() Function
+#### 30.4.5.3 The format_bytes() Function
 
 Note
 
-As of MySQL 8.0.16,
-[`format_bytes()`](sys-format-bytes.html "30.4.5.3 The format_bytes() Function") is deprecated
-and subject to removal in a future MySQL version.
-Applications that use it should be migrated to use the
-built-in [`FORMAT_BYTES()`](performance-schema-functions.html#function_format-bytes)
-function instead. See
-[Section 14.21, “Performance Schema Functions”](performance-schema-functions.html "14.21 Performance Schema Functions")
+As of MySQL 8.0.16, `format_bytes()` Function") is deprecated and subject to removal in a future MySQL version. Applications that use it should be migrated to use the built-in `FORMAT_BYTES()` function instead. See Section 14.21, “Performance Schema Functions”
 
-Given a byte count, converts it to human-readable format and
-returns a string consisting of a value and a units indicator.
-Depending on the size of the value, the units part is
-`bytes`, `KiB` (kibibytes),
-`MiB` (mebibytes), `GiB`
-(gibibytes), `TiB` (tebibytes), or
-`PiB` (pebibytes).
+Given a byte count, converts it to human-readable format and returns a string consisting of a value and a units indicator. Depending on the size of the value, the units part is `bytes`, `KiB` (kibibytes), `MiB` (mebibytes), `GiB` (gibibytes), `TiB` (tebibytes), or `PiB` (pebibytes).
 
 ##### Parameters
 

@@ -1,38 +1,22 @@
-#### 30.4.4.26 The table\_exists() Procedure
+#### 30.4.4.26 The table_exists() Procedure
 
-Tests whether a given table exists as a regular table, a
-`TEMPORARY` table, or a view. The procedure
-returns the table type in an `OUT` parameter.
-If both a temporary and a permanent table exist with the given
-name, `TEMPORARY` is returned.
+Tests whether a given table exists as a regular table, a `TEMPORARY` table, or a view. The procedure returns the table type in an `OUT` parameter. If both a temporary and a permanent table exist with the given name, `TEMPORARY` is returned.
 
 ##### Parameters
 
-* `in_db VARCHAR(64)`: The name of the
-  database in which to check for table existence.
+* `in_db VARCHAR(64)`: The name of the database in which to check for table existence.
 
-* `in_table VARCHAR(64)`: The name of the
-  table to check the existence of.
+* `in_table VARCHAR(64)`: The name of the table to check the existence of.
 
-* `out_exists ENUM('', 'BASE TABLE', 'VIEW',
-  'TEMPORARY')`: The return value. This is an
-  `OUT` parameter, so it must be a
-  variable into which the table type can be stored. When
-  the procedure returns, the variable has one of the
-  following values to indicate whether the table exists:
+* `out_exists ENUM('', 'BASE TABLE', 'VIEW', 'TEMPORARY')`: The return value. This is an `OUT` parameter, so it must be a variable into which the table type can be stored. When the procedure returns, the variable has one of the following values to indicate whether the table exists:
 
-  + `''`: The table name does not exist
-    as a base table, `TEMPORARY` table,
-    or view.
+  + `''`: The table name does not exist as a base table, `TEMPORARY` table, or view.
 
-  + `BASE TABLE`: The table name exists
-    as a base (permanent) table.
+  + `BASE TABLE`: The table name exists as a base (permanent) table.
 
-  + `VIEW`: The table name exists as a
-    view.
+  + `VIEW`: The table name exists as a view.
 
-  + `TEMPORARY`: The table name exists
-    as a `TEMPORARY` table.
+  + `TEMPORARY`: The table name exists as a `TEMPORARY` table.
 
 ##### Example
 

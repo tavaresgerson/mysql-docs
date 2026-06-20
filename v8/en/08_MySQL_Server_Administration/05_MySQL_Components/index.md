@@ -1,60 +1,23 @@
 ## 7.5 MySQL Components
 
-[7.5.1 Installing and Uninstalling Components](component-loading.html)
+MySQL Server includes a component-based infrastructure for extending server capabilities. A component provides services that are available to the server and other components. (With respect to service use, the server is a component, equal to other components.) Components interact with each other only through the services they provide.
 
-[7.5.2 Obtaining Component Information](obtaining-component-information.html)
+MySQL distributions include several components that implement server extensions:
 
-[7.5.3 Error Log Components](error-log-components.html)
+* Components for configuring error logging. See Section 7.4.2, “The Error Log”, and Section 7.5.3, “Error Log Components”.
 
-[7.5.4 Query Attribute Components](query-attribute-components.html)
+* A component for checking passwords. See Section 8.4.3, “The Password Validation Component”.
 
-[7.5.5 Scheduler Component](scheduler-component.html)
+* Keyring components provide secure storage for sensitive information. See Section 8.4.4, “The MySQL Keyring”.
 
-MySQL Server includes a component-based infrastructure for extending
-server capabilities. A component provides services that are
-available to the server and other components. (With respect to
-service use, the server is a component, equal to other components.)
-Components interact with each other only through the services they
-provide.
+* A component that enables applications to add their own message events to the audit log. See Section 8.4.6, “The Audit Message Component”.
 
-MySQL distributions include several components that implement server
-extensions:
+* A component that implements a loadable function for accessing query attributes. See Section 11.6, “Query Attributes”.
 
-* Components for configuring error logging. See
-  [Section 7.4.2, “The Error Log”](error-log.html "7.4.2 The Error Log"), and
-  [Section 7.5.3, “Error Log Components”](error-log-components.html "7.5.3 Error Log Components").
+* A component for scheduling actively executing tasks. See Section 7.5.5, “Scheduler Component”.
 
-* A component for checking passwords. See
-  [Section 8.4.3, “The Password Validation Component”](validate-password.html "8.4.3 The Password Validation Component").
+System and status variables implemented by a component are exposed when the component is installed and have names that begin with a component-specific prefix. For example, the `log_filter_dragnet` error log filter component implements a system variable named `log_error_filter_rules`, the full name of which is `dragnet.log_error_filter_rules`. To refer to this variable, use the full name.
 
-* Keyring components provide secure storage for sensitive
-  information. See [Section 8.4.4, “The MySQL Keyring”](keyring.html "8.4.4 The MySQL Keyring").
+The following sections describe how to install and uninstall components, and how to determine at runtime which components are installed and obtain information about them.
 
-* A component that enables applications to add their own message
-  events to the audit log. See
-  [Section 8.4.6, “The Audit Message Component”](audit-api-message-emit.html "8.4.6 The Audit Message Component").
-
-* A component that implements a loadable function for accessing
-  query attributes. See [Section 11.6, “Query Attributes”](query-attributes.html "11.6 Query Attributes").
-
-* A component for scheduling actively executing tasks. See
-  [Section 7.5.5, “Scheduler Component”](scheduler-component.html "7.5.5 Scheduler Component").
-
-System and status variables implemented by a component are exposed
-when the component is installed and have names that begin with a
-component-specific prefix. For example, the
-`log_filter_dragnet` error log filter component
-implements a system variable named
-`log_error_filter_rules`, the full name of which is
-[`dragnet.log_error_filter_rules`](server-system-variables.html#sysvar_dragnet.log_error_filter_rules). To
-refer to this variable, use the full name.
-
-The following sections describe how to install and uninstall
-components, and how to determine at runtime which components are
-installed and obtain information about them.
-
-For information about the internal implementation of components, see
-the MySQL Server Doxygen documentation, available at
-[https://dev.mysql.com/doc/index-other.html](/doc/index-other.html). For example, if you
-intend to write your own components, this information is important
-for understanding how components work.
+For information about the internal implementation of components, see the MySQL Server Doxygen documentation, available at https://dev.mysql.com/doc/index-other.html. For example, if you intend to write your own components, this information is important for understanding how components work.

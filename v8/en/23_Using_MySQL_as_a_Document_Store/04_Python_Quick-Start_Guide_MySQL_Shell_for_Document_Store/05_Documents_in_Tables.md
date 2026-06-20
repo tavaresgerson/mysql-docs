@@ -1,12 +1,8 @@
 ### 22.4.5 Documents in Tables
 
-In MySQL, a table may contain traditional relational data, JSON
-values, or both. You can combine traditional data with JSON
-documents by storing the documents in columns having a native
-[`JSON`](json.html "13.5 The JSON Data Type") data type.
+In MySQL, a table may contain traditional relational data, JSON values, or both. You can combine traditional data with JSON documents by storing the documents in columns having a native `JSON` data type.
 
-Examples in this section use the city table in the
-`world_x` schema.
+Examples in this section use the city table in the `world_x` schema.
 
 #### city Table Description
 
@@ -26,10 +22,7 @@ The city table has five columns (or fields).
 
 #### Insert a Record
 
-To insert a document into the column of a table, pass to the
-`values()` method a well-formed JSON document
-in the correct order. In the following example, a document is
-passed as the final value to be inserted into the Info column.
+To insert a document into the column of a table, pass to the `values()` method a well-formed JSON document in the correct order. In the following example, a document is passed as the final value to be inserted into the Info column.
 
 ```
 mysql-py> db.city.insert().values(
@@ -38,8 +31,7 @@ None, "San Francisco", "USA", "California", '{"Population":830000}')
 
 #### Select a Record
 
-You can issue a query with a search condition that evaluates
-document values in the expression.
+You can issue a query with a search condition that evaluates document values in the expression.
 
 ```
 mysql-py> db.city.select(["ID", "Name", "CountryCode", "District", "Info"]).where(
@@ -63,9 +55,6 @@ mysql-py> db.city.select(["ID", "Name", "CountryCode", "District", "Info"]).wher
 
 #### Related Information
 
-* See
-  [Working with Relational Tables and Documents](/doc/x-devapi-userguide/en/devapi-users-working-with-relational-tables-and-documents.html)
-  for more information.
+* See Working with Relational Tables and Documents for more information.
 
-* See [Section 13.5, “The JSON Data Type”](json.html "13.5 The JSON Data Type") for a detailed description of the
-  data type.
+* See Section 13.5, “The JSON Data Type” for a detailed description of the data type.

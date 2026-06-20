@@ -1,11 +1,6 @@
 ### 12.3.7 The National Character Set
 
-Standard SQL defines [`NCHAR`](char.html "13.3.2 The CHAR and VARCHAR Types") or
-[`NATIONAL CHAR`](char.html "13.3.2 The CHAR and VARCHAR Types") as a way to
-indicate that a [`CHAR`](char.html "13.3.2 The CHAR and VARCHAR Types") column
-should use some predefined character set. MySQL uses
-`utf8` as this predefined character set. For
-example, these data type declarations are equivalent:
+Standard SQL defines `NCHAR` or `NATIONAL CHAR` as a way to indicate that a `CHAR` column should use some predefined character set. MySQL uses `utf8` as this predefined character set. For example, these data type declarations are equivalent:
 
 ```
 CHAR(10) CHARACTER SET utf8
@@ -24,11 +19,7 @@ NATIONAL CHARACTER VARYING(10)
 NATIONAL CHAR VARYING(10)
 ```
 
-You can use
-`N'literal'` (or
-`n'literal'`) to
-create a string in the national character set. These statements
-are equivalent:
+You can use `N'literal'` (or `n'literal'`) to create a string in the national character set. These statements are equivalent:
 
 ```
 SELECT N'some text';
@@ -36,11 +27,7 @@ SELECT n'some text';
 SELECT _utf8'some text';
 ```
 
-MySQL 8.0 interprets the national character set as
-`utf8mb3`, which is now deprecated. Thus, using
-`NATIONAL CHARACTER` or one of its synonyms to
-define the character set for a database, table, or column raises
-a warning similar to this one:
+MySQL 8.0 interprets the national character set as `utf8mb3`, which is now deprecated. Thus, using `NATIONAL CHARACTER` or one of its synonyms to define the character set for a database, table, or column raises a warning similar to this one:
 
 ```
 NATIONAL/NCHAR/NVARCHAR implies the character set UTF8MB3, which will be

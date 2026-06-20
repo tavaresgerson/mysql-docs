@@ -1,76 +1,7 @@
 ### 14.18.1 Group Replication Functions
 
-[14.18.1.1 Function which Configures Group Replication Primary](group-replication-functions-for-new-primary.html)
-
-[14.18.1.2 Functions which Configure the Group Replication Mode](group-replication-functions-for-mode.html)
-
-[14.18.1.3 Functions to Inspect and Configure the Maximum Consensus Instances of a Group](group-replication-functions-for-maximum-consensus.html)
-
-[14.18.1.4 Functions to Inspect and Set the Group Replication Communication Protocol Version](group-replication-functions-for-communication-protocol.html)
-
-[14.18.1.5 Functions to Set and Reset Group Replication Member Actions](group-replication-functions-for-member-actions.html)
-
-The functions described in the following sections are used with
-Group Replication.
+The functions described in the following sections are used with Group Replication.
 
 **Table 14.25 Group Replication Functions**
 
-<table frame="box" rules="all" summary="A reference that lists functions used with MySQL Group Replication."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Name</th>
-<th>Description</th>
-<th>Introduced</th>
-</tr></thead><tbody><tr><th scope="row"><a class="link" href="group-replication-functions-for-member-actions.html#function_group-replication-disable-member-action"><code class="literal">group_replication_disable_member_action()</code></a></th>
-<td>
-      Disable member action for event specified
-    </td>
-<td>8.0.26</td>
-</tr><tr><th scope="row"><a class="link" href="group-replication-functions-for-member-actions.html#function_group-replication-enable-member-action"><code class="literal">group_replication_enable_member_action()</code></a></th>
-<td>
-      Enable member action for event specified
-    </td>
-<td>8.0.26</td>
-</tr><tr><th scope="row"><a class="link" href="group-replication-functions-for-communication-protocol.html#function_group-replication-get-communication-protocol"><code class="literal">group_replication_get_communication_protocol()</code></a></th>
-<td>
-      Get version of group replication communication protocol currently
-      in use
-    </td>
-<td>8.0.16</td>
-</tr><tr><th scope="row"><a class="link" href="group-replication-functions-for-maximum-consensus.html#function_group-replication-get-write-concurrency"><code class="literal">group_replication_get_write_concurrency()</code></a></th>
-<td>
-      Get maximum number of consensus instances currently set for group
-    </td>
-<td>8.0.13</td>
-</tr><tr><th scope="row"><a class="link" href="group-replication-functions-for-member-actions.html#function_group-replication-reset-member-actions"><code class="literal">group_replication_reset_member_actions()</code></a></th>
-<td>
-      Reset all member actions to defaults and configuration version
-      number to 1
-    </td>
-<td>8.0.26</td>
-</tr><tr><th scope="row"><a class="link" href="group-replication-functions-for-new-primary.html#function_group-replication-set-as-primary"><code class="literal">group_replication_set_as_primary()</code></a></th>
-<td>
-      Make a specific group member the primary
-    </td>
-<td>8.0.29</td>
-</tr><tr><th scope="row"><a class="link" href="group-replication-functions-for-communication-protocol.html#function_group-replication-set-communication-protocol"><code class="literal">group_replication_set_communication_protocol()</code></a></th>
-<td>
-      Set version for group replication communication protocol to use
-    </td>
-<td>8.0.16</td>
-</tr><tr><th scope="row"><a class="link" href="group-replication-functions-for-maximum-consensus.html#function_group-replication-set-write-concurrency"><code class="literal">group_replication_set_write_concurrency()</code></a></th>
-<td>
-      Set maximum number of consensus instances that can be executed in
-      parallel
-    </td>
-<td>8.0.13</td>
-</tr><tr><th scope="row"><a class="link" href="group-replication-functions-for-mode.html#function_group-replication-switch-to-multi-primary-mode"><code class="literal">group_replication_switch_to_multi_primary_mode()</code></a></th>
-<td>
-      Changes the mode of a group running in single-primary mode to
-      multi-primary mode
-    </td>
-<td>8.0.13</td>
-</tr><tr><th scope="row"><a class="link" href="group-replication-functions-for-mode.html#function_group-replication-switch-to-single-primary-mode"><code class="literal">group_replication_switch_to_single_primary_mode()</code></a></th>
-<td>
-      Changes the mode of a group running in multi-primary mode to
-      single-primary mode
-    </td>
-<td>8.0.13</td>
-</tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists functions used with MySQL Group Replication."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Name</th> <th>Description</th> <th>Introduced</th> </tr></thead><tbody><tr><th scope="row"><code>group_replication_disable_member_action()</code></th> <td> Disable member action for event specified </td> <td>8.0.26</td> </tr><tr><th scope="row"><code>group_replication_enable_member_action()</code></th> <td> Enable member action for event specified </td> <td>8.0.26</td> </tr><tr><th scope="row"><code>group_replication_get_communication_protocol()</code></th> <td> Get version of group replication communication protocol currently in use </td> <td>8.0.16</td> </tr><tr><th scope="row"><code>group_replication_get_write_concurrency()</code></th> <td> Get maximum number of consensus instances currently set for group </td> <td>8.0.13</td> </tr><tr><th scope="row"><code>group_replication_reset_member_actions()</code></th> <td> Reset all member actions to defaults and configuration version number to 1 </td> <td>8.0.26</td> </tr><tr><th scope="row"><code>group_replication_set_as_primary()</code></th> <td> Make a specific group member the primary </td> <td>8.0.29</td> </tr><tr><th scope="row"><code>group_replication_set_communication_protocol()</code></th> <td> Set version for group replication communication protocol to use </td> <td>8.0.16</td> </tr><tr><th scope="row"><code>group_replication_set_write_concurrency()</code></th> <td> Set maximum number of consensus instances that can be executed in parallel </td> <td>8.0.13</td> </tr><tr><th scope="row"><code>group_replication_switch_to_multi_primary_mode()</code></th> <td> Changes the mode of a group running in single-primary mode to multi-primary mode </td> <td>8.0.13</td> </tr><tr><th scope="row"><code>group_replication_switch_to_single_primary_mode()</code></th> <td> Changes the mode of a group running in multi-primary mode to single-primary mode </td> <td>8.0.13</td> </tr></tbody></table>

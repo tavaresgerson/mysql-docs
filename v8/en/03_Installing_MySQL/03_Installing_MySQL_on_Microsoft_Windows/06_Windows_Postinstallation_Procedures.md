@@ -1,66 +1,36 @@
 ### 2.3.6 Windows Postinstallation Procedures
 
-GUI tools exist that perform most of the tasks described in this
-section, including:
+GUI tools exist that perform most of the tasks described in this section, including:
 
-* [MySQL Installer](mysql-installer.html "2.3.3 MySQL Installer for Windows"): Used to install
-  and upgrade MySQL products.
+* MySQL Installer: Used to install and upgrade MySQL products.
 
-* [MySQL Workbench](workbench.html "Chapter 33 MySQL Workbench"): Manages the
-  MySQL server and edits SQL statements.
+* MySQL Workbench: Manages the MySQL server and edits SQL statements.
 
-If necessary, initialize the data directory and create the MySQL
-grant tables. Windows installation operations performed by MySQL Installer
-initialize the data directory automatically. For installation from
-a ZIP Archive package, initialize the data directory as described
-at [Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory").
+If necessary, initialize the data directory and create the MySQL grant tables. Windows installation operations performed by MySQL Installer initialize the data directory automatically. For installation from a ZIP Archive package, initialize the data directory as described at Section 2.9.1, “Initializing the Data Directory”.
 
-Regarding passwords, if you installed MySQL using the MySQL Installer, you
-may have already assigned a password to the initial
-`root` account. (See
-[Section 2.3.3, “MySQL Installer for Windows”](mysql-installer.html "2.3.3 MySQL Installer for Windows").) Otherwise, use the
-password-assignment procedure given in
-[Section 2.9.4, “Securing the Initial MySQL Account”](default-privileges.html "2.9.4 Securing the Initial MySQL Account").
+Regarding passwords, if you installed MySQL using the MySQL Installer, you may have already assigned a password to the initial `root` account. (See Section 2.3.3, “MySQL Installer for Windows”.) Otherwise, use the password-assignment procedure given in Section 2.9.4, “Securing the Initial MySQL Account”.
 
-Before assigning a password, you might want to try running some
-client programs to make sure that you can connect to the server
-and that it is operating properly. Make sure that the server is
-running (see [Section 2.3.4.5, “Starting the Server for the First Time”](windows-server-first-start.html "2.3.4.5 Starting the Server for the First Time")). You
-can also set up a MySQL service that runs automatically when
-Windows starts (see [Section 2.3.4.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.4.8 Starting MySQL as a Windows Service")).
+Before assigning a password, you might want to try running some client programs to make sure that you can connect to the server and that it is operating properly. Make sure that the server is running (see Section 2.3.4.5, “Starting the Server for the First Time”). You can also set up a MySQL service that runs automatically when Windows starts (see Section 2.3.4.8, “Starting MySQL as a Windows Service”).
 
-These instructions assume that your current location is the MySQL
-installation directory and that it has a `bin`
-subdirectory containing the MySQL programs used here. If that is
-not true, adjust the command path names accordingly.
+These instructions assume that your current location is the MySQL installation directory and that it has a `bin` subdirectory containing the MySQL programs used here. If that is not true, adjust the command path names accordingly.
 
-If you installed MySQL using MySQL Installer (see
-[Section 2.3.3, “MySQL Installer for Windows”](mysql-installer.html "2.3.3 MySQL Installer for Windows")), the default installation
-directory is `C:\Program Files\MySQL\MySQL Server
-8.0`:
+If you installed MySQL using MySQL Installer (see Section 2.3.3, “MySQL Installer for Windows”), the default installation directory is `C:\Program Files\MySQL\MySQL Server 8.0`:
 
 ```
 C:\> cd "C:\Program Files\MySQL\MySQL Server 8.0"
 ```
 
-A common installation location for installation from a ZIP archive
-is `C:\mysql`:
+A common installation location for installation from a ZIP archive is `C:\mysql`:
 
 ```
 C:\> cd C:\mysql
 ```
 
-Alternatively, add the `bin` directory to your
-`PATH` environment variable setting. That enables
-your command interpreter to find MySQL programs properly, so that
-you can run a program by typing only its name, not its path name.
-See [Section 2.3.4.7, “Customizing the PATH for MySQL Tools”](mysql-installation-windows-path.html "2.3.4.7 Customizing the PATH for MySQL Tools").
+Alternatively, add the `bin` directory to your `PATH` environment variable setting. That enables your command interpreter to find MySQL programs properly, so that you can run a program by typing only its name, not its path name. See Section 2.3.4.7, “Customizing the PATH for MySQL Tools”.
 
-With the server running, issue the following commands to verify
-that you can retrieve information from the server. The output
-should be similar to that shown here.
+With the server running, issue the following commands to verify that you can retrieve information from the server. The output should be similar to that shown here.
 
-Use [**mysqlshow**](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information") to see what databases exist:
+Use **mysqlshow** to see what databases exist:
 
 ```
 C:\> bin\mysqlshow
@@ -74,21 +44,9 @@ C:\> bin\mysqlshow
 +--------------------+
 ```
 
-The list of installed databases may vary, but always includes at
-least `mysql` and
-`information_schema`.
+The list of installed databases may vary, but always includes at least `mysql` and `information_schema`.
 
-The preceding command (and commands for other MySQL programs such
-as [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client")) may not work if the correct MySQL
-account does not exist. For example, the program may fail with an
-error, or you may not be able to view all databases. If you
-install MySQL using MySQL Installer, the `root` user is
-created automatically with the password you supplied. In this
-case, you should use the `-u root` and
-`-p` options. (You must use those options if you
-have already secured the initial MySQL accounts.) With
-`-p`, the client program prompts for the
-`root` password. For example:
+The preceding command (and commands for other MySQL programs such as **mysql**) may not work if the correct MySQL account does not exist. For example, the program may fail with an error, or you may not be able to view all databases. If you install MySQL using MySQL Installer, the `root` user is created automatically with the password you supplied. In this case, you should use the `-u root` and `-p` options. (You must use those options if you have already secured the initial MySQL accounts.) With `-p`, the client program prompts for the `root` password. For example:
 
 ```
 C:\> bin\mysqlshow -u root -p
@@ -103,8 +61,7 @@ Enter password: (enter root password here)
 +--------------------+
 ```
 
-If you specify a database name, [**mysqlshow**](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
-displays a list of the tables within the database:
+If you specify a database name, **mysqlshow** displays a list of the tables within the database:
 
 ```
 C:\> bin\mysqlshow mysql
@@ -149,8 +106,7 @@ Database: mysql
 +---------------------------+
 ```
 
-Use the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") program to select information
-from a table in the `mysql` database:
+Use the **mysql** program to select information from a table in the `mysql` database:
 
 ```
 C:\> bin\mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
@@ -161,6 +117,4 @@ C:\> bin\mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
 +------+-----------+-----------------------+
 ```
 
-For more information about [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") and
-[**mysqlshow**](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information"), see [Section 6.5.1, “mysql — The MySQL Command-Line Client”](mysql.html "6.5.1 mysql — The MySQL Command-Line Client"), and
-[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information").
+For more information about **mysql** and **mysqlshow**, see Section 6.5.1, “mysql — The MySQL Command-Line Client”, and Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”.

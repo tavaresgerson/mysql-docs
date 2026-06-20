@@ -1,20 +1,12 @@
-#### 30.4.4.1 The create\_synonym\_db() Procedure
+#### 30.4.4.1 The create_synonym_db() Procedure
 
-Given a schema name, this procedure creates a synonym schema
-containing views that refer to all the tables and views in the
-original schema. This can be used, for example, to create a
-shorter name by which to refer to a schema with a long name
-(such as `info` rather than
-`INFORMATION_SCHEMA`).
+Given a schema name, this procedure creates a synonym schema containing views that refer to all the tables and views in the original schema. This can be used, for example, to create a shorter name by which to refer to a schema with a long name (such as `info` rather than `INFORMATION_SCHEMA`).
 
 ##### Parameters
 
-* `in_db_name VARCHAR(64)`: The name of
-  the schema for which to create the synonym.
+* `in_db_name VARCHAR(64)`: The name of the schema for which to create the synonym.
 
-* `in_synonym VARCHAR(64)`: The name to
-  use for the synonym schema. This schema must not already
-  exist.
+* `in_synonym VARCHAR(64)`: The name to use for the synonym schema. This schema must not already exist.
 
 ##### Example
 

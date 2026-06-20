@@ -1,9 +1,6 @@
 ### 12.8.1 Using COLLATE in SQL Statements
 
-With the `COLLATE` clause, you can override
-whatever the default collation is for a comparison.
-`COLLATE` may be used in various parts of SQL
-statements. Here are some examples:
+With the `COLLATE` clause, you can override whatever the default collation is for a comparison. `COLLATE` may be used in various parts of SQL statements. Here are some examples:
 
 * With `ORDER BY`:
 

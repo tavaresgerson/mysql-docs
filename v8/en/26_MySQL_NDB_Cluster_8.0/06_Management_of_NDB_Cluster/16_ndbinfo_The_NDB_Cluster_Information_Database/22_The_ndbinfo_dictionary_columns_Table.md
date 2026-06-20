@@ -1,9 +1,6 @@
-#### 25.6.16.22 The ndbinfo dictionary\_columns Table
+#### 25.6.16.22 The ndbinfo dictionary_columns Table
 
-The table provides `NDB` dictionary information
-about columns of `NDB` tables.
-`dictionary_columns` has the columns listed
-here (with brief descriptions):
+The table provides `NDB` dictionary information about columns of `NDB` tables. `dictionary_columns` has the columns listed here (with brief descriptions):
 
 * `table_id`
 
@@ -19,8 +16,7 @@ here (with brief descriptions):
 
 * `column_type`
 
-  Data type of the column from the NDB API; see
-  [Column::Type](/doc/ndbapi/en/ndb-column.html#ndb-column-type), for possible values
+  Data type of the column from the NDB API; see Column::Type, for possible values
 
 * `default_value`
 
@@ -28,47 +24,33 @@ here (with brief descriptions):
 
 * `nullable`
 
-  Either of `NULL` or `NOT
-  NULL`
+  Either of `NULL` or `NOT NULL`
 
 * `array_type`
 
-  The column's internal attribute storage format; one of
-  `FIXED`, `SHORT_VAR`, or
-  `MEDIUM_VAR`; for more information, see
-  [Column::ArrayType](/doc/ndbapi/en/ndb-column.html#ndb-column-arraytype), in the NDB API
-  documentation
+  The column's internal attribute storage format; one of `FIXED`, `SHORT_VAR`, or `MEDIUM_VAR`; for more information, see Column::ArrayType, in the NDB API documentation
 
 * `storage_type`
 
-  Type of storage used by the table; either of
-  `MEMORY` or `DISK`
+  Type of storage used by the table; either of `MEMORY` or `DISK`
 
 * `primary_key`
 
-  `1` if this is a primary key column,
-  otherwise `0`
+  `1` if this is a primary key column, otherwise `0`
 
 * `partition_key`
 
-  `1` if this is a partitioning key column,
-  otherwise `0`
+  `1` if this is a partitioning key column, otherwise `0`
 
 * `dynamic`
 
-  `1` if the column is dynamic, otherwise
-  `0`
+  `1` if the column is dynamic, otherwise `0`
 
 * `auto_inc`
 
-  `1` if this is an
-  `AUTO_INCREMENT` column, otherwise
-  `0`
+  `1` if this is an `AUTO_INCREMENT` column, otherwise `0`
 
-You can obtain information about all of the columns in a given
-table by joining `dictionary_columns` with the
-[`dictionary_tables`](mysql-cluster-ndbinfo-dictionary-tables.html "25.6.16.23 The ndbinfo dictionary_tables Table") table, like
-this:
+You can obtain information about all of the columns in a given table by joining `dictionary_columns` with the `dictionary_tables` table, like this:
 
 ```
 SELECT dc.*
@@ -79,10 +61,8 @@ WHERE dt.table_name='t1'
   AND dt.database_name='mydb';
 ```
 
-The `dictionary_columns` table was added in NDB
-8.0.29.
+The `dictionary_columns` table was added in NDB 8.0.29.
 
 Note
 
-Blob columns are not shown in this table. This is a known
-issue.
+Blob columns are not shown in this table. This is a known issue.

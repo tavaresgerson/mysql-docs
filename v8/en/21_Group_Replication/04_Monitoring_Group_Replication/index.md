@@ -1,82 +1,31 @@
 ## 20.4 Monitoring Group Replication
 
-[20.4.1 GTIDs and Group Replication](group-replication-gtids.html)
+You can use the MySQL [Performance Schema](performance-schema.html "Chapter 29 MySQL Performance Schema") to monitor Group Replication. These Performance Schema tables display information specific to Group Replication:
 
-[20.4.2 Group Replication Server States](group-replication-server-states.html)
+* `replication_group_member_stats`: See Section 20.4.4, “The replication_group_member_stats Table”.
 
-[20.4.3 The replication\_group\_members Table](group-replication-replication-group-members.html)
+* `replication_group_members`: See Section 20.4.3, “The replication_group_members Table”.
 
-[20.4.4 The replication\_group\_member\_stats Table](group-replication-replication-group-member-stats.html)
+* `replication_group_communication_information`: See Section 29.12.11.12, “The replication_group_communication_information Table”.
 
-You can use the MySQL [Performance
-Schema](performance-schema.html "Chapter 29 MySQL Performance Schema") to monitor Group Replication. These Performance Schema
-tables display information specific to Group Replication:
+These Performance Schema replication tables also show information relating to Group Replication:
 
-* [`replication_group_member_stats`](performance-schema-replication-group-member-stats-table.html "29.12.11.15 The replication_group_member_stats Table"): See
-  [Section 20.4.4, “The replication\_group\_member\_stats Table”](group-replication-replication-group-member-stats.html "20.4.4 The replication_group_member_stats Table").
+* `replication_connection_status` shows information regarding Group Replication, such as transactions received from the group and queued in the applier queue (relay log).
 
-* [`replication_group_members`](performance-schema-replication-group-members-table.html "29.12.11.16 The replication_group_members Table"): See
-  [Section 20.4.3, “The replication\_group\_members Table”](group-replication-replication-group-members.html "20.4.3 The replication_group_members Table").
+* `replication_applier_status` shows the states of channels and threads relating to Group Replication. These can also be used to monitor what individual worker threads are doing.
 
-* [`replication_group_communication_information`](performance-schema-replication-group-communication-information-table.html "29.12.11.12 The replication_group_communication_information Table"):
-  See
-  [Section 29.12.11.12, “The replication\_group\_communication\_information Table”](performance-schema-replication-group-communication-information-table.html "29.12.11.12 The replication_group_communication_information Table").
+Replication channels created by the Group Replication plugin are listed here:
 
-These Performance Schema replication tables also show information
-relating to Group Replication:
+* `group_replication_recovery`: Used for replication changes related to distributed recovery.
 
-* [`replication_connection_status`](performance-schema-replication-connection-status-table.html "29.12.11.11 The replication_connection_status Table") shows
-  information regarding Group Replication, such as transactions
-  received from the group and queued in the applier queue (relay
-  log).
+* `group_replication_applier`: Used for the incoming changes from the group, to apply transactions coming directly from the group.
 
-* [`replication_applier_status`](performance-schema-replication-applier-status-table.html "29.12.11.3 The replication_applier_status Table") shows
-  the states of channels and threads relating to Group
-  Replication. These can also be used to monitor what individual
-  worker threads are doing.
+For information about system variables affecting Group Replication, see Section 20.9.1, “Group Replication System Variables”. See Section 20.9.2, “Group Replication Status Variables”, for status variables providing information about Group Replication.
 
-Replication channels created by the Group Replication plugin are
-listed here:
+Beginning with MySQL 8.0.21, messages relating to Group Replication lifecycle events other than errors are classified as system messages; these are always written to the replication group member' error log. You can use this information to review the history of a given server's membership in a replication group. (Previously, such events were classified as information messages; for a MySQL server from a release prior to 8.0.21, these can be added to the error log by setting `log_error_verbosity` to `3`.)
 
-* `group_replication_recovery`: Used for
-  replication changes related to distributed recovery.
-
-* `group_replication_applier`: Used for the
-  incoming changes from the group, to apply transactions coming
-  directly from the group.
-
-For information about system variables affecting Group Replication,
-see [Section 20.9.1, “Group Replication System Variables”](group-replication-system-variables.html "20.9.1 Group Replication System Variables"). See
-[Section 20.9.2, “Group Replication Status Variables”](group-replication-status-variables.html "20.9.2 Group Replication Status Variables"), for status
-variables providing information about Group Replication.
-
-Beginning with MySQL 8.0.21, messages relating to Group Replication
-lifecycle events other than errors are classified as system
-messages; these are always written to the replication group
-member' error log. You can use this information to review the
-history of a given server's membership in a replication group.
-(Previously, such events were classified as information messages;
-for a MySQL server from a release prior to 8.0.21, these can be
-added to the error log by setting
-[`log_error_verbosity`](server-system-variables.html#sysvar_log_error_verbosity) to
-`3`.)
-
-Some lifecycle events that affect the whole group are logged on
-every group member, such as a new member entering
-`ONLINE` status in the group or a primary election.
-Other events are logged only on the member where they take place,
-such as super read only mode being enabled or disabled on the
-member, or the member leaving the group. A number of lifecycle
-events that can indicate an issue if they occur frequently are
-logged as warning messages, including a member becoming unreachable
-and then reachable again, and a member starting distributed recovery
-by state transfer from the binary log or by a remote cloning
-operation.
+Some lifecycle events that affect the whole group are logged on every group member, such as a new member entering `ONLINE` status in the group or a primary election. Other events are logged only on the member where they take place, such as super read only mode being enabled or disabled on the member, or the member leaving the group. A number of lifecycle events that can indicate an issue if they occur frequently are logged as warning messages, including a member becoming unreachable and then reachable again, and a member starting distributed recovery by state transfer from the binary log or by a remote cloning operation.
 
 Note
 
-If you are monitoring one or more secondary instances using
-[**mysqladmin**](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program"), you should be aware that a
-[`FLUSH STATUS`](flush.html#flush-status) statement executed by
-this utility creates a GTID event on the local instance which may
-impact future group operations.
+If you are monitoring one or more secondary instances using **mysqladmin**, you should be aware that a `FLUSH STATUS` statement executed by this utility creates a GTID event on the local instance which may impact future group operations.

@@ -1,13 +1,8 @@
-#### 30.4.3.35 The statement\_analysis and x$statement\_analysis Views
+#### 30.4.3.35 The statement_analysis and x$statement_analysis Views
 
-These views list normalized statements with aggregated
-statistics. The content mimics the MySQL Enterprise Monitor
-Query Analysis view. By default, rows are sorted by descending
-total latency.
+These views list normalized statements with aggregated statistics. The content mimics the MySQL Enterprise Monitor Query Analysis view. By default, rows are sorted by descending total latency.
 
-The [`statement_analysis`](sys-statement-analysis.html "30.4.3.35 The statement_analysis and x$statement_analysis Views") and
-[`x$statement_analysis`](sys-statement-analysis.html "30.4.3.35 The statement_analysis and x$statement_analysis Views") views have
-these columns:
+The `statement_analysis` and `x$statement_analysis` views have these columns:
 
 * `query`
 
@@ -15,13 +10,11 @@ these columns:
 
 * `db`
 
-  The default database for the statement, or
-  `NULL` if there is none.
+  The default database for the statement, or `NULL` if there is none.
 
 * `full_scan`
 
-  The total number of full table scans performed by
-  occurrences of the statement.
+  The total number of full table scans performed by occurrences of the statement.
 
 * `exec_count`
 
@@ -29,13 +22,11 @@ these columns:
 
 * `err_count`
 
-  The total number of errors produced by occurrences of the
-  statement.
+  The total number of errors produced by occurrences of the statement.
 
 * `warn_count`
 
-  The total number of warnings produced by occurrences of
-  the statement.
+  The total number of warnings produced by occurrences of the statement.
 
 * `total_latency`
 
@@ -43,18 +34,15 @@ these columns:
 
 * `max_latency`
 
-  The maximum single wait time of timed occurrences of the
-  statement.
+  The maximum single wait time of timed occurrences of the statement.
 
 * `avg_latency`
 
-  The average wait time per timed occurrence of the
-  statement.
+  The average wait time per timed occurrence of the statement.
 
 * `lock_latency`
 
-  The total time waiting for locks by timed occurrences of
-  the statement.
+  The total time waiting for locks by timed occurrences of the statement.
 
 * `cpu_latency`
 
@@ -62,65 +50,53 @@ these columns:
 
 * `rows_sent`
 
-  The total number of rows returned by occurrences of the
-  statement.
+  The total number of rows returned by occurrences of the statement.
 
 * `rows_sent_avg`
 
-  The average number of rows returned per occurrence of the
-  statement.
+  The average number of rows returned per occurrence of the statement.
 
 * `rows_examined`
 
-  The total number of rows read from storage engines by
-  occurrences of the statement.
+  The total number of rows read from storage engines by occurrences of the statement.
 
 * `rows_examined_avg`
 
-  The average number of rows read from storage engines per
-  occurrence of the statement.
+  The average number of rows read from storage engines per occurrence of the statement.
 
 * `rows_affected`
 
-  The total number of rows affected by occurrences of the
-  statement.
+  The total number of rows affected by occurrences of the statement.
 
 * `rows_affected_avg`
 
-  The average number of rows affected per occurrence of the
-  statement.
+  The average number of rows affected per occurrence of the statement.
 
 * `tmp_tables`
 
-  The total number of internal in-memory temporary tables
-  created by occurrences of the statement.
+  The total number of internal in-memory temporary tables created by occurrences of the statement.
 
 * `tmp_disk_tables`
 
-  The total number of internal on-disk temporary tables
-  created by occurrences of the statement.
+  The total number of internal on-disk temporary tables created by occurrences of the statement.
 
 * `rows_sorted`
 
-  The total number of rows sorted by occurrences of the
-  statement.
+  The total number of rows sorted by occurrences of the statement.
 
 * `sort_merge_passes`
 
-  The total number of sort merge passes by occurrences of
-  the statement.
+  The total number of sort merge passes by occurrences of the statement.
 
 * `max_controlled_memory`
 
-  The maximum amount of controlled memory (bytes) used by
-  the statement.
+  The maximum amount of controlled memory (bytes) used by the statement.
 
   This column was added in MySQL 8.0.31
 
 * `max_total_memory`
 
-  The maximum amount of memory (bytes) used by the
-  statement.
+  The maximum amount of memory (bytes) used by the statement.
 
   This column was added in MySQL 8.0.31
 

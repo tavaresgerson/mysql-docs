@@ -1,10 +1,6 @@
 ## 17.4 InnoDB Architecture
 
-The following diagram shows in-memory and on-disk structures that
-comprise the `InnoDB` storage engine
-architecture. For information about each structure, see
-[Section 17.5, “InnoDB In-Memory Structures”](innodb-in-memory-structures.html "17.5 InnoDB In-Memory Structures"), and
-[Section 17.6, “InnoDB On-Disk Structures”](innodb-on-disk-structures.html "17.6 InnoDB On-Disk Structures").
+The following diagram shows in-memory and on-disk structures that comprise the `InnoDB` storage engine architecture. For information about each structure, see Section 17.5, “InnoDB In-Memory Structures”, and Section 17.6, “InnoDB On-Disk Structures”.
 
 **Figure 17.1 InnoDB Architecture**
 

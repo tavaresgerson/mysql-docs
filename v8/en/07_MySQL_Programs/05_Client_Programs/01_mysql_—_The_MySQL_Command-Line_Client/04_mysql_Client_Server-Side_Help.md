@@ -4,13 +4,7 @@
 mysql> help search_string
 ```
 
-If you provide an argument to the `help`
-command, [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") uses it as a search string to
-access server-side help from the contents of the MySQL Reference
-Manual. The proper operation of this command requires that the
-help tables in the `mysql` database be
-initialized with help topic information (see
-[Section 7.1.17, “Server-Side Help Support”](server-side-help-support.html "7.1.17 Server-Side Help Support")).
+If you provide an argument to the `help` command, **mysql** uses it as a search string to access server-side help from the contents of the MySQL Reference Manual. The proper operation of this command requires that the help tables in the `mysql` database be initialized with help topic information (see Section 7.1.17, “Server-Side Help Support”).
 
 If there is no match for the search string, the search fails:
 
@@ -21,8 +15,7 @@ Nothing found
 Please try to run 'help contents' for a list of all accessible topics
 ```
 
-Use [**help contents**](help.html "15.8.3 HELP Statement") to see a list of the help
-categories:
+Use **help contents** to see a list of the help categories:
 
 ```
 mysql> help contents
@@ -46,8 +39,7 @@ following categories:
    Triggers
 ```
 
-If the search string matches multiple items,
-[**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") shows a list of matching topics:
+If the search string matches multiple items, **mysql** shows a list of matching topics:
 
 ```
 mysql> help logs
@@ -60,8 +52,7 @@ where <item> is one of the following topics:
    SHOW LOGS
 ```
 
-Use a topic as the search string to see the help entry for that
-topic:
+Use a topic as the search string to see the help entry for that topic:
 
 ```
 mysql> help show binary logs
@@ -86,12 +77,7 @@ mysql> SHOW BINARY LOGS;
 +---------------+-----------+-----------+
 ```
 
-The search string can contain the wildcard characters
-`%` and `_`. These have the
-same meaning as for pattern-matching operations performed with
-the [`LIKE`](string-comparison-functions.html#operator_like) operator. For example,
-`HELP rep%` returns a list of topics that begin
-with `rep`:
+The search string can contain the wildcard characters `%` and `_`. These have the same meaning as for pattern-matching operations performed with the `LIKE` operator. For example, `HELP rep%` returns a list of topics that begin with `rep`:
 
 ```
 mysql> HELP rep%

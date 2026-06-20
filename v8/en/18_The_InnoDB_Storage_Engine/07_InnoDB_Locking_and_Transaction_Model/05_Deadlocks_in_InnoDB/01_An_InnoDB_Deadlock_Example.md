@@ -1,19 +1,10 @@
 #### 17.7.5.1 An InnoDB Deadlock Example
 
-The following example illustrates how an error can occur when a
-lock request causes a deadlock. The example involves two
-clients, A and B.
+The following example illustrates how an error can occur when a lock request causes a deadlock. The example involves two clients, A and B.
 
-InnoDB status contains details of the last deadlock. For
-frequent deadlocks, enable global variable
-[`innodb_print_all_deadlocks`](innodb-parameters.html#sysvar_innodb_print_all_deadlocks).
-This adds deadlock information to the error log.
+InnoDB status contains details of the last deadlock. For frequent deadlocks, enable global variable `innodb_print_all_deadlocks`. This adds deadlock information to the error log.
 
-Client A enables
-[`innodb_print_all_deadlocks`](innodb-parameters.html#sysvar_innodb_print_all_deadlocks),
-creates two tables, 'Animals' and 'Birds', and inserts data into
-each. Client A begins a transaction, and selects a row in
-Animals in share mode:
+Client A enables `innodb_print_all_deadlocks`, creates two tables, 'Animals' and 'Birds', and inserts data into each. Client A begins a transaction, and selects a row in Animals in share mode:
 
 ```
 mysql> SET GLOBAL innodb_print_all_deadlocks = ON;
@@ -43,8 +34,7 @@ mysql> SELECT value FROM Animals WHERE name='Aardvark' FOR SHARE;
 1 row in set (0.00 sec)
 ```
 
-Next, client B begins a transaction, and selects a row in Birds
-in share mode:
+Next, client B begins a transaction, and selects a row in Birds in share mode:
 
 ```
 mysql> START TRANSACTION;
@@ -59,8 +49,7 @@ mysql> SELECT value FROM Birds WHERE name='Buzzard' FOR SHARE;
 1 row in set (0.00 sec)
 ```
 
-The Performance Schema shows the locks after the two select
-statements:
+The Performance Schema shows the locks after the two select statements:
 
 ```
 mysql> SELECT ENGINE_TRANSACTION_ID as Trx_Id,
@@ -88,8 +77,7 @@ Client B then updates a row in Animals:
 mysql> UPDATE Animals SET value=30 WHERE name='Aardvark';
 ```
 
-Client B has to wait. The Performance Schema shows the wait for
-a lock:
+Client B has to wait. The Performance Schema shows the wait for a lock:
 
 ```
 mysql> SELECT REQUESTING_ENGINE_LOCK_ID as Req_Lock_Id,
@@ -126,20 +114,16 @@ mysql> SELECT ENGINE_LOCK_ID as Lock_Id,
 6 rows in set (0.00 sec)
 ```
 
-InnoDB only uses sequential transaction ids when a transaction
-attempts to modify the database. Thererfore, the previous
-read-only transaction id changes from 421291106148352 to 43260.
+InnoDB only uses sequential transaction ids when a transaction attempts to modify the database. Thererfore, the previous read-only transaction id changes from 421291106148352 to 43260.
 
-If client A attempts to update a row in Birds at the same time,
-this will lead to a deadlock:
+If client A attempts to update a row in Birds at the same time, this will lead to a deadlock:
 
 ```
 mysql> UPDATE Birds SET value=40 WHERE name='Buzzard';
 ERROR 1213 (40001): Deadlock found when trying to get lock; try restarting transaction
 ```
 
-InnoDB rolls back the transaction that caused the deadlock. The
-first update, from Client B, can now proceed.
+InnoDB rolls back the transaction that caused the deadlock. The first update, from Client B, can now proceed.
 
 The Information Schema contains the number of deadlocks:
 
@@ -154,10 +138,7 @@ mysql> SELECT `count` FROM INFORMATION_SCHEMA.INNODB_METRICS
 1 row in set (0.00 sec)
 ```
 
-The InnoDB status contains the following information about the
-deadlock and transactions. It also shows that the read-only
-transaction id 421291106147544 changes to sequential transaction
-id 43261.
+The InnoDB status contains the following information about the deadlock and transactions. It also shows that the read-only transaction id 421291106147544 changes to sequential transaction id 43261.
 
 ```
 mysql> SHOW ENGINE INNODB STATUS;
@@ -233,8 +214,7 @@ LIST OF TRANSACTIONS FOR EACH SESSION:
 MySQL thread id 19, OS thread handle 139815619204864, query id 143 localhost u2
 ```
 
-The error log contains this information about transactions and
-locks:
+The error log contains this information about transactions and locks:
 
 ```
 mysql> SELECT @@log_error;

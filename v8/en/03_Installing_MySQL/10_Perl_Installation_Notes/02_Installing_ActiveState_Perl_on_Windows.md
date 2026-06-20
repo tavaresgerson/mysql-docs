@@ -1,15 +1,11 @@
 ### 2.10.2 Installing ActiveState Perl on Windows
 
-On Windows, you should do the following to install the MySQL
-`DBD` module with ActiveState Perl:
+On Windows, you should do the following to install the MySQL `DBD` module with ActiveState Perl:
 
-1. Get ActiveState Perl from
-   <http://www.activestate.com/Products/ActivePerl/>
-   and install it.
+1. Get ActiveState Perl from <http://www.activestate.com/Products/ActivePerl/> and install it.
 
 2. Open a console window.
-3. If necessary, set the `HTTP_proxy` variable.
-   For example, you might try a setting like this:
+3. If necessary, set the `HTTP_proxy` variable. For example, you might try a setting like this:
 
    ```
    C:\> set HTTP_proxy=my.proxy.com:3128
@@ -21,8 +17,7 @@ On Windows, you should do the following to install the MySQL
    C:\> C:\perl\bin\ppm.pl
    ```
 
-5. If you have not previously done so, install
-   `DBI`:
+5. If you have not previously done so, install `DBI`:
 
    ```
    ppm> install DBI
@@ -36,8 +31,7 @@ On Windows, you should do the following to install the MySQL
 
 This procedure should work with ActiveState Perl 5.6 or higher.
 
-If you cannot get the procedure to work, you should install the
-ODBC driver instead and connect to the MySQL server through ODBC:
+If you cannot get the procedure to work, you should install the ODBC driver instead and connect to the MySQL server through ODBC:
 
 ```
 use DBI;

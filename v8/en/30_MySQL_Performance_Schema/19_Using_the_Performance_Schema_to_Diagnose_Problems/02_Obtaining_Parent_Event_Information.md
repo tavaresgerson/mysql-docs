@@ -1,39 +1,16 @@
 ### 29.19.2 Obtaining Parent Event Information
 
-The [`data_locks`](performance-schema-data-locks-table.html "29.12.13.1 The data_locks Table") table shows data
-locks held and requested. Rows of this table have a
-`THREAD_ID` column indicating the thread ID of
-the session that owns the lock, and an
-`EVENT_ID` column indicating the Performance
-Schema event that caused the lock. Tuples of
-(`THREAD_ID`, `EVENT_ID`)
-values implicitly identify a parent event in other Performance
-Schema tables:
+The `data_locks` table shows data locks held and requested. Rows of this table have a `THREAD_ID` column indicating the thread ID of the session that owns the lock, and an `EVENT_ID` column indicating the Performance Schema event that caused the lock. Tuples of (`THREAD_ID`, `EVENT_ID`) values implicitly identify a parent event in other Performance Schema tables:
 
-* The parent wait event in the
-  `events_waits_xxx`
-  tables
+* The parent wait event in the `events_waits_xxx` tables
 
-* The parent stage event in the
-  `events_stages_xxx`
-  tables
+* The parent stage event in the `events_stages_xxx` tables
 
-* The parent statement event in the
-  `events_statements_xxx`
-  tables
+* The parent statement event in the `events_statements_xxx` tables
 
-* The parent transaction event in the
-  [`events_transactions_current`](performance-schema-events-transactions-current-table.html "29.12.7.1 The events_transactions_current Table")
-  table
+* The parent transaction event in the `events_transactions_current` table
 
-To obtain details about the parent event, join the
-`THREAD_ID` and `EVENT_ID`
-columns with the columns of like name in the appropriate parent
-event table. The relation is based on a nested set data model,
-so the join has several clauses. Given parent and child tables
-represented by `parent` and
-`child`, respectively, the join looks like
-this:
+To obtain details about the parent event, join the `THREAD_ID` and `EVENT_ID` columns with the columns of like name in the appropriate parent event table. The relation is based on a nested set data model, so the join has several clauses. Given parent and child tables represented by `parent` and `child`, respectively, the join looks like this:
 
 ```
 WHERE
@@ -48,56 +25,27 @@ WHERE
 The conditions for the join are:
 
 1. The parent and child events are in the same thread.
-2. The child event begins after the parent event, so its
-   `EVENT_ID` value is greater than that of
-   the parent.
+2. The child event begins after the parent event, so its `EVENT_ID` value is greater than that of the parent.
 
 3. The parent event has either completed or is still running.
 
-To find lock information,
-[`data_locks`](performance-schema-data-locks-table.html "29.12.13.1 The data_locks Table") is the table containing
-child events.
+To find lock information, `data_locks` is the table containing child events.
 
-The [`data_locks`](performance-schema-data-locks-table.html "29.12.13.1 The data_locks Table") table shows only
-existing locks, so these considerations apply regarding which
-table contains the parent event:
+The `data_locks` table shows only existing locks, so these considerations apply regarding which table contains the parent event:
 
-* For transactions, the only choice is
-  [`events_transactions_current`](performance-schema-events-transactions-current-table.html "29.12.7.1 The events_transactions_current Table"). If
-  a transaction is completed, it may be in the transaction
-  history tables, but the locks are gone already.
+* For transactions, the only choice is `events_transactions_current`. If a transaction is completed, it may be in the transaction history tables, but the locks are gone already.
 
-* For statements, it all depends on whether the statement that
-  took a lock is a statement in a transaction that has already
-  completed (use
-  [`events_statements_history`](performance-schema-events-statements-history-table.html "29.12.6.2 The events_statements_history Table")) or
-  the statement is still running (use
-  [`events_statements_current`](performance-schema-events-statements-current-table.html "29.12.6.1 The events_statements_current Table")).
+* For statements, it all depends on whether the statement that took a lock is a statement in a transaction that has already completed (use `events_statements_history`) or the statement is still running (use `events_statements_current`).
 
-* For stages, the logic is similar to that for statements; use
-  [`events_stages_history`](performance-schema-events-stages-history-table.html "29.12.5.2 The events_stages_history Table") or
-  [`events_stages_current`](performance-schema-events-stages-current-table.html "29.12.5.1 The events_stages_current Table").
+* For stages, the logic is similar to that for statements; use `events_stages_history` or `events_stages_current`.
 
-* For waits, the logic is similar to that for statements; use
-  [`events_waits_history`](performance-schema-events-waits-history-table.html "29.12.4.2 The events_waits_history Table") or
-  [`events_waits_current`](performance-schema-events-waits-current-table.html "29.12.4.1 The events_waits_current Table"). However,
-  so many waits are recorded that the wait that caused a lock
-  is most likely gone from the history tables already.
+* For waits, the logic is similar to that for statements; use `events_waits_history` or `events_waits_current`. However, so many waits are recorded that the wait that caused a lock is most likely gone from the history tables already.
 
-Wait, stage, and statement events disappear quickly from the
-history. If a statement that executed a long time ago took a
-lock but is in a still-open transaction, it might not be
-possible to find the statement, but it is possible to find the
-transaction.
+Wait, stage, and statement events disappear quickly from the history. If a statement that executed a long time ago took a lock but is in a still-open transaction, it might not be possible to find the statement, but it is possible to find the transaction.
 
-This is why the nested set data model works better for locating
-parent events. Following links in a parent/child relationship
-(data lock -> parent wait -> parent stage -> parent
-transaction) does not work well when intermediate nodes are
-already gone from the history tables.
+This is why the nested set data model works better for locating parent events. Following links in a parent/child relationship (data lock -> parent wait -> parent stage -> parent transaction) does not work well when intermediate nodes are already gone from the history tables.
 
-The following scenario illustrates how to find the parent
-transaction of a statement in which a lock was taken:
+The following scenario illustrates how to find the parent transaction of a statement in which a lock was taken:
 
 Session A:
 
@@ -122,17 +70,10 @@ WHERE
   );
 ```
 
-The query for session B should show statement [2] as owning a
-data lock on the record with `pk=1`.
+The query for session B should show statement [2] as owning a data lock on the record with `pk=1`.
 
-If session A executes more statements, [2] fades out of the
-history table.
+If session A executes more statements, [2] fades out of the history table.
 
-The query should show the transaction that started in [1],
-regardless of how many statements, stages, or waits were
-executed.
+The query should show the transaction that started in [1], regardless of how many statements, stages, or waits were executed.
 
-To see more data, you can also use the
-`events_xxx_history_long`
-tables, except for transactions, assuming no other query runs in
-the server (so that history is preserved).
+To see more data, you can also use the `events_xxx_history_long` tables, except for transactions, assuming no other query runs in the server (so that history is preserved).

@@ -1,11 +1,6 @@
 #### 2.1.4.5 GPG Public Build Key for Archived Packages
 
-The following GPG public build key (keyID
-`3A79BD29`) can be used to verify the
-authenticity and integrity of MySQL packages versions 8.0.28
-through 8.0.35, 8.1.0, and 8.2.0. For signature checking
-instructions, see [Section 2.1.4.2, “Signature Checking Using GnuPG”](checking-gpg-signature.html "2.1.4.2 Signature Checking Using GnuPG"). It
-expired on December 14, 2023.
+The following GPG public build key (keyID `3A79BD29`) can be used to verify the authenticity and integrity of MySQL packages versions 8.0.28 through 8.0.35, 8.1.0, and 8.2.0. For signature checking instructions, see Section 2.1.4.2, “Signature Checking Using GnuPG”. It expired on December 14, 2023.
 
 ##### GPG Public Build Key for MySQL 8.0.36 through 8.0.43, and 8.3.0 through 8.4.6, and 9.0.0 through 9.4.0 Packages
 
@@ -118,11 +113,7 @@ HAB5DGMkx92HUMidsTSKHe+QnnnoFmu4gnmDU31i
 -----END PGP PUBLIC KEY BLOCK-----
 ```
 
-The following GPG public build key (keyID
-`5072E1F5`) can be used to verify the
-authenticity and integrity of MySQL 8.0.27 packages and earlier.
-For signature checking instructions, see
-[Section 2.1.4.2, “Signature Checking Using GnuPG”](checking-gpg-signature.html "2.1.4.2 Signature Checking Using GnuPG").
+The following GPG public build key (keyID `5072E1F5`) can be used to verify the authenticity and integrity of MySQL 8.0.27 packages and earlier. For signature checking instructions, see Section 2.1.4.2, “Signature Checking Using GnuPG”.
 
 ##### GPG Public Build Key for MySQL 8.0.27 Packages and Earlier
 

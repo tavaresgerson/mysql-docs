@@ -2,94 +2,27 @@
 
 **Table 14.9 Arithmetic Operators**
 
-<table frame="box" rules="all" summary="A reference that lists arithmetic operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th>
-<th>Description</th>
-</tr></thead><tbody><tr><td><a class="link" href="arithmetic-functions.html#operator_mod"><code class="literal">%</code>, <code class="literal">MOD</code></a></td>
-<td>
-      Modulo operator
-    </td>
-</tr><tr><td><a class="link" href="arithmetic-functions.html#operator_times"><code class="literal">*</code></a></td>
-<td>
-      Multiplication operator
-    </td>
-</tr><tr><td><a class="link" href="arithmetic-functions.html#operator_plus"><code class="literal">+</code></a></td>
-<td>
-      Addition operator
-    </td>
-</tr><tr><td><a class="link" href="arithmetic-functions.html#operator_minus"><code class="literal">-</code></a></td>
-<td>
-      Minus operator
-    </td>
-</tr><tr><td><a class="link" href="arithmetic-functions.html#operator_unary-minus"><code class="literal">-</code></a></td>
-<td>
-      Change the sign of the argument
-    </td>
-</tr><tr><td><a class="link" href="arithmetic-functions.html#operator_divide"><code class="literal">/</code></a></td>
-<td>
-      Division operator
-    </td>
-</tr><tr><td><a class="link" href="arithmetic-functions.html#operator_div"><code class="literal">DIV</code></a></td>
-<td>
-      Integer division
-    </td>
-</tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists arithmetic operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>%</code>, <code>MOD</code></td> <td> Modulo operator </td> </tr><tr><td><code>*</code></td> <td> Multiplication operator </td> </tr><tr><td><code>+</code></td> <td> Addition operator </td> </tr><tr><td><code>-</code></td> <td> Minus operator </td> </tr><tr><td><code>-</code></td> <td> Change the sign of the argument </td> </tr><tr><td><code>/</code></td> <td> Division operator </td> </tr><tr><td><code>DIV</code></td> <td> Integer division </td> </tr></tbody></table>
 
-The usual arithmetic operators are available. The result is
-determined according to the following rules:
+The usual arithmetic operators are available. The result is determined according to the following rules:
 
-* In the case of
-  [`-`](arithmetic-functions.html#operator_minus),
-  [`+`](arithmetic-functions.html#operator_plus), and
-  [`*`](arithmetic-functions.html#operator_times), the result
-  is calculated with [`BIGINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")
-  (64-bit) precision if both operands are integers.
+* In the case of `-`, `+`, and `*`, the result is calculated with `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") (64-bit) precision if both operands are integers.
 
-* If both operands are integers and any of them are unsigned,
-  the result is an unsigned integer. For subtraction, if the
-  [`NO_UNSIGNED_SUBTRACTION`](sql-mode.html#sqlmode_no_unsigned_subtraction)
-  SQL mode is enabled, the result is signed even if any
-  operand is unsigned.
+* If both operands are integers and any of them are unsigned, the result is an unsigned integer. For subtraction, if the `NO_UNSIGNED_SUBTRACTION` SQL mode is enabled, the result is signed even if any operand is unsigned.
 
-* If any of the operands of a
-  [`+`](arithmetic-functions.html#operator_plus),
-  [`-`](arithmetic-functions.html#operator_minus),
-  [`/`](arithmetic-functions.html#operator_divide),
-  [`*`](arithmetic-functions.html#operator_times),
-  [`%`](arithmetic-functions.html#operator_mod) is a real or
-  string value, the precision of the result is the precision
-  of the operand with the maximum precision.
+* If any of the operands of a `+`, `-`, `/`, `*`, `%` is a real or string value, the precision of the result is the precision of the operand with the maximum precision.
 
-* In division performed with
-  [`/`](arithmetic-functions.html#operator_divide), the scale
-  of the result when using two exact-value operands is the
-  scale of the first operand plus the value of the
-  [`div_precision_increment`](server-system-variables.html#sysvar_div_precision_increment)
-  system variable (which is 4 by default). For example, the
-  result of the expression `5.05 / 0.014` has
-  a scale of six decimal places
-  (`360.714286`).
+* In division performed with `/`, the scale of the result when using two exact-value operands is the scale of the first operand plus the value of the `div_precision_increment` system variable (which is 4 by default). For example, the result of the expression `5.05 / 0.014` has a scale of six decimal places (`360.714286`).
 
-These rules are applied for each operation, such that nested
-calculations imply the precision of each component. Hence,
-`(14620 / 9432456) / (24250 / 9432456)`,
-resolves first to `(0.0014) / (0.0026)`, with
-the final result having 8 decimal places
-(`0.60288653`).
+These rules are applied for each operation, such that nested calculations imply the precision of each component. Hence, `(14620 / 9432456) / (24250 / 9432456)`, resolves first to `(0.0014) / (0.0026)`, with the final result having 8 decimal places (`0.60288653`).
 
-Because of these rules and the way they are applied, care should
-be taken to ensure that components and subcomponents of a
-calculation use the appropriate level of precision. See
-[Section 14.10, “Cast Functions and Operators”](cast-functions.html "14.10 Cast Functions and Operators").
+Because of these rules and the way they are applied, care should be taken to ensure that components and subcomponents of a calculation use the appropriate level of precision. See Section 14.10, “Cast Functions and Operators”.
 
-For information about handling of overflow in numeric expression
-evaluation, see [Section 13.1.7, “Out-of-Range and Overflow Handling”](out-of-range-and-overflow.html "13.1.7 Out-of-Range and Overflow Handling").
+For information about handling of overflow in numeric expression evaluation, see Section 13.1.7, “Out-of-Range and Overflow Handling”.
 
-Arithmetic operators apply to numbers. For other types of
-values, alternative operations may be available. For example, to
-add date values, use [`DATE_ADD()`](date-and-time-functions.html#function_date-add);
-see [Section 14.7, “Date and Time Functions”](date-and-time-functions.html "14.7 Date and Time Functions").
+Arithmetic operators apply to numbers. For other types of values, alternative operations may be available. For example, to add date values, use `DATE_ADD()`; see Section 14.7, “Date and Time Functions”.
 
-* [`+`](arithmetic-functions.html#operator_plus)
+* `+`
 
   Addition:
 
@@ -98,7 +31,7 @@ see [Section 14.7, “Date and Time Functions”](date-and-time-functions.html 
           -> 8
   ```
 
-* [`-`](arithmetic-functions.html#operator_minus)
+* `-`
 
   Subtraction:
 
@@ -107,7 +40,7 @@ see [Section 14.7, “Date and Time Functions”](date-and-time-functions.html 
           -> -2
   ```
 
-* [`-`](arithmetic-functions.html#operator_unary-minus)
+* `-`
 
   Unary minus. This operator changes the sign of the operand.
 
@@ -118,14 +51,9 @@ see [Section 14.7, “Date and Time Functions”](date-and-time-functions.html 
 
   Note
 
-  If this operator is used with a
-  [`BIGINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), the return value is
-  also a [`BIGINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). This means
-  that you should avoid using `-` on
-  integers that may have the value of
-  −263.
+  If this operator is used with a `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), the return value is also a `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). This means that you should avoid using `-` on integers that may have the value of −263.
 
-* [`*`](arithmetic-functions.html#operator_times)
+* `*`
 
   Multiplication:
 
@@ -138,12 +66,9 @@ see [Section 14.7, “Date and Time Functions”](date-and-time-functions.html 
           -> out-of-range error
   ```
 
-  The last expression produces an error because the result of
-  the integer multiplication exceeds the 64-bit range of
-  [`BIGINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") calculations. (See
-  [Section 13.1, “Numeric Data Types”](numeric-types.html "13.1 Numeric Data Types").)
+  The last expression produces an error because the result of the integer multiplication exceeds the 64-bit range of `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") calculations. (See Section 13.1, “Numeric Data Types”.)
 
-* [`/`](arithmetic-functions.html#operator_divide)
+* `/`
 
   Division:
 
@@ -159,35 +84,19 @@ see [Section 14.7, “Date and Time Functions”](date-and-time-functions.html 
           -> NULL
   ```
 
-  A division is calculated with
-  [`BIGINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") arithmetic only if
-  performed in a context where its result is converted to an
-  integer.
+  A division is calculated with `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") arithmetic only if performed in a context where its result is converted to an integer.
 
-* [`DIV`](arithmetic-functions.html#operator_div)
+* `DIV`
 
-  Integer division. Discards from the division result any
-  fractional part to the right of the decimal point.
+  Integer division. Discards from the division result any fractional part to the right of the decimal point.
 
-  If either operand has a noninteger type, the operands are
-  converted to [`DECIMAL`](fixed-point-types.html "13.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC") and
-  divided using [`DECIMAL`](fixed-point-types.html "13.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC")
-  arithmetic before converting the result to
-  [`BIGINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). If the result exceeds
-  `BIGINT` range, an error occurs.
+  If either operand has a noninteger type, the operands are converted to `DECIMAL` - DECIMAL, NUMERIC") and divided using `DECIMAL` - DECIMAL, NUMERIC") arithmetic before converting the result to `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). If the result exceeds `BIGINT` range, an error occurs.
 
   ```
   mysql> SELECT 5 DIV 2, -5 DIV 2, 5 DIV -2, -5 DIV -2;
           -> 2, -2, -2, 2
   ```
 
-* [`N
-  % M`](arithmetic-functions.html#operator_mod),
-  [`N
-  MOD M`](arithmetic-functions.html#operator_mod)
+* [`N % M`](arithmetic-functions.html#operator_mod), [`N MOD M`](arithmetic-functions.html#operator_mod)
 
-  Modulo operation. Returns the remainder of
-  *`N`* divided by
-  *`M`*. For more information, see the
-  description for the [`MOD()`](mathematical-functions.html#function_mod)
-  function in [Section 14.6.2, “Mathematical Functions”](mathematical-functions.html "14.6.2 Mathematical Functions").
+  Modulo operation. Returns the remainder of *`N`* divided by *`M`*. For more information, see the description for the `MOD()` function in Section 14.6.2, “Mathematical Functions”.

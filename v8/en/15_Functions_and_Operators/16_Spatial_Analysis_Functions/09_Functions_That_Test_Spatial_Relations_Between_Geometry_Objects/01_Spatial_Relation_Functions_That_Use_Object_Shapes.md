@@ -1,107 +1,50 @@
 #### 14.16.9.1 Spatial Relation Functions That Use Object Shapes
 
-The OpenGIS specification defines the following functions to
-test the relationship between two geometry values
-*`g1`* and *`g2`*,
-using precise object shapes. The return values 1 and 0 indicate
-true and false, respectively, except that distance functions
-return distance values.
+The OpenGIS specification defines the following functions to test the relationship between two geometry values *`g1`* and *`g2`*, using precise object shapes. The return values 1 and 0 indicate true and false, respectively, except that distance functions return distance values.
 
-Functions in this section detect arguments in either Cartesian
-or geographic spatial reference systems (SRSs), and return
-results appropriate to the SRS.
+Functions in this section detect arguments in either Cartesian or geographic spatial reference systems (SRSs), and return results appropriate to the SRS.
 
-Unless otherwise specified, functions in this section handle
-their geometry arguments as follows:
+Unless otherwise specified, functions in this section handle their geometry arguments as follows:
 
-* If any argument is `NULL` or any geometry
-  argument is an empty geometry, the return value is
-  `NULL`.
+* If any argument is `NULL` or any geometry argument is an empty geometry, the return value is `NULL`.
 
-* If any geometry argument is not a syntactically well-formed
-  geometry, an
-  [`ER_GIS_INVALID_DATA`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_gis_invalid_data) error
-  occurs.
+* If any geometry argument is not a syntactically well-formed geometry, an `ER_GIS_INVALID_DATA` error occurs.
 
-* If any geometry argument is a syntactically well-formed
-  geometry in an undefined spatial reference system (SRS), an
-  [`ER_SRS_NOT_FOUND`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_srs_not_found) error
-  occurs.
+* If any geometry argument is a syntactically well-formed geometry in an undefined spatial reference system (SRS), an `ER_SRS_NOT_FOUND` error occurs.
 
-* For functions that take multiple geometry arguments, if
-  those arguments are not in the same SRS, an
-  [`ER_GIS_DIFFERENT_SRIDS`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_gis_different_srids) error
-  occurs.
+* For functions that take multiple geometry arguments, if those arguments are not in the same SRS, an `ER_GIS_DIFFERENT_SRIDS` error occurs.
 
-* If any geometry argument is geometrically invalid, either
-  the result is true or false (it is undefined which), or an
-  error occurs.
+* If any geometry argument is geometrically invalid, either the result is true or false (it is undefined which), or an error occurs.
 
-* For geographic SRS geometry arguments, if any argument has a
-  longitude or latitude that is out of range, an error occurs:
+* For geographic SRS geometry arguments, if any argument has a longitude or latitude that is out of range, an error occurs:
 
-  + If a longitude value is not in the range (−180,
-    180], an
-    [`ER_GEOMETRY_PARAM_LONGITUDE_OUT_OF_RANGE`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_geometry_param_longitude_out_of_range)
-    error occurs
-    ([`ER_LONGITUDE_OUT_OF_RANGE`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_longitude_out_of_range)
-    prior to MySQL 8.0.12).
+  + If a longitude value is not in the range (−180, 180], an `ER_GEOMETRY_PARAM_LONGITUDE_OUT_OF_RANGE` error occurs (`ER_LONGITUDE_OUT_OF_RANGE` prior to MySQL 8.0.12).
 
-  + If a latitude value is not in the range [−90, 90],
-    an
-    [`ER_GEOMETRY_PARAM_LATITUDE_OUT_OF_RANGE`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_geometry_param_latitude_out_of_range)
-    error occurs
-    ([`ER_LATITUDE_OUT_OF_RANGE`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_latitude_out_of_range)
-    prior to MySQL 8.0.12).
+  + If a latitude value is not in the range [−90, 90], an `ER_GEOMETRY_PARAM_LATITUDE_OUT_OF_RANGE` error occurs (`ER_LATITUDE_OUT_OF_RANGE` prior to MySQL 8.0.12).
 
-  Ranges shown are in degrees. If an SRS uses another unit,
-  the range uses the corresponding values in its unit. The
-  exact range limits deviate slightly due to floating-point
-  arithmetic.
+  Ranges shown are in degrees. If an SRS uses another unit, the range uses the corresponding values in its unit. The exact range limits deviate slightly due to floating-point arithmetic.
 
 * Otherwise, the return value is non-`NULL`.
 
-Some functions in this section permit a unit argument that
-specifies the length unit for the return value. Unless otherwise
-specified, functions handle their unit argument as follows:
+Some functions in this section permit a unit argument that specifies the length unit for the return value. Unless otherwise specified, functions handle their unit argument as follows:
 
-* A unit is supported if it is found in the
-  `INFORMATION_SCHEMA`
-  [`ST_UNITS_OF_MEASURE`](information-schema-st-units-of-measure-table.html "28.3.37 The INFORMATION_SCHEMA ST_UNITS_OF_MEASURE Table") table. See
-  [Section 28.3.37, “The INFORMATION\_SCHEMA ST\_UNITS\_OF\_MEASURE Table”](information-schema-st-units-of-measure-table.html "28.3.37 The INFORMATION_SCHEMA ST_UNITS_OF_MEASURE Table").
+* A unit is supported if it is found in the `INFORMATION_SCHEMA` `ST_UNITS_OF_MEASURE` table. See Section 28.3.37, “The INFORMATION_SCHEMA ST_UNITS_OF_MEASURE Table”.
 
-* If a unit is specified but not supported by MySQL, an
-  [`ER_UNIT_NOT_FOUND`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_unit_not_found) error
-  occurs.
+* If a unit is specified but not supported by MySQL, an `ER_UNIT_NOT_FOUND` error occurs.
 
-* If a supported linear unit is specified and the SRID is 0,
-  an
-  [`ER_GEOMETRY_IN_UNKNOWN_LENGTH_UNIT`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_geometry_in_unknown_length_unit)
-  error occurs.
+* If a supported linear unit is specified and the SRID is 0, an `ER_GEOMETRY_IN_UNKNOWN_LENGTH_UNIT` error occurs.
 
-* If a supported linear unit is specified and the SRID is not
-  0, the result is in that unit.
+* If a supported linear unit is specified and the SRID is not 0, the result is in that unit.
 
-* If a unit is not specified, the result is in the unit of the
-  SRS of the geometries, whether Cartesian or geographic.
-  Currently, all MySQL SRSs are expressed in meters.
+* If a unit is not specified, the result is in the unit of the SRS of the geometries, whether Cartesian or geographic. Currently, all MySQL SRSs are expressed in meters.
 
-These object-shape functions are available for testing geometry
-relationships:
+These object-shape functions are available for testing geometry relationships:
 
-* [`ST_Contains(g1,
-  g2)`](spatial-relation-functions-object-shapes.html#function_st-contains)
+* [`ST_Contains(g1, g2)`](spatial-relation-functions-object-shapes.html#function_st-contains)
 
-  Returns 1 or 0 to indicate whether
-  *`g1`* completely contains
-  *`g2`* (this means that
-  *`g1`* and
-  *`g2`* must not intersect). This
-  relationship is the inverse of that tested by
-  [`ST_Within()`](spatial-relation-functions-object-shapes.html#function_st-within).
+  Returns 1 or 0 to indicate whether *`g1`* completely contains *`g2`* (this means that *`g1`* and *`g2`* must not intersect). This relationship is the inverse of that tested by `ST_Within()`.
 
-  [`ST_Contains()`](spatial-relation-functions-object-shapes.html#function_st-contains) handles its
-  arguments as described in the introduction to this section.
+  `ST_Contains()` handles its arguments as described in the introduction to this section.
 
   ```
   mysql> SET @g1 = ST_GeomFromText('Polygon((0 0,0 3,3 3,3 0,0 0))'),
@@ -142,105 +85,43 @@ relationships:
   1 row in set (0.00 sec)
   ```
 
-* [`ST_Crosses(g1,
-  g2)`](spatial-relation-functions-object-shapes.html#function_st-crosses)
+* [`ST_Crosses(g1, g2)`](spatial-relation-functions-object-shapes.html#function_st-crosses)
 
-  Two geometries *spatially cross* if their
-  spatial relation has the following properties:
+  Two geometries *spatially cross* if their spatial relation has the following properties:
 
-  + Unless *`g1`* and
-    *`g2`* are both of dimension 1:
-    *`g1`* crosses
-    *`g2`* if the interior of
-    *`g2`* has points in common with
-    the interior of *`g1`*, but
-    *`g2`* does not cover the entire
-    interior of *`g1`*.
+  + Unless *`g1`* and *`g2`* are both of dimension 1: *`g1`* crosses *`g2`* if the interior of *`g2`* has points in common with the interior of *`g1`*, but *`g2`* does not cover the entire interior of *`g1`*.
 
-  + If both *`g1`* and
-    *`g2`* are of dimension 1: If the
-    lines cross each other in a finite number of points
-    (that is, no common line segments, only single points in
-    common).
+  + If both *`g1`* and *`g2`* are of dimension 1: If the lines cross each other in a finite number of points (that is, no common line segments, only single points in common).
 
-  This function returns 1 or 0 to indicate whether
-  *`g1`* spatially crosses
-  *`g2`*.
+  This function returns 1 or 0 to indicate whether *`g1`* spatially crosses *`g2`*.
 
-  [`ST_Crosses()`](spatial-relation-functions-object-shapes.html#function_st-crosses) handles its
-  arguments as described in the introduction to this section
-  except that the return value is `NULL` for
-  these additional conditions:
+  `ST_Crosses()` handles its arguments as described in the introduction to this section except that the return value is `NULL` for these additional conditions:
 
-  + *`g1`* is of dimension 2
-    (`Polygon` or
-    `MultiPolygon`).
+  + *`g1`* is of dimension 2 (`Polygon` or `MultiPolygon`).
 
-  + *`g2`* is of dimension 1
-    (`Point` or
-    `MultiPoint`).
+  + *`g2`* is of dimension 1 (`Point` or `MultiPoint`).
 
-* [`ST_Disjoint(g1,
-  g2)`](spatial-relation-functions-object-shapes.html#function_st-disjoint)
+* [`ST_Disjoint(g1, g2)`](spatial-relation-functions-object-shapes.html#function_st-disjoint)
 
-  Returns 1 or 0 to indicate whether
-  *`g1`* is spatially disjoint from
-  (does not intersect) *`g2`*.
+  Returns 1 or 0 to indicate whether *`g1`* is spatially disjoint from (does not intersect) *`g2`*.
 
-  [`ST_Disjoint()`](spatial-relation-functions-object-shapes.html#function_st-disjoint) handles its
-  arguments as described in the introduction to this section.
+  `ST_Disjoint()` handles its arguments as described in the introduction to this section.
 
-* [`ST_Distance(g1,
-  g2 [,
-  unit])`](spatial-relation-functions-object-shapes.html#function_st-distance)
+* [`ST_Distance(g1, g2 [, unit])`](spatial-relation-functions-object-shapes.html#function_st-distance)
 
-  Returns the distance between *`g1`*
-  and *`g2`*, measured in the length
-  unit of the spatial reference system (SRS) of the geometry
-  arguments, or in the unit of the optional
-  *`unit`* argument if that is
-  specified.
+  Returns the distance between *`g1`* and *`g2`*, measured in the length unit of the spatial reference system (SRS) of the geometry arguments, or in the unit of the optional *`unit`* argument if that is specified.
 
-  This function processes geometry collections by returning
-  the shortest distance among all combinations of the
-  components of the two geometry arguments.
+  This function processes geometry collections by returning the shortest distance among all combinations of the components of the two geometry arguments.
 
-  [`ST_Distance()`](spatial-relation-functions-object-shapes.html#function_st-distance) handles its
-  geometry arguments as described in the introduction to this
-  section, with these exceptions:
+  `ST_Distance()` handles its geometry arguments as described in the introduction to this section, with these exceptions:
 
-  + [`ST_Distance()`](spatial-relation-functions-object-shapes.html#function_st-distance) detects
-    arguments in a geographic (ellipsoidal) spatial
-    reference system and returns the geodetic distance on
-    the ellipsoid. As of MySQL 8.0.18,
-    [`ST_Distance()`](spatial-relation-functions-object-shapes.html#function_st-distance) supports
-    distance calculations for geographic SRS arguments of
-    all geometry types. Prior to MySQL 8.0.18, the only
-    permitted geographic argument types are
-    `Point` and `Point`,
-    or `Point` and
-    `MultiPoint` (in any argument order).
-    If called with other geometry type argument combinations
-    in a geographic SRS, an
-    [`ER_NOT_IMPLEMENTED_FOR_GEOGRAPHIC_SRS`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_not_implemented_for_geographic_srs)
-    error occurs.
+  + `ST_Distance()` detects arguments in a geographic (ellipsoidal) spatial reference system and returns the geodetic distance on the ellipsoid. As of MySQL 8.0.18, `ST_Distance()` supports distance calculations for geographic SRS arguments of all geometry types. Prior to MySQL 8.0.18, the only permitted geographic argument types are `Point` and `Point`, or `Point` and `MultiPoint` (in any argument order). If called with other geometry type argument combinations in a geographic SRS, an `ER_NOT_IMPLEMENTED_FOR_GEOGRAPHIC_SRS` error occurs.
 
-  + If any argument is geometrically invalid, either the
-    result is an undefined distance (that is, it can be any
-    number), or an error occurs.
+  + If any argument is geometrically invalid, either the result is an undefined distance (that is, it can be any number), or an error occurs.
 
-  + If an intermediate or final result produces
-    `NaN` or a negative number, an
-    [`ER_GIS_INVALID_DATA`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_gis_invalid_data)
-    error occurs.
+  + If an intermediate or final result produces `NaN` or a negative number, an `ER_GIS_INVALID_DATA` error occurs.
 
-  As of MySQL 8.0.14,
-  [`ST_Distance()`](spatial-relation-functions-object-shapes.html#function_st-distance) permits an
-  optional *`unit`* argument that
-  specifies the linear unit for the returned distance value.
-  [`ST_Distance()`](spatial-relation-functions-object-shapes.html#function_st-distance) handles its
-  *`unit`* argument as described in the
-  introduction to this section.
+  As of MySQL 8.0.14, `ST_Distance()` permits an optional *`unit`* argument that specifies the linear unit for the returned distance value. `ST_Distance()` handles its *`unit`* argument as described in the introduction to this section.
 
   ```
   mysql> SET @g1 = ST_GeomFromText('POINT(1 1)');
@@ -274,21 +155,13 @@ relationships:
   +-------------------------------+
   ```
 
-  For the special case of distance calculations on a sphere,
-  see the [`ST_Distance_Sphere()`](spatial-convenience-functions.html#function_st-distance-sphere)
-  function.
+  For the special case of distance calculations on a sphere, see the `ST_Distance_Sphere()` function.
 
-* [`ST_Equals(g1,
-  g2)`](spatial-relation-functions-object-shapes.html#function_st-equals)
+* [`ST_Equals(g1, g2)`](spatial-relation-functions-object-shapes.html#function_st-equals)
 
-  Returns 1 or 0 to indicate whether
-  *`g1`* is spatially equal to
-  *`g2`*.
+  Returns 1 or 0 to indicate whether *`g1`* is spatially equal to *`g2`*.
 
-  [`ST_Equals()`](spatial-relation-functions-object-shapes.html#function_st-equals) handles its
-  arguments as described in the introduction to this section,
-  except that it does not return `NULL` for
-  empty geometry arguments.
+  `ST_Equals()` handles its arguments as described in the introduction to this section, except that it does not return `NULL` for empty geometry arguments.
 
   ```
   mysql> SET @g1 = Point(1,1), @g2 = Point(2,2);
@@ -300,43 +173,17 @@ relationships:
   +---------------------+---------------------+
   ```
 
-* [`ST_FrechetDistance(g1,
-  g2 [,
-  unit])`](spatial-relation-functions-object-shapes.html#function_st-frechetdistance)
+* [`ST_FrechetDistance(g1, g2 [, unit])`](spatial-relation-functions-object-shapes.html#function_st-frechetdistance)
 
-  Returns the discrete Fréchet distance between two
-  geometries, reflecting how similar the geometries are. The
-  result is a double-precision number measured in the length
-  unit of the spatial reference system (SRS) of the geometry
-  arguments, or in the length unit of the
-  *`unit`* argument if that argument is
-  given.
+  Returns the discrete Fréchet distance between two geometries, reflecting how similar the geometries are. The result is a double-precision number measured in the length unit of the spatial reference system (SRS) of the geometry arguments, or in the length unit of the *`unit`* argument if that argument is given.
 
-  This function implements the discrete Fréchet distance,
-  which means it is restricted to distances between the points
-  of the geometries. For example, given two
-  `LineString` arguments, only the points
-  explicitly mentioned in the geometries are considered.
-  Points on the line segments between these points are not
-  considered.
+  This function implements the discrete Fréchet distance, which means it is restricted to distances between the points of the geometries. For example, given two `LineString` arguments, only the points explicitly mentioned in the geometries are considered. Points on the line segments between these points are not considered.
 
-  [`ST_FrechetDistance()`](spatial-relation-functions-object-shapes.html#function_st-frechetdistance) handles
-  its geometry arguments as described in the introduction to
-  this section, with these exceptions:
+  `ST_FrechetDistance()` handles its geometry arguments as described in the introduction to this section, with these exceptions:
 
-  + The geometries may have a Cartesian or geographic SRS,
-    but only `LineString` values are
-    supported. If the arguments are in the same Cartesian or
-    geographic SRS, but either is not a
-    `LineString`, an
-    [`ER_NOT_IMPLEMENTED_FOR_CARTESIAN_SRS`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_not_implemented_for_cartesian_srs)
-    or
-    [`ER_NOT_IMPLEMENTED_FOR_GEOGRAPHIC_SRS`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_not_implemented_for_geographic_srs)
-    error occurs, depending on the SRS type.
+  + The geometries may have a Cartesian or geographic SRS, but only `LineString` values are supported. If the arguments are in the same Cartesian or geographic SRS, but either is not a `LineString`, an `ER_NOT_IMPLEMENTED_FOR_CARTESIAN_SRS` or `ER_NOT_IMPLEMENTED_FOR_GEOGRAPHIC_SRS` error occurs, depending on the SRS type.
 
-  [`ST_FrechetDistance()`](spatial-relation-functions-object-shapes.html#function_st-frechetdistance) handles
-  its optional *`unit`* argument as
-  described in the introduction to this section.
+  `ST_FrechetDistance()` handles its optional *`unit`* argument as described in the introduction to this section.
 
   ```
   mysql> SET @ls1 = ST_GeomFromText('LINESTRING(0 0,0 5,5 5)');
@@ -366,57 +213,27 @@ relationships:
 
   This function was added in MySQL 8.0.23.
 
-* [`ST_HausdorffDistance(g1,
-  g2 [,
-  unit])`](spatial-relation-functions-object-shapes.html#function_st-hausdorffdistance)
+* [`ST_HausdorffDistance(g1, g2 [, unit])`](spatial-relation-functions-object-shapes.html#function_st-hausdorffdistance)
 
-  Returns the discrete Hausdorff distance between two
-  geometries, reflecting how similar the geometries are. The
-  result is a double-precision number measured in the length
-  unit of the spatial reference system (SRS) of the geometry
-  arguments, or in the length unit of the
-  *`unit`* argument if that argument is
-  given.
+  Returns the discrete Hausdorff distance between two geometries, reflecting how similar the geometries are. The result is a double-precision number measured in the length unit of the spatial reference system (SRS) of the geometry arguments, or in the length unit of the *`unit`* argument if that argument is given.
 
-  This function implements the discrete Hausdorff distance,
-  which means it is restricted to distances between the points
-  of the geometries. For example, given two
-  `LineString` arguments, only the points
-  explicitly mentioned in the geometries are considered.
-  Points on the line segments between these points are not
-  considered.
+  This function implements the discrete Hausdorff distance, which means it is restricted to distances between the points of the geometries. For example, given two `LineString` arguments, only the points explicitly mentioned in the geometries are considered. Points on the line segments between these points are not considered.
 
-  [`ST_HausdorffDistance()`](spatial-relation-functions-object-shapes.html#function_st-hausdorffdistance)
-  handles its geometry arguments as described in the
-  introduction to this section, with these exceptions:
+  `ST_HausdorffDistance()` handles its geometry arguments as described in the introduction to this section, with these exceptions:
 
-  + If the geometry arguments are in the same Cartesian or
-    geographic SRS, but are not in a supported combination,
-    an
-    [`ER_NOT_IMPLEMENTED_FOR_CARTESIAN_SRS`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_not_implemented_for_cartesian_srs)
-    or
-    [`ER_NOT_IMPLEMENTED_FOR_GEOGRAPHIC_SRS`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_not_implemented_for_geographic_srs)
-    error occurs, depending on the SRS type. These
-    combinations are supported:
+  + If the geometry arguments are in the same Cartesian or geographic SRS, but are not in a supported combination, an `ER_NOT_IMPLEMENTED_FOR_CARTESIAN_SRS` or `ER_NOT_IMPLEMENTED_FOR_GEOGRAPHIC_SRS` error occurs, depending on the SRS type. These combinations are supported:
 
-    - `LineString` and
-      `LineString`
+    - `LineString` and `LineString`
 
-    - `Point` and
-      `MultiPoint`
+    - `Point` and `MultiPoint`
 
-    - `LineString` and
-      `MultiLineString`
+    - `LineString` and `MultiLineString`
 
-    - `MultiPoint` and
-      `MultiPoint`
+    - `MultiPoint` and `MultiPoint`
 
-    - `MultiLineString` and
-      `MultiLineString`
+    - `MultiLineString` and `MultiLineString`
 
-  [`ST_HausdorffDistance()`](spatial-relation-functions-object-shapes.html#function_st-hausdorffdistance)
-  handles its optional *`unit`*
-  argument as described in the introduction to this section.
+  `ST_HausdorffDistance()` handles its optional *`unit`* argument as described in the introduction to this section.
 
   ```
   mysql> SET @ls1 = ST_GeomFromText('LINESTRING(0 0,0 5,5 5)');
@@ -446,61 +263,30 @@ relationships:
 
   This function was added in MySQL 8.0.23.
 
-* [`ST_Intersects(g1,
-  g2)`](spatial-relation-functions-object-shapes.html#function_st-intersects)
+* [`ST_Intersects(g1, g2)`](spatial-relation-functions-object-shapes.html#function_st-intersects)
 
-  Returns 1 or 0 to indicate whether
-  *`g1`* spatially intersects
-  *`g2`*.
+  Returns 1 or 0 to indicate whether *`g1`* spatially intersects *`g2`*.
 
-  [`ST_Intersects()`](spatial-relation-functions-object-shapes.html#function_st-intersects) handles its
-  arguments as described in the introduction to this section.
+  `ST_Intersects()` handles its arguments as described in the introduction to this section.
 
-* [`ST_Overlaps(g1,
-  g2)`](spatial-relation-functions-object-shapes.html#function_st-overlaps)
+* [`ST_Overlaps(g1, g2)`](spatial-relation-functions-object-shapes.html#function_st-overlaps)
 
-  Two geometries *spatially overlap* if
-  they intersect and their intersection results in a geometry
-  of the same dimension but not equal to either of the given
-  geometries.
+  Two geometries *spatially overlap* if they intersect and their intersection results in a geometry of the same dimension but not equal to either of the given geometries.
 
-  This function returns 1 or 0 to indicate whether
-  *`g1`* spatially overlaps
-  *`g2`*.
+  This function returns 1 or 0 to indicate whether *`g1`* spatially overlaps *`g2`*.
 
-  [`ST_Overlaps()`](spatial-relation-functions-object-shapes.html#function_st-overlaps) handles its
-  arguments as described in the introduction to this section
-  except that the return value is `NULL` for
-  the additional condition that the dimensions of the two
-  geometries are not equal.
+  `ST_Overlaps()` handles its arguments as described in the introduction to this section except that the return value is `NULL` for the additional condition that the dimensions of the two geometries are not equal.
 
-* [`ST_Touches(g1,
-  g2)`](spatial-relation-functions-object-shapes.html#function_st-touches)
+* [`ST_Touches(g1, g2)`](spatial-relation-functions-object-shapes.html#function_st-touches)
 
-  Two geometries *spatially touch* if their
-  interiors do not intersect, but the boundary of one of the
-  geometries intersects either the boundary or the interior of
-  the other.
+  Two geometries *spatially touch* if their interiors do not intersect, but the boundary of one of the geometries intersects either the boundary or the interior of the other.
 
-  This function returns 1 or 0 to indicate whether
-  *`g1`* spatially touches
-  *`g2`*.
+  This function returns 1 or 0 to indicate whether *`g1`* spatially touches *`g2`*.
 
-  [`ST_Touches()`](spatial-relation-functions-object-shapes.html#function_st-touches) handles its
-  arguments as described in the introduction to this section
-  except that the return value is `NULL` for
-  the additional condition that both geometries are of
-  dimension 0 (`Point` or
-  `MultiPoint`).
+  `ST_Touches()` handles its arguments as described in the introduction to this section except that the return value is `NULL` for the additional condition that both geometries are of dimension 0 (`Point` or `MultiPoint`).
 
-* [`ST_Within(g1,
-  g2)`](spatial-relation-functions-object-shapes.html#function_st-within)
+* [`ST_Within(g1, g2)`](spatial-relation-functions-object-shapes.html#function_st-within)
 
-  Returns 1 or 0 to indicate whether
-  *`g1`* is spatially within
-  *`g2`*. This tests the opposite
-  relationship as
-  [`ST_Contains()`](spatial-relation-functions-object-shapes.html#function_st-contains).
+  Returns 1 or 0 to indicate whether *`g1`* is spatially within *`g2`*. This tests the opposite relationship as `ST_Contains()`.
 
-  [`ST_Within()`](spatial-relation-functions-object-shapes.html#function_st-within) handles its
-  arguments as described in the introduction to this section.
+  `ST_Within()` handles its arguments as described in the introduction to this section.

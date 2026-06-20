@@ -1,258 +1,10 @@
 ### 25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster
 
-The [**ndbxfrm**](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster") utility, introduced in NDB
-8.0.22, can be used to decompress, decrypt, and output
-information about files created by NDB Cluster that are
-compressed, encrypted, or both. It can also be used to compress
-or encrypt files.
+The **ndbxfrm** utility, introduced in NDB 8.0.22, can be used to decompress, decrypt, and output information about files created by NDB Cluster that are compressed, encrypted, or both. It can also be used to compress or encrypt files.
 
 **Table 25.52 Command-line options used with the program ndbxfrm**
 
-<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr>
-<th scope="col">Format</th>
-<th scope="col">Description</th>
-<th scope="col">Added, Deprecated, or Removed</th>
-</tr></thead><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_compress">--compress</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_compress">-c</a>
-</code>
-</p></th>
-<td>Compress file</td>
-<td><p>
-                ADDED: NDB 8.0.22
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_decrypt-key">--decrypt-key=key</a>
-</code>
-</p></th>
-<td>Supply file decryption key</td>
-<td><p>
-                ADDED: NDB 8.0.31
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_decrypt-key-from-stdin">--decrypt-key-from-stdin</a>
-</code>
-</p></th>
-<td>Supply file decryption key from stdin</td>
-<td><p>
-                ADDED: NDB 8.0.31
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_decrypt-password">--decrypt-password=password</a>
-</code>
-</p></th>
-<td>Use this password to decrypt file</td>
-<td><p>
-                ADDED: NDB 8.0.22
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_decrypt-password-from-stdin">--decrypt-password-from-stdin</a>
-</code>
-</p></th>
-<td>Get decryption password in a secure fashion from STDIN</td>
-<td><p>
-                ADDED: NDB 8.0.24
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_defaults-extra-file">--defaults-extra-file=path</a>
-</code>
-</p></th>
-<td>Read given file after global files are read</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_defaults-group-suffix">--defaults-group-suffix=string</a>
-</code>
-</p></th>
-<td>Also read groups with concat(group, suffix)</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_defaults-file">--defaults-file=path</a>
-</code>
-</p></th>
-<td>Read default options from given file only</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_detailed-info">--encrypt-block-size=#</a>
-</code>
-</p></th>
-<td>Print info about file including file header and trailer</td>
-<td><p>
-                ADDED: NDB 8.0.31
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-block-size">--encrypt-block-size=#</a>
-</code>
-</p></th>
-<td>Size of input data chunks encrypted as a unit. Used with XTS, set to
-              zero for CBC mode</td>
-<td><p>
-                ADDED: NDB 8.0.29
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-cipher">--encrypt-cipher=#</a>
-</code>
-</p></th>
-<td>Encryption cipher: 1 for CBC, 2 for XTS</td>
-<td><p>
-                ADDED: NDB 8.0.29
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-kdf-iter-count">--encrypt-kdf-iter-count=#</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-kdf-iter-count">-k
-                #</a> </code>
-</p></th>
-<td>Number of iterations used in key definition</td>
-<td><p>
-                ADDED: NDB 8.0.22
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-key">--encrypt-key=key</a>
-</code>
-</p></th>
-<td>Use this key to encrypt file</td>
-<td><p>
-                ADDED: NDB 8.0.31
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-key-from-stdin">--encrypt-key-from-stdin</a>
-</code>
-</p></th>
-<td>Use key supplied from stdin to encrypt file</td>
-<td><p>
-                ADDED: NDB 8.0.31
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-password">--encrypt-password=password</a>
-</code>
-</p></th>
-<td>Use this password to encrypt file</td>
-<td><p>
-                ADDED: NDB 8.0.22
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-password-from-stdin">--encrypt-password-from-stdin</a>
-</code>
-</p></th>
-<td>Get encryption password in a secure fashion from STDIN</td>
-<td><p>
-                ADDED: NDB 8.0.24
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_help">--help</a></code>,
-              </p><p>
-<code class="option"> <a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_help">-?</a>
-</code>
-</p></th>
-<td>Print usage information</td>
-<td><p>
-                ADDED: NDB 8.0.22
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_info">--info</a></code>,
-              </p><p>
-<code class="option"> <a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_info">-i</a>
-</code>
-</p></th>
-<td>Print file information</td>
-<td><p>
-                ADDED: NDB 8.0.22
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_login-path">--login-path=path</a>
-</code>
-</p></th>
-<td>Read given path from login file</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_no-defaults">--no-defaults</a>
-</code>
-</p></th>
-<td>Do not read default options from any option file other than login file</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_print-defaults">--print-defaults</a>
-</code>
-</p></th>
-<td>Print program argument list and exit</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_usage">--usage</a></code>,
-              </p><p>
-<code class="option"> <a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_usage">-?</a>
-</code>
-</p></th>
-<td>Prints usage information; synonym for --help</td>
-<td><p>
-                ADDED: NDB 8.0.22
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_version">--version</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_version">-V</a>
-</code>
-</p></th>
-<td>Output version information</td>
-<td><p>
-                ADDED: NDB 8.0.22
-              </p></td>
-</tr></tbody></table>
+<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th scope="col">Format</th> <th scope="col">Description</th> <th scope="col">Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th scope="row"><p> <code>--compress</code>, </p><p> <code class="option"> -c </code> </p></th> <td>Compress file</td> <td><p> ADDED: NDB 8.0.22 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --decrypt-key=key </code> </p></th> <td>Supply file decryption key</td> <td><p> ADDED: NDB 8.0.31 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --decrypt-key-from-stdin </code> </p></th> <td>Supply file decryption key from stdin</td> <td><p> ADDED: NDB 8.0.31 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --decrypt-password=password </code> </p></th> <td>Use this password to decrypt file</td> <td><p> ADDED: NDB 8.0.22 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --decrypt-password-from-stdin </code> </p></th> <td>Get decryption password in a secure fashion from STDIN</td> <td><p> ADDED: NDB 8.0.24 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Read given file after global files are read</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Also read groups with concat(group, suffix)</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Read default options from given file only</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --encrypt-block-size=# </code> </p></th> <td>Print info about file including file header and trailer</td> <td><p> ADDED: NDB 8.0.31 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --encrypt-block-size=# </code> </p></th> <td>Size of input data chunks encrypted as a unit. Used with XTS, set to zero for CBC mode</td> <td><p> ADDED: NDB 8.0.29 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --encrypt-cipher=# </code> </p></th> <td>Encryption cipher: 1 for CBC, 2 for XTS</td> <td><p> ADDED: NDB 8.0.29 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--encrypt-kdf-iter-count=#</code>, </p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-kdf-iter-count">-k #</a> </code> </p></th> <td>Number of iterations used in key definition</td> <td><p> ADDED: NDB 8.0.22 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --encrypt-key=key </code> </p></th> <td>Use this key to encrypt file</td> <td><p> ADDED: NDB 8.0.31 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --encrypt-key-from-stdin </code> </p></th> <td>Use key supplied from stdin to encrypt file</td> <td><p> ADDED: NDB 8.0.31 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --encrypt-password=password </code> </p></th> <td>Use this password to encrypt file</td> <td><p> ADDED: NDB 8.0.22 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --encrypt-password-from-stdin </code> </p></th> <td>Get encryption password in a secure fashion from STDIN</td> <td><p> ADDED: NDB 8.0.24 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--help</code>, </p><p> <code class="option"> -? </code> </p></th> <td>Print usage information</td> <td><p> ADDED: NDB 8.0.22 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--info</code>, </p><p> <code class="option"> -i </code> </p></th> <td>Print file information</td> <td><p> ADDED: NDB 8.0.22 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --login-path=path </code> </p></th> <td>Read given path from login file</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --no-defaults </code> </p></th> <td>Do not read default options from any option file other than login file</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --print-defaults </code> </p></th> <td>Print program argument list and exit</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--usage</code>, </p><p> <code class="option"> -? </code> </p></th> <td>Prints usage information; synonym for --help</td> <td><p> ADDED: NDB 8.0.22 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--version</code>, </p><p> <code class="option"> -V </code> </p></th> <td>Output version information</td> <td><p> ADDED: NDB 8.0.22 </p></td> </tr></tbody></table>
 
 #### Usage
 
@@ -266,143 +18,71 @@ ndbxfrm --decrypt-password=password input_file output_file
 ndbxfrm [--encrypt-ldf-iter-count=#] --encrypt-password=password input_file output_file
 ```
 
-*`input_file`* and
-*`output_file`* cannot be the same file.
+*`input_file`* and *`output_file`* cannot be the same file.
 
 #### Options
 
-* [`--compress`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_compress),
-  `-c`
+* `--compress`, `-c`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.22-ndb-8.0.22</td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress</code></td> </tr><tr><th>Introduced</th> <td>8.0.22-ndb-8.0.22</td> </tr></tbody></table>
 
-  Compresses the input file, using the same compression method
-  as is used for compressing NDB Cluster backups, and writes
-  the output to an output file. To decompress a compressed
-  `NDB` backup file that is not encrypted, it
-  is necessary only to invoke [**ndbxfrm**](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster") using
-  the names of the compressed file and an output file (with no
-  options required).
+  Compresses the input file, using the same compression method as is used for compressing NDB Cluster backups, and writes the output to an output file. To decompress a compressed `NDB` backup file that is not encrypted, it is necessary only to invoke **ndbxfrm** using the names of the compressed file and an output file (with no options required).
 
-* [`--decrypt-key=key`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_decrypt-key),
-  `-K` *`key`*
+* `--decrypt-key=key`, `-K` *`key`*
 
-  <table frame="box" rules="all" summary="Properties for decrypt-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--decrypt-key=key</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.31-ndb-8.0.31</td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for decrypt-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--decrypt-key=key</code></td> </tr><tr><th>Introduced</th> <td>8.0.31-ndb-8.0.31</td> </tr></tbody></table>
 
-  Decrypts a file encrypted by `NDB` using
-  the supplied key.
+  Decrypts a file encrypted by `NDB` using the supplied key.
 
   Note
 
-  This option cannot be used together with
-  [`--decrypt-password`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_decrypt-password).
+  This option cannot be used together with `--decrypt-password`.
 
-* [`--decrypt-key-from-stdin`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_decrypt-key-from-stdin)
+* `--decrypt-key-from-stdin`
 
-  <table frame="box" rules="all" summary="Properties for decrypt-key-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--decrypt-key-from-stdin</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.31-ndb-8.0.31</td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for decrypt-key-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--decrypt-key-from-stdin</code></td> </tr><tr><th>Introduced</th> <td>8.0.31-ndb-8.0.31</td> </tr></tbody></table>
 
-  Decrypts a file encrypted by `NDB` using
-  the key supplied from `stdin`.
+  Decrypts a file encrypted by `NDB` using the key supplied from `stdin`.
 
-* [`--decrypt-password=password`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_decrypt-password)
+* `--decrypt-password=password`
 
-  <table frame="box" rules="all" summary="Properties for decrypt-password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--decrypt-password=password</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.22-ndb-8.0.22</td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for decrypt-password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--decrypt-password=password</code></td> </tr><tr><th>Introduced</th> <td>8.0.22-ndb-8.0.22</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Decrypts a file encrypted by `NDB` using
-  the password supplied.
+  Decrypts a file encrypted by `NDB` using the password supplied.
 
   Note
 
-  This option cannot be used together with
-  [`--decrypt-key`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_decrypt-key).
+  This option cannot be used together with `--decrypt-key`.
 
-* [`--decrypt-password-from-stdin[=TRUE|FALSE]`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_decrypt-password-from-stdin)
+* `--decrypt-password-from-stdin[=TRUE|FALSE]`
 
-  <table frame="box" rules="all" summary="Properties for decrypt-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--decrypt-password-from-stdin</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.24-ndb-8.0.24</td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for decrypt-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--decrypt-password-from-stdin</code></td> </tr><tr><th>Introduced</th> <td>8.0.24-ndb-8.0.24</td> </tr></tbody></table>
 
-  Decrypts a file encrypted by `NDB`, using a
-  password supplied from standard input. This is similar to
-  entering a password after invoking [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client")
-  [`--password`](mysql-command-options.html#option_mysql_password) with no password
-  following the option.
+  Decrypts a file encrypted by `NDB`, using a password supplied from standard input. This is similar to entering a password after invoking **mysql** `--password` with no password following the option.
 
-* [`--defaults-extra-file`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_defaults-extra-file)
+* `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--defaults-extra-file=path</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Read given file after global files are read.
 
-* [`--defaults-file`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_defaults-file)
+* `--defaults-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--defaults-file=path</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Read default options from given file only.
 
-* [`--defaults-group-suffix`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_defaults-group-suffix)
+* `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--defaults-group-suffix=string</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Also read groups with
-  `CONCAT(group,
-  suffix)`.
+  Also read groups with `CONCAT(group, suffix)`.
 
-* [`--detailed-info`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_detailed-info)
+* `--detailed-info`
 
-  <table frame="box" rules="all" summary="Properties for detailed-info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--encrypt-block-size=#</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.31-ndb-8.0.31</td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">FALSE</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for detailed-info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--encrypt-block-size=#</code></td> </tr><tr><th>Introduced</th> <td>8.0.31-ndb-8.0.31</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Print out file information like
-  [`--info`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_info), but include the
-  file's header and trailer.
+  Print out file information like `--info`, but include the file's header and trailer.
 
   Example:
 
@@ -474,136 +154,77 @@ ndbxfrm [--encrypt-ldf-iter-count=#] --encrypt-password=password input_file outp
   }
   ```
 
-* [`--encrypt-block-size=#`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-block-size)
+* `--encrypt-block-size=#`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.22-ndb-8.0.22</td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress</code></td> </tr><tr><th>Introduced</th> <td>8.0.22-ndb-8.0.22</td> </tr></tbody></table>0
 
-  Size of input data chunks that are encrypted as a unit. Used
-  with XTS; set to `0` (the default) for CBC
-  mode.
+  Size of input data chunks that are encrypted as a unit. Used with XTS; set to `0` (the default) for CBC mode.
 
-* [`--encrypt-cipher=#`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-cipher)
+* `--encrypt-cipher=#`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.22-ndb-8.0.22</td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress</code></td> </tr><tr><th>Introduced</th> <td>8.0.22-ndb-8.0.22</td> </tr></tbody></table>1
 
-  Cipher used for encryption. Set to `1` for
-  CBC mode (the default), or `2` for XTS.
+  Cipher used for encryption. Set to `1` for CBC mode (the default), or `2` for XTS.
 
-* [`--encrypt-kdf-iter-count=#`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-kdf-iter-count),
-  `-k #`
+* `--encrypt-kdf-iter-count=#`, `-k #`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.22-ndb-8.0.22</td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress</code></td> </tr><tr><th>Introduced</th> <td>8.0.22-ndb-8.0.22</td> </tr></tbody></table>2
 
-  When encrypting a file, specifies the number of iterations
-  to use for the encryption key. Requires the
-  [`--encrypt-password`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-password) option.
+  When encrypting a file, specifies the number of iterations to use for the encryption key. Requires the `--encrypt-password` option.
 
-* [`--encrypt-key=key`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-key)
+* `--encrypt-key=key`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.22-ndb-8.0.22</td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress</code></td> </tr><tr><th>Introduced</th> <td>8.0.22-ndb-8.0.22</td> </tr></tbody></table>3
 
   Encrypts a file using the supplied key.
 
   Note
 
-  This option cannot be used together with
-  [`--encrypt-password`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-password).
+  This option cannot be used together with `--encrypt-password`.
 
-* [`--encrypt-key-from-stdin`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-key-from-stdin)
+* `--encrypt-key-from-stdin`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.22-ndb-8.0.22</td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress</code></td> </tr><tr><th>Introduced</th> <td>8.0.22-ndb-8.0.22</td> </tr></tbody></table>4
 
-  Encrypt a file using the key supplied from
-  `stdin`.
+  Encrypt a file using the key supplied from `stdin`.
 
-* [`--encrypt-password=password`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-password)
+* `--encrypt-password=password`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.22-ndb-8.0.22</td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress</code></td> </tr><tr><th>Introduced</th> <td>8.0.22-ndb-8.0.22</td> </tr></tbody></table>5
 
-  Encrypts the backup file using the password supplied by the
-  option. The password must meet the requirements listed here:
+  Encrypts the backup file using the password supplied by the option. The password must meet the requirements listed here:
 
-  + Uses any of the printable ASCII characters except
-    `!`, `'`,
-    `"`, `$`,
-    `%`, `\`,
-    `` ` ``, and `^`
+  + Uses any of the printable ASCII characters except `!`, `'`, `"`, `$`, `%`, `\`, `` ` ``, and `^`
 
   + Is no more than 256 characters in length
   + Is enclosed by single or double quotation marks
 
   Note
 
-  This option cannot be used together with
-  [`--encrypt-key`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-key).
+  This option cannot be used together with `--encrypt-key`.
 
-* [`--encrypt-password-from-stdin[=TRUE|FALSE]`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-password-from-stdin)
+* `--encrypt-password-from-stdin[=TRUE|FALSE]`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.22-ndb-8.0.22</td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress</code></td> </tr><tr><th>Introduced</th> <td>8.0.22-ndb-8.0.22</td> </tr></tbody></table>6
 
-  Encrypts a file using a password supplied from standard
-  input. This is similar to entering a password is entered
-  after invoking [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client")
-  [`--password`](mysql-command-options.html#option_mysql_password) with no password
-  following the option.
+  Encrypts a file using a password supplied from standard input. This is similar to entering a password is entered after invoking **mysql** `--password` with no password following the option.
 
-* [`--help`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_help), `-?`
+* `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.22-ndb-8.0.22</td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress</code></td> </tr><tr><th>Introduced</th> <td>8.0.22-ndb-8.0.22</td> </tr></tbody></table>7
 
   Prints usage information for the program.
 
-* [`--info`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_info), `-i`
+* `--info`, `-i`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.22-ndb-8.0.22</td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress</code></td> </tr><tr><th>Introduced</th> <td>8.0.22-ndb-8.0.22</td> </tr></tbody></table>8
 
-  Prints the following information about one or more input
-  files:
+  Prints the following information about one or more input files:
 
   + The name of the file
-  + Whether the file is compressed
-    (`compression=yes` or
-    `compression=no`)
+  + Whether the file is compressed (`compression=yes` or `compression=no`)
 
-  + Whether the file is encrypted
-    (`encryption=yes` or
-    `encryption=no`)
+  + Whether the file is encrypted (`encryption=yes` or `encryption=no`)
 
   Example:
 
@@ -614,84 +235,44 @@ ndbxfrm [--encrypt-ldf-iter-count=#] --encrypt-password=password input_file outp
   File=BACKUP-10.5.log, compression=no, encryption=yes
   ```
 
-  Beginning with NDB 8.0.31, you can also see the file's
-  header and trailer using the
-  [`--detailed-info`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_detailed-info) option.
+  Beginning with NDB 8.0.31, you can also see the file's header and trailer using the `--detailed-info` option.
 
-* [`--login-path`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_login-path)
+* `--login-path`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.22-ndb-8.0.22</td>
-</tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress</code></td> </tr><tr><th>Introduced</th> <td>8.0.22-ndb-8.0.22</td> </tr></tbody></table>9
 
   Read given path from login file.
 
-* [`--no-defaults`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_no-defaults)
+* `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for decrypt-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--decrypt-key=key</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.31-ndb-8.0.31</td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for decrypt-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--decrypt-key=key</code></td> </tr><tr><th>Introduced</th> <td>8.0.31-ndb-8.0.31</td> </tr></tbody></table>0
 
-  Do not read default options from any option file other than
-  login file.
+  Do not read default options from any option file other than login file.
 
-* [`--print-defaults`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_print-defaults)
+* `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for decrypt-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--decrypt-key=key</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.31-ndb-8.0.31</td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for decrypt-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--decrypt-key=key</code></td> </tr><tr><th>Introduced</th> <td>8.0.31-ndb-8.0.31</td> </tr></tbody></table>1
 
   Print program argument list and exit.
 
-* [`--usage`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_usage), `-?`
+* `--usage`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for decrypt-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--decrypt-key=key</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.31-ndb-8.0.31</td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for decrypt-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--decrypt-key=key</code></td> </tr><tr><th>Introduced</th> <td>8.0.31-ndb-8.0.31</td> </tr></tbody></table>2
 
-  Synonym for [`--help`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_help).
+  Synonym for `--help`.
 
-* [`--version`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_version),
-  `-V`
+* `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for decrypt-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--decrypt-key=key</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.31-ndb-8.0.31</td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for decrypt-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--decrypt-key=key</code></td> </tr><tr><th>Introduced</th> <td>8.0.31-ndb-8.0.31</td> </tr></tbody></table>3
 
   Prints out version information.
 
-[**ndbxfrm**](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster") can encrypt backups created by any
-version of NDB Cluster. The `.Data`,
-`.ctl`, and `.log` files
-comprising the backup must be encrypted separately, and these
-files must be encrypted separately for each data node. Once
-encrypted, such backups can be decrypted only by
-[**ndbxfrm**](mysql-cluster-programs-ndbxfrm.html "25.5.31 ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster"), [**ndb\_restore**](mysql-cluster-programs-ndb-restore.html "25.5.23 ndb_restore — Restore an NDB Cluster Backup"), or
-**ndb\_print\_backup** from NDB Cluster 8.0.22 or
-later.
+**ndbxfrm** can encrypt backups created by any version of NDB Cluster. The `.Data`, `.ctl`, and `.log` files comprising the backup must be encrypted separately, and these files must be encrypted separately for each data node. Once encrypted, such backups can be decrypted only by **ndbxfrm**, **ndb_restore**, or **ndb_print_backup** from NDB Cluster 8.0.22 or later.
 
-An encrypted file can be re-encrypted with a new password using
-the [`--encrypt-password`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_encrypt-password) and
-[`--decrypt-password`](mysql-cluster-programs-ndbxfrm.html#option_ndbxfrm_decrypt-password) options
-together, like this:
+An encrypted file can be re-encrypted with a new password using the `--encrypt-password` and `--decrypt-password` options together, like this:
 
 ```
 ndbxfrm --decrypt-password=old --encrypt-password=new input_file output_file
 ```
 
-In the example just shown, *`old`* and
-*`new`* are the old and new passwords,
-respectively; both of these must be quoted. The input file is
-decrypted and then encrypted as the output file. The input file
-itself is not changed; if you do not want it to be accessible
-using the old password, you must remove the input file manually.
+In the example just shown, *`old`* and *`new`* are the old and new passwords, respectively; both of these must be quoted. The input file is decrypted and then encrypted as the output file. The input file itself is not changed; if you do not want it to be accessible using the old password, you must remove the input file manually.

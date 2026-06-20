@@ -1,10 +1,8 @@
 #### 25.6.16.17 The ndbinfo cpuinfo Table
 
-The `cpuinfo` table provides information about
-the CPU on which a given data node executes.
+The `cpuinfo` table provides information about the CPU on which a given data node executes.
 
-The `cpuinfo` table contains the following
-columns:
+The `cpuinfo` table contains the following columns:
 
 * `node_id`
 
@@ -28,8 +26,6 @@ columns:
 
 ##### Notes
 
-The `cpuinfo` table is available on all
-operating systems supported by `NDB`, with the
-exception of MacOS and FreeBSD.
+The `cpuinfo` table is available on all operating systems supported by `NDB`, with the exception of MacOS and FreeBSD.
 
 This table was added in NDB 8.0.23.

@@ -1,12 +1,8 @@
-#### 30.4.3.9 The innodb\_lock\_waits and x$innodb\_lock\_waits Views
+#### 30.4.3.9 The innodb_lock_waits and x$innodb_lock_waits Views
 
-These views summarize the `InnoDB` locks that
-transactions are waiting for. By default, rows are sorted by
-descending lock age.
+These views summarize the `InnoDB` locks that transactions are waiting for. By default, rows are sorted by descending lock age.
 
-The [`innodb_lock_waits`](sys-innodb-lock-waits.html "30.4.3.9 The innodb_lock_waits and x$innodb_lock_waits Views") and
-[`x$innodb_lock_waits`](sys-innodb-lock-waits.html "30.4.3.9 The innodb_lock_waits and x$innodb_lock_waits Views") views have
-these columns:
+The `innodb_lock_waits` and `x$innodb_lock_waits` views have these columns:
 
 * `wait_started`
 
@@ -14,8 +10,7 @@ these columns:
 
 * `wait_age`
 
-  How long the lock has been waited for, as a
-  [`TIME`](time.html "13.2.3 The TIME Type") value.
+  How long the lock has been waited for, as a `TIME` value.
 
 * `wait_age_secs`
 
@@ -31,13 +26,11 @@ these columns:
 
 * `locked_table_partition`
 
-  The name of the locked partition, if any;
-  `NULL` otherwise.
+  The name of the locked partition, if any; `NULL` otherwise.
 
 * `locked_table_subpartition`
 
-  The name of the locked subpartition, if any;
-  `NULL` otherwise.
+  The name of the locked subpartition, if any; `NULL` otherwise.
 
 * `locked_index`
 
@@ -57,8 +50,7 @@ these columns:
 
 * `waiting_trx_age`
 
-  How long the waiting transaction has been waiting, as a
-  [`TIME`](time.html "13.2.3 The TIME Type") value.
+  How long the waiting transaction has been waiting, as a `TIME` value.
 
 * `waiting_trx_rows_locked`
 
@@ -86,8 +78,7 @@ these columns:
 
 * `blocking_trx_id`
 
-  The ID of the transaction that is blocking the waiting
-  lock.
+  The ID of the transaction that is blocking the waiting lock.
 
 * `blocking_pid`
 
@@ -95,10 +86,7 @@ these columns:
 
 * `blocking_query`
 
-  The statement the blocking transaction is executing. This
-  field reports NULL if the session that issued the blocking
-  query becomes idle. For more information, see
-  [Identifying a Blocking Query After the Issuing Session Becomes Idle](innodb-information-schema-examples.html#innodb-information-schema-examples-null-blocking-query "Identifying a Blocking Query After the Issuing Session Becomes Idle").
+  The statement the blocking transaction is executing. This field reports NULL if the session that issued the blocking query becomes idle. For more information, see Identifying a Blocking Query After the Issuing Session Becomes Idle.
 
 * `blocking_lock_id`
 
@@ -114,8 +102,7 @@ these columns:
 
 * `blocking_trx_age`
 
-  How long the blocking transaction has been executing, as a
-  [`TIME`](time.html "13.2.3 The TIME Type") value.
+  How long the blocking transaction has been executing, as a `TIME` value.
 
 * `blocking_trx_rows_locked`
 
@@ -127,11 +114,8 @@ these columns:
 
 * `sql_kill_blocking_query`
 
-  The [`KILL`](kill.html "15.7.8.4 KILL Statement") statement to
-  execute to kill the blocking statement.
+  The `KILL` statement to execute to kill the blocking statement.
 
 * `sql_kill_blocking_connection`
 
-  The [`KILL`](kill.html "15.7.8.4 KILL Statement") statement to
-  execute to kill the session running the blocking
-  statement.
+  The `KILL` statement to execute to kill the session running the blocking statement.

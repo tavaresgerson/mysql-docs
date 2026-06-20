@@ -1,55 +1,20 @@
 ### 8.6.3 MySQL Enterprise Encryption Usage and Examples
 
-To use MySQL Enterprise Encryption in applications, invoke the functions that are
-appropriate for the operations you wish to perform. This section
-demonstrates how to carry out some representative tasks.
+To use MySQL Enterprise Encryption in applications, invoke the functions that are appropriate for the operations you wish to perform. This section demonstrates how to carry out some representative tasks.
 
-In releases before MySQL 8.0.30, MySQL Enterprise Encryption's functions are based
-on the `openssl_udf` shared library. From MySQL
-8.0.30, the functions are provided by a MySQL component
-`component_enterprise_encryption`. In some cases,
-the behavior of the component functions differs from the behavior
-of the legacy functions provided by the
-`openssl_udf`. For a list of the differences, see
-[Upgrading MySQL Enterprise Encryption](enterprise-encryption-installation.html#enterprise-encryption-upgrading "Upgrading MySQL Enterprise Encryption"). For
-full details of the behavior of each component's functions, see
-[Section 8.6.4, “MySQL Enterprise Encryption Function Reference”](enterprise-encryption-function-reference.html "8.6.4 MySQL Enterprise Encryption Function Reference").
+In releases before MySQL 8.0.30, MySQL Enterprise Encryption's functions are based on the `openssl_udf` shared library. From MySQL 8.0.30, the functions are provided by a MySQL component `component_enterprise_encryption`. In some cases, the behavior of the component functions differs from the behavior of the legacy functions provided by the `openssl_udf`. For a list of the differences, see Upgrading MySQL Enterprise Encryption. For full details of the behavior of each component's functions, see Section 8.6.4, “MySQL Enterprise Encryption Function Reference”.
 
-If you install the legacy functions then upgrade to MySQL 8.0.30
-or later, the functions you created remain available, are
-supported, and continue to work in the same way. However, they are
-deprecated from MySQL 8.0.30, and it is recommended that you
-install the MySQL Enterprise Encryption component
-`component_enterprise_encryption` instead. For
-instructions to upgrade, see
-[Installation From MySQL 8.0.30](enterprise-encryption-installation.html#enterprise-encryption-installation-30 "Installation From MySQL 8.0.30").
+If you install the legacy functions then upgrade to MySQL 8.0.30 or later, the functions you created remain available, are supported, and continue to work in the same way. However, they are deprecated from MySQL 8.0.30, and it is recommended that you install the MySQL Enterprise Encryption component `component_enterprise_encryption` instead. For instructions to upgrade, see Installation From MySQL 8.0.30.
 
-The following general considerations apply when choosing key
-lengths and encryption algorithms:
+The following general considerations apply when choosing key lengths and encryption algorithms:
 
-* The strength of encryption for private and public keys
-  increases with the key size, but the time for key generation
-  increases as well.
+* The strength of encryption for private and public keys increases with the key size, but the time for key generation increases as well.
 
-* For the legacy functions, generation of DH keys takes much
-  longer than RSA or DSA keys. The component functions from
-  MySQL 8.0.30 only support RSA keys.
+* For the legacy functions, generation of DH keys takes much longer than RSA or DSA keys. The component functions from MySQL 8.0.30 only support RSA keys.
 
-* Asymmetric encryption functions consume more resources
-  compared to symmetric functions. They are good for encrypting
-  small amounts of data and creating and verifying signatures.
-  For encrypting large amounts of data, symmetric encryption
-  functions are faster. MySQL Server provides the
-  [`AES_ENCRYPT()`](encryption-functions.html#function_aes-encrypt) and
-  [`AES_DECRYPT()`](encryption-functions.html#function_aes-decrypt) functions for
-  symmetric encryption.
+* Asymmetric encryption functions consume more resources compared to symmetric functions. They are good for encrypting small amounts of data and creating and verifying signatures. For encrypting large amounts of data, symmetric encryption functions are faster. MySQL Server provides the `AES_ENCRYPT()` and `AES_DECRYPT()` functions for symmetric encryption.
 
-Key string values can be created at runtime and stored into a
-variable or table using
-[`SET`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment"),
-[`SELECT`](select.html "15.2.13 SELECT Statement"), or
-[`INSERT`](insert.html "15.2.7 INSERT Statement"). This example works with
-both the component function and the legacy function:
+Key string values can be created at runtime and stored into a variable or table using `SET`, `SELECT`, or `INSERT`. This example works with both the component function and the legacy function:
 
 ```
 SET @priv1 = create_asymmetric_priv_key('RSA', 2048);
@@ -57,20 +22,16 @@ SELECT create_asymmetric_priv_key('RSA', 2048) INTO @priv2;
 INSERT INTO t (key_col) VALUES(create_asymmetric_priv_key('RSA', 1024));
 ```
 
-Key string values stored in files can be read using the
-[`LOAD_FILE()`](string-functions.html#function_load-file) function by users who
-have the [`FILE`](privileges-provided.html#priv_file) privilege. Digest and
-signature strings can be handled similarly.
+Key string values stored in files can be read using the `LOAD_FILE()` function by users who have the `FILE` privilege. Digest and signature strings can be handled similarly.
 
-* [Create a private/public key pair](enterprise-encryption-usage.html#enterprise-encryption-usage-create-key-pair "Create a private/public key pair")
-* [Use the public key to encrypt data and the private key to decrypt it](enterprise-encryption-usage.html#enterprise-encryption-usage-encrypt-decrypt "Use the public key to encrypt data and the private key to decrypt it")
-* [Generate a digest from a string](enterprise-encryption-usage.html#enterprise-encryption-usage-create-digest "Generate a digest from a string")
-* [Use the digest with a key pair](enterprise-encryption-usage.html#enterprise-encryption-usage-digital-signing "Use the digest with a key pair")
+* Create a private/public key pair
+* Use the public key to encrypt data and the private key to decrypt it
+* Generate a digest from a string
+* Use the digest with a key pair
 
 #### Create a private/public key pair
 
-This example works with both the component functions and the
-legacy functions:
+This example works with both the component functions and the legacy functions:
 
 ```
 -- Encryption algorithm
@@ -84,14 +45,11 @@ SET @priv = create_asymmetric_priv_key(@algo, @key_len);
 SET @pub = create_asymmetric_pub_key(@algo, @priv);
 ```
 
-You can use the key pair to encrypt and decrypt data or to sign
-and verify data.
+You can use the key pair to encrypt and decrypt data or to sign and verify data.
 
 #### Use the public key to encrypt data and the private key to decrypt it
 
-This example works with both the component functions and the
-legacy functions. In both cases, the members of the key pair
-must be RSA keys:
+This example works with both the component functions and the legacy functions. In both cases, the members of the key pair must be RSA keys:
 
 ```
 SET @ciphertext = asymmetric_encrypt(@algo, 'My secret text', @pub);
@@ -100,8 +58,7 @@ SET @plaintext = asymmetric_decrypt(@algo, @ciphertext, @priv);
 
 #### Generate a digest from a string
 
-This example works with both the component functions and the
-legacy functions:
+This example works with both the component functions and the legacy functions:
 
 ```
 -- Digest type
@@ -113,9 +70,7 @@ SET @dig = create_digest(@dig_type, 'My text to digest');
 
 #### Use the digest with a key pair
 
-The key pair can be used to sign data, then verify that the
-signature matches the digest. This example works with both the
-component functions and the legacy functions:
+The key pair can be used to sign data, then verify that the signature matches the digest. This example works with both the component functions and the legacy functions:
 
 ```
 -- Encryption algorithm; keys must
@@ -130,12 +85,7 @@ SET @sig = asymmetric_sign(@algo, @dig, @priv, @dig_type);
 SET @verf = asymmetric_verify(@algo, @dig, @sig, @pub, @dig_type);
 ```
 
-For the legacy functions, signatures require a digest. For the
-component functions, signatures do not require a digest, and can
-use any data string. The digest type in these functions refers
-to the algorithm that is used to sign the data, not the
-algorithm that was used to create the original input for the
-signature. This example is for the component functions:
+For the legacy functions, signatures require a digest. For the component functions, signatures do not require a digest, and can use any data string. The digest type in these functions refers to the algorithm that is used to sign the data, not the algorithm that was used to create the original input for the signature. This example is for the component functions:
 
 ```
 -- Encryption algorithm; keys must

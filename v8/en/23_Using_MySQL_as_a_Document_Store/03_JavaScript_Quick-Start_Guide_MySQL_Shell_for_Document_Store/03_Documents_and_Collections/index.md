@@ -1,33 +1,12 @@
 ### 22.3.3 Documents and Collections
 
-[22.3.3.1 Create, List, and Drop Collections](mysql-shell-tutorial-javascript-collections-operations.html)
+When you are using MySQL as a Document Store, collections are containers within a schema that you can create, list, and drop. Collections contain JSON documents that you can add, find, update, and remove.
 
-[22.3.3.2 Working with Collections](mysql-shell-tutorial-javascript-collections-add.html)
-
-[22.3.3.3 Find Documents](mysql-shell-tutorial-javascript-documents-find.html)
-
-[22.3.3.4 Modify Documents](mysql-shell-tutorial-javascript-documents-modify.html)
-
-[22.3.3.5 Remove Documents](mysql-shell-tutorial-javascript-documents-remove.html)
-
-[22.3.3.6 Create and Drop Indexes](mysql-shell-tutorial-javascript-indexes-create.html)
-
-When you are using MySQL as a Document Store, collections are
-containers within a schema that you can create, list, and drop.
-Collections contain JSON documents that you can add, find, update,
-and remove.
-
-The examples in this section use the
-`countryinfo` collection in the
-`world_x` schema. For instructions on setting up
-the `world_x` schema, see
-[Section 22.3.2, “Download and Import world\_x Database”](mysql-shell-tutorial-javascript-download.html "22.3.2 Download and Import world_x Database").
+The examples in this section use the `countryinfo` collection in the `world_x` schema. For instructions on setting up the `world_x` schema, see Section 22.3.2, “Download and Import world_x Database”.
 
 #### Documents
 
-In MySQL, documents are represented as JSON objects. Internally,
-they are stored in an efficient binary format that enables fast
-lookups and updates.
+In MySQL, documents are represented as JSON objects. Internally, they are stored in an efficient binary format that enables fast lookups and updates.
 
 * Simple document format for JavaScript:
 
@@ -35,9 +14,7 @@ lookups and updates.
   {field1: "value", field2 : 10, "field 3": null}
   ```
 
-An array of documents consists of a set of documents separated by
-commas and enclosed within `[` and
-`]` characters.
+An array of documents consists of a set of documents separated by commas and enclosed within `[` and `]` characters.
 
 * Simple array of documents for JavaScript:
 
@@ -45,8 +22,7 @@ commas and enclosed within `[` and
   [{"Name": "Aruba", "Code:": "ABW"}, {"Name": "Angola", "Code:": "AGO"}]
   ```
 
-MySQL supports the following JavaScript value types in JSON
-documents:
+MySQL supports the following JavaScript value types in JSON documents:
 
 * numbers (integer and floating point)
 * strings
@@ -57,71 +33,22 @@ documents:
 
 #### Collections
 
-Collections are containers for documents that share a purpose and
-possibly share one or more indexes. Each collection has a unique
-name and exists within a single schema.
+Collections are containers for documents that share a purpose and possibly share one or more indexes. Each collection has a unique name and exists within a single schema.
 
-The term schema is equivalent to a database, which means a group
-of database objects as opposed to a relational schema, used to
-enforce structure and constraints over data. A schema does not
-enforce conformity on the documents in a collection.
+The term schema is equivalent to a database, which means a group of database objects as opposed to a relational schema, used to enforce structure and constraints over data. A schema does not enforce conformity on the documents in a collection.
 
 In this quick-start guide:
 
 * Basic objects include:
 
-  <table summary="Objects to use interactively in MySQL Shell"><col style="width: 40%"/><col style="width: 60%"/><thead><tr>
-<th>Object form</th>
-<th>Description</th>
-</tr></thead><tbody><tr>
-<td><code class="literal">db</code></td>
-<td><code class="literal">db</code> is a global variable assigned to the current
-                active schema. When you want to run operations against
-                the schema, for example to retrieve a collection, you
-                use methods available for the <code class="literal">db</code>
-                variable.</td>
-</tr><tr>
-<td><code class="literal">db.getCollections()</code></td>
-<td><a class="link" href="mysql-shell-tutorial-javascript-collections-operations.html#mysql-shell-tutorial-javascript-collections-get" title="List Collections">db.getCollections()</a>
-                returns a list of collections in the schema. Use the
-                list to get references to collection objects, iterate
-                over them, and so on.</td>
-</tr></tbody></table>
+  <table summary="Objects to use interactively in MySQL Shell"><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Object form</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>db</code></td> <td><code>db</code> is a global variable assigned to the current active schema. When you want to run operations against the schema, for example to retrieve a collection, you use methods available for the <code>db</code> variable.</td> </tr><tr> <td><code>db.getCollections()</code></td> <td>db.getCollections() returns a list of collections in the schema. Use the list to get references to collection objects, iterate over them, and so on.</td> </tr></tbody></table>
 
 * Basic operations scoped by collections include:
 
-  <table summary="CRUD operations available in X DevAPI"><col style="width: 40%"/><col style="width: 60%"/><thead><tr>
-<th>Operation form</th>
-<th>Description</th>
-</tr></thead><tbody><tr>
-<td><code class="literal">db.<em class="replaceable"><code>name</code></em>.add()</code></td>
-<td>The
-                <a class="link" href="mysql-shell-tutorial-javascript-collections-add.html" title="22.3.3.2 Working with Collections">add()</a>
-                method inserts one document or a list of documents into
-                the named collection.</td>
-</tr><tr>
-<td><code class="literal">db.<em class="replaceable"><code>name</code></em>.find()</code></td>
-<td>The
-                <a class="link" href="mysql-shell-tutorial-javascript-documents-find.html" title="22.3.3.3 Find Documents">find()</a>
-                method returns some or all documents in the named
-                collection.</td>
-</tr><tr>
-<td><code class="literal">db.<em class="replaceable"><code>name</code></em>.modify()</code></td>
-<td>The
-                <a class="link" href="mysql-shell-tutorial-javascript-documents-modify.html" title="22.3.3.4 Modify Documents">modify()</a>
-                method updates documents in the named collection.</td>
-</tr><tr>
-<td><code class="literal">db.<em class="replaceable"><code>name</code></em>.remove()</code></td>
-<td>The
-                <a class="link" href="mysql-shell-tutorial-javascript-documents-remove.html" title="22.3.3.5 Remove Documents">remove()</a>
-                method deletes one document or a list of documents from
-                the named collection.</td>
-</tr></tbody></table>
+  <table summary="CRUD operations available in X DevAPI"><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Operation form</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.add()</code></td> <td>The add() method inserts one document or a list of documents into the named collection.</td> </tr><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.find()</code></td> <td>The find() method returns some or all documents in the named collection.</td> </tr><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.modify()</code></td> <td>The modify() method updates documents in the named collection.</td> </tr><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.remove()</code></td> <td>The remove() method deletes one document or a list of documents from the named collection.</td> </tr></tbody></table>
 
 #### Related Information
 
-* See [Working with Collections](/doc/x-devapi-userguide/en/devapi-users-working-with-collections.html)
-  for a general overview.
+* See Working with Collections for a general overview.
 
-* [CRUD EBNF Definitions](/doc/x-devapi-userguide/en/mysql-x-crud-ebnf-definitions.html) provides a
-  complete list of operations.
+* CRUD EBNF Definitions provides a complete list of operations.

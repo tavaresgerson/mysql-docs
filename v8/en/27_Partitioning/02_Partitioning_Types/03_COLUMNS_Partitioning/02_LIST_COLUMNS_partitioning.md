@@ -1,43 +1,12 @@
 #### 26.2.3.2 LIST COLUMNS partitioning
 
-MySQL 8.0 provides support for `LIST
-COLUMNS` partitioning. This is a variant of
-`LIST` partitioning that enables the use of
-multiple columns as partition keys, and for columns of data
-types other than integer types to be used as partitioning
-columns; you can use string types,
-[`DATE`](datetime.html "13.2.2 The DATE, DATETIME, and TIMESTAMP Types"), and
-[`DATETIME`](datetime.html "13.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns. (For more
-information about permitted data types for
-`COLUMNS` partitioning columns, see
-[Section 26.2.3, “COLUMNS Partitioning”](partitioning-columns.html "26.2.3 COLUMNS Partitioning").)
+MySQL 8.0 provides support for `LIST COLUMNS` partitioning. This is a variant of `LIST` partitioning that enables the use of multiple columns as partition keys, and for columns of data types other than integer types to be used as partitioning columns; you can use string types, `DATE`, and `DATETIME` columns. (For more information about permitted data types for `COLUMNS` partitioning columns, see Section 26.2.3, “COLUMNS Partitioning”.)
 
-Suppose that you have a business that has customers in 12
-cities which, for sales and marketing purposes, you organize
-into 4 regions of 3 cities each as shown in the following
-table:
+Suppose that you have a business that has customers in 12 cities which, for sales and marketing purposes, you organize into 4 regions of 3 cities each as shown in the following table:
 
-<table summary="The example described in the preceding text of a business with four sales and marketing regions, with each region having three cities."><col style="width: 50%"/><col style="width: 50%"/><thead><tr>
-<th>Region</th>
-<th>Cities</th>
-</tr></thead><tbody><tr>
-<td>1</td>
-<td>Oskarshamn, Högsby, Mönsterås</td>
-</tr><tr>
-<td>2</td>
-<td>Vimmerby, Hultsfred, Västervik</td>
-</tr><tr>
-<td>3</td>
-<td>Nässjö, Eksjö, Vetlanda</td>
-</tr><tr>
-<td>4</td>
-<td>Uppvidinge, Alvesta, Växjo</td>
-</tr></tbody></table>
+<table summary="The example described in the preceding text of a business with four sales and marketing regions, with each region having three cities."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Region</th> <th>Cities</th> </tr></thead><tbody><tr> <td>1</td> <td>Oskarshamn, Högsby, Mönsterås</td> </tr><tr> <td>2</td> <td>Vimmerby, Hultsfred, Västervik</td> </tr><tr> <td>3</td> <td>Nässjö, Eksjö, Vetlanda</td> </tr><tr> <td>4</td> <td>Uppvidinge, Alvesta, Växjo</td> </tr></tbody></table>
 
-With `LIST COLUMNS` partitioning, you can
-create a table for customer data that assigns a row to any of
-4 partitions corresponding to these regions based on the name
-of the city where a customer resides, as shown here:
+With `LIST COLUMNS` partitioning, you can create a table for customer data that assigns a row to any of 4 partitions corresponding to these regions based on the name of the city where a customer resides, as shown here:
 
 ```
 CREATE TABLE customers_1 (
@@ -56,21 +25,9 @@ PARTITION BY LIST COLUMNS(city) (
 );
 ```
 
-As with partitioning by `RANGE COLUMNS`, you
-do not need to use expressions in the
-`COLUMNS()` clause to convert column values
-into integers. (In fact, the use of expressions other than
-column names is not permitted with
-`COLUMNS()`.)
+As with partitioning by `RANGE COLUMNS`, you do not need to use expressions in the `COLUMNS()` clause to convert column values into integers. (In fact, the use of expressions other than column names is not permitted with `COLUMNS()`.)
 
-It is also possible to use [`DATE`](datetime.html "13.2.2 The DATE, DATETIME, and TIMESTAMP Types")
-and [`DATETIME`](datetime.html "13.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns, as shown
-in the following example that uses the same name and columns
-as the `customers_1` table shown previously,
-but employs `LIST COLUMNS` partitioning based
-on the `renewal` column to store rows in one
-of 4 partitions depending on the week in February 2010 the
-customer's account is scheduled to renew:
+It is also possible to use `DATE` and `DATETIME` columns, as shown in the following example that uses the same name and columns as the `customers_1` table shown previously, but employs `LIST COLUMNS` partitioning based on the `renewal` column to store rows in one of 4 partitions depending on the week in February 2010 the customer's account is scheduled to renew:
 
 ```
 CREATE TABLE customers_2 (
@@ -93,14 +50,7 @@ PARTITION BY LIST COLUMNS(renewal) (
 );
 ```
 
-This works, but becomes cumbersome to define and maintain if
-the number of dates involved grows very large; in such cases,
-it is usually more practical to employ
-`RANGE` or `RANGE COLUMNS`
-partitioning instead. In this case, since the column we wish
-to use as the partitioning key is a
-[`DATE`](datetime.html "13.2.2 The DATE, DATETIME, and TIMESTAMP Types") column, we use
-`RANGE COLUMNS` partitioning, as shown here:
+This works, but becomes cumbersome to define and maintain if the number of dates involved grows very large; in such cases, it is usually more practical to employ `RANGE` or `RANGE COLUMNS` partitioning instead. In this case, since the column we wish to use as the partitioning key is a `DATE` column, we use `RANGE COLUMNS` partitioning, as shown here:
 
 ```
 CREATE TABLE customers_3 (
@@ -119,12 +69,8 @@ PARTITION BY RANGE COLUMNS(renewal) (
 );
 ```
 
-See [Section 26.2.3.1, “RANGE COLUMNS partitioning”](partitioning-columns-range.html "26.2.3.1 RANGE COLUMNS partitioning"), for more
-information.
+See Section 26.2.3.1, “RANGE COLUMNS partitioning”, for more information.
 
-In addition (as with `RANGE COLUMNS`
-partitioning), you can use multiple columns in the
-`COLUMNS()` clause.
+In addition (as with `RANGE COLUMNS` partitioning), you can use multiple columns in the `COLUMNS()` clause.
 
-See [Section 15.1.20, “CREATE TABLE Statement”](create-table.html "15.1.20 CREATE TABLE Statement"), for additional information
-about `PARTITION BY LIST COLUMNS()` syntax.
+See Section 15.1.20, “CREATE TABLE Statement”, for additional information about `PARTITION BY LIST COLUMNS()` syntax.

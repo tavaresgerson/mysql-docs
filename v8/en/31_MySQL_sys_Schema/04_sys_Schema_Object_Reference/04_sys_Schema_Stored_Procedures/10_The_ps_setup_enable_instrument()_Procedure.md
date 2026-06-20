@@ -1,19 +1,12 @@
-#### 30.4.4.10 The ps\_setup\_enable\_instrument() Procedure
+#### 30.4.4.10 The ps_setup_enable_instrument() Procedure
 
-Enables Performance Schema instruments with names that contain
-the argument. Produces a result set indicating how many
-instruments were enabled. Already enabled instruments do not
-count.
+Enables Performance Schema instruments with names that contain the argument. Produces a result set indicating how many instruments were enabled. Already enabled instruments do not count.
 
 ##### Parameters
 
-* `in_pattern VARCHAR(128)`: The value
-  used to match instrument names, which are identified by
-  using `%in_pattern%` as an operand for
-  a [`LIKE`](string-comparison-functions.html#operator_like) pattern match.
+* `in_pattern VARCHAR(128)`: The value used to match instrument names, which are identified by using `%in_pattern%` as an operand for a `LIKE` pattern match.
 
-  A value of `''` matches all
-  instruments.
+  A value of `''` matches all instruments.
 
 ##### Example
 

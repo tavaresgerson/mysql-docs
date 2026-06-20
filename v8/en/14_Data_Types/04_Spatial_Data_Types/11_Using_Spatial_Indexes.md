@@ -1,11 +1,6 @@
 ### 13.4.11 Using Spatial Indexes
 
-The optimizer investigates whether available spatial indexes can
-be involved in the search for queries that use a function such
-as [`MBRContains()`](spatial-relation-functions-mbr.html#function_mbrcontains) or
-[`MBRWithin()`](spatial-relation-functions-mbr.html#function_mbrwithin) in the
-`WHERE` clause. The following query finds all
-objects that are in the given rectangle:
+The optimizer investigates whether available spatial indexes can be involved in the search for queries that use a function such as `MBRContains()` or `MBRWithin()` in the `WHERE` clause. The following query finds all objects that are in the given rectangle:
 
 ```
 mysql> SET @poly =
@@ -43,8 +38,7 @@ mysql> SELECT fid,ST_AsText(g) FROM geom WHERE
 20 rows in set (0.00 sec)
 ```
 
-Use [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") to check the way this
-query is executed:
+Use `EXPLAIN` to check the way this query is executed:
 
 ```
 mysql> SET @poly =
@@ -94,9 +88,7 @@ possible_keys: NULL
 1 row in set (0.00 sec)
 ```
 
-Executing the [`SELECT`](select.html "15.2.13 SELECT Statement") statement
-without the spatial index yields the same result but causes the
-execution time to rise from 0.00 seconds to 0.46 seconds:
+Executing the `SELECT` statement without the spatial index yields the same result but causes the execution time to rise from 0.00 seconds to 0.46 seconds:
 
 ```
 mysql> SET @poly =

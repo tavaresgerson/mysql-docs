@@ -1,16 +1,6 @@
 ## 12.2 Character Sets and Collations in MySQL
 
-[12.2.1 Character Set Repertoire](charset-repertoire.html)
-
-[12.2.2 UTF-8 for Metadata](charset-metadata.html)
-
-MySQL Server supports multiple character sets, including several
-Unicode character sets. To display the available character sets,
-use the `INFORMATION_SCHEMA`
-[`CHARACTER_SETS`](information-schema-character-sets-table.html "28.3.4 The INFORMATION_SCHEMA CHARACTER_SETS Table") table or the
-[`SHOW CHARACTER SET`](show-character-set.html "15.7.7.3 SHOW CHARACTER SET Statement") statement. A
-partial listing follows. For more complete information, see
-[Section 12.10, “Supported Character Sets and Collations”](charset-charsets.html "12.10 Supported Character Sets and Collations").
+MySQL Server supports multiple character sets, including several Unicode character sets. To display the available character sets, use the `INFORMATION_SCHEMA` `CHARACTER_SETS` table or the `SHOW CHARACTER SET` statement. A partial listing follows. For more complete information, see Section 12.10, “Supported Character Sets and Collations”.
 
 ```
 mysql> SHOW CHARACTER SET;
@@ -29,12 +19,7 @@ mysql> SHOW CHARACTER SET;
 ...
 ```
 
-By default, the [`SHOW CHARACTER SET`](show-character-set.html "15.7.7.3 SHOW CHARACTER SET Statement")
-statement displays all available character sets. It takes an
-optional [`LIKE`](string-comparison-functions.html#operator_like) or
-`WHERE` clause that indicates which character set
-names to match. The following example shows some of the Unicode
-character sets (those based on Unicode Transformation Format):
+By default, the `SHOW CHARACTER SET` statement displays all available character sets. It takes an optional `LIKE` or `WHERE` clause that indicates which character set names to match. The following example shows some of the Unicode character sets (those based on Unicode Transformation Format):
 
 ```
 mysql> SHOW CHARACTER SET LIKE 'utf%';
@@ -49,18 +34,9 @@ mysql> SHOW CHARACTER SET LIKE 'utf%';
 +---------+------------------+--------------------+--------+
 ```
 
-A given character set always has at least one collation, and most
-character sets have several. To list the display collations for a
-character set, use the `INFORMATION_SCHEMA`
-[`COLLATIONS`](information-schema-collations-table.html "28.3.6 The INFORMATION_SCHEMA COLLATIONS Table") table or the
-[`SHOW COLLATION`](show-collation.html "15.7.7.4 SHOW COLLATION Statement") statement.
+A given character set always has at least one collation, and most character sets have several. To list the display collations for a character set, use the `INFORMATION_SCHEMA` `COLLATIONS` table or the `SHOW COLLATION` statement.
 
-By default, the [`SHOW COLLATION`](show-collation.html "15.7.7.4 SHOW COLLATION Statement")
-statement displays all available collations. It takes an optional
-[`LIKE`](string-comparison-functions.html#operator_like) or `WHERE`
-clause that indicates which collation names to display. For
-example, to see the collations for the default character set,
-`utf8mb4`, use this statement:
+By default, the `SHOW COLLATION` statement displays all available collations. It takes an optional `LIKE` or `WHERE` clause that indicates which collation names to display. For example, to see the collations for the default character set, `utf8mb4`, use this statement:
 
 ```
 mysql> SHOW COLLATION WHERE Charset = 'utf8mb4';
@@ -145,36 +121,13 @@ mysql> SHOW COLLATION WHERE Charset = 'utf8mb4';
 +----------------------------+---------+-----+---------+----------+---------+---------------+
 ```
 
-For more information about those collations, see
-[Section 12.10.1, “Unicode Character Sets”](charset-unicode-sets.html "12.10.1 Unicode Character Sets").
+For more information about those collations, see Section 12.10.1, “Unicode Character Sets”.
 
 Collations have these general characteristics:
 
 * Two different character sets cannot have the same collation.
-* Each character set has a *default
-  collation*. For example, the default collations for
-  `utf8mb4` and `latin1` are
-  `utf8mb4_0900_ai_ci` and
-  `latin1_swedish_ci`, respectively. The
-  `INFORMATION_SCHEMA`
-  [`CHARACTER_SETS`](information-schema-character-sets-table.html "28.3.4 The INFORMATION_SCHEMA CHARACTER_SETS Table") table and the
-  [`SHOW CHARACTER SET`](show-character-set.html "15.7.7.3 SHOW CHARACTER SET Statement") statement
-  indicate the default collation for each character set. The
-  `INFORMATION_SCHEMA`
-  [`COLLATIONS`](information-schema-collations-table.html "28.3.6 The INFORMATION_SCHEMA COLLATIONS Table") table and the
-  [`SHOW COLLATION`](show-collation.html "15.7.7.4 SHOW COLLATION Statement") statement have a
-  column that indicates for each collation whether it is the
-  default for its character set (`Yes` if so,
-  empty if not).
+* Each character set has a *default collation*. For example, the default collations for `utf8mb4` and `latin1` are `utf8mb4_0900_ai_ci` and `latin1_swedish_ci`, respectively. The `INFORMATION_SCHEMA` `CHARACTER_SETS` table and the `SHOW CHARACTER SET` statement indicate the default collation for each character set. The `INFORMATION_SCHEMA` `COLLATIONS` table and the `SHOW COLLATION` statement have a column that indicates for each collation whether it is the default for its character set (`Yes` if so, empty if not).
 
-* Collation names start with the name of the character set with
-  which they are associated, generally followed by one or more
-  suffixes indicating other collation characteristics. For
-  additional information about naming conventions, see
-  [Section 12.3.1, “Collation Naming Conventions”](charset-collation-names.html "12.3.1 Collation Naming Conventions").
+* Collation names start with the name of the character set with which they are associated, generally followed by one or more suffixes indicating other collation characteristics. For additional information about naming conventions, see Section 12.3.1, “Collation Naming Conventions”.
 
-When a character set has multiple collations, it might not be
-clear which collation is most suitable for a given application. To
-avoid choosing an inappropriate collation, perform some
-comparisons with representative data values to make sure that a
-given collation sorts values the way you expect.
+When a character set has multiple collations, it might not be clear which collation is most suitable for a given application. To avoid choosing an inappropriate collation, perform some comparisons with representative data values to make sure that a given collation sorts values the way you expect.

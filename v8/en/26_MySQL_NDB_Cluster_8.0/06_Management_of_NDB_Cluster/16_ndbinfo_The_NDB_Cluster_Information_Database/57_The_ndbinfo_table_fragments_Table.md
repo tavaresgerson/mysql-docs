@@ -1,15 +1,12 @@
-#### 25.6.16.57 The ndbinfo table\_fragments Table
+#### 25.6.16.57 The ndbinfo table_fragments Table
 
-The `table_fragments` table provides
-information about the fragmentation, partitioning, distribution,
-and (internal) replication of `NDB` tables.
+The `table_fragments` table provides information about the fragmentation, partitioning, distribution, and (internal) replication of `NDB` tables.
 
-The `table_fragments` table contains the
-following columns:
+The `table_fragments` table contains the following columns:
 
 * `node_id`
 
-  Node ID ([`DIH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdih.html) master)
+  Node ID (`DIH` master)
 
 * `table_id`
 
@@ -21,8 +18,7 @@ following columns:
 
 * `fragment_id`
 
-  Fragment ID (same as partition ID unless table is fully
-  replicated)
+  Fragment ID (same as partition ID unless table is fully replicated)
 
 * `partition_order`
 

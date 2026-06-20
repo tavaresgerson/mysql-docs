@@ -1,12 +1,8 @@
-#### 25.6.16.1 The ndbinfo arbitrator\_validity\_detail Table
+#### 25.6.16.1 The ndbinfo arbitrator_validity_detail Table
 
-The `arbitrator_validity_detail` table shows
-the view that each data node in the cluster has of the
-arbitrator. It is a subset of the
-[`membership`](mysql-cluster-ndbinfo-membership.html "25.6.16.44 The ndbinfo membership Table") table.
+The `arbitrator_validity_detail` table shows the view that each data node in the cluster has of the arbitrator. It is a subset of the `membership` table.
 
-The `arbitrator_validity_detail` table contains
-the following columns:
+The `arbitrator_validity_detail` table contains the following columns:
 
 * `node_id`
 
@@ -22,8 +18,7 @@ the following columns:
 
 * `arb_connected`
 
-  Whether this node is connected to the arbitrator; either of
-  `Yes` or `No`
+  Whether this node is connected to the arbitrator; either of `Yes` or `No`
 
 * `arb_state`
 
@@ -31,18 +26,8 @@ the following columns:
 
 ##### Notes
 
-The node ID is the same as that reported by [**ndb\_mgm -e
-"SHOW"**](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client").
+The node ID is the same as that reported by [**ndb_mgm -e "SHOW"**](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client").
 
-All nodes should show the same `arbitrator` and
-`arb_ticket` values as well as the same
-`arb_state` value. Possible
-`arb_state` values are
-`ARBIT_NULL`, `ARBIT_INIT`,
-`ARBIT_FIND`, `ARBIT_PREP1`,
-`ARBIT_PREP2`, `ARBIT_START`,
-`ARBIT_RUN`, `ARBIT_CHOOSE`,
-`ARBIT_CRASH`, and `UNKNOWN`.
+All nodes should show the same `arbitrator` and `arb_ticket` values as well as the same `arb_state` value. Possible `arb_state` values are `ARBIT_NULL`, `ARBIT_INIT`, `ARBIT_FIND`, `ARBIT_PREP1`, `ARBIT_PREP2`, `ARBIT_START`, `ARBIT_RUN`, `ARBIT_CHOOSE`, `ARBIT_CRASH`, and `UNKNOWN`.
 
-`arb_connected` shows whether the current node
-is connected to the `arbitrator`.
+`arb_connected` shows whether the current node is connected to the `arbitrator`.

@@ -1,19 +1,12 @@
-#### 30.4.4.6 The ps\_setup\_disable\_instrument() Procedure
+#### 30.4.4.6 The ps_setup_disable_instrument() Procedure
 
-Disables Performance Schema instruments with names that
-contain the argument. Produces a result set indicating how
-many instruments were disabled. Already disabled instruments
-do not count.
+Disables Performance Schema instruments with names that contain the argument. Produces a result set indicating how many instruments were disabled. Already disabled instruments do not count.
 
 ##### Parameters
 
-* `in_pattern VARCHAR(128)`: The value
-  used to match instrument names, which are identified by
-  using `%in_pattern%` as an operand for
-  a [`LIKE`](string-comparison-functions.html#operator_like) pattern match.
+* `in_pattern VARCHAR(128)`: The value used to match instrument names, which are identified by using `%in_pattern%` as an operand for a `LIKE` pattern match.
 
-  A value of `''` matches all
-  instruments.
+  A value of `''` matches all instruments.
 
 ##### Example
 

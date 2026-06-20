@@ -1,22 +1,10 @@
 ### 10.9.4 Index Hints
 
-Index hints give the optimizer information about how to choose
-indexes during query processing. Index hints, described here,
-differ from optimizer hints, described in
-[Section 10.9.3, “Optimizer Hints”](optimizer-hints.html "10.9.3 Optimizer Hints"). Index and optimizer hints may
-be used separately or together.
+Index hints give the optimizer information about how to choose indexes during query processing. Index hints, described here, differ from optimizer hints, described in Section 10.9.3, “Optimizer Hints”. Index and optimizer hints may be used separately or together.
 
-Index hints apply to [`SELECT`](select.html "15.2.13 SELECT Statement") and
-[`UPDATE`](update.html "15.2.17 UPDATE Statement") statements. They also work
-with multi-table [`DELETE`](delete.html "15.2.2 DELETE Statement")
-statements, but not with single-table `DELETE`,
-as shown later in this section.
+Index hints apply to `SELECT` and `UPDATE` statements. They also work with multi-table `DELETE` statements, but not with single-table `DELETE`, as shown later in this section.
 
-Index hints are specified following a table name. (For the
-general syntax for specifying tables in a
-[`SELECT`](select.html "15.2.13 SELECT Statement") statement, see
-[Section 15.2.13.2, “JOIN Clause”](join.html "15.2.13.2 JOIN Clause").) The syntax for referring to an
-individual table, including index hints, looks like this:
+Index hints are specified following a table name. (For the general syntax for specifying tables in a `SELECT` statement, see Section 15.2.13.2, “JOIN Clause”.) The syntax for referring to an individual table, including index hints, looks like this:
 
 ```
 tbl_name [[AS] alias] [index_hint_list]
@@ -34,58 +22,21 @@ index_list:
     index_name [, index_name] ...
 ```
 
-The `USE INDEX
-(index_list)` hint tells
-MySQL to use only one of the named indexes to find rows in the
-table. The alternative syntax `IGNORE INDEX
-(index_list)` tells MySQL to
-not use some particular index or indexes. These hints are useful
-if [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") shows that MySQL is
-using the wrong index from the list of possible indexes.
+The `USE INDEX (index_list)` hint tells MySQL to use only one of the named indexes to find rows in the table. The alternative syntax `IGNORE INDEX (index_list)` tells MySQL to not use some particular index or indexes. These hints are useful if `EXPLAIN` shows that MySQL is using the wrong index from the list of possible indexes.
 
-The `FORCE INDEX` hint acts like `USE
-INDEX (index_list)`, with
-the addition that a table scan is assumed to be
-*very* expensive. In other words, a table
-scan is used only if there is no way to use one of the named
-indexes to find rows in the table.
+The `FORCE INDEX` hint acts like `USE INDEX (index_list)`, with the addition that a table scan is assumed to be *very* expensive. In other words, a table scan is used only if there is no way to use one of the named indexes to find rows in the table.
 
 Note
 
-As of MySQL 8.0.20, the server supports the index-level
-optimizer hints [`JOIN_INDEX`](optimizer-hints.html#optimizer-hints-index-level "Index-Level Optimizer Hints"),
-[`GROUP_INDEX`](optimizer-hints.html#optimizer-hints-index-level "Index-Level Optimizer Hints"),
-[`ORDER_INDEX`](optimizer-hints.html#optimizer-hints-index-level "Index-Level Optimizer Hints"), and
-[`INDEX`](optimizer-hints.html#optimizer-hints-index-level "Index-Level Optimizer Hints"), which are equivalent
-to and intended to supersede `FORCE INDEX`
-index hints, as well as the
-[`NO_JOIN_INDEX`](optimizer-hints.html#optimizer-hints-index-level "Index-Level Optimizer Hints"),
-[`NO_GROUP_INDEX`](optimizer-hints.html#optimizer-hints-index-level "Index-Level Optimizer Hints"),
-[`NO_ORDER_INDEX`](optimizer-hints.html#optimizer-hints-index-level "Index-Level Optimizer Hints"), and
-[`NO_INDEX`](optimizer-hints.html#optimizer-hints-index-level "Index-Level Optimizer Hints") optimizer hints,
-which are equivalent to and intended to supersede
-`IGNORE INDEX` index hints. Thus, you should
-expect `USE INDEX`, `FORCE
-INDEX`, and `IGNORE INDEX` to be
-deprecated in a future release of MySQL, and at some time
-thereafter to be removed altogether.
+As of MySQL 8.0.20, the server supports the index-level optimizer hints `JOIN_INDEX`, `GROUP_INDEX`, `ORDER_INDEX`, and `INDEX`, which are equivalent to and intended to supersede `FORCE INDEX` index hints, as well as the `NO_JOIN_INDEX`, `NO_GROUP_INDEX`, `NO_ORDER_INDEX`, and `NO_INDEX` optimizer hints, which are equivalent to and intended to supersede `IGNORE INDEX` index hints. Thus, you should expect `USE INDEX`, `FORCE INDEX`, and `IGNORE INDEX` to be deprecated in a future release of MySQL, and at some time thereafter to be removed altogether.
 
-These index-level optimizer hints are supported with both
-single-table and multi-table
-[`DELETE`](delete.html "15.2.2 DELETE Statement") statements.
+These index-level optimizer hints are supported with both single-table and multi-table `DELETE` statements.
 
-For more information, see
-[Index-Level Optimizer Hints](optimizer-hints.html#optimizer-hints-index-level "Index-Level Optimizer Hints").
+For more information, see Index-Level Optimizer Hints.
 
-Each hint requires index names, not column names. To refer to a
-primary key, use the name `PRIMARY`. To see the
-index names for a table, use the [`SHOW
-INDEX`](show-index.html "15.7.7.22 SHOW INDEX Statement") statement or the Information Schema
-[`STATISTICS`](information-schema-statistics-table.html "28.3.34 The INFORMATION_SCHEMA STATISTICS Table") table.
+Each hint requires index names, not column names. To refer to a primary key, use the name `PRIMARY`. To see the index names for a table, use the [`SHOW INDEX`](show-index.html "15.7.7.22 SHOW INDEX Statement") statement or the Information Schema `STATISTICS` table.
 
-An *`index_name`* value need not be a
-full index name. It can be an unambiguous prefix of an index
-name. If a prefix is ambiguous, an error occurs.
+An *`index_name`* value need not be a full index name. It can be an unambiguous prefix of an index name. If a prefix is ambiguous, an error occurs.
 
 Examples:
 
@@ -99,22 +50,9 @@ SELECT * FROM table1 IGNORE INDEX (col3_index)
 
 The syntax for index hints has the following characteristics:
 
-* It is syntactically valid to omit
-  *`index_list`* for `USE
-  INDEX`, which means “use no indexes.”
-  Omitting *`index_list`* for
-  `FORCE INDEX` or `IGNORE
-  INDEX` is a syntax error.
+* It is syntactically valid to omit *`index_list`* for `USE INDEX`, which means “use no indexes.” Omitting *`index_list`* for `FORCE INDEX` or `IGNORE INDEX` is a syntax error.
 
-* You can specify the scope of an index hint by adding a
-  `FOR` clause to the hint. This provides
-  more fine-grained control over optimizer selection of an
-  execution plan for various phases of query processing. To
-  affect only the indexes used when MySQL decides how to find
-  rows in the table and how to process joins, use `FOR
-  JOIN`. To influence index usage for sorting or
-  grouping rows, use `FOR ORDER BY` or
-  `FOR GROUP BY`.
+* You can specify the scope of an index hint by adding a `FOR` clause to the hint. This provides more fine-grained control over optimizer selection of an execution plan for various phases of query processing. To affect only the indexes used when MySQL decides how to find rows in the table and how to process joins, use `FOR JOIN`. To influence index usage for sorting or grouping rows, use `FOR ORDER BY` or `FOR GROUP BY`.
 
 * You can specify multiple index hints:
 
@@ -122,23 +60,19 @@ The syntax for index hints has the following characteristics:
   SELECT * FROM t1 USE INDEX (i1) IGNORE INDEX FOR ORDER BY (i2) ORDER BY a;
   ```
 
-  It is not an error to name the same index in several hints
-  (even within the same hint):
+  It is not an error to name the same index in several hints (even within the same hint):
 
   ```
   SELECT * FROM t1 USE INDEX (i1) USE INDEX (i1,i1);
   ```
 
-  However, it is an error to mix `USE INDEX`
-  and `FORCE INDEX` for the same table:
+  However, it is an error to mix `USE INDEX` and `FORCE INDEX` for the same table:
 
   ```
   SELECT * FROM t1 USE INDEX FOR JOIN (i1) FORCE INDEX FOR JOIN (i2);
   ```
 
-If an index hint includes no `FOR` clause, the
-scope of the hint is to apply to all parts of the statement. For
-example, this hint:
+If an index hint includes no `FOR` clause, the scope of the hint is to apply to all parts of the statement. For example, this hint:
 
 ```
 IGNORE INDEX (i1)
@@ -152,20 +86,9 @@ IGNORE INDEX FOR ORDER BY (i1)
 IGNORE INDEX FOR GROUP BY (i1)
 ```
 
-In MySQL 5.0, hint scope with no `FOR` clause
-was to apply only to row retrieval. To cause the server to use
-this older behavior when no `FOR` clause is
-present, enable the [`old`](server-system-variables.html#sysvar_old) system
-variable at server startup. Take care about enabling this
-variable in a replication setup. With statement-based binary
-logging, having different modes for the source and replicas
-might lead to replication errors.
+In MySQL 5.0, hint scope with no `FOR` clause was to apply only to row retrieval. To cause the server to use this older behavior when no `FOR` clause is present, enable the `old` system variable at server startup. Take care about enabling this variable in a replication setup. With statement-based binary logging, having different modes for the source and replicas might lead to replication errors.
 
-When index hints are processed, they are collected in a single
-list by type (`USE`, `FORCE`,
-`IGNORE`) and by scope (`FOR
-JOIN`, `FOR ORDER BY`, `FOR
-GROUP BY`). For example:
+When index hints are processed, they are collected in a single list by type (`USE`, `FORCE`, `IGNORE`) and by scope (`FOR JOIN`, `FOR ORDER BY`, `FOR GROUP BY`). For example:
 
 ```
 SELECT * FROM t1
@@ -179,15 +102,11 @@ SELECT * FROM t1
    USE INDEX (i1,i2) IGNORE INDEX (i2);
 ```
 
-The index hints then are applied for each scope in the following
-order:
+The index hints then are applied for each scope in the following order:
 
-1. `{USE|FORCE} INDEX` is applied if present.
-   (If not, the optimizer-determined set of indexes is used.)
+1. `{USE|FORCE} INDEX` is applied if present. (If not, the optimizer-determined set of indexes is used.)
 
-2. `IGNORE INDEX` is applied over the result
-   of the previous step. For example, the following two queries
-   are equivalent:
+2. `IGNORE INDEX` is applied over the result of the previous step. For example, the following two queries are equivalent:
 
    ```
    SELECT * FROM t1 USE INDEX (i1) IGNORE INDEX (i2) USE INDEX (i2);
@@ -195,22 +114,11 @@ order:
    SELECT * FROM t1 USE INDEX (i1);
    ```
 
-For `FULLTEXT` searches, index hints work as
-follows:
+For `FULLTEXT` searches, index hints work as follows:
 
-* For natural language mode searches, index hints are silently
-  ignored. For example, `IGNORE INDEX(i1)` is
-  ignored with no warning and the index is still used.
+* For natural language mode searches, index hints are silently ignored. For example, `IGNORE INDEX(i1)` is ignored with no warning and the index is still used.
 
-* For boolean mode searches, index hints with `FOR
-  ORDER BY` or `FOR GROUP BY` are
-  silently ignored. Index hints with `FOR
-  JOIN` or no `FOR` modifier are
-  honored. In contrast to how hints apply for
-  non-`FULLTEXT` searches, the hint is used
-  for all phases of query execution (finding rows and
-  retrieval, grouping, and ordering). This is true even if the
-  hint is given for a non-`FULLTEXT` index.
+* For boolean mode searches, index hints with `FOR ORDER BY` or `FOR GROUP BY` are silently ignored. Index hints with `FOR JOIN` or no `FOR` modifier are honored. In contrast to how hints apply for non-`FULLTEXT` searches, the hint is used for all phases of query execution (finding rows and retrieval, grouping, and ordering). This is true even if the hint is given for a non-`FULLTEXT` index.
 
   For example, the following two queries are equivalent:
 
@@ -226,9 +134,7 @@ follows:
     WHERE ... IN BOOLEAN MODE ... ;
   ```
 
-Index hints work with [`DELETE`](delete.html "15.2.2 DELETE Statement")
-statements, but only if you use multi-table
-`DELETE` syntax, as shown here:
+Index hints work with `DELETE` statements, but only if you use multi-table `DELETE` syntax, as shown here:
 
 ```
 mysql> EXPLAIN DELETE FROM t1 USE INDEX(col2)

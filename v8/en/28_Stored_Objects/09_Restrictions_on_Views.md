@@ -1,25 +1,15 @@
 ## 27.9 Restrictions on Views
 
-The maximum number of tables that can be referenced in the
-definition of a view is 61.
+The maximum number of tables that can be referenced in the definition of a view is 61.
 
 View processing is not optimized:
 
 * It is not possible to create an index on a view.
-* Indexes can be used for views processed using the merge
-  algorithm. However, a view that is processed with the
-  temptable algorithm is unable to take advantage of indexes on
-  its underlying tables (although indexes can be used during
-  generation of the temporary tables).
+* Indexes can be used for views processed using the merge algorithm. However, a view that is processed with the temptable algorithm is unable to take advantage of indexes on its underlying tables (although indexes can be used during generation of the temporary tables).
 
-There is a general principle that you cannot modify a table and
-select from the same table in a subquery. See
-[Section 15.2.15.12, “Restrictions on Subqueries”](subquery-restrictions.html "15.2.15.12 Restrictions on Subqueries").
+There is a general principle that you cannot modify a table and select from the same table in a subquery. See Section 15.2.15.12, “Restrictions on Subqueries”.
 
-The same principle also applies if you select from a view that
-selects from the table, if the view selects from the table in a
-subquery and the view is evaluated using the merge algorithm.
-Example:
+The same principle also applies if you select from a view that selects from the table, if the view selects from the table in a subquery and the view is evaluated using the merge algorithm. Example:
 
 ```
 CREATE VIEW v1 AS
@@ -28,83 +18,26 @@ SELECT * FROM t2 WHERE EXISTS (SELECT 1 FROM t1 WHERE t1.a = t2.a);
 UPDATE t1, v2 SET t1.a = 1 WHERE t1.b = v2.b;
 ```
 
-If the view is evaluated using a temporary table, you
-*can* select from the table in the view
-subquery and still modify that table in the outer query. In this
-case, the view is stored in a temporary table and thus you are not
-really selecting from the table in a subquery and modifying it at
-the same time. (This is another reason you might wish to force
-MySQL to use the temptable algorithm by specifying
-`ALGORITHM = TEMPTABLE` in the view definition.)
+If the view is evaluated using a temporary table, you *can* select from the table in the view subquery and still modify that table in the outer query. In this case, the view is stored in a temporary table and thus you are not really selecting from the table in a subquery and modifying it at the same time. (This is another reason you might wish to force MySQL to use the temptable algorithm by specifying `ALGORITHM = TEMPTABLE` in the view definition.)
 
-You can use [`DROP TABLE`](drop-table.html "15.1.32 DROP TABLE Statement") or
-[`ALTER TABLE`](alter-table.html "15.1.9 ALTER TABLE Statement") to drop or alter a
-table that is used in a view definition. No warning results from
-the `DROP` or `ALTER` operation,
-even though this invalidates the view. Instead, an error occurs
-later, when the view is used. [`CHECK
-TABLE`](check-table.html "15.7.3.2 CHECK TABLE Statement") can be used to check for views that have been
-invalidated by `DROP` or `ALTER`
-operations.
+You can use `DROP TABLE` or `ALTER TABLE` to drop or alter a table that is used in a view definition. No warning results from the `DROP` or `ALTER` operation, even though this invalidates the view. Instead, an error occurs later, when the view is used. [`CHECK TABLE`](check-table.html "15.7.3.2 CHECK TABLE Statement") can be used to check for views that have been invalidated by `DROP` or `ALTER` operations.
 
-With regard to view updatability, the overall goal for views is
-that if any view is theoretically updatable, it should be
-updatable in practice. Many theoretically updatable views can be
-updated now, but limitations still exist. For details, see
-[Section 27.5.3, “Updatable and Insertable Views”](view-updatability.html "27.5.3 Updatable and Insertable Views").
+With regard to view updatability, the overall goal for views is that if any view is theoretically updatable, it should be updatable in practice. Many theoretically updatable views can be updated now, but limitations still exist. For details, see Section 27.5.3, “Updatable and Insertable Views”.
 
-There exists a shortcoming with the current implementation of
-views. If a user is granted the basic privileges necessary to
-create a view (the [`CREATE VIEW`](privileges-provided.html#priv_create-view) and
-[`SELECT`](privileges-provided.html#priv_select) privileges), that user
-cannot call [`SHOW CREATE VIEW`](show-create-view.html "15.7.7.13 SHOW CREATE VIEW Statement") on
-that object unless the user is also granted the
-[`SHOW VIEW`](privileges-provided.html#priv_show-view) privilege.
+There exists a shortcoming with the current implementation of views. If a user is granted the basic privileges necessary to create a view (the `CREATE VIEW` and `SELECT` privileges), that user cannot call `SHOW CREATE VIEW` on that object unless the user is also granted the `SHOW VIEW` privilege.
 
-That shortcoming can lead to problems backing up a database with
-[**mysqldump**](mysqldump.html "6.5.4 mysqldump — A Database Backup Program"), which may fail due to insufficient
-privileges. This problem is described in Bug #22062.
+That shortcoming can lead to problems backing up a database with **mysqldump**, which may fail due to insufficient privileges. This problem is described in Bug #22062.
 
-The workaround to the problem is for the administrator to manually
-grant the [`SHOW VIEW`](privileges-provided.html#priv_show-view) privilege to
-users who are granted [`CREATE VIEW`](privileges-provided.html#priv_create-view),
-since MySQL doesn't grant it implicitly when views are created.
+The workaround to the problem is for the administrator to manually grant the `SHOW VIEW` privilege to users who are granted `CREATE VIEW`, since MySQL doesn't grant it implicitly when views are created.
 
-Views do not have indexes, so index hints do not apply. Use of
-index hints when selecting from a view is not permitted.
+Views do not have indexes, so index hints do not apply. Use of index hints when selecting from a view is not permitted.
 
-[`SHOW CREATE VIEW`](show-create-view.html "15.7.7.13 SHOW CREATE VIEW Statement") displays view
-definitions using an `AS
-alias_name` clause for each
-column. If a column is created from an expression, the default
-alias is the expression text, which can be quite long. Aliases for
-column names in [`CREATE VIEW`](create-view.html "15.1.23 CREATE VIEW Statement")
-statements are checked against the maximum column length of 64
-characters (not the maximum alias length of 256 characters). As a
-result, views created from the output of [`SHOW
-CREATE VIEW`](show-create-view.html "15.7.7.13 SHOW CREATE VIEW Statement") fail if any column alias exceeds 64
-characters. This can cause problems in the following circumstances
-for views with too-long aliases:
+`SHOW CREATE VIEW` displays view definitions using an `AS alias_name` clause for each column. If a column is created from an expression, the default alias is the expression text, which can be quite long. Aliases for column names in `CREATE VIEW` statements are checked against the maximum column length of 64 characters (not the maximum alias length of 256 characters). As a result, views created from the output of [`SHOW CREATE VIEW`](show-create-view.html "15.7.7.13 SHOW CREATE VIEW Statement") fail if any column alias exceeds 64 characters. This can cause problems in the following circumstances for views with too-long aliases:
 
-* View definitions fail to replicate to newer replicas that
-  enforce the column-length restriction.
+* View definitions fail to replicate to newer replicas that enforce the column-length restriction.
 
-* Dump files created with [**mysqldump**](mysqldump.html "6.5.4 mysqldump — A Database Backup Program") cannot be
-  loaded into servers that enforce the column-length
-  restriction.
+* Dump files created with **mysqldump** cannot be loaded into servers that enforce the column-length restriction.
 
-A workaround for either problem is to modify each problematic view
-definition to use aliases that provide shorter column names. Then
-the view replicates properly, and can be dumped and reloaded
-without causing an error. To modify the definition, drop and
-create the view again with [`DROP
-VIEW`](drop-view.html "15.1.35 DROP VIEW Statement") and [`CREATE VIEW`](create-view.html "15.1.23 CREATE VIEW Statement"), or
-replace the definition with
-[`CREATE OR REPLACE
-VIEW`](create-view.html "15.1.23 CREATE VIEW Statement").
+A workaround for either problem is to modify each problematic view definition to use aliases that provide shorter column names. Then the view replicates properly, and can be dumped and reloaded without causing an error. To modify the definition, drop and create the view again with [`DROP VIEW`](drop-view.html "15.1.35 DROP VIEW Statement") and `CREATE VIEW`, or replace the definition with [`CREATE OR REPLACE VIEW`](create-view.html "15.1.23 CREATE VIEW Statement").
 
-For problems that occur when reloading view definitions in dump
-files, another workaround is to edit the dump file to modify its
-[`CREATE VIEW`](create-view.html "15.1.23 CREATE VIEW Statement") statements. However,
-this does not change the original view definitions, which may
-cause problems for subsequent dump operations.
+For problems that occur when reloading view definitions in dump files, another workaround is to edit the dump file to modify its `CREATE VIEW` statements. However, this does not change the original view definitions, which may cause problems for subsequent dump operations.

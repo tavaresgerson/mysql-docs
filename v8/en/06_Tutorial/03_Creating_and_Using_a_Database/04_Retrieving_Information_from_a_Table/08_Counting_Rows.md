@@ -1,17 +1,8 @@
 #### 5.3.4.8 Counting Rows
 
-Databases are often used to answer the question, “How
-often does a certain type of data occur in a table?”
-For example, you might want to know how many pets you have, or
-how many pets each owner has, or you might want to perform
-various kinds of census operations on your animals.
+Databases are often used to answer the question, “How often does a certain type of data occur in a table?” For example, you might want to know how many pets you have, or how many pets each owner has, or you might want to perform various kinds of census operations on your animals.
 
-Counting the total number of animals you have is the same
-question as “How many rows are in the
-`pet` table?” because there is one
-record per pet. [`COUNT(*)`](aggregate-functions.html#function_count) counts
-the number of rows, so the query to count your animals looks
-like this:
+Counting the total number of animals you have is the same question as “How many rows are in the `pet` table?” because there is one record per pet. `COUNT(*)` counts the number of rows, so the query to count your animals looks like this:
 
 ```
 mysql> SELECT COUNT(*) FROM pet;
@@ -22,9 +13,7 @@ mysql> SELECT COUNT(*) FROM pet;
 +----------+
 ```
 
-Earlier, you retrieved the names of the people who owned pets.
-You can use [`COUNT()`](aggregate-functions.html#function_count) if you want
-to find out how many pets each owner has:
+Earlier, you retrieved the names of the people who owned pets. You can use `COUNT()` if you want to find out how many pets each owner has:
 
 ```
 mysql> SELECT owner, COUNT(*) FROM pet GROUP BY owner;
@@ -38,12 +27,7 @@ mysql> SELECT owner, COUNT(*) FROM pet GROUP BY owner;
 +--------+----------+
 ```
 
-The preceding query uses `GROUP BY` to group
-all records for each `owner`. The use of
-[`COUNT()`](aggregate-functions.html#function_count) in conjunction with
-`GROUP BY` is useful for characterizing your
-data under various groupings. The following examples show
-different ways to perform animal census operations.
+The preceding query uses `GROUP BY` to group all records for each `owner`. The use of `COUNT()` in conjunction with `GROUP BY` is useful for characterizing your data under various groupings. The following examples show different ways to perform animal census operations.
 
 Number of animals per species:
 
@@ -73,8 +57,7 @@ mysql> SELECT sex, COUNT(*) FROM pet GROUP BY sex;
 +------+----------+
 ```
 
-(In this output, `NULL` indicates that the
-sex is unknown.)
+(In this output, `NULL` indicates that the sex is unknown.)
 
 Number of animals per combination of species and sex:
 
@@ -94,10 +77,7 @@ mysql> SELECT species, sex, COUNT(*) FROM pet GROUP BY species, sex;
 +---------+------+----------+
 ```
 
-You need not retrieve an entire table when you use
-[`COUNT()`](aggregate-functions.html#function_count). For example, the
-previous query, when performed just on dogs and cats, looks
-like this:
+You need not retrieve an entire table when you use `COUNT()`. For example, the previous query, when performed just on dogs and cats, looks like this:
 
 ```
 mysql> SELECT species, sex, COUNT(*) FROM pet
@@ -113,8 +93,7 @@ mysql> SELECT species, sex, COUNT(*) FROM pet
 +---------+------+----------+
 ```
 
-Or, if you wanted the number of animals per sex only for
-animals whose sex is known:
+Or, if you wanted the number of animals per sex only for animals whose sex is known:
 
 ```
 mysql> SELECT species, sex, COUNT(*) FROM pet
@@ -133,14 +112,9 @@ mysql> SELECT species, sex, COUNT(*) FROM pet
 +---------+------+----------+
 ```
 
-If you name columns to select in addition to the
-[`COUNT()`](aggregate-functions.html#function_count) value, a `GROUP
-BY` clause should be present that names those same
-columns. Otherwise, the following occurs:
+If you name columns to select in addition to the `COUNT()` value, a `GROUP BY` clause should be present that names those same columns. Otherwise, the following occurs:
 
-* If the
-  [`ONLY_FULL_GROUP_BY`](sql-mode.html#sqlmode_only_full_group_by) SQL
-  mode is enabled, an error occurs:
+* If the `ONLY_FULL_GROUP_BY` SQL mode is enabled, an error occurs:
 
   ```
   mysql> SET sql_mode = 'ONLY_FULL_GROUP_BY';
@@ -152,11 +126,7 @@ columns. Otherwise, the following occurs:
   this is incompatible with sql_mode=only_full_group_by
   ```
 
-* If [`ONLY_FULL_GROUP_BY`](sql-mode.html#sqlmode_only_full_group_by) is
-  not enabled, the query is processed by treating all rows
-  as a single group, but the value selected for each named
-  column is nondeterministic. The server is free to select
-  the value from any row:
+* If `ONLY_FULL_GROUP_BY` is not enabled, the query is processed by treating all rows as a single group, but the value selected for each named column is nondeterministic. The server is free to select the value from any row:
 
   ```
   mysql> SET sql_mode = '';
@@ -171,7 +141,4 @@ columns. Otherwise, the following occurs:
   1 row in set (0.00 sec)
   ```
 
-See also [Section 14.19.3, “MySQL Handling of GROUP BY”](group-by-handling.html "14.19.3 MySQL Handling of GROUP BY"). See
-[Section 14.19.1, “Aggregate Function Descriptions”](aggregate-functions.html "14.19.1 Aggregate Function Descriptions") for information about
-[`COUNT(expr)`](aggregate-functions.html#function_count)
-behavior and related optimizations.
+See also Section 14.19.3, “MySQL Handling of GROUP BY”. See Section 14.19.1, “Aggregate Function Descriptions” for information about `COUNT(expr)` behavior and related optimizations.

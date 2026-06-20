@@ -1,59 +1,19 @@
 ### 26.2.3 COLUMNS Partitioning
 
-[26.2.3.1 RANGE COLUMNS partitioning](partitioning-columns-range.html)
+The next two sections discuss `COLUMNS` partitioning, which are variants on `RANGE` and `LIST` partitioning. `COLUMNS` partitioning enables the use of multiple columns in partitioning keys. All of these columns are taken into account both for the purpose of placing rows in partitions and for the determination of which partitions are to be checked for matching rows in partition pruning.
 
-[26.2.3.2 LIST COLUMNS partitioning](partitioning-columns-list.html)
+In addition, both `RANGE COLUMNS` partitioning and `LIST COLUMNS` partitioning support the use of non-integer columns for defining value ranges or list members. The permitted data types are shown in the following list:
 
-The next two sections discuss
-`COLUMNS`
-partitioning, which are variants on
-`RANGE` and `LIST`
-partitioning. `COLUMNS` partitioning enables
-the use of multiple columns in partitioning keys. All of these
-columns are taken into account both for the purpose of placing
-rows in partitions and for the determination of which partitions
-are to be checked for matching rows in partition pruning.
+* All integer types: `TINYINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `SMALLINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `MEDIUMINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") (`INTEGER` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")), and `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). (This is the same as with partitioning by `RANGE` and `LIST`.)
 
-In addition, both `RANGE COLUMNS` partitioning
-and `LIST COLUMNS` partitioning support the use
-of non-integer columns for defining value ranges or list
-members. The permitted data types are shown in the following
-list:
+  Other numeric data types (such as `DECIMAL` - DECIMAL, NUMERIC") or `FLOAT` - FLOAT, DOUBLE")) are not supported as partitioning columns.
 
-* All integer types: [`TINYINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"),
-  [`SMALLINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"),
-  [`MEDIUMINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"),
-  [`INT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")
-  ([`INTEGER`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")), and
-  [`BIGINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). (This is the same as
-  with partitioning by `RANGE` and
-  `LIST`.)
+* `DATE` and `DATETIME`.
 
-  Other numeric data types (such as
-  [`DECIMAL`](fixed-point-types.html "13.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC") or
-  [`FLOAT`](floating-point-types.html "13.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE")) are not supported as
-  partitioning columns.
+  Columns using other data types relating to dates or times are not supported as partitioning columns.
 
-* [`DATE`](datetime.html "13.2.2 The DATE, DATETIME, and TIMESTAMP Types") and
-  [`DATETIME`](datetime.html "13.2.2 The DATE, DATETIME, and TIMESTAMP Types").
+* The following string types: `CHAR`, `VARCHAR`, `BINARY`, and `VARBINARY`.
 
-  Columns using other data types relating to dates or times
-  are not supported as partitioning columns.
+  `TEXT` and `BLOB` columns are not supported as partitioning columns.
 
-* The following string types:
-  [`CHAR`](char.html "13.3.2 The CHAR and VARCHAR Types"),
-  [`VARCHAR`](char.html "13.3.2 The CHAR and VARCHAR Types"),
-  [`BINARY`](binary-varbinary.html "13.3.3 The BINARY and VARBINARY Types"), and
-  [`VARBINARY`](binary-varbinary.html "13.3.3 The BINARY and VARBINARY Types").
-
-  [`TEXT`](blob.html "13.3.4 The BLOB and TEXT Types") and
-  [`BLOB`](blob.html "13.3.4 The BLOB and TEXT Types") columns are not
-  supported as partitioning columns.
-
-The discussions of `RANGE COLUMNS` and
-`LIST COLUMNS` partitioning in the next two
-sections assume that you are already familiar with partitioning
-based on ranges and lists as supported in MySQL 5.1 and later;
-for more information about these, see
-[Section 26.2.1, “RANGE Partitioning”](partitioning-range.html "26.2.1 RANGE Partitioning"), and
-[Section 26.2.2, “LIST Partitioning”](partitioning-list.html "26.2.2 LIST Partitioning"), respectively.
+The discussions of `RANGE COLUMNS` and `LIST COLUMNS` partitioning in the next two sections assume that you are already familiar with partitioning based on ranges and lists as supported in MySQL 5.1 and later; for more information about these, see Section 26.2.1, “RANGE Partitioning”, and Section 26.2.2, “LIST Partitioning”, respectively.

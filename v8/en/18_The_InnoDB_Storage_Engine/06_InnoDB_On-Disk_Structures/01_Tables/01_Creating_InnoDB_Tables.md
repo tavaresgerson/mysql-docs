@@ -1,22 +1,12 @@
 #### 17.6.1.1 Creating InnoDB Tables
 
-`InnoDB` tables are created using the
-[`CREATE TABLE`](create-table.html "15.1.20 CREATE TABLE Statement") statement; for
-example:
+`InnoDB` tables are created using the `CREATE TABLE` statement; for example:
 
 ```
 CREATE TABLE t1 (a INT, b CHAR (20), PRIMARY KEY (a)) ENGINE=InnoDB;
 ```
 
-The `ENGINE=InnoDB` clause is not required when
-`InnoDB` is defined as the default storage
-engine, which it is by default. However, the
-`ENGINE` clause is useful if the
-[`CREATE TABLE`](create-table.html "15.1.20 CREATE TABLE Statement") statement is to be
-replayed on a different MySQL Server instance where the default
-storage engine is not `InnoDB` or is unknown. You
-can determine the default storage engine on a MySQL Server
-instance by issuing the following statement:
+The `ENGINE=InnoDB` clause is not required when `InnoDB` is defined as the default storage engine, which it is by default. However, the `ENGINE` clause is useful if the `CREATE TABLE` statement is to be replayed on a different MySQL Server instance where the default storage engine is not `InnoDB` or is unknown. You can determine the default storage engine on a MySQL Server instance by issuing the following statement:
 
 ```
 mysql> SELECT @@default_storage_engine;
@@ -27,57 +17,24 @@ mysql> SELECT @@default_storage_engine;
 +--------------------------+
 ```
 
-`InnoDB` tables are created in file-per-table
-tablespaces by default. To create an `InnoDB`
-table in the `InnoDB` system tablespace, disable
-the [`innodb_file_per_table`](innodb-parameters.html#sysvar_innodb_file_per_table)
-variable before creating the table. To create an
-`InnoDB` table in a general tablespace, use
-[`CREATE TABLE ...
-TABLESPACE`](create-table.html "15.1.20 CREATE TABLE Statement") syntax. For more information, see
-[Section 17.6.3, “Tablespaces”](innodb-tablespace.html "17.6.3 Tablespaces").
+`InnoDB` tables are created in file-per-table tablespaces by default. To create an `InnoDB` table in the `InnoDB` system tablespace, disable the `innodb_file_per_table` variable before creating the table. To create an `InnoDB` table in a general tablespace, use [`CREATE TABLE ... TABLESPACE`](create-table.html "15.1.20 CREATE TABLE Statement") syntax. For more information, see Section 17.6.3, “Tablespaces”.
 
 ##### Row Formats
 
-The row format of an `InnoDB` table determines
-how its rows are physically stored on disk.
-`InnoDB` supports four row formats, each with
-different storage characteristics. Supported row formats include
-`REDUNDANT`, `COMPACT`,
-`DYNAMIC`, and `COMPRESSED`.
-The `DYNAMIC` row format is the default. For
-information about row format characteristics, see
-[Section 17.10, “InnoDB Row Formats”](innodb-row-format.html "17.10 InnoDB Row Formats").
+The row format of an `InnoDB` table determines how its rows are physically stored on disk. `InnoDB` supports four row formats, each with different storage characteristics. Supported row formats include `REDUNDANT`, `COMPACT`, `DYNAMIC`, and `COMPRESSED`. The `DYNAMIC` row format is the default. For information about row format characteristics, see Section 17.10, “InnoDB Row Formats”.
 
-The [`innodb_default_row_format`](innodb-parameters.html#sysvar_innodb_default_row_format)
-variable defines the default row format. The row format of a
-table can also be defined explicitly using the
-`ROW_FORMAT` table option in a `CREATE
-TABLE` or `ALTER TABLE` statement. See
-[Defining the Row Format of a Table](innodb-row-format.html#innodb-row-format-defining "Defining the Row Format of a Table").
+The `innodb_default_row_format` variable defines the default row format. The row format of a table can also be defined explicitly using the `ROW_FORMAT` table option in a `CREATE TABLE` or `ALTER TABLE` statement. See Defining the Row Format of a Table.
 
 ##### Primary Keys
 
-It is recommended that you define a primary key for each table
-that you create. When selecting primary key columns, choose
-columns with the following characteristics:
+It is recommended that you define a primary key for each table that you create. When selecting primary key columns, choose columns with the following characteristics:
 
 * Columns that are referenced by the most important queries.
 * Columns that are never left blank.
 * Columns that never have duplicate values.
 * Columns that rarely if ever change value once inserted.
 
-For example, in a table containing information about people, you
-would not create a primary key on `(firstname,
-lastname)` because more than one person can have the
-same name, a name column may be left blank, and sometimes people
-change their names. With so many constraints, often there is not
-an obvious set of columns to use as a primary key, so you create
-a new column with a numeric ID to serve as all or part of the
-primary key. You can declare an
-[auto-increment](glossary.html#glos_auto_increment "auto-increment") column
-so that ascending values are filled in automatically as rows are
-inserted:
+For example, in a table containing information about people, you would not create a primary key on `(firstname, lastname)` because more than one person can have the same name, a name column may be left blank, and sometimes people change their names. With so many constraints, often there is not an obvious set of columns to use as a primary key, so you create a new column with a numeric ID to serve as all or part of the primary key. You can declare an auto-increment column so that ascending values are filled in automatically as rows are inserted:
 
 ```
 # The value of ID can act like a pointer between related items in different tables.
@@ -87,25 +44,13 @@ CREATE TABLE t5 (id INT AUTO_INCREMENT, b CHAR (20), PRIMARY KEY (id));
 CREATE TABLE t6 (id INT AUTO_INCREMENT, a INT, b CHAR (20), PRIMARY KEY (id,a));
 ```
 
-For more information about auto-increment columns, see
-[Section 17.6.1.6, “AUTO\_INCREMENT Handling in InnoDB”](innodb-auto-increment-handling.html "17.6.1.6 AUTO_INCREMENT Handling in InnoDB").
+For more information about auto-increment columns, see Section 17.6.1.6, “AUTO_INCREMENT Handling in InnoDB”.
 
-Although a table works correctly without defining a primary key,
-the primary key is involved with many aspects of performance and
-is a crucial design aspect for any large or frequently used
-table. It is recommended that you always specify a primary key
-in the [`CREATE TABLE`](create-table.html "15.1.20 CREATE TABLE Statement") statement. If
-you create the table, load data, and then run
-[`ALTER TABLE`](alter-table.html "15.1.9 ALTER TABLE Statement") to add a primary key
-later, that operation is much slower than defining the primary
-key when creating the table. For more information about primary
-keys, see [Section 17.6.2.1, “Clustered and Secondary Indexes”](innodb-index-types.html "17.6.2.1 Clustered and Secondary Indexes").
+Although a table works correctly without defining a primary key, the primary key is involved with many aspects of performance and is a crucial design aspect for any large or frequently used table. It is recommended that you always specify a primary key in the `CREATE TABLE` statement. If you create the table, load data, and then run `ALTER TABLE` to add a primary key later, that operation is much slower than defining the primary key when creating the table. For more information about primary keys, see Section 17.6.2.1, “Clustered and Secondary Indexes”.
 
 ##### Viewing InnoDB Table Properties
 
-To view the properties of an `InnoDB` table,
-issue a [`SHOW TABLE STATUS`](show-table-status.html "15.7.7.38 SHOW TABLE STATUS Statement")
-statement:
+To view the properties of an `InnoDB` table, issue a `SHOW TABLE STATUS` statement:
 
 ```
 mysql> SHOW TABLE STATUS FROM test LIKE 't%' \G;
@@ -130,13 +75,9 @@ Max_data_length: 0
         Comment:
 ```
 
-For information about [`SHOW TABLE
-STATUS`](show-table-status.html "15.7.7.38 SHOW TABLE STATUS Statement") output, see
-[Section 15.7.7.38, “SHOW TABLE STATUS Statement”](show-table-status.html "15.7.7.38 SHOW TABLE STATUS Statement").
+For information about [`SHOW TABLE STATUS`](show-table-status.html "15.7.7.38 SHOW TABLE STATUS Statement") output, see Section 15.7.7.38, “SHOW TABLE STATUS Statement”.
 
-You can also access `InnoDB` table properties
-by querying the `InnoDB` Information Schema
-system tables:
+You can also access `InnoDB` table properties by querying the `InnoDB` Information Schema system tables:
 
 ```
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_TABLES WHERE NAME='test/t1' \G
@@ -152,5 +93,4 @@ ZIP_PAGE_SIZE: 0
  INSTANT_COLS: 0
 ```
 
-For more information, see
-[Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”](innodb-information-schema-system-tables.html "17.15.3 InnoDB INFORMATION_SCHEMA Schema Object Tables").
+For more information, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.

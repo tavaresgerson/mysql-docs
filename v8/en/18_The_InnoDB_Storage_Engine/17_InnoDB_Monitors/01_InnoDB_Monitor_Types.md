@@ -2,8 +2,7 @@
 
 There are two types of `InnoDB` monitor:
 
-* The standard `InnoDB` Monitor displays the
-  following types of information:
+* The standard `InnoDB` Monitor displays the following types of information:
 
   + Work done by the main background thread
   + Semaphore waits
@@ -15,6 +14,4 @@ There are two types of `InnoDB` monitor:
   + Redo log data
   + Buffer pool statistics
   + Row operation data
-* The `InnoDB` Lock Monitor prints additional
-  lock information as part of the standard
-  `InnoDB` Monitor output.
+* The `InnoDB` Lock Monitor prints additional lock information as part of the standard `InnoDB` Monitor output.

@@ -1,7 +1,6 @@
 ### 15.2.16 TABLE Statement
 
-`TABLE` is a DML statement introduced in MySQL
-8.0.19 which returns rows and columns of the named table.
+`TABLE` is a DML statement introduced in MySQL 8.0.19 which returns rows and columns of the named table.
 
 ```
 TABLE table_name
@@ -21,10 +20,7 @@ TABLE table_name
     | INTO var_name [, var_name] ...]
 ```
 
-The `TABLE` statement in some ways acts like
-[`SELECT`](select.html "15.2.13 SELECT Statement"). Given the existence of a
-table named `t`, the following two statements
-produce identical output:
+The `TABLE` statement in some ways acts like `SELECT`. Given the existence of a table named `t`, the following two statements produce identical output:
 
 ```
 TABLE t;
@@ -32,13 +28,7 @@ TABLE t;
 SELECT * FROM t;
 ```
 
-You can order and limit the number of rows produced by
-`TABLE` using `ORDER BY` and
-`LIMIT` clauses, respectively. These function
-identically to the same clauses when used with
-`SELECT` (including an optional
-`OFFSET` clause with `LIMIT`),
-as you can see here:
+You can order and limit the number of rows produced by `TABLE` using `ORDER BY` and `LIMIT` clauses, respectively. These function identically to the same clauses when used with `SELECT` (including an optional `OFFSET` clause with `LIMIT`), as you can see here:
 
 ```
 mysql> TABLE t;
@@ -100,33 +90,21 @@ mysql> TABLE t ORDER BY b LIMIT 3 OFFSET 2;
 3 rows in set (0.00 sec)
 ```
 
-`TABLE` differs from `SELECT` in
-two key respects:
+`TABLE` differs from `SELECT` in two key respects:
 
-* `TABLE` always displays all columns of the
-  table.
+* `TABLE` always displays all columns of the table.
 
-  *Exception*: The output of
-  `TABLE` does *not* include
-  invisible columns. See [Section 15.1.20.10, “Invisible Columns”](invisible-columns.html "15.1.20.10 Invisible Columns").
+  *Exception*: The output of `TABLE` does *not* include invisible columns. See Section 15.1.20.10, “Invisible Columns”.
 
-* `TABLE` does not allow for any arbitrary
-  filtering of rows; that is, `TABLE` does not
-  support any `WHERE` clause.
+* `TABLE` does not allow for any arbitrary filtering of rows; that is, `TABLE` does not support any `WHERE` clause.
 
-For limiting which table columns are returned, filtering rows
-beyond what can be accomplished using `ORDER BY`
-and `LIMIT`, or both, use
-`SELECT`.
+For limiting which table columns are returned, filtering rows beyond what can be accomplished using `ORDER BY` and `LIMIT`, or both, use `SELECT`.
 
 `TABLE` can be used with temporary tables.
 
-`TABLE` can also be used in place of
-`SELECT` in a number of other constructs,
-including those listed here:
+`TABLE` can also be used in place of `SELECT` in a number of other constructs, including those listed here:
 
-* With set operators such as
-  [`UNION`](union.html "15.2.18 UNION Clause"), as shown here:
+* With set operators such as `UNION`, as shown here:
 
   ```
   mysql> TABLE t1;
@@ -163,8 +141,7 @@ including those listed here:
   6 rows in set (0.00 sec)
   ```
 
-  The [`UNION`](union.html "15.2.18 UNION Clause") just shown is
-  equivalent to the following statement:
+  The `UNION` just shown is equivalent to the following statement:
 
   ```
   mysql> SELECT * FROM t1 UNION SELECT * FROM t2;
@@ -181,33 +158,17 @@ including those listed here:
   6 rows in set (0.00 sec)
   ```
 
-  `TABLE` can also be used together in set
-  operations with `SELECT` statements,
-  [`VALUES`](values.html "15.2.19 VALUES Statement") statements, or both. See
-  [Section 15.2.18, “UNION Clause”](union.html "15.2.18 UNION Clause"), [Section 15.2.4, “EXCEPT Clause”](except.html "15.2.4 EXCEPT Clause"), and
-  [Section 15.2.8, “INTERSECT Clause”](intersect.html "15.2.8 INTERSECT Clause"), for more information and
-  examples. See also [Section 15.2.14, “Set Operations with UNION, INTERSECT, and EXCEPT”](set-operations.html "15.2.14 Set Operations with UNION, INTERSECT, and EXCEPT").
+  `TABLE` can also be used together in set operations with `SELECT` statements, `VALUES` statements, or both. See Section 15.2.18, “UNION Clause”, Section 15.2.4, “EXCEPT Clause”, and Section 15.2.8, “INTERSECT Clause”, for more information and examples. See also Section 15.2.14, “Set Operations with UNION, INTERSECT, and EXCEPT”.
 
-* With `INTO` to populate user variables, and
-  with `INTO OUTFILE` or `INTO
-  DUMPFILE` to write table data to a file. See
-  [Section 15.2.13.1, “SELECT ... INTO Statement”](select-into.html "15.2.13.1 SELECT ... INTO Statement"), for more specific information
-  and examples.
+* With `INTO` to populate user variables, and with `INTO OUTFILE` or `INTO DUMPFILE` to write table data to a file. See Section 15.2.13.1, “SELECT ... INTO Statement”, for more specific information and examples.
 
-* In many cases where you can employ subqueries. Given any table
-  `t1` with a column named
-  `a`, and a second table `t2`
-  having a single column, statements such as the following are
-  possible:
+* In many cases where you can employ subqueries. Given any table `t1` with a column named `a`, and a second table `t2` having a single column, statements such as the following are possible:
 
   ```
   SELECT * FROM t1 WHERE a IN (TABLE t2);
   ```
 
-  Assuming that the single column of table `t1`
-  is named `x`, the preceding is equivalent to
-  each of the statements shown here (and produces exactly the
-  same result in either case):
+  Assuming that the single column of table `t1` is named `x`, the preceding is equivalent to each of the statements shown here (and produces exactly the same result in either case):
 
   ```
   SELECT * FROM t1 WHERE a IN (SELECT x FROM t2);
@@ -215,19 +176,8 @@ including those listed here:
   SELECT * FROM t1 WHERE a IN (SELECT * FROM t2);
   ```
 
-  See [Section 15.2.15, “Subqueries”](subqueries.html "15.2.15 Subqueries"), for more information.
+  See Section 15.2.15, “Subqueries”, for more information.
 
-* With [`INSERT`](insert.html "15.2.7 INSERT Statement") and
-  [`REPLACE`](replace.html "15.2.12 REPLACE Statement") statements, where you
-  would otherwise use
-  [`SELECT *`](select.html "15.2.13 SELECT Statement").
-  See [Section 15.2.7.1, “INSERT ... SELECT Statement”](insert-select.html "15.2.7.1 INSERT ... SELECT Statement"), for more information and
-  examples.
+* With `INSERT` and `REPLACE` statements, where you would otherwise use `SELECT *`. See Section 15.2.7.1, “INSERT ... SELECT Statement”, for more information and examples.
 
-* [`TABLE`](table.html "15.2.16 TABLE Statement") can also be used in many
-  cases in place of the [`SELECT`](select.html "15.2.13 SELECT Statement") in
-  [`CREATE
-  TABLE ... SELECT`](create-table-select.html "15.1.20.4 CREATE TABLE ... SELECT Statement") or
-  [`CREATE VIEW ...
-  SELECT`](create-view.html "15.1.23 CREATE VIEW Statement"). See the descriptions of these statements for
-  more information and examples.
+* `TABLE` can also be used in many cases in place of the `SELECT` in [`CREATE TABLE ... SELECT`](create-table-select.html "15.1.20.4 CREATE TABLE ... SELECT Statement") or [`CREATE VIEW ... SELECT`](create-view.html "15.1.23 CREATE VIEW Statement"). See the descriptions of these statements for more information and examples.

@@ -1,16 +1,12 @@
 ### 17.1.3 Verifying that InnoDB is the Default Storage Engine
 
-Issue the [`SHOW ENGINES`](show-engines.html "15.7.7.16 SHOW ENGINES Statement") statement to
-view the available MySQL storage engines. Look for
-`DEFAULT` in the `SUPPORT`
-column.
+Issue the `SHOW ENGINES` statement to view the available MySQL storage engines. Look for `DEFAULT` in the `SUPPORT` column.
 
 ```
 mysql> SHOW ENGINES;
 ```
 
-Alternatively, query the Information Schema
-[`ENGINES`](information-schema-engines-table.html "28.3.13 The INFORMATION_SCHEMA ENGINES Table") table.
+Alternatively, query the Information Schema `ENGINES` table.
 
 ```
 mysql> SELECT * FROM INFORMATION_SCHEMA.ENGINES;

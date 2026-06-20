@@ -1,36 +1,14 @@
-### 17.15.8 Retrieving InnoDB Tablespace Metadata from INFORMATION\_SCHEMA.FILES
+### 17.15.8 Retrieving InnoDB Tablespace Metadata from INFORMATION_SCHEMA.FILES
 
-The Information Schema [`FILES`](information-schema-files-table.html "28.3.15 The INFORMATION_SCHEMA FILES Table") table
-provides metadata about all `InnoDB` tablespace
-types including [file-per-table
-tablespaces](glossary.html#glos_file_per_table "file-per-table"),
-[general
-tablespaces](glossary.html#glos_general_tablespace "general tablespace"), the
-[system tablespace](glossary.html#glos_system_tablespace "system tablespace"),
-[temporary table
-tablespaces](glossary.html#glos_temporary_tablespace "temporary tablespace"), and [undo
-tablespaces](glossary.html#glos_undo_tablespace "undo tablespace") (if present).
+The Information Schema `FILES` table provides metadata about all `InnoDB` tablespace types including [file-per-table tablespaces](glossary.html#glos_file_per_table "file-per-table"), [general tablespaces](glossary.html#glos_general_tablespace "general tablespace"), the system tablespace, [temporary table tablespaces](glossary.html#glos_temporary_tablespace "temporary tablespace"), and [undo tablespaces](glossary.html#glos_undo_tablespace "undo tablespace") (if present).
 
-This section provides `InnoDB`-specific usage
-examples. For more information about data provided by the
-Information Schema `FILES` table, see
-[Section 28.3.15, “The INFORMATION\_SCHEMA FILES Table”](information-schema-files-table.html "28.3.15 The INFORMATION_SCHEMA FILES Table").
+This section provides `InnoDB`-specific usage examples. For more information about data provided by the Information Schema `FILES` table, see Section 28.3.15, “The INFORMATION_SCHEMA FILES Table”.
 
 Note
 
-The [`INNODB_TABLESPACES`](information-schema-innodb-tablespaces-table.html "28.4.24 The INFORMATION_SCHEMA INNODB_TABLESPACES Table") and
-[`INNODB_DATAFILES`](information-schema-innodb-datafiles-table.html "28.4.10 The INFORMATION_SCHEMA INNODB_DATAFILES Table") tables also
-provide metadata about `InnoDB` tablespaces,
-but data is limited to file-per-table, general, and undo
-tablespaces.
+The `INNODB_TABLESPACES` and `INNODB_DATAFILES` tables also provide metadata about `InnoDB` tablespaces, but data is limited to file-per-table, general, and undo tablespaces.
 
-This query retrieves metadata about the `InnoDB`
-system tablespace from fields of the Information Schema
-[`FILES`](information-schema-files-table.html "28.3.15 The INFORMATION_SCHEMA FILES Table") table that are pertinent to
-`InnoDB` tablespaces.
-[`FILES`](information-schema-files-table.html "28.3.15 The INFORMATION_SCHEMA FILES Table") columns that are not relevant
-to `InnoDB` always return
-`NULL`, and are excluded from the query.
+This query retrieves metadata about the `InnoDB` system tablespace from fields of the Information Schema `FILES` table that are pertinent to `InnoDB` tablespaces. `FILES` columns that are not relevant to `InnoDB` always return `NULL`, and are excluded from the query.
 
 ```
 mysql> SELECT FILE_ID, FILE_NAME, FILE_TYPE, TABLESPACE_NAME, FREE_EXTENTS,
@@ -51,11 +29,7 @@ AUTOEXTEND_SIZE: 67108864
          ENGINE: NORMAL
 ```
 
-This query retrieves the `FILE_ID` (equivalent to
-the space ID) and the `FILE_NAME` (which includes
-path information) for `InnoDB` file-per-table and
-general tablespaces. File-per-table and general tablespaces have a
-`.ibd` file extension.
+This query retrieves the `FILE_ID` (equivalent to the space ID) and the `FILE_NAME` (which includes path information) for `InnoDB` file-per-table and general tablespaces. File-per-table and general tablespaces have a `.ibd` file extension.
 
 ```
 mysql> SELECT FILE_ID, FILE_NAME FROM INFORMATION_SCHEMA.FILES
@@ -88,10 +62,7 @@ mysql> SELECT FILE_ID, FILE_NAME FROM INFORMATION_SCHEMA.FILES
     +---------+---------------------------------------+
 ```
 
-This query retrieves the `FILE_ID` and
-`FILE_NAME` for the `InnoDB`
-global temporary tablespace. Global temporary tablespace file
-names are prefixed by `ibtmp`.
+This query retrieves the `FILE_ID` and `FILE_NAME` for the `InnoDB` global temporary tablespace. Global temporary tablespace file names are prefixed by `ibtmp`.
 
 ```
 mysql> SELECT FILE_ID, FILE_NAME FROM INFORMATION_SCHEMA.FILES
@@ -103,11 +74,7 @@ mysql> SELECT FILE_ID, FILE_NAME FROM INFORMATION_SCHEMA.FILES
 +---------+-----------+
 ```
 
-Similarly, `InnoDB` undo tablespace file names
-are prefixed by `undo`. The following query
-returns the `FILE_ID` and
-`FILE_NAME` for `InnoDB` undo
-tablespaces.
+Similarly, `InnoDB` undo tablespace file names are prefixed by `undo`. The following query returns the `FILE_ID` and `FILE_NAME` for `InnoDB` undo tablespaces.
 
 ```
 mysql> SELECT FILE_ID, FILE_NAME FROM INFORMATION_SCHEMA.FILES

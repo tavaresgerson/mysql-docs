@@ -1,106 +1,24 @@
 ### 14.20.1 Window Function Descriptions
 
-This section describes nonaggregate window functions that, for
-each row from a query, perform a calculation using rows related
-to that row. Most aggregate functions also can be used as window
-functions; see [Section 14.19.1, “Aggregate Function Descriptions”](aggregate-functions.html "14.19.1 Aggregate Function Descriptions").
+This section describes nonaggregate window functions that, for each row from a query, perform a calculation using rows related to that row. Most aggregate functions also can be used as window functions; see Section 14.19.1, “Aggregate Function Descriptions”.
 
-For window function usage information and examples, and
-definitions of terms such as the `OVER` clause,
-window, partition, frame, and peer, see
-[Section 14.20.2, “Window Function Concepts and Syntax”](window-functions-usage.html "14.20.2 Window Function Concepts and Syntax").
+For window function usage information and examples, and definitions of terms such as the `OVER` clause, window, partition, frame, and peer, see Section 14.20.2, “Window Function Concepts and Syntax”.
 
 **Table 14.30 Window Functions**
 
-<table frame="box" rules="all" summary="A reference that lists window functions."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th>
-<th>Description</th>
-</tr></thead><tbody><tr><td><a class="link" href="window-function-descriptions.html#function_cume-dist"><code class="literal">CUME_DIST()</code></a></td>
-<td>
-      Cumulative distribution value
-    </td>
-</tr><tr><td><a class="link" href="window-function-descriptions.html#function_dense-rank"><code class="literal">DENSE_RANK()</code></a></td>
-<td>
-      Rank of current row within its partition, without gaps
-    </td>
-</tr><tr><td><a class="link" href="window-function-descriptions.html#function_first-value"><code class="literal">FIRST_VALUE()</code></a></td>
-<td>
-      Value of argument from first row of window frame
-    </td>
-</tr><tr><td><a class="link" href="window-function-descriptions.html#function_lag"><code class="literal">LAG()</code></a></td>
-<td>
-      Value of argument from row lagging current row within partition
-    </td>
-</tr><tr><td><a class="link" href="window-function-descriptions.html#function_last-value"><code class="literal">LAST_VALUE()</code></a></td>
-<td>
-      Value of argument from last row of window frame
-    </td>
-</tr><tr><td><a class="link" href="window-function-descriptions.html#function_lead"><code class="literal">LEAD()</code></a></td>
-<td>
-      Value of argument from row leading current row within partition
-    </td>
-</tr><tr><td><a class="link" href="window-function-descriptions.html#function_nth-value"><code class="literal">NTH_VALUE()</code></a></td>
-<td>
-      Value of argument from N-th row of window frame
-    </td>
-</tr><tr><td><a class="link" href="window-function-descriptions.html#function_ntile"><code class="literal">NTILE()</code></a></td>
-<td>
-      Bucket number of current row within its partition.
-    </td>
-</tr><tr><td><a class="link" href="window-function-descriptions.html#function_percent-rank"><code class="literal">PERCENT_RANK()</code></a></td>
-<td>
-      Percentage rank value
-    </td>
-</tr><tr><td><a class="link" href="window-function-descriptions.html#function_rank"><code class="literal">RANK()</code></a></td>
-<td>
-      Rank of current row within its partition, with gaps
-    </td>
-</tr><tr><td><a class="link" href="window-function-descriptions.html#function_row-number"><code class="literal">ROW_NUMBER()</code></a></td>
-<td>
-      Number of current row within its partition
-    </td>
-</tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists window functions."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>CUME_DIST()</code></td> <td> Cumulative distribution value </td> </tr><tr><td><code>DENSE_RANK()</code></td> <td> Rank of current row within its partition, without gaps </td> </tr><tr><td><code>FIRST_VALUE()</code></td> <td> Value of argument from first row of window frame </td> </tr><tr><td><code>LAG()</code></td> <td> Value of argument from row lagging current row within partition </td> </tr><tr><td><code>LAST_VALUE()</code></td> <td> Value of argument from last row of window frame </td> </tr><tr><td><code>LEAD()</code></td> <td> Value of argument from row leading current row within partition </td> </tr><tr><td><code>NTH_VALUE()</code></td> <td> Value of argument from N-th row of window frame </td> </tr><tr><td><code>NTILE()</code></td> <td> Bucket number of current row within its partition. </td> </tr><tr><td><code>PERCENT_RANK()</code></td> <td> Percentage rank value </td> </tr><tr><td><code>RANK()</code></td> <td> Rank of current row within its partition, with gaps </td> </tr><tr><td><code>ROW_NUMBER()</code></td> <td> Number of current row within its partition </td> </tr></tbody></table>
 
-In the following function descriptions,
-*`over_clause`* represents the
-`OVER` clause, described in
-[Section 14.20.2, “Window Function Concepts and Syntax”](window-functions-usage.html "14.20.2 Window Function Concepts and Syntax"). Some window functions
-permit a *`null_treatment`* clause that
-specifies how to handle `NULL` values when
-calculating results. This clause is optional. It is part of the
-SQL standard, but the MySQL implementation permits only
-`RESPECT NULLS` (which is also the default).
-This means that `NULL` values are considered
-when calculating results. `IGNORE NULLS` is
-parsed, but produces an error.
+In the following function descriptions, *`over_clause`* represents the `OVER` clause, described in Section 14.20.2, “Window Function Concepts and Syntax”. Some window functions permit a *`null_treatment`* clause that specifies how to handle `NULL` values when calculating results. This clause is optional. It is part of the SQL standard, but the MySQL implementation permits only `RESPECT NULLS` (which is also the default). This means that `NULL` values are considered when calculating results. `IGNORE NULLS` is parsed, but produces an error.
 
-* [`CUME_DIST()`](window-function-descriptions.html#function_cume-dist)
-  *`over_clause`*
+* `CUME_DIST()` *`over_clause`*
 
-  Returns the cumulative distribution of a value within a
-  group of values; that is, the percentage of partition values
-  less than or equal to the value in the current row. This
-  represents the number of rows preceding or peer with the
-  current row in the window ordering of the window partition
-  divided by the total number of rows in the window partition.
-  Return values range from 0 to 1.
+  Returns the cumulative distribution of a value within a group of values; that is, the percentage of partition values less than or equal to the value in the current row. This represents the number of rows preceding or peer with the current row in the window ordering of the window partition divided by the total number of rows in the window partition. Return values range from 0 to 1.
 
-  This function should be used with `ORDER
-  BY` to sort partition rows into the desired order.
-  Without `ORDER BY`, all rows are peers and
-  have value
-  *`N`*/*`N`* =
-  1, where *`N`* is the partition size.
+  This function should be used with `ORDER BY` to sort partition rows into the desired order. Without `ORDER BY`, all rows are peers and have value *`N`*/*`N`* = 1, where *`N`* is the partition size.
 
-  *`over_clause`* is as described in
-  [Section 14.20.2, “Window Function Concepts and Syntax”](window-functions-usage.html "14.20.2 Window Function Concepts and Syntax").
+  *`over_clause`* is as described in Section 14.20.2, “Window Function Concepts and Syntax”.
 
-  The following query shows, for the set of values in the
-  `val` column, the
-  `CUME_DIST()` value for each row, as well
-  as the percentage rank value returned by the similar
-  `PERCENT_RANK()` function. For reference,
-  the query also displays row numbers using
-  [`ROW_NUMBER()`](window-function-descriptions.html#function_row-number):
+  The following query shows, for the set of values in the `val` column, the `CUME_DIST()` value for each row, as well as the percentage rank value returned by the similar `PERCENT_RANK()` function. For reference, the query also displays row numbers using `ROW_NUMBER()`:
 
   ```
   mysql> SELECT
@@ -125,40 +43,21 @@ parsed, but produces an error.
   +------+------------+--------------------+--------------+
   ```
 
-* [`DENSE_RANK()`](window-function-descriptions.html#function_dense-rank)
-  *`over_clause`*
+* `DENSE_RANK()` *`over_clause`*
 
-  Returns the rank of the current row within its partition,
-  without gaps. Peers are considered ties and receive the same
-  rank. This function assigns consecutive ranks to peer
-  groups; the result is that groups of size greater than one
-  do not produce noncontiguous rank numbers. For an example,
-  see the [`RANK()`](window-function-descriptions.html#function_rank) function
-  description.
+  Returns the rank of the current row within its partition, without gaps. Peers are considered ties and receive the same rank. This function assigns consecutive ranks to peer groups; the result is that groups of size greater than one do not produce noncontiguous rank numbers. For an example, see the `RANK()` function description.
 
-  This function should be used with `ORDER
-  BY` to sort partition rows into the desired order.
-  Without `ORDER BY`, all rows are peers.
+  This function should be used with `ORDER BY` to sort partition rows into the desired order. Without `ORDER BY`, all rows are peers.
 
-  *`over_clause`* is as described in
-  [Section 14.20.2, “Window Function Concepts and Syntax”](window-functions-usage.html "14.20.2 Window Function Concepts and Syntax").
+  *`over_clause`* is as described in Section 14.20.2, “Window Function Concepts and Syntax”.
 
-* [`FIRST_VALUE(expr)`](window-function-descriptions.html#function_first-value)
-  [*`null_treatment`*]
-  *`over_clause`*
+* `FIRST_VALUE(expr)` [*`null_treatment`*] *`over_clause`*
 
-  Returns the value of *`expr`* from
-  the first row of the window frame.
+  Returns the value of *`expr`* from the first row of the window frame.
 
-  *`over_clause`* is as described in
-  [Section 14.20.2, “Window Function Concepts and Syntax”](window-functions-usage.html "14.20.2 Window Function Concepts and Syntax").
-  *`null_treatment`* is as described in
-  the section introduction.
+  *`over_clause`* is as described in Section 14.20.2, “Window Function Concepts and Syntax”. *`null_treatment`* is as described in the section introduction.
 
-  The following query demonstrates
-  [`FIRST_VALUE()`](window-function-descriptions.html#function_first-value),
-  [`LAST_VALUE()`](window-function-descriptions.html#function_last-value), and two
-  instances of [`NTH_VALUE()`](window-function-descriptions.html#function_nth-value):
+  The following query demonstrates `FIRST_VALUE()`, `LAST_VALUE()`, and two instances of `NTH_VALUE()`:
 
   ```
   mysql> SELECT
@@ -185,59 +84,24 @@ parsed, but produces an error.
   +----------+---------+------+-------+------+--------+--------+
   ```
 
-  Each function uses the rows in the current frame, which, per
-  the window definition shown, extends from the first
-  partition row to the current row. For the
-  [`NTH_VALUE()`](window-function-descriptions.html#function_nth-value) calls, the
-  current frame does not always include the requested row; in
-  such cases, the return value is `NULL`.
+  Each function uses the rows in the current frame, which, per the window definition shown, extends from the first partition row to the current row. For the `NTH_VALUE()` calls, the current frame does not always include the requested row; in such cases, the return value is `NULL`.
 
-* [`LAG(expr [,
-  N[,
-  default]])`](window-function-descriptions.html#function_lag)
-  [*`null_treatment`*]
-  *`over_clause`*
+* [`LAG(expr [, N[, default]])`](window-function-descriptions.html#function_lag) [*`null_treatment`*] *`over_clause`*
 
-  Returns the value of *`expr`* from
-  the row that lags (precedes) the current row by
-  *`N`* rows within its partition. If
-  there is no such row, the return value is
-  *`default`*. For example, if
-  *`N`* is 3, the return value is
-  *`default`* for the first three rows.
-  If *`N`* or
-  *`default`* are missing, the defaults
-  are 1 and `NULL`, respectively.
+  Returns the value of *`expr`* from the row that lags (precedes) the current row by *`N`* rows within its partition. If there is no such row, the return value is *`default`*. For example, if *`N`* is 3, the return value is *`default`* for the first three rows. If *`N`* or *`default`* are missing, the defaults are 1 and `NULL`, respectively.
 
-  *`N`* must be a literal nonnegative
-  integer. If *`N`* is 0,
-  *`expr`* is evaluated for the current
-  row.
+  *`N`* must be a literal nonnegative integer. If *`N`* is 0, *`expr`* is evaluated for the current row.
 
-  Beginning with MySQL 8.0.22, *`N`*
-  cannot be `NULL`. In addition, it must now
-  be an integer in the range `0` to
-  `263`,
-  inclusive, in any of the following forms:
+  Beginning with MySQL 8.0.22, *`N`* cannot be `NULL`. In addition, it must now be an integer in the range `0` to `263`, inclusive, in any of the following forms:
 
   + an unsigned integer constant literal
   + a positional parameter marker (`?`)
   + a user-defined variable
   + a local variable in a stored routine
 
-  *`over_clause`* is as described in
-  [Section 14.20.2, “Window Function Concepts and Syntax”](window-functions-usage.html "14.20.2 Window Function Concepts and Syntax").
-  *`null_treatment`* is as described in
-  the section introduction.
+  *`over_clause`* is as described in Section 14.20.2, “Window Function Concepts and Syntax”. *`null_treatment`* is as described in the section introduction.
 
-  [`LAG()`](window-function-descriptions.html#function_lag) (and the similar
-  [`LEAD()`](window-function-descriptions.html#function_lead) function) are often
-  used to compute differences between rows. The following
-  query shows a set of time-ordered observations and, for each
-  one, the [`LAG()`](window-function-descriptions.html#function_lag) and
-  [`LEAD()`](window-function-descriptions.html#function_lead) values from the
-  adjoining rows, as well as the differences between the
-  current and adjoining rows:
+  `LAG()` (and the similar `LEAD()` function) are often used to compute differences between rows. The following query shows a set of time-ordered observations and, for each one, the `LAG()` and `LEAD()` values from the adjoining rows, as well as the differences between the current and adjoining rows:
 
   ```
   mysql> SELECT
@@ -261,23 +125,11 @@ parsed, but produces an error.
   +----------+------+------+------+----------+-----------+
   ```
 
-  In the example, the [`LAG()`](window-function-descriptions.html#function_lag) and
-  [`LEAD()`](window-function-descriptions.html#function_lead) calls use the default
-  *`N`* and
-  *`default`* values of 1 and
-  `NULL`, respectively.
+  In the example, the `LAG()` and `LEAD()` calls use the default *`N`* and *`default`* values of 1 and `NULL`, respectively.
 
-  The first row shows what happens when there is no previous
-  row for [`LAG()`](window-function-descriptions.html#function_lag): The function
-  returns the *`default`* value (in
-  this case, `NULL`). The last row shows the
-  same thing when there is no next row for
-  [`LEAD()`](window-function-descriptions.html#function_lead).
+  The first row shows what happens when there is no previous row for `LAG()`: The function returns the *`default`* value (in this case, `NULL`). The last row shows the same thing when there is no next row for `LEAD()`.
 
-  [`LAG()`](window-function-descriptions.html#function_lag) and
-  [`LEAD()`](window-function-descriptions.html#function_lead) also serve to compute
-  sums rather than differences. Consider this data set, which
-  contains the first few numbers of the Fibonacci series:
+  `LAG()` and `LEAD()` also serve to compute sums rather than differences. Consider this data set, which contains the first few numbers of the Fibonacci series:
 
   ```
   mysql> SELECT n FROM fib ORDER BY n;
@@ -293,14 +145,7 @@ parsed, but produces an error.
   +------+
   ```
 
-  The following query shows the
-  [`LAG()`](window-function-descriptions.html#function_lag) and
-  [`LEAD()`](window-function-descriptions.html#function_lead) values for the rows
-  adjacent to the current row. It also uses those functions to
-  add to the current row value the values from the preceding
-  and following rows. The effect is to generate the next
-  number in the Fibonacci series, and the next number after
-  that:
+  The following query shows the `LAG()` and `LEAD()` values for the rows adjacent to the current row. It also uses those functions to add to the current row value the values from the preceding and following rows. The effect is to generate the next number in the Fibonacci series, and the next number after that:
 
   ```
   mysql> SELECT
@@ -323,149 +168,69 @@ parsed, but produces an error.
   +------+------+------+--------+-------------+
   ```
 
-  One way to generate the initial set of Fibonacci numbers is
-  to use a recursive common table expression. For an example,
-  see
-  [Fibonacci Series Generation](with.html#common-table-expressions-recursive-fibonacci-series "Fibonacci Series Generation").
+  One way to generate the initial set of Fibonacci numbers is to use a recursive common table expression. For an example, see Fibonacci Series Generation.
 
-  Beginning with MySQL 8.0.22, you cannot use a negative value
-  for the rows argument of this function.
+  Beginning with MySQL 8.0.22, you cannot use a negative value for the rows argument of this function.
 
-* [`LAST_VALUE(expr)`](window-function-descriptions.html#function_last-value)
-  [*`null_treatment`*]
-  *`over_clause`*
+* `LAST_VALUE(expr)` [*`null_treatment`*] *`over_clause`*
 
-  Returns the value of *`expr`* from
-  the last row of the window frame.
+  Returns the value of *`expr`* from the last row of the window frame.
 
-  *`over_clause`* is as described in
-  [Section 14.20.2, “Window Function Concepts and Syntax”](window-functions-usage.html "14.20.2 Window Function Concepts and Syntax").
-  *`null_treatment`* is as described in
-  the section introduction.
+  *`over_clause`* is as described in Section 14.20.2, “Window Function Concepts and Syntax”. *`null_treatment`* is as described in the section introduction.
 
-  For an example, see the
-  [`FIRST_VALUE()`](window-function-descriptions.html#function_first-value) function
-  description.
+  For an example, see the `FIRST_VALUE()` function description.
 
-* [`LEAD(expr [,
-  N[,
-  default]])`](window-function-descriptions.html#function_lead)
-  [*`null_treatment`*]
-  *`over_clause`*
+* [`LEAD(expr [, N[, default]])`](window-function-descriptions.html#function_lead) [*`null_treatment`*] *`over_clause`*
 
-  Returns the value of *`expr`* from
-  the row that leads (follows) the current row by
-  *`N`* rows within its partition. If
-  there is no such row, the return value is
-  *`default`*. For example, if
-  *`N`* is 3, the return value is
-  *`default`* for the last three rows.
-  If *`N`* or
-  *`default`* are missing, the defaults
-  are 1 and `NULL`, respectively.
+  Returns the value of *`expr`* from the row that leads (follows) the current row by *`N`* rows within its partition. If there is no such row, the return value is *`default`*. For example, if *`N`* is 3, the return value is *`default`* for the last three rows. If *`N`* or *`default`* are missing, the defaults are 1 and `NULL`, respectively.
 
-  *`N`* must be a literal nonnegative
-  integer. If *`N`* is 0,
-  *`expr`* is evaluated for the current
-  row.
+  *`N`* must be a literal nonnegative integer. If *`N`* is 0, *`expr`* is evaluated for the current row.
 
-  Beginning with MySQL 8.0.22, *`N`*
-  cannot be `NULL`. In addition, it must now
-  be an integer in the range `0` to
-  `263`,
-  inclusive, in any of the following forms:
+  Beginning with MySQL 8.0.22, *`N`* cannot be `NULL`. In addition, it must now be an integer in the range `0` to `263`, inclusive, in any of the following forms:
 
   + an unsigned integer constant literal
   + a positional parameter marker (`?`)
   + a user-defined variable
   + a local variable in a stored routine
 
-  *`over_clause`* is as described in
-  [Section 14.20.2, “Window Function Concepts and Syntax”](window-functions-usage.html "14.20.2 Window Function Concepts and Syntax").
-  *`null_treatment`* is as described in
-  the section introduction.
+  *`over_clause`* is as described in Section 14.20.2, “Window Function Concepts and Syntax”. *`null_treatment`* is as described in the section introduction.
 
-  For an example, see the [`LAG()`](window-function-descriptions.html#function_lag)
-  function description.
+  For an example, see the `LAG()` function description.
 
-  In MySQL 8.0.22 and later, use of a negative value for the
-  rows argument of this function is not permitted.
+  In MySQL 8.0.22 and later, use of a negative value for the rows argument of this function is not permitted.
 
-* [`NTH_VALUE(expr,
-  N)`](window-function-descriptions.html#function_nth-value)
-  [*`from_first_last`*]
-  [*`null_treatment`*]
-  *`over_clause`*
+* [`NTH_VALUE(expr, N)`](window-function-descriptions.html#function_nth-value) [*`from_first_last`*] [*`null_treatment`*] *`over_clause`*
 
-  Returns the value of *`expr`* from
-  the *`N`*-th row of the window frame.
-  If there is no such row, the return value is
-  `NULL`.
+  Returns the value of *`expr`* from the *`N`*-th row of the window frame. If there is no such row, the return value is `NULL`.
 
-  *`N`* must be a literal positive
-  integer.
+  *`N`* must be a literal positive integer.
 
-  *`from_first_last`* is part of the
-  SQL standard, but the MySQL implementation permits only
-  `FROM FIRST` (which is also the default).
-  This means that calculations begin at the first row of the
-  window. `FROM LAST` is parsed, but produces
-  an error. To obtain the same effect as `FROM
-  LAST` (begin calculations at the last row of the
-  window), use `ORDER BY` to sort in reverse
-  order.
+  *`from_first_last`* is part of the SQL standard, but the MySQL implementation permits only `FROM FIRST` (which is also the default). This means that calculations begin at the first row of the window. `FROM LAST` is parsed, but produces an error. To obtain the same effect as `FROM LAST` (begin calculations at the last row of the window), use `ORDER BY` to sort in reverse order.
 
-  *`over_clause`* is as described in
-  [Section 14.20.2, “Window Function Concepts and Syntax”](window-functions-usage.html "14.20.2 Window Function Concepts and Syntax").
-  *`null_treatment`* is as described in
-  the section introduction.
+  *`over_clause`* is as described in Section 14.20.2, “Window Function Concepts and Syntax”. *`null_treatment`* is as described in the section introduction.
 
-  For an example, see the
-  [`FIRST_VALUE()`](window-function-descriptions.html#function_first-value) function
-  description.
+  For an example, see the `FIRST_VALUE()` function description.
 
-  In MySQL 8.0.22 and later, you cannot use
-  `NULL` for the row argument of this
-  function.
+  In MySQL 8.0.22 and later, you cannot use `NULL` for the row argument of this function.
 
-* [`NTILE(N)`](window-function-descriptions.html#function_ntile)
-  *`over_clause`*
+* `NTILE(N)` *`over_clause`*
 
-  Divides a partition into *`N`* groups
-  (buckets), assigns each row in the partition its bucket
-  number, and returns the bucket number of the current row
-  within its partition. For example, if
-  *`N`* is 4,
-  `NTILE()` divides rows into four buckets.
-  If *`N`* is 100,
-  `NTILE()` divides rows into 100 buckets.
+  Divides a partition into *`N`* groups (buckets), assigns each row in the partition its bucket number, and returns the bucket number of the current row within its partition. For example, if *`N`* is 4, `NTILE()` divides rows into four buckets. If *`N`* is 100, `NTILE()` divides rows into 100 buckets.
 
-  *`N`* must be a literal positive
-  integer. Bucket number return values range from 1 to
-  *`N`*.
+  *`N`* must be a literal positive integer. Bucket number return values range from 1 to *`N`*.
 
-  Beginning with MySQL 8.0.22, *`N`*
-  cannot be `NULL`, and must be an integer in
-  the range `0` to
-  `263`,
-  inclusive, in any of the following forms:
+  Beginning with MySQL 8.0.22, *`N`* cannot be `NULL`, and must be an integer in the range `0` to `263`, inclusive, in any of the following forms:
 
   + an unsigned integer constant literal
   + a positional parameter marker (`?`)
   + a user-defined variable
   + a local variable in a stored routine
 
-  This function should be used with `ORDER
-  BY` to sort partition rows into the desired order.
+  This function should be used with `ORDER BY` to sort partition rows into the desired order.
 
-  *`over_clause`* is as described in
-  [Section 14.20.2, “Window Function Concepts and Syntax”](window-functions-usage.html "14.20.2 Window Function Concepts and Syntax").
+  *`over_clause`* is as described in Section 14.20.2, “Window Function Concepts and Syntax”.
 
-  The following query shows, for the set of values in the
-  `val` column, the percentile values
-  resulting from dividing the rows into two or four groups.
-  For reference, the query also displays row numbers using
-  [`ROW_NUMBER()`](window-function-descriptions.html#function_row-number):
+  The following query shows, for the set of values in the `val` column, the percentile values resulting from dividing the rows into two or four groups. For reference, the query also displays row numbers using `ROW_NUMBER()`:
 
   ```
   mysql> SELECT
@@ -490,65 +255,31 @@ parsed, but produces an error.
   +------+------------+--------+--------+
   ```
 
-  Beginning with MySQL 8.0.22, the construct
-  `NTILE(NULL)` is no longer permitted.
+  Beginning with MySQL 8.0.22, the construct `NTILE(NULL)` is no longer permitted.
 
-* [`PERCENT_RANK()`](window-function-descriptions.html#function_percent-rank)
-  *`over_clause`*
+* `PERCENT_RANK()` *`over_clause`*
 
-  Returns the percentage of partition values less than the
-  value in the current row, excluding the highest value.
-  Return values range from 0 to 1 and represent the row
-  relative rank, calculated as the result of this formula,
-  where *`rank`* is the row rank and
-  *`rows`* is the number of partition
-  rows:
+  Returns the percentage of partition values less than the value in the current row, excluding the highest value. Return values range from 0 to 1 and represent the row relative rank, calculated as the result of this formula, where *`rank`* is the row rank and *`rows`* is the number of partition rows:
 
   ```
   (rank - 1) / (rows - 1)
   ```
 
-  This function should be used with `ORDER
-  BY` to sort partition rows into the desired order.
-  Without `ORDER BY`, all rows are peers.
+  This function should be used with `ORDER BY` to sort partition rows into the desired order. Without `ORDER BY`, all rows are peers.
 
-  *`over_clause`* is as described in
-  [Section 14.20.2, “Window Function Concepts and Syntax”](window-functions-usage.html "14.20.2 Window Function Concepts and Syntax").
+  *`over_clause`* is as described in Section 14.20.2, “Window Function Concepts and Syntax”.
 
-  For an example, see the
-  [`CUME_DIST()`](window-function-descriptions.html#function_cume-dist) function
-  description.
+  For an example, see the `CUME_DIST()` function description.
 
-* [`RANK()`](window-function-descriptions.html#function_rank)
-  *`over_clause`*
+* `RANK()` *`over_clause`*
 
-  Returns the rank of the current row within its partition,
-  with gaps. Peers are considered ties and receive the same
-  rank. This function does not assign consecutive ranks to
-  peer groups if groups of size greater than one exist; the
-  result is noncontiguous rank numbers.
+  Returns the rank of the current row within its partition, with gaps. Peers are considered ties and receive the same rank. This function does not assign consecutive ranks to peer groups if groups of size greater than one exist; the result is noncontiguous rank numbers.
 
-  This function should be used with `ORDER
-  BY` to sort partition rows into the desired order.
-  Without `ORDER BY`, all rows are peers.
+  This function should be used with `ORDER BY` to sort partition rows into the desired order. Without `ORDER BY`, all rows are peers.
 
-  *`over_clause`* is as described in
-  [Section 14.20.2, “Window Function Concepts and Syntax”](window-functions-usage.html "14.20.2 Window Function Concepts and Syntax").
+  *`over_clause`* is as described in Section 14.20.2, “Window Function Concepts and Syntax”.
 
-  The following query shows the difference between
-  [`RANK()`](window-function-descriptions.html#function_rank), which produces ranks
-  with gaps, and [`DENSE_RANK()`](window-function-descriptions.html#function_dense-rank),
-  which produces ranks without gaps. The query shows rank
-  values for each member of a set of values in the
-  `val` column, which contains some
-  duplicates. [`RANK()`](window-function-descriptions.html#function_rank) assigns
-  peers (the duplicates) the same rank value, and the next
-  greater value has a rank higher by the number of peers minus
-  one. [`DENSE_RANK()`](window-function-descriptions.html#function_dense-rank) also
-  assigns peers the same rank value, but the next higher value
-  has a rank one greater. For reference, the query also
-  displays row numbers using
-  [`ROW_NUMBER()`](window-function-descriptions.html#function_row-number):
+  The following query shows the difference between `RANK()`, which produces ranks with gaps, and `DENSE_RANK()`, which produces ranks without gaps. The query shows rank values for each member of a set of values in the `val` column, which contains some duplicates. `RANK()` assigns peers (the duplicates) the same rank value, and the next greater value has a rank higher by the number of peers minus one. `DENSE_RANK()` also assigns peers the same rank value, but the next higher value has a rank one greater. For reference, the query also displays row numbers using `ROW_NUMBER()`:
 
   ```
   mysql> SELECT
@@ -573,22 +304,12 @@ parsed, but produces an error.
   +------+------------+------+------------+
   ```
 
-* [`ROW_NUMBER()`](window-function-descriptions.html#function_row-number)
-  *`over_clause`*
+* `ROW_NUMBER()` *`over_clause`*
 
-  Returns the number of the current row within its partition.
-  Rows numbers range from 1 to the number of partition rows.
+  Returns the number of the current row within its partition. Rows numbers range from 1 to the number of partition rows.
 
-  `ORDER BY` affects the order in which rows
-  are numbered. Without `ORDER BY`, row
-  numbering is nondeterministic.
+  `ORDER BY` affects the order in which rows are numbered. Without `ORDER BY`, row numbering is nondeterministic.
 
-  [`ROW_NUMBER()`](window-function-descriptions.html#function_row-number) assigns peers
-  different row numbers. To assign peers the same value, use
-  [`RANK()`](window-function-descriptions.html#function_rank) or
-  [`DENSE_RANK()`](window-function-descriptions.html#function_dense-rank). For an example,
-  see the [`RANK()`](window-function-descriptions.html#function_rank) function
-  description.
+  `ROW_NUMBER()` assigns peers different row numbers. To assign peers the same value, use `RANK()` or `DENSE_RANK()`. For an example, see the `RANK()` function description.
 
-  *`over_clause`* is as described in
-  [Section 14.20.2, “Window Function Concepts and Syntax”](window-functions-usage.html "14.20.2 Window Function Concepts and Syntax").
+  *`over_clause`* is as described in Section 14.20.2, “Window Function Concepts and Syntax”.

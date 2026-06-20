@@ -1,215 +1,108 @@
 ### 6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables
 
-The [**myisampack**](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables") utility compresses
-`MyISAM` tables. [**myisampack**](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables")
-works by compressing each column in the table separately.
-Usually, [**myisampack**](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables") packs the data file 40%
-to 70%.
+The **myisampack** utility compresses `MyISAM` tables. **myisampack** works by compressing each column in the table separately. Usually, **myisampack** packs the data file 40% to 70%.
 
-When the table is used later, the server reads into memory the
-information needed to decompress columns. This results in much
-better performance when accessing individual rows, because you
-only have to uncompress exactly one row.
+When the table is used later, the server reads into memory the information needed to decompress columns. This results in much better performance when accessing individual rows, because you only have to uncompress exactly one row.
 
-MySQL uses `mmap()` when possible to perform
-memory mapping on compressed tables. If
-`mmap()` does not work, MySQL falls back to
-normal read/write file operations.
+MySQL uses `mmap()` when possible to perform memory mapping on compressed tables. If `mmap()` does not work, MySQL falls back to normal read/write file operations.
 
 Please note the following:
 
-* If the [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") server was invoked with
-  external locking disabled, it is not a good idea to invoke
-  [**myisampack**](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables") if the table might be updated
-  by the server during the packing process. It is safest to
-  compress tables with the server stopped.
+* If the **mysqld** server was invoked with external locking disabled, it is not a good idea to invoke **myisampack** if the table might be updated by the server during the packing process. It is safest to compress tables with the server stopped.
 
-* After packing a table, it becomes read only. This is
-  generally intended (such as when accessing packed tables on
-  a CD).
+* After packing a table, it becomes read only. This is generally intended (such as when accessing packed tables on a CD).
 
-* [**myisampack**](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables") does not support partitioned
-  tables.
+* **myisampack** does not support partitioned tables.
 
-Invoke [**myisampack**](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables") like this:
+Invoke **myisampack** like this:
 
 ```
 myisampack [options] file_name ...
 ```
 
-Each file name argument should be the name of an index
-(`.MYI`) file. If you are not in the database
-directory, you should specify the path name to the file. It is
-permissible to omit the `.MYI` extension.
+Each file name argument should be the name of an index (`.MYI`) file. If you are not in the database directory, you should specify the path name to the file. It is permissible to omit the `.MYI` extension.
 
-After you compress a table with [**myisampack**](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables"),
-use [**myisamchk -rq**](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility") to rebuild its indexes.
-[Section 6.6.4, “myisamchk — MyISAM Table-Maintenance Utility”](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility").
+After you compress a table with **myisampack**, use **myisamchk -rq** to rebuild its indexes. Section 6.6.4, “myisamchk — MyISAM Table-Maintenance Utility”.
 
-[**myisampack**](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables") supports the following options. It
-also reads option files and supports the options for processing
-them described at [Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling").
+**myisampack** supports the following options. It also reads option files and supports the options for processing them described at Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
-* [`--help`](myisampack.html#option_myisampack_help),
-  `-?`
+* `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--help</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
-* [`--backup`](myisampack.html#option_myisampack_backup),
-  `-b`
+* `--backup`, `-b`
 
-  <table frame="box" rules="all" summary="Properties for backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--backup</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup</code></td> </tr></tbody></table>
 
-  Make a backup of each table's data file using the name
-  `tbl_name.OLD`.
+  Make a backup of each table's data file using the name `tbl_name.OLD`.
 
-* [`--character-sets-dir=dir_name`](myisampack.html#option_myisampack_character-sets-dir)
+* `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
-  The directory where character sets are installed. See
-  [Section 12.15, “Character Set Configuration”](charset-configuration.html "12.15 Character Set Configuration").
+  The directory where character sets are installed. See Section 12.15, “Character Set Configuration”.
 
-* [`--debug[=debug_options]`](myisampack.html#option_myisampack_debug),
-  `-#
-  [debug_options]`
+* `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--debug[=debug_options]</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">d:t:o</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug[=debug_options]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>d:t:o</code></td> </tr></tbody></table>
 
-  Write a debugging log. A typical
-  *`debug_options`* string is
-  `d:t:o,file_name`.
-  The default is `d:t:o`.
+  Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o`.
 
-  This option is available only if MySQL was built using
-  [`WITH_DEBUG`](source-configuration-options.html#option_cmake_with_debug). MySQL release
-  binaries provided by Oracle are *not*
-  built using this option.
+  This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
 
-* [`--force`](myisampack.html#option_myisampack_force),
-  `-f`
+* `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Properties for force"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--force</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for force"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--force</code></td> </tr></tbody></table>
 
-  Produce a packed table even if it becomes larger than the
-  original or if the intermediate file from an earlier
-  invocation of [**myisampack**](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables") exists.
-  ([**myisampack**](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables") creates an intermediate file
-  named
-  `tbl_name.TMD`
-  in the database directory while it compresses the table. If
-  you kill [**myisampack**](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables"), the
-  `.TMD` file might not be deleted.)
-  Normally, [**myisampack**](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables") exits with an error
-  if it finds that
-  `tbl_name.TMD`
-  exists. With [`--force`](myisampack.html#option_myisampack_force),
-  [**myisampack**](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables") packs the table anyway.
+  Produce a packed table even if it becomes larger than the original or if the intermediate file from an earlier invocation of **myisampack** exists. (**myisampack** creates an intermediate file named `tbl_name.TMD` in the database directory while it compresses the table. If you kill **myisampack**, the `.TMD` file might not be deleted.) Normally, **myisampack** exits with an error if it finds that `tbl_name.TMD` exists. With `--force`, **myisampack** packs the table anyway.
 
-* [`--join=big_tbl_name`](myisampack.html#option_myisampack_join),
-  `-j big_tbl_name`
+* `--join=big_tbl_name`, `-j big_tbl_name`
 
-  <table frame="box" rules="all" summary="Properties for join"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--join=big_tbl_name</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for join"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--join=big_tbl_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Join all tables named on the command line into a single
-  packed table *`big_tbl_name`*. All
-  tables that are to be combined *must*
-  have identical structure (same column names and types, same
-  indexes, and so forth).
+  Join all tables named on the command line into a single packed table *`big_tbl_name`*. All tables that are to be combined *must* have identical structure (same column names and types, same indexes, and so forth).
 
-  *`big_tbl_name`* must not exist prior
-  to the join operation. All source tables named on the
-  command line to be merged into
-  *`big_tbl_name`* must exist. The
-  source tables are read for the join operation but not
-  modified.
+  *`big_tbl_name`* must not exist prior to the join operation. All source tables named on the command line to be merged into *`big_tbl_name`* must exist. The source tables are read for the join operation but not modified.
 
-* [`--silent`](myisampack.html#option_myisampack_silent),
-  `-s`
+* `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for silent"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--silent</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for silent"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--silent</code></td> </tr></tbody></table>
 
   Silent mode. Write output only when errors occur.
 
-* [`--test`](myisampack.html#option_myisampack_test),
-  `-t`
+* `--test`, `-t`
 
-  <table frame="box" rules="all" summary="Properties for test"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--test</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for test"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--test</code></td> </tr></tbody></table>
 
   Do not actually pack the table, just test packing it.
 
-* [`--tmpdir=dir_name`](myisampack.html#option_myisampack_tmpdir),
-  `-T dir_name`
+* `--tmpdir=dir_name`, `-T dir_name`
 
-  <table frame="box" rules="all" summary="Properties for tmpdir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--tmpdir=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for tmpdir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--tmpdir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
-  Use the named directory as the location where
-  [**myisampack**](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables") creates temporary files.
+  Use the named directory as the location where **myisampack** creates temporary files.
 
-* [`--verbose`](myisampack.html#option_myisampack_verbose),
-  `-v`
+* `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--verbose</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--verbose</code></td> </tr></tbody></table>
 
-  Verbose mode. Write information about the progress of the
-  packing operation and its result.
+  Verbose mode. Write information about the progress of the packing operation and its result.
 
-* [`--version`](myisampack.html#option_myisampack_version),
-  `-V`
+* `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--backup</code></td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup</code></td> </tr></tbody></table>0
 
   Display version information and exit.
 
-* [`--wait`](myisampack.html#option_myisampack_wait),
-  `-w`
+* `--wait`, `-w`
 
-  <table frame="box" rules="all" summary="Properties for backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--backup</code></td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup</code></td> </tr></tbody></table>1
 
-  Wait and retry if the table is in use. If the
-  [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") server was invoked with external
-  locking disabled, it is not a good idea to invoke
-  [**myisampack**](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables") if the table might be updated
-  by the server during the packing process.
+  Wait and retry if the table is in use. If the **mysqld** server was invoked with external locking disabled, it is not a good idea to invoke **myisampack** if the table might be updated by the server during the packing process.
 
-The following sequence of commands illustrates a typical table
-compression session:
+The following sequence of commands illustrates a typical table compression session:
 
 ```
 $> ls -l station.*
@@ -395,8 +288,7 @@ Field Start Length Type                         Huff tree  Bits
 57    831   4      no zeros, zerofill(1)                2     9
 ```
 
-[**myisampack**](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables") displays the following kinds of
-information:
+**myisampack** displays the following kinds of information:
 
 * `normal`
 
@@ -404,42 +296,27 @@ information:
 
 * `empty-space`
 
-  The number of columns containing values that are only
-  spaces. These occupy one bit.
+  The number of columns containing values that are only spaces. These occupy one bit.
 
 * `empty-zero`
 
-  The number of columns containing values that are only binary
-  zeros. These occupy one bit.
+  The number of columns containing values that are only binary zeros. These occupy one bit.
 
 * `empty-fill`
 
-  The number of integer columns that do not occupy the full
-  byte range of their type. These are changed to a smaller
-  type. For example, a [`BIGINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")
-  column (eight bytes) can be stored as a
-  [`TINYINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column (one byte) if
-  all its values are in the range from `-128`
-  to `127`.
+  The number of integer columns that do not occupy the full byte range of their type. These are changed to a smaller type. For example, a `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column (eight bytes) can be stored as a `TINYINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column (one byte) if all its values are in the range from `-128` to `127`.
 
 * `pre-space`
 
-  The number of decimal columns that are stored with leading
-  spaces. In this case, each value contains a count for the
-  number of leading spaces.
+  The number of decimal columns that are stored with leading spaces. In this case, each value contains a count for the number of leading spaces.
 
 * `end-space`
 
-  The number of columns that have a lot of trailing spaces. In
-  this case, each value contains a count for the number of
-  trailing spaces.
+  The number of columns that have a lot of trailing spaces. In this case, each value contains a count for the number of trailing spaces.
 
 * `table-lookup`
 
-  The column had only a small number of different values,
-  which were converted to an
-  [`ENUM`](enum.html "13.3.5 The ENUM Type") before Huffman
-  compression.
+  The column had only a small number of different values, which were converted to an `ENUM` before Huffman compression.
 
 * `zero`
 
@@ -451,17 +328,13 @@ information:
 
 * `After join`
 
-  The number of distinct Huffman trees left after joining
-  trees to save some header space.
+  The number of distinct Huffman trees left after joining trees to save some header space.
 
-After a table has been compressed, the `Field`
-lines displayed by [**myisamchk -dvv**](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility") include
-additional information about each column:
+After a table has been compressed, the `Field` lines displayed by **myisamchk -dvv** include additional information about each column:
 
 * `Type`
 
-  The data type. The value may contain any of the following
-  descriptors:
+  The data type. The value may contain any of the following descriptors:
 
   + `constant`
 
@@ -473,8 +346,7 @@ additional information about each column:
 
   + `no endspace, not_always`
 
-    Do not store endspace and do not do endspace compression
-    for all values.
+    Do not store endspace and do not do endspace compression for all values.
 
   + `no endspace, no empty`
 
@@ -482,13 +354,11 @@ additional information about each column:
 
   + `table-lookup`
 
-    The column was converted to an
-    [`ENUM`](enum.html "13.3.5 The ENUM Type").
+    The column was converted to an `ENUM`.
 
   + `zerofill(N)`
 
-    The most significant *`N`* bytes
-    in the value are always 0 and are not stored.
+    The most significant *`N`* bytes in the value are always 0 and are not stored.
 
   + `no zeros`
 
@@ -506,20 +376,12 @@ additional information about each column:
 
   The number of bits used in the Huffman tree.
 
-After you run [**myisampack**](myisampack.html "6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables"), use
-[**myisamchk**](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility") to re-create any indexes. At this
-time, you can also sort the index blocks and create statistics
-needed for the MySQL optimizer to work more efficiently:
+After you run **myisampack**, use **myisamchk** to re-create any indexes. At this time, you can also sort the index blocks and create statistics needed for the MySQL optimizer to work more efficiently:
 
 ```
 myisamchk -rq --sort-index --analyze tbl_name.MYI
 ```
 
-After you have installed the packed table into the MySQL
-database directory, you should execute [**mysqladmin
-flush-tables**](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program") to force [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") to
-start using the new table.
+After you have installed the packed table into the MySQL database directory, you should execute [**mysqladmin flush-tables**](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program") to force **mysqld** to start using the new table.
 
-To unpack a packed table, use the
-[`--unpack`](myisamchk-repair-options.html#option_myisamchk_unpack) option to
-[**myisamchk**](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility").
+To unpack a packed table, use the `--unpack` option to **myisamchk**.

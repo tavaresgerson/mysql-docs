@@ -1,49 +1,22 @@
 ### 6.6.9 mysqlbinlog — Utility for Processing Binary Log Files
 
-[6.6.9.1 mysqlbinlog Hex Dump Format](mysqlbinlog-hexdump.html)
+The server's binary log consists of files containing “events” that describe modifications to database contents. The server writes these files in binary format. To display their contents in text format, use the **mysqlbinlog** utility. You can also use **mysqlbinlog** to display the contents of relay log files written by a replica server in a replication setup because relay logs have the same format as binary logs. The binary log and relay log are discussed further in Section 7.4.4, “The Binary Log”, and Section 19.2.4, “Relay Log and Replication Metadata Repositories”.
 
-[6.6.9.2 mysqlbinlog Row Event Display](mysqlbinlog-row-events.html)
-
-[6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files](mysqlbinlog-backup.html)
-
-[6.6.9.4 Specifying the mysqlbinlog Server ID](mysqlbinlog-server-id.html)
-
-The server's binary log consists of files containing
-“events” that describe modifications to database
-contents. The server writes these files in binary format. To
-display their contents in text format, use the
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") utility. You can also use
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") to display the contents of relay
-log files written by a replica server in a replication setup
-because relay logs have the same format as binary logs. The
-binary log and relay log are discussed further in
-[Section 7.4.4, “The Binary Log”](binary-log.html "7.4.4 The Binary Log"), and
-[Section 19.2.4, “Relay Log and Replication Metadata Repositories”](replica-logs.html "19.2.4 Relay Log and Replication Metadata Repositories").
-
-Invoke [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") like this:
+Invoke **mysqlbinlog** like this:
 
 ```
 mysqlbinlog [options] log_file ...
 ```
 
-For example, to display the contents of the binary log file
-named `binlog.000003`, use this command:
+For example, to display the contents of the binary log file named `binlog.000003`, use this command:
 
 ```
 mysqlbinlog binlog.000003
 ```
 
-The output includes events contained in
-`binlog.000003`. For statement-based logging,
-event information includes the SQL statement, the ID of the
-server on which it was executed, the timestamp when the
-statement was executed, how much time it took, and so forth. For
-row-based logging, the event indicates a row change rather than
-an SQL statement. See [Section 19.2.1, “Replication Formats”](replication-formats.html "19.2.1 Replication Formats"), for
-information about logging modes.
+The output includes events contained in `binlog.000003`. For statement-based logging, event information includes the SQL statement, the ID of the server on which it was executed, the timestamp when the statement was executed, how much time it took, and so forth. For row-based logging, the event indicates a row change rather than an SQL statement. See Section 19.2.1, “Replication Formats”, for information about logging modes.
 
-Events are preceded by header comments that provide additional
-information. For example:
+Events are preceded by header comments that provide additional information. For example:
 
 ```
 # at 141
@@ -51,686 +24,127 @@ information. For example:
   Query thread_id=3350  exec_time=11  error_code=0
 ```
 
-In the first line, the number following `at`
-indicates the file offset, or starting position, of the event in
-the binary log file.
+In the first line, the number following `at` indicates the file offset, or starting position, of the event in the binary log file.
 
-The second line starts with a date and time indicating when the
-statement started on the server where the event originated. For
-replication, this timestamp is propagated to replica servers.
-`server id` is the
-[`server_id`](replication-options.html#sysvar_server_id) value of the server
-where the event originated. `end_log_pos`
-indicates where the next event starts (that is, it is the end
-position of the current event + 1). `thread_id`
-indicates which thread executed the event.
-`exec_time` is the time spent executing the
-event, on a replication source server. On a replica, it is the
-difference of the end execution time on the replica minus the
-beginning execution time on the source. The difference serves as
-an indicator of how much replication lags behind the source.
-`error_code` indicates the result from
-executing the event. Zero means that no error occurred.
+The second line starts with a date and time indicating when the statement started on the server where the event originated. For replication, this timestamp is propagated to replica servers. `server id` is the `server_id` value of the server where the event originated. `end_log_pos` indicates where the next event starts (that is, it is the end position of the current event + 1). `thread_id` indicates which thread executed the event. `exec_time` is the time spent executing the event, on a replication source server. On a replica, it is the difference of the end execution time on the replica minus the beginning execution time on the source. The difference serves as an indicator of how much replication lags behind the source. `error_code` indicates the result from executing the event. Zero means that no error occurred.
 
 Note
 
-When using event groups, the file offsets of events may be
-grouped together and the comments of events may be grouped
-together. Do not mistake these grouped events for blank file
-offsets.
+When using event groups, the file offsets of events may be grouped together and the comments of events may be grouped together. Do not mistake these grouped events for blank file offsets.
 
-The output from [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") can be
-re-executed (for example, by using it as input to
-[**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client")) to redo the statements in the log.
-This is useful for recovery operations after an unexpected
-server exit. For other usage examples, see the discussion later
-in this section and in [Section 9.5, “Point-in-Time (Incremental) Recovery”](point-in-time-recovery.html "9.5 Point-in-Time (Incremental) Recovery").
-To execute the internal-use
-[`BINLOG`](binlog.html "15.7.8.1 BINLOG Statement") statements used by
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files"), the user requires the
-[`BINLOG_ADMIN`](privileges-provided.html#priv_binlog-admin) privilege (or the
-deprecated [`SUPER`](privileges-provided.html#priv_super) privilege), or
-the [`REPLICATION_APPLIER`](privileges-provided.html#priv_replication-applier) privilege
-plus the appropriate privileges to execute each log event.
+The output from **mysqlbinlog** can be re-executed (for example, by using it as input to **mysql**) to redo the statements in the log. This is useful for recovery operations after an unexpected server exit. For other usage examples, see the discussion later in this section and in Section 9.5, “Point-in-Time (Incremental) Recovery” Recovery"). To execute the internal-use `BINLOG` statements used by **mysqlbinlog**, the user requires the `BINLOG_ADMIN` privilege (or the deprecated `SUPER` privilege), or the `REPLICATION_APPLIER` privilege plus the appropriate privileges to execute each log event.
 
-You can use [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") to read binary log
-files directly and apply them to the local MySQL server. You can
-also read binary logs from a remote server by using the
-[`--read-from-remote-server`](mysqlbinlog.html#option_mysqlbinlog_read-from-remote-server)
-option. To read remote binary logs, the connection parameter
-options can be given to indicate how to connect to the server.
-These options are [`--host`](mysqlbinlog.html#option_mysqlbinlog_host),
-[`--password`](mysqlbinlog.html#option_mysqlbinlog_password),
-[`--port`](mysqlbinlog.html#option_mysqlbinlog_port),
-[`--protocol`](mysqlbinlog.html#option_mysqlbinlog_protocol),
-[`--socket`](mysqlbinlog.html#option_mysqlbinlog_socket), and
-[`--user`](mysqlbinlog.html#option_mysqlbinlog_user).
+You can use **mysqlbinlog** to read binary log files directly and apply them to the local MySQL server. You can also read binary logs from a remote server by using the `--read-from-remote-server` option. To read remote binary logs, the connection parameter options can be given to indicate how to connect to the server. These options are `--host`, `--password`, `--port`, `--protocol`, `--socket`, and `--user`.
 
-When binary log files have been encrypted, which can be done
-from MySQL 8.0.14 onwards, [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") cannot
-read them directly, but can read them from the server using the
-[`--read-from-remote-server`](mysqlbinlog.html#option_mysqlbinlog_read-from-remote-server)
-option. Binary log files are encrypted when the server's
-[`binlog_encryption`](replication-options-binary-log.html#sysvar_binlog_encryption) system
-variable is set to `ON`. The
-[`SHOW BINARY LOGS`](show-binary-logs.html "15.7.7.1 SHOW BINARY LOGS Statement") statement shows
-whether a particular binary log file is encrypted or
-unencrypted. Encrypted and unencrypted binary log files can also
-be distinguished using the magic number at the start of the file
-header for encrypted log files (`0xFD62696E`),
-which differs from that used for unencrypted log files
-(`0xFE62696E`). Note that from MySQL 8.0.14,
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") returns a suitable error if you
-attempt to read an encrypted binary log file directly, but older
-versions of [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") do not recognise the
-file as a binary log file at all. For more information on binary
-log encryption, see
-[Section 19.3.2, “Encrypting Binary Log Files and Relay Log Files”](replication-binlog-encryption.html "19.3.2 Encrypting Binary Log Files and Relay Log Files").
+When binary log files have been encrypted, which can be done from MySQL 8.0.14 onwards, **mysqlbinlog** cannot read them directly, but can read them from the server using the `--read-from-remote-server` option. Binary log files are encrypted when the server's `binlog_encryption` system variable is set to `ON`. The `SHOW BINARY LOGS` statement shows whether a particular binary log file is encrypted or unencrypted. Encrypted and unencrypted binary log files can also be distinguished using the magic number at the start of the file header for encrypted log files (`0xFD62696E`), which differs from that used for unencrypted log files (`0xFE62696E`). Note that from MySQL 8.0.14, **mysqlbinlog** returns a suitable error if you attempt to read an encrypted binary log file directly, but older versions of **mysqlbinlog** do not recognise the file as a binary log file at all. For more information on binary log encryption, see Section 19.3.2, “Encrypting Binary Log Files and Relay Log Files”.
 
-When binary log transaction payloads have been compressed, which
-can be done from MySQL 8.0.20 onwards,
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") versions from that release on
-automatically decompress and decode the transaction payloads,
-and print them as they would uncompressed events. Older versions
-of [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") cannot read compressed
-transaction payloads. When the server's
-[`binlog_transaction_compression`](replication-options-binary-log.html#sysvar_binlog_transaction_compression)
-system variable is set to `ON`, transaction
-payloads are compressed and then written to the server's binary
-log file as a single event (a
-`Transaction_payload_event`). With the
-[`--verbose`](mysqlbinlog.html#option_mysqlbinlog_verbose) option,
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") adds comments stating the
-compression algorithm used, the compressed payload size that was
-originally received, and the resulting payload size after
-decompression.
+When binary log transaction payloads have been compressed, which can be done from MySQL 8.0.20 onwards, **mysqlbinlog** versions from that release on automatically decompress and decode the transaction payloads, and print them as they would uncompressed events. Older versions of **mysqlbinlog** cannot read compressed transaction payloads. When the server's `binlog_transaction_compression` system variable is set to `ON`, transaction payloads are compressed and then written to the server's binary log file as a single event (a `Transaction_payload_event`). With the `--verbose` option, **mysqlbinlog** adds comments stating the compression algorithm used, the compressed payload size that was originally received, and the resulting payload size after decompression.
 
 Note
 
-The end position (`end_log_pos`) that
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") states for an individual event
-that was part of a compressed transaction payload is the same
-as the end position of the original compressed payload.
-Multiple decompressed events can therefore have the same end
-position.
+The end position (`end_log_pos`) that **mysqlbinlog** states for an individual event that was part of a compressed transaction payload is the same as the end position of the original compressed payload. Multiple decompressed events can therefore have the same end position.
 
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")'s own connection compression
-does less if transaction payloads are already compressed, but
-still operates on uncompressed transactions and headers.
+**mysqlbinlog**'s own connection compression does less if transaction payloads are already compressed, but still operates on uncompressed transactions and headers.
 
-For more information on binary log transaction compression, see
-[Section 7.4.4.5, “Binary Log Transaction Compression”](binary-log-transaction-compression.html "7.4.4.5 Binary Log Transaction Compression").
+For more information on binary log transaction compression, see Section 7.4.4.5, “Binary Log Transaction Compression”.
 
-When running [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") against a large
-binary log, be careful that the filesystem has enough space for
-the resulting files. To configure the directory that
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") uses for temporary files, use the
-`TMPDIR` environment variable.
+When running **mysqlbinlog** against a large binary log, be careful that the filesystem has enough space for the resulting files. To configure the directory that **mysqlbinlog** uses for temporary files, use the `TMPDIR` environment variable.
 
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") sets the value of
-[`pseudo_replica_mode`](server-system-variables.html#sysvar_pseudo_replica_mode) or
-[`pseudo_slave_mode`](server-system-variables.html#sysvar_pseudo_slave_mode) to true
-before executing any SQL statements. This system variable
-affects the handling of XA transactions, the
-`original_commit_timestamp` replication delay
-timestamp and the
-[`original_server_version`](replication-options-source.html#sysvar_original_server_version) system
-variable, and unsupported SQL modes.
+**mysqlbinlog** sets the value of `pseudo_replica_mode` or `pseudo_slave_mode` to true before executing any SQL statements. This system variable affects the handling of XA transactions, the `original_commit_timestamp` replication delay timestamp and the `original_server_version` system variable, and unsupported SQL modes.
 
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") supports the following options,
-which can be specified on the command line or in the
-`[mysqlbinlog]` and `[client]`
-groups of an option file. For information about option files
-used by MySQL programs, see [Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files").
+**mysqlbinlog** supports the following options, which can be specified on the command line or in the `[mysqlbinlog]` and `[client]` groups of an option file. For information about option files used by MySQL programs, see Section 6.2.2.2, “Using Option Files”.
 
 **Table 6.23 mysqlbinlog Options**
 
-<table frame="box" rules="all" summary="Command-line options available for mysqlbinlog."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th scope="col">Option Name</th>
-<th scope="col">Description</th>
-<th scope="col">Introduced</th>
-<th scope="col">Deprecated</th>
-</tr></thead><tbody><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_base64-output">--base64-output</a></th>
-<td>Print binary log entries using base-64 encoding</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_bind-address">--bind-address</a></th>
-<td>Use specified network interface to connect to MySQL Server</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_binlog-row-event-max-size">--binlog-row-event-max-size</a></th>
-<td>Binary log max event size</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_character-sets-dir">--character-sets-dir</a></th>
-<td>Directory where character sets are installed</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_compress">--compress</a></th>
-<td>Compress all information sent between client and server</td>
-<td>8.0.17</td>
-<td>8.0.18</td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_compression-algorithms">--compression-algorithms</a></th>
-<td>Permitted compression algorithms for connections to server</td>
-<td>8.0.18</td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_connection-server-id">--connection-server-id</a></th>
-<td>Used for testing and debugging. See text for applicable default values and other particulars</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_database">--database</a></th>
-<td>List entries for just this database</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_debug">--debug</a></th>
-<td>Write debugging log</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_debug-check">--debug-check</a></th>
-<td>Print debugging information when program exits</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_debug-info">--debug-info</a></th>
-<td>Print debugging information, memory, and CPU statistics when program exits</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_default-auth">--default-auth</a></th>
-<td>Authentication plugin to use</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_defaults-extra-file">--defaults-extra-file</a></th>
-<td>Read named option file in addition to usual option files</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_defaults-file">--defaults-file</a></th>
-<td>Read only named option file</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_defaults-group-suffix">--defaults-group-suffix</a></th>
-<td>Option group suffix value</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_disable-log-bin">--disable-log-bin</a></th>
-<td>Disable binary logging</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_exclude-gtids">--exclude-gtids</a></th>
-<td>Do not show any of the groups in the GTID set provided</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_force-if-open">--force-if-open</a></th>
-<td>Read binary log files even if open or not closed properly</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_force-read">--force-read</a></th>
-<td>If mysqlbinlog reads a binary log event that it does not recognize, it prints a warning</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_get-server-public-key">--get-server-public-key</a></th>
-<td>Request RSA public key from server</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_help">--help</a></th>
-<td>Display help message and exit</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_hexdump">--hexdump</a></th>
-<td>Display a hex dump of the log in comments</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_host">--host</a></th>
-<td>Host on which MySQL server is located</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_idempotent">--idempotent</a></th>
-<td>Cause the server to use idempotent mode while processing binary log updates from this session only</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_include-gtids">--include-gtids</a></th>
-<td>Show only the groups in the GTID set provided</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_local-load">--local-load</a></th>
-<td>Prepare local temporary files for LOAD DATA in the specified directory</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_login-path">--login-path</a></th>
-<td>Read login path options from .mylogin.cnf</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_no-defaults">--no-defaults</a></th>
-<td>Read no option files</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_offset">--offset</a></th>
-<td>Skip the first N entries in the log</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_password">--password</a></th>
-<td>Password to use when connecting to server</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_plugin-dir">--plugin-dir</a></th>
-<td>Directory where plugins are installed</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_port">--port</a></th>
-<td>TCP/IP port number for connection</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_print-defaults">--print-defaults</a></th>
-<td>Print default options</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_print-table-metadata">--print-table-metadata</a></th>
-<td>Print table metadata</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_protocol">--protocol</a></th>
-<td>Transport protocol to use</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_raw">--raw</a></th>
-<td>Write events in raw (binary) format to output files</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_read-from-remote-master">--read-from-remote-master</a></th>
-<td>Read the binary log from a MySQL replication source server rather than reading a local log file</td>
-<td></td>
-<td>8.0.26</td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_read-from-remote-server">--read-from-remote-server</a></th>
-<td>Read binary log from MySQL server rather than local log file</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_read-from-remote-source">--read-from-remote-source</a></th>
-<td>Read the binary log from a MySQL replication source server rather than reading a local log file</td>
-<td>8.0.26</td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_require-row-format">--require-row-format</a></th>
-<td>Require row-based binary logging format</td>
-<td>8.0.19</td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_result-file">--result-file</a></th>
-<td>Direct output to named file</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_rewrite-db">--rewrite-db</a></th>
-<td>Create rewrite rules for databases when playing back from logs written in row-based format. Can be used multiple times</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_server-id">--server-id</a></th>
-<td>Extract only those events created by the server having the given server ID</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_server-id-bits">--server-id-bits</a></th>
-<td>Tell mysqlbinlog how to interpret server IDs in binary log when log was written by a mysqld having its server-id-bits set to less than the maximum; supported only by MySQL Cluster version of mysqlbinlog</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_server-public-key-path">--server-public-key-path</a></th>
-<td>Path name to file containing RSA public key</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_set-charset">--set-charset</a></th>
-<td>Add a SET NAMES charset_name statement to the output</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_shared-memory-base-name">--shared-memory-base-name</a></th>
-<td>Shared-memory name for shared-memory connections (Windows only)</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_short-form">--short-form</a></th>
-<td>Display only the statements contained in the log</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_skip-gtids">--skip-gtids</a></th>
-<td>Do not include the GTIDs from the binary log files in the output dump file</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_socket">--socket</a></th>
-<td>Unix socket file or Windows named pipe to use</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl">--ssl-ca</a></th>
-<td>File that contains list of trusted SSL Certificate Authorities</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl">--ssl-capath</a></th>
-<td>Directory that contains trusted SSL Certificate Authority certificate files</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl">--ssl-cert</a></th>
-<td>File that contains X.509 certificate</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl">--ssl-cipher</a></th>
-<td>Permissible ciphers for connection encryption</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl">--ssl-crl</a></th>
-<td>File that contains certificate revocation lists</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl">--ssl-crlpath</a></th>
-<td>Directory that contains certificate revocation-list files</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl-fips-mode">--ssl-fips-mode</a></th>
-<td>Whether to enable FIPS mode on client side</td>
-<td></td>
-<td>8.0.34</td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl">--ssl-key</a></th>
-<td>File that contains X.509 key</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl">--ssl-mode</a></th>
-<td>Desired security state of connection to server</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl">--ssl-session-data</a></th>
-<td>File that contains SSL session data</td>
-<td>8.0.29</td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl">--ssl-session-data-continue-on-failed-reuse</a></th>
-<td>Whether to establish connections if session reuse fails</td>
-<td>8.0.29</td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_start-datetime">--start-datetime</a></th>
-<td>Read binary log from first event with timestamp equal to or later than datetime argument</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_start-position">--start-position</a></th>
-<td>Decode binary log from first event with position equal to or greater than argument</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_stop-datetime">--stop-datetime</a></th>
-<td>Stop reading binary log at first event with timestamp equal to or greater than datetime argument</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_stop-never">--stop-never</a></th>
-<td>Stay connected to server after reading last binary log file</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_stop-never-slave-server-id">--stop-never-slave-server-id</a></th>
-<td>Slave server ID to report when connecting to server</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_stop-position">--stop-position</a></th>
-<td>Stop decoding binary log at first event with position equal to or greater than argument</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_tls-ciphersuites">--tls-ciphersuites</a></th>
-<td>Permissible TLSv1.3 ciphersuites for encrypted connections</td>
-<td>8.0.16</td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_tls-version">--tls-version</a></th>
-<td>Permissible TLS protocols for encrypted connections</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_to-last-log">--to-last-log</a></th>
-<td>Do not stop at the end of requested binary log from a MySQL server, but rather continue printing to end of last binary log</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_user">--user</a></th>
-<td>MySQL user name to use when connecting to server</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_verbose">--verbose</a></th>
-<td>Reconstruct row events as SQL statements</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_verify-binlog-checksum">--verify-binlog-checksum</a></th>
-<td>Verify checksums in binary log</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_version">--version</a></th>
-<td>Display version information and exit</td>
-<td></td>
-<td></td>
-</tr><tr><th scope="row"><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_zstd-compression-level">--zstd-compression-level</a></th>
-<td>Compression level for connections to server that use zstd compression</td>
-<td>8.0.18</td>
-<td></td>
-</tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for mysqlbinlog."><col style="width: 27%"/><col style="width: 50%"/><col style="width: 11%"/><col style="width: 11%"/><thead><tr><th scope="col">Option Name</th> <th scope="col">Description</th> <th scope="col">Introduced</th> <th scope="col">Deprecated</th> </tr></thead><tbody><tr><th scope="row">--base64-output</th> <td>Print binary log entries using base-64 encoding</td> <td></td> <td></td> </tr><tr><th scope="row">--bind-address</th> <td>Use specified network interface to connect to MySQL Server</td> <td></td> <td></td> </tr><tr><th scope="row">--binlog-row-event-max-size</th> <td>Binary log max event size</td> <td></td> <td></td> </tr><tr><th scope="row">--character-sets-dir</th> <td>Directory where character sets are installed</td> <td></td> <td></td> </tr><tr><th scope="row">--compress</th> <td>Compress all information sent between client and server</td> <td>8.0.17</td> <td>8.0.18</td> </tr><tr><th scope="row">--compression-algorithms</th> <td>Permitted compression algorithms for connections to server</td> <td>8.0.18</td> <td></td> </tr><tr><th scope="row">--connection-server-id</th> <td>Used for testing and debugging. See text for applicable default values and other particulars</td> <td></td> <td></td> </tr><tr><th scope="row">--database</th> <td>List entries for just this database</td> <td></td> <td></td> </tr><tr><th scope="row">--debug</th> <td>Write debugging log</td> <td></td> <td></td> </tr><tr><th scope="row">--debug-check</th> <td>Print debugging information when program exits</td> <td></td> <td></td> </tr><tr><th scope="row">--debug-info</th> <td>Print debugging information, memory, and CPU statistics when program exits</td> <td></td> <td></td> </tr><tr><th scope="row">--default-auth</th> <td>Authentication plugin to use</td> <td></td> <td></td> </tr><tr><th scope="row">--defaults-extra-file</th> <td>Read named option file in addition to usual option files</td> <td></td> <td></td> </tr><tr><th scope="row">--defaults-file</th> <td>Read only named option file</td> <td></td> <td></td> </tr><tr><th scope="row">--defaults-group-suffix</th> <td>Option group suffix value</td> <td></td> <td></td> </tr><tr><th scope="row">--disable-log-bin</th> <td>Disable binary logging</td> <td></td> <td></td> </tr><tr><th scope="row">--exclude-gtids</th> <td>Do not show any of the groups in the GTID set provided</td> <td></td> <td></td> </tr><tr><th scope="row">--force-if-open</th> <td>Read binary log files even if open or not closed properly</td> <td></td> <td></td> </tr><tr><th scope="row">--force-read</th> <td>If mysqlbinlog reads a binary log event that it does not recognize, it prints a warning</td> <td></td> <td></td> </tr><tr><th scope="row">--get-server-public-key</th> <td>Request RSA public key from server</td> <td></td> <td></td> </tr><tr><th scope="row">--help</th> <td>Display help message and exit</td> <td></td> <td></td> </tr><tr><th scope="row">--hexdump</th> <td>Display a hex dump of the log in comments</td> <td></td> <td></td> </tr><tr><th scope="row">--host</th> <td>Host on which MySQL server is located</td> <td></td> <td></td> </tr><tr><th scope="row">--idempotent</th> <td>Cause the server to use idempotent mode while processing binary log updates from this session only</td> <td></td> <td></td> </tr><tr><th scope="row">--include-gtids</th> <td>Show only the groups in the GTID set provided</td> <td></td> <td></td> </tr><tr><th scope="row">--local-load</th> <td>Prepare local temporary files for LOAD DATA in the specified directory</td> <td></td> <td></td> </tr><tr><th scope="row">--login-path</th> <td>Read login path options from .mylogin.cnf</td> <td></td> <td></td> </tr><tr><th scope="row">--no-defaults</th> <td>Read no option files</td> <td></td> <td></td> </tr><tr><th scope="row">--offset</th> <td>Skip the first N entries in the log</td> <td></td> <td></td> </tr><tr><th scope="row">--password</th> <td>Password to use when connecting to server</td> <td></td> <td></td> </tr><tr><th scope="row">--plugin-dir</th> <td>Directory where plugins are installed</td> <td></td> <td></td> </tr><tr><th scope="row">--port</th> <td>TCP/IP port number for connection</td> <td></td> <td></td> </tr><tr><th scope="row">--print-defaults</th> <td>Print default options</td> <td></td> <td></td> </tr><tr><th scope="row">--print-table-metadata</th> <td>Print table metadata</td> <td></td> <td></td> </tr><tr><th scope="row">--protocol</th> <td>Transport protocol to use</td> <td></td> <td></td> </tr><tr><th scope="row">--raw</th> <td>Write events in raw (binary) format to output files</td> <td></td> <td></td> </tr><tr><th scope="row">--read-from-remote-master</th> <td>Read the binary log from a MySQL replication source server rather than reading a local log file</td> <td></td> <td>8.0.26</td> </tr><tr><th scope="row">--read-from-remote-server</th> <td>Read binary log from MySQL server rather than local log file</td> <td></td> <td></td> </tr><tr><th scope="row">--read-from-remote-source</th> <td>Read the binary log from a MySQL replication source server rather than reading a local log file</td> <td>8.0.26</td> <td></td> </tr><tr><th scope="row">--require-row-format</th> <td>Require row-based binary logging format</td> <td>8.0.19</td> <td></td> </tr><tr><th scope="row">--result-file</th> <td>Direct output to named file</td> <td></td> <td></td> </tr><tr><th scope="row">--rewrite-db</th> <td>Create rewrite rules for databases when playing back from logs written in row-based format. Can be used multiple times</td> <td></td> <td></td> </tr><tr><th scope="row">--server-id</th> <td>Extract only those events created by the server having the given server ID</td> <td></td> <td></td> </tr><tr><th scope="row">--server-id-bits</th> <td>Tell mysqlbinlog how to interpret server IDs in binary log when log was written by a mysqld having its server-id-bits set to less than the maximum; supported only by MySQL Cluster version of mysqlbinlog</td> <td></td> <td></td> </tr><tr><th scope="row">--server-public-key-path</th> <td>Path name to file containing RSA public key</td> <td></td> <td></td> </tr><tr><th scope="row">--set-charset</th> <td>Add a SET NAMES charset_name statement to the output</td> <td></td> <td></td> </tr><tr><th scope="row">--shared-memory-base-name</th> <td>Shared-memory name for shared-memory connections (Windows only)</td> <td></td> <td></td> </tr><tr><th scope="row">--short-form</th> <td>Display only the statements contained in the log</td> <td></td> <td></td> </tr><tr><th scope="row">--skip-gtids</th> <td>Do not include the GTIDs from the binary log files in the output dump file</td> <td></td> <td></td> </tr><tr><th scope="row">--socket</th> <td>Unix socket file or Windows named pipe to use</td> <td></td> <td></td> </tr><tr><th scope="row">--ssl-ca</th> <td>File that contains list of trusted SSL Certificate Authorities</td> <td></td> <td></td> </tr><tr><th scope="row">--ssl-capath</th> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> <td></td> <td></td> </tr><tr><th scope="row">--ssl-cert</th> <td>File that contains X.509 certificate</td> <td></td> <td></td> </tr><tr><th scope="row">--ssl-cipher</th> <td>Permissible ciphers for connection encryption</td> <td></td> <td></td> </tr><tr><th scope="row">--ssl-crl</th> <td>File that contains certificate revocation lists</td> <td></td> <td></td> </tr><tr><th scope="row">--ssl-crlpath</th> <td>Directory that contains certificate revocation-list files</td> <td></td> <td></td> </tr><tr><th scope="row">--ssl-fips-mode</th> <td>Whether to enable FIPS mode on client side</td> <td></td> <td>8.0.34</td> </tr><tr><th scope="row">--ssl-key</th> <td>File that contains X.509 key</td> <td></td> <td></td> </tr><tr><th scope="row">--ssl-mode</th> <td>Desired security state of connection to server</td> <td></td> <td></td> </tr><tr><th scope="row">--ssl-session-data</th> <td>File that contains SSL session data</td> <td>8.0.29</td> <td></td> </tr><tr><th scope="row">--ssl-session-data-continue-on-failed-reuse</th> <td>Whether to establish connections if session reuse fails</td> <td>8.0.29</td> <td></td> </tr><tr><th scope="row">--start-datetime</th> <td>Read binary log from first event with timestamp equal to or later than datetime argument</td> <td></td> <td></td> </tr><tr><th scope="row">--start-position</th> <td>Decode binary log from first event with position equal to or greater than argument</td> <td></td> <td></td> </tr><tr><th scope="row">--stop-datetime</th> <td>Stop reading binary log at first event with timestamp equal to or greater than datetime argument</td> <td></td> <td></td> </tr><tr><th scope="row">--stop-never</th> <td>Stay connected to server after reading last binary log file</td> <td></td> <td></td> </tr><tr><th scope="row">--stop-never-slave-server-id</th> <td>Slave server ID to report when connecting to server</td> <td></td> <td></td> </tr><tr><th scope="row">--stop-position</th> <td>Stop decoding binary log at first event with position equal to or greater than argument</td> <td></td> <td></td> </tr><tr><th scope="row">--tls-ciphersuites</th> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> <td>8.0.16</td> <td></td> </tr><tr><th scope="row">--tls-version</th> <td>Permissible TLS protocols for encrypted connections</td> <td></td> <td></td> </tr><tr><th scope="row">--to-last-log</th> <td>Do not stop at the end of requested binary log from a MySQL server, but rather continue printing to end of last binary log</td> <td></td> <td></td> </tr><tr><th scope="row">--user</th> <td>MySQL user name to use when connecting to server</td> <td></td> <td></td> </tr><tr><th scope="row">--verbose</th> <td>Reconstruct row events as SQL statements</td> <td></td> <td></td> </tr><tr><th scope="row">--verify-binlog-checksum</th> <td>Verify checksums in binary log</td> <td></td> <td></td> </tr><tr><th scope="row">--version</th> <td>Display version information and exit</td> <td></td> <td></td> </tr><tr><th scope="row">--zstd-compression-level</th> <td>Compression level for connections to server that use zstd compression</td> <td>8.0.18</td> <td></td> </tr></tbody></table>
 
-* [`--help`](mysqlbinlog.html#option_mysqlbinlog_help),
-  `-?`
+* `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--help</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
-* [`--base64-output=value`](mysqlbinlog.html#option_mysqlbinlog_base64-output)
+* `--base64-output=value`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--base64-output=value</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">AUTO</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
 
-  This option determines when events should be displayed
-  encoded as base-64 strings using
-  [`BINLOG`](binlog.html "15.7.8.1 BINLOG Statement") statements. The option
-  has these permissible values (not case-sensitive):
+  This option determines when events should be displayed encoded as base-64 strings using `BINLOG` statements. The option has these permissible values (not case-sensitive):
 
-  + `AUTO` ("automatic") or
-    `UNSPEC` ("unspecified") displays
-    [`BINLOG`](binlog.html "15.7.8.1 BINLOG Statement") statements
-    automatically when necessary (that is, for format
-    description events and row events). If no
-    [`--base64-output`](mysqlbinlog.html#option_mysqlbinlog_base64-output)
-    option is given, the effect is the same as
-    [`--base64-output=AUTO`](mysqlbinlog.html#option_mysqlbinlog_base64-output).
+  + `AUTO` ("automatic") or `UNSPEC` ("unspecified") displays `BINLOG` statements automatically when necessary (that is, for format description events and row events). If no `--base64-output` option is given, the effect is the same as `--base64-output=AUTO`.
 
     Note
 
-    Automatic [`BINLOG`](binlog.html "15.7.8.1 BINLOG Statement")
-    display is the only safe behavior if you intend to use
-    the output of [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") to
-    re-execute binary log file contents. The other option
-    values are intended only for debugging or testing
-    purposes because they may produce output that does not
-    include all events in executable form.
+    Automatic `BINLOG` display is the only safe behavior if you intend to use the output of **mysqlbinlog** to re-execute binary log file contents. The other option values are intended only for debugging or testing purposes because they may produce output that does not include all events in executable form.
 
-  + `NEVER` causes
-    [`BINLOG`](binlog.html "15.7.8.1 BINLOG Statement") statements not to
-    be displayed. [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") exits with
-    an error if a row event is found that must be displayed
-    using [`BINLOG`](binlog.html "15.7.8.1 BINLOG Statement").
+  + `NEVER` causes `BINLOG` statements not to be displayed. **mysqlbinlog** exits with an error if a row event is found that must be displayed using `BINLOG`.
 
-  + `DECODE-ROWS` specifies to
-    [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") that you intend for row
-    events to be decoded and displayed as commented SQL
-    statements by also specifying the
-    [`--verbose`](mysqlbinlog.html#option_mysqlbinlog_verbose) option.
-    Like `NEVER`,
-    `DECODE-ROWS` suppresses display of
-    [`BINLOG`](binlog.html "15.7.8.1 BINLOG Statement") statements, but
-    unlike `NEVER`, it does not exit with
-    an error if a row event is found.
+  + `DECODE-ROWS` specifies to **mysqlbinlog** that you intend for row events to be decoded and displayed as commented SQL statements by also specifying the `--verbose` option. Like `NEVER`, `DECODE-ROWS` suppresses display of `BINLOG` statements, but unlike `NEVER`, it does not exit with an error if a row event is found.
 
-  For examples that show the effect of
-  [`--base64-output`](mysqlbinlog.html#option_mysqlbinlog_base64-output) and
-  [`--verbose`](mysqlbinlog.html#option_mysqlbinlog_verbose) on row event
-  output, see [Section 6.6.9.2, “mysqlbinlog Row Event Display”](mysqlbinlog-row-events.html "6.6.9.2 mysqlbinlog Row Event Display").
+  For examples that show the effect of `--base64-output` and `--verbose` on row event output, see Section 6.6.9.2, “mysqlbinlog Row Event Display”.
 
-* [`--bind-address=ip_address`](mysqlbinlog.html#option_mysqlbinlog_bind-address)
+* `--bind-address=ip_address`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--bind-address=ip_address</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  On a computer having multiple network interfaces, use this
-  option to select which interface to use for connecting to
-  the MySQL server.
+  On a computer having multiple network interfaces, use this option to select which interface to use for connecting to the MySQL server.
 
-* [`--binlog-row-event-max-size=N`](mysqlbinlog.html#option_mysqlbinlog_binlog-row-event-max-size)
+* `--binlog-row-event-max-size=N`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--binlog-row-event-max-size=#</code></td>
-</tr><tr><th>Type</th>
-<td>Numeric</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">4294967040</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">256</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">18446744073709547520</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>
 
-  Specify the maximum size of a row-based binary log event, in
-  bytes. Rows are grouped into events smaller than this size
-  if possible. The value should be a multiple of 256. The
-  default is 4GB.
+  Specify the maximum size of a row-based binary log event, in bytes. Rows are grouped into events smaller than this size if possible. The value should be a multiple of 256. The default is 4GB.
 
-* [`--character-sets-dir=dir_name`](mysqlbinlog.html#option_mysqlbinlog_character-sets-dir)
+* `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
-  The directory where character sets are installed. See
-  [Section 12.15, “Character Set Configuration”](charset-configuration.html "12.15 Character Set Configuration").
+  The directory where character sets are installed. See Section 12.15, “Character Set Configuration”.
 
-* [`--compress`](mysqlbinlog.html#option_mysqlbinlog_compress)
+* `--compress`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress[={OFF|ON}]</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.17</td>
-</tr><tr><th>Deprecated</th>
-<td>8.0.18</td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>8.0.17</td> </tr><tr><th>Deprecated</th> <td>8.0.18</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Compress all information sent between the client and the
-  server if possible. See
-  [Section 6.2.8, “Connection Compression Control”](connection-compression-control.html "6.2.8 Connection Compression Control").
+  Compress all information sent between the client and the server if possible. See Section 6.2.8, “Connection Compression Control”.
 
-  This option was added in MySQL 8.0.17. As of MySQL 8.0.18 it
-  is deprecated. Expect it to be removed in a future version
-  of MySQL. See
-  [Configuring Legacy Connection Compression](connection-compression-control.html#connection-compression-legacy-configuration "Configuring Legacy Connection Compression").
+  This option was added in MySQL 8.0.17. As of MySQL 8.0.18 it is deprecated. Expect it to be removed in a future version of MySQL. See Configuring Legacy Connection Compression.
 
-* [`--compression-algorithms=value`](mysqlbinlog.html#option_mysqlbinlog_compression-algorithms)
+* `--compression-algorithms=value`
 
-  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compression-algorithms=value</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.18</td>
-</tr><tr><th>Type</th>
-<td>Set</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">uncompressed</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Introduced</th> <td>8.0.18</td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>
 
-  The permitted compression algorithms for connections to the
-  server. The available algorithms are the same as for the
-  [`protocol_compression_algorithms`](server-system-variables.html#sysvar_protocol_compression_algorithms)
-  system variable. The default value is
-  `uncompressed`.
+  The permitted compression algorithms for connections to the server. The available algorithms are the same as for the `protocol_compression_algorithms` system variable. The default value is `uncompressed`.
 
-  For more information, see
-  [Section 6.2.8, “Connection Compression Control”](connection-compression-control.html "6.2.8 Connection Compression Control").
+  For more information, see Section 6.2.8, “Connection Compression Control”.
 
   This option was added in MySQL 8.0.18.
 
-* [`--connection-server-id=server_id`](mysqlbinlog.html#option_mysqlbinlog_connection-server-id)
+* `--connection-server-id=server_id`
 
-  <table frame="box" rules="all" summary="Properties for connection-server-id"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connection-server-id=#]</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">0 (1)</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0 (1)</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">4294967295</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connection-server-id"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connection-server-id=#]</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0 (1)</code></td> </tr><tr><th>Minimum Value</th> <td><code>0 (1)</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  [`--connection-server-id`](mysqlbinlog.html#option_mysqlbinlog_connection-server-id)
-  specifies the server ID that [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
-  reports when it connects to the server. It can be used to
-  avoid a conflict with the ID of a replica server or another
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") process.
+  `--connection-server-id` specifies the server ID that **mysqlbinlog** reports when it connects to the server. It can be used to avoid a conflict with the ID of a replica server or another **mysqlbinlog** process.
 
-  If the
-  [`--read-from-remote-server`](mysqlbinlog.html#option_mysqlbinlog_read-from-remote-server)
-  option is specified, [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") reports
-  a server ID of 0, which tells the server to disconnect after
-  sending the last log file (nonblocking behavior). If the
-  [`--stop-never`](mysqlbinlog.html#option_mysqlbinlog_stop-never) option is
-  also specified to maintain the connection to the server,
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") reports a server ID of 1 by
-  default instead of 0, and
-  [`--connection-server-id`](mysqlbinlog.html#option_mysqlbinlog_connection-server-id)
-  can be used to replace that server ID if required. See
-  [Section 6.6.9.4, “Specifying the mysqlbinlog Server ID”](mysqlbinlog-server-id.html "6.6.9.4 Specifying the mysqlbinlog Server ID").
+  If the `--read-from-remote-server` option is specified, **mysqlbinlog** reports a server ID of 0, which tells the server to disconnect after sending the last log file (nonblocking behavior). If the `--stop-never` option is also specified to maintain the connection to the server, **mysqlbinlog** reports a server ID of 1 by default instead of 0, and `--connection-server-id` can be used to replace that server ID if required. See Section 6.6.9.4, “Specifying the mysqlbinlog Server ID”.
 
-* [`--database=db_name`](mysqlbinlog.html#option_mysqlbinlog_database),
-  `-d db_name`
+* `--database=db_name`, `-d db_name`
 
-  <table frame="box" rules="all" summary="Properties for database"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--database=db_name</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for database"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--database=db_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  This option causes [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") to output
-  entries from the binary log (local log only) that occur
-  while *`db_name`* is been selected as
-  the default database by [`USE`](use.html "15.8.4 USE Statement").
+  This option causes **mysqlbinlog** to output entries from the binary log (local log only) that occur while *`db_name`* is been selected as the default database by `USE`.
 
-  The [`--database`](mysqlbinlog.html#option_mysqlbinlog_database) option
-  for [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") is similar to the
-  [`--binlog-do-db`](replication-options-binary-log.html#option_mysqld_binlog-do-db) option for
-  [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server"), but can be used to specify only
-  one database. If
-  [`--database`](mysqlbinlog.html#option_mysqlbinlog_database) is given
-  multiple times, only the last instance is used.
+  The `--database` option for **mysqlbinlog** is similar to the `--binlog-do-db` option for **mysqld**, but can be used to specify only one database. If `--database` is given multiple times, only the last instance is used.
 
-  The effects of this option depend on whether the
-  statement-based or row-based logging format is in use, in
-  the same way that the effects of
-  [`--binlog-do-db`](replication-options-binary-log.html#option_mysqld_binlog-do-db) depend on
-  whether statement-based or row-based logging is in use.
+  The effects of this option depend on whether the statement-based or row-based logging format is in use, in the same way that the effects of `--binlog-do-db` depend on whether statement-based or row-based logging is in use.
 
-  **Statement-based logging.**
-  The [`--database`](mysqlbinlog.html#option_mysqlbinlog_database) option
-  works as follows:
+  **Statement-based logging.** The `--database` option works as follows:
 
-  + While *`db_name`* is the default
-    database, statements are output whether they modify
-    tables in *`db_name`* or a
-    different database.
+  + While *`db_name`* is the default database, statements are output whether they modify tables in *`db_name`* or a different database.
 
-  + Unless *`db_name`* is selected as
-    the default database, statements are not output, even if
-    they modify tables in
-    *`db_name`*.
+  + Unless *`db_name`* is selected as the default database, statements are not output, even if they modify tables in *`db_name`*.
 
-  + There is an exception for [`CREATE
-    DATABASE`](create-database.html "15.1.12 CREATE DATABASE Statement"), [`ALTER
-    DATABASE`](alter-database.html "15.1.2 ALTER DATABASE Statement"), and [`DROP
-    DATABASE`](drop-database.html "15.1.24 DROP DATABASE Statement"). The database being
-    *created, altered, or dropped* is
-    considered to be the default database when determining
-    whether to output the statement.
+  + There is an exception for [`CREATE DATABASE`](create-database.html "15.1.12 CREATE DATABASE Statement"), [`ALTER DATABASE`](alter-database.html "15.1.2 ALTER DATABASE Statement"), and [`DROP DATABASE`](drop-database.html "15.1.24 DROP DATABASE Statement"). The database being *created, altered, or dropped* is considered to be the default database when determining whether to output the statement.
 
-  Suppose that the binary log was created by executing these
-  statements using statement-based-logging:
+  Suppose that the binary log was created by executing these statements using statement-based-logging:
 
   ```
   INSERT INTO test.t1 (i) VALUES(100);
@@ -745,374 +159,143 @@ used by MySQL programs, see [Section 6.2.2.2, “Using Option Files”](option-
   INSERT INTO t2 (j)      VALUES(203);
   ```
 
-  [**mysqlbinlog --database=test**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") does not
-  output the first two [`INSERT`](insert.html "15.2.7 INSERT Statement")
-  statements because there is no default database. It outputs
-  the three [`INSERT`](insert.html "15.2.7 INSERT Statement") statements
-  following [`USE
-  test`](use.html "15.8.4 USE Statement"), but not the three
-  [`INSERT`](insert.html "15.2.7 INSERT Statement") statements following
-  [`USE db2`](use.html "15.8.4 USE Statement").
+  **mysqlbinlog --database=test** does not output the first two `INSERT` statements because there is no default database. It outputs the three `INSERT` statements following [`USE test`](use.html "15.8.4 USE Statement"), but not the three `INSERT` statements following `USE db2`.
 
-  [**mysqlbinlog --database=db2**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") does not
-  output the first two [`INSERT`](insert.html "15.2.7 INSERT Statement")
-  statements because there is no default database. It does not
-  output the three [`INSERT`](insert.html "15.2.7 INSERT Statement")
-  statements following
-  [`USE test`](use.html "15.8.4 USE Statement"), but
-  does output the three [`INSERT`](insert.html "15.2.7 INSERT Statement")
-  statements following
-  [`USE db2`](use.html "15.8.4 USE Statement").
+  **mysqlbinlog --database=db2** does not output the first two `INSERT` statements because there is no default database. It does not output the three `INSERT` statements following `USE test`, but does output the three `INSERT` statements following `USE db2`.
 
-  **Row-based logging.**
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") outputs only entries that
-  change tables belonging to
-  *`db_name`*. The default database
-  has no effect on this. Suppose that the binary log just
-  described was created using row-based logging rather than
-  statement-based logging. [**mysqlbinlog
-  --database=test**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") outputs only those entries that
-  modify `t1` in the test database,
-  regardless of whether [`USE`](use.html "15.8.4 USE Statement")
-  was issued or what the default database is.
+  **Row-based logging.** **mysqlbinlog** outputs only entries that change tables belonging to *`db_name`*. The default database has no effect on this. Suppose that the binary log just described was created using row-based logging rather than statement-based logging. [**mysqlbinlog --database=test**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") outputs only those entries that modify `t1` in the test database, regardless of whether `USE` was issued or what the default database is.
 
-  If a server is running with
-  [`binlog_format`](replication-options-binary-log.html#sysvar_binlog_format) set to
-  `MIXED` and you want it to be possible to
-  use [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") with the
-  [`--database`](mysqlbinlog.html#option_mysqlbinlog_database) option, you
-  must ensure that tables that are modified are in the
-  database selected by [`USE`](use.html "15.8.4 USE Statement"). (In
-  particular, no cross-database updates should be used.)
+  If a server is running with `binlog_format` set to `MIXED` and you want it to be possible to use **mysqlbinlog** with the `--database` option, you must ensure that tables that are modified are in the database selected by `USE`. (In particular, no cross-database updates should be used.)
 
-  When used together with the
-  [`--rewrite-db`](mysqlbinlog.html#option_mysqlbinlog_rewrite-db) option, the
-  `--rewrite-db` option is applied first; then
-  the `--database` option is applied, using the
-  rewritten database name. The order in which the options are
-  provided makes no difference in this regard.
+  When used together with the `--rewrite-db` option, the `--rewrite-db` option is applied first; then the `--database` option is applied, using the rewritten database name. The order in which the options are provided makes no difference in this regard.
 
-* [`--debug[=debug_options]`](mysqlbinlog.html#option_mysqlbinlog_debug),
-  `-#
-  [debug_options]`
+* `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--help</code></td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>0
 
-  Write a debugging log. A typical
-  *`debug_options`* string is
-  `d:t:o,file_name`.
-  The default is
-  `d:t:o,/tmp/mysqlbinlog.trace`.
+  Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o,/tmp/mysqlbinlog.trace`.
 
-  This option is available only if MySQL was built using
-  [`WITH_DEBUG`](source-configuration-options.html#option_cmake_with_debug). MySQL release
-  binaries provided by Oracle are *not*
-  built using this option.
+  This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
 
-* [`--debug-check`](mysqlbinlog.html#option_mysqlbinlog_debug-check)
+* `--debug-check`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--help</code></td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>1
 
   Print some debugging information when the program exits.
 
-  This option is available only if MySQL was built using
-  [`WITH_DEBUG`](source-configuration-options.html#option_cmake_with_debug). MySQL release
-  binaries provided by Oracle are *not*
-  built using this option.
+  This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
 
-* [`--debug-info`](mysqlbinlog.html#option_mysqlbinlog_debug-info)
+* `--debug-info`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--help</code></td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>2
 
-  Print debugging information and memory and CPU usage
-  statistics when the program exits.
+  Print debugging information and memory and CPU usage statistics when the program exits.
 
-  This option is available only if MySQL was built using
-  [`WITH_DEBUG`](source-configuration-options.html#option_cmake_with_debug). MySQL release
-  binaries provided by Oracle are *not*
-  built using this option.
+  This option is available only if MySQL was built using `WITH_DEBUG`. MySQL release binaries provided by Oracle are *not* built using this option.
 
-* [`--default-auth=plugin`](mysqlbinlog.html#option_mysqlbinlog_default-auth)
+* `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--help</code></td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>3
 
-  A hint about which client-side authentication plugin to use.
-  See [Section 8.2.17, “Pluggable Authentication”](pluggable-authentication.html "8.2.17 Pluggable Authentication").
+  A hint about which client-side authentication plugin to use. See Section 8.2.17, “Pluggable Authentication”.
 
-* [`--defaults-extra-file=file_name`](mysqlbinlog.html#option_mysqlbinlog_defaults-extra-file)
+* `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--help</code></td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>4
 
-  Read this option file after the global option file but (on
-  Unix) before the user option file. If the file does not
-  exist or is otherwise inaccessible, an error occurs. If
-  *`file_name`* is not an absolute path
-  name, it is interpreted relative to the current directory.
+  Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
-  For additional information about this and other option-file
-  options, see [Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling").
+  For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
-* [`--defaults-file=file_name`](mysqlbinlog.html#option_mysqlbinlog_defaults-file)
+* `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--help</code></td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>5
 
-  Use only the given option file. If the file does not exist
-  or is otherwise inaccessible, an error occurs. If
-  *`file_name`* is not an absolute path
-  name, it is interpreted relative to the current directory.
+  Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
-  Exception: Even with
-  [`--defaults-file`](option-file-options.html#option_general_defaults-file), client
-  programs read `.mylogin.cnf`.
+  Exception: Even with `--defaults-file`, client programs read `.mylogin.cnf`.
 
-  For additional information about this and other option-file
-  options, see [Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling").
+  For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
-* [`--defaults-group-suffix=str`](mysqlbinlog.html#option_mysqlbinlog_defaults-group-suffix)
+* `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--help</code></td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>6
 
-  Read not only the usual option groups, but also groups with
-  the usual names and a suffix of
-  *`str`*. For example,
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") normally reads the
-  `[client]` and
-  `[mysqlbinlog]` groups. If this option is
-  given as
-  [`--defaults-group-suffix=_other`](mysqlbinlog.html#option_mysqlbinlog_defaults-group-suffix),
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") also reads the
-  `[client_other]` and
-  `[mysqlbinlog_other]` groups.
+  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysqlbinlog** normally reads the `[client]` and `[mysqlbinlog]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysqlbinlog** also reads the `[client_other]` and `[mysqlbinlog_other]` groups.
 
-  For additional information about this and other option-file
-  options, see [Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling").
+  For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
-* [`--disable-log-bin`](mysqlbinlog.html#option_mysqlbinlog_disable-log-bin),
-  `-D`
+* `--disable-log-bin`, `-D`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--help</code></td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>7
 
-  Disable binary logging. This is useful for avoiding an
-  endless loop if you use the
-  [`--to-last-log`](mysqlbinlog.html#option_mysqlbinlog_to-last-log) option and
-  are sending the output to the same MySQL server. This option
-  also is useful when restoring after an unexpected exit to
-  avoid duplication of the statements you have logged.
+  Disable binary logging. This is useful for avoiding an endless loop if you use the `--to-last-log` option and are sending the output to the same MySQL server. This option also is useful when restoring after an unexpected exit to avoid duplication of the statements you have logged.
 
-  This option causes [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") to include
-  a [`SET
-  sql_log_bin = 0`](set-sql-log-bin.html "15.4.1.3 SET sql_log_bin Statement") statement in its output to disable
-  binary logging of the remaining output. Manipulating the
-  session value of the
-  [`sql_log_bin`](replication-options-binary-log.html#sysvar_sql_log_bin) system variable
-  is a restricted operation, so this option requires that you
-  have privileges sufficient to set restricted session
-  variables. See [Section 7.1.9.1, “System Variable Privileges”](system-variable-privileges.html "7.1.9.1 System Variable Privileges").
+  This option causes **mysqlbinlog** to include a [`SET sql_log_bin = 0`](set-sql-log-bin.html "15.4.1.3 SET sql_log_bin Statement") statement in its output to disable binary logging of the remaining output. Manipulating the session value of the `sql_log_bin` system variable is a restricted operation, so this option requires that you have privileges sufficient to set restricted session variables. See Section 7.1.9.1, “System Variable Privileges”.
 
-* [`--exclude-gtids=gtid_set`](mysqlbinlog.html#option_mysqlbinlog_exclude-gtids)
+* `--exclude-gtids=gtid_set`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--help</code></td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>8
 
-  Do not display any of the groups listed in the
-  *`gtid_set`*.
+  Do not display any of the groups listed in the *`gtid_set`*.
 
-* [`--force-if-open`](mysqlbinlog.html#option_mysqlbinlog_force-if-open),
-  `-F`
+* `--force-if-open`, `-F`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--help</code></td>
-</tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>9
 
-  Read binary log files even if they are open or were not
-  closed properly (`IN_USE` flag is set); do
-  not fail if the file ends with a truncated event.
+  Read binary log files even if they are open or were not closed properly (`IN_USE` flag is set); do not fail if the file ends with a truncated event.
 
-  The `IN_USE` flag is set only for the
-  binary log that is currently written by the server; if the
-  server has crashed, the flag remains set until the server is
-  started up again and recovers the binary log. Without this
-  option, [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") refuses to process a
-  file with this flag set. Since the server may be in the
-  process of writing the file, truncation of the last event is
-  considered normal.
+  The `IN_USE` flag is set only for the binary log that is currently written by the server; if the server has crashed, the flag remains set until the server is started up again and recovers the binary log. Without this option, **mysqlbinlog** refuses to process a file with this flag set. Since the server may be in the process of writing the file, truncation of the last event is considered normal.
 
-* [`--force-read`](mysqlbinlog.html#option_mysqlbinlog_force-read),
-  `-f`
+* `--force-read`, `-f`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--base64-output=value</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">AUTO</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>0
 
-  With this option, if [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") reads a
-  binary log event that it does not recognize, it prints a
-  warning, ignores the event, and continues. Without this
-  option, [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") stops if it reads
-  such an event.
+  With this option, if **mysqlbinlog** reads a binary log event that it does not recognize, it prints a warning, ignores the event, and continues. Without this option, **mysqlbinlog** stops if it reads such an event.
 
-* [`--get-server-public-key`](mysqlbinlog.html#option_mysqlbinlog_get-server-public-key)
+* `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--base64-output=value</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">AUTO</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>1
 
-  Request from the server the public key required for RSA key
-  pair-based password exchange. This option applies to clients
-  that authenticate with the
-  `caching_sha2_password` authentication
-  plugin. For that plugin, the server does not send the public
-  key unless requested. This option is ignored for accounts
-  that do not authenticate with that plugin. It is also
-  ignored if RSA-based password exchange is not used, as is
-  the case when the client connects to the server using a
-  secure connection.
+  Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
-  If
-  [`--server-public-key-path=file_name`](mysqlbinlog.html#option_mysqlbinlog_server-public-key-path)
-  is given and specifies a valid public key file, it takes
-  precedence over
-  [`--get-server-public-key`](mysqlbinlog.html#option_mysqlbinlog_get-server-public-key).
+  If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
-  For information about the
-  `caching_sha2_password` plugin, see
-  [Section 8.4.1.2, “Caching SHA-2 Pluggable Authentication”](caching-sha2-pluggable-authentication.html "8.4.1.2 Caching SHA-2 Pluggable Authentication").
+  For information about the `caching_sha2_password` plugin, see Section 8.4.1.2, “Caching SHA-2 Pluggable Authentication”.
 
-* [`--hexdump`](mysqlbinlog.html#option_mysqlbinlog_hexdump),
-  `-H`
+* `--hexdump`, `-H`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--base64-output=value</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">AUTO</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>2
 
-  Display a hex dump of the log in comments, as described in
-  [Section 6.6.9.1, “mysqlbinlog Hex Dump Format”](mysqlbinlog-hexdump.html "6.6.9.1 mysqlbinlog Hex Dump Format"). The hex output can be
-  helpful for replication debugging.
+  Display a hex dump of the log in comments, as described in Section 6.6.9.1, “mysqlbinlog Hex Dump Format”. The hex output can be helpful for replication debugging.
 
-* [`--host=host_name`](mysqlbinlog.html#option_mysqlbinlog_host),
-  `-h host_name`
+* `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--base64-output=value</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">AUTO</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>3
 
   Get the binary log from the MySQL server on the given host.
 
-* [`--idempotent`](mysqlbinlog.html#option_mysqlbinlog_idempotent)
+* `--idempotent`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--base64-output=value</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">AUTO</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>4
 
-  Tell the MySQL Server to use idempotent mode while
-  processing updates; this causes suppression of any
-  duplicate-key or key-not-found errors that the server
-  encounters in the current session while processing updates.
-  This option may prove useful whenever it is desirable or
-  necessary to replay one or more binary logs to a MySQL
-  Server which may not contain all of the data to which the
-  logs refer.
+  Tell the MySQL Server to use idempotent mode while processing updates; this causes suppression of any duplicate-key or key-not-found errors that the server encounters in the current session while processing updates. This option may prove useful whenever it is desirable or necessary to replay one or more binary logs to a MySQL Server which may not contain all of the data to which the logs refer.
 
-  The scope of effect for this option includes the current
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") client and session only.
+  The scope of effect for this option includes the current **mysqlbinlog** client and session only.
 
-* [`--include-gtids=gtid_set`](mysqlbinlog.html#option_mysqlbinlog_include-gtids)
+* `--include-gtids=gtid_set`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--base64-output=value</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">AUTO</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>5
 
-  Display only the groups listed in the
-  *`gtid_set`*.
+  Display only the groups listed in the *`gtid_set`*.
 
-* [`--local-load=dir_name`](mysqlbinlog.html#option_mysqlbinlog_local-load),
-  `-l dir_name`
+* `--local-load=dir_name`, `-l dir_name`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--base64-output=value</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">AUTO</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>6
 
-  For data loading operations corresponding to
-  [`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement") statements,
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") extracts the files from the
-  binary log events, writes them as temporary files to the
-  local file system, and writes
-  [`LOAD DATA
-  LOCAL`](load-data.html "15.2.9 LOAD DATA Statement") statements to cause the files to be loaded.
-  By default, [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") writes these
-  temporary files to an operating system-specific directory.
-  The [`--local-load`](mysqlbinlog.html#option_mysqlbinlog_local-load) option
-  can be used to explicitly specify the directory where
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") should prepare local
-  temporary files.
+  For data loading operations corresponding to `LOAD DATA` statements, **mysqlbinlog** extracts the files from the binary log events, writes them as temporary files to the local file system, and writes [`LOAD DATA LOCAL`](load-data.html "15.2.9 LOAD DATA Statement") statements to cause the files to be loaded. By default, **mysqlbinlog** writes these temporary files to an operating system-specific directory. The `--local-load` option can be used to explicitly specify the directory where **mysqlbinlog** should prepare local temporary files.
 
-  Because other processes can write files to the default
-  system-specific directory, it is advisable to specify the
-  [`--local-load`](mysqlbinlog.html#option_mysqlbinlog_local-load) option to
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") to designate a different
-  directory for data files, and then designate that same
-  directory by specifying the
-  [`--load-data-local-dir`](mysql-command-options.html#option_mysql_load-data-local-dir) option
-  to [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") when processing the output from
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files"). For example:
+  Because other processes can write files to the default system-specific directory, it is advisable to specify the `--local-load` option to **mysqlbinlog** to designate a different directory for data files, and then designate that same directory by specifying the `--load-data-local-dir` option to **mysql** when processing the output from **mysqlbinlog**. For example:
 
   ```
   mysqlbinlog --local-load=/my/local/data ...
@@ -1121,991 +304,355 @@ used by MySQL programs, see [Section 6.2.2.2, “Using Option Files”](option-
 
   Important
 
-  These temporary files are not automatically removed by
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") or any other MySQL program.
+  These temporary files are not automatically removed by **mysqlbinlog** or any other MySQL program.
 
-* [`--login-path=name`](mysqlbinlog.html#option_mysqlbinlog_login-path)
+* `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--base64-output=value</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">AUTO</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>7
 
-  Read options from the named login path in the
-  `.mylogin.cnf` login path file. A
-  “login path” is an option group containing
-  options that specify which MySQL server to connect to and
-  which account to authenticate as. To create or modify a
-  login path file, use the
-  [**mysql\_config\_editor**](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility") utility. See
-  [Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility").
+  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
-  For additional information about this and other option-file
-  options, see [Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling").
+  For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
-* [`--no-defaults`](mysqlbinlog.html#option_mysqlbinlog_no-defaults)
+* `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--base64-output=value</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">AUTO</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>8
 
-  Do not read any option files. If program startup fails due
-  to reading unknown options from an option file,
-  [`--no-defaults`](mysqlbinlog.html#option_mysqlbinlog_no-defaults) can be
-  used to prevent them from being read.
+  Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
-  The exception is that the `.mylogin.cnf`
-  file is read in all cases, if it exists. This permits
-  passwords to be specified in a safer way than on the command
-  line even when
-  [`--no-defaults`](mysqlbinlog.html#option_mysqlbinlog_no-defaults) is used.
-  To create `.mylogin.cnf`, use the
-  [**mysql\_config\_editor**](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility") utility. See
-  [Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”](mysql-config-editor.html "6.6.7 mysql_config_editor — MySQL Configuration Utility").
+  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
-  For additional information about this and other option-file
-  options, see [Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling").
+  For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
-* [`--offset=N`](mysqlbinlog.html#option_mysqlbinlog_offset),
-  `-o N`
+* `--offset=N`, `-o N`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--base64-output=value</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">AUTO</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td>
-</tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>9
 
-  Skip the first *`N`* entries in the
-  log.
+  Skip the first *`N`* entries in the log.
 
-* [`--open-files-limit=N`](mysqlbinlog.html#option_mysqlbinlog_open-files-limit)
+* `--open-files-limit=N`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--bind-address=ip_address</code></td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>0
 
   Specify the number of open file descriptors to reserve.
 
-* [`--password[=password]`](mysqlbinlog.html#option_mysqlbinlog_password),
-  `-p[password]`
+* `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--bind-address=ip_address</code></td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>1
 
-  The password of the MySQL account used for connecting to the
-  server. The password value is optional. If not given,
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") prompts for one. If given,
-  there must be *no space* between
-  [`--password=`](mysqlbinlog.html#option_mysqlbinlog_password) or
-  `-p` and the password following it. If no
-  password option is specified, the default is to send no
-  password.
+  The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqlbinlog** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
-  Specifying a password on the command line should be
-  considered insecure. To avoid giving the password on the
-  command line, use an option file. See
-  [Section 8.1.2.1, “End-User Guidelines for Password Security”](password-security-user.html "8.1.2.1 End-User Guidelines for Password Security").
+  Specifying a password on the command line should be considered insecure. To avoid giving the password on the command line, use an option file. See Section 8.1.2.1, “End-User Guidelines for Password Security”.
 
-  To explicitly specify that there is no password and that
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") should not prompt for one,
-  use the
-  [`--skip-password`](mysqlbinlog.html#option_mysqlbinlog_password)
-  option.
+  To explicitly specify that there is no password and that **mysqlbinlog** should not prompt for one, use the `--skip-password` option.
 
-* [`--plugin-dir=dir_name`](mysqlbinlog.html#option_mysqlbinlog_plugin-dir)
+* `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--bind-address=ip_address</code></td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>2
 
-  The directory in which to look for plugins. Specify this
-  option if the
-  [`--default-auth`](mysqlbinlog.html#option_mysqlbinlog_default-auth) option is
-  used to specify an authentication plugin but
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") does not find it. See
-  [Section 8.2.17, “Pluggable Authentication”](pluggable-authentication.html "8.2.17 Pluggable Authentication").
+  The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysqlbinlog** does not find it. See Section 8.2.17, “Pluggable Authentication”.
 
-* [`--port=port_num`](mysqlbinlog.html#option_mysqlbinlog_port),
-  `-P port_num`
+* `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--bind-address=ip_address</code></td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>3
 
-  The TCP/IP port number to use for connecting to a remote
-  server.
+  The TCP/IP port number to use for connecting to a remote server.
 
-* [`--print-defaults`](mysqlbinlog.html#option_mysqlbinlog_print-defaults)
+* `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--bind-address=ip_address</code></td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>4
 
-  Print the program name and all options that it gets from
-  option files.
+  Print the program name and all options that it gets from option files.
 
-  For additional information about this and other option-file
-  options, see [Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling").
+  For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
-* [`--print-table-metadata`](mysqlbinlog.html#option_mysqlbinlog_print-table-metadata)
+* `--print-table-metadata`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--bind-address=ip_address</code></td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>5
 
-  Print table related metadata from the binary log. Configure
-  the amount of table related metadata binary logged using
-  [`binlog-row-metadata`](replication-options-binary-log.html#sysvar_binlog_row_metadata).
+  Print table related metadata from the binary log. Configure the amount of table related metadata binary logged using `binlog-row-metadata`.
 
-* [`--protocol={TCP|SOCKET|PIPE|MEMORY}`](mysqlbinlog.html#option_mysqlbinlog_protocol)
+* `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--bind-address=ip_address</code></td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>6
 
-  The transport protocol to use for connecting to the server.
-  It is useful when the other connection parameters normally
-  result in use of a protocol other than the one you want. For
-  details on the permissible values, see
-  [Section 6.2.7, “Connection Transport Protocols”](transport-protocols.html "6.2.7 Connection Transport Protocols").
+  The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 6.2.7, “Connection Transport Protocols”.
 
-* [`--raw`](mysqlbinlog.html#option_mysqlbinlog_raw)
+* `--raw`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--bind-address=ip_address</code></td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>7
 
-  By default, [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") reads binary log
-  files and writes events in text format. The
-  [`--raw`](mysqlbinlog.html#option_mysqlbinlog_raw) option tells
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") to write them in their
-  original binary format. Its use requires that
-  [`--read-from-remote-server`](mysqlbinlog.html#option_mysqlbinlog_read-from-remote-server)
-  also be used because the files are requested from a server.
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") writes one output file for
-  each file read from the server. The
-  [`--raw`](mysqlbinlog.html#option_mysqlbinlog_raw) option can be used
-  to make a backup of a server's binary log. With the
-  [`--stop-never`](mysqlbinlog.html#option_mysqlbinlog_stop-never) option, the
-  backup is “live” because
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") stays connected to the
-  server. By default, output files are written in the current
-  directory with the same names as the original log files.
-  Output file names can be modified using the
-  [`--result-file`](mysqlbinlog.html#option_mysqlbinlog_result-file) option.
-  For more information, see
-  [Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”](mysqlbinlog-backup.html "6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files").
+  By default, **mysqlbinlog** reads binary log files and writes events in text format. The `--raw` option tells **mysqlbinlog** to write them in their original binary format. Its use requires that `--read-from-remote-server` also be used because the files are requested from a server. **mysqlbinlog** writes one output file for each file read from the server. The `--raw` option can be used to make a backup of a server's binary log. With the `--stop-never` option, the backup is “live” because **mysqlbinlog** stays connected to the server. By default, output files are written in the current directory with the same names as the original log files. Output file names can be modified using the `--result-file` option. For more information, see Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”.
 
-* [`--read-from-remote-source=type`](mysqlbinlog.html#option_mysqlbinlog_read-from-remote-source)
+* `--read-from-remote-source=type`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--bind-address=ip_address</code></td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>8
 
-  From MySQL 8.0.26, use
-  `--read-from-remote-source`, and before MySQL
-  8.0.26, use
-  [`--read-from-remote-master`](mysqlbinlog.html#option_mysqlbinlog_read-from-remote-master).
-  Both options have the same effect. The options read binary
-  logs from a MySQL server with the
-  `COM_BINLOG_DUMP` or
-  `COM_BINLOG_DUMP_GTID` commands by setting
-  the option value to either
-  `BINLOG-DUMP-NON-GTIDS` or
-  `BINLOG-DUMP-GTIDS`, respectively. If
-  [`--read-from-remote-source=BINLOG-DUMP-GTIDS`](mysqlbinlog.html#option_mysqlbinlog_read-from-remote-source)
-  or
-  [`--read-from-remote-master=BINLOG-DUMP-GTIDS`](mysqlbinlog.html#option_mysqlbinlog_read-from-remote-master)
-  is combined with
-  [`--exclude-gtids`](mysqlbinlog.html#option_mysqlbinlog_exclude-gtids),
-  transactions can be filtered out on the source, avoiding
-  unnecessary network traffic.
+  From MySQL 8.0.26, use `--read-from-remote-source`, and before MySQL 8.0.26, use `--read-from-remote-master`. Both options have the same effect. The options read binary logs from a MySQL server with the `COM_BINLOG_DUMP` or `COM_BINLOG_DUMP_GTID` commands by setting the option value to either `BINLOG-DUMP-NON-GTIDS` or `BINLOG-DUMP-GTIDS`, respectively. If `--read-from-remote-source=BINLOG-DUMP-GTIDS` or `--read-from-remote-master=BINLOG-DUMP-GTIDS` is combined with `--exclude-gtids`, transactions can be filtered out on the source, avoiding unnecessary network traffic.
 
-  The connection parameter options are used with these options
-  or the
-  [`--read-from-remote-server`](mysqlbinlog.html#option_mysqlbinlog_read-from-remote-server)
-  option. These options are
-  [`--host`](mysqlbinlog.html#option_mysqlbinlog_host),
-  [`--password`](mysqlbinlog.html#option_mysqlbinlog_password),
-  [`--port`](mysqlbinlog.html#option_mysqlbinlog_port),
-  [`--protocol`](mysqlbinlog.html#option_mysqlbinlog_protocol),
-  [`--socket`](mysqlbinlog.html#option_mysqlbinlog_socket), and
-  [`--user`](mysqlbinlog.html#option_mysqlbinlog_user). If none of the
-  remote options is specified, the connection parameter
-  options are ignored.
+  The connection parameter options are used with these options or the `--read-from-remote-server` option. These options are `--host`, `--password`, `--port`, `--protocol`, `--socket`, and `--user`. If none of the remote options is specified, the connection parameter options are ignored.
 
-  The [`REPLICATION SLAVE`](privileges-provided.html#priv_replication-slave)
-  privilege is required to use these options.
+  The `REPLICATION SLAVE` privilege is required to use these options.
 
-* [`--read-from-remote-master=type`](mysqlbinlog.html#option_mysqlbinlog_read-from-remote-master)
+* `--read-from-remote-master=type`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--bind-address=ip_address</code></td>
-</tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>9
 
-  Use this option before MySQL 8.0.26 rather than
-  [`--read-from-remote-source`](mysqlbinlog.html#option_mysqlbinlog_read-from-remote-source).
-  Both options have the same effect.
+  Use this option before MySQL 8.0.26 rather than `--read-from-remote-source`. Both options have the same effect.
 
-* [`--read-from-remote-server=file_name`](mysqlbinlog.html#option_mysqlbinlog_read-from-remote-server),
-  `-R`
+* `--read-from-remote-server=file_name`, `-R`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--binlog-row-event-max-size=#</code></td>
-</tr><tr><th>Type</th>
-<td>Numeric</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">4294967040</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">256</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">18446744073709547520</code></td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>0
 
-  Read the binary log from a MySQL server rather than reading
-  a local log file. This option requires that the remote
-  server be running. It works only for binary log files on the
-  remote server and not relay log files. This accepts the
-  binary log file name (including the numeric suffix) without
-  the file path.
+  Read the binary log from a MySQL server rather than reading a local log file. This option requires that the remote server be running. It works only for binary log files on the remote server and not relay log files. This accepts the binary log file name (including the numeric suffix) without the file path.
 
-  The connection parameter options are used with this option
-  or the
-  [`--read-from-remote-master`](mysqlbinlog.html#option_mysqlbinlog_read-from-remote-master)
-  option. These options are
-  [`--host`](mysqlbinlog.html#option_mysqlbinlog_host),
-  [`--password`](mysqlbinlog.html#option_mysqlbinlog_password),
-  [`--port`](mysqlbinlog.html#option_mysqlbinlog_port),
-  [`--protocol`](mysqlbinlog.html#option_mysqlbinlog_protocol),
-  [`--socket`](mysqlbinlog.html#option_mysqlbinlog_socket), and
-  [`--user`](mysqlbinlog.html#option_mysqlbinlog_user). If neither of
-  the remote options is specified, the connection parameter
-  options are ignored.
+  The connection parameter options are used with this option or the `--read-from-remote-master` option. These options are `--host`, `--password`, `--port`, `--protocol`, `--socket`, and `--user`. If neither of the remote options is specified, the connection parameter options are ignored.
 
-  The [`REPLICATION SLAVE`](privileges-provided.html#priv_replication-slave)
-  privilege is required to use this option.
+  The `REPLICATION SLAVE` privilege is required to use this option.
 
-  This option is like
-  [`--read-from-remote-master=BINLOG-DUMP-NON-GTIDS`](mysqlbinlog.html#option_mysqlbinlog_read-from-remote-master).
+  This option is like `--read-from-remote-master=BINLOG-DUMP-NON-GTIDS`.
 
-* [`--result-file=name`](mysqlbinlog.html#option_mysqlbinlog_result-file),
-  `-r name`
+* `--result-file=name`, `-r name`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--binlog-row-event-max-size=#</code></td>
-</tr><tr><th>Type</th>
-<td>Numeric</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">4294967040</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">256</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">18446744073709547520</code></td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>1
 
-  Without the [`--raw`](mysqlbinlog.html#option_mysqlbinlog_raw)
-  option, this option indicates the file to which
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") writes text output. With
-  [`--raw`](mysqlbinlog.html#option_mysqlbinlog_raw),
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") writes one binary output file
-  for each log file transferred from the server, writing them
-  by default in the current directory using the same names as
-  the original log file. In this case, the
-  [`--result-file`](mysqlbinlog.html#option_mysqlbinlog_result-file) option
-  value is treated as a prefix that modifies output file
-  names.
+  Without the `--raw` option, this option indicates the file to which **mysqlbinlog** writes text output. With `--raw`, **mysqlbinlog** writes one binary output file for each log file transferred from the server, writing them by default in the current directory using the same names as the original log file. In this case, the `--result-file` option value is treated as a prefix that modifies output file names.
 
-* [`--require-row-format`](mysqlbinlog.html#option_mysqlbinlog_require-row-format)
+* `--require-row-format`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--binlog-row-event-max-size=#</code></td>
-</tr><tr><th>Type</th>
-<td>Numeric</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">4294967040</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">256</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">18446744073709547520</code></td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>2
 
-  Require row-based binary logging format for events. This
-  option enforces row-based replication events for
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") output. The stream of events
-  produced with this option would be accepted by a replication
-  channel that is secured using the
-  `REQUIRE_ROW_FORMAT` option of the
-  [`CHANGE REPLICATION SOURCE TO`](change-replication-source-to.html "15.4.2.3 CHANGE REPLICATION SOURCE TO Statement")
-  statement (from MySQL 8.0.23) or [`CHANGE
-  MASTER TO`](change-master-to.html "15.4.2.1 CHANGE MASTER TO Statement") statement (before MySQL 8.0.23).
-  [`binlog_format=ROW`](replication-options-binary-log.html#sysvar_binlog_format) must be
-  set on the server where the binary log was written. When you
-  specify this option, [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") stops
-  with an error message if it encounters any events that are
-  disallowed under the `REQUIRE_ROW_FORMAT`
-  restrictions, including `LOAD DATA INFILE`
-  instructions, creating or dropping temporary tables,
-  `INTVAR`, `RAND`, or
-  `USER_VAR` events, and non-row-based events
-  within a DML transaction. [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
-  also prints a `SET
-  @@session.require_row_format` statement at the
-  start of its output to apply the restrictions when the
-  output is executed, and does not print the `SET
-  @@session.pseudo_thread_id` statement.
+  Require row-based binary logging format for events. This option enforces row-based replication events for **mysqlbinlog** output. The stream of events produced with this option would be accepted by a replication channel that is secured using the `REQUIRE_ROW_FORMAT` option of the `CHANGE REPLICATION SOURCE TO` statement (from MySQL 8.0.23) or [`CHANGE MASTER TO`](change-master-to.html "15.4.2.1 CHANGE MASTER TO Statement") statement (before MySQL 8.0.23). `binlog_format=ROW` must be set on the server where the binary log was written. When you specify this option, **mysqlbinlog** stops with an error message if it encounters any events that are disallowed under the `REQUIRE_ROW_FORMAT` restrictions, including `LOAD DATA INFILE` instructions, creating or dropping temporary tables, `INTVAR`, `RAND`, or `USER_VAR` events, and non-row-based events within a DML transaction. **mysqlbinlog** also prints a `SET @@session.require_row_format` statement at the start of its output to apply the restrictions when the output is executed, and does not print the `SET @@session.pseudo_thread_id` statement.
 
   This option was added in MySQL 8.0.19.
 
-* [`--rewrite-db='from_name->to_name'`](mysqlbinlog.html#option_mysqlbinlog_rewrite-db)
+* `--rewrite-db='from_name->to_name'`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--binlog-row-event-max-size=#</code></td>
-</tr><tr><th>Type</th>
-<td>Numeric</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">4294967040</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">256</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">18446744073709547520</code></td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>3
 
-  When reading from a row-based or statement-based log,
-  rewrite all occurrences of
-  *`from_name`* to
-  *`to_name`*. Rewriting is done on the
-  rows, for row-based logs, as well as on the
-  [`USE`](use.html "15.8.4 USE Statement") clauses, for
-  statement-based logs.
+  When reading from a row-based or statement-based log, rewrite all occurrences of *`from_name`* to *`to_name`*. Rewriting is done on the rows, for row-based logs, as well as on the `USE` clauses, for statement-based logs.
 
   Warning
 
-  Statements in which table names are qualified with
-  database names are not rewritten to use the new name when
-  using this option.
+  Statements in which table names are qualified with database names are not rewritten to use the new name when using this option.
 
-  The rewrite rule employed as a value for this option is a
-  string having the form
-  `'from_name->to_name'`,
-  as shown previously, and for this reason must be enclosed by
-  quotation marks.
+  The rewrite rule employed as a value for this option is a string having the form `'from_name->to_name'`, as shown previously, and for this reason must be enclosed by quotation marks.
 
-  To employ multiple rewrite rules, specify the option
-  multiple times, as shown here:
+  To employ multiple rewrite rules, specify the option multiple times, as shown here:
 
   ```
   mysqlbinlog --rewrite-db='dbcurrent->dbold' --rewrite-db='dbtest->dbcurrent' \
       binlog.00001 > /tmp/statements.sql
   ```
 
-  When used together with the
-  [`--database`](mysqlbinlog.html#option_mysqlbinlog_database) option, the
-  `--rewrite-db` option is applied first; then
-  `--database` option is applied, using the
-  rewritten database name. The order in which the options are
-  provided makes no difference in this regard.
+  When used together with the `--database` option, the `--rewrite-db` option is applied first; then `--database` option is applied, using the rewritten database name. The order in which the options are provided makes no difference in this regard.
 
-  This means that, for example, if
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") is started with
-  `--rewrite-db='mydb->yourdb'
-  --database=yourdb`, then all updates to any tables
-  in databases `mydb` and
-  `yourdb` are included in the output. On the
-  other hand, if it is started with
-  `--rewrite-db='mydb->yourdb'
-  --database=mydb`, then
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") outputs no statements at all:
-  since all updates to `mydb` are first
-  rewritten as updates to `yourdb` before
-  applying the `--database` option, there
-  remain no updates that match
-  `--database=mydb`.
+  This means that, for example, if **mysqlbinlog** is started with `--rewrite-db='mydb->yourdb' --database=yourdb`, then all updates to any tables in databases `mydb` and `yourdb` are included in the output. On the other hand, if it is started with `--rewrite-db='mydb->yourdb' --database=mydb`, then **mysqlbinlog** outputs no statements at all: since all updates to `mydb` are first rewritten as updates to `yourdb` before applying the `--database` option, there remain no updates that match `--database=mydb`.
 
-* [`--server-id=id`](mysqlbinlog.html#option_mysqlbinlog_server-id)
+* `--server-id=id`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--binlog-row-event-max-size=#</code></td>
-</tr><tr><th>Type</th>
-<td>Numeric</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">4294967040</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">256</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">18446744073709547520</code></td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>4
 
-  Display only those events created by the server having the
-  given server ID.
+  Display only those events created by the server having the given server ID.
 
-* [`--server-id-bits=N`](mysqlbinlog.html#option_mysqlbinlog_server-id-bits)
+* `--server-id-bits=N`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--binlog-row-event-max-size=#</code></td>
-</tr><tr><th>Type</th>
-<td>Numeric</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">4294967040</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">256</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">18446744073709547520</code></td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>5
 
-  Use only the first *`N`* bits of the
-  [`server_id`](replication-options.html#sysvar_server_id) to identify the
-  server. If the binary log was written by a
-  [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") with server-id-bits set to less
-  than 32 and user data stored in the most significant bit,
-  running [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") with
-  `--server-id-bits` set to 32 enables this
-  data to be seen.
+  Use only the first *`N`* bits of the `server_id` to identify the server. If the binary log was written by a **mysqld** with server-id-bits set to less than 32 and user data stored in the most significant bit, running **mysqlbinlog** with `--server-id-bits` set to 32 enables this data to be seen.
 
-  This option is supported only by the version of
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") supplied with the NDB Cluster
-  distribution, or built with NDB Cluster support.
+  This option is supported only by the version of **mysqlbinlog** supplied with the NDB Cluster distribution, or built with NDB Cluster support.
 
-* [`--server-public-key-path=file_name`](mysqlbinlog.html#option_mysqlbinlog_server-public-key-path)
+* `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--binlog-row-event-max-size=#</code></td>
-</tr><tr><th>Type</th>
-<td>Numeric</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">4294967040</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">256</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">18446744073709547520</code></td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>6
 
-  The path name to a file in PEM format containing a
-  client-side copy of the public key required by the server
-  for RSA key pair-based password exchange. This option
-  applies to clients that authenticate with the
-  `sha256_password` or
-  `caching_sha2_password` authentication
-  plugin. This option is ignored for accounts that do not
-  authenticate with one of those plugins. It is also ignored
-  if RSA-based password exchange is not used, as is the case
-  when the client connects to the server using a secure
-  connection.
+  The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
-  If
-  [`--server-public-key-path=file_name`](mysqlbinlog.html#option_mysqlbinlog_server-public-key-path)
-  is given and specifies a valid public key file, it takes
-  precedence over
-  [`--get-server-public-key`](mysqlbinlog.html#option_mysqlbinlog_get-server-public-key).
+  If `--server-public-key-path=file_name` is given and specifies a valid public key file, it takes precedence over `--get-server-public-key`.
 
-  For `sha256_password`, this option applies
-  only if MySQL was built using OpenSSL.
+  For `sha256_password`, this option applies only if MySQL was built using OpenSSL.
 
-  For information about the `sha256_password`
-  and `caching_sha2_password` plugins, see
-  [Section 8.4.1.3, “SHA-256 Pluggable Authentication”](sha256-pluggable-authentication.html "8.4.1.3 SHA-256 Pluggable Authentication"), and
-  [Section 8.4.1.2, “Caching SHA-2 Pluggable Authentication”](caching-sha2-pluggable-authentication.html "8.4.1.2 Caching SHA-2 Pluggable Authentication").
+  For information about the `sha256_password` and `caching_sha2_password` plugins, see Section 8.4.1.3, “SHA-256 Pluggable Authentication”, and Section 8.4.1.2, “Caching SHA-2 Pluggable Authentication”.
 
-* [`--set-charset=charset_name`](mysqlbinlog.html#option_mysqlbinlog_set-charset)
+* `--set-charset=charset_name`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--binlog-row-event-max-size=#</code></td>
-</tr><tr><th>Type</th>
-<td>Numeric</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">4294967040</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">256</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">18446744073709547520</code></td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>7
 
-  Add a [`SET NAMES
-  charset_name`](set-names.html "15.7.6.3 SET NAMES Statement") statement
-  to the output to specify the character set to be used for
-  processing log files.
+  Add a [`SET NAMES charset_name`](set-names.html "15.7.6.3 SET NAMES Statement") statement to the output to specify the character set to be used for processing log files.
 
-* [`--shared-memory-base-name=name`](mysqlbinlog.html#option_mysqlbinlog_shared-memory-base-name)
+* `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--binlog-row-event-max-size=#</code></td>
-</tr><tr><th>Type</th>
-<td>Numeric</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">4294967040</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">256</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">18446744073709547520</code></td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>8
 
-  On Windows, the shared-memory name to use for connections
-  made using shared memory to a local server. The default
-  value is `MYSQL`. The shared-memory name is
-  case-sensitive.
+  On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
 
-  This option applies only if the server was started with the
-  [`shared_memory`](server-system-variables.html#sysvar_shared_memory) system
-  variable enabled to support shared-memory connections.
+  This option applies only if the server was started with the `shared_memory` system variable enabled to support shared-memory connections.
 
-* [`--short-form`](mysqlbinlog.html#option_mysqlbinlog_short-form),
-  `-s`
+* `--short-form`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--binlog-row-event-max-size=#</code></td>
-</tr><tr><th>Type</th>
-<td>Numeric</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">4294967040</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">256</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">18446744073709547520</code></td>
-</tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>9
 
-  Display only the statements contained in the log, without
-  any extra information or row-based events. This is for
-  testing only, and should not be used in production systems.
-  It is deprecated, and you should expect it to be removed in
-  a future release.
+  Display only the statements contained in the log, without any extra information or row-based events. This is for testing only, and should not be used in production systems. It is deprecated, and you should expect it to be removed in a future release.
 
-* [`--skip-gtids[=(true|false)]`](mysqlbinlog.html#option_mysqlbinlog_skip-gtids)
+* `--skip-gtids[=(true|false)]`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>0
 
-  Do not include the GTIDs from the binary log files in the
-  output dump file. For example:
+  Do not include the GTIDs from the binary log files in the output dump file. For example:
 
   ```
   mysqlbinlog --skip-gtids binlog.000001 >  /tmp/dump.sql
   mysql -u root -p -e "source /tmp/dump.sql"
   ```
 
-  You should not normally use this option in production or in
-  recovery, except in the specific, and rare, scenarios where
-  the GTIDs are actively unwanted. For example, an
-  administrator might want to duplicate selected transactions
-  (such as table definitions) from a deployment to another,
-  unrelated, deployment that will not replicate to or from the
-  original. In that scenario,
-  [`--skip-gtids`](mysqlbinlog.html#option_mysqlbinlog_skip-gtids)
-  can be used to enable the administrator to apply the
-  transactions as if they were new, and ensure that the
-  deployments remain unrelated. However, you should only use
-  this option if the inclusion of the GTIDs causes a known
-  issue for your use case.
+  You should not normally use this option in production or in recovery, except in the specific, and rare, scenarios where the GTIDs are actively unwanted. For example, an administrator might want to duplicate selected transactions (such as table definitions) from a deployment to another, unrelated, deployment that will not replicate to or from the original. In that scenario, `--skip-gtids` can be used to enable the administrator to apply the transactions as if they were new, and ensure that the deployments remain unrelated. However, you should only use this option if the inclusion of the GTIDs causes a known issue for your use case.
 
-* [`--socket=path`](mysqlbinlog.html#option_mysqlbinlog_socket),
-  `-S path`
+* `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>1
 
-  For connections to `localhost`, the Unix
-  socket file to use, or, on Windows, the name of the named
-  pipe to use.
+  For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
 
-  On Windows, this option applies only if the server was
-  started with the [`named_pipe`](server-system-variables.html#sysvar_named_pipe)
-  system variable enabled to support named-pipe connections.
-  In addition, the user making the connection must be a member
-  of the Windows group specified by the
-  [`named_pipe_full_access_group`](server-system-variables.html#sysvar_named_pipe_full_access_group)
-  system variable.
+  On Windows, this option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
 
 * `--ssl*`
 
-  Options that begin with `--ssl` specify
-  whether to connect to the server using encryption and
-  indicate where to find SSL keys and certificates. See
-  [Command Options for Encrypted Connections](connection-options.html#encrypted-connection-options "Command Options for Encrypted Connections").
+  Options that begin with `--ssl` specify whether to connect to the server using encryption and indicate where to find SSL keys and certificates. See Command Options for Encrypted Connections.
 
-* [`--ssl-fips-mode={OFF|ON|STRICT}`](mysqlbinlog.html#option_mysqlbinlog_ssl-fips-mode)
+* `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>2
 
-  Controls whether to enable FIPS mode on the client side. The
-  [`--ssl-fips-mode`](mysqlbinlog.html#option_mysqlbinlog_ssl-fips-mode) option
-  differs from other
-  `--ssl-xxx`
-  options in that it is not used to establish encrypted
-  connections, but rather to affect which cryptographic
-  operations to permit. See [Section 8.8, “FIPS Support”](fips-mode.html "8.8 FIPS Support").
+  Controls whether to enable FIPS mode on the client side. The `--ssl-fips-mode` option differs from other `--ssl-xxx` options in that it is not used to establish encrypted connections, but rather to affect which cryptographic operations to permit. See Section 8.8, “FIPS Support”.
 
-  These [`--ssl-fips-mode`](mysqlbinlog.html#option_mysqlbinlog_ssl-fips-mode)
-  values are permitted:
+  These `--ssl-fips-mode` values are permitted:
 
   + `OFF`: Disable FIPS mode.
   + `ON`: Enable FIPS mode.
-  + `STRICT`: Enable “strict”
-    FIPS mode.
+  + `STRICT`: Enable “strict” FIPS mode.
 
   Note
 
-  If the OpenSSL FIPS Object Module is not available, the
-  only permitted value for
-  [`--ssl-fips-mode`](mysqlbinlog.html#option_mysqlbinlog_ssl-fips-mode) is
-  `OFF`. In this case, setting
-  [`--ssl-fips-mode`](mysqlbinlog.html#option_mysqlbinlog_ssl-fips-mode) to
-  `ON` or `STRICT` causes
-  the client to produce a warning at startup and to operate
-  in non-FIPS mode.
+  If the OpenSSL FIPS Object Module is not available, the only permitted value for `--ssl-fips-mode` is `OFF`. In this case, setting `--ssl-fips-mode` to `ON` or `STRICT` causes the client to produce a warning at startup and to operate in non-FIPS mode.
 
-  As of MySQL 8.0.34, this option is deprecated. Expect it to
-  be removed in a future version of MySQL.
+  As of MySQL 8.0.34, this option is deprecated. Expect it to be removed in a future version of MySQL.
 
-* [`--start-datetime=datetime`](mysqlbinlog.html#option_mysqlbinlog_start-datetime)
+* `--start-datetime=datetime`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>3
 
-  Start reading the binary log at the first event having a
-  timestamp equal to or later than the
-  *`datetime`* argument. The
-  *`datetime`* value is relative to the
-  local time zone on the machine where you run
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files"). The value should be in a
-  format accepted for the
-  [`DATETIME`](datetime.html "13.2.2 The DATE, DATETIME, and TIMESTAMP Types") or
-  [`TIMESTAMP`](datetime.html "13.2.2 The DATE, DATETIME, and TIMESTAMP Types") data types. For
-  example:
+  Start reading the binary log at the first event having a timestamp equal to or later than the *`datetime`* argument. The *`datetime`* value is relative to the local time zone on the machine where you run **mysqlbinlog**. The value should be in a format accepted for the `DATETIME` or `TIMESTAMP` data types. For example:
 
   ```
   mysqlbinlog --start-datetime="2005-12-25 11:25:56" binlog.000003
   ```
 
-  This option is useful for point-in-time recovery. See
-  [Section 9.5, “Point-in-Time (Incremental) Recovery”](point-in-time-recovery.html "9.5 Point-in-Time (Incremental) Recovery").
+  This option is useful for point-in-time recovery. See Section 9.5, “Point-in-Time (Incremental) Recovery” Recovery").
 
-* [`--start-position=N`](mysqlbinlog.html#option_mysqlbinlog_start-position),
-  `-j N`
+* `--start-position=N`, `-j N`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>4
 
-  Start decoding the binary log at the log position
-  *`N`*, including in the output any
-  events that begin at position *`N`*
-  or after. The position is a byte point in the log file, not
-  an event counter; it needs to point to the starting position
-  of an event to generate useful output. This option applies
-  to the first log file named on the command line.
+  Start decoding the binary log at the log position *`N`*, including in the output any events that begin at position *`N`* or after. The position is a byte point in the log file, not an event counter; it needs to point to the starting position of an event to generate useful output. This option applies to the first log file named on the command line.
 
-  Prior to MySQL 8.0.33, the maximum value supported for this
-  option was 4294967295 (232-1). In
-  MySQL 8.0.33 and later, it is 18446744073709551616
-  (264-1), unless
-  [`--read-from-remote-server`](mysqlbinlog.html#option_mysqlbinlog_read-from-remote-server)
-  or
-  [`--read-from-remote-source`](mysqlbinlog.html#option_mysqlbinlog_read-from-remote-source)
-  is also used, in which case the maximum is 4294967295.
+  Prior to MySQL 8.0.33, the maximum value supported for this option was 4294967295 (232-1). In MySQL 8.0.33 and later, it is 18446744073709551616 (264-1), unless `--read-from-remote-server` or `--read-from-remote-source` is also used, in which case the maximum is 4294967295.
 
-  This option is useful for point-in-time recovery. See
-  [Section 9.5, “Point-in-Time (Incremental) Recovery”](point-in-time-recovery.html "9.5 Point-in-Time (Incremental) Recovery").
+  This option is useful for point-in-time recovery. See Section 9.5, “Point-in-Time (Incremental) Recovery” Recovery").
 
-* [`--stop-datetime=datetime`](mysqlbinlog.html#option_mysqlbinlog_stop-datetime)
+* `--stop-datetime=datetime`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>5
 
-  Stop reading the binary log at the first event having a
-  timestamp equal to or later than the
-  *`datetime`* argument. See the
-  description of the
-  [`--start-datetime`](mysqlbinlog.html#option_mysqlbinlog_start-datetime) option
-  for information about the
-  *`datetime`* value.
+  Stop reading the binary log at the first event having a timestamp equal to or later than the *`datetime`* argument. See the description of the `--start-datetime` option for information about the *`datetime`* value.
 
-  This option is useful for point-in-time recovery. See
-  [Section 9.5, “Point-in-Time (Incremental) Recovery”](point-in-time-recovery.html "9.5 Point-in-Time (Incremental) Recovery").
+  This option is useful for point-in-time recovery. See Section 9.5, “Point-in-Time (Incremental) Recovery” Recovery").
 
-* [`--stop-never`](mysqlbinlog.html#option_mysqlbinlog_stop-never)
+* `--stop-never`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>6
 
-  This option is used with
-  [`--read-from-remote-server`](mysqlbinlog.html#option_mysqlbinlog_read-from-remote-server).
-  It tells [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") to remain connected
-  to the server. Otherwise [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
-  exits when the last log file has been transferred from the
-  server. [`--stop-never`](mysqlbinlog.html#option_mysqlbinlog_stop-never)
-  implies [`--to-last-log`](mysqlbinlog.html#option_mysqlbinlog_to-last-log),
-  so only the first log file to transfer need be named on the
-  command line.
+  This option is used with `--read-from-remote-server`. It tells **mysqlbinlog** to remain connected to the server. Otherwise **mysqlbinlog** exits when the last log file has been transferred from the server. `--stop-never` implies `--to-last-log`, so only the first log file to transfer need be named on the command line.
 
-  [`--stop-never`](mysqlbinlog.html#option_mysqlbinlog_stop-never) is commonly
-  used with [`--raw`](mysqlbinlog.html#option_mysqlbinlog_raw) to make
-  a live binary log backup, but also can be used without
-  [`--raw`](mysqlbinlog.html#option_mysqlbinlog_raw) to maintain a
-  continuous text display of log events as the server
-  generates them.
+  `--stop-never` is commonly used with `--raw` to make a live binary log backup, but also can be used without `--raw` to maintain a continuous text display of log events as the server generates them.
 
-  With [`--stop-never`](mysqlbinlog.html#option_mysqlbinlog_stop-never), by
-  default, [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") reports a server ID
-  of 1 when it connects to the server. Use
-  [`--connection-server-id`](mysqlbinlog.html#option_mysqlbinlog_connection-server-id)
-  to explicitly specify an alternative ID to report. It can be
-  used to avoid a conflict with the ID of a replica server or
-  another [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") process. See
-  [Section 6.6.9.4, “Specifying the mysqlbinlog Server ID”](mysqlbinlog-server-id.html "6.6.9.4 Specifying the mysqlbinlog Server ID").
+  With `--stop-never`, by default, **mysqlbinlog** reports a server ID of 1 when it connects to the server. Use `--connection-server-id` to explicitly specify an alternative ID to report. It can be used to avoid a conflict with the ID of a replica server or another **mysqlbinlog** process. See Section 6.6.9.4, “Specifying the mysqlbinlog Server ID”.
 
-* [`--stop-never-slave-server-id=id`](mysqlbinlog.html#option_mysqlbinlog_stop-never-slave-server-id)
+* `--stop-never-slave-server-id=id`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>7
 
-  This option is deprecated; expect it to be removed in a
-  future release. Use the
-  [`--connection-server-id`](mysqlbinlog.html#option_mysqlbinlog_connection-server-id)
-  option instead to specify a server ID for
-  [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") to report.
+  This option is deprecated; expect it to be removed in a future release. Use the `--connection-server-id` option instead to specify a server ID for **mysqlbinlog** to report.
 
-* [`--stop-position=N`](mysqlbinlog.html#option_mysqlbinlog_stop-position)
+* `--stop-position=N`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>8
 
-  Stop decoding the binary log at the log position
-  *`N`*, excluding from the output any
-  events that begin at position *`N`*
-  or after. The position is a byte point in the log file, not
-  an event counter; it needs to point to a spot after the
-  starting position of the last event you want to include in
-  the output. The event starting before position
-  *`N`* and finishing at or after the
-  position is the last event to be processed. This option
-  applies to the last log file named on the command line.
+  Stop decoding the binary log at the log position *`N`*, excluding from the output any events that begin at position *`N`* or after. The position is a byte point in the log file, not an event counter; it needs to point to a spot after the starting position of the last event you want to include in the output. The event starting before position *`N`* and finishing at or after the position is the last event to be processed. This option applies to the last log file named on the command line.
 
-  This option is useful for point-in-time recovery. See
-  [Section 9.5, “Point-in-Time (Incremental) Recovery”](point-in-time-recovery.html "9.5 Point-in-Time (Incremental) Recovery").
+  This option is useful for point-in-time recovery. See Section 9.5, “Point-in-Time (Incremental) Recovery” Recovery").
 
-* [`--tls-ciphersuites=ciphersuite_list`](mysqlbinlog.html#option_mysqlbinlog_tls-ciphersuites)
+* `--tls-ciphersuites=ciphersuite_list`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>9
 
-  The permissible ciphersuites for encrypted connections that
-  use TLSv1.3. The value is a list of one or more
-  colon-separated ciphersuite names. The ciphersuites that can
-  be named for this option depend on the SSL library used to
-  compile MySQL. For details, see
-  [Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”](encrypted-connection-protocols-ciphers.html "8.3.2 Encrypted Connection TLS Protocols and Ciphers").
+  The permissible ciphersuites for encrypted connections that use TLSv1.3. The value is a list of one or more colon-separated ciphersuite names. The ciphersuites that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
   This option was added in MySQL 8.0.16.
 
-* [`--tls-version=protocol_list`](mysqlbinlog.html#option_mysqlbinlog_tls-version)
+* `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress[={OFF|ON}]</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.17</td>
-</tr><tr><th>Deprecated</th>
-<td>8.0.18</td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>8.0.17</td> </tr><tr><th>Deprecated</th> <td>8.0.18</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>0
 
-  The permissible TLS protocols for encrypted connections. The
-  value is a list of one or more comma-separated protocol
-  names. The protocols that can be named for this option
-  depend on the SSL library used to compile MySQL. For
-  details, see
-  [Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”](encrypted-connection-protocols-ciphers.html "8.3.2 Encrypted Connection TLS Protocols and Ciphers").
+  The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
-* [`--to-last-log`](mysqlbinlog.html#option_mysqlbinlog_to-last-log),
-  `-t`
+* `--to-last-log`, `-t`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress[={OFF|ON}]</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.17</td>
-</tr><tr><th>Deprecated</th>
-<td>8.0.18</td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>8.0.17</td> </tr><tr><th>Deprecated</th> <td>8.0.18</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>1
 
-  Do not stop at the end of the requested binary log from a
-  MySQL server, but rather continue printing until the end of
-  the last binary log. If you send the output to the same
-  MySQL server, this may lead to an endless loop. This option
-  requires
-  [`--read-from-remote-server`](mysqlbinlog.html#option_mysqlbinlog_read-from-remote-server).
+  Do not stop at the end of the requested binary log from a MySQL server, but rather continue printing until the end of the last binary log. If you send the output to the same MySQL server, this may lead to an endless loop. This option requires `--read-from-remote-server`.
 
-* [`--user=user_name`](mysqlbinlog.html#option_mysqlbinlog_user),
-  `-u user_name`
+* `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress[={OFF|ON}]</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.17</td>
-</tr><tr><th>Deprecated</th>
-<td>8.0.18</td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>8.0.17</td> </tr><tr><th>Deprecated</th> <td>8.0.18</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>2
 
-  The user name of the MySQL account to use when connecting to
-  a remote server.
+  The user name of the MySQL account to use when connecting to a remote server.
 
-  If you are using the `Rewriter` plugin with
-  MySQL 8.0.31 or later, you should grant this user the
-  [`SKIP_QUERY_REWRITE`](privileges-provided.html#priv_skip-query-rewrite) privilege.
+  If you are using the `Rewriter` plugin with MySQL 8.0.31 or later, you should grant this user the `SKIP_QUERY_REWRITE` privilege.
 
-* [`--verbose`](mysqlbinlog.html#option_mysqlbinlog_verbose),
-  `-v`
+* `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress[={OFF|ON}]</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.17</td>
-</tr><tr><th>Deprecated</th>
-<td>8.0.18</td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>8.0.17</td> </tr><tr><th>Deprecated</th> <td>8.0.18</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>3
 
-  Reconstruct row events and display them as commented SQL
-  statements, with table partition information where
-  applicable. If this option is given twice (by passing in
-  either "-vv" or "--verbose --verbose"), the output includes
-  comments to indicate column data types and some metadata,
-  and informational log events such as row query log events if
-  the
-  [`binlog_rows_query_log_events`](replication-options-binary-log.html#sysvar_binlog_rows_query_log_events)
-  system variable is set to `TRUE`.
+  Reconstruct row events and display them as commented SQL statements, with table partition information where applicable. If this option is given twice (by passing in either "-vv" or "--verbose --verbose"), the output includes comments to indicate column data types and some metadata, and informational log events such as row query log events if the `binlog_rows_query_log_events` system variable is set to `TRUE`.
 
-  For examples that show the effect of
-  [`--base64-output`](mysqlbinlog.html#option_mysqlbinlog_base64-output) and
-  [`--verbose`](mysqlbinlog.html#option_mysqlbinlog_verbose) on row event
-  output, see [Section 6.6.9.2, “mysqlbinlog Row Event Display”](mysqlbinlog-row-events.html "6.6.9.2 mysqlbinlog Row Event Display").
+  For examples that show the effect of `--base64-output` and `--verbose` on row event output, see Section 6.6.9.2, “mysqlbinlog Row Event Display”.
 
-* [`--verify-binlog-checksum`](mysqlbinlog.html#option_mysqlbinlog_verify-binlog-checksum),
-  `-c`
+* `--verify-binlog-checksum`, `-c`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress[={OFF|ON}]</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.17</td>
-</tr><tr><th>Deprecated</th>
-<td>8.0.18</td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>8.0.17</td> </tr><tr><th>Deprecated</th> <td>8.0.18</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>4
 
   Verify checksums in binary log files.
 
-* [`--version`](mysqlbinlog.html#option_mysqlbinlog_version),
-  `-V`
+* `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress[={OFF|ON}]</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.17</td>
-</tr><tr><th>Deprecated</th>
-<td>8.0.18</td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>8.0.17</td> </tr><tr><th>Deprecated</th> <td>8.0.18</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>5
 
   Display version information and exit.
 
-  Unlike the case with previous versions of MySQL, the version
-  number shown by [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") when using
-  this option is the same as the MySQL Server version.
+  Unlike the case with previous versions of MySQL, the version number shown by **mysqlbinlog** when using this option is the same as the MySQL Server version.
 
-* [`--zstd-compression-level=level`](mysqlbinlog.html#option_mysqlbinlog_zstd-compression-level)
+* `--zstd-compression-level=level`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--compress[={OFF|ON}]</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.17</td>
-</tr><tr><th>Deprecated</th>
-<td>8.0.18</td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>8.0.17</td> </tr><tr><th>Deprecated</th> <td>8.0.18</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>6
 
-  The compression level to use for connections to the server
-  that use the `zstd` compression algorithm.
-  The permitted levels are from 1 to 22, with larger values
-  indicating increasing levels of compression. The default
-  `zstd` compression level is 3. The
-  compression level setting has no effect on connections that
-  do not use `zstd` compression.
+  The compression level to use for connections to the server that use the `zstd` compression algorithm. The permitted levels are from 1 to 22, with larger values indicating increasing levels of compression. The default `zstd` compression level is 3. The compression level setting has no effect on connections that do not use `zstd` compression.
 
-  For more information, see
-  [Section 6.2.8, “Connection Compression Control”](connection-compression-control.html "6.2.8 Connection Compression Control").
+  For more information, see Section 6.2.8, “Connection Compression Control”.
 
   This option was added in MySQL 8.0.18.
 
-You can pipe the output of [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") into
-the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") client to execute the events
-contained in the binary log. This technique is used to recover
-from an unexpected exit when you have an old backup (see
-[Section 9.5, “Point-in-Time (Incremental) Recovery”](point-in-time-recovery.html "9.5 Point-in-Time (Incremental) Recovery")). For example:
+You can pipe the output of **mysqlbinlog** into the **mysql** client to execute the events contained in the binary log. This technique is used to recover from an unexpected exit when you have an old backup (see Section 9.5, “Point-in-Time (Incremental) Recovery” Recovery")). For example:
 
 ```
 mysqlbinlog binlog.000001 | mysql -u root -p
@@ -2117,18 +664,9 @@ Or:
 mysqlbinlog binlog.[0-9]* | mysql -u root -p
 ```
 
-If the statements produced by [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") may
-contain [`BLOB`](blob.html "13.3.4 The BLOB and TEXT Types") values, these may
-cause problems when [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") processes them. In
-this case, invoke [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") with the
-[`--binary-mode`](mysql-command-options.html#option_mysql_binary-mode) option.
+If the statements produced by **mysqlbinlog** may contain `BLOB` values, these may cause problems when **mysql** processes them. In this case, invoke **mysql** with the `--binary-mode` option.
 
-You can also redirect the output of
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") to a text file instead, if you
-need to modify the statement log first (for example, to remove
-statements that you do not want to execute for some reason).
-After editing the file, execute the statements that it contains
-by using it as input to the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") program:
+You can also redirect the output of **mysqlbinlog** to a text file instead, if you need to modify the statement log first (for example, to remove statements that you do not want to execute for some reason). After editing the file, execute the statements that it contains by using it as input to the **mysql** program:
 
 ```
 mysqlbinlog binlog.000001 > tmpfile
@@ -2136,48 +674,24 @@ mysqlbinlog binlog.000001 > tmpfile
 mysql -u root -p < tmpfile
 ```
 
-When [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") is invoked with the
-[`--start-position`](mysqlbinlog.html#option_mysqlbinlog_start-position) option, it
-displays only those events with an offset in the binary log
-greater than or equal to a given position (the given position
-must match the start of one event). It also has options to stop
-and start when it sees an event with a given date and time. This
-enables you to perform point-in-time recovery using the
-[`--stop-datetime`](mysqlbinlog.html#option_mysqlbinlog_stop-datetime) option (to
-be able to say, for example, “roll forward my databases to
-how they were today at 10:30 a.m.”).
+When **mysqlbinlog** is invoked with the `--start-position` option, it displays only those events with an offset in the binary log greater than or equal to a given position (the given position must match the start of one event). It also has options to stop and start when it sees an event with a given date and time. This enables you to perform point-in-time recovery using the `--stop-datetime` option (to be able to say, for example, “roll forward my databases to how they were today at 10:30 a.m.”).
 
-**Processing multiple files.**
-If you have more than one binary log to execute on the MySQL
-server, the safe method is to process them all using a single
-connection to the server. Here is an example that demonstrates
-what may be *unsafe*:
+**Processing multiple files.** If you have more than one binary log to execute on the MySQL server, the safe method is to process them all using a single connection to the server. Here is an example that demonstrates what may be *unsafe*:
 
 ```
 mysqlbinlog binlog.000001 | mysql -u root -p # DANGER!!
 mysqlbinlog binlog.000002 | mysql -u root -p # DANGER!!
 ```
 
-Processing binary logs this way using multiple connections to
-the server causes problems if the first log file contains a
-[`CREATE TEMPORARY
-TABLE`](create-table.html "15.1.20 CREATE TABLE Statement") statement and the second log contains a
-statement that uses the temporary table. When the first
-[**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") process terminates, the server drops
-the temporary table. When the second [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client")
-process attempts to use the table, the server reports
-“unknown table.”
+Processing binary logs this way using multiple connections to the server causes problems if the first log file contains a [`CREATE TEMPORARY TABLE`](create-table.html "15.1.20 CREATE TABLE Statement") statement and the second log contains a statement that uses the temporary table. When the first **mysql** process terminates, the server drops the temporary table. When the second **mysql** process attempts to use the table, the server reports “unknown table.”
 
-To avoid problems like this, use a *single*
-[**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") process to execute the contents of all
-binary logs that you want to process. Here is one way to do so:
+To avoid problems like this, use a *single* **mysql** process to execute the contents of all binary logs that you want to process. Here is one way to do so:
 
 ```
 mysqlbinlog binlog.000001 binlog.000002 | mysql -u root -p
 ```
 
-Another approach is to write all the logs to a single file and
-then process the file:
+Another approach is to write all the logs to a single file and then process the file:
 
 ```
 mysqlbinlog binlog.000001 >  /tmp/statements.sql
@@ -2185,17 +699,7 @@ mysqlbinlog binlog.000002 >> /tmp/statements.sql
 mysql -u root -p -e "source /tmp/statements.sql"
 ```
 
-From MySQL 8.0.12, you can also supply multiple binary log files
-to [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") as streamed input using a
-shell pipe. An archive of compressed binary log files can be
-decompressed and provided directly to
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files"). In this example,
-`binlog-files_1.gz` contains multiple binary
-log files for processing. The pipeline extracts the contents of
-`binlog-files_1.gz`, pipes the binary log
-files to [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") as standard input, and
-pipes the output of [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") into the
-[**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") client for execution:
+From MySQL 8.0.12, you can also supply multiple binary log files to **mysqlbinlog** as streamed input using a shell pipe. An archive of compressed binary log files can be decompressed and provided directly to **mysqlbinlog**. In this example, `binlog-files_1.gz` contains multiple binary log files for processing. The pipeline extracts the contents of `binlog-files_1.gz`, pipes the binary log files to **mysqlbinlog** as standard input, and pipes the output of **mysqlbinlog** into the **mysql** client for execution:
 
 ```
 gzip -cd binlog-files_1.gz | ./mysqlbinlog - | ./mysql -uroot  -p
@@ -2207,40 +711,12 @@ You can specify more than one archive file, for example:
 gzip -cd binlog-files_1.gz binlog-files_2.gz | ./mysqlbinlog - | ./mysql -uroot  -p
 ```
 
-For streamed input, do not use
-`--stop-position`, because
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") cannot identify the last log file
-to apply this option.
+For streamed input, do not use `--stop-position`, because **mysqlbinlog** cannot identify the last log file to apply this option.
 
-**LOAD DATA operations.**
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") can produce output that
-reproduces a [`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement")
-operation without the original data file.
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") copies the data to a temporary
-file and writes a
-[`LOAD DATA
-LOCAL`](load-data.html "15.2.9 LOAD DATA Statement") statement that refers to the file. The default
-location of the directory where these files are written is
-system-specific. To specify a directory explicitly, use the
-[`--local-load`](mysqlbinlog.html#option_mysqlbinlog_local-load) option.
+**LOAD DATA operations.** **mysqlbinlog** can produce output that reproduces a `LOAD DATA` operation without the original data file. **mysqlbinlog** copies the data to a temporary file and writes a [`LOAD DATA LOCAL`](load-data.html "15.2.9 LOAD DATA Statement") statement that refers to the file. The default location of the directory where these files are written is system-specific. To specify a directory explicitly, use the `--local-load` option.
 
-Because [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") converts
-[`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement") statements to
-[`LOAD DATA
-LOCAL`](load-data.html "15.2.9 LOAD DATA Statement") statements (that is, it adds
-`LOCAL`), both the client and the server that
-you use to process the statements must be configured with the
-`LOCAL` capability enabled. See
-[Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”](load-data-local-security.html "8.1.6 Security Considerations for LOAD DATA LOCAL").
+Because **mysqlbinlog** converts `LOAD DATA` statements to [`LOAD DATA LOCAL`](load-data.html "15.2.9 LOAD DATA Statement") statements (that is, it adds `LOCAL`), both the client and the server that you use to process the statements must be configured with the `LOCAL` capability enabled. See Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”.
 
 Warning
 
-The temporary files created for
-[`LOAD DATA
-LOCAL`](load-data.html "15.2.9 LOAD DATA Statement") statements are *not*
-automatically deleted because they are needed until you
-actually execute those statements. You should delete the
-temporary files yourself after you no longer need the
-statement log. The files can be found in the temporary file
-directory and have names like
-*`original_file_name-#-#`*.
+The temporary files created for [`LOAD DATA LOCAL`](load-data.html "15.2.9 LOAD DATA Statement") statements are *not* automatically deleted because they are needed until you actually execute those statements. You should delete the temporary files yourself after you no longer need the statement log. The files can be found in the temporary file directory and have names like *`original_file_name-#-#`*.

@@ -1,19 +1,12 @@
-#### 30.4.5.16 The ps\_thread\_stack() Function
+#### 30.4.5.16 The ps_thread_stack() Function
 
-Returns a JSON formatted stack of all statements, stages, and
-events within the Performance Schema for a given thread ID.
+Returns a JSON formatted stack of all statements, stages, and events within the Performance Schema for a given thread ID.
 
 ##### Parameters
 
-* `in_thread_id BIGINT`: The ID of the
-  thread to trace. The value should match the
-  `THREAD_ID` column from some
-  Performance Schema [`threads`](performance-schema-threads-table.html "29.12.21.8 The threads Table")
-  table row.
+* `in_thread_id BIGINT`: The ID of the thread to trace. The value should match the `THREAD_ID` column from some Performance Schema `threads` table row.
 
-* `in_verbose BOOLEAN`: Whether to
-  include `file:lineno` information in
-  the events.
+* `in_verbose BOOLEAN`: Whether to include `file:lineno` information in the events.
 
 ##### Return Value
 

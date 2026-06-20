@@ -1,15 +1,10 @@
-### 28.3.26 The INFORMATION\_SCHEMA RESOURCE\_GROUPS Table
+### 28.3.26 The INFORMATION_SCHEMA RESOURCE_GROUPS Table
 
-The [`RESOURCE_GROUPS`](information-schema-resource-groups-table.html "28.3.26 The INFORMATION_SCHEMA RESOURCE_GROUPS Table") table provides
-access to information about resource groups. For general
-discussion of the resource group capability, see
-[Section 7.1.16, “Resource Groups”](resource-groups.html "7.1.16 Resource Groups").
+The `RESOURCE_GROUPS` table provides access to information about resource groups. For general discussion of the resource group capability, see Section 7.1.16, “Resource Groups”.
 
-You can see information only for columns for which you have some
-privilege.
+You can see information only for columns for which you have some privilege.
 
-The [`RESOURCE_GROUPS`](information-schema-resource-groups-table.html "28.3.26 The INFORMATION_SCHEMA RESOURCE_GROUPS Table") table has these
-columns:
+The `RESOURCE_GROUPS` table has these columns:
 
 * `RESOURCE_GROUP_NAME`
 
@@ -17,8 +12,7 @@ columns:
 
 * `RESOURCE_GROUP_TYPE`
 
-  The resource group type, either `SYSTEM` or
-  `USER`.
+  The resource group type, either `SYSTEM` or `USER`.
 
 * `RESOURCE_GROUP_ENABLED`
 
@@ -26,14 +20,8 @@ columns:
 
 * `VCPU_IDS`
 
-  The CPU affinity; that is, the set of virtual CPUs that the
-  resource group can use. The value is a list of comma-separated
-  CPU numbers or ranges.
+  The CPU affinity; that is, the set of virtual CPUs that the resource group can use. The value is a list of comma-separated CPU numbers or ranges.
 
 * `THREAD_PRIORITY`
 
-  The priority for threads assigned to the resource group. The
-  priority ranges from -20 (highest priority) to 19 (lowest
-  priority). System resource groups have a priority that ranges
-  from -20 to 0. User resource groups have a priority that
-  ranges from 0 to 19.
+  The priority for threads assigned to the resource group. The priority ranges from -20 (highest priority) to 19 (lowest priority). System resource groups have a priority that ranges from -20 to 0. User resource groups have a priority that ranges from 0 to 19.

@@ -2,24 +2,13 @@
 
 ##### Downloading a MySQL NDB Cluster Docker Image
 
-Downloading the Docker image in a separate step is not strictly
-necessary; however, performing this step before you create your
-Docker containers ensures your local image is up to date. To
-download the MySQL NDB Cluster Community Edition image from the
-[Oracle
-Container Registry (OCR)](https://container-registry.oracle.com/), run this command:
+Downloading the Docker image in a separate step is not strictly necessary; however, performing this step before you create your Docker containers ensures your local image is up to date. To download the MySQL NDB Cluster Community Edition image from the [Oracle Container Registry (OCR)](https://container-registry.oracle.com/), run this command:
 
 ```
 docker pull container-registry.oracle.com/mysql/community-cluster:tag
 ```
 
-The *`tag`* is the label for the image
-version you want to pull (for example, `7.5`,
-`7.6`, `8.0`, or
-`latest`). If
-**`:tag`** is
-omitted, the `latest` label is used, and the
-image for the latest GA version of MySQL NDB Cluster is downloaded.
+The *`tag`* is the label for the image version you want to pull (for example, `7.5`, `7.6`, `8.0`, or `latest`). If **`:tag`** is omitted, the `latest` label is used, and the image for the latest GA version of MySQL NDB Cluster is downloaded.
 
 You can list downloaded Docker images with this command:
 
@@ -29,27 +18,17 @@ REPOSITORY                                              TAG       IMAGE ID      
 container-registry.oracle.com/mysql/community-cluster   8.0       d1b28e457ac5   5 weeks ago    636MB
 ```
 
-To download the MySQL Commercial Cluster image from the OCR, you
-need to first accept the license agreement
-. Follow these steps:
+To download the MySQL Commercial Cluster image from the OCR, you need to first accept the license agreement . Follow these steps:
 
-* Visit the OCR at
-  <https://container-registry.oracle.com/> and
-  choose MySQL.
+* Visit the OCR at <https://container-registry.oracle.com/> and choose MySQL.
 
-* Under the list of MySQL repositories, choose
-  `commercial-cluster`.
+* Under the list of MySQL repositories, choose `commercial-cluster`.
 
-* If you have not signed in to the OCR yet, click the
-  Sign in button on the right of the
-  page, and then enter your Oracle account credentials when
-  prompted to.
+* If you have not signed in to the OCR yet, click the Sign in button on the right of the page, and then enter your Oracle account credentials when prompted to.
 
-* Follow the instructions on the right of the page to accept
-  the license agreement.
+* Follow the instructions on the right of the page to accept the license agreement.
 
-Download the Docker image for MySQL Commercial Cluster from the
-OCR with this command:
+Download the Docker image for MySQL Commercial Cluster from the OCR with this command:
 
 ```
 docker pull  container-registry.oracle.com/mysql/commercial-cluster:tag
@@ -57,9 +36,7 @@ docker pull  container-registry.oracle.com/mysql/commercial-cluster:tag
 
 ##### Starting a MySQL Cluster Using Default Configuration
 
-First, create an internal Docker network named
-`cluster` for the containers to communicate
-with each other:
+First, create an internal Docker network named `cluster` for the containers to communicate with each other:
 
 ```
 docker network create cluster --subnet=192.168.0.0/16
@@ -87,31 +64,25 @@ Finally, start the MySQL server node:
 docker run -d --net=cluster --name=mysql1 --ip=192.168.0.10 -e MYSQL_RANDOM_ROOT_PASSWORD=true container-registry.oracle.com/mysql/community-cluster mysqld
 ```
 
-The server is then initialized with a randomized password, which
-needs to be changed. Fetch the password from the log:
+The server is then initialized with a randomized password, which needs to be changed. Fetch the password from the log:
 
 ```
 docker logs mysql1 2>&1 | grep PASSWORD
 ```
 
-If no password is returned by the command, the server has not
-finished initializing yet. Wait a while and try again. Once you
-get the password, change it by logging into the server with the
-`mysql` client:
+If no password is returned by the command, the server has not finished initializing yet. Wait a while and try again. Once you get the password, change it by logging into the server with the `mysql` client:
 
 ```
 docker exec -it mysql1 mysql -uroot -p
 ```
 
-Once you are on the server, change the root password with the
-following statement:
+Once you are on the server, change the root password with the following statement:
 
 ```
 mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
 ```
 
-Finally, start a container with an interactive management client
-[**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client") to monitor the cluster:
+Finally, start a container with an interactive management client **ndb_mgm** to monitor the cluster:
 
 ```
 $> docker run -it --net=cluster container-registry.oracle.com/mysql/community-cluster ndb_mgm
@@ -120,8 +91,7 @@ $> docker run -it --net=cluster container-registry.oracle.com/mysql/community-cl
 -- NDB Cluster -- Management Client --
 ```
 
-Run the [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) command to
-print the cluster's status. You should see the following:
+Run the `SHOW` command to print the cluster's status. You should see the following:
 
 ```
 ndb_mgm> SHOW
@@ -141,21 +111,12 @@ id=4	@192.168.0.10  (mysql-8.0.43-ndb-8.0.43)
 
 ##### Customizing MySQL Cluster
 
-The default MySQL NDB Cluster image includes two configuration files,
-which are also available in the
-[GitHub
-repository for MySQL NDB Cluster](https://github.com/mysql/mysql-docker/tree/mysql-cluster)
+The default MySQL NDB Cluster image includes two configuration files, which are also available in the [GitHub repository for MySQL NDB Cluster](https://github.com/mysql/mysql-docker/tree/mysql-cluster)
 
 * `/etc/my.cnf`
 * `/etc/mysql-cluster.cnf`
 
-To change the cluster (for instance, adding more nodes or
-changing the network setup), these files must be updated. For
-more information, see
-[Section 25.4.3, “NDB Cluster Configuration Files”](mysql-cluster-config-file.html "25.4.3 NDB Cluster Configuration Files"). To use custom
-configuration files when starting the container, use the
-`-v` flag to load external files. For example
-(enter the whole command on the same line):
+To change the cluster (for instance, adding more nodes or changing the network setup), these files must be updated. For more information, see Section 25.4.3, “NDB Cluster Configuration Files”. To use custom configuration files when starting the container, use the `-v` flag to load external files. For example (enter the whole command on the same line):
 
 ```
 $> docker run -d --net=cluster --name=management1 \

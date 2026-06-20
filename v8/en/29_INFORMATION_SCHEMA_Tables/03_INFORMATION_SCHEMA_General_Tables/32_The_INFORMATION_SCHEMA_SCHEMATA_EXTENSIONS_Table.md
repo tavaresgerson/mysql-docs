@@ -1,17 +1,12 @@
-### 28.3.32 The INFORMATION\_SCHEMA SCHEMATA\_EXTENSIONS Table
+### 28.3.32 The INFORMATION_SCHEMA SCHEMATA_EXTENSIONS Table
 
-The [`SCHEMATA_EXTENSIONS`](information-schema-schemata-extensions-table.html "28.3.32 The INFORMATION_SCHEMA SCHEMATA_EXTENSIONS Table") table
-(available as of MySQL 8.0.22) augments the
-[`SCHEMATA`](information-schema-schemata-table.html "28.3.31 The INFORMATION_SCHEMA SCHEMATA Table") table with information about
-schema options.
+The `SCHEMATA_EXTENSIONS` table (available as of MySQL 8.0.22) augments the `SCHEMATA` table with information about schema options.
 
-The [`SCHEMATA_EXTENSIONS`](information-schema-schemata-extensions-table.html "28.3.32 The INFORMATION_SCHEMA SCHEMATA_EXTENSIONS Table") table has
-these columns:
+The `SCHEMATA_EXTENSIONS` table has these columns:
 
 * `CATALOG_NAME`
 
-  The name of the catalog to which the schema belongs. This
-  value is always `def`.
+  The name of the catalog to which the schema belongs. This value is always `def`.
 
 * `SCHEMA_NAME`
 
@@ -19,10 +14,7 @@ these columns:
 
 * `OPTIONS`
 
-  The options for the schema. If the schema is read only, the
-  value contains `READ ONLY=1`. If the schema
-  is not read only, no `READ ONLY` option
-  appears.
+  The options for the schema. If the schema is read only, the value contains `READ ONLY=1`. If the schema is not read only, no `READ ONLY` option appears.
 
 #### Example
 
@@ -48,5 +40,4 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.SCHEMATA_EXTENSIONS
 
 #### Notes
 
-* [`SCHEMATA_EXTENSIONS`](information-schema-schemata-extensions-table.html "28.3.32 The INFORMATION_SCHEMA SCHEMATA_EXTENSIONS Table") is a
-  nonstandard `INFORMATION_SCHEMA` table.
+* `SCHEMATA_EXTENSIONS` is a nonstandard `INFORMATION_SCHEMA` table.

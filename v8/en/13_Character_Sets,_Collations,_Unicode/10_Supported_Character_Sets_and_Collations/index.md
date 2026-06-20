@@ -1,29 +1,8 @@
 ## 12.10 Supported Character Sets and Collations
 
-[12.10.1 Unicode Character Sets](charset-unicode-sets.html)
+This section indicates which character sets MySQL supports. There is one subsection for each group of related character sets. For each character set, the permissible collations are listed.
 
-[12.10.2 West European Character Sets](charset-we-sets.html)
-
-[12.10.3 Central European Character Sets](charset-ce-sets.html)
-
-[12.10.4 South European and Middle East Character Sets](charset-se-me-sets.html)
-
-[12.10.5 Baltic Character Sets](charset-baltic-sets.html)
-
-[12.10.6 Cyrillic Character Sets](charset-cyrillic-sets.html)
-
-[12.10.7 Asian Character Sets](charset-asian-sets.html)
-
-[12.10.8 The Binary Character Set](charset-binary-set.html)
-
-This section indicates which character sets MySQL supports. There
-is one subsection for each group of related character sets. For
-each character set, the permissible collations are listed.
-
-To list the available character sets and their default collations,
-use the [`SHOW CHARACTER SET`](show-character-set.html "15.7.7.3 SHOW CHARACTER SET Statement")
-statement or query the `INFORMATION_SCHEMA`
-[`CHARACTER_SETS`](information-schema-character-sets-table.html "28.3.4 The INFORMATION_SCHEMA CHARACTER_SETS Table") table. For example:
+To list the available character sets and their default collations, use the `SHOW CHARACTER SET` statement or query the `INFORMATION_SCHEMA` `CHARACTER_SETS` table. For example:
 
 ```
 mysql> SHOW CHARACTER SET;
@@ -74,9 +53,4 @@ mysql> SHOW CHARACTER SET;
 +----------+---------------------------------+---------------------+--------+
 ```
 
-In cases where a character set has multiple collations, it might
-not be clear which collation is most suitable for a given
-application. To avoid choosing the wrong collation, it can be
-helpful to perform some comparisons with representative data
-values to make sure that a given collation sorts values the way
-you expect.
+In cases where a character set has multiple collations, it might not be clear which collation is most suitable for a given application. To avoid choosing the wrong collation, it can be helpful to perform some comparisons with representative data values to make sure that a given collation sorts values the way you expect.

@@ -1,25 +1,12 @@
-#### 29.12.13.4 The table\_handles Table
+#### 29.12.13.4 The table_handles Table
 
-The Performance Schema exposes table lock information through
-the [`table_handles`](performance-schema-table-handles-table.html "29.12.13.4 The table_handles Table") table to show
-the table locks currently in effect for each opened table
-handle. [`table_handles`](performance-schema-table-handles-table.html "29.12.13.4 The table_handles Table") reports
-what is recorded by the table lock instrumentation. This
-information shows which table handles the server has open, how
-they are locked, and by which sessions.
+The Performance Schema exposes table lock information through the `table_handles` table to show the table locks currently in effect for each opened table handle. `table_handles` reports what is recorded by the table lock instrumentation. This information shows which table handles the server has open, how they are locked, and by which sessions.
 
-The [`table_handles`](performance-schema-table-handles-table.html "29.12.13.4 The table_handles Table") table is read
-only and cannot be updated. It is autosized by default; to
-configure the table size, set the
-[`performance_schema_max_table_handles`](performance-schema-system-variables.html#sysvar_performance_schema_max_table_handles)
-system variable at server startup.
+The `table_handles` table is read only and cannot be updated. It is autosized by default; to configure the table size, set the `performance_schema_max_table_handles` system variable at server startup.
 
-Table lock instrumentation uses the
-`wait/lock/table/sql/handler` instrument,
-which is enabled by default.
+Table lock instrumentation uses the `wait/lock/table/sql/handler` instrument, which is enabled by default.
 
-To control table lock instrumentation state at server startup,
-use lines like these in your `my.cnf` file:
+To control table lock instrumentation state at server startup, use lines like these in your `my.cnf` file:
 
 * Enable:
 
@@ -35,8 +22,7 @@ use lines like these in your `my.cnf` file:
   performance-schema-instrument='wait/lock/table/sql/handler=OFF'
   ```
 
-To control table lock instrumentation state at runtime, update
-the [`setup_instruments`](performance-schema-setup-instruments-table.html "29.12.2.3 The setup_instruments Table") table:
+To control table lock instrumentation state at runtime, update the `setup_instruments` table:
 
 * Enable:
 
@@ -54,8 +40,7 @@ the [`setup_instruments`](performance-schema-setup-instruments-table.html "29.12
   WHERE NAME = 'wait/lock/table/sql/handler';
   ```
 
-The [`table_handles`](performance-schema-table-handles-table.html "29.12.13.4 The table_handles Table") table has these
-columns:
+The `table_handles` table has these columns:
 
 * `OBJECT_TYPE`
 
@@ -83,32 +68,17 @@ columns:
 
 * `INTERNAL_LOCK`
 
-  The table lock used at the SQL level. The value is one of
-  `READ`, `READ WITH SHARED
-  LOCKS`, `READ HIGH PRIORITY`,
-  `READ NO INSERT`, `WRITE ALLOW
-  WRITE`, `WRITE CONCURRENT
-  INSERT`, `WRITE LOW PRIORITY`,
-  or `WRITE`. For information about these
-  lock types, see the
-  `include/thr_lock.h` source file.
+  The table lock used at the SQL level. The value is one of `READ`, `READ WITH SHARED LOCKS`, `READ HIGH PRIORITY`, `READ NO INSERT`, `WRITE ALLOW WRITE`, `WRITE CONCURRENT INSERT`, `WRITE LOW PRIORITY`, or `WRITE`. For information about these lock types, see the `include/thr_lock.h` source file.
 
 * `EXTERNAL_LOCK`
 
-  The table lock used at the storage engine level. The value
-  is one of `READ EXTERNAL` or
-  `WRITE EXTERNAL`.
+  The table lock used at the storage engine level. The value is one of `READ EXTERNAL` or `WRITE EXTERNAL`.
 
-The [`table_handles`](performance-schema-table-handles-table.html "29.12.13.4 The table_handles Table") table has these
-indexes:
+The `table_handles` table has these indexes:
 
 * Primary key on (`OBJECT_INSTANCE_BEGIN`)
-* Index on (`OBJECT_TYPE`,
-  `OBJECT_SCHEMA`,
-  `OBJECT_NAME`)
+* Index on (`OBJECT_TYPE`, `OBJECT_SCHEMA`, `OBJECT_NAME`)
 
-* Index on (`OWNER_THREAD_ID`,
-  `OWNER_EVENT_ID`)
+* Index on (`OWNER_THREAD_ID`, `OWNER_EVENT_ID`)
 
-[`TRUNCATE TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") is not permitted
-for the [`table_handles`](performance-schema-table-handles-table.html "29.12.13.4 The table_handles Table") table.
+`TRUNCATE TABLE` is not permitted for the `table_handles` table.

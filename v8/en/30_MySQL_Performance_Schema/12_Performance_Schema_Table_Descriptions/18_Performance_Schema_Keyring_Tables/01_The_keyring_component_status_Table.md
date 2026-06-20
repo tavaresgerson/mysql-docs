@@ -1,18 +1,10 @@
-#### 29.12.18.1 The keyring\_component\_status Table
+#### 29.12.18.1 The keyring_component_status Table
 
-The [`keyring_component_status`](performance-schema-keyring-component-status-table.html "29.12.18.1 The keyring_component_status Table")
-table (available as of MySQL 8.0.24) provides status
-information about the properties of the keyring component in
-use, if one is installed. The table is empty if no keyring
-component is installed (for example, if the keyring is not
-being used, or is configured to manage the keystore using a
-keyring plugin rather than a keyring component).
+The `keyring_component_status` table (available as of MySQL 8.0.24) provides status information about the properties of the keyring component in use, if one is installed. The table is empty if no keyring component is installed (for example, if the keyring is not being used, or is configured to manage the keystore using a keyring plugin rather than a keyring component).
 
-There is no fixed set of properties. Each keyring component is
-free to define its own set.
+There is no fixed set of properties. Each keyring component is free to define its own set.
 
-Example [`keyring_component_status`](performance-schema-keyring-component-status-table.html "29.12.18.1 The keyring_component_status Table")
-contents:
+Example `keyring_component_status` contents:
 
 ```
 mysql> SELECT * FROM performance_schema.keyring_component_status;
@@ -30,8 +22,7 @@ mysql> SELECT * FROM performance_schema.keyring_component_status;
 +---------------------+-------------------------------------------------+
 ```
 
-The [`keyring_component_status`](performance-schema-keyring-component-status-table.html "29.12.18.1 The keyring_component_status Table")
-table has these columns:
+The `keyring_component_status` table has these columns:
 
 * `STATUS_KEY`
 
@@ -41,9 +32,6 @@ table has these columns:
 
   The status item value.
 
-The [`keyring_component_status`](performance-schema-keyring-component-status-table.html "29.12.18.1 The keyring_component_status Table")
-table has no indexes.
+The `keyring_component_status` table has no indexes.
 
-[`TRUNCATE TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") is not permitted
-for the [`keyring_component_status`](performance-schema-keyring-component-status-table.html "29.12.18.1 The keyring_component_status Table")
-table.
+`TRUNCATE TABLE` is not permitted for the `keyring_component_status` table.

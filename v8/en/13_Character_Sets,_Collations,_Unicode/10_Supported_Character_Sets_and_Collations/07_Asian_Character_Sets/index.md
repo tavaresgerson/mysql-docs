@@ -1,36 +1,18 @@
 ### 12.10.7 Asian Character Sets
 
-[12.10.7.1 The cp932 Character Set](charset-cp932.html)
+The Asian character sets that we support include Chinese, Japanese, Korean, and Thai. These can be complicated. For example, the Chinese sets must allow for thousands of different characters. See Section 12.10.7.1, “The cp932 Character Set”, for additional information about the `cp932` and `sjis` character sets. See Section 12.10.7.2, “The gb18030 Character Set”, for additional information about character set support for the Chinese National Standard GB 18030.
 
-[12.10.7.2 The gb18030 Character Set](charset-gb18030.html)
+For answers to some common questions and problems relating support for Asian character sets in MySQL, see [Section A.11, “MySQL 8.0 FAQ: MySQL Chinese, Japanese, and Korean Character Sets”](faqs-cjk.html "A.11 MySQL 8.0 FAQ: MySQL Chinese, Japanese, and Korean Character Sets").
 
-The Asian character sets that we support include Chinese,
-Japanese, Korean, and Thai. These can be complicated. For
-example, the Chinese sets must allow for thousands of different
-characters. See [Section 12.10.7.1, “The cp932 Character Set”](charset-cp932.html "12.10.7.1 The cp932 Character Set"), for additional
-information about the `cp932` and
-`sjis` character sets. See
-[Section 12.10.7.2, “The gb18030 Character Set”](charset-gb18030.html "12.10.7.2 The gb18030 Character Set"), for additional information
-about character set support for the Chinese National Standard GB
-18030.
-
-For answers to some common questions and problems relating
-support for Asian character sets in MySQL, see
-[Section A.11, “MySQL 8.0 FAQ: MySQL Chinese, Japanese, and Korean
-Character Sets”](faqs-cjk.html "A.11 MySQL 8.0 FAQ: MySQL Chinese, Japanese, and Korean Character Sets").
-
-* `big5` (Big5 Traditional Chinese)
-  collations:
+* `big5` (Big5 Traditional Chinese) collations:
 
   + `big5_bin`
   + `big5_chinese_ci` (default)
-* [`cp932`](charset-cp932.html "12.10.7.1 The cp932 Character Set")
-  (SJIS for Windows Japanese) collations:
+* `cp932` (SJIS for Windows Japanese) collations:
 
   + `cp932_bin`
   + `cp932_japanese_ci` (default)
-* `eucjpms` (UJIS for Windows Japanese)
-  collations:
+* `eucjpms` (UJIS for Windows Japanese) collations:
 
   + `eucjpms_bin`
   + `eucjpms_japanese_ci` (default)
@@ -38,8 +20,7 @@ Character Sets”](faqs-cjk.html "A.11 MySQL 8.0 FAQ: MySQL Chinese, Japanese, 
 
   + `euckr_bin`
   + `euckr_korean_ci` (default)
-* `gb2312` (GB2312 Simplified Chinese)
-  collations:
+* `gb2312` (GB2312 Simplified Chinese) collations:
 
   + `gb2312_bin`
   + `gb2312_chinese_ci` (default)
@@ -47,8 +28,7 @@ Character Sets”](faqs-cjk.html "A.11 MySQL 8.0 FAQ: MySQL Chinese, Japanese, 
 
   + `gbk_bin`
   + `gbk_chinese_ci` (default)
-* [`gb18030`](charset-gb18030.html "12.10.7.2 The gb18030 Character Set")
-  (China National Standard GB18030) collations:
+* `gb18030` (China National Standard GB18030) collations:
 
   + `gb18030_bin`
   + `gb18030_chinese_ci` (default)
@@ -66,5 +46,4 @@ Character Sets”](faqs-cjk.html "A.11 MySQL 8.0 FAQ: MySQL Chinese, Japanese, 
   + `ujis_bin`
   + `ujis_japanese_ci` (default)
 
-The `big5_chinese_ci` collation sorts on number
-of strokes.
+The `big5_chinese_ci` collation sorts on number of strokes.

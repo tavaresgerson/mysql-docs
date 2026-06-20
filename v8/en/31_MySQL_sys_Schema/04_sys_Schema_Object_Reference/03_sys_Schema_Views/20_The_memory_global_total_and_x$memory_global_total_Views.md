@@ -1,10 +1,8 @@
-#### 30.4.3.20 The memory\_global\_total and x$memory\_global\_total Views
+#### 30.4.3.20 The memory_global_total and x$memory_global_total Views
 
 These views summarize total memory use within the server.
 
-The [`memory_global_total`](sys-memory-global-total.html "30.4.3.20 The memory_global_total and x$memory_global_total Views") and
-[`x$memory_global_total`](sys-memory-global-total.html "30.4.3.20 The memory_global_total and x$memory_global_total Views") views have
-these columns:
+The `memory_global_total` and `x$memory_global_total` views have these columns:
 
 * `total_allocated`
 

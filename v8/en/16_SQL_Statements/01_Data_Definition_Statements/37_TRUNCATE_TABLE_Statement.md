@@ -4,111 +4,38 @@
 TRUNCATE [TABLE] tbl_name
 ```
 
-[`TRUNCATE TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") empties a table
-completely. It requires the [`DROP`](privileges-provided.html#priv_drop)
-privilege. Logically, [`TRUNCATE
-TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") is similar to a
-[`DELETE`](delete.html "15.2.2 DELETE Statement") statement that deletes all
-rows, or a sequence of [`DROP TABLE`](drop-table.html "15.1.32 DROP TABLE Statement")
-and [`CREATE TABLE`](create-table.html "15.1.20 CREATE TABLE Statement") statements.
+`TRUNCATE TABLE` empties a table completely. It requires the `DROP` privilege. Logically, [`TRUNCATE TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") is similar to a `DELETE` statement that deletes all rows, or a sequence of `DROP TABLE` and `CREATE TABLE` statements.
 
-To achieve high performance, [`TRUNCATE
-TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") bypasses the DML method of deleting data. Thus, it
-does not cause `ON DELETE` triggers to fire, it
-cannot be performed for `InnoDB` tables with
-parent-child foreign key relationships, and it cannot be rolled
-back like a DML operation. However, `TRUNCATE
-TABLE` operations on tables that use a storage engine
-which supports atomic DDL are either fully committed or rolled
-back if the server halts during their operation. For more
-information, see [Section 15.1.1, “Atomic Data Definition Statement Support”](atomic-ddl.html "15.1.1 Atomic Data Definition Statement Support").
+To achieve high performance, [`TRUNCATE TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") bypasses the DML method of deleting data. Thus, it does not cause `ON DELETE` triggers to fire, it cannot be performed for `InnoDB` tables with parent-child foreign key relationships, and it cannot be rolled back like a DML operation. However, `TRUNCATE TABLE` operations on tables that use a storage engine which supports atomic DDL are either fully committed or rolled back if the server halts during their operation. For more information, see Section 15.1.1, “Atomic Data Definition Statement Support”.
 
-Although [`TRUNCATE TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") is similar
-to [`DELETE`](delete.html "15.2.2 DELETE Statement"), it is classified as a
-DDL statement rather than a DML statement. It differs from
-[`DELETE`](delete.html "15.2.2 DELETE Statement") in the following ways:
+Although `TRUNCATE TABLE` is similar to `DELETE`, it is classified as a DDL statement rather than a DML statement. It differs from `DELETE` in the following ways:
 
-* Truncate operations drop and re-create the table, which is
-  much faster than deleting rows one by one, particularly for
-  large tables.
+* Truncate operations drop and re-create the table, which is much faster than deleting rows one by one, particularly for large tables.
 
-* Truncate operations cause an implicit commit, and so cannot be
-  rolled back. See [Section 15.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "15.3.3 Statements That Cause an Implicit Commit").
+* Truncate operations cause an implicit commit, and so cannot be rolled back. See Section 15.3.3, “Statements That Cause an Implicit Commit”.
 
-* Truncation operations cannot be performed if the session holds
-  an active table lock.
+* Truncation operations cannot be performed if the session holds an active table lock.
 
-* [`TRUNCATE TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") fails for an
-  `InnoDB` table or
-  [`NDB`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 8.0") table if there are any
-  `FOREIGN KEY` constraints from other tables
-  that reference the table. Foreign key constraints between
-  columns of the same table are permitted.
+* `TRUNCATE TABLE` fails for an `InnoDB` table or `NDB` table if there are any `FOREIGN KEY` constraints from other tables that reference the table. Foreign key constraints between columns of the same table are permitted.
 
-* Truncation operations do not return a meaningful value for the
-  number of deleted rows. The usual result is “0 rows
-  affected,” which should be interpreted as “no
-  information.”
+* Truncation operations do not return a meaningful value for the number of deleted rows. The usual result is “0 rows affected,” which should be interpreted as “no information.”
 
-* As long as the table definition is valid, the table can be
-  re-created as an empty table with
-  [`TRUNCATE TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement"), even if the
-  data or index files have become corrupted.
+* As long as the table definition is valid, the table can be re-created as an empty table with `TRUNCATE TABLE`, even if the data or index files have become corrupted.
 
-* Any `AUTO_INCREMENT` value is reset to its
-  start value. This is true even for `MyISAM`
-  and `InnoDB`, which normally do not reuse
-  sequence values.
+* Any `AUTO_INCREMENT` value is reset to its start value. This is true even for `MyISAM` and `InnoDB`, which normally do not reuse sequence values.
 
-* When used with partitioned tables,
-  [`TRUNCATE TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") preserves the
-  partitioning; that is, the data and index files are dropped
-  and re-created, while the partition definitions are
-  unaffected.
+* When used with partitioned tables, `TRUNCATE TABLE` preserves the partitioning; that is, the data and index files are dropped and re-created, while the partition definitions are unaffected.
 
-* The [`TRUNCATE TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") statement
-  does not invoke `ON DELETE` triggers.
+* The `TRUNCATE TABLE` statement does not invoke `ON DELETE` triggers.
 
-* Truncating a corrupted `InnoDB` table is
-  supported.
+* Truncating a corrupted `InnoDB` table is supported.
 
-[`TRUNCATE TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") is treated for
-purposes of binary logging and replication as DDL rather than DML,
-and is always logged as a statement.
+`TRUNCATE TABLE` is treated for purposes of binary logging and replication as DDL rather than DML, and is always logged as a statement.
 
-[`TRUNCATE TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") for a table closes
-all handlers for the table that were opened with
-[`HANDLER OPEN`](handler.html "15.2.5 HANDLER Statement").
+`TRUNCATE TABLE` for a table closes all handlers for the table that were opened with `HANDLER OPEN`.
 
-In MySQL 5.7 and earlier, on a system with a large buffer pool and
-[`innodb_adaptive_hash_index`](innodb-parameters.html#sysvar_innodb_adaptive_hash_index)
-enabled, a `TRUNCATE TABLE` operation could cause
-a temporary drop in system performance due to an LRU scan that
-occurred when removing the table's adaptive hash index entries
-(Bug #68184). The remapping of [`TRUNCATE
-TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") to [`DROP TABLE`](drop-table.html "15.1.32 DROP TABLE Statement") and
-[`CREATE TABLE`](create-table.html "15.1.20 CREATE TABLE Statement") in MySQL 8.0 avoids
-the problematic LRU scan.
+In MySQL 5.7 and earlier, on a system with a large buffer pool and `innodb_adaptive_hash_index` enabled, a `TRUNCATE TABLE` operation could cause a temporary drop in system performance due to an LRU scan that occurred when removing the table's adaptive hash index entries (Bug #68184). The remapping of [`TRUNCATE TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") to `DROP TABLE` and `CREATE TABLE` in MySQL 8.0 avoids the problematic LRU scan.
 
-[`TRUNCATE TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") can be used with
-Performance Schema summary tables, but the effect is to reset the
-summary columns to 0 or `NULL`, not to remove
-rows. See [Section 29.12.20, “Performance Schema Summary Tables”](performance-schema-summary-tables.html "29.12.20 Performance Schema Summary Tables").
+`TRUNCATE TABLE` can be used with Performance Schema summary tables, but the effect is to reset the summary columns to 0 or `NULL`, not to remove rows. See Section 29.12.20, “Performance Schema Summary Tables”.
 
-Truncating an `InnoDB` table that resides in a
-file-per-table tablespace drops the existing tablespace and
-creates a new one. As of MySQL 8.0.21, if the tablespace was
-created with an earlier version and resides in an unknown
-directory, `InnoDB` creates the new tablespace in
-the default location and writes the following warning to the error
-log: The DATA DIRECTORY location must be in a known
-directory. The DATA DIRECTORY location will be ignored and the
-file will be put into the default datadir location.
-Known directories are those defined by the
-[`datadir`](server-system-variables.html#sysvar_datadir),
-[`innodb_data_home_dir`](innodb-parameters.html#sysvar_innodb_data_home_dir), and
-[`innodb_directories`](innodb-parameters.html#sysvar_innodb_directories) variables. To
-have [`TRUNCATE TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") create the
-tablespace in its current location, add the directory to the
-[`innodb_directories`](innodb-parameters.html#sysvar_innodb_directories) setting before
-running [`TRUNCATE TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement").
+Truncating an `InnoDB` table that resides in a file-per-table tablespace drops the existing tablespace and creates a new one. As of MySQL 8.0.21, if the tablespace was created with an earlier version and resides in an unknown directory, `InnoDB` creates the new tablespace in the default location and writes the following warning to the error log: The DATA DIRECTORY location must be in a known directory. The DATA DIRECTORY location will be ignored and the file will be put into the default datadir location. Known directories are those defined by the `datadir`, `innodb_data_home_dir`, and `innodb_directories` variables. To have `TRUNCATE TABLE` create the tablespace in its current location, add the directory to the `innodb_directories` setting before running `TRUNCATE TABLE`.

@@ -1,40 +1,24 @@
 #### 14.16.7.5 GeometryCollection Property Functions
 
-These functions return properties of
-`GeometryCollection` values.
+These functions return properties of `GeometryCollection` values.
 
-Unless otherwise specified, functions in this section handle
-their geometry arguments as follows:
+Unless otherwise specified, functions in this section handle their geometry arguments as follows:
 
-* If any argument is `NULL` or any geometry
-  argument is an empty geometry, the return value is
-  `NULL`.
+* If any argument is `NULL` or any geometry argument is an empty geometry, the return value is `NULL`.
 
-* If any geometry argument is not a syntactically well-formed
-  geometry, an
-  [`ER_GIS_INVALID_DATA`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_gis_invalid_data) error
-  occurs.
+* If any geometry argument is not a syntactically well-formed geometry, an `ER_GIS_INVALID_DATA` error occurs.
 
-* If any geometry argument is a syntactically well-formed
-  geometry in an undefined spatial reference system (SRS), an
-  [`ER_SRS_NOT_FOUND`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_srs_not_found) error
-  occurs.
+* If any geometry argument is a syntactically well-formed geometry in an undefined spatial reference system (SRS), an `ER_SRS_NOT_FOUND` error occurs.
 
 * Otherwise, the return value is non-`NULL`.
 
-These functions are available for obtaining geometry collection
-properties:
+These functions are available for obtaining geometry collection properties:
 
-* [`ST_GeometryN(gc,
-  N)`](gis-geometrycollection-property-functions.html#function_st-geometryn)
+* [`ST_GeometryN(gc, N)`](gis-geometrycollection-property-functions.html#function_st-geometryn)
 
-  Returns the *`N`*-th geometry in the
-  `GeometryCollection` value
-  *`gc`*. Geometries are numbered
-  beginning with 1.
+  Returns the *`N`*-th geometry in the `GeometryCollection` value *`gc`*. Geometries are numbered beginning with 1.
 
-  [`ST_GeometryN()`](gis-geometrycollection-property-functions.html#function_st-geometryn) handles its
-  arguments as described in the introduction to this section.
+  `ST_GeometryN()` handles its arguments as described in the introduction to this section.
 
   ```
   mysql> SET @gc = 'GeometryCollection(Point(1 1),LineString(2 2, 3 3))';
@@ -46,15 +30,11 @@ properties:
   +-------------------------------------------------+
   ```
 
-* [`ST_NumGeometries(gc)`](gis-geometrycollection-property-functions.html#function_st-numgeometries)
+* `ST_NumGeometries(gc)`
 
-  Returns the number of geometries in the
-  `GeometryCollection` value
-  *`gc`*.
+  Returns the number of geometries in the `GeometryCollection` value *`gc`*.
 
-  [`ST_NumGeometries()`](gis-geometrycollection-property-functions.html#function_st-numgeometries) handles
-  its arguments as described in the introduction to this
-  section.
+  `ST_NumGeometries()` handles its arguments as described in the introduction to this section.
 
   ```
   mysql> SET @gc = 'GeometryCollection(Point(1 1),LineString(2 2, 3 3))';

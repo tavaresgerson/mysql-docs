@@ -9,8 +9,7 @@ query_expression_body:
     See Section 15.2.14, “Set Operations with UNION, INTERSECT, and EXCEPT”
 ```
 
-`INTERSECT` limits the result from multiple query
-blocks to those rows which are common to all. Example:
+`INTERSECT` limits the result from multiple query blocks to those rows which are common to all. Example:
 
 ```
 mysql> TABLE a;
@@ -61,13 +60,9 @@ mysql> TABLE a INTERSECT TABLE c;
 1 row in set (0.00 sec)
 ```
 
-As with [`UNION`](union.html "15.2.18 UNION Clause") and
-[`EXCEPT`](except.html "15.2.4 EXCEPT Clause"), if neither
-`DISTINCT` nor `ALL` is
-specified, the default is `DISTINCT`.
+As with `UNION` and `EXCEPT`, if neither `DISTINCT` nor `ALL` is specified, the default is `DISTINCT`.
 
-`DISTINCT` can remove duplicates from either side
-of the intersection, as shown here:
+`DISTINCT` can remove duplicates from either side of the intersection, as shown here:
 
 ```
 mysql> TABLE c INTERSECT DISTINCT TABLE c;
@@ -90,17 +85,11 @@ mysql> TABLE c INTERSECT ALL TABLE c;
 3 rows in set (0.00 sec)
 ```
 
-(`TABLE c INTERSECT TABLE c` is the equivalent of
-the first of the two statements just shown.)
+(`TABLE c INTERSECT TABLE c` is the equivalent of the first of the two statements just shown.)
 
-As with `UNION`, the operands must have the same
-number of columns. Result set column types are also determined as
-for `UNION`.
+As with `UNION`, the operands must have the same number of columns. Result set column types are also determined as for `UNION`.
 
-`INTERSECT` has greater precedence than and is
-evaluated before `UNION` and
-`EXCEPT`, so that the two statements shown here
-are equivalent:
+`INTERSECT` has greater precedence than and is evaluated before `UNION` and `EXCEPT`, so that the two statements shown here are equivalent:
 
 ```
 TABLE r EXCEPT TABLE s INTERSECT TABLE t;
@@ -108,8 +97,6 @@ TABLE r EXCEPT TABLE s INTERSECT TABLE t;
 TABLE r EXCEPT (TABLE s INTERSECT TABLE t);
 ```
 
-For `INTERSECT ALL`, the maximum supported number
-of duplicates of any unique row in the left hand table is
-`4294967295`.
+For `INTERSECT ALL`, the maximum supported number of duplicates of any unique row in the left hand table is `4294967295`.
 
 `INTERSECT` was added in MySQL 8.0.31.

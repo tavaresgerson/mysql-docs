@@ -1,35 +1,12 @@
 ## 17.19 InnoDB and MySQL Replication
 
-It is possible to use replication in a way where the storage engine
-on the replica is not the same as the storage engine on the source.
-For example, you can replicate modifications to an
-`InnoDB` table on the source to a
-`MyISAM` table on the replica. For more information
-see, [Section 19.4.4, “Using Replication with Different Source and Replica Storage Engines”](replication-solutions-diffengines.html "19.4.4 Using Replication with Different Source and Replica Storage Engines").
+It is possible to use replication in a way where the storage engine on the replica is not the same as the storage engine on the source. For example, you can replicate modifications to an `InnoDB` table on the source to a `MyISAM` table on the replica. For more information see, Section 19.4.4, “Using Replication with Different Source and Replica Storage Engines”.
 
-For information about setting up a replica, see
-[Section 19.1.2.6, “Setting Up Replicas”](replication-setup-replicas.html "19.1.2.6 Setting Up Replicas"), and
-[Section 19.1.2.5, “Choosing a Method for Data Snapshots”](replication-snapshot-method.html "19.1.2.5 Choosing a Method for Data Snapshots"). To make a new replica
-without taking down the source or an existing replica, use the
-[MySQL Enterprise Backup](mysql-enterprise-backup.html "32.1 MySQL Enterprise Backup Overview") product.
+For information about setting up a replica, see Section 19.1.2.6, “Setting Up Replicas”, and Section 19.1.2.5, “Choosing a Method for Data Snapshots”. To make a new replica without taking down the source or an existing replica, use the MySQL Enterprise Backup product.
 
-Transactions that fail on the source do not affect replication.
-MySQL replication is based on the binary log where MySQL writes SQL
-statements that modify data. A transaction that fails (for example,
-because of a foreign key violation, or because it is rolled back) is
-not written to the binary log, so it is not sent to replicas. See
-[Section 15.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "15.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements").
+Transactions that fail on the source do not affect replication. MySQL replication is based on the binary log where MySQL writes SQL statements that modify data. A transaction that fails (for example, because of a foreign key violation, or because it is rolled back) is not written to the binary log, so it is not sent to replicas. See Section 15.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”.
 
-**Replication and CASCADE.**
-Cascading actions for `InnoDB` tables on the
-source are executed on the replica *only* if
-the tables sharing the foreign key relation use
-`InnoDB` on both the source and replica. This is
-true whether you are using statement-based or row-based
-replication. Suppose that you have started replication, and then
-create two tables on the source, where `InnoDB`
-is defined as the default storage engine, using the following
-[`CREATE TABLE`](create-table.html "15.1.20 CREATE TABLE Statement") statements:
+**Replication and CASCADE.** Cascading actions for `InnoDB` tables on the source are executed on the replica *only* if the tables sharing the foreign key relation use `InnoDB` on both the source and replica. This is true whether you are using statement-based or row-based replication. Suppose that you have started replication, and then create two tables on the source, where `InnoDB` is defined as the default storage engine, using the following `CREATE TABLE` statements:
 
 ```
 CREATE TABLE fc1 (
@@ -45,11 +22,7 @@ CREATE TABLE fc2 (
 );
 ```
 
-If the replica has `MyISAM` defined as the default
-storage engine, the same tables are created on the replica, but they
-use the `MyISAM` storage engine, and the
-`FOREIGN KEY` option is ignored. Now we insert some
-rows into the tables on the source:
+If the replica has `MyISAM` defined as the default storage engine, the same tables are created on the replica, but they use the `MyISAM` storage engine, and the `FOREIGN KEY` option is ignored. Now we insert some rows into the tables on the source:
 
 ```
 source> INSERT INTO fc1 VALUES (1, 1), (2, 2);
@@ -61,9 +34,7 @@ Query OK, 3 rows affected (0.19 sec)
 Records: 3  Duplicates: 0  Warnings: 0
 ```
 
-At this point, on both the source and the replica, table
-`fc1` contains 2 rows, and table
-`fc2` contains 3 rows, as shown here:
+At this point, on both the source and the replica, table `fc1` contains 2 rows, and table `fc2` contains 3 rows, as shown here:
 
 ```
 source> SELECT * FROM fc1;
@@ -105,16 +76,14 @@ replica> SELECT * FROM fc2;
 3 rows in set (0.00 sec)
 ```
 
-Now suppose that you perform the following
-[`DELETE`](delete.html "15.2.2 DELETE Statement") statement on the source:
+Now suppose that you perform the following `DELETE` statement on the source:
 
 ```
 source> DELETE FROM fc1 WHERE i=1;
 Query OK, 1 row affected (0.09 sec)
 ```
 
-Due to the cascade, table `fc2` on the source now
-contains only 1 row:
+Due to the cascade, table `fc2` on the source now contains only 1 row:
 
 ```
 source> SELECT * FROM fc2;
@@ -126,11 +95,7 @@ source> SELECT * FROM fc2;
 1 row in set (0.00 sec)
 ```
 
-However, the cascade does not propagate on the replica because on
-the replica the [`DELETE`](delete.html "15.2.2 DELETE Statement") for
-`fc1` deletes no rows from `fc2`.
-The replica's copy of `fc2` still contains all of
-the rows that were originally inserted:
+However, the cascade does not propagate on the replica because on the replica the `DELETE` for `fc1` deletes no rows from `fc2`. The replica's copy of `fc2` still contains all of the rows that were originally inserted:
 
 ```
 replica> SELECT * FROM fc2;
@@ -144,6 +109,4 @@ replica> SELECT * FROM fc2;
 3 rows in set (0.00 sec)
 ```
 
-This difference is due to the fact that the cascading deletes are
-handled internally by the `InnoDB` storage engine,
-which means that none of the changes are logged.
+This difference is due to the fact that the cascading deletes are handled internally by the `InnoDB` storage engine, which means that none of the changes are logged.

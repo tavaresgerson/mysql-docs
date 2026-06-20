@@ -1,41 +1,14 @@
 ## 17.16 InnoDB Integration with MySQL Performance Schema
 
-[17.16.1 Monitoring ALTER TABLE Progress for InnoDB Tables Using Performance Schema](monitor-alter-table-performance-schema.html)
+This section provides a brief introduction to `InnoDB` integration with Performance Schema. For comprehensive Performance Schema documentation, see Chapter 29, *MySQL Performance Schema*.
 
-[17.16.2 Monitoring InnoDB Mutex Waits Using Performance Schema](monitor-innodb-mutex-waits-performance-schema.html)
+You can profile certain internal `InnoDB` operations using the MySQL [Performance Schema feature](performance-schema.html "Chapter 29 MySQL Performance Schema"). This type of tuning is primarily for expert users who evaluate optimization strategies to overcome performance bottlenecks. DBAs can also use this feature for capacity planning, to see whether their typical workload encounters any performance bottlenecks with a particular combination of CPU, RAM, and disk storage; and if so, to judge whether performance can be improved by increasing the capacity of some part of the system.
 
-This section provides a brief introduction to
-`InnoDB` integration with Performance Schema. For
-comprehensive Performance Schema documentation, see
-[Chapter 29, *MySQL Performance Schema*](performance-schema.html "Chapter 29 MySQL Performance Schema").
+To use this feature to examine `InnoDB` performance:
 
-You can profile certain internal `InnoDB`
-operations using the MySQL
-[Performance Schema
-feature](performance-schema.html "Chapter 29 MySQL Performance Schema"). This type of tuning is primarily for expert users
-who evaluate optimization strategies to overcome performance
-bottlenecks. DBAs can also use this feature for capacity planning,
-to see whether their typical workload encounters any performance
-bottlenecks with a particular combination of CPU, RAM, and disk
-storage; and if so, to judge whether performance can be improved by
-increasing the capacity of some part of the system.
+* You must be generally familiar with how to use the [Performance Schema feature](performance-schema.html "Chapter 29 MySQL Performance Schema"). For example, you should know how enable instruments and consumers, and how to query `performance_schema` tables to retrieve data. For an introductory overview, see Section 29.1, “Performance Schema Quick Start”.
 
-To use this feature to examine `InnoDB`
-performance:
-
-* You must be generally familiar with how to use the
-  [Performance Schema
-  feature](performance-schema.html "Chapter 29 MySQL Performance Schema"). For example, you should know how enable
-  instruments and consumers, and how to query
-  `performance_schema` tables to retrieve data.
-  For an introductory overview, see
-  [Section 29.1, “Performance Schema Quick Start”](performance-schema-quick-start.html "29.1 Performance Schema Quick Start").
-
-* You should be familiar with Performance Schema instruments that
-  are available for `InnoDB`. To view
-  `InnoDB`-related instruments, you can query the
-  [`setup_instruments`](performance-schema-setup-instruments-table.html "29.12.2.3 The setup_instruments Table") table for
-  instrument names that contain '`innodb`'.
+* You should be familiar with Performance Schema instruments that are available for `InnoDB`. To view `InnoDB`-related instruments, you can query the `setup_instruments` table for instrument names that contain '`innodb`'.
 
   ```
   mysql> SELECT *
@@ -80,30 +53,18 @@ performance:
   155 rows in set (0.00 sec)
   ```
 
-  For additional information about the instrumented
-  `InnoDB` objects, you can query Performance
-  Schema
-  [instances
-  tables](performance-schema-instance-tables.html "29.12.3 Performance Schema Instance Tables"), which provide additional information about
-  instrumented objects. Instance tables relevant to
-  `InnoDB` include:
+  For additional information about the instrumented `InnoDB` objects, you can query Performance Schema [instances tables](performance-schema-instance-tables.html "29.12.3 Performance Schema Instance Tables"), which provide additional information about instrumented objects. Instance tables relevant to `InnoDB` include:
 
-  + The [`mutex_instances`](performance-schema-mutex-instances-table.html "29.12.3.3 The mutex_instances Table") table
-  + The [`rwlock_instances`](performance-schema-rwlock-instances-table.html "29.12.3.4 The rwlock_instances Table") table
-  + The [`cond_instances`](performance-schema-cond-instances-table.html "29.12.3.1 The cond_instances Table") table
-  + The [`file_instances`](performance-schema-file-instances-table.html "29.12.3.2 The file_instances Table") table
+  + The `mutex_instances` table
+  + The `rwlock_instances` table
+  + The `cond_instances` table
+  + The `file_instances` table
 
   Note
 
-  Mutexes and RW-locks related to the `InnoDB`
-  buffer pool are not included in this coverage; the same
-  applies to the output of the `SHOW ENGINE INNODB
-  MUTEX` command.
+  Mutexes and RW-locks related to the `InnoDB` buffer pool are not included in this coverage; the same applies to the output of the `SHOW ENGINE INNODB MUTEX` command.
 
-  For example, to view information about instrumented
-  `InnoDB` file objects seen by the Performance
-  Schema when executing file I/O instrumentation, you might issue
-  the following query:
+  For example, to view information about instrumented `InnoDB` file objects seen by the Performance Schema when executing file I/O instrumentation, you might issue the following query:
 
   ```
   mysql> SELECT *
@@ -124,33 +85,12 @@ performance:
   ...
   ```
 
-* You should be familiar with
-  `performance_schema` tables that store
-  `InnoDB` event data. Tables relevant to
-  `InnoDB`-related events include:
+* You should be familiar with `performance_schema` tables that store `InnoDB` event data. Tables relevant to `InnoDB`-related events include:
 
-  + The [Wait
-    Event](performance-schema-wait-tables.html "29.12.4 Performance Schema Wait Event Tables") tables, which store wait events.
+  + The [Wait Event](performance-schema-wait-tables.html "29.12.4 Performance Schema Wait Event Tables") tables, which store wait events.
 
-  + The
-    [Summary](performance-schema-summary-tables.html "29.12.20 Performance Schema Summary Tables")
-    tables, which provide aggregated information for terminated
-    events over time. Summary tables include
-    [file
-    I/O summary tables](performance-schema-file-summary-tables.html "29.12.20.7 File I/O Summary Tables"), which aggregate information about
-    I/O operations.
+  + The Summary tables, which provide aggregated information for terminated events over time. Summary tables include [file I/O summary tables](performance-schema-file-summary-tables.html "29.12.20.7 File I/O Summary Tables"), which aggregate information about I/O operations.
 
-  + [Stage
-    Event](performance-schema-stage-tables.html "29.12.5 Performance Schema Stage Event Tables") tables, which store event data for
-    `InnoDB` [`ALTER
-    TABLE`](alter-table.html "15.1.9 ALTER TABLE Statement") and buffer pool load operations. For more
-    information, see
-    [Section 17.16.1, “Monitoring ALTER TABLE Progress for InnoDB Tables Using Performance
-    Schema”](monitor-alter-table-performance-schema.html "17.16.1 Monitoring ALTER TABLE Progress for InnoDB Tables Using Performance Schema"),
-    and
-    [Monitoring Buffer Pool Load Progress Using Performance Schema](innodb-preload-buffer-pool.html#monitor-buffer-pool-load-performance-schema "Monitoring Buffer Pool Load Progress Using Performance Schema").
+  + [Stage Event](performance-schema-stage-tables.html "29.12.5 Performance Schema Stage Event Tables") tables, which store event data for `InnoDB` [`ALTER TABLE`](alter-table.html "15.1.9 ALTER TABLE Statement") and buffer pool load operations. For more information, see [Section 17.16.1, “Monitoring ALTER TABLE Progress for InnoDB Tables Using Performance Schema”](monitor-alter-table-performance-schema.html "17.16.1 Monitoring ALTER TABLE Progress for InnoDB Tables Using Performance Schema"), and Monitoring Buffer Pool Load Progress Using Performance Schema.
 
-  If you are only interested in `InnoDB`-related
-  objects, use the clause `WHERE EVENT_NAME LIKE
-  '%innodb%'` or `WHERE NAME LIKE
-  '%innodb%'` (as required) when querying these tables.
+  If you are only interested in `InnoDB`-related objects, use the clause `WHERE EVENT_NAME LIKE '%innodb%'` or `WHERE NAME LIKE '%innodb%'` (as required) when querying these tables.

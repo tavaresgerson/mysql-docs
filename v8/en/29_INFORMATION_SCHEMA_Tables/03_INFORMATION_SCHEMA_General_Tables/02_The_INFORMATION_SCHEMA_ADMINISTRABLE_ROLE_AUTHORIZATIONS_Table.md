@@ -1,12 +1,8 @@
-### 28.3.2 The INFORMATION\_SCHEMA ADMINISTRABLE\_ROLE\_AUTHORIZATIONS Table
+### 28.3.2 The INFORMATION_SCHEMA ADMINISTRABLE_ROLE_AUTHORIZATIONS Table
 
-The [`ADMINISTRABLE_ROLE_AUTHORIZATIONS`](information-schema-administrable-role-authorizations-table.html "28.3.2 The INFORMATION_SCHEMA ADMINISTRABLE_ROLE_AUTHORIZATIONS Table")
-table (available as of MySQL 8.0.19) provides information about
-which roles applicable for the current user or role can be granted
-to other users or roles.
+The `ADMINISTRABLE_ROLE_AUTHORIZATIONS` table (available as of MySQL 8.0.19) provides information about which roles applicable for the current user or role can be granted to other users or roles.
 
-The [`ADMINISTRABLE_ROLE_AUTHORIZATIONS`](information-schema-administrable-role-authorizations-table.html "28.3.2 The INFORMATION_SCHEMA ADMINISTRABLE_ROLE_AUTHORIZATIONS Table")
-table has these columns:
+The `ADMINISTRABLE_ROLE_AUTHORIZATIONS` table has these columns:
 
 * `USER`
 
@@ -18,13 +14,11 @@ table has these columns:
 
 * `GRANTEE`
 
-  The user name part of the account to which the role is
-  granted.
+  The user name part of the account to which the role is granted.
 
 * `GRANTEE_HOST`
 
-  The host name part of the account to which the role is
-  granted.
+  The host name part of the account to which the role is granted.
 
 * `ROLE_NAME`
 
@@ -36,15 +30,12 @@ table has these columns:
 
 * `IS_GRANTABLE`
 
-  `YES` or `NO`, depending on
-  whether the role is grantable to other accounts.
+  `YES` or `NO`, depending on whether the role is grantable to other accounts.
 
 * `IS_DEFAULT`
 
-  `YES` or `NO`, depending on
-  whether the role is a default role.
+  `YES` or `NO`, depending on whether the role is a default role.
 
 * `IS_MANDATORY`
 
-  `YES` or `NO`, depending on
-  whether the role is mandatory.
+  `YES` or `NO`, depending on whether the role is mandatory.

@@ -1,8 +1,6 @@
-#### 30.4.5.4 The format\_path() Function
+#### 30.4.5.4 The format_path() Function
 
-Given a path name, returns the modified path name after
-replacing subpaths that match the values of the following
-system variables, in order:
+Given a path name, returns the modified path name after replacing subpaths that match the values of the following system variables, in order:
 
 ```
 datadir
@@ -14,19 +12,15 @@ innodb_undo_directory
 basedir
 ```
 
-A value that matches the value of system variable
-*`sysvar`* is replaced with the string
-`@@GLOBAL.sysvar`.
+A value that matches the value of system variable *`sysvar`* is replaced with the string `@@GLOBAL.sysvar`.
 
 ##### Parameters
 
-* `path VARCHAR(512)`: The path name to
-  format.
+* `path VARCHAR(512)`: The path name to format.
 
 ##### Return Value
 
-A `VARCHAR(512) CHARACTER SET utf8mb3`
-value.
+A `VARCHAR(512) CHARACTER SET utf8mb3` value.
 
 ##### Example
 

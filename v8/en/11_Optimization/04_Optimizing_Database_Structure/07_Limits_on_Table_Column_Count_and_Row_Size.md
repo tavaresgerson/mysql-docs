@@ -1,94 +1,41 @@
 ### 10.4.7 Limits on Table Column Count and Row Size
 
-This section describes limits on the number of columns in tables
-and the size of individual rows.
+This section describes limits on the number of columns in tables and the size of individual rows.
 
-* [Column Count Limits](column-count-limit.html#column-count-limits "Column Count Limits")
-* [Row Size Limits](column-count-limit.html#row-size-limits "Row Size Limits")
+* Column Count Limits
+* Row Size Limits
 
 #### Column Count Limits
 
-MySQL has hard limit of 4096 columns per table, but the
-effective maximum may be less for a given table. The exact
-column limit depends on several factors:
+MySQL has hard limit of 4096 columns per table, but the effective maximum may be less for a given table. The exact column limit depends on several factors:
 
-* The maximum row size for a table constrains the number
-  (and possibly size) of columns because the total length of
-  all columns cannot exceed this size. See
-  [Row Size Limits](column-count-limit.html#row-size-limits "Row Size Limits").
+* The maximum row size for a table constrains the number (and possibly size) of columns because the total length of all columns cannot exceed this size. See Row Size Limits.
 
-* The storage requirements of individual columns constrain
-  the number of columns that fit within a given maximum row
-  size. Storage requirements for some data types depend on
-  factors such as storage engine, storage format, and
-  character set. See [Section 13.7, “Data Type Storage Requirements”](storage-requirements.html "13.7 Data Type Storage Requirements").
+* The storage requirements of individual columns constrain the number of columns that fit within a given maximum row size. Storage requirements for some data types depend on factors such as storage engine, storage format, and character set. See Section 13.7, “Data Type Storage Requirements”.
 
-* Storage engines may impose additional restrictions that
-  limit table column count. For example,
-  [`InnoDB`](innodb-storage-engine.html "Chapter 17 The InnoDB Storage Engine") has a limit of 1017
-  columns per table. See [Section 17.22, “InnoDB Limits”](innodb-limits.html "17.22 InnoDB Limits").
-  For information about other storage engines, see
-  [Chapter 18, *Alternative Storage Engines*](storage-engines.html "Chapter 18 Alternative Storage Engines").
+* Storage engines may impose additional restrictions that limit table column count. For example, `InnoDB` has a limit of 1017 columns per table. See Section 17.22, “InnoDB Limits”. For information about other storage engines, see Chapter 18, *Alternative Storage Engines*.
 
-* Functional key parts (see [Section 15.1.15, “CREATE INDEX Statement”](create-index.html "15.1.15 CREATE INDEX Statement"))
-  are implemented as hidden virtual generated stored
-  columns, so each functional key part in a table index
-  counts against the table total column limit.
+* Functional key parts (see Section 15.1.15, “CREATE INDEX Statement”) are implemented as hidden virtual generated stored columns, so each functional key part in a table index counts against the table total column limit.
 
 #### Row Size Limits
 
-The maximum row size for a given table is determined by
-several factors:
+The maximum row size for a given table is determined by several factors:
 
-* The internal representation of a MySQL table has a maximum
-  row size limit of 65,535 bytes, even if the storage engine
-  is capable of supporting larger rows.
-  [`BLOB`](blob.html "13.3.4 The BLOB and TEXT Types") and
-  [`TEXT`](blob.html "13.3.4 The BLOB and TEXT Types") columns only
-  contribute 9 to 12 bytes toward the row size limit because
-  their contents are stored separately from the rest of the
-  row.
+* The internal representation of a MySQL table has a maximum row size limit of 65,535 bytes, even if the storage engine is capable of supporting larger rows. `BLOB` and `TEXT` columns only contribute 9 to 12 bytes toward the row size limit because their contents are stored separately from the rest of the row.
 
-* The maximum row size for an `InnoDB`
-  table, which applies to data stored locally within a
-  database page, is slightly less than half a page for 4KB,
-  8KB, 16KB, and 32KB
-  [`innodb_page_size`](innodb-parameters.html#sysvar_innodb_page_size)
-  settings. For example, the maximum row size is slightly
-  less than 8KB for the default 16KB
-  `InnoDB` page size. For 64KB pages, the
-  maximum row size is slightly less than 16KB. See
-  [Section 17.22, “InnoDB Limits”](innodb-limits.html "17.22 InnoDB Limits").
+* The maximum row size for an `InnoDB` table, which applies to data stored locally within a database page, is slightly less than half a page for 4KB, 8KB, 16KB, and 32KB `innodb_page_size` settings. For example, the maximum row size is slightly less than 8KB for the default 16KB `InnoDB` page size. For 64KB pages, the maximum row size is slightly less than 16KB. See Section 17.22, “InnoDB Limits”.
 
-  If a row containing
-  [variable-length
-  columns](glossary.html#glos_variable_length_type "variable-length type") exceeds the `InnoDB`
-  maximum row size, `InnoDB` selects
-  variable-length columns for external off-page storage
-  until the row fits within the `InnoDB`
-  row size limit. The amount of data stored locally for
-  variable-length columns that are stored off-page differs
-  by row format. For more information, see
-  [Section 17.10, “InnoDB Row Formats”](innodb-row-format.html "17.10 InnoDB Row Formats").
+  If a row containing [variable-length columns](glossary.html#glos_variable_length_type "variable-length type") exceeds the `InnoDB` maximum row size, `InnoDB` selects variable-length columns for external off-page storage until the row fits within the `InnoDB` row size limit. The amount of data stored locally for variable-length columns that are stored off-page differs by row format. For more information, see Section 17.10, “InnoDB Row Formats”.
 
-* Different storage formats use different amounts of page
-  header and trailer data, which affects the amount of
-  storage available for rows.
+* Different storage formats use different amounts of page header and trailer data, which affects the amount of storage available for rows.
 
-  + For information about `InnoDB` row
-    formats, see [Section 17.10, “InnoDB Row Formats”](innodb-row-format.html "17.10 InnoDB Row Formats").
+  + For information about `InnoDB` row formats, see Section 17.10, “InnoDB Row Formats”.
 
-  + For information about `MyISAM`
-    storage formats, see
-    [Section 18.2.3, “MyISAM Table Storage Formats”](myisam-table-formats.html "18.2.3 MyISAM Table Storage Formats").
+  + For information about `MyISAM` storage formats, see Section 18.2.3, “MyISAM Table Storage Formats”.
 
 ##### Row Size Limit Examples
 
-* The MySQL maximum row size limit of 65,535 bytes is
-  demonstrated in the following `InnoDB`
-  and `MyISAM` examples. The limit is
-  enforced regardless of storage engine, even though the
-  storage engine may be capable of supporting larger rows.
+* The MySQL maximum row size limit of 65,535 bytes is demonstrated in the following `InnoDB` and `MyISAM` examples. The limit is enforced regardless of storage engine, even though the storage engine may be capable of supporting larger rows.
 
   ```
   mysql> CREATE TABLE t (a VARCHAR(10000), b VARCHAR(10000),
@@ -108,13 +55,7 @@ several factors:
   check the manual. You have to change some columns to TEXT or BLOBs
   ```
 
-  In the following `MyISAM` example,
-  changing a column to [`TEXT`](blob.html "13.3.4 The BLOB and TEXT Types")
-  avoids the 65,535-byte row size limit and permits the
-  operation to succeed because
-  [`BLOB`](blob.html "13.3.4 The BLOB and TEXT Types") and
-  [`TEXT`](blob.html "13.3.4 The BLOB and TEXT Types") columns only
-  contribute 9 to 12 bytes toward the row size.
+  In the following `MyISAM` example, changing a column to `TEXT` avoids the 65,535-byte row size limit and permits the operation to succeed because `BLOB` and `TEXT` columns only contribute 9 to 12 bytes toward the row size.
 
   ```
   mysql> CREATE TABLE t (a VARCHAR(10000), b VARCHAR(10000),
@@ -123,12 +64,7 @@ several factors:
   Query OK, 0 rows affected (0.02 sec)
   ```
 
-  The operation succeeds for an `InnoDB`
-  table because changing a column to
-  [`TEXT`](blob.html "13.3.4 The BLOB and TEXT Types") avoids the MySQL
-  65,535-byte row size limit, and `InnoDB`
-  off-page storage of variable-length columns avoids the
-  `InnoDB` row size limit.
+  The operation succeeds for an `InnoDB` table because changing a column to `TEXT` avoids the MySQL 65,535-byte row size limit, and `InnoDB` off-page storage of variable-length columns avoids the `InnoDB` row size limit.
 
   ```
   mysql> CREATE TABLE t (a VARCHAR(10000), b VARCHAR(10000),
@@ -137,17 +73,9 @@ several factors:
   Query OK, 0 rows affected (0.02 sec)
   ```
 
-* Storage for variable-length columns includes length bytes,
-  which are counted toward the row size. For example, a
-  [`VARCHAR(255)
-  CHARACTER SET utf8mb3`](char.html "13.3.2 The CHAR and VARCHAR Types") column takes two bytes to
-  store the length of the value, so each value can take up
-  to 767 bytes.
+* Storage for variable-length columns includes length bytes, which are counted toward the row size. For example, a [`VARCHAR(255) CHARACTER SET utf8mb3`](char.html "13.3.2 The CHAR and VARCHAR Types") column takes two bytes to store the length of the value, so each value can take up to 767 bytes.
 
-  The statement to create table `t1`
-  succeeds because the columns require 32,765 + 2 bytes and
-  32,766 + 2 bytes, which falls within the maximum row size
-  of 65,535 bytes:
+  The statement to create table `t1` succeeds because the columns require 32,765 + 2 bytes and 32,766 + 2 bytes, which falls within the maximum row size of 65,535 bytes:
 
   ```
   mysql> CREATE TABLE t1
@@ -156,11 +84,7 @@ several factors:
   Query OK, 0 rows affected (0.02 sec)
   ```
 
-  The statement to create table `t2` fails
-  because, although the column length is within the maximum
-  length of 65,535 bytes, two additional bytes are required
-  to record the length, which causes the row size to exceed
-  65,535 bytes:
+  The statement to create table `t2` fails because, although the column length is within the maximum length of 65,535 bytes, two additional bytes are required to record the length, which causes the row size to exceed 65,535 bytes:
 
   ```
   mysql> CREATE TABLE t2
@@ -171,8 +95,7 @@ several factors:
   check the manual. You have to change some columns to TEXT or BLOBs
   ```
 
-  Reducing the column length to 65,533 or less permits the
-  statement to succeed.
+  Reducing the column length to 65,533 or less permits the statement to succeed.
 
   ```
   mysql> CREATE TABLE t2
@@ -181,18 +104,9 @@ several factors:
   Query OK, 0 rows affected (0.01 sec)
   ```
 
-* For [`MyISAM`](myisam-storage-engine.html "18.2 The MyISAM Storage Engine") tables,
-  `NULL` columns require additional space
-  in the row to record whether their values are
-  `NULL`. Each `NULL`
-  column takes one bit extra, rounded up to the nearest
-  byte.
+* For `MyISAM` tables, `NULL` columns require additional space in the row to record whether their values are `NULL`. Each `NULL` column takes one bit extra, rounded up to the nearest byte.
 
-  The statement to create table `t3` fails
-  because [`MyISAM`](myisam-storage-engine.html "18.2 The MyISAM Storage Engine") requires space
-  for `NULL` columns in addition to the
-  space required for variable-length column length bytes,
-  causing the row size to exceed 65,535 bytes:
+  The statement to create table `t3` fails because `MyISAM` requires space for `NULL` columns in addition to the space required for variable-length column length bytes, causing the row size to exceed 65,535 bytes:
 
   ```
   mysql> CREATE TABLE t3
@@ -203,19 +117,11 @@ several factors:
   check the manual. You have to change some columns to TEXT or BLOBs
   ```
 
-  For information about [`InnoDB`](innodb-storage-engine.html "Chapter 17 The InnoDB Storage Engine")
-  `NULL` column storage, see
-  [Section 17.10, “InnoDB Row Formats”](innodb-row-format.html "17.10 InnoDB Row Formats").
+  For information about `InnoDB` `NULL` column storage, see Section 17.10, “InnoDB Row Formats”.
 
-* `InnoDB` restricts row size (for data
-  stored locally within the database page) to slightly less
-  than half a database page for 4KB, 8KB, 16KB, and 32KB
-  [`innodb_page_size`](innodb-parameters.html#sysvar_innodb_page_size)
-  settings, and to slightly less than 16KB for 64KB pages.
+* `InnoDB` restricts row size (for data stored locally within the database page) to slightly less than half a database page for 4KB, 8KB, 16KB, and 32KB `innodb_page_size` settings, and to slightly less than 16KB for 64KB pages.
 
-  The statement to create table `t4` fails
-  because the defined columns exceed the row size limit for
-  a 16KB `InnoDB` page.
+  The statement to create table `t4` fails because the defined columns exceed the row size limit for a 16KB `InnoDB` page.
 
   ```
   mysql> CREATE TABLE t4 (

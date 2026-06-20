@@ -1,12 +1,8 @@
-#### 30.4.3.11 The io\_global\_by\_file\_by\_bytes and x$io\_global\_by\_file\_by\_bytes Views
+#### 30.4.3.11 The io_global_by_file_by_bytes and x$io_global_by_file_by_bytes Views
 
-These views summarize global I/O consumers to display amount
-of I/O, grouped by file. By default, rows are sorted by
-descending total I/O (bytes read and written).
+These views summarize global I/O consumers to display amount of I/O, grouped by file. By default, rows are sorted by descending total I/O (bytes read and written).
 
-The [`io_global_by_file_by_bytes`](sys-io-global-by-file-by-bytes.html "30.4.3.11 The io_global_by_file_by_bytes and x$io_global_by_file_by_bytes Views")
-and [`x$io_global_by_file_by_bytes`](sys-io-global-by-file-by-bytes.html "30.4.3.11 The io_global_by_file_by_bytes and x$io_global_by_file_by_bytes Views")
-views have these columns:
+The `io_global_by_file_by_bytes` and `x$io_global_by_file_by_bytes` views have these columns:
 
 * `file`
 

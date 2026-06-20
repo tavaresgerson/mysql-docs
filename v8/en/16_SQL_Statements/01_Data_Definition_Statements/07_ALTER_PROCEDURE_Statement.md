@@ -11,18 +11,6 @@ characteristic: {
 }
 ```
 
-This statement can be used to change the characteristics of a
-stored procedure. More than one change may be specified in an
-[`ALTER PROCEDURE`](alter-procedure.html "15.1.7 ALTER PROCEDURE Statement") statement. However,
-you cannot change the parameters or body of a stored procedure
-using this statement; to make such changes, you must drop and
-re-create the procedure using [`DROP
-PROCEDURE`](drop-procedure.html "15.1.29 DROP PROCEDURE and DROP FUNCTION Statements") and [`CREATE
-PROCEDURE`](create-procedure.html "15.1.17 CREATE PROCEDURE and CREATE FUNCTION Statements").
+This statement can be used to change the characteristics of a stored procedure. More than one change may be specified in an `ALTER PROCEDURE` statement. However, you cannot change the parameters or body of a stored procedure using this statement; to make such changes, you must drop and re-create the procedure using [`DROP PROCEDURE`](drop-procedure.html "15.1.29 DROP PROCEDURE and DROP FUNCTION Statements") and [`CREATE PROCEDURE`](create-procedure.html "15.1.17 CREATE PROCEDURE and CREATE FUNCTION Statements").
 
-You must have the [`ALTER ROUTINE`](privileges-provided.html#priv_alter-routine)
-privilege for the procedure. By default, that privilege is granted
-automatically to the procedure creator. This behavior can be
-changed by disabling the
-[`automatic_sp_privileges`](server-system-variables.html#sysvar_automatic_sp_privileges) system
-variable. See [Section 27.2.2, “Stored Routines and MySQL Privileges”](stored-routines-privileges.html "27.2.2 Stored Routines and MySQL Privileges").
+You must have the `ALTER ROUTINE` privilege for the procedure. By default, that privilege is granted automatically to the procedure creator. This behavior can be changed by disabling the `automatic_sp_privileges` system variable. See Section 27.2.2, “Stored Routines and MySQL Privileges”.

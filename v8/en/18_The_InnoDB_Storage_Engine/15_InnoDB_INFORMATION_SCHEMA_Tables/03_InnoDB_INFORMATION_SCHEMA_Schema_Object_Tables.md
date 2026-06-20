@@ -1,19 +1,8 @@
-### 17.15.3 InnoDB INFORMATION\_SCHEMA Schema Object Tables
+### 17.15.3 InnoDB INFORMATION_SCHEMA Schema Object Tables
 
-You can extract metadata about schema objects managed by
-`InnoDB` using `InnoDB`
-`INFORMATION_SCHEMA` tables. This information
-comes from the data dictionary. Traditionally, you would get this
-type of information using the techniques from
-[Section 17.17, “InnoDB Monitors”](innodb-monitors.html "17.17 InnoDB Monitors"), setting up
-`InnoDB` monitors and parsing the output from the
-[`SHOW ENGINE INNODB
-STATUS`](show-engine.html "15.7.7.15 SHOW ENGINE Statement") statement. The `InnoDB`
-`INFORMATION_SCHEMA` table interface allows you
-to query this data using SQL.
+You can extract metadata about schema objects managed by `InnoDB` using `InnoDB` `INFORMATION_SCHEMA` tables. This information comes from the data dictionary. Traditionally, you would get this type of information using the techniques from Section 17.17, “InnoDB Monitors”, setting up `InnoDB` monitors and parsing the output from the [`SHOW ENGINE INNODB STATUS`](show-engine.html "15.7.7.15 SHOW ENGINE Statement") statement. The `InnoDB` `INFORMATION_SCHEMA` table interface allows you to query this data using SQL.
 
-`InnoDB` `INFORMATION_SCHEMA`
-schema object tables include the tables listed below.
+`InnoDB` `INFORMATION_SCHEMA` schema object tables include the tables listed below.
 
 ```
 INNODB_DATAFILES
@@ -30,60 +19,33 @@ INNODB_TABLES
 
 The table names are indicative of the type of data provided:
 
-* [`INNODB_TABLES`](information-schema-innodb-tables-table.html "28.4.23 The INFORMATION_SCHEMA INNODB_TABLES Table") provides metadata
-  about `InnoDB` tables.
+* `INNODB_TABLES` provides metadata about `InnoDB` tables.
 
-* [`INNODB_COLUMNS`](information-schema-innodb-columns-table.html "28.4.9 The INFORMATION_SCHEMA INNODB_COLUMNS Table") provides metadata
-  about `InnoDB` table columns.
+* `INNODB_COLUMNS` provides metadata about `InnoDB` table columns.
 
-* [`INNODB_INDEXES`](information-schema-innodb-indexes-table.html "28.4.20 The INFORMATION_SCHEMA INNODB_INDEXES Table") provides metadata
-  about `InnoDB` indexes.
+* `INNODB_INDEXES` provides metadata about `InnoDB` indexes.
 
-* [`INNODB_FIELDS`](information-schema-innodb-fields-table.html "28.4.11 The INFORMATION_SCHEMA INNODB_FIELDS Table") provides metadata
-  about the key columns (fields) of `InnoDB`
-  indexes.
+* `INNODB_FIELDS` provides metadata about the key columns (fields) of `InnoDB` indexes.
 
-* [`INNODB_TABLESTATS`](information-schema-innodb-tablestats-table.html "28.4.26 The INFORMATION_SCHEMA INNODB_TABLESTATS View") provides a view
-  of low-level status information about
-  `InnoDB` tables that is derived from
-  in-memory data structures.
+* `INNODB_TABLESTATS` provides a view of low-level status information about `InnoDB` tables that is derived from in-memory data structures.
 
-* [`INNODB_DATAFILES`](information-schema-innodb-datafiles-table.html "28.4.10 The INFORMATION_SCHEMA INNODB_DATAFILES Table") provides data
-  file path information for `InnoDB`
-  file-per-table and general tablespaces.
+* `INNODB_DATAFILES` provides data file path information for `InnoDB` file-per-table and general tablespaces.
 
-* [`INNODB_TABLESPACES`](information-schema-innodb-tablespaces-table.html "28.4.24 The INFORMATION_SCHEMA INNODB_TABLESPACES Table") provides
-  metadata about `InnoDB` file-per-table,
-  general, and undo tablespaces.
+* `INNODB_TABLESPACES` provides metadata about `InnoDB` file-per-table, general, and undo tablespaces.
 
-* [`INNODB_TABLESPACES_BRIEF`](information-schema-innodb-tablespaces-brief-table.html "28.4.25 The INFORMATION_SCHEMA INNODB_TABLESPACES_BRIEF Table") provides
-  a subset of metadata about `InnoDB`
-  tablespaces.
+* `INNODB_TABLESPACES_BRIEF` provides a subset of metadata about `InnoDB` tablespaces.
 
-* [`INNODB_FOREIGN`](information-schema-innodb-foreign-table.html "28.4.12 The INFORMATION_SCHEMA INNODB_FOREIGN Table") provides metadata
-  about foreign keys defined on `InnoDB`
-  tables.
+* `INNODB_FOREIGN` provides metadata about foreign keys defined on `InnoDB` tables.
 
-* [`INNODB_FOREIGN_COLS`](information-schema-innodb-foreign-cols-table.html "28.4.13 The INFORMATION_SCHEMA INNODB_FOREIGN_COLS Table") provides
-  metadata about the columns of foreign keys that are defined on
-  `InnoDB` tables.
+* `INNODB_FOREIGN_COLS` provides metadata about the columns of foreign keys that are defined on `InnoDB` tables.
 
-`InnoDB` `INFORMATION_SCHEMA`
-schema object tables can be joined together through fields such as
-`TABLE_ID`, `INDEX_ID`, and
-`SPACE`, allowing you to easily retrieve all
-available data for an object you want to study or monitor.
+`InnoDB` `INFORMATION_SCHEMA` schema object tables can be joined together through fields such as `TABLE_ID`, `INDEX_ID`, and `SPACE`, allowing you to easily retrieve all available data for an object you want to study or monitor.
 
-Refer to the `InnoDB`
-[INFORMATION\_SCHEMA](innodb-information-schema-tables.html "28.4 INFORMATION_SCHEMA InnoDB Tables")
-documentation for information about the columns of each table.
+Refer to the `InnoDB` INFORMATION_SCHEMA documentation for information about the columns of each table.
 
-**Example 17.2 InnoDB INFORMATION\_SCHEMA Schema Object Tables**
+**Example 17.2 InnoDB INFORMATION_SCHEMA Schema Object Tables**
 
-This example uses a simple table (`t1`) with a
-single index (`i1`) to demonstrate the type of
-metadata found in the `InnoDB`
-`INFORMATION_SCHEMA` schema object tables.
+This example uses a simple table (`t1`) with a single index (`i1`) to demonstrate the type of metadata found in the `InnoDB` `INFORMATION_SCHEMA` schema object tables.
 
 1. Create a test database and table `t1`:
 
@@ -101,9 +63,7 @@ metadata found in the `InnoDB`
    mysql> CREATE INDEX i1 ON t1(col1);
    ```
 
-2. After creating the table `t1`, query
-   [`INNODB_TABLES`](information-schema-innodb-tables-table.html "28.4.23 The INFORMATION_SCHEMA INNODB_TABLES Table") to locate the
-   metadata for `test/t1`:
+2. After creating the table `t1`, query `INNODB_TABLES` to locate the metadata for `test/t1`:
 
    ```
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_TABLES WHERE NAME='test/t1' \G
@@ -118,28 +78,9 @@ metadata found in the `InnoDB`
     INSTANT_COLS: 0
    ```
 
-   Table `t1` has a
-   `TABLE_ID` of 71. The
-   `FLAG` field provides bit level information
-   about table format and storage characteristics. There are
-   six columns, three of which are hidden columns created by
-   `InnoDB` (`DB_ROW_ID`,
-   `DB_TRX_ID`, and
-   `DB_ROLL_PTR`). The ID of the table's
-   `SPACE` is 57 (a value of 0 would indicate
-   that the table resides in the system tablespace). The
-   `ROW_FORMAT` is Compact.
-   `ZIP_PAGE_SIZE` only applies to tables with
-   a `Compressed` row format.
-   `INSTANT_COLS` shows number of columns in
-   the table prior to adding the first instant column using
-   `ALTER TABLE ... ADD
-   COLUMN` with `ALGORITHM=INSTANT`.
+   Table `t1` has a `TABLE_ID` of 71. The `FLAG` field provides bit level information about table format and storage characteristics. There are six columns, three of which are hidden columns created by `InnoDB` (`DB_ROW_ID`, `DB_TRX_ID`, and `DB_ROLL_PTR`). The ID of the table's `SPACE` is 57 (a value of 0 would indicate that the table resides in the system tablespace). The `ROW_FORMAT` is Compact. `ZIP_PAGE_SIZE` only applies to tables with a `Compressed` row format. `INSTANT_COLS` shows number of columns in the table prior to adding the first instant column using `ALTER TABLE ... ADD COLUMN` with `ALGORITHM=INSTANT`.
 
-3. Using the `TABLE_ID` information from
-   [`INNODB_TABLES`](information-schema-innodb-tables-table.html "28.4.23 The INFORMATION_SCHEMA INNODB_TABLES Table"), query the
-   [`INNODB_COLUMNS`](information-schema-innodb-columns-table.html "28.4.9 The INFORMATION_SCHEMA INNODB_COLUMNS Table") table for
-   information about the table's columns.
+3. Using the `TABLE_ID` information from `INNODB_TABLES`, query the `INNODB_COLUMNS` table for information about the table's columns.
 
    ```
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_COLUMNS where TABLE_ID = 71\G
@@ -172,27 +113,9 @@ metadata found in the `InnoDB`
    DEFAULT_VALUE: NULL
    ```
 
-   In addition to the `TABLE_ID` and column
-   `NAME`,
-   [`INNODB_COLUMNS`](information-schema-innodb-columns-table.html "28.4.9 The INFORMATION_SCHEMA INNODB_COLUMNS Table") provides the
-   ordinal position (`POS`) of each column
-   (starting from 0 and incrementing sequentially), the column
-   `MTYPE` or “main type” (6 =
-   INT, 2 = CHAR, 1 = VARCHAR), the `PRTYPE`
-   or “precise type” (a binary value with bits
-   that represent the MySQL data type, character set code, and
-   nullability), and the column length
-   (`LEN`). The `HAS_DEFAULT`
-   and `DEFAULT_VALUE` columns only apply to
-   columns added instantly using
-   `ALTER TABLE ... ADD
-   COLUMN` with `ALGORITHM=INSTANT`.
+   In addition to the `TABLE_ID` and column `NAME`, `INNODB_COLUMNS` provides the ordinal position (`POS`) of each column (starting from 0 and incrementing sequentially), the column `MTYPE` or “main type” (6 = INT, 2 = CHAR, 1 = VARCHAR), the `PRTYPE` or “precise type” (a binary value with bits that represent the MySQL data type, character set code, and nullability), and the column length (`LEN`). The `HAS_DEFAULT` and `DEFAULT_VALUE` columns only apply to columns added instantly using `ALTER TABLE ... ADD COLUMN` with `ALGORITHM=INSTANT`.
 
-4. Using the `TABLE_ID` information from
-   [`INNODB_TABLES`](information-schema-innodb-tables-table.html "28.4.23 The INFORMATION_SCHEMA INNODB_TABLES Table") once again, query
-   [`INNODB_INDEXES`](information-schema-innodb-indexes-table.html "28.4.20 The INFORMATION_SCHEMA INNODB_INDEXES Table") for information
-   about the indexes associated with table
-   `t1`.
+4. Using the `TABLE_ID` information from `INNODB_TABLES` once again, query `INNODB_INDEXES` for information about the indexes associated with table `t1`.
 
    ```
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_INDEXES WHERE TABLE_ID = 71 \G
@@ -216,37 +139,11 @@ metadata found in the `InnoDB`
    MERGE_THRESHOLD: 50
    ```
 
-   [`INNODB_INDEXES`](information-schema-innodb-indexes-table.html "28.4.20 The INFORMATION_SCHEMA INNODB_INDEXES Table") returns data for
-   two indexes. The first index is
-   `GEN_CLUST_INDEX`, which is a clustered
-   index created by `InnoDB` if the table does
-   not have a user-defined clustered index. The second index
-   (`i1`) is the user-defined secondary index.
+   `INNODB_INDEXES` returns data for two indexes. The first index is `GEN_CLUST_INDEX`, which is a clustered index created by `InnoDB` if the table does not have a user-defined clustered index. The second index (`i1`) is the user-defined secondary index.
 
-   The `INDEX_ID` is an identifier for the
-   index that is unique across all databases in an instance.
-   The `TABLE_ID` identifies the table that
-   the index is associated with. The index
-   `TYPE` value indicates the type of index (1
-   = Clustered Index, 0 = Secondary index). The
-   `N_FILEDS` value is the number of fields
-   that comprise the index. `PAGE_NO` is the
-   root page number of the index B-tree, and
-   `SPACE` is the ID of the tablespace where
-   the index resides. A nonzero value indicates that the index
-   does not reside in the system tablespace.
-   `MERGE_THRESHOLD` defines a percentage
-   threshold value for the amount of data in an index page. If
-   the amount of data in an index page falls below the this
-   value (the default is 50%) when a row is deleted or when a
-   row is shortened by an update operation,
-   `InnoDB` attempts to merge the index page
-   with a neighboring index page.
+   The `INDEX_ID` is an identifier for the index that is unique across all databases in an instance. The `TABLE_ID` identifies the table that the index is associated with. The index `TYPE` value indicates the type of index (1 = Clustered Index, 0 = Secondary index). The `N_FILEDS` value is the number of fields that comprise the index. `PAGE_NO` is the root page number of the index B-tree, and `SPACE` is the ID of the tablespace where the index resides. A nonzero value indicates that the index does not reside in the system tablespace. `MERGE_THRESHOLD` defines a percentage threshold value for the amount of data in an index page. If the amount of data in an index page falls below the this value (the default is 50%) when a row is deleted or when a row is shortened by an update operation, `InnoDB` attempts to merge the index page with a neighboring index page.
 
-5. Using the `INDEX_ID` information from
-   [`INNODB_INDEXES`](information-schema-innodb-indexes-table.html "28.4.20 The INFORMATION_SCHEMA INNODB_INDEXES Table"), query
-   [`INNODB_FIELDS`](information-schema-innodb-fields-table.html "28.4.11 The INFORMATION_SCHEMA INNODB_FIELDS Table") for information
-   about the fields of index `i1`.
+5. Using the `INDEX_ID` information from `INNODB_INDEXES`, query `INNODB_FIELDS` for information about the fields of index `i1`.
 
    ```
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FIELDS where INDEX_ID = 112 \G
@@ -256,17 +153,9 @@ metadata found in the `InnoDB`
         POS: 0
    ```
 
-   [`INNODB_FIELDS`](information-schema-innodb-fields-table.html "28.4.11 The INFORMATION_SCHEMA INNODB_FIELDS Table") provides the
-   `NAME` of the indexed field and its ordinal
-   position within the index. If the index (i1) had been
-   defined on multiple fields,
-   [`INNODB_FIELDS`](information-schema-innodb-fields-table.html "28.4.11 The INFORMATION_SCHEMA INNODB_FIELDS Table") would provide
-   metadata for each of the indexed fields.
+   `INNODB_FIELDS` provides the `NAME` of the indexed field and its ordinal position within the index. If the index (i1) had been defined on multiple fields, `INNODB_FIELDS` would provide metadata for each of the indexed fields.
 
-6. Using the `SPACE` information from
-   [`INNODB_TABLES`](information-schema-innodb-tables-table.html "28.4.23 The INFORMATION_SCHEMA INNODB_TABLES Table"), query
-   [`INNODB_TABLESPACES`](information-schema-innodb-tablespaces-table.html "28.4.24 The INFORMATION_SCHEMA INNODB_TABLESPACES Table") table for
-   information about the table's tablespace.
+6. Using the `SPACE` information from `INNODB_TABLES`, query `INNODB_TABLESPACES` table for information about the table's tablespace.
 
    ```
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_TABLESPACES WHERE SPACE = 57 \G
@@ -288,19 +177,9 @@ metadata found in the `InnoDB`
             STATE: normal
    ```
 
-   In addition to the `SPACE` ID of the
-   tablespace and the `NAME` of the associated
-   table, [`INNODB_TABLESPACES`](information-schema-innodb-tablespaces-table.html "28.4.24 The INFORMATION_SCHEMA INNODB_TABLESPACES Table")
-   provides tablespace `FLAG` data, which is
-   bit level information about tablespace format and storage
-   characteristics. Also provided are tablespace
-   `ROW_FORMAT`, `PAGE_SIZE`,
-   and several other tablespace metadata items.
+   In addition to the `SPACE` ID of the tablespace and the `NAME` of the associated table, `INNODB_TABLESPACES` provides tablespace `FLAG` data, which is bit level information about tablespace format and storage characteristics. Also provided are tablespace `ROW_FORMAT`, `PAGE_SIZE`, and several other tablespace metadata items.
 
-7. Using the `SPACE` information from
-   [`INNODB_TABLES`](information-schema-innodb-tables-table.html "28.4.23 The INFORMATION_SCHEMA INNODB_TABLES Table") once again, query
-   [`INNODB_DATAFILES`](information-schema-innodb-datafiles-table.html "28.4.10 The INFORMATION_SCHEMA INNODB_DATAFILES Table") for the
-   location of the tablespace data file.
+7. Using the `SPACE` information from `INNODB_TABLES` once again, query `INNODB_DATAFILES` for the location of the tablespace data file.
 
    ```
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_DATAFILES WHERE SPACE = 57 \G
@@ -309,24 +188,9 @@ metadata found in the `InnoDB`
     PATH: ./test/t1.ibd
    ```
 
-   The datafile is located in the `test`
-   directory under MySQL's `data` directory.
-   If a
-   [file-per-table](glossary.html#glos_file_per_table "file-per-table")
-   tablespace were created in a location outside the MySQL data
-   directory using the `DATA DIRECTORY` clause
-   of the [`CREATE TABLE`](create-table.html "15.1.20 CREATE TABLE Statement")
-   statement, the tablespace `PATH` would be a
-   fully qualified directory path.
+   The datafile is located in the `test` directory under MySQL's `data` directory. If a file-per-table tablespace were created in a location outside the MySQL data directory using the `DATA DIRECTORY` clause of the `CREATE TABLE` statement, the tablespace `PATH` would be a fully qualified directory path.
 
-8. As a final step, insert a row into table
-   `t1` (`TABLE_ID = 71`) and
-   view the data in the
-   [`INNODB_TABLESTATS`](information-schema-innodb-tablestats-table.html "28.4.26 The INFORMATION_SCHEMA INNODB_TABLESTATS View") table. The
-   data in this table is used by the MySQL optimizer to
-   calculate which index to use when querying an
-   `InnoDB` table. This information is derived
-   from in-memory data structures.
+8. As a final step, insert a row into table `t1` (`TABLE_ID = 71`) and view the data in the `INNODB_TABLESTATS` table. The data in this table is used by the MySQL optimizer to calculate which index to use when querying an `InnoDB` table. This information is derived from in-memory data structures.
 
    ```
    mysql> INSERT INTO t1 VALUES(5, 'abc', 'def');
@@ -345,33 +209,11 @@ metadata found in the `InnoDB`
            REF_COUNT: 1
    ```
 
-   The `STATS_INITIALIZED` field indicates
-   whether or not statistics have been collected for the table.
-   `NUM_ROWS` is the current estimated number
-   of rows in the table. The
-   `CLUST_INDEX_SIZE` and
-   `OTHER_INDEX_SIZE` fields report the number
-   of pages on disk that store clustered and secondary indexes
-   for the table, respectively. The
-   `MODIFIED_COUNTER` value shows the number
-   of rows modified by DML operations and cascade operations
-   from foreign keys. The `AUTOINC` value is
-   the next number to be issued for any autoincrement-based
-   operation. There are no autoincrement columns defined on
-   table `t1`, so the value is 0. The
-   `REF_COUNT` value is a counter. When the
-   counter reaches 0, it signifies that the table metadata can
-   be evicted from the table cache.
+   The `STATS_INITIALIZED` field indicates whether or not statistics have been collected for the table. `NUM_ROWS` is the current estimated number of rows in the table. The `CLUST_INDEX_SIZE` and `OTHER_INDEX_SIZE` fields report the number of pages on disk that store clustered and secondary indexes for the table, respectively. The `MODIFIED_COUNTER` value shows the number of rows modified by DML operations and cascade operations from foreign keys. The `AUTOINC` value is the next number to be issued for any autoincrement-based operation. There are no autoincrement columns defined on table `t1`, so the value is 0. The `REF_COUNT` value is a counter. When the counter reaches 0, it signifies that the table metadata can be evicted from the table cache.
 
-**Example 17.3 Foreign Key INFORMATION\_SCHEMA Schema Object Tables**
+**Example 17.3 Foreign Key INFORMATION_SCHEMA Schema Object Tables**
 
-The [`INNODB_FOREIGN`](information-schema-innodb-foreign-table.html "28.4.12 The INFORMATION_SCHEMA INNODB_FOREIGN Table") and
-[`INNODB_FOREIGN_COLS`](information-schema-innodb-foreign-cols-table.html "28.4.13 The INFORMATION_SCHEMA INNODB_FOREIGN_COLS Table") tables provide
-data about foreign key relationships. This example uses a parent
-table and child table with a foreign key relationship to
-demonstrate the data found in the
-[`INNODB_FOREIGN`](information-schema-innodb-foreign-table.html "28.4.12 The INFORMATION_SCHEMA INNODB_FOREIGN Table") and
-[`INNODB_FOREIGN_COLS`](information-schema-innodb-foreign-cols-table.html "28.4.13 The INFORMATION_SCHEMA INNODB_FOREIGN_COLS Table") tables.
+The `INNODB_FOREIGN` and `INNODB_FOREIGN_COLS` tables provide data about foreign key relationships. This example uses a parent table and child table with a foreign key relationship to demonstrate the data found in the `INNODB_FOREIGN` and `INNODB_FOREIGN_COLS` tables.
 
 1. Create the test database with parent and child tables:
 
@@ -390,10 +232,7 @@ demonstrate the data found in the
           ON DELETE CASCADE) ENGINE=INNODB;
    ```
 
-2. After the parent and child tables are created, query
-   [`INNODB_FOREIGN`](information-schema-innodb-foreign-table.html "28.4.12 The INFORMATION_SCHEMA INNODB_FOREIGN Table") and locate the
-   foreign key data for the `test/child` and
-   `test/parent` foreign key relationship:
+2. After the parent and child tables are created, query `INNODB_FOREIGN` and locate the foreign key data for the `test/child` and `test/parent` foreign key relationship:
 
    ```
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FOREIGN \G
@@ -405,26 +244,9 @@ demonstrate the data found in the
        TYPE: 1
    ```
 
-   Metadata includes the foreign key `ID`
-   (`fk1`), which is named for the
-   `CONSTRAINT` that was defined on the child
-   table. The `FOR_NAME` is the name of the
-   child table where the foreign key is defined.
-   `REF_NAME` is the name of the parent table
-   (the “referenced” table).
-   `N_COLS` is the number of columns in the
-   foreign key index. `TYPE` is a numerical
-   value representing bit flags that provide additional
-   information about the foreign key column. In this case, the
-   `TYPE` value is 1, which indicates that the
-   `ON DELETE CASCADE` option was specified
-   for the foreign key. See the
-   [`INNODB_FOREIGN`](information-schema-innodb-foreign-table.html "28.4.12 The INFORMATION_SCHEMA INNODB_FOREIGN Table") table definition
-   for more information about `TYPE` values.
+   Metadata includes the foreign key `ID` (`fk1`), which is named for the `CONSTRAINT` that was defined on the child table. The `FOR_NAME` is the name of the child table where the foreign key is defined. `REF_NAME` is the name of the parent table (the “referenced” table). `N_COLS` is the number of columns in the foreign key index. `TYPE` is a numerical value representing bit flags that provide additional information about the foreign key column. In this case, the `TYPE` value is 1, which indicates that the `ON DELETE CASCADE` option was specified for the foreign key. See the `INNODB_FOREIGN` table definition for more information about `TYPE` values.
 
-3. Using the foreign key `ID`, query
-   [`INNODB_FOREIGN_COLS`](information-schema-innodb-foreign-cols-table.html "28.4.13 The INFORMATION_SCHEMA INNODB_FOREIGN_COLS Table") to view
-   data about the columns of the foreign key.
+3. Using the foreign key `ID`, query `INNODB_FOREIGN_COLS` to view data about the columns of the foreign key.
 
    ```
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FOREIGN_COLS WHERE ID = 'test/fk1' \G
@@ -435,47 +257,21 @@ demonstrate the data found in the
             POS: 0
    ```
 
-   `FOR_COL_NAME` is the name of the foreign
-   key column in the child table, and
-   `REF_COL_NAME` is the name of the
-   referenced column in the parent table. The
-   `POS` value is the ordinal position of the
-   key field within the foreign key index, starting at zero.
+   `FOR_COL_NAME` is the name of the foreign key column in the child table, and `REF_COL_NAME` is the name of the referenced column in the parent table. The `POS` value is the ordinal position of the key field within the foreign key index, starting at zero.
 
-**Example 17.4 Joining InnoDB INFORMATION\_SCHEMA Schema Object Tables**
+**Example 17.4 Joining InnoDB INFORMATION_SCHEMA Schema Object Tables**
 
-This example demonstrates joining three
-`InnoDB` `INFORMATION_SCHEMA`
-schema object tables
-([`INNODB_TABLES`](information-schema-innodb-tables-table.html "28.4.23 The INFORMATION_SCHEMA INNODB_TABLES Table"),
-[`INNODB_TABLESPACES`](information-schema-innodb-tablespaces-table.html "28.4.24 The INFORMATION_SCHEMA INNODB_TABLESPACES Table"), and
-[`INNODB_TABLESTATS`](information-schema-innodb-tablestats-table.html "28.4.26 The INFORMATION_SCHEMA INNODB_TABLESTATS View")) to gather file
-format, row format, page size, and index size information about
-tables in the employees sample database.
+This example demonstrates joining three `InnoDB` `INFORMATION_SCHEMA` schema object tables (`INNODB_TABLES`, `INNODB_TABLESPACES`, and `INNODB_TABLESTATS`) to gather file format, row format, page size, and index size information about tables in the employees sample database.
 
-The following table aliases are used to shorten the query
-string:
+The following table aliases are used to shorten the query string:
 
-* [`INFORMATION_SCHEMA.INNODB_TABLES`](information-schema-innodb-tables-table.html "28.4.23 The INFORMATION_SCHEMA INNODB_TABLES Table"):
-  a
+* `INFORMATION_SCHEMA.INNODB_TABLES`: a
 
-* [`INFORMATION_SCHEMA.INNODB_TABLESPACES`](information-schema-innodb-tablespaces-table.html "28.4.24 The INFORMATION_SCHEMA INNODB_TABLESPACES Table"):
-  b
+* `INFORMATION_SCHEMA.INNODB_TABLESPACES`: b
 
-* [`INFORMATION_SCHEMA.INNODB_TABLESTATS`](information-schema-innodb-tablestats-table.html "28.4.26 The INFORMATION_SCHEMA INNODB_TABLESTATS View"):
-  c
+* `INFORMATION_SCHEMA.INNODB_TABLESTATS`: c
 
-An [`IF()`](flow-control-functions.html#function_if) control flow function is
-used to account for compressed tables. If a table is compressed,
-the index size is calculated using
-`ZIP_PAGE_SIZE` rather than
-`PAGE_SIZE`.
-`CLUST_INDEX_SIZE` and
-`OTHER_INDEX_SIZE`, which are reported in
-bytes, are divided by `1024*1024` to provide
-index sizes in megabytes (MBs). MB values are rounded to zero
-decimal spaces using the [`ROUND()`](mathematical-functions.html#function_round)
-function.
+An `IF()` control flow function is used to account for compressed tables. If a table is compressed, the index size is calculated using `ZIP_PAGE_SIZE` rather than `PAGE_SIZE`. `CLUST_INDEX_SIZE` and `OTHER_INDEX_SIZE`, which are reported in bytes, are divided by `1024*1024` to provide index sizes in megabytes (MBs). MB values are rounded to zero decimal spaces using the `ROUND()` function.
 
 ```
 mysql> SELECT a.NAME, a.ROW_FORMAT,

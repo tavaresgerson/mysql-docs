@@ -1,59 +1,21 @@
 ### 17.8.10 Configuring Optimizer Statistics for InnoDB
 
-[17.8.10.1 Configuring Persistent Optimizer Statistics Parameters](innodb-persistent-stats.html)
+This section describes how to configure persistent and non-persistent optimizer statistics for `InnoDB` tables.
 
-[17.8.10.2 Configuring Non-Persistent Optimizer Statistics Parameters](innodb-statistics-estimation.html)
+Persistent optimizer statistics are persisted across server restarts, allowing for greater plan stability and more consistent query performance. Persistent optimizer statistics also provide control and flexibility with these additional benefits:
 
-[17.8.10.3 Estimating ANALYZE TABLE Complexity for InnoDB Tables](innodb-analyze-table-complexity.html)
+* You can use the `innodb_stats_auto_recalc` configuration option to control whether statistics are updated automatically after substantial changes to a table.
 
-This section describes how to configure persistent and
-non-persistent optimizer statistics for `InnoDB`
-tables.
+* You can use the `STATS_PERSISTENT`, `STATS_AUTO_RECALC`, and `STATS_SAMPLE_PAGES` clauses with `CREATE TABLE` and `ALTER TABLE` statements to configure optimizer statistics for individual tables.
 
-Persistent optimizer statistics are persisted across server
-restarts, allowing for greater
-[plan stability](glossary.html#glos_plan_stability "plan stability") and more
-consistent query performance. Persistent optimizer statistics also
-provide control and flexibility with these additional benefits:
+* You can query optimizer statistics data in the `mysql.innodb_table_stats` and `mysql.innodb_index_stats` tables.
 
-* You can use the
-  [`innodb_stats_auto_recalc`](innodb-parameters.html#sysvar_innodb_stats_auto_recalc)
-  configuration option to control whether statistics are updated
-  automatically after substantial changes to a table.
+* You can view the `last_update` column of the `mysql.innodb_table_stats` and `mysql.innodb_index_stats` tables to see when statistics were last updated.
 
-* You can use the `STATS_PERSISTENT`,
-  `STATS_AUTO_RECALC`, and
-  `STATS_SAMPLE_PAGES` clauses with
-  [`CREATE TABLE`](create-table.html "15.1.20 CREATE TABLE Statement") and
-  [`ALTER TABLE`](alter-table.html "15.1.9 ALTER TABLE Statement") statements to
-  configure optimizer statistics for individual tables.
+* You can manually modify the `mysql.innodb_table_stats` and `mysql.innodb_index_stats` tables to force a specific query optimization plan or to test alternative plans without modifying the database.
 
-* You can query optimizer statistics data in the
-  `mysql.innodb_table_stats` and
-  `mysql.innodb_index_stats` tables.
+The persistent optimizer statistics feature is enabled by default (`innodb_stats_persistent=ON`).
 
-* You can view the `last_update` column of the
-  `mysql.innodb_table_stats` and
-  `mysql.innodb_index_stats` tables to see when
-  statistics were last updated.
+Non-persistent optimizer statistics are cleared on each server restart and after some other operations, and recomputed on the next table access. As a result, different estimates could be produced when recomputing statistics, leading to different choices in execution plans and variations in query performance.
 
-* You can manually modify the
-  `mysql.innodb_table_stats` and
-  `mysql.innodb_index_stats` tables to force a
-  specific query optimization plan or to test alternative plans
-  without modifying the database.
-
-The persistent optimizer statistics feature is enabled by default
-([`innodb_stats_persistent=ON`](innodb-parameters.html#sysvar_innodb_stats_persistent)).
-
-Non-persistent optimizer statistics are cleared on each server
-restart and after some other operations, and recomputed on the
-next table access. As a result, different estimates could be
-produced when recomputing statistics, leading to different choices
-in execution plans and variations in query performance.
-
-This section also provides information about estimating
-[`ANALYZE TABLE`](analyze-table.html "15.7.3.1 ANALYZE TABLE Statement") complexity, which may
-be useful when attempting to achieve a balance between accurate
-statistics and [`ANALYZE TABLE`](analyze-table.html "15.7.3.1 ANALYZE TABLE Statement")
-execution time.
+This section also provides information about estimating `ANALYZE TABLE` complexity, which may be useful when attempting to achieve a balance between accurate statistics and `ANALYZE TABLE` execution time.

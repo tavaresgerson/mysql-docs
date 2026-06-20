@@ -1,28 +1,12 @@
-#### 29.12.14.1 Performance Schema persisted\_variables Table
+#### 29.12.14.1 Performance Schema persisted_variables Table
 
-The [`persisted_variables`](performance-schema-persisted-variables-table.html "29.12.14.1 Performance Schema persisted_variables Table") table
-provides an SQL interface to the
-`mysqld-auto.cnf` file that stores
-persisted global system variable settings, enabling the file
-contents to be inspected at runtime using
-[`SELECT`](select.html "15.2.13 SELECT Statement") statements. Variables
-are persisted using
-[`SET
-PERSIST`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment") or `PERSIST_ONLY`
-statements; see [Section 15.7.6.1, “SET Syntax for Variable Assignment”](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment"). The table
-contains a row for each persisted system variable in the file.
-Variables not persisted do not appear in the table.
+The `persisted_variables` table provides an SQL interface to the `mysqld-auto.cnf` file that stores persisted global system variable settings, enabling the file contents to be inspected at runtime using `SELECT` statements. Variables are persisted using [`SET PERSIST`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment") or `PERSIST_ONLY` statements; see Section 15.7.6.1, “SET Syntax for Variable Assignment”. The table contains a row for each persisted system variable in the file. Variables not persisted do not appear in the table.
 
-The
-[`SENSITIVE_VARIABLES_OBSERVER`](privileges-provided.html#priv_sensitive-variables-observer)
-privilege is required to view the values of sensitive system
-variables in this table.
+The `SENSITIVE_VARIABLES_OBSERVER` privilege is required to view the values of sensitive system variables in this table.
 
-For information about persisted system variables, see
-[Section 7.1.9.3, “Persisted System Variables”](persisted-system-variables.html "7.1.9.3 Persisted System Variables").
+For information about persisted system variables, see Section 7.1.9.3, “Persisted System Variables”.
 
-Suppose that `mysqld-auto.cnf` looks like
-this (slightly reformatted):
+Suppose that `mysqld-auto.cnf` looks like this (slightly reformatted):
 
 ```
 {
@@ -48,8 +32,7 @@ this (slightly reformatted):
 }
 ```
 
-Then [`persisted_variables`](performance-schema-persisted-variables-table.html "29.12.14.1 Performance Schema persisted_variables Table") has
-these contents:
+Then `persisted_variables` has these contents:
 
 ```
 mysql> SELECT * FROM performance_schema.persisted_variables;
@@ -61,24 +44,18 @@ mysql> SELECT * FROM performance_schema.persisted_variables;
 +-----------------+----------------+
 ```
 
-The [`persisted_variables`](performance-schema-persisted-variables-table.html "29.12.14.1 Performance Schema persisted_variables Table") table has
-these columns:
+The `persisted_variables` table has these columns:
 
 * `VARIABLE_NAME`
 
-  The variable name listed in
-  `mysqld-auto.cnf`.
+  The variable name listed in `mysqld-auto.cnf`.
 
 * `VARIABLE_VALUE`
 
-  The value listed for the variable in
-  `mysqld-auto.cnf`.
+  The value listed for the variable in `mysqld-auto.cnf`.
 
-[`persisted_variables`](performance-schema-persisted-variables-table.html "29.12.14.1 Performance Schema persisted_variables Table") has these
-indexes:
+`persisted_variables` has these indexes:
 
 * Primary key on (`VARIABLE_NAME`)
 
-[`TRUNCATE TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") is not permitted
-for the [`persisted_variables`](performance-schema-persisted-variables-table.html "29.12.14.1 Performance Schema persisted_variables Table")
-table.
+`TRUNCATE TABLE` is not permitted for the `persisted_variables` table.

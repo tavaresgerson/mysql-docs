@@ -1,42 +1,12 @@
 #### 19.1.7.1 Checking Replication Status
 
-The most common task when managing a replication process is to
-ensure that replication is taking place and that there have been
-no errors between the replica and the source.
+The most common task when managing a replication process is to ensure that replication is taking place and that there have been no errors between the replica and the source.
 
-The [`SHOW REPLICA STATUS`](show-replica-status.html "15.7.7.35 SHOW REPLICA STATUS Statement")
-statement, which you must execute on each replica, provides
-information about the configuration and status of the connection
-between the replica server and the source server. From MySQL
-8.0.22, [`SHOW SLAVE STATUS`](show-slave-status.html "15.7.7.36 SHOW SLAVE | REPLICA STATUS Statement") is
-deprecated, and [`SHOW REPLICA
-STATUS`](show-replica-status.html "15.7.7.35 SHOW REPLICA STATUS Statement") is available to use instead. The Performance
-Schema has replication tables that provide this information in a
-more accessible form. See
-[Section 29.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "29.12.11 Performance Schema Replication Tables").
+The `SHOW REPLICA STATUS` statement, which you must execute on each replica, provides information about the configuration and status of the connection between the replica server and the source server. From MySQL 8.0.22, `SHOW SLAVE STATUS` is deprecated, and [`SHOW REPLICA STATUS`](show-replica-status.html "15.7.7.35 SHOW REPLICA STATUS Statement") is available to use instead. The Performance Schema has replication tables that provide this information in a more accessible form. See Section 29.12.11, “Performance Schema Replication Tables”.
 
-The replication heartbeat information shown in the Performance
-Schema replication tables lets you check that the replication
-connection is active even if the source has not sent events to
-the replica recently. The source sends a heartbeat signal to a
-replica if there are no updates to, and no unsent events in, the
-binary log for a longer period than the heartbeat interval. The
-`MASTER_HEARTBEAT_PERIOD` setting on the source
-(set by the [`CHANGE MASTER TO`](change-master-to.html "15.4.2.1 CHANGE MASTER TO Statement")
-statement) specifies the frequency of the heartbeat, which
-defaults to half of the connection timeout interval for the
-replica (specified by the system variable
-[`replica_net_timeout`](replication-options-replica.html#sysvar_replica_net_timeout) or
-[`slave_net_timeout`](replication-options-replica.html#sysvar_slave_net_timeout)). The
-[`replication_connection_status`](performance-schema-replication-connection-status-table.html "29.12.11.11 The replication_connection_status Table")
-Performance Schema table shows when the most recent heartbeat
-signal was received by a replica, and how many heartbeat signals
-it has received.
+The replication heartbeat information shown in the Performance Schema replication tables lets you check that the replication connection is active even if the source has not sent events to the replica recently. The source sends a heartbeat signal to a replica if there are no updates to, and no unsent events in, the binary log for a longer period than the heartbeat interval. The `MASTER_HEARTBEAT_PERIOD` setting on the source (set by the `CHANGE MASTER TO` statement) specifies the frequency of the heartbeat, which defaults to half of the connection timeout interval for the replica (specified by the system variable `replica_net_timeout` or `slave_net_timeout`). The `replication_connection_status` Performance Schema table shows when the most recent heartbeat signal was received by a replica, and how many heartbeat signals it has received.
 
-If you are using the [`SHOW REPLICA
-STATUS`](show-replica-status.html "15.7.7.35 SHOW REPLICA STATUS Statement") statement to check on the status of an
-individual replica, the statement provides the following
-information:
+If you are using the [`SHOW REPLICA STATUS`](show-replica-status.html "15.7.7.35 SHOW REPLICA STATUS Statement") statement to check on the status of an individual replica, the statement provides the following information:
 
 ```
 mysql> SHOW REPLICA STATUS\G
@@ -105,88 +75,29 @@ Source_SSL_Verify_Server_Cert: No
 
 The key fields from the status report to examine are:
 
-* `Replica_IO_State`: The current status of
-  the replica. See [Section 10.14.5, “Replication I/O (Receiver) Thread States”](replica-io-thread-states.html "10.14.5 Replication I/O (Receiver) Thread States"),
-  and [Section 10.14.6, “Replication SQL Thread States”](replica-sql-thread-states.html "10.14.6 Replication SQL Thread States"), for more
-  information.
+* `Replica_IO_State`: The current status of the replica. See Section 10.14.5, “Replication I/O (Receiver) Thread States” Thread States"), and Section 10.14.6, “Replication SQL Thread States”, for more information.
 
-* `Replica_IO_Running`: Whether the I/O
-  (receiver) thread for reading the source's binary log is
-  running. Normally, you want this to be
-  `Yes` unless you have not yet started
-  replication or have explicitly stopped it with
-  [`STOP REPLICA`](stop-replica.html "15.4.2.8 STOP REPLICA Statement").
+* `Replica_IO_Running`: Whether the I/O (receiver) thread for reading the source's binary log is running. Normally, you want this to be `Yes` unless you have not yet started replication or have explicitly stopped it with `STOP REPLICA`.
 
-* `Replica_SQL_Running`: Whether the SQL
-  thread for executing events in the relay log is running. As
-  with the I/O thread, this should normally be
-  `Yes`.
+* `Replica_SQL_Running`: Whether the SQL thread for executing events in the relay log is running. As with the I/O thread, this should normally be `Yes`.
 
-* `Last_IO_Error`,
-  `Last_SQL_Error`: The last errors
-  registered by the I/O (receiver) and SQL (applier) threads
-  when processing the relay log. Ideally these should be
-  blank, indicating no errors.
+* `Last_IO_Error`, `Last_SQL_Error`: The last errors registered by the I/O (receiver) and SQL (applier) threads when processing the relay log. Ideally these should be blank, indicating no errors.
 
-* `Seconds_Behind_Source`: The number of
-  seconds that the replication SQL (applier) thread is behind
-  processing the source binary log. A high number (or an
-  increasing one) can indicate that the replica is unable to
-  handle events from the source in a timely fashion.
+* `Seconds_Behind_Source`: The number of seconds that the replication SQL (applier) thread is behind processing the source binary log. A high number (or an increasing one) can indicate that the replica is unable to handle events from the source in a timely fashion.
 
-  A value of 0 for `Seconds_Behind_Source`
-  can usually be interpreted as meaning that the replica has
-  caught up with the source, but there are some cases where
-  this is not strictly true. For example, this can occur if
-  the network connection between source and replica is broken
-  but the replication I/O (receiver) thread has not yet
-  noticed this; that is, the time period set by
-  [`replica_net_timeout`](replication-options-replica.html#sysvar_replica_net_timeout) or
-  [`slave_net_timeout`](replication-options-replica.html#sysvar_slave_net_timeout) has not
-  yet elapsed.
+  A value of 0 for `Seconds_Behind_Source` can usually be interpreted as meaning that the replica has caught up with the source, but there are some cases where this is not strictly true. For example, this can occur if the network connection between source and replica is broken but the replication I/O (receiver) thread has not yet noticed this; that is, the time period set by `replica_net_timeout` or `slave_net_timeout` has not yet elapsed.
 
-  It is also possible that transient values for
-  `Seconds_Behind_Source` may not reflect the
-  situation accurately. When the replication SQL (applier)
-  thread has caught up on I/O,
-  `Seconds_Behind_Source` displays 0; but
-  when the replication I/O (receiver) thread is still queuing
-  up a new event, `Seconds_Behind_Source` may
-  show a large value until the replication applier thread
-  finishes executing the new event. This is especially likely
-  when the events have old timestamps; in such cases, if you
-  execute [`SHOW REPLICA STATUS`](show-replica-status.html "15.7.7.35 SHOW REPLICA STATUS Statement")
-  several times in a relatively short period, you may see this
-  value change back and forth repeatedly between 0 and a
-  relatively large value.
+  It is also possible that transient values for `Seconds_Behind_Source` may not reflect the situation accurately. When the replication SQL (applier) thread has caught up on I/O, `Seconds_Behind_Source` displays 0; but when the replication I/O (receiver) thread is still queuing up a new event, `Seconds_Behind_Source` may show a large value until the replication applier thread finishes executing the new event. This is especially likely when the events have old timestamps; in such cases, if you execute `SHOW REPLICA STATUS` several times in a relatively short period, you may see this value change back and forth repeatedly between 0 and a relatively large value.
 
-Several pairs of fields provide information about the progress
-of the replica in reading events from the source binary log and
-processing them in the relay log:
+Several pairs of fields provide information about the progress of the replica in reading events from the source binary log and processing them in the relay log:
 
-* (`Master_Log_file`,
-  `Read_Master_Log_Pos`): Coordinates in the
-  source binary log indicating how far the replication I/O
-  (receiver) thread has read events from that log.
+* (`Master_Log_file`, `Read_Master_Log_Pos`): Coordinates in the source binary log indicating how far the replication I/O (receiver) thread has read events from that log.
 
-* (`Relay_Master_Log_File`,
-  `Exec_Master_Log_Pos`): Coordinates in the
-  source binary log indicating how far the replication SQL
-  (applier) thread has executed events received from that log.
+* (`Relay_Master_Log_File`, `Exec_Master_Log_Pos`): Coordinates in the source binary log indicating how far the replication SQL (applier) thread has executed events received from that log.
 
-* (`Relay_Log_File`,
-  `Relay_Log_Pos`): Coordinates in the
-  replica relay log indicating how far the replication SQL
-  (applier) thread has executed the relay log. These
-  correspond to the preceding coordinates, but are expressed
-  in replica relay log coordinates rather than source binary
-  log coordinates.
+* (`Relay_Log_File`, `Relay_Log_Pos`): Coordinates in the replica relay log indicating how far the replication SQL (applier) thread has executed the relay log. These correspond to the preceding coordinates, but are expressed in replica relay log coordinates rather than source binary log coordinates.
 
-On the source, you can check the status of connected replicas
-using [`SHOW PROCESSLIST`](show-processlist.html "15.7.7.29 SHOW PROCESSLIST Statement") to examine
-the list of running processes. Replica connections have
-`Binlog Dump` in the `Command`
-field:
+On the source, you can check the status of connected replicas using `SHOW PROCESSLIST` to examine the list of running processes. Replica connections have `Binlog Dump` in the `Command` field:
 
 ```
 mysql> SHOW PROCESSLIST \G;
@@ -201,18 +112,9 @@ Command: Binlog Dump
    Info: NULL
 ```
 
-Because it is the replica that drives the replication process,
-very little information is available in this report.
+Because it is the replica that drives the replication process, very little information is available in this report.
 
-For replicas that were started with the
-[`--report-host`](replication-options-replica.html#sysvar_report_host) option and are
-connected to the source, the [`SHOW
-REPLICAS`](show-replicas.html "15.7.7.33 SHOW REPLICAS Statement") (or before MySQL 8.0.22,
-[`SHOW SLAVE HOSTS`](show-slave-hosts.html "15.7.7.34 SHOW SLAVE HOSTS | SHOW REPLICAS Statement")) statement on
-the source shows basic information about the replicas. The
-output includes the ID of the replica server, the value of the
-[`--report-host`](replication-options-replica.html#sysvar_report_host) option, the
-connecting port, and source ID:
+For replicas that were started with the `--report-host` option and are connected to the source, the [`SHOW REPLICAS`](show-replicas.html "15.7.7.33 SHOW REPLICAS Statement") (or before MySQL 8.0.22, `SHOW SLAVE HOSTS`) statement on the source shows basic information about the replicas. The output includes the ID of the replica server, the value of the `--report-host` option, the connecting port, and source ID:
 
 ```
 mysql> SHOW REPLICAS;

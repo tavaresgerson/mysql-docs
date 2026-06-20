@@ -1,7 +1,6 @@
 ### 5.6.4 The Rows Holding the Group-wise Maximum of a Certain Column
 
-*Task: For each article, find the dealer or dealers
-with the most expensive price.*
+*Task: For each article, find the dealer or dealers with the most expensive price.*
 
 This problem can be solved with a subquery like this one:
 
@@ -23,12 +22,7 @@ ORDER BY article;
 +---------+--------+-------+
 ```
 
-The preceding example uses a correlated subquery, which can be
-inefficient (see [Section 15.2.15.7, “Correlated Subqueries”](correlated-subqueries.html "15.2.15.7 Correlated Subqueries")). Other
-possibilities for solving the problem are to use an uncorrelated
-subquery in the `FROM` clause, a `LEFT
-JOIN`, or a common table expression with a window
-function.
+The preceding example uses a correlated subquery, which can be inefficient (see Section 15.2.15.7, “Correlated Subqueries”). Other possibilities for solving the problem are to use an uncorrelated subquery in the `FROM` clause, a `LEFT JOIN`, or a common table expression with a window function.
 
 Uncorrelated subquery:
 
@@ -53,11 +47,7 @@ WHERE s2.article IS NULL
 ORDER BY s1.article;
 ```
 
-The `LEFT JOIN` works on the basis that when
-`s1.price` is at its maximum value, there is no
-`s2.price` with a greater value and thus the
-corresponding `s2.article` value is
-`NULL`. See [Section 15.2.13.2, “JOIN Clause”](join.html "15.2.13.2 JOIN Clause").
+The `LEFT JOIN` works on the basis that when `s1.price` is at its maximum value, there is no `s2.price` with a greater value and thus the corresponding `s2.article` value is `NULL`. See Section 15.2.13.2, “JOIN Clause”.
 
 Common table expression with window function:
 

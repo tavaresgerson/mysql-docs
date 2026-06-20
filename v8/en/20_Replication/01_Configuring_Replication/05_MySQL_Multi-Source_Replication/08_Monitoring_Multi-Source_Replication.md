@@ -1,46 +1,20 @@
 #### 19.1.5.8 Monitoring Multi-Source Replication
 
-To monitor the status of replication channels the following
-options exist:
+To monitor the status of replication channels the following options exist:
 
-* Using the replication Performance Schema tables. The first
-  column of these tables is `Channel_Name`.
-  This enables you to write complex queries based on
-  `Channel_Name` as a key. See
-  [Section 29.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "29.12.11 Performance Schema Replication Tables").
+* Using the replication Performance Schema tables. The first column of these tables is `Channel_Name`. This enables you to write complex queries based on `Channel_Name` as a key. See Section 29.12.11, “Performance Schema Replication Tables”.
 
-* Using `SHOW REPLICA
-  STATUS FOR CHANNEL
-  channel`. By default, if
-  the `FOR CHANNEL
-  channel` clause is not
-  used, this statement shows the replica status for all channels
-  with one row per channel. The identifier
-  `Channel_name` is added as a column in the
-  result set. If a `FOR CHANNEL
-  channel` clause is
-  provided, the results show the status of only the named
-  replication channel.
+* Using `SHOW REPLICA STATUS FOR CHANNEL channel`. By default, if the `FOR CHANNEL channel` clause is not used, this statement shows the replica status for all channels with one row per channel. The identifier `Channel_name` is added as a column in the result set. If a `FOR CHANNEL channel` clause is provided, the results show the status of only the named replication channel.
 
 Note
 
-The [`SHOW VARIABLES`](show-variables.html "15.7.7.41 SHOW VARIABLES Statement") statement does
-not work with multiple replication channels. The information
-that was available through these variables has been migrated to
-the replication performance tables. Using a
-[`SHOW VARIABLES`](show-variables.html "15.7.7.41 SHOW VARIABLES Statement") statement in a
-topology with multiple channels shows the status of only the
-default channel.
+The `SHOW VARIABLES` statement does not work with multiple replication channels. The information that was available through these variables has been migrated to the replication performance tables. Using a `SHOW VARIABLES` statement in a topology with multiple channels shows the status of only the default channel.
 
-The error codes and messages that are issued when multi-source
-replication is enabled specify the channel that generated the
-error.
+The error codes and messages that are issued when multi-source replication is enabled specify the channel that generated the error.
 
 ##### 19.1.5.8.1 Monitoring Channels Using Performance Schema Tables
 
-This section explains how to use the replication Performance
-Schema tables to monitor channels. You can choose to monitor all
-channels, or a subset of the existing channels.
+This section explains how to use the replication Performance Schema tables to monitor channels. You can choose to monitor all channels, or a subset of the existing channels.
 
 To monitor the connection status of all channels:
 
@@ -73,16 +47,9 @@ LAST_ERROR_TIMESTAMP: 0000-00-00 00:00:00
 2 rows in set (0.00 sec)
 ```
 
-In the above output there are two channels enabled, and as shown
-by the `CHANNEL_NAME` field they are called
-`source_1` and `source_2`.
+In the above output there are two channels enabled, and as shown by the `CHANNEL_NAME` field they are called `source_1` and `source_2`.
 
-The addition of the `CHANNEL_NAME` field
-enables you to query the Performance Schema tables for a
-specific channel. To monitor the connection status of a named
-channel, use a `WHERE
-CHANNEL_NAME=channel`
-clause:
+The addition of the `CHANNEL_NAME` field enables you to query the Performance Schema tables for a specific channel. To monitor the connection status of a named channel, use a `WHERE CHANNEL_NAME=channel` clause:
 
 ```
 mysql> SELECT * FROM replication_connection_status WHERE CHANNEL_NAME='source_1'\G
@@ -101,8 +68,4 @@ LAST_ERROR_TIMESTAMP: 0000-00-00 00:00:00
 1 row in set (0.00 sec)
 ```
 
-Similarly, the `WHERE
-CHANNEL_NAME=channel` clause
-can be used to monitor the other replication Performance Schema
-tables for a specific channel. For more information, see
-[Section 29.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "29.12.11 Performance Schema Replication Tables").
+Similarly, the `WHERE CHANNEL_NAME=channel` clause can be used to monitor the other replication Performance Schema tables for a specific channel. For more information, see Section 29.12.11, “Performance Schema Replication Tables”.

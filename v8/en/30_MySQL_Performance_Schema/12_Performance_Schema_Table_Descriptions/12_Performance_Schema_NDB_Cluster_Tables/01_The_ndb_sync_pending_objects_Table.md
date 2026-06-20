@@ -1,13 +1,8 @@
-#### 29.12.12.1 The ndb\_sync\_pending\_objects Table
+#### 29.12.12.1 The ndb_sync_pending_objects Table
 
-This table provides information about
-[`NDB`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 8.0") database objects for which
-mismatches have been detected and which are waiting to be
-synchronized between the [`NDB`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 8.0")
-dictionary and the MySQL data dictionary.
+This table provides information about `NDB` database objects for which mismatches have been detected and which are waiting to be synchronized between the `NDB` dictionary and the MySQL data dictionary.
 
-Example information about [`NDB`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 8.0")
-database objects awaiting synchronization:
+Example information about `NDB` database objects awaiting synchronization:
 
 ```
 mysql> SELECT * FROM performance_schema.ndb_sync_pending_objects;
@@ -23,22 +18,12 @@ mysql> SELECT * FROM performance_schema.ndb_sync_pending_objects;
 +-------------+------+----------------+
 ```
 
-The [`ndb_sync_pending_objects`](performance-schema-ndb-sync-pending-objects-table.html "29.12.12.1 The ndb_sync_pending_objects Table")
-table has these columns:
+The `ndb_sync_pending_objects` table has these columns:
 
-* `SCHEMA_NAME`: The name of the schema
-  (database) in which the object awaiting synchronization
-  resides; this is `NULL` for tablespaces
-  and log file groups
+* `SCHEMA_NAME`: The name of the schema (database) in which the object awaiting synchronization resides; this is `NULL` for tablespaces and log file groups
 
-* `NAME`: The name of the object awaiting
-  synchronization; this is `NULL` if the
-  object is a schema
+* `NAME`: The name of the object awaiting synchronization; this is `NULL` if the object is a schema
 
-* `TYPE`: The type of the object awaiting
-  synchronization; this is one of `LOGFILE
-  GROUP`, `TABLESPACE`,
-  `SCHEMA`, or `TABLE`
+* `TYPE`: The type of the object awaiting synchronization; this is one of `LOGFILE GROUP`, `TABLESPACE`, `SCHEMA`, or `TABLE`
 
-The [`ndb_sync_pending_objects`](performance-schema-ndb-sync-pending-objects-table.html "29.12.12.1 The ndb_sync_pending_objects Table")
-table was added in NDB 8.0.21.
+The `ndb_sync_pending_objects` table was added in NDB 8.0.21.

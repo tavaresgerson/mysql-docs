@@ -1,13 +1,8 @@
-### 28.3.7 The INFORMATION\_SCHEMA COLLATION\_CHARACTER\_SET\_APPLICABILITY Table
+### 28.3.7 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table
 
-The
-[`COLLATION_CHARACTER_SET_APPLICABILITY`](information-schema-collation-character-set-applicability-table.html "28.3.7 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table")
-table indicates what character set is applicable for what
-collation.
+The `COLLATION_CHARACTER_SET_APPLICABILITY` table indicates what character set is applicable for what collation.
 
-The
-[`COLLATION_CHARACTER_SET_APPLICABILITY`](information-schema-collation-character-set-applicability-table.html "28.3.7 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table")
-table has these columns:
+The `COLLATION_CHARACTER_SET_APPLICABILITY` table has these columns:
 
 * `COLLATION_NAME`
 
@@ -15,12 +10,8 @@ table has these columns:
 
 * `CHARACTER_SET_NAME`
 
-  The name of the character set with which the collation is
-  associated.
+  The name of the character set with which the collation is associated.
 
 #### Notes
 
-The
-[`COLLATION_CHARACTER_SET_APPLICABILITY`](information-schema-collation-character-set-applicability-table.html "28.3.7 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table")
-columns are equivalent to the first two columns displayed by the
-[`SHOW COLLATION`](show-collation.html "15.7.7.4 SHOW COLLATION Statement") statement.
+The `COLLATION_CHARACTER_SET_APPLICABILITY` columns are equivalent to the first two columns displayed by the `SHOW COLLATION` statement.

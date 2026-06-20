@@ -12,132 +12,26 @@ channel_option:
     FOR CHANNEL channel
 ```
 
-Stops the replication threads. From MySQL 8.0.22, use
-[`STOP REPLICA`](stop-replica.html "15.4.2.8 STOP REPLICA Statement") in place of
-[`STOP SLAVE`](stop-slave.html "15.4.2.9 STOP SLAVE Statement"), which is now
-deprecated. In releases before MySQL 8.0.22, use
-[`STOP SLAVE`](stop-slave.html "15.4.2.9 STOP SLAVE Statement").
+Stops the replication threads. From MySQL 8.0.22, use `STOP REPLICA` in place of `STOP SLAVE`, which is now deprecated. In releases before MySQL 8.0.22, use `STOP SLAVE`.
 
-`STOP REPLICA` requires the
-[`REPLICATION_SLAVE_ADMIN`](privileges-provided.html#priv_replication-slave-admin) privilege
-(or the deprecated [`SUPER`](privileges-provided.html#priv_super)
-privilege). Recommended best practice is to execute
-`STOP REPLICA` on the replica before stopping
-the replica server (see [Section 7.1.19, “The Server Shutdown Process”](server-shutdown.html "7.1.19 The Server Shutdown Process"), for
-more information).
+`STOP REPLICA` requires the `REPLICATION_SLAVE_ADMIN` privilege (or the deprecated `SUPER` privilege). Recommended best practice is to execute `STOP REPLICA` on the replica before stopping the replica server (see Section 7.1.19, “The Server Shutdown Process”, for more information).
 
-Like [`START
-REPLICA`](start-replica.html "15.4.2.6 START REPLICA Statement"), this statement may be used with the
-`IO_THREAD` and `SQL_THREAD`
-options to name the replication thread or threads to be stopped.
-Note that the Group Replication applier channel
-(`group_replication_applier`) has no
-replication I/O (receiver) thread, only a replication SQL
-(applier) thread. Using the `SQL_THREAD` option
-therefore stops this channel completely.
+Like [`START REPLICA`](start-replica.html "15.4.2.6 START REPLICA Statement"), this statement may be used with the `IO_THREAD` and `SQL_THREAD` options to name the replication thread or threads to be stopped. Note that the Group Replication applier channel (`group_replication_applier`) has no replication I/O (receiver) thread, only a replication SQL (applier) thread. Using the `SQL_THREAD` option therefore stops this channel completely.
 
-`STOP REPLICA` causes an implicit commit of an
-ongoing transaction. See [Section 15.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "15.3.3 Statements That Cause an Implicit Commit").
+`STOP REPLICA` causes an implicit commit of an ongoing transaction. See Section 15.3.3, “Statements That Cause an Implicit Commit”.
 
-[`gtid_next`](replication-options-gtids.html#sysvar_gtid_next) must be set to
-`AUTOMATIC` before issuing this statement.
+`gtid_next` must be set to `AUTOMATIC` before issuing this statement.
 
-You can control how long `STOP REPLICA` waits
-before timing out by setting the system variable
-[`rpl_stop_replica_timeout`](replication-options-replica.html#sysvar_rpl_stop_replica_timeout) (from
-MySQL 8.0.26) or
-[`rpl_stop_slave_timeout`](replication-options-replica.html#sysvar_rpl_stop_slave_timeout) (before
-MySQL 8.0.26). This can be used to avoid deadlocks between
-`STOP REPLICA` and other SQL statements using
-different client connections to the replica. When the timeout
-value is reached, the issuing client returns an error message
-and stops waiting, but the `STOP REPLICA`
-instruction remains in effect. Once the replication threads are
-no longer busy, the `STOP REPLICA` statement is
-executed and the replica stops.
+You can control how long `STOP REPLICA` waits before timing out by setting the system variable `rpl_stop_replica_timeout` (from MySQL 8.0.26) or `rpl_stop_slave_timeout` (before MySQL 8.0.26). This can be used to avoid deadlocks between `STOP REPLICA` and other SQL statements using different client connections to the replica. When the timeout value is reached, the issuing client returns an error message and stops waiting, but the `STOP REPLICA` instruction remains in effect. Once the replication threads are no longer busy, the `STOP REPLICA` statement is executed and the replica stops.
 
-Some [`CHANGE REPLICATION SOURCE TO`](change-replication-source-to.html "15.4.2.3 CHANGE REPLICATION SOURCE TO Statement")
-| [`CHANGE MASTER TO`](change-master-to.html "15.4.2.1 CHANGE MASTER TO Statement") statements are
-allowed while the replica is running, depending on the states of
-the replication threads. However, using `STOP
-REPLICA` prior to executing a
-[`CHANGE REPLICATION SOURCE TO`](change-replication-source-to.html "15.4.2.3 CHANGE REPLICATION SOURCE TO Statement") |
-[`CHANGE MASTER TO`](change-master-to.html "15.4.2.1 CHANGE MASTER TO Statement") statement in
-such cases is still supported. See
-[Section 15.4.2.3, “CHANGE REPLICATION SOURCE TO Statement”](change-replication-source-to.html "15.4.2.3 CHANGE REPLICATION SOURCE TO Statement"),
-[Section 15.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "15.4.2.1 CHANGE MASTER TO Statement"), and
-[Section 19.4.8, “Switching Sources During Failover”](replication-solutions-switch.html "19.4.8 Switching Sources During Failover"), for more
-information.
+Some `CHANGE REPLICATION SOURCE TO` | `CHANGE MASTER TO` statements are allowed while the replica is running, depending on the states of the replication threads. However, using `STOP REPLICA` prior to executing a `CHANGE REPLICATION SOURCE TO` | `CHANGE MASTER TO` statement in such cases is still supported. See Section 15.4.2.3, “CHANGE REPLICATION SOURCE TO Statement”, Section 15.4.2.1, “CHANGE MASTER TO Statement”, and Section 19.4.8, “Switching Sources During Failover”, for more information.
 
-The optional `FOR CHANNEL
-channel` clause enables you
-to name which replication channel the statement applies to.
-Providing a `FOR CHANNEL
-channel` clause applies the
-`STOP REPLICA` statement to a specific
-replication channel. If no channel is named and no extra
-channels exist, the statement applies to the default channel. If
-a `STOP REPLICA` statement does not name a
-channel when using multiple channels, this statement stops the
-specified threads for all channels. See
-[Section 19.2.2, “Replication Channels”](replication-channels.html "19.2.2 Replication Channels") for more information.
+The optional `FOR CHANNEL channel` clause enables you to name which replication channel the statement applies to. Providing a `FOR CHANNEL channel` clause applies the `STOP REPLICA` statement to a specific replication channel. If no channel is named and no extra channels exist, the statement applies to the default channel. If a `STOP REPLICA` statement does not name a channel when using multiple channels, this statement stops the specified threads for all channels. See Section 19.2.2, “Replication Channels” for more information.
 
-The replication channels for Group Replication
-(`group_replication_applier` and
-`group_replication_recovery`) are managed
-automatically by the server instance. `STOP
-REPLICA` cannot be used at all with the
-`group_replication_recovery` channel, and
-should only be used with the
-`group_replication_applier` channel when Group
-Replication is not running. The
-`group_replication_applier` channel only has an
-applier thread and has no receiver thread, so it can be stopped
-if required by using the `SQL_THREAD` option
-without the `IO_THREAD` option.
+The replication channels for Group Replication (`group_replication_applier` and `group_replication_recovery`) are managed automatically by the server instance. `STOP REPLICA` cannot be used at all with the `group_replication_recovery` channel, and should only be used with the `group_replication_applier` channel when Group Replication is not running. The `group_replication_applier` channel only has an applier thread and has no receiver thread, so it can be stopped if required by using the `SQL_THREAD` option without the `IO_THREAD` option.
 
-When the replica is multithreaded
-([`replica_parallel_workers`](replication-options-replica.html#sysvar_replica_parallel_workers) or
-[`slave_parallel_workers`](replication-options-replica.html#sysvar_slave_parallel_workers) is a
-nonzero value), any gaps in the sequence of transactions
-executed from the relay log are closed as part of stopping the
-worker threads. If the replica is stopped unexpectedly (for
-example due to an error in a worker thread, or another thread
-issuing [`KILL`](kill.html "15.7.8.4 KILL Statement")) while a
-`STOP REPLICA` statement is executing, the
-sequence of executed transactions from the relay log may become
-inconsistent. See
-[Section 19.5.1.34, “Replication and Transaction Inconsistencies”](replication-features-transaction-inconsistencies.html "19.5.1.34 Replication and Transaction Inconsistencies"),
-for more information.
+When the replica is multithreaded (`replica_parallel_workers` or `slave_parallel_workers` is a nonzero value), any gaps in the sequence of transactions executed from the relay log are closed as part of stopping the worker threads. If the replica is stopped unexpectedly (for example due to an error in a worker thread, or another thread issuing `KILL`) while a `STOP REPLICA` statement is executing, the sequence of executed transactions from the relay log may become inconsistent. See Section 19.5.1.34, “Replication and Transaction Inconsistencies”, for more information.
 
-When the source is using the row-based binary logging format,
-you should execute `STOP REPLICA` or
-`STOP REPLICA SQL_THREAD` on the replica prior
-to shutting down the replica server if you are replicating any
-tables that use a nontransactional storage engine. If the
-current replication event group has modified one or more
-nontransactional tables, `STOP REPLICA` waits
-for up to 60 seconds for the event group to complete, unless you
-issue a [`KILL
-QUERY`](kill.html "15.7.8.4 KILL Statement") or [`KILL
-CONNECTION`](kill.html "15.7.8.4 KILL Statement") statement for the replication SQL thread.
-If the event group remains incomplete after the timeout, an
-error message is logged.
+When the source is using the row-based binary logging format, you should execute `STOP REPLICA` or `STOP REPLICA SQL_THREAD` on the replica prior to shutting down the replica server if you are replicating any tables that use a nontransactional storage engine. If the current replication event group has modified one or more nontransactional tables, `STOP REPLICA` waits for up to 60 seconds for the event group to complete, unless you issue a [`KILL QUERY`](kill.html "15.7.8.4 KILL Statement") or [`KILL CONNECTION`](kill.html "15.7.8.4 KILL Statement") statement for the replication SQL thread. If the event group remains incomplete after the timeout, an error message is logged.
 
-When the source is using the statement-based binary logging
-format, changing the source while it has open temporary tables
-is potentially unsafe. This is one of the reasons why
-statement-based replication of temporary tables is not
-recommended. You can find out whether there are any temporary
-tables on the replica by checking the value of
-[`Replica_open_temp_tables`](server-status-variables.html#statvar_Replica_open_temp_tables) or
-[`Slave_open_temp_tables`](server-status-variables.html#statvar_Slave_open_temp_tables). When
-using statement-based replication, this value should be 0 before
-executing [`CHANGE REPLICATION SOURCE
-TO`](change-replication-source-to.html "15.4.2.3 CHANGE REPLICATION SOURCE TO Statement") | [`CHANGE MASTER TO`](change-master-to.html "15.4.2.1 CHANGE MASTER TO Statement").
-If there are any temporary tables open on the replica, issuing a
-[`CHANGE REPLICATION SOURCE TO`](change-replication-source-to.html "15.4.2.3 CHANGE REPLICATION SOURCE TO Statement") |
-[`CHANGE MASTER TO`](change-master-to.html "15.4.2.1 CHANGE MASTER TO Statement") statement after
-issuing a `STOP REPLICA` causes an
-[`ER_WARN_OPEN_TEMP_TABLES_MUST_BE_ZERO`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_warn_open_temp_tables_must_be_zero)
-warning.
+When the source is using the statement-based binary logging format, changing the source while it has open temporary tables is potentially unsafe. This is one of the reasons why statement-based replication of temporary tables is not recommended. You can find out whether there are any temporary tables on the replica by checking the value of `Replica_open_temp_tables` or `Slave_open_temp_tables`. When using statement-based replication, this value should be 0 before executing [`CHANGE REPLICATION SOURCE TO`](change-replication-source-to.html "15.4.2.3 CHANGE REPLICATION SOURCE TO Statement") | `CHANGE MASTER TO`. If there are any temporary tables open on the replica, issuing a `CHANGE REPLICATION SOURCE TO` | `CHANGE MASTER TO` statement after issuing a `STOP REPLICA` causes an `ER_WARN_OPEN_TEMP_TABLES_MUST_BE_ZERO` warning.

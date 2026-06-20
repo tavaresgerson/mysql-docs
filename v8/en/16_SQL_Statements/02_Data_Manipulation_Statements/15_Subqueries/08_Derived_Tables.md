@@ -1,40 +1,26 @@
 #### 15.2.15.8 Derived Tables
 
-This section discusses general characteristics of derived
-tables. For information about lateral derived tables preceded by
-the `LATERAL` keyword, see
-[Section 15.2.15.9, “Lateral Derived Tables”](lateral-derived-tables.html "15.2.15.9 Lateral Derived Tables").
+This section discusses general characteristics of derived tables. For information about lateral derived tables preceded by the `LATERAL` keyword, see Section 15.2.15.9, “Lateral Derived Tables”.
 
-A derived table is an expression that generates a table within
-the scope of a query `FROM` clause. For
-example, a subquery in a [`SELECT`](select.html "15.2.13 SELECT Statement")
-statement `FROM` clause is a derived table:
+A derived table is an expression that generates a table within the scope of a query `FROM` clause. For example, a subquery in a `SELECT` statement `FROM` clause is a derived table:
 
 ```
 SELECT ... FROM (subquery) [AS] tbl_name ...
 ```
 
-The [`JSON_TABLE()`](json-table-functions.html#function_json-table) function
-generates a table and provides another way to create a derived
-table:
+The `JSON_TABLE()` function generates a table and provides another way to create a derived table:
 
 ```
 SELECT * FROM JSON_TABLE(arg_list) [AS] tbl_name ...
 ```
 
-The `[AS] tbl_name`
-clause is mandatory because every table in a
-`FROM` clause must have a name. Any columns in
-the derived table must have unique names. Alternatively,
-*`tbl_name`* may be followed by a
-parenthesized list of names for the derived table columns:
+The `[AS] tbl_name` clause is mandatory because every table in a `FROM` clause must have a name. Any columns in the derived table must have unique names. Alternatively, *`tbl_name`* may be followed by a parenthesized list of names for the derived table columns:
 
 ```
 SELECT ... FROM (subquery) [AS] tbl_name (col_list) ...
 ```
 
-The number of column names must be the same as the number of
-table columns.
+The number of column names must be the same as the number of table columns.
 
 For the sake of illustration, assume that you have this table:
 
@@ -42,8 +28,7 @@ For the sake of illustration, assume that you have this table:
 CREATE TABLE t1 (s1 INT, s2 CHAR(5), s3 FLOAT);
 ```
 
-Here is how to use a subquery in the `FROM`
-clause, using the example table:
+Here is how to use a subquery in the `FROM` clause, using the example table:
 
 ```
 INSERT INTO t1 VALUES (1,'1',1.0);
@@ -63,9 +48,7 @@ Result:
 +------+------+------+
 ```
 
-Here is another example: Suppose that you want to know the
-average of a set of sums for a grouped table. This does not
-work:
+Here is another example: Suppose that you want to know the average of a set of sums for a grouped table. This does not work:
 
 ```
 SELECT AVG(SUM(column1)) FROM t1 GROUP BY column1;
@@ -79,9 +62,7 @@ SELECT AVG(sum_column1)
         FROM t1 GROUP BY column1) AS t1;
 ```
 
-Notice that the column name used within the subquery
-(`sum_column1`) is recognized in the outer
-query.
+Notice that the column name used within the subquery (`sum_column1`) is recognized in the outer query.
 
 The column names for a derived table come from its select list:
 
@@ -94,8 +75,7 @@ mysql> SELECT * FROM (SELECT 1, 2, 3, 4) AS dt;
 +---+---+---+---+
 ```
 
-To provide column names explicitly, follow the derived table
-name with a parenthesized list of column names:
+To provide column names explicitly, follow the derived table name with a parenthesized list of column names:
 
 ```
 mysql> SELECT * FROM (SELECT 1, 2, 3, 4) AS dt (a, b, c, d);
@@ -110,17 +90,9 @@ A derived table can return a scalar, column, row, or table.
 
 Derived tables are subject to these restrictions:
 
-* A derived table cannot contain references to other tables of
-  the same [`SELECT`](select.html "15.2.13 SELECT Statement") (use a
-  `LATERAL` derived table for that; see
-  [Section 15.2.15.9, “Lateral Derived Tables”](lateral-derived-tables.html "15.2.15.9 Lateral Derived Tables")).
+* A derived table cannot contain references to other tables of the same `SELECT` (use a `LATERAL` derived table for that; see Section 15.2.15.9, “Lateral Derived Tables”).
 
-* Prior to MySQL 8.0.14, a derived table cannot contain outer
-  references. This is a MySQL restriction that is lifted in
-  MySQL 8.0.14, not a restriction of the SQL standard. For
-  example, the derived table `dt` in the
-  following query contains a reference `t1.b`
-  to the table `t1` in the outer query:
+* Prior to MySQL 8.0.14, a derived table cannot contain outer references. This is a MySQL restriction that is lifted in MySQL 8.0.14, not a restriction of the SQL standard. For example, the derived table `dt` in the following query contains a reference `t1.b` to the table `t1` in the outer query:
 
   ```
   SELECT * FROM t1
@@ -131,25 +103,11 @@ Derived tables are subject to these restrictions:
                 WHERE dt.a > 10);
   ```
 
-  The query is valid in MySQL 8.0.14 and higher. Before
-  8.0.14, it produces an error: `Unknown column 't1.b'
-  in 'where clause'`
+  The query is valid in MySQL 8.0.14 and higher. Before 8.0.14, it produces an error: `Unknown column 't1.b' in 'where clause'`
 
-The optimizer determines information about derived tables in
-such a way that [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") does not
-need to materialize them. See
-[Section 10.2.2.4, “Optimizing Derived Tables, View References, and Common Table Expressions
-with Merging or Materialization”](derived-table-optimization.html "10.2.2.4 Optimizing Derived Tables, View References, and Common Table Expressions with Merging or Materialization").
+The optimizer determines information about derived tables in such a way that `EXPLAIN` does not need to materialize them. See [Section 10.2.2.4, “Optimizing Derived Tables, View References, and Common Table Expressions with Merging or Materialization”](derived-table-optimization.html "10.2.2.4 Optimizing Derived Tables, View References, and Common Table Expressions with Merging or Materialization").
 
-It is possible under certain circumstances that using
-[`EXPLAIN
-SELECT`](explain.html "15.8.2 EXPLAIN Statement") modifies table data. This can occur if the
-outer query accesses any tables and an inner query invokes a
-stored function that changes one or more rows of a table.
-Suppose that there are two tables `t1` and
-`t2` in database `d1`, and a
-stored function `f1` that modifies
-`t2`, created as shown here:
+It is possible under certain circumstances that using [`EXPLAIN SELECT`](explain.html "15.8.2 EXPLAIN Statement") modifies table data. This can occur if the outer query accesses any tables and an inner query invokes a stored function that changes one or more rows of a table. Suppose that there are two tables `t1` and `t2` in database `d1`, and a stored function `f1` that modifies `t2`, created as shown here:
 
 ```
 CREATE DATABASE d1;
@@ -163,10 +121,7 @@ CREATE FUNCTION f1(p1 INT) RETURNS INT
   END;
 ```
 
-Referencing the function directly in an
-[`EXPLAIN
-SELECT`](explain.html "15.8.2 EXPLAIN Statement") has no effect on `t2`, as
-shown here:
+Referencing the function directly in an [`EXPLAIN SELECT`](explain.html "15.8.2 EXPLAIN Statement") has no effect on `t2`, as shown here:
 
 ```
 mysql> SELECT * FROM t2;
@@ -192,11 +147,7 @@ mysql> SELECT * FROM t2;
 Empty set (0.01 sec)
 ```
 
-This is because the [`SELECT`](select.html "15.2.13 SELECT Statement")
-statement did not reference any tables, as can be seen in the
-`table` and `Extra` columns of
-the output. This is also true of the following nested
-[`SELECT`](select.html "15.2.13 SELECT Statement"):
+This is because the `SELECT` statement did not reference any tables, as can be seen in the `table` and `Extra` columns of the output. This is also true of the following nested `SELECT`:
 
 ```
 mysql> EXPLAIN SELECT NOW() AS a1, (SELECT f1(5)) AS a2\G
@@ -226,10 +177,7 @@ mysql> SELECT * FROM t2;
 Empty set (0.00 sec)
 ```
 
-However, if the outer [`SELECT`](select.html "15.2.13 SELECT Statement")
-references any tables, the optimizer executes the statement in
-the subquery as well, with the result that `t2`
-is modified:
+However, if the outer `SELECT` references any tables, the optimizer executes the statement in the subquery as well, with the result that `t2` is modified:
 
 ```
 mysql> EXPLAIN SELECT * FROM t1 AS a1, (SELECT f1(5)) AS a2\G
@@ -283,7 +231,4 @@ mysql> SELECT * FROM t2;
 1 row in set (0.00 sec)
 ```
 
-The derived table optimization can also be employed with many
-correlated (scalar) subqueries (MySQL 8.0.24 and later). For
-more information and examples, see
-[Section 15.2.15.7, “Correlated Subqueries”](correlated-subqueries.html "15.2.15.7 Correlated Subqueries").
+The derived table optimization can also be employed with many correlated (scalar) subqueries (MySQL 8.0.24 and later). For more information and examples, see Section 15.2.15.7, “Correlated Subqueries”.

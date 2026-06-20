@@ -1,17 +1,10 @@
-#### 25.6.16.21 The ndbinfo cpustat\_20sec Table
+#### 25.6.16.21 The ndbinfo cpustat_20sec Table
 
-The `cpustat_20sec` table provides raw,
-per-thread CPU data obtained each 20 seconds, for each thread
-running in the `NDB` kernel.
+The `cpustat_20sec` table provides raw, per-thread CPU data obtained each 20 seconds, for each thread running in the `NDB` kernel.
 
-Like [`cpustat_50ms`](mysql-cluster-ndbinfo-cpustat-50ms.html "25.6.16.19 The ndbinfo cpustat_50ms Table") and
-[`cpustat_1sec`](mysql-cluster-ndbinfo-cpustat-1sec.html "25.6.16.20 The ndbinfo cpustat_1sec Table"), this table shows
-20 measurement sets per thread, each referencing a period of the
-named duration. Thus, `cpsustat_20sec` provides
-400 seconds of history.
+Like `cpustat_50ms` and `cpustat_1sec`, this table shows 20 measurement sets per thread, each referencing a period of the named duration. Thus, `cpsustat_20sec` provides 400 seconds of history.
 
-The `cpustat_20sec` table contains the
-following columns:
+The `cpustat_20sec` table contains the following columns:
 
 * `node_id`
 

@@ -6,21 +6,9 @@ SHOW TRIGGERS
     [LIKE 'pattern' | WHERE expr]
 ```
 
-[`SHOW TRIGGERS`](show-triggers.html "15.7.7.40 SHOW TRIGGERS Statement") lists the triggers
-currently defined for tables in a database (the default database
-unless a `FROM` clause is given). This
-statement returns results only for databases and tables for
-which you have the [`TRIGGER`](privileges-provided.html#priv_trigger)
-privilege. The [`LIKE`](string-comparison-functions.html#operator_like) clause, if
-present, indicates which table names (not trigger names) to
-match and causes the statement to display triggers for those
-tables. The `WHERE` clause can be given to
-select rows using more general conditions, as discussed in
-[Section 28.8, “Extensions to SHOW Statements”](extended-show.html "28.8 Extensions to SHOW Statements").
+`SHOW TRIGGERS` lists the triggers currently defined for tables in a database (the default database unless a `FROM` clause is given). This statement returns results only for databases and tables for which you have the `TRIGGER` privilege. The `LIKE` clause, if present, indicates which table names (not trigger names) to match and causes the statement to display triggers for those tables. The `WHERE` clause can be given to select rows using more general conditions, as discussed in Section 28.8, “Extensions to SHOW Statements”.
 
-For the `ins_sum` trigger defined in
-[Section 27.3, “Using Triggers”](triggers.html "27.3 Using Triggers"), the output of
-[`SHOW TRIGGERS`](show-triggers.html "15.7.7.40 SHOW TRIGGERS Statement") is as shown here:
+For the `ins_sum` trigger defined in Section 27.3, “Using Triggers”, the output of `SHOW TRIGGERS` is as shown here:
 
 ```
 mysql> SHOW TRIGGERS LIKE 'acc%'\G
@@ -41,8 +29,7 @@ collation_connection: utf8mb4_0900_ai_ci
   Database Collation: utf8mb4_0900_ai_ci
 ```
 
-[`SHOW TRIGGERS`](show-triggers.html "15.7.7.40 SHOW TRIGGERS Statement") output has these
-columns:
+`SHOW TRIGGERS` output has these columns:
 
 * `Trigger`
 
@@ -50,11 +37,7 @@ columns:
 
 * `Event`
 
-  The trigger event. This is the type of operation on the
-  associated table for which the trigger activates. The value
-  is `INSERT` (a row was inserted),
-  `DELETE` (a row was deleted), or
-  `UPDATE` (a row was modified).
+  The trigger event. This is the type of operation on the associated table for which the trigger activates. The value is `INSERT` (a row was inserted), `DELETE` (a row was deleted), or `UPDATE` (a row was modified).
 
 * `Table`
 
@@ -62,51 +45,34 @@ columns:
 
 * `Statement`
 
-  The trigger body; that is, the statement executed when the
-  trigger activates.
+  The trigger body; that is, the statement executed when the trigger activates.
 
 * `Timing`
 
-  Whether the trigger activates before or after the triggering
-  event. The value is `BEFORE` or
-  `AFTER`.
+  Whether the trigger activates before or after the triggering event. The value is `BEFORE` or `AFTER`.
 
 * `Created`
 
-  The date and time when the trigger was created. This is a
-  `TIMESTAMP(2)` value (with a fractional
-  part in hundredths of seconds) for triggers.
+  The date and time when the trigger was created. This is a `TIMESTAMP(2)` value (with a fractional part in hundredths of seconds) for triggers.
 
 * `sql_mode`
 
-  The SQL mode in effect when the trigger was created, and
-  under which the trigger executes. For the permitted values,
-  see [Section 7.1.11, “Server SQL Modes”](sql-mode.html "7.1.11 Server SQL Modes").
+  The SQL mode in effect when the trigger was created, and under which the trigger executes. For the permitted values, see Section 7.1.11, “Server SQL Modes”.
 
 * `Definer`
 
-  The account of the user who created the trigger, in
-  `'user_name'@'host_name'`
-  format.
+  The account of the user who created the trigger, in `'user_name'@'host_name'` format.
 
 * `character_set_client`
 
-  The session value of the
-  [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system
-  variable when the trigger was created.
+  The session value of the `character_set_client` system variable when the trigger was created.
 
 * `collation_connection`
 
-  The session value of the
-  [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system
-  variable when the trigger was created.
+  The session value of the `collation_connection` system variable when the trigger was created.
 
 * `Database Collation`
 
-  The collation of the database with which the trigger is
-  associated.
+  The collation of the database with which the trigger is associated.
 
-Trigger information is also available from the
-`INFORMATION_SCHEMA`
-[`TRIGGERS`](information-schema-triggers-table.html "28.3.45 The INFORMATION_SCHEMA TRIGGERS Table") table. See
-[Section 28.3.45, “The INFORMATION\_SCHEMA TRIGGERS Table”](information-schema-triggers-table.html "28.3.45 The INFORMATION_SCHEMA TRIGGERS Table").
+Trigger information is also available from the `INFORMATION_SCHEMA` `TRIGGERS` table. See Section 28.3.45, “The INFORMATION_SCHEMA TRIGGERS Table”.

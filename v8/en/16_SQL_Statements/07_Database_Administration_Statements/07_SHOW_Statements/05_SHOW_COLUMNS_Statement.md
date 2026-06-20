@@ -7,10 +7,7 @@ SHOW [EXTENDED] [FULL] {COLUMNS | FIELDS}
     [LIKE 'pattern' | WHERE expr]
 ```
 
-[`SHOW COLUMNS`](show-columns.html "15.7.7.5 SHOW COLUMNS Statement") displays information
-about the columns in a given table. It also works for views.
-[`SHOW COLUMNS`](show-columns.html "15.7.7.5 SHOW COLUMNS Statement") displays information
-only for those columns for which you have some privilege.
+`SHOW COLUMNS` displays information about the columns in a given table. It also works for views. `SHOW COLUMNS` displays information only for those columns for which you have some privilege.
 
 ```
 mysql> SHOW COLUMNS FROM City;
@@ -25,38 +22,22 @@ mysql> SHOW COLUMNS FROM City;
 +-------------+----------+------+-----+---------+----------------+
 ```
 
-An alternative to `tbl_name
-FROM db_name` syntax is
-*`db_name.tbl_name`*. These two
-statements are equivalent:
+An alternative to `tbl_name FROM db_name` syntax is *`db_name.tbl_name`*. These two statements are equivalent:
 
 ```
 SHOW COLUMNS FROM mytable FROM mydb;
 SHOW COLUMNS FROM mydb.mytable;
 ```
 
-The optional `EXTENDED` keyword causes the
-output to include information about hidden columns that MySQL
-uses internally and are not accessible by users.
+The optional `EXTENDED` keyword causes the output to include information about hidden columns that MySQL uses internally and are not accessible by users.
 
-The optional `FULL` keyword causes the output
-to include the column collation and comments, as well as the
-privileges you have for each column.
+The optional `FULL` keyword causes the output to include the column collation and comments, as well as the privileges you have for each column.
 
-The [`LIKE`](string-comparison-functions.html#operator_like) clause, if present,
-indicates which column names to match. The
-`WHERE` clause can be given to select rows
-using more general conditions, as discussed in
-[Section 28.8, “Extensions to SHOW Statements”](extended-show.html "28.8 Extensions to SHOW Statements").
+The `LIKE` clause, if present, indicates which column names to match. The `WHERE` clause can be given to select rows using more general conditions, as discussed in Section 28.8, “Extensions to SHOW Statements”.
 
-The data types may differ from what you expect them to be based
-on a [`CREATE TABLE`](create-table.html "15.1.20 CREATE TABLE Statement") statement
-because MySQL sometimes changes data types when you create or
-alter a table. The conditions under which this occurs are
-described in [Section 15.1.20.7, “Silent Column Specification Changes”](silent-column-changes.html "15.1.20.7 Silent Column Specification Changes").
+The data types may differ from what you expect them to be based on a `CREATE TABLE` statement because MySQL sometimes changes data types when you create or alter a table. The conditions under which this occurs are described in Section 15.1.20.7, “Silent Column Specification Changes”.
 
-[`SHOW COLUMNS`](show-columns.html "15.7.7.5 SHOW COLUMNS Statement") displays the
-following values for each table column:
+`SHOW COLUMNS` displays the following values for each table column:
 
 * `Field`
 
@@ -68,123 +49,58 @@ following values for each table column:
 
 * `Collation`
 
-  The collation for nonbinary string columns, or
-  `NULL` for other columns. This value is
-  displayed only if you use the `FULL`
-  keyword.
+  The collation for nonbinary string columns, or `NULL` for other columns. This value is displayed only if you use the `FULL` keyword.
 
 * `Null`
 
-  The column nullability. The value is `YES`
-  if `NULL` values can be stored in the
-  column, `NO` if not.
+  The column nullability. The value is `YES` if `NULL` values can be stored in the column, `NO` if not.
 
 * `Key`
 
   Whether the column is indexed:
 
-  + If `Key` is empty, the column either is
-    not indexed or is indexed only as a secondary column in
-    a multiple-column, nonunique index.
+  + If `Key` is empty, the column either is not indexed or is indexed only as a secondary column in a multiple-column, nonunique index.
 
-  + If `Key` is `PRI`, the
-    column is a `PRIMARY KEY` or is one of
-    the columns in a multiple-column `PRIMARY
-    KEY`.
+  + If `Key` is `PRI`, the column is a `PRIMARY KEY` or is one of the columns in a multiple-column `PRIMARY KEY`.
 
-  + If `Key` is `UNI`, the
-    column is the first column of a
-    `UNIQUE` index. (A
-    `UNIQUE` index permits multiple
-    `NULL` values, but you can tell whether
-    the column permits `NULL` by checking
-    the `Null` field.)
+  + If `Key` is `UNI`, the column is the first column of a `UNIQUE` index. (A `UNIQUE` index permits multiple `NULL` values, but you can tell whether the column permits `NULL` by checking the `Null` field.)
 
-  + If `Key` is `MUL`, the
-    column is the first column of a nonunique index in which
-    multiple occurrences of a given value are permitted
-    within the column.
+  + If `Key` is `MUL`, the column is the first column of a nonunique index in which multiple occurrences of a given value are permitted within the column.
 
-  If more than one of the `Key` values
-  applies to a given column of a table, `Key`
-  displays the one with the highest priority, in the order
-  `PRI`, `UNI`,
-  `MUL`.
+  If more than one of the `Key` values applies to a given column of a table, `Key` displays the one with the highest priority, in the order `PRI`, `UNI`, `MUL`.
 
-  A `UNIQUE` index may be displayed as
-  `PRI` if it cannot contain
-  `NULL` values and there is no
-  `PRIMARY KEY` in the table. A
-  `UNIQUE` index may display as
-  `MUL` if several columns form a composite
-  `UNIQUE` index; although the combination of
-  the columns is unique, each column can still hold multiple
-  occurrences of a given value.
+  A `UNIQUE` index may be displayed as `PRI` if it cannot contain `NULL` values and there is no `PRIMARY KEY` in the table. A `UNIQUE` index may display as `MUL` if several columns form a composite `UNIQUE` index; although the combination of the columns is unique, each column can still hold multiple occurrences of a given value.
 
 * `Default`
 
-  The default value for the column. This is
-  `NULL` if the column has an explicit
-  default of `NULL`, or if the column
-  definition includes no `DEFAULT` clause.
+  The default value for the column. This is `NULL` if the column has an explicit default of `NULL`, or if the column definition includes no `DEFAULT` clause.
 
 * `Extra`
 
-  Any additional information that is available about a given
-  column. The value is nonempty in these cases:
+  Any additional information that is available about a given column. The value is nonempty in these cases:
 
-  + `auto_increment` for columns that have
-    the `AUTO_INCREMENT` attribute.
+  + `auto_increment` for columns that have the `AUTO_INCREMENT` attribute.
 
-  + `on update CURRENT_TIMESTAMP` for
-    [`TIMESTAMP`](datetime.html "13.2.2 The DATE, DATETIME, and TIMESTAMP Types") or
-    [`DATETIME`](datetime.html "13.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns that
-    have the `ON UPDATE CURRENT_TIMESTAMP`
-    attribute.
+  + `on update CURRENT_TIMESTAMP` for `TIMESTAMP` or `DATETIME` columns that have the `ON UPDATE CURRENT_TIMESTAMP` attribute.
 
-  + `VIRTUAL GENERATED` or `STORED
-    GENERATED` for generated columns.
+  + `VIRTUAL GENERATED` or `STORED GENERATED` for generated columns.
 
-  + `DEFAULT_GENERATED` for columns that
-    have an expression default value.
+  + `DEFAULT_GENERATED` for columns that have an expression default value.
 
 * `Privileges`
 
-  The privileges you have for the column. This value is
-  displayed only if you use the `FULL`
-  keyword.
+  The privileges you have for the column. This value is displayed only if you use the `FULL` keyword.
 
 * `Comment`
 
-  Any comment included in the column definition. This value is
-  displayed only if you use the `FULL`
-  keyword.
+  Any comment included in the column definition. This value is displayed only if you use the `FULL` keyword.
 
-Table column information is also available from the
-`INFORMATION_SCHEMA`
-[`COLUMNS`](information-schema-columns-table.html "28.3.8 The INFORMATION_SCHEMA COLUMNS Table") table. See
-[Section 28.3.8, “The INFORMATION\_SCHEMA COLUMNS Table”](information-schema-columns-table.html "28.3.8 The INFORMATION_SCHEMA COLUMNS Table"). The extended
-information about hidden columns is available only using
-`SHOW EXTENDED COLUMNS`; it cannot be obtained
-from the [`COLUMNS`](information-schema-columns-table.html "28.3.8 The INFORMATION_SCHEMA COLUMNS Table") table.
+Table column information is also available from the `INFORMATION_SCHEMA` `COLUMNS` table. See Section 28.3.8, “The INFORMATION_SCHEMA COLUMNS Table”. The extended information about hidden columns is available only using `SHOW EXTENDED COLUMNS`; it cannot be obtained from the `COLUMNS` table.
 
-You can list a table's columns with the [**mysqlshow
-*`db_name`*
-*`tbl_name`***](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information") command.
+You can list a table's columns with the [**mysqlshow *`db_name`* *`tbl_name`***](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information") command.
 
-The [`DESCRIBE`](describe.html "15.8.1 DESCRIBE Statement") statement provides
-information similar to [`SHOW
-COLUMNS`](show-columns.html "15.7.7.5 SHOW COLUMNS Statement"). See [Section 15.8.1, “DESCRIBE Statement”](describe.html "15.8.1 DESCRIBE Statement").
+The `DESCRIBE` statement provides information similar to [`SHOW COLUMNS`](show-columns.html "15.7.7.5 SHOW COLUMNS Statement"). See Section 15.8.1, “DESCRIBE Statement”.
 
-The [`SHOW CREATE TABLE`](show-create-table.html "15.7.7.10 SHOW CREATE TABLE Statement"),
-[`SHOW TABLE STATUS`](show-table-status.html "15.7.7.38 SHOW TABLE STATUS Statement"), and
-[`SHOW INDEX`](show-index.html "15.7.7.22 SHOW INDEX Statement") statements also
-provide information about tables. See [Section 15.7.7, “SHOW Statements”](show.html "15.7.7 SHOW Statements").
+The `SHOW CREATE TABLE`, `SHOW TABLE STATUS`, and `SHOW INDEX` statements also provide information about tables. See Section 15.7.7, “SHOW Statements”.
 
-In MySQL 8.0.30 and later, `SHOW COLUMNS`
-includes the table's generated invisible primary key, if it
-has one, by default. You can cause this information to be
-suppressed in the statement's output by setting
-[`show_gipk_in_create_table_and_information_schema
-= OFF`](server-system-variables.html#sysvar_show_gipk_in_create_table_and_information_schema). For more information, see
-[Section 15.1.20.11, “Generated Invisible Primary Keys”](create-table-gipks.html "15.1.20.11 Generated Invisible Primary Keys").
+In MySQL 8.0.30 and later, `SHOW COLUMNS` includes the table's generated invisible primary key, if it has one, by default. You can cause this information to be suppressed in the statement's output by setting [`show_gipk_in_create_table_and_information_schema = OFF`](server-system-variables.html#sysvar_show_gipk_in_create_table_and_information_schema). For more information, see Section 15.1.20.11, “Generated Invisible Primary Keys”.

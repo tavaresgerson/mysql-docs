@@ -1,16 +1,8 @@
 #### 22.3.4.3 Update Tables
 
-You can use the `update()` method to modify one
-or more records in a table. The `update()`
-method works by filtering a query to include only the records to
-be updated and then applying the operations you specify to those
-records.
+You can use the `update()` method to modify one or more records in a table. The `update()` method works by filtering a query to include only the records to be updated and then applying the operations you specify to those records.
 
-To replace a city name in the city table, pass to the
-`set()` method the new city name. Then, pass to
-the `where()` method the city name to locate
-and replace. The following example replaces the city Peking with
-Beijing.
+To replace a city name in the city table, pass to the `set()` method the new city name. Then, pass to the `where()` method the city name to locate and replace. The following example replaces the city Peking with Beijing.
 
 ```
 mysql-js> db.city.update().set("Name", "Beijing").where("Name = 'Peking'")
@@ -30,5 +22,4 @@ mysql-js> db.city.select(["ID", "Name", "CountryCode", "District", "Info"]).wher
 
 ##### Related Information
 
-* See [TableUpdateFunction](/doc/x-devapi-userguide/en/crud-ebnf-table-crud-functions.html#crud-ebnf-tableupdatefunction) for
-  the full syntax definition.
+* See TableUpdateFunction for the full syntax definition.

@@ -1,16 +1,6 @@
 ## 27.1 Defining Stored Programs
 
-Each stored program contains a body that consists of an SQL
-statement. This statement may be a compound statement made up of
-several statements separated by semicolon (`;`)
-characters. For example, the following stored procedure has a body
-made up of a [`BEGIN ...
-END`](begin-end.html "15.6.1 BEGIN ... END Compound Statement") block that contains a
-[`SET`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment")
-statement and a [`REPEAT`](repeat.html "15.6.5.6 REPEAT Statement") loop that
-itself contains another
-[`SET`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment")
-statement:
+Each stored program contains a body that consists of an SQL statement. This statement may be a compound statement made up of several statements separated by semicolon (`;`) characters. For example, the following stored procedure has a body made up of a [`BEGIN ... END`](begin-end.html "15.6.1 BEGIN ... END Compound Statement") block that contains a `SET` statement and a `REPEAT` loop that itself contains another `SET` statement:
 
 ```
 CREATE PROCEDURE dorepeat(p1 INT)
@@ -20,23 +10,9 @@ BEGIN
 END;
 ```
 
-If you use the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") client program to define a
-stored program containing semicolon characters, a problem arises.
-By default, [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") itself recognizes the
-semicolon as a statement delimiter, so you must redefine the
-delimiter temporarily to cause [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") to pass
-the entire stored program definition to the server.
+If you use the **mysql** client program to define a stored program containing semicolon characters, a problem arises. By default, **mysql** itself recognizes the semicolon as a statement delimiter, so you must redefine the delimiter temporarily to cause **mysql** to pass the entire stored program definition to the server.
 
-To redefine the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") delimiter, use the
-`delimiter` command. The following example shows
-how to do this for the `dorepeat()` procedure
-just shown. The delimiter is changed to `//` to
-enable the entire definition to be passed to the server as a
-single statement, and then restored to `;` before
-invoking the procedure. This enables the `;`
-delimiter used in the procedure body to be passed through to the
-server rather than being interpreted by [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client")
-itself.
+To redefine the **mysql** delimiter, use the `delimiter` command. The following example shows how to do this for the `dorepeat()` procedure just shown. The delimiter is changed to `//` to enable the entire definition to be passed to the server as a single statement, and then restored to `;` before invoking the procedure. This enables the `;` delimiter used in the procedure body to be passed through to the server rather than being interpreted by **mysql** itself.
 
 ```
 mysql> delimiter //
@@ -63,17 +39,9 @@ mysql> SELECT @x;
 1 row in set (0.00 sec)
 ```
 
-You can redefine the delimiter to a string other than
-`//`, and the delimiter can consist of a single
-character or multiple characters. You should avoid the use of the
-backslash (`\`) character because that is the
-escape character for MySQL.
+You can redefine the delimiter to a string other than `//`, and the delimiter can consist of a single character or multiple characters. You should avoid the use of the backslash (`\`) character because that is the escape character for MySQL.
 
-The following is an example of a function that takes a parameter,
-performs an operation using an SQL function, and returns the
-result. In this case, it is unnecessary to use
-`delimiter` because the function definition
-contains no internal `;` statement delimiters:
+The following is an example of a function that takes a parameter, performs an operation using an SQL function, and returns the result. In this case, it is unnecessary to use `delimiter` because the function definition contains no internal `;` statement delimiters:
 
 ```
 mysql> CREATE FUNCTION hello (s CHAR(20))

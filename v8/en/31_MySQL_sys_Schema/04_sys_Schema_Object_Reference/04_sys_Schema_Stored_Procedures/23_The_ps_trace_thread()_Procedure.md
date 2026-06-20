@@ -1,45 +1,24 @@
-#### 30.4.4.23 The ps\_trace\_thread() Procedure
+#### 30.4.4.23 The ps_trace_thread() Procedure
 
-Dumps all Performance Schema data for an instrumented thread
-to a `.dot` formatted graph file (for the
-DOT graph description language). Each result set returned from
-the procedure should be used for a complete graph.
+Dumps all Performance Schema data for an instrumented thread to a `.dot` formatted graph file (for the DOT graph description language). Each result set returned from the procedure should be used for a complete graph.
 
-This procedure disables binary logging during its execution by
-manipulating the session value of the
-[`sql_log_bin`](replication-options-binary-log.html#sysvar_sql_log_bin) system variable.
-That is a restricted operation, so the procedure requires
-privileges sufficient to set restricted session variables. See
-[Section 7.1.9.1, “System Variable Privileges”](system-variable-privileges.html "7.1.9.1 System Variable Privileges").
+This procedure disables binary logging during its execution by manipulating the session value of the `sql_log_bin` system variable. That is a restricted operation, so the procedure requires privileges sufficient to set restricted session variables. See Section 7.1.9.1, “System Variable Privileges”.
 
 ##### Parameters
 
-* `in_thread_id INT`: The thread to
-  trace.
+* `in_thread_id INT`: The thread to trace.
 
-* `in_outfile VARCHAR(255)`: The name to
-  use for the `.dot` output file.
+* `in_outfile VARCHAR(255)`: The name to use for the `.dot` output file.
 
-* `in_max_runtime DECIMAL(20,2)`: The
-  maximum number of seconds (which can be fractional) to
-  collect data. Use `NULL` to collect
-  data for the default of 60 seconds.
+* `in_max_runtime DECIMAL(20,2)`: The maximum number of seconds (which can be fractional) to collect data. Use `NULL` to collect data for the default of 60 seconds.
 
-* `in_interval DECIMAL(20,2)`: The number
-  of seconds (which can be fractional) to sleep between
-  data collections. Use `NULL` to sleep
-  for the default of 1 second.
+* `in_interval DECIMAL(20,2)`: The number of seconds (which can be fractional) to sleep between data collections. Use `NULL` to sleep for the default of 1 second.
 
-* `in_start_fresh BOOLEAN`: Whether to
-  reset all Performance Schema data before tracing.
+* `in_start_fresh BOOLEAN`: Whether to reset all Performance Schema data before tracing.
 
-* `in_auto_setup BOOLEAN`: Whether to
-  disable all other threads and enable all instruments and
-  consumers. This also resets the settings at the end of
-  the run.
+* `in_auto_setup BOOLEAN`: Whether to disable all other threads and enable all instruments and consumers. This also resets the settings at the end of the run.
 
-* `in_debug BOOLEAN`: Whether to include
-  `file:lineno` information in the graph.
+* `in_debug BOOLEAN`: Whether to include `file:lineno` information in the graph.
 
 ##### Example
 

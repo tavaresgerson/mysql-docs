@@ -1,28 +1,16 @@
-### 10.2.3 Optimizing INFORMATION\_SCHEMA Queries
+### 10.2.3 Optimizing INFORMATION_SCHEMA Queries
 
-Applications that monitor databases may make frequent use of
-`INFORMATION_SCHEMA` tables. To write queries
-for these tables most efficiently, use the following general
-guidelines:
+Applications that monitor databases may make frequent use of `INFORMATION_SCHEMA` tables. To write queries for these tables most efficiently, use the following general guidelines:
 
-* Try to query only `INFORMATION_SCHEMA`
-  tables that are views on data dictionary tables.
+* Try to query only `INFORMATION_SCHEMA` tables that are views on data dictionary tables.
 
-* Try to query only for static metadata. Selecting columns or
-  using retrieval conditions for dynamic metadata along with
-  static metadata adds overhead to process the dynamic
-  metadata.
+* Try to query only for static metadata. Selecting columns or using retrieval conditions for dynamic metadata along with static metadata adds overhead to process the dynamic metadata.
 
 Note
 
-Comparison behavior for database and table names in
-`INFORMATION_SCHEMA` queries might differ
-from what you expect. For details, see
-[Section 12.8.7, “Using Collation in INFORMATION\_SCHEMA Searches”](charset-collation-information-schema.html "12.8.7 Using Collation in INFORMATION_SCHEMA Searches").
+Comparison behavior for database and table names in `INFORMATION_SCHEMA` queries might differ from what you expect. For details, see Section 12.8.7, “Using Collation in INFORMATION_SCHEMA Searches”.
 
-These `INFORMATION_SCHEMA` tables are
-implemented as views on data dictionary tables, so queries on
-them retrieve information from the data dictionary:
+These `INFORMATION_SCHEMA` tables are implemented as views on data dictionary tables, so queries on them retrieve information from the data dictionary:
 
 ```
 CHARACTER_SETS
@@ -58,13 +46,9 @@ VIEW_ROUTINE_USAGE
 VIEW_TABLE_USAGE
 ```
 
-Some types of values, even for a non-view
-`INFORMATION_SCHEMA` table, are retrieved by
-lookups from the data dictionary. This includes values such as
-database and table names, table types, and storage engines.
+Some types of values, even for a non-view `INFORMATION_SCHEMA` table, are retrieved by lookups from the data dictionary. This includes values such as database and table names, table types, and storage engines.
 
-Some `INFORMATION_SCHEMA` tables contain
-columns that provide table statistics:
+Some `INFORMATION_SCHEMA` tables contain columns that provide table statistics:
 
 ```
 STATISTICS.CARDINALITY
@@ -81,82 +65,32 @@ TABLES.TABLE_ROWS
 TABLES.UPDATE_TIME
 ```
 
-Those columns represent dynamic table metadata; that is,
-information that changes as table contents change.
+Those columns represent dynamic table metadata; that is, information that changes as table contents change.
 
-By default, MySQL retrieves cached values for those columns from
-the `mysql.index_stats` and
-`mysql.innodb_table_stats` dictionary tables
-when the columns are queried, which is more efficient than
-retrieving statistics directly from the storage engine. If
-cached statistics are not available or have expired, MySQL
-retrieves the latest statistics from the storage engine and
-caches them in the `mysql.index_stats` and
-`mysql.innodb_table_stats` dictionary tables.
-Subsequent queries retrieve the cached statistics until the
-cached statistics expire. A server restart or the first opening
-of the `mysql.index_stats` and
-`mysql.innodb_table_stats` tables do not update
-cached statistics automatically.
+By default, MySQL retrieves cached values for those columns from the `mysql.index_stats` and `mysql.innodb_table_stats` dictionary tables when the columns are queried, which is more efficient than retrieving statistics directly from the storage engine. If cached statistics are not available or have expired, MySQL retrieves the latest statistics from the storage engine and caches them in the `mysql.index_stats` and `mysql.innodb_table_stats` dictionary tables. Subsequent queries retrieve the cached statistics until the cached statistics expire. A server restart or the first opening of the `mysql.index_stats` and `mysql.innodb_table_stats` tables do not update cached statistics automatically.
 
-The
-[`information_schema_stats_expiry`](server-system-variables.html#sysvar_information_schema_stats_expiry)
-session variable defines the period of time before cached
-statistics expire. The default is 86400 seconds (24 hours), but
-the time period can be extended to as much as one year.
+The `information_schema_stats_expiry` session variable defines the period of time before cached statistics expire. The default is 86400 seconds (24 hours), but the time period can be extended to as much as one year.
 
-To update cached values at any time for a given table, use
-[`ANALYZE TABLE`](analyze-table.html "15.7.3.1 ANALYZE TABLE Statement").
+To update cached values at any time for a given table, use `ANALYZE TABLE`.
 
-Querying statistics columns does not store or update statistics
-in the `mysql.index_stats` and
-`mysql.innodb_table_stats` dictionary tables
-under these circumstances:
+Querying statistics columns does not store or update statistics in the `mysql.index_stats` and `mysql.innodb_table_stats` dictionary tables under these circumstances:
 
 * When cached statistics have not expired.
-* When
-  [`information_schema_stats_expiry`](server-system-variables.html#sysvar_information_schema_stats_expiry)
-  is set to 0.
+* When `information_schema_stats_expiry` is set to 0.
 
-* When the server is in
-  [`read_only`](server-system-variables.html#sysvar_read_only),
-  [`super_read_only`](server-system-variables.html#sysvar_super_read_only),
-  [`transaction_read_only`](server-system-variables.html#sysvar_transaction_read_only), or
-  [`innodb_read_only`](innodb-parameters.html#sysvar_innodb_read_only) mode.
+* When the server is in `read_only`, `super_read_only`, `transaction_read_only`, or `innodb_read_only` mode.
 
 * When the query also fetches Performance Schema data.
 
-[`information_schema_stats_expiry`](server-system-variables.html#sysvar_information_schema_stats_expiry)
-is a session variable, and each client session can define its
-own expiration value. Statistics that are retrieved from the
-storage engine and cached by one session are available to other
-sessions.
+`information_schema_stats_expiry` is a session variable, and each client session can define its own expiration value. Statistics that are retrieved from the storage engine and cached by one session are available to other sessions.
 
 Note
 
-If the [`innodb_read_only`](innodb-parameters.html#sysvar_innodb_read_only)
-system variable is enabled, [`ANALYZE
-TABLE`](analyze-table.html "15.7.3.1 ANALYZE TABLE Statement") may fail because it cannot update statistics
-tables in the data dictionary, which use
-`InnoDB`. For [`ANALYZE
-TABLE`](analyze-table.html "15.7.3.1 ANALYZE TABLE Statement") operations that update the key distribution,
-failure may occur even if the operation updates the table
-itself (for example, if it is a `MyISAM`
-table). To obtain the updated distribution statistics, set
-[`information_schema_stats_expiry=0`](server-system-variables.html#sysvar_information_schema_stats_expiry).
+If the `innodb_read_only` system variable is enabled, [`ANALYZE TABLE`](analyze-table.html "15.7.3.1 ANALYZE TABLE Statement") may fail because it cannot update statistics tables in the data dictionary, which use `InnoDB`. For [`ANALYZE TABLE`](analyze-table.html "15.7.3.1 ANALYZE TABLE Statement") operations that update the key distribution, failure may occur even if the operation updates the table itself (for example, if it is a `MyISAM` table). To obtain the updated distribution statistics, set `information_schema_stats_expiry=0`.
 
-For `INFORMATION_SCHEMA` tables implemented as
-views on data dictionary tables, indexes on the underlying data
-dictionary tables permit the optimizer to construct efficient
-query execution plans. To see the choices made by the optimizer,
-use [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement"). To also see the
-query used by the server to execute an
-`INFORMATION_SCHEMA` query, use
-[`SHOW WARNINGS`](show-warnings.html "15.7.7.42 SHOW WARNINGS Statement") immediately
-following [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement").
+For `INFORMATION_SCHEMA` tables implemented as views on data dictionary tables, indexes on the underlying data dictionary tables permit the optimizer to construct efficient query execution plans. To see the choices made by the optimizer, use `EXPLAIN`. To also see the query used by the server to execute an `INFORMATION_SCHEMA` query, use `SHOW WARNINGS` immediately following `EXPLAIN`.
 
-Consider this statement, which identifies collations for the
-`utf8mb4` character set:
+Consider this statement, which identifies collations for the `utf8mb4` character set:
 
 ```
 mysql> SELECT COLLATION_NAME
@@ -175,8 +109,7 @@ mysql> SELECT COLLATION_NAME
 ...
 ```
 
-How does the server process that statement? To find out, use
-[`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement"):
+How does the server process that statement? To find out, use `EXPLAIN`:
 
 ```
 mysql> EXPLAIN SELECT COLLATION_NAME
@@ -211,8 +144,7 @@ possible_keys: character_set_id
 2 rows in set, 1 warning (0.01 sec)
 ```
 
-To see the query used to satisfy that statement, use
-[`SHOW WARNINGS`](show-warnings.html "15.7.7.42 SHOW WARNINGS Statement"):
+To see the query used to satisfy that statement, use `SHOW WARNINGS`:
 
 ```
 mysql> SHOW WARNINGS\G
@@ -226,9 +158,4 @@ Message: /* select#1 */ select `mysql`.`col`.`name` AS `COLLATION_NAME`
          and ('utf8mb4' = 'utf8mb4'))
 ```
 
-As indicated by [`SHOW WARNINGS`](show-warnings.html "15.7.7.42 SHOW WARNINGS Statement"),
-the server handles the query on
-[`COLLATION_CHARACTER_SET_APPLICABILITY`](information-schema-collation-character-set-applicability-table.html "28.3.7 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table")
-as a query on the `character_sets` and
-`collations` data dictionary tables in the
-`mysql` system database.
+As indicated by `SHOW WARNINGS`, the server handles the query on `COLLATION_CHARACTER_SET_APPLICABILITY` as a query on the `character_sets` and `collations` data dictionary tables in the `mysql` system database.

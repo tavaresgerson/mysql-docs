@@ -4,38 +4,11 @@
 SHOW CREATE USER user
 ```
 
-This statement shows the [`CREATE
-USER`](create-user.html "15.7.1.3 CREATE USER Statement") statement that creates the named user. An error
-occurs if the user does not exist. The statement requires the
-[`SELECT`](privileges-provided.html#priv_select) privilege for the
-`mysql` system schema, except to see
-information for the current user. For the current user, the
-[`SELECT`](privileges-provided.html#priv_select) privilege for the
-`mysql.user` system table is required for
-display of the password hash in the `IDENTIFIED
-AS` clause; otherwise, the hash displays as
-`<secret>`.
+This statement shows the [`CREATE USER`](create-user.html "15.7.1.3 CREATE USER Statement") statement that creates the named user. An error occurs if the user does not exist. The statement requires the `SELECT` privilege for the `mysql` system schema, except to see information for the current user. For the current user, the `SELECT` privilege for the `mysql.user` system table is required for display of the password hash in the `IDENTIFIED AS` clause; otherwise, the hash displays as `<secret>`.
 
-To name the account, use the format described in
-[Section 8.2.4, “Specifying Account Names”](account-names.html "8.2.4 Specifying Account Names"). The host name part of the
-account name, if omitted, defaults to `'%'`. It
-is also possible to specify
-[`CURRENT_USER`](information-functions.html#function_current-user) or
-[`CURRENT_USER()`](information-functions.html#function_current-user) to refer to the
-account associated with the current session.
+To name the account, use the format described in Section 8.2.4, “Specifying Account Names”. The host name part of the account name, if omitted, defaults to `'%'`. It is also possible to specify `CURRENT_USER` or `CURRENT_USER()` to refer to the account associated with the current session.
 
-Password hash values displayed in the `IDENTIFIED
-WITH` clause of output from [`SHOW
-CREATE USER`](show-create-user.html "15.7.7.12 SHOW CREATE USER Statement") may contain unprintable characters that
-have adverse effects on terminal displays and in other
-environments. Enabling the
-[`print_identified_with_as_hex`](server-system-variables.html#sysvar_print_identified_with_as_hex)
-system variable (available as of MySQL 8.0.17) causes
-[`SHOW CREATE USER`](show-create-user.html "15.7.7.12 SHOW CREATE USER Statement") to display such
-hash values as hexadecimal strings rather than as regular string
-literals. Hash values that do not contain unprintable characters
-still display as regular string literals, even with this
-variable enabled.
+Password hash values displayed in the `IDENTIFIED WITH` clause of output from [`SHOW CREATE USER`](show-create-user.html "15.7.7.12 SHOW CREATE USER Statement") may contain unprintable characters that have adverse effects on terminal displays and in other environments. Enabling the `print_identified_with_as_hex` system variable (available as of MySQL 8.0.17) causes `SHOW CREATE USER` to display such hash values as hexadecimal strings rather than as regular string literals. Hash values that do not contain unprintable characters still display as regular string literals, even with this variable enabled.
 
 ```
 mysql> CREATE USER 'u1'@'localhost' IDENTIFIED BY 'secret';
@@ -50,6 +23,4 @@ PASSWORD HISTORY DEFAULT PASSWORD REUSE INTERVAL DEFAULT
 PASSWORD REQUIRE CURRENT DEFAULT
 ```
 
-To display the privileges granted to an account, use the
-[`SHOW GRANTS`](show-grants.html "15.7.7.21 SHOW GRANTS Statement") statement. See
-[Section 15.7.7.21, “SHOW GRANTS Statement”](show-grants.html "15.7.7.21 SHOW GRANTS Statement").
+To display the privileges granted to an account, use the `SHOW GRANTS` statement. See Section 15.7.7.21, “SHOW GRANTS Statement”.

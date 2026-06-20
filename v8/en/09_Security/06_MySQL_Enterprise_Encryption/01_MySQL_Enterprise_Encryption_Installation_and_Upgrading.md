@@ -1,38 +1,16 @@
 ### 8.6.1 MySQL Enterprise Encryption Installation and Upgrading
 
-In releases before MySQL 8.0.30, the functions provided by
-MySQL Enterprise Encryption are installed by creating them individually, based on
-the `openssl_udf` shared library. From MySQL
-8.0.30, the functions are provided by a MySQL component
-`component_enterprise_encryption`, and installing
-the component installs all of the functions. The functions from
-the `openssl_udf` shared library are deprecated
-from that release, and you should upgrade to the component
-instead.
+In releases before MySQL 8.0.30, the functions provided by MySQL Enterprise Encryption are installed by creating them individually, based on the `openssl_udf` shared library. From MySQL 8.0.30, the functions are provided by a MySQL component `component_enterprise_encryption`, and installing the component installs all of the functions. The functions from the `openssl_udf` shared library are deprecated from that release, and you should upgrade to the component instead.
 
-* [Installation From MySQL 8.0.30](enterprise-encryption-installation.html#enterprise-encryption-installation-30 "Installation From MySQL 8.0.30")
-* [Installation To MySQL 8.0.29](enterprise-encryption-installation.html#enterprise-encryption-installation-29 "Installation To MySQL 8.0.29")
-* [Upgrading MySQL Enterprise Encryption](enterprise-encryption-installation.html#enterprise-encryption-upgrading "Upgrading MySQL Enterprise Encryption")
+* Installation From MySQL 8.0.30
+* Installation To MySQL 8.0.29
+* Upgrading MySQL Enterprise Encryption
 
 #### Installation From MySQL 8.0.30
 
-From MySQL 8.0.30, MySQL Enterprise Encryption’s functions are
-provided by a MySQL component
-`component_enterprise_encryption`, rather than
-being installed from the `openssl_udf` shared
-library. If you are upgrading to MySQL 8.0.30 from an earlier
-release where you used MySQL Enterprise Encryption, the
-functions you created remain available and are supported.
-However, these legacy functions are deprecated from this
-release, and it is recommended that you install the component
-instead. The component functions are backward compatible. For
-upgrade information, see
-[Upgrading MySQL Enterprise Encryption](enterprise-encryption-installation.html#enterprise-encryption-upgrading "Upgrading MySQL Enterprise Encryption").
+From MySQL 8.0.30, MySQL Enterprise Encryption’s functions are provided by a MySQL component `component_enterprise_encryption`, rather than being installed from the `openssl_udf` shared library. If you are upgrading to MySQL 8.0.30 from an earlier release where you used MySQL Enterprise Encryption, the functions you created remain available and are supported. However, these legacy functions are deprecated from this release, and it is recommended that you install the component instead. The component functions are backward compatible. For upgrade information, see Upgrading MySQL Enterprise Encryption.
 
-If you are upgrading, before installing the component, unload
-the legacy functions using the
-[`DROP
-FUNCTION`](drop-function-loadable.html "15.7.4.2 DROP FUNCTION Statement for Loadable Functions") statement:
+If you are upgrading, before installing the component, unload the legacy functions using the [`DROP FUNCTION`](drop-function-loadable.html "15.7.4.2 DROP FUNCTION Statement for Loadable Functions") statement:
 
 ```
 DROP FUNCTION asymmetric_decrypt;
@@ -46,74 +24,39 @@ DROP FUNCTION create_dh_parameters;
 DROP FUNCTION create_digest;
 ```
 
-The function names must be specified in lowercase. The
-statements require the [`DROP`](privileges-provided.html#priv_drop)
-privilege for the `mysql` database.
+The function names must be specified in lowercase. The statements require the `DROP` privilege for the `mysql` database.
 
-To install the component, issue an [`INSTALL
-COMPONENT`](install-component.html "15.7.4.3 INSTALL COMPONENT Statement") statement:
+To install the component, issue an [`INSTALL COMPONENT`](install-component.html "15.7.4.3 INSTALL COMPONENT Statement") statement:
 
 ```
 INSTALL COMPONENT "file://component_enterprise_encryption";
 ```
 
-[`INSTALL COMPONENT`](install-component.html "15.7.4.3 INSTALL COMPONENT Statement") requires the
-[`INSERT`](privileges-provided.html#priv_insert) privilege for the
-`mysql.component` system table because it adds
-a row to that table to register the component. To verify that
-the component has been installed, issue:
+`INSTALL COMPONENT` requires the `INSERT` privilege for the `mysql.component` system table because it adds a row to that table to register the component. To verify that the component has been installed, issue:
 
 ```
 SELECT * FROM mysql.component;
 ```
 
-Components listed in `mysql.component` are
-loaded by the loader service during the startup sequence.
+Components listed in `mysql.component` are loaded by the loader service during the startup sequence.
 
-If you need to uninstall the component, issue an
-[`UNINSTALL COMPONENT`](uninstall-component.html "15.7.4.5 UNINSTALL COMPONENT Statement") statement:
+If you need to uninstall the component, issue an `UNINSTALL COMPONENT` statement:
 
 ```
 UNINSTALL COMPONENT "file://component_enterprise_encryption";
 ```
 
-For more details, see [Section 7.5.1, “Installing and Uninstalling Components”](component-loading.html "7.5.1 Installing and Uninstalling Components").
+For more details, see Section 7.5.1, “Installing and Uninstalling Components”.
 
-Installing the component installs all of the functions, so you
-do not need to create them using [`CREATE
-FUNCTION`](create-function.html "15.1.14 CREATE FUNCTION Statement") statements as you do before MySQL 8.0.30.
-Uninstalling the component uninstalls all of the functions.
+Installing the component installs all of the functions, so you do not need to create them using [`CREATE FUNCTION`](create-function.html "15.1.14 CREATE FUNCTION Statement") statements as you do before MySQL 8.0.30. Uninstalling the component uninstalls all of the functions.
 
-When you have installed the component, if you want the component
-functions to support decryption and verification for content
-produced by the legacy functions before MySQL 8.0.30, set the
-component’s system variable
-[`enterprise_encryption.rsa_support_legacy_padding`](server-system-variables.html#sysvar_enterprise_encryption.rsa_support_legacy_padding)
-to `ON`. Also, if you want to change the
-maximum length allowed for the RSA keys generated by the
-component functions, use the component’s system variable
-[`enterprise_encryption.maximum_rsa_key_size`](server-system-variables.html#sysvar_enterprise_encryption.maximum_rsa_key_size)
-to set an appropriate maximum. For configuration information,
-see [Section 8.6.2, “Configuring MySQL Enterprise Encryption”](enterprise-encryption-configuring.html "8.6.2 Configuring MySQL Enterprise Encryption").
+When you have installed the component, if you want the component functions to support decryption and verification for content produced by the legacy functions before MySQL 8.0.30, set the component’s system variable `enterprise_encryption.rsa_support_legacy_padding` to `ON`. Also, if you want to change the maximum length allowed for the RSA keys generated by the component functions, use the component’s system variable `enterprise_encryption.maximum_rsa_key_size` to set an appropriate maximum. For configuration information, see Section 8.6.2, “Configuring MySQL Enterprise Encryption”.
 
 #### Installation To MySQL 8.0.29
 
-Before MySQL 8.0.29, MySQL Enterprise Encryption functions are located in a
-loadable function library file installed in the plugin directory
-(the directory named by the
-[`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable).
-The function library base name is
-`openssl_udf` and the suffix is platform
-dependent. For example, the file name on Linux or Windows is
-`openssl_udf.so` or
-`openssl_udf.dll`, respectively.
+Before MySQL 8.0.29, MySQL Enterprise Encryption functions are located in a loadable function library file installed in the plugin directory (the directory named by the `plugin_dir` system variable). The function library base name is `openssl_udf` and the suffix is platform dependent. For example, the file name on Linux or Windows is `openssl_udf.so` or `openssl_udf.dll`, respectively.
 
-To install functions from the `openssl_udf`
-shared library file, use the
-[`CREATE
-FUNCTION`](create-function-loadable.html "15.7.4.1 CREATE FUNCTION Statement for Loadable Functions") statement. To load all functions from the
-library, use this set of statements, adjusting the file name
-suffix as necessary:
+To install functions from the `openssl_udf` shared library file, use the [`CREATE FUNCTION`](create-function-loadable.html "15.7.4.1 CREATE FUNCTION Statement for Loadable Functions") statement. To load all functions from the library, use this set of statements, adjusting the file name suffix as necessary:
 
 ```
 CREATE FUNCTION asymmetric_decrypt RETURNS STRING
@@ -136,10 +79,7 @@ CREATE FUNCTION create_digest RETURNS STRING
   SONAME 'openssl_udf.so';
 ```
 
-Once installed, the functions remain installed across server
-restarts. If you need to unload the functions, use the
-[`DROP
-FUNCTION`](drop-function-loadable.html "15.7.4.2 DROP FUNCTION Statement for Loadable Functions") statement:
+Once installed, the functions remain installed across server restarts. If you need to unload the functions, use the [`DROP FUNCTION`](drop-function-loadable.html "15.7.4.2 DROP FUNCTION Statement for Loadable Functions") statement:
 
 ```
 DROP FUNCTION asymmetric_decrypt;
@@ -153,212 +93,44 @@ DROP FUNCTION create_dh_parameters;
 DROP FUNCTION create_digest;
 ```
 
-In the
-[`CREATE
-FUNCTION`](create-function-loadable.html "15.7.4.1 CREATE FUNCTION Statement for Loadable Functions") and
-[`DROP
-FUNCTION`](drop-function-loadable.html "15.7.4.2 DROP FUNCTION Statement for Loadable Functions") statements, the function names must be
-specified in lowercase. This differs from their use at function
-invocation time, for which you can use any lettercase.
+In the [`CREATE FUNCTION`](create-function-loadable.html "15.7.4.1 CREATE FUNCTION Statement for Loadable Functions") and [`DROP FUNCTION`](drop-function-loadable.html "15.7.4.2 DROP FUNCTION Statement for Loadable Functions") statements, the function names must be specified in lowercase. This differs from their use at function invocation time, for which you can use any lettercase.
 
-The
-[`CREATE
-FUNCTION`](create-function-loadable.html "15.7.4.1 CREATE FUNCTION Statement for Loadable Functions") and
-[`DROP
-FUNCTION`](drop-function-loadable.html "15.7.4.2 DROP FUNCTION Statement for Loadable Functions") statements require the
-[`INSERT`](privileges-provided.html#priv_insert) and
-[`DROP`](privileges-provided.html#priv_drop) privilege, respectively, for
-the `mysql` database.
+The [`CREATE FUNCTION`](create-function-loadable.html "15.7.4.1 CREATE FUNCTION Statement for Loadable Functions") and [`DROP FUNCTION`](drop-function-loadable.html "15.7.4.2 DROP FUNCTION Statement for Loadable Functions") statements require the `INSERT` and `DROP` privilege, respectively, for the `mysql` database.
 
-The functions provided by the `openssl_udf`
-shared library allow a minimum key size of 1024 bits. You can
-set a maximum key size using the
-`MYSQL_OPENSSL_UDF_RSA_BITS_THRESHOLD`,
-`MYSQL_OPENSSL_UDF_DSA_BITS_THRESHOLD`, and
-`MYSQL_OPENSSL_UDF_DH_BITS_THRESHOLD`
-environment variables, as described in
-[Section 8.6.2, “Configuring MySQL Enterprise Encryption”](enterprise-encryption-configuring.html "8.6.2 Configuring MySQL Enterprise Encryption"). If you do
-not set a maximum key size, the upper limit is 16384 for the RSA
-algorithm and 10000 for the DSA algorithm, as specified by
-OpenSSL.
+The functions provided by the `openssl_udf` shared library allow a minimum key size of 1024 bits. You can set a maximum key size using the `MYSQL_OPENSSL_UDF_RSA_BITS_THRESHOLD`, `MYSQL_OPENSSL_UDF_DSA_BITS_THRESHOLD`, and `MYSQL_OPENSSL_UDF_DH_BITS_THRESHOLD` environment variables, as described in Section 8.6.2, “Configuring MySQL Enterprise Encryption”. If you do not set a maximum key size, the upper limit is 16384 for the RSA algorithm and 10000 for the DSA algorithm, as specified by OpenSSL.
 
 #### Upgrading MySQL Enterprise Encryption
 
-If you upgrade to MySQL 8.0.30 or later from an earlier release
-where you used the functions provided by the
-`openssl_udf` shared library, the functions you
-created remain available and are supported. However, these
-legacy functions are deprecated from MySQL 8.0.30, and it is
-recommended that you install the MySQL Enterprise Encryption
-component `component_enterprise_encryption`
-instead.
+If you upgrade to MySQL 8.0.30 or later from an earlier release where you used the functions provided by the `openssl_udf` shared library, the functions you created remain available and are supported. However, these legacy functions are deprecated from MySQL 8.0.30, and it is recommended that you install the MySQL Enterprise Encryption component `component_enterprise_encryption` instead.
 
-When you are upgrading, before installing the component, you
-must unload the legacy functions using the
-[`DROP FUNCTION`](drop-function.html "15.1.26 DROP FUNCTION Statement") statement. For
-instructions to do this, see
-[Installation From MySQL 8.0.30](enterprise-encryption-installation.html#enterprise-encryption-installation-30 "Installation From MySQL 8.0.30").
+When you are upgrading, before installing the component, you must unload the legacy functions using the `DROP FUNCTION` statement. For instructions to do this, see Installation From MySQL 8.0.30.
 
 The component functions are backward compatible:
 
-* RSA public and private keys generated by the legacy
-  functions can be used with the component functions.
+* RSA public and private keys generated by the legacy functions can be used with the component functions.
 
-* Data encrypted with the legacy functions can be decrypted by
-  the component functions.
+* Data encrypted with the legacy functions can be decrypted by the component functions.
 
-* Signatures created by the legacy functions can be verified
-  with the component functions.
+* Signatures created by the legacy functions can be verified with the component functions.
 
-For the component functions to support decryption and
-verification for content produced by the legacy functions, you
-must set the system variable
-[`enterprise_encryption.rsa_support_legacy_padding`](server-system-variables.html#sysvar_enterprise_encryption.rsa_support_legacy_padding)
-to `ON` (the default is
-`OFF`). For configuration information, see
-[Section 8.6.2, “Configuring MySQL Enterprise Encryption”](enterprise-encryption-configuring.html "8.6.2 Configuring MySQL Enterprise Encryption").
+For the component functions to support decryption and verification for content produced by the legacy functions, you must set the system variable `enterprise_encryption.rsa_support_legacy_padding` to `ON` (the default is `OFF`). For configuration information, see Section 8.6.2, “Configuring MySQL Enterprise Encryption”.
 
-The legacy functions cannot handle encrypted data, public keys,
-and signatures created by the component functions, due to the
-differences in the padding and key format used by the component
-functions to meet the current standards.
+The legacy functions cannot handle encrypted data, public keys, and signatures created by the component functions, due to the differences in the padding and key format used by the component functions to meet the current standards.
 
-The new functions provided by the
-`component_enterprise_encryption` component
-have some differences in behavior and support from the legacy
-functions provided by the `openssl_udf` shared
-library. The most important of these are as follows:
+The new functions provided by the `component_enterprise_encryption` component have some differences in behavior and support from the legacy functions provided by the `openssl_udf` shared library. The most important of these are as follows:
 
-* The legacy functions support the older DSA algorithm and
-  Diffie-Hellman key exchange method. The component functions
-  use only the generally preferred RSA algorithm.
+* The legacy functions support the older DSA algorithm and Diffie-Hellman key exchange method. The component functions use only the generally preferred RSA algorithm.
 
-* For the legacy functions, the minimum RSA key size is less
-  than current best practice. The component functions follow
-  current best practice on minimum RSA key size.
+* For the legacy functions, the minimum RSA key size is less than current best practice. The component functions follow current best practice on minimum RSA key size.
 
-* The legacy functions support only SHA2 for digests, and
-  require digests for signatures. The component functions also
-  support SHA3 for digests (provided that OpenSSL 1.1.1 is in
-  use), and do not require digests for signatures, although
-  they support them.
+* The legacy functions support only SHA2 for digests, and require digests for signatures. The component functions also support SHA3 for digests (provided that OpenSSL 1.1.1 is in use), and do not require digests for signatures, although they support them.
 
-* The [`asymmetric_encrypt()`](enterprise-encryption-functions.html#function_asymmetric-encrypt)
-  legacy function supports encryption using private keys. The
-  [`asymmetric_encrypt()`](enterprise-encryption-functions.html#function_asymmetric-encrypt)
-  component function only accepts a public key. It is
-  recommended that you only encrypt using public keys with the
-  legacy function as well.
+* The `asymmetric_encrypt()` legacy function supports encryption using private keys. The `asymmetric_encrypt()` component function only accepts a public key. It is recommended that you only encrypt using public keys with the legacy function as well.
 
-* The [`create_dh_parameters()`](enterprise-encryption-functions-legacy.html#function_create-dh-parameters)
-  and [`asymmetric_derive()`](enterprise-encryption-functions-legacy.html#function_asymmetric-derive)
-  legacy functions for the Diffie-Hellman key exchange method
-  are not provided by the
-  `component_enterprise_encryption`
-  component.
+* The `create_dh_parameters()` and `asymmetric_derive()` legacy functions for the Diffie-Hellman key exchange method are not provided by the `component_enterprise_encryption` component.
 
-Table 1 summarizes the technical differences in support and
-operation between the legacy functions provided by the
-`openssl_udf` shared library, and the functions
-provided by the
-`component_enterprise_encryption` component
-from MySQL 8.0.30.
+Table 1 summarizes the technical differences in support and operation between the legacy functions provided by the `openssl_udf` shared library, and the functions provided by the `component_enterprise_encryption` component from MySQL 8.0.30.
 
 **Table 8.48 MySQL Enterprise Encryption functions**
 
-<table frame="all" summary="Compares the capability of the encryption functions before and from MySQL 8.0.30."><col style="width: 30%"/><col style="width: 40%"/><col style="width: 40%"/><thead><tr>
-<th scope="col"><p>
-                Capability
-              </p></th>
-<th scope="col"><p>
-                Legacy functions (to MySQL 8.0.29)
-              </p></th>
-<th scope="col"><p>
-                Component functions (from MySQL 8.0.30)
-              </p></th>
-</tr></thead><tbody><tr>
-<th scope="row"><p>
-                Encryption method
-              </p></th>
-<td><p>
-                RSA, DSA, Diffie-Hellman (DH)
-              </p></td>
-<td><p>
-                RSA only
-              </p></td>
-</tr><tr>
-<th scope="row"><p>
-                Key for encryption
-              </p></th>
-<td><p>
-                Private or public
-              </p></td>
-<td><p>
-                Public only
-              </p></td>
-</tr><tr>
-<th scope="row"><p>
-                RSA key format
-              </p></th>
-<td><p>
-                PKCS #1 v1.5
-              </p></td>
-<td><p>
-                PKCS #8
-              </p></td>
-</tr><tr>
-<th scope="row"><p>
-                Minimum RSA key size
-              </p></th>
-<td><p>
-                1024 bits
-              </p></td>
-<td><p>
-                2048 bits
-              </p></td>
-</tr><tr>
-<th scope="row">Maximum RSA key size limit</th>
-<td><p>
-                Set with environment variable
-                <code class="literal">MYSQL_OPENSSL_UDF_RSA_BITS_THRESHOLD</code>,
-                default limit is algorithm maximum 16384
-              </p></td>
-<td><p>
-                Set with system variable
-                <a class="link" href="server-system-variables.html#sysvar_enterprise_encryption.maximum_rsa_key_size"><code class="literal">enterprise_encryption.maximum_rsa_key_size</code></a>,
-                default limit is 4096
-              </p></td>
-</tr><tr>
-<th scope="row">Digest algorithms</th>
-<td><p>
-                SHA2
-              </p></td>
-<td><p>
-                SHA2, SHA3 (with OpenSSL 1.1.1)
-              </p></td>
-</tr><tr>
-<th scope="row">Signatures</th>
-<td><p>
-                Digest required
-              </p></td>
-<td><p>
-                Digests supported but not required, any string of
-                arbitrary length can be used
-              </p></td>
-</tr><tr>
-<th scope="row">Output padding</th>
-<td><p>
-                RSAES-PKCS1-v1_5
-              </p></td>
-<td><p>
-                RSAES-OAEP
-              </p></td>
-</tr><tr>
-<th scope="row">Signature padding</th>
-<td><p>
-                RSASSA-PKCS1-v1_5
-              </p></td>
-<td><p>
-                RSASSA-PSS
-              </p></td>
-</tr></tbody></table>
+<table frame="all" summary="Compares the capability of the encryption functions before and from MySQL 8.0.30."><col style="width: 30%"/><col style="width: 40%"/><col style="width: 40%"/><thead><tr> <th scope="col"><p> Capability </p></th> <th scope="col"><p> Legacy functions (to MySQL 8.0.29) </p></th> <th scope="col"><p> Component functions (from MySQL 8.0.30) </p></th> </tr></thead><tbody><tr> <th scope="row"><p> Encryption method </p></th> <td><p> RSA, DSA, Diffie-Hellman (DH) </p></td> <td><p> RSA only </p></td> </tr><tr> <th scope="row"><p> Key for encryption </p></th> <td><p> Private or public </p></td> <td><p> Public only </p></td> </tr><tr> <th scope="row"><p> RSA key format </p></th> <td><p> PKCS #1 v1.5 </p></td> <td><p> PKCS #8 </p></td> </tr><tr> <th scope="row"><p> Minimum RSA key size </p></th> <td><p> 1024 bits </p></td> <td><p> 2048 bits </p></td> </tr><tr> <th scope="row">Maximum RSA key size limit</th> <td><p> Set with environment variable <code>MYSQL_OPENSSL_UDF_RSA_BITS_THRESHOLD</code>, default limit is algorithm maximum 16384 </p></td> <td><p> Set with system variable <code>enterprise_encryption.maximum_rsa_key_size</code>, default limit is 4096 </p></td> </tr><tr> <th scope="row">Digest algorithms</th> <td><p> SHA2 </p></td> <td><p> SHA2, SHA3 (with OpenSSL 1.1.1) </p></td> </tr><tr> <th scope="row">Signatures</th> <td><p> Digest required </p></td> <td><p> Digests supported but not required, any string of arbitrary length can be used </p></td> </tr><tr> <th scope="row">Output padding</th> <td><p> RSAES-PKCS1-v1_5 </p></td> <td><p> RSAES-OAEP </p></td> </tr><tr> <th scope="row">Signature padding</th> <td><p> RSASSA-PKCS1-v1_5 </p></td> <td><p> RSASSA-PSS </p></td> </tr></tbody></table>

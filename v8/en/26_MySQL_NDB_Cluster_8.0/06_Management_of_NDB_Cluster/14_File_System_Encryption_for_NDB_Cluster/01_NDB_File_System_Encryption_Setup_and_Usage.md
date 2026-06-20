@@ -1,12 +1,8 @@
 #### 25.6.14.1 NDB File System Encryption Setup and Usage
 
-*Encryption of file system*: To enable
-encryption of a previously unencrypted file system, the
-following steps are required:
+*Encryption of file system*: To enable encryption of a previously unencrypted file system, the following steps are required:
 
-1. Set the required data node parameters in the `[ndbd
-   default]` section of the
-   `config.ini` file, as shown here:
+1. Set the required data node parameters in the `[ndbd default]` section of the `config.ini` file, as shown here:
 
    ```
    [ndbd default]
@@ -15,21 +11,9 @@ following steps are required:
 
    These parameters must be set as shown on all data nodes.
 
-2. Start the management server with either
-   [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) or
-   [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) to cause it to
-   read the updated configuration file.
+2. Start the management server with either `--initial` or `--reload` to cause it to read the updated configuration file.
 
-3. Perform a rolling initial start (or restart) of all the data
-   nodes (see [Section 25.6.5, “Performing a Rolling Restart of an NDB Cluster”](mysql-cluster-rolling-restart.html "25.6.5 Performing a Rolling Restart of an NDB Cluster")):
-   Start each data node with
-   [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial); in addition, supply
-   either of the options
-   [`--filesystem-password`](mysql-cluster-programs-ndbd.html#option_ndbd_filesystem-password) or
-   [`--filesystem-password-from-stdin`](mysql-cluster-programs-ndbd.html#option_ndbd_filesystem-password-from-stdin),
-   plus a password, to each data node process. When you supply
-   the password on the command line, a warning is shown,
-   similar to this one:
+3. Perform a rolling initial start (or restart) of all the data nodes (see Section 25.6.5, “Performing a Rolling Restart of an NDB Cluster”): Start each data node with `--initial`; in addition, supply either of the options `--filesystem-password` or `--filesystem-password-from-stdin`, plus a password, to each data node process. When you supply the password on the command line, a warning is shown, similar to this one:
 
    ```
    > ndbmtd -c 127.0.0.1 --filesystem-password=ndbsecret
@@ -38,20 +22,9 @@ following steps are required:
    2022-08-22 16:17:58 [ndbd] INFO     -- Angel allocated nodeid: 5
    ```
 
-   `--filesystem-password` can accept the
-   password form a file, `tty`, or
-   `stdin`;
-   `--filesystem-password-from-stdin` accepts
-   the password from `stdin` only. The latter
-   protects the password from exposure on the process command
-   line or in the file system, and allows for the possibility
-   of passing it from another secure application.
+   `--filesystem-password` can accept the password form a file, `tty`, or `stdin`; `--filesystem-password-from-stdin` accepts the password from `stdin` only. The latter protects the password from exposure on the process command line or in the file system, and allows for the possibility of passing it from another secure application.
 
-   You can also place the password in a
-   `my.cnf` file that can be read by the
-   data node process, but not by other users of the system.
-   Using the same password as in the previous example, the
-   relevant portion of the file should look like this:
+   You can also place the password in a `my.cnf` file that can be read by the data node process, but not by other users of the system. Using the same password as in the previous example, the relevant portion of the file should look like this:
 
    ```
    [ndbd]
@@ -59,12 +32,7 @@ following steps are required:
    filesystem-password=ndbsecret
    ```
 
-   You can also prompt the user starting the data node process
-   to supply the encryption password when doing so, by using
-   the
-   [`--filesystem-password-from-stdin`](mysql-cluster-programs-ndbd.html#option_ndbd_filesystem-password-from-stdin)
-   option in the `my.cnf` file instead, like
-   this:
+   You can also prompt the user starting the data node process to supply the encryption password when doing so, by using the `--filesystem-password-from-stdin` option in the `my.cnf` file instead, like this:
 
    ```
    [ndbd]
@@ -72,8 +40,7 @@ following steps are required:
    filesystem-password-from-stdin
    ```
 
-   In this case, the user is prompted for the password when
-   starting the data node process, as shown here:
+   In this case, the user is prompted for the password when starting the data node process, as shown here:
 
    ```
    > ndbmtd -c 127.0.0.1
@@ -83,13 +50,7 @@ following steps are required:
    >
    ```
 
-   Regardless of the method used, the format of the encryption
-   password is the same as that used for passwords for
-   encrypted backups (see
-   [Section 25.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”](mysql-cluster-backup-using-management-client.html "25.6.8.2 Using The NDB Cluster Management Client to Create a Backup"));
-   the password must be supplied when starting each data node
-   process; otherwise the data node process cannot start. This
-   is indicated by the following message in the data node log:
+   Regardless of the method used, the format of the encryption password is the same as that used for passwords for encrypted backups (see Section 25.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”); the password must be supplied when starting each data node process; otherwise the data node process cannot start. This is indicated by the following message in the data node log:
 
    ```
    > tail -n2 ndb_5_out.log
@@ -97,39 +58,21 @@ following steps are required:
    2022-08-22 16:08:31 [ndbd] ALERT    -- Node 5: Forced node shutdown completed. Occurred during startphase 0.
    ```
 
-   When restarted as just described, each data node clears its
-   on-disk state, and rebuilds it in encrypted form.
+   When restarted as just described, each data node clears its on-disk state, and rebuilds it in encrypted form.
 
-*Rotation of File system password*: To update
-the encryption password used by the data nodes, perform a
-rolling initial restart of the data nodes, supplying the new
-password to each data node when restarting it using
-[`--filesystem-password`](mysql-cluster-programs-ndbd.html#option_ndbd_filesystem-password) or
-[`--filesystem-password-from-stdin`](mysql-cluster-programs-ndbd.html#option_ndbd_filesystem-password-from-stdin).
+*Rotation of File system password*: To update the encryption password used by the data nodes, perform a rolling initial restart of the data nodes, supplying the new password to each data node when restarting it using `--filesystem-password` or `--filesystem-password-from-stdin`.
 
-*Decryption of file system*: To remove
-encryption from an encrypted file system, do the following:
+*Decryption of file system*: To remove encryption from an encrypted file system, do the following:
 
-1. In the `[ndbd default]` section of the
-   `config.ini` file, set
-   `EncryptedFileSystem = OFF`.
+1. In the `[ndbd default]` section of the `config.ini` file, set `EncryptedFileSystem = OFF`.
 
-2. Restart the management server with
-   [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) or
-   [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload).
+2. Restart the management server with `--initial` or `--reload`.
 
-3. Perform a rolling initial restart of the data nodes. Do
-   *not* use any password-related options
-   when restarting the node binaries.
+3. Perform a rolling initial restart of the data nodes. Do *not* use any password-related options when restarting the node binaries.
 
-   When restarted, each data node clears its on-disk state, and
-   rebuilds it in unencrypted form.
+   When restarted, each data node clears its on-disk state, and rebuilds it in unencrypted form.
 
-To see whether file system encryption is properly configured,
-you can use a query against the `ndbinfo`
-[`config_values`](mysql-cluster-ndbinfo-config-values.html "25.6.16.11 The ndbinfo config_values Table") and
-[`config_params`](mysql-cluster-ndbinfo-config-params.html "25.6.16.10 The ndbinfo config_params Table") tables similar
-to this one:
+To see whether file system encryption is properly configured, you can use a query against the `ndbinfo` `config_values` and `config_params` tables similar to this one:
 
 ```
 mysql> SELECT v.node_id AS Node, p.param_name AS Parameter, v.config_value AS Value
@@ -148,7 +91,4 @@ mysql> SELECT v.node_id AS Node, p.param_name AS Parameter, v.config_value AS Va
 4 rows in set (0.10 sec)
 ```
 
-Here,
-[`EncryptedFileSystem`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-encryptedfilesystem) is
-equal to `1` on all data nodes, which means
-that filesystem encryption is enabled for this cluster.
+Here, `EncryptedFileSystem` is equal to `1` on all data nodes, which means that filesystem encryption is enabled for this cluster.

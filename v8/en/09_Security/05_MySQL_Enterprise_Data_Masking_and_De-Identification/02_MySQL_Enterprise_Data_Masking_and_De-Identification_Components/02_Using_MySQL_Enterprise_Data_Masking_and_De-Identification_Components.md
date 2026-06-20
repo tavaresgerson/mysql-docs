@@ -1,42 +1,24 @@
 #### 8.5.2.2 Using MySQL Enterprise Data Masking and De-Identification Components
 
-Before using MySQL Enterprise Data Masking and De-Identification, install it according to the instructions
-provided at
-[Section 8.5.2.1, “MySQL Enterprise Data Masking and De-Identification Component Installation”](data-masking-components-installation.html "8.5.2.1 MySQL Enterprise Data Masking and De-Identification Component Installation").
+Before using MySQL Enterprise Data Masking and De-Identification, install it according to the instructions provided at Section 8.5.2.1, “MySQL Enterprise Data Masking and De-Identification Component Installation”.
 
-To use MySQL Enterprise Data Masking and De-Identification in applications, invoke the functions that are
-appropriate for the operations you wish to perform. For detailed
-function descriptions, see
-[Section 8.5.2.4, “MySQL Enterprise Data Masking and De-Identification Component Function Descriptions”](data-masking-component-functions.html "8.5.2.4 MySQL Enterprise Data Masking and De-Identification Component Function Descriptions"). This section
-demonstrates how to use the functions to carry out some
-representative tasks. It first presents an overview of the
-available functions, followed by some examples of how the
-functions might be used in real-world context:
+To use MySQL Enterprise Data Masking and De-Identification in applications, invoke the functions that are appropriate for the operations you wish to perform. For detailed function descriptions, see Section 8.5.2.4, “MySQL Enterprise Data Masking and De-Identification Component Function Descriptions”. This section demonstrates how to use the functions to carry out some representative tasks. It first presents an overview of the available functions, followed by some examples of how the functions might be used in real-world context:
 
-* [Masking Data to Remove Identifying Characteristics](data-masking-component-usage.html#data-masking-component-usage-masking-functions "Masking Data to Remove Identifying Characteristics")
-* [Generating Random Data with Specific Characteristics](data-masking-component-usage.html#data-masking-component-usage-generation-functions "Generating Random Data with Specific Characteristics")
-* [Generating Random Data Using Dictionaries](data-masking-component-usage.html#data-masking-component-usage-dictionary-functions "Generating Random Data Using Dictionaries")
-* [Using Masked Data for Customer Identification](data-masking-component-usage.html#data-masking-component-usage-customer-identification "Using Masked Data for Customer Identification")
-* [Creating Views that Display Masked Data](data-masking-component-usage.html#data-masking-component-usage-views "Creating Views that Display Masked Data")
+* Masking Data to Remove Identifying Characteristics
+* Generating Random Data with Specific Characteristics
+* Generating Random Data Using Dictionaries
+* Using Masked Data for Customer Identification
+* Creating Views that Display Masked Data
 
 ##### Masking Data to Remove Identifying Characteristics
 
-MySQL provides general-purpose masking component functions
-that mask arbitrary strings, and special-purpose masking
-functions that mask specific types of values.
+MySQL provides general-purpose masking component functions that mask arbitrary strings, and special-purpose masking functions that mask specific types of values.
 
 ###### General-Purpose Masking Component Functions
 
-[`mask_inner()`](data-masking-component-functions.html#function_mask-inner) and
-[`mask_outer()`](data-masking-component-functions.html#function_mask-outer) are
-general-purpose functions that mask parts of arbitrary strings
-based on position within the string. Both functions support an
-input string that is encoded in any character set:
+`mask_inner()` and `mask_outer()` are general-purpose functions that mask parts of arbitrary strings based on position within the string. Both functions support an input string that is encoded in any character set:
 
-* [`mask_inner()`](data-masking-component-functions.html#function_mask-inner) masks the
-  interior of its string argument, leaving the ends
-  unmasked. Other arguments specify the sizes of the
-  unmasked ends.
+* `mask_inner()` masks the interior of its string argument, leaving the ends unmasked. Other arguments specify the sizes of the unmasked ends.
 
   ```
   mysql> SELECT mask_inner('This is a string', 5, 1);
@@ -65,10 +47,7 @@ input string that is encoded in any character set:
   +----------------------------------+
   ```
 
-* [`mask_outer()`](data-masking-component-functions.html#function_mask-outer) does the
-  reverse, masking the ends of its string argument, leaving
-  the interior unmasked. Other arguments specify the sizes
-  of the masked ends.
+* `mask_outer()` does the reverse, masking the ends of its string argument, leaving the interior unmasked. Other arguments specify the sizes of the masked ends.
 
   ```
   mysql> SELECT mask_outer('This is a string', 5, 1);
@@ -85,10 +64,7 @@ input string that is encoded in any character set:
   +--------------------------------------+
   ```
 
-By default, [`mask_inner()`](data-masking-component-functions.html#function_mask-inner) and
-[`mask_outer()`](data-masking-component-functions.html#function_mask-outer) use
-`'X'` as the masking character, but permit an
-optional masking-character argument:
+By default, `mask_inner()` and `mask_outer()` use `'X'` as the masking character, but permit an optional masking-character argument:
 
 ```
 mysql> SELECT mask_inner('This is a string', 5, 1, '*');
@@ -107,24 +83,15 @@ mysql> SELECT mask_inner("かすみがうら市", 2, 2, "#");
 
 ###### Special-Purpose Masking Component Functions
 
-Other masking functions expect a string argument representing
-a specific type of value and mask it to remove identifying
-characteristics.
+Other masking functions expect a string argument representing a specific type of value and mask it to remove identifying characteristics.
 
 Note
 
-The examples here supply function arguments using the random
-value generation functions that return the appropriate type
-of value. For more information about generation functions,
-see
-[Generating Random Data with Specific Characteristics](data-masking-component-usage.html#data-masking-component-usage-generation-functions "Generating Random Data with Specific Characteristics").
+The examples here supply function arguments using the random value generation functions that return the appropriate type of value. For more information about generation functions, see Generating Random Data with Specific Characteristics.
 
-**Payment card Primary Account Number masking.**
-Masking functions provide strict and relaxed masking of
-Primary Account numbers.
+**Payment card Primary Account Number masking.** Masking functions provide strict and relaxed masking of Primary Account numbers.
 
-* [`mask_pan()`](data-masking-component-functions.html#function_mask-pan) masks all but
-  the last four digits of the number:
+* `mask_pan()` masks all but the last four digits of the number:
 
   ```
   mysql> SELECT mask_pan(gen_rnd_pan());
@@ -135,9 +102,7 @@ Primary Account numbers.
   +-------------------------+
   ```
 
-* [`mask_pan_relaxed()`](data-masking-component-functions.html#function_mask-pan-relaxed) is
-  similar but does not mask the first six digits that
-  indicate the payment card issuer unmasked:
+* `mask_pan_relaxed()` is similar but does not mask the first six digits that indicate the payment card issuer unmasked:
 
   ```
   mysql> SELECT mask_pan_relaxed(gen_rnd_pan());
@@ -148,9 +113,7 @@ Primary Account numbers.
   +---------------------------------+
   ```
 
-**International Bank Account Number masking.**
-[`mask_iban()`](data-masking-component-functions.html#function_mask-iban) masks all but the
-first two letters (denoting the country) of the number:
+**International Bank Account Number masking.** `mask_iban()` masks all but the first two letters (denoting the country) of the number:
 
 ```
 mysql> SELECT mask_iban(gen_rnd_iban());
@@ -161,9 +124,7 @@ mysql> SELECT mask_iban(gen_rnd_iban());
 +---------------------------+
 ```
 
-**Universally Unique Identifier masking.**
-[`mask_uuid()`](data-masking-component-functions.html#function_mask-uuid) masks all
-meaningful characters:
+**Universally Unique Identifier masking.** `mask_uuid()` masks all meaningful characters:
 
 ```
 mysql> SELECT mask_uuid(gen_rnd_uuid());
@@ -174,9 +135,7 @@ mysql> SELECT mask_uuid(gen_rnd_uuid());
 +--------------------------------------+
 ```
 
-**US Social Security Number masking.**
-[`mask_ssn()`](data-masking-component-functions.html#function_mask-ssn) masks all but the
-last four digits of the number:
+**US Social Security Number masking.** `mask_ssn()` masks all but the last four digits of the number:
 
 ```
 mysql> SELECT mask_ssn(gen_rnd_ssn());
@@ -187,9 +146,7 @@ mysql> SELECT mask_ssn(gen_rnd_ssn());
 +-------------------------+
 ```
 
-**Canada Social Insurance Number masking.**
-[`mask_canada_sin()`](data-masking-component-functions.html#function_mask-canada-sin) masks
-meaningful digits of the number:
+**Canada Social Insurance Number masking.** `mask_canada_sin()` masks meaningful digits of the number:
 
 ```
 mysql> SELECT mask_canada_sin(gen_rnd_canada_sin());
@@ -200,9 +157,7 @@ mysql> SELECT mask_canada_sin(gen_rnd_canada_sin());
 +---------------------------------------+
 ```
 
-**United Kingdom National Insurance Number masking.**
-[`mask_uk_nin()`](data-masking-component-functions.html#function_mask-uk-nin) masks all but
-the first two digits of the number:
+**United Kingdom National Insurance Number masking.** `mask_uk_nin()` masks all but the first two digits of the number:
 
 ```
 mysql> SELECT mask_uk_nin(gen_rnd_uk_nin());
@@ -215,11 +170,9 @@ mysql> SELECT mask_uk_nin(gen_rnd_uk_nin());
 
 ##### Generating Random Data with Specific Characteristics
 
-Several component functions generate random values. These
-values can be used for testing, simulation, and so forth.
+Several component functions generate random values. These values can be used for testing, simulation, and so forth.
 
-[`gen_range()`](data-masking-component-functions.html#function_gen-range) returns a random
-integer selected from a given range:
+`gen_range()` returns a random integer selected from a given range:
 
 ```
 mysql> SELECT gen_range(1, 10);
@@ -230,16 +183,9 @@ mysql> SELECT gen_range(1, 10);
 +------------------+
 ```
 
-[`gen_rnd_uk_nin()`](data-masking-component-functions.html#function_gen-rnd-uk-nin) returns a
-random UK National Insurance Number (NIN).
+`gen_rnd_uk_nin()` returns a random UK National Insurance Number (NIN).
 
-Because it cannot be guaranteed that the number generated has
-not been assigned, the result of
-[`gen_rnd_uk_nin()`](data-masking-component-functions.html#function_gen-rnd-uk-nin) should never
-be displayed (except possibly in testing). For display in
-user-facing applications, always employ a masking function
-such as [`mask_uk_nin()`](data-masking-component-functions.html#function_mask-uk-nin), as shown
-here:
+Because it cannot be guaranteed that the number generated has not been assigned, the result of `gen_rnd_uk_nin()` should never be displayed (except possibly in testing). For display in user-facing applications, always employ a masking function such as `mask_uk_nin()`, as shown here:
 
 ```
 mysql> SELECT mask_uk_nin( gen_rnd_uk_nin() );
@@ -250,10 +196,7 @@ mysql> SELECT mask_uk_nin( gen_rnd_uk_nin() );
 +---------------------------------+
 ```
 
-[`gen_rnd_email()`](data-masking-component-functions.html#function_gen-rnd-email) returns a
-random email address with a specified number of digits for the
-name and surname parts in the specified domain,
-`mynet.com` in the following example:
+`gen_rnd_email()` returns a random email address with a specified number of digits for the name and surname parts in the specified domain, `mynet.com` in the following example:
 
 ```
 mysql> SELECT gen_rnd_email(6, 8, 'mynet.com');
@@ -264,8 +207,7 @@ mysql> SELECT gen_rnd_email(6, 8, 'mynet.com');
 +----------------------------------+
 ```
 
-[`gen_rnd_iban()`](data-masking-component-functions.html#function_gen-rnd-iban) returns a number
-chosen from a range not used for legitimate numbers:
+`gen_rnd_iban()` returns a number chosen from a range not used for legitimate numbers:
 
 ```
 mysql> SELECT gen_rnd_iban('XO', 24);
@@ -276,18 +218,9 @@ mysql> SELECT gen_rnd_iban('XO', 24);
 +-------------------------------+
 ```
 
-[`gen_rnd_pan()`](data-masking-component-functions.html#function_gen-rnd-pan) returns a random
-payment card Primary Account Number (PAN).
+`gen_rnd_pan()` returns a random payment card Primary Account Number (PAN).
 
-Because it cannot be guaranteed that the number generated is
-not assigned to a legitimate payment account, the result of
-[`gen_rnd_pan()`](data-masking-component-functions.html#function_gen-rnd-pan) should never be
-displayed, other than for testing purposes. For display in
-applications, always employ a masking function such as
-[`mask_pan()`](data-masking-component-functions.html#function_mask-pan) or
-[`mask_pan_relaxed()`](data-masking-component-functions.html#function_mask-pan-relaxed). We show
-such use of the latter function with
-[`gen_rnd_pan()`](data-masking-component-functions.html#function_gen-rnd-pan) here:
+Because it cannot be guaranteed that the number generated is not assigned to a legitimate payment account, the result of `gen_rnd_pan()` should never be displayed, other than for testing purposes. For display in applications, always employ a masking function such as `mask_pan()` or `mask_pan_relaxed()`. We show such use of the latter function with `gen_rnd_pan()` here:
 
 ```
 mysql> SELECT mask_pan_relaxed( gen_rnd_pan() );
@@ -298,9 +231,7 @@ mysql> SELECT mask_pan_relaxed( gen_rnd_pan() );
 +-----------------------------------+
 ```
 
-[`gen_rnd_ssn()`](data-masking-component-functions.html#function_gen-rnd-ssn) returns a random
-US Social Security Number whose first part is chosen from a
-range not used for legitimate numbers:
+`gen_rnd_ssn()` returns a random US Social Security Number whose first part is chosen from a range not used for legitimate numbers:
 
 ```
 mysql> SELECT gen_rnd_ssn();
@@ -311,9 +242,7 @@ mysql> SELECT gen_rnd_ssn();
 +---------------+
 ```
 
-[`gen_rnd_us_phone()`](data-masking-component-functions.html#function_gen-rnd-us-phone) returns a
-random US phone number in the 555 area code not used for
-legitimate numbers:
+`gen_rnd_us_phone()` returns a random US phone number in the 555 area code not used for legitimate numbers:
 
 ```
 mysql> SELECT gen_rnd_us_phone();
@@ -324,8 +253,7 @@ mysql> SELECT gen_rnd_us_phone();
 +--------------------+
 ```
 
-[`gen_rnd_uuid()`](data-masking-component-functions.html#function_gen-rnd-uuid) returns a number
-chosen from a range not used for legitimate identifiers:
+`gen_rnd_uuid()` returns a number chosen from a range not used for legitimate identifiers:
 
 ```
 mysql> SELECT gen_rnd_uuid();
@@ -338,29 +266,15 @@ mysql> SELECT gen_rnd_uuid();
 
 ##### Generating Random Data Using Dictionaries
 
-MySQL Enterprise Data Masking and De-Identification enables dictionaries to be used as sources of random
-values called *terms*. To use a
-dictionary, it must first be added to the
-`masking_dictionaries` system table and given
-a name. The dictionaries are read from the table and loaded to
-the cache during initialization of the components (on server
-startup). Terms then can then be added, removed, and selected
-from dictionaries and used as random values or as replacements
-for other values.
+MySQL Enterprise Data Masking and De-Identification enables dictionaries to be used as sources of random values called *terms*. To use a dictionary, it must first be added to the `masking_dictionaries` system table and given a name. The dictionaries are read from the table and loaded to the cache during initialization of the components (on server startup). Terms then can then be added, removed, and selected from dictionaries and used as random values or as replacements for other values.
 
 Note
 
-Always edit dictionaries using dictionary administration
-functions rather than modifying the table directly. If you
-manipulate the table manually, the dictionary cache becomes
-inconsistent with the table.
+Always edit dictionaries using dictionary administration functions rather than modifying the table directly. If you manipulate the table manually, the dictionary cache becomes inconsistent with the table.
 
-A valid `masking_dictionaries` table has
-these characteristics:
+A valid `masking_dictionaries` table has these characteristics:
 
-* An administrator created the
-  `masking_dictionaries` system table in
-  the `mysql` schema as follows:
+* An administrator created the `masking_dictionaries` system table in the `mysql` schema as follows:
 
   ```
   CREATE TABLE IF NOT EXISTS
@@ -372,18 +286,13 @@ these characteristics:
   ) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4;
   ```
 
-* MASKING\_DICTIONARY\_ADMIN privilege is required to add and
-  remove terms, or to remove an entire dictionary.
+* MASKING_DICTIONARY_ADMIN privilege is required to add and remove terms, or to remove an entire dictionary.
 
-* The table may contain multiple dictionaries and their
-  terms.
+* The table may contain multiple dictionaries and their terms.
 
-* Any user account can view the dictionaries. Given enough
-  queries, all of the terms in dictionaries are retrievable.
-  Avoid adding sensitive data to the dictionary table.
+* Any user account can view the dictionaries. Given enough queries, all of the terms in dictionaries are retrievable. Avoid adding sensitive data to the dictionary table.
 
-Suppose that a dictionary named `DE_cities`
-includes these city names in Germany:
+Suppose that a dictionary named `DE_cities` includes these city names in Germany:
 
 ```
 Berlin
@@ -391,8 +300,7 @@ Munich
 Bremen
 ```
 
-Use `masking_dictionary_term_add()` to assign
-a dictionary name and one term:
+Use `masking_dictionary_term_add()` to assign a dictionary name and one term:
 
 ```
 mysql> SELECT masking_dictionary_term_add('DE_Cities', 'Berlin');
@@ -415,9 +323,7 @@ mysql> SELECT masking_dictionary_term_add('DE_Cities', 'Bremen');
 +----------------------------------------------------+
 ```
 
-Also suppose that a dictionary named
-`US_Cities` contains these city names in the
-United States:
+Also suppose that a dictionary named `US_Cities` contains these city names in the United States:
 
 ```
 Houston
@@ -446,8 +352,7 @@ mysql> SELECT masking_dictionary_term_add('US_Cities', 'Detroit');
 +-----------------------------------------------------+
 ```
 
-To select a random term from a dictionary, use
-[`gen_dictionary()`](data-masking-component-functions.html#function_gen-dictionary):
+To select a random term from a dictionary, use `gen_dictionary()`:
 
 ```
 mysql> SELECT gen_dictionary('DE_Cities');
@@ -464,8 +369,7 @@ mysql> SELECT gen_dictionary('US_Cities');
 +-----------------------------+
 ```
 
-To select a random term from multiple dictionaries, randomly
-select one of the dictionaries, then select a term from it:
+To select a random term from multiple dictionaries, randomly select one of the dictionaries, then select a term from it:
 
 ```
 mysql> SELECT gen_dictionary(ELT(gen_range(1,2), 'DE_Cities', 'US_Cities'));
@@ -482,14 +386,7 @@ mysql> SELECT gen_dictionary(ELT(gen_range(1,2), 'DE_Cities', 'US_Cities'));
 +---------------------------------------------------------------+
 ```
 
-The [`gen_blocklist()`](data-masking-component-functions.html#function_gen-blocklist) function
-enables a term from one dictionary to be replaced by a term
-from another dictionary, which effects masking by
-substitution. Its arguments are the term to replace, the
-dictionary in which the term appears, and the dictionary from
-which to choose a replacement. For example, to substitute a US
-city for a German city, or vice versa, use
-[`gen_blocklist()`](data-masking-component-functions.html#function_gen-blocklist) like this:
+The `gen_blocklist()` function enables a term from one dictionary to be replaced by a term from another dictionary, which effects masking by substitution. Its arguments are the term to replace, the dictionary in which the term appears, and the dictionary from which to choose a replacement. For example, to substitute a US city for a German city, or vice versa, use `gen_blocklist()` like this:
 
 ```
 mysql> SELECT gen_blocklist('Munich', 'DE_Cities', 'US_Cities');
@@ -506,9 +403,7 @@ mysql> SELECT gen_blocklist('El Paso', 'US_Cities', 'DE_Cities');
 +----------------------------------------------------+
 ```
 
-If the term to replace is not in the first dictionary,
-[`gen_blocklist()`](data-masking-component-functions.html#function_gen-blocklist) returns it
-unchanged:
+If the term to replace is not in the first dictionary, `gen_blocklist()` returns it unchanged:
 
 ```
 mysql> SELECT gen_blocklist('Moscow', 'DE_Cities', 'US_Cities');
@@ -521,14 +416,9 @@ mysql> SELECT gen_blocklist('Moscow', 'DE_Cities', 'US_Cities');
 
 ##### Using Masked Data for Customer Identification
 
-At customer-service call centers, one common identity
-verification technique is to ask customers to provide their
-last four Social Security Number (SSN) digits. For example, a
-customer might say her name is Joanna Bond and that her last
-four SSN digits are `0007`.
+At customer-service call centers, one common identity verification technique is to ask customers to provide their last four Social Security Number (SSN) digits. For example, a customer might say her name is Joanna Bond and that her last four SSN digits are `0007`.
 
-Suppose that a `customer` table containing
-customer records has these columns:
+Suppose that a `customer` table containing customer records has these columns:
 
 * `id`: Customer ID number.
 * `first_name`: Customer first name.
@@ -547,8 +437,7 @@ CREATE TABLE customer
 );
 ```
 
-The application used by customer-service representatives to
-check the customer SSN might execute a query like this:
+The application used by customer-service representatives to check the customer SSN might execute a query like this:
 
 ```
 mysql> SELECT id, ssn
@@ -561,10 +450,7 @@ mysql> SELECT id, ssn
 +-----+-------------+
 ```
 
-However, that exposes the SSN to the customer-service
-representative, who has no need to see anything but the last
-four digits. Instead, the application can use this query to
-display only the masked SSN:
+However, that exposes the SSN to the customer-service representative, who has no need to see anything but the last four digits. Instead, the application can use this query to display only the masked SSN:
 
 ```
 mysql> SELECT id, mask_ssn(CONVERT(ssn USING binary)) AS masked_ssn
@@ -577,34 +463,17 @@ mysql> SELECT id, mask_ssn(CONVERT(ssn USING binary)) AS masked_ssn
 +-----+-------------+
 ```
 
-Now the representative sees only what is necessary, and
-customer privacy is preserved.
+Now the representative sees only what is necessary, and customer privacy is preserved.
 
-Why was the [`CONVERT()`](cast-functions.html#function_convert) function
-used for the argument to
-[`mask_ssn()`](data-masking-component-functions.html#function_mask-ssn)? Because
-[`mask_ssn()`](data-masking-component-functions.html#function_mask-ssn) requires an argument
-of length 11. Thus, even though `ssn` is
-defined as `VARCHAR(11)`, if the
-`ssn` column has a multibyte character set,
-it may appear to be longer than 11 bytes when passed to a
-loadable function, and returns `NULL` while
-logging the error. Converting the value to a binary string
-ensures that the function sees an argument of length 11.
+Why was the `CONVERT()` function used for the argument to `mask_ssn()`? Because `mask_ssn()` requires an argument of length 11. Thus, even though `ssn` is defined as `VARCHAR(11)`, if the `ssn` column has a multibyte character set, it may appear to be longer than 11 bytes when passed to a loadable function, and returns `NULL` while logging the error. Converting the value to a binary string ensures that the function sees an argument of length 11.
 
-A similar technique may be needed for other data masking
-functions when string arguments do not have a single-byte
-character set.
+A similar technique may be needed for other data masking functions when string arguments do not have a single-byte character set.
 
 ##### Creating Views that Display Masked Data
 
-If masked data from a table is used for multiple queries, it
-may be convenient to define a view that produces masked data.
-That way, applications can select from the view without
-performing masking in individual queries.
+If masked data from a table is used for multiple queries, it may be convenient to define a view that produces masked data. That way, applications can select from the view without performing masking in individual queries.
 
-For example, a masking view on the `customer`
-table from the previous section can be defined like this:
+For example, a masking view on the `customer` table from the previous section can be defined like this:
 
 ```
 CREATE VIEW masked_customer AS
@@ -613,8 +482,7 @@ mask_ssn(CONVERT(ssn USING binary)) AS masked_ssn
 FROM customer;
 ```
 
-Then the query to look up a customer becomes simpler but still
-returns masked data:
+Then the query to look up a customer becomes simpler but still returns masked data:
 
 ```
 mysql> SELECT id, masked_ssn

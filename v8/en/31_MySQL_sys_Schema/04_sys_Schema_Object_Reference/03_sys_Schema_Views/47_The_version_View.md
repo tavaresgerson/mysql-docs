@@ -1,23 +1,16 @@
 #### 30.4.3.47 The version View
 
-This view provides the current
-[`sys`](sys-schema.html "Chapter 30 MySQL sys Schema") schema and MySQL server
-versions.
+This view provides the current `sys` schema and MySQL server versions.
 
 Note
 
-As of MySQL 8.0.18, this view is deprecated and subject to
-removal in a future MySQL version. Applications that use it
-should be migrated to use an alternative instead. For
-example, use the [`VERSION()`](information-functions.html#function_version)
-function to retrieve the MySQL server version.
+As of MySQL 8.0.18, this view is deprecated and subject to removal in a future MySQL version. Applications that use it should be migrated to use an alternative instead. For example, use the `VERSION()` function to retrieve the MySQL server version.
 
-The [`version`](sys-version.html "30.4.3.47 The version View") view has these
-columns:
+The `version` view has these columns:
 
 * `sys_version`
 
-  The [`sys`](sys-schema.html "Chapter 30 MySQL sys Schema") schema version.
+  The `sys` schema version.
 
 * `mysql_version`
 

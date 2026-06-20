@@ -1,16 +1,8 @@
-### 25.5.5 ndb\_mgm — The NDB Cluster Management Client
+### 25.5.5 ndb_mgm — The NDB Cluster Management Client
 
-The [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client") management client process is
-actually not needed to run the cluster. Its value lies in
-providing a set of commands for checking the cluster's status,
-starting backups, and performing other administrative functions.
-The management client accesses the management server using a C
-API. Advanced users can also employ this API for programming
-dedicated management processes to perform tasks similar to those
-performed by [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client").
+The **ndb_mgm** management client process is actually not needed to run the cluster. Its value lies in providing a set of commands for checking the cluster's status, starting backups, and performing other administrative functions. The management client accesses the management server using a C API. Advanced users can also employ this API for programming dedicated management processes to perform tasks similar to those performed by **ndb_mgm**.
 
-To start the management client, it is necessary to supply the
-host name and port number of the management server:
+To start the management client, it is necessary to supply the host name and port number of the management server:
 
 ```
 $> ndb_mgm [host_name [port_num]]
@@ -22,410 +14,81 @@ For example:
 $> ndb_mgm ndb_mgmd.mysql.com 1186
 ```
 
-The default host name and port number are
-`localhost` and 1186, respectively.
+The default host name and port number are `localhost` and 1186, respectively.
 
-All options that can be used with [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client") are
-shown in the following table. Additional descriptions follow the
-table.
+All options that can be used with **ndb_mgm** are shown in the following table. Additional descriptions follow the table.
 
-**Table 25.27 Command-line options used with the program ndb\_mgm**
+**Table 25.27 Command-line options used with the program ndb_mgm**
 
-<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr>
-<th scope="col">Format</th>
-<th scope="col">Description</th>
-<th scope="col">Added, Deprecated, or Removed</th>
-</tr></thead><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_backup-password-from-stdin">--backup-password-from-stdin</a>
-</code>
-</p></th>
-<td>Get decryption password in a secure fashion from STDIN; use together
-              with --execute and ndb_mgm START BACKUP command</td>
-<td><p>
-                ADDED: NDB 8.0.24
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_character-sets-dir">--character-sets-dir=path</a>
-</code>
-</p></th>
-<td>Directory containing character sets</td>
-<td><p>
-                REMOVED: 8.0.31
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_connect-retries">--connect-retries=#</a>
-</code>
-</p></th>
-<td>Set number of times to retry connection before giving up; 0 means 1
-              attempt only (and no retries)</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_connect-retry-delay">--connect-retry-delay=#</a>
-</code>
-</p></th>
-<td>Number of seconds to wait between attempts to contact management server</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_connect-string">--connect-string=connection_string</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_connect-string">-c
-                connection_string</a> </code>
-</p></th>
-<td>Same as --ndb-connectstring</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_core-file">--core-file</a>
-</code>
-</p></th>
-<td>Write core file on error; used in debugging</td>
-<td><p>
-                REMOVED: 8.0.31
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_defaults-extra-file">--defaults-extra-file=path</a>
-</code>
-</p></th>
-<td>Read given file after global files are read</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_defaults-file">--defaults-file=path</a>
-</code>
-</p></th>
-<td>Read default options from given file only</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_defaults-group-suffix">--defaults-group-suffix=string</a>
-</code>
-</p></th>
-<td>Also read groups with concat(group, suffix)</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_encrypt-backup">--encrypt-backup</a>
-</code>
-</p></th>
-<td>Cause START BACKUP to encrypt whenever making a backup, prompting for
-              password if not supplied by user</td>
-<td><p>
-                ADDED: NDB 8.0.24
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_execute">--execute=command</a></code>,
-              </p><p>
-<code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_execute">-e
-                command</a> </code>
-</p></th>
-<td>Execute command and exit</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_help">--help</a></code>,
-              </p><p>
-<code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_help">-?</a>
-</code>
-</p></th>
-<td>Display help text and exit</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_login-path">--login-path=path</a>
-</code>
-</p></th>
-<td>Read given path from login file</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-connectstring">--ndb-connectstring=connection_string</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-connectstring">-c
-                connection_string</a> </code>
-</p></th>
-<td>Set connect string for connecting to ndb_mgmd. Syntax:
-              "[nodeid=id;][host=]hostname[:port]". Overrides entries in
-              NDB_CONNECTSTRING and my.cnf</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-mgmd-host">--ndb-mgmd-host=connection_string</a></code>,
-              </p><p>
-<code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-mgmd-host">-c
-                connection_string</a> </code>
-</p></th>
-<td>Same as --ndb-connectstring</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-nodeid">--ndb-nodeid=#</a>
-</code>
-</p></th>
-<td>Set node ID for this node, overriding any ID set by --ndb-connectstring</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-optimized-node-selection">--ndb-optimized-node-selection</a>
-</code>
-</p></th>
-<td>Enable optimizations for selection of nodes for transactions. Enabled by
-              default; use --skip-ndb-optimized-node-selection to
-              disable</td>
-<td><p>
-                REMOVED: 8.0.31
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_no-defaults">--no-defaults</a>
-</code>
-</p></th>
-<td>Do not read default options from any option file other than login file</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_print-defaults">--print-defaults</a>
-</code>
-</p></th>
-<td>Print program argument list and exit</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_try-reconnect">--try-reconnect=#</a></code>,
-              </p><p>
-<code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_try-reconnect">-t
-                #</a> </code>
-</p></th>
-<td>Set number of times to retry connection before giving up; synonym for
-              --connect-retries</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_usage">--usage</a></code>,
-              </p><p>
-<code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_usage">-?</a>
-</code>
-</p></th>
-<td>Display help text and exit; same as --help</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_version">--version</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_version">-V</a>
-</code>
-</p></th>
-<td>Display version information and exit</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody></table>
+<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th scope="col">Format</th> <th scope="col">Description</th> <th scope="col">Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th scope="row"><p> <code class="option"> --backup-password-from-stdin </code> </p></th> <td>Get decryption password in a secure fashion from STDIN; use together with --execute and ndb_mgm START BACKUP command</td> <td><p> ADDED: NDB 8.0.24 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Directory containing character sets</td> <td><p> REMOVED: 8.0.31 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Set number of times to retry connection before giving up; 0 means 1 attempt only (and no retries)</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Number of seconds to wait between attempts to contact management server</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--connect-string=connection_string</code>, </p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_connect-string">-c connection_string</a> </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --core-file </code> </p></th> <td>Write core file on error; used in debugging</td> <td><p> REMOVED: 8.0.31 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Read given file after global files are read</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Read default options from given file only</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Also read groups with concat(group, suffix)</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --encrypt-backup </code> </p></th> <td>Cause START BACKUP to encrypt whenever making a backup, prompting for password if not supplied by user</td> <td><p> ADDED: NDB 8.0.24 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--execute=command</code>, </p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_execute">-e command</a> </code> </p></th> <td>Execute command and exit</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--help</code>, </p><p> <code class="option"> -? </code> </p></th> <td>Display help text and exit</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --login-path=path </code> </p></th> <td>Read given path from login file</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--ndb-connectstring=connection_string</code>, </p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-connectstring">-c connection_string</a> </code> </p></th> <td>Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--ndb-mgmd-host=connection_string</code>, </p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-mgmd-host">-c connection_string</a> </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Set node ID for this node, overriding any ID set by --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Enable optimizations for selection of nodes for transactions. Enabled by default; use --skip-ndb-optimized-node-selection to disable</td> <td><p> REMOVED: 8.0.31 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --no-defaults </code> </p></th> <td>Do not read default options from any option file other than login file</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --print-defaults </code> </p></th> <td>Print program argument list and exit</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--try-reconnect=#</code>, </p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_try-reconnect">-t #</a> </code> </p></th> <td>Set number of times to retry connection before giving up; synonym for --connect-retries</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--usage</code>, </p><p> <code class="option"> -? </code> </p></th> <td>Display help text and exit; same as --help</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--version</code>, </p><p> <code class="option"> -V </code> </p></th> <td>Display version information and exit</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody></table>
 
-* [`--backup-password-from-stdin[=TRUE|FALSE]`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_backup-password-from-stdin)
+* `--backup-password-from-stdin[=TRUE|FALSE]`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--backup-password-from-stdin</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.24-ndb-8.0.24</td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr><tr><th>Introduced</th> <td>8.0.24-ndb-8.0.24</td> </tr></tbody></table>
 
-  This option enables input of the backup password from the
-  system shell (`stdin`) when using
-  `--execute "START BACKUP"` or similar to
-  create a backup. Use of this option requires use of
-  [`--execute`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_execute) as well.
+  This option enables input of the backup password from the system shell (`stdin`) when using `--execute "START BACKUP"` or similar to create a backup. Use of this option requires use of `--execute` as well.
 
-* [`--character-sets-dir`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_character-sets-dir)
+* `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>
 
   Directory containing character sets.
 
-* [`--connect-retries=#`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_connect-retries)
+* `--connect-retries=#`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Numeric</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">3</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">4294967295</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>3</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  This option specifies the number of times following the
-  first attempt to retry a connection before giving up (the
-  client always tries the connection at least once). The
-  length of time to wait per attempt is set using
-  [`--connect-retry-delay`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_connect-retry-delay).
+  This option specifies the number of times following the first attempt to retry a connection before giving up (the client always tries the connection at least once). The length of time to wait per attempt is set using `--connect-retry-delay`.
 
-  This option is synonymous with the
-  [`--try-reconnect`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_try-reconnect) option,
-  which is now deprecated.
+  This option is synonymous with the `--try-reconnect` option, which is now deprecated.
 
-* [`--connect-retry-delay`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_connect-retry-delay)
+* `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retry-delay=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">5</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">5</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>5</code></td> </tr></tbody></table>
 
-  Number of seconds to wait between attempts to contact
-  management server.
+  Number of seconds to wait between attempts to contact management server.
 
-* [`--connect-string`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_connect-string)
+* `--connect-string`
 
-  <table frame="box" rules="all" summary="Properties for connect-string"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-string=connection_string</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-string"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Same as [`--ndb-connectstring`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-connectstring).
+  Same as `--ndb-connectstring`.
 
-* [`--core-file`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_core-file)
+* `--core-file`
 
-  <table frame="box" rules="all" summary="Properties for core-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--core-file</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for core-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>
 
   Write core file on error; used in debugging.
 
-* [`--defaults-extra-file`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_defaults-extra-file)
+* `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--defaults-extra-file=path</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Read given file after global files are read.
 
-* [`--defaults-file`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_defaults-file)
+* `--defaults-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--defaults-file=path</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Read default options from given file only.
 
-* [`--defaults-group-suffix`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_defaults-group-suffix)
+* `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--defaults-group-suffix=string</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Also read groups with concat(group, suffix).
 
-* [`--encrypt-backup`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_encrypt-backup)
+* `--encrypt-backup`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--backup-password-from-stdin</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.24-ndb-8.0.24</td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr><tr><th>Introduced</th> <td>8.0.24-ndb-8.0.24</td> </tr></tbody></table>0
 
-  When used, this option causes all backups to be encrypted.
-  To make this happen whenever [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client") is
-  run, put the option in the `[ndb_mgm]`
-  section of the `my.cnf` file.
+  When used, this option causes all backups to be encrypted. To make this happen whenever **ndb_mgm** is run, put the option in the `[ndb_mgm]` section of the `my.cnf` file.
 
-* [`--execute=command`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_execute),
-  `-e command`
+* `--execute=command`, `-e command`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--backup-password-from-stdin</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.24-ndb-8.0.24</td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr><tr><th>Introduced</th> <td>8.0.24-ndb-8.0.24</td> </tr></tbody></table>1
 
-  This option can be used to send a command to the NDB Cluster
-  management client from the system shell. For example, either
-  of the following is equivalent to executing
-  [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) in the management
-  client:
+  This option can be used to send a command to the NDB Cluster management client from the system shell. For example, either of the following is equivalent to executing `SHOW` in the management client:
 
   ```
   $> ndb_mgm -e "SHOW"
@@ -433,149 +96,78 @@ table.
   $> ndb_mgm --execute="SHOW"
   ```
 
-  This is analogous to how the
-  [`--execute`](mysql-command-options.html#option_mysql_execute) or
-  `-e` option works with the
-  [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") command-line client. See
-  [Section 6.2.2.1, “Using Options on the Command Line”](command-line-options.html "6.2.2.1 Using Options on the Command Line").
+  This is analogous to how the `--execute` or `-e` option works with the **mysql** command-line client. See Section 6.2.2.1, “Using Options on the Command Line”.
 
   Note
 
-  If the management client command to be passed using this
-  option contains any space characters, then the command
-  *must* be enclosed in quotation marks.
-  Either single or double quotation marks may be used. If
-  the management client command contains no space
-  characters, the quotation marks are optional.
+  If the management client command to be passed using this option contains any space characters, then the command *must* be enclosed in quotation marks. Either single or double quotation marks may be used. If the management client command contains no space characters, the quotation marks are optional.
 
-* [`--help`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_help)
+* `--help`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--backup-password-from-stdin</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.24-ndb-8.0.24</td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr><tr><th>Introduced</th> <td>8.0.24-ndb-8.0.24</td> </tr></tbody></table>2
 
   Display help text and exit.
 
-* [`--login-path`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_login-path)
+* `--login-path`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--backup-password-from-stdin</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.24-ndb-8.0.24</td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr><tr><th>Introduced</th> <td>8.0.24-ndb-8.0.24</td> </tr></tbody></table>3
 
   Read given path from login file.
 
-* [`--ndb-connectstring`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-connectstring)
+* `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--backup-password-from-stdin</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.24-ndb-8.0.24</td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr><tr><th>Introduced</th> <td>8.0.24-ndb-8.0.24</td> </tr></tbody></table>4
 
-  Set connect string for connecting to
-  [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"). Syntax:
-  [`nodeid=id;`][`host=`]`hostname`[`:port`].
-  Overrides entries in `NDB_CONNECTSTRING`
-  and `my.cnf`.
+  Set connect string for connecting to **ndb_mgmd**. Syntax: [`nodeid=id;`][`host=`]`hostname`[`:port`]. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
-* [`--ndb-nodeid`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-nodeid)
+* `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--backup-password-from-stdin</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.24-ndb-8.0.24</td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr><tr><th>Introduced</th> <td>8.0.24-ndb-8.0.24</td> </tr></tbody></table>5
 
-  Set node ID for this node, overriding any ID set by
-  [`--ndb-connectstring`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-connectstring).
+  Set node ID for this node, overriding any ID set by `--ndb-connectstring`.
 
-* [`--ndb-mgmd-host`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-mgmd-host)
+* `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--backup-password-from-stdin</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.24-ndb-8.0.24</td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr><tr><th>Introduced</th> <td>8.0.24-ndb-8.0.24</td> </tr></tbody></table>6
 
-  Same as [`--ndb-connectstring`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-connectstring).
+  Same as `--ndb-connectstring`.
 
-* [`--ndb-optimized-node-selection`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_ndb-optimized-node-selection)
+* `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--backup-password-from-stdin</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.24-ndb-8.0.24</td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr><tr><th>Introduced</th> <td>8.0.24-ndb-8.0.24</td> </tr></tbody></table>7
 
-  Enable optimizations for selection of nodes for
-  transactions. Enabled by default; use
-  `--skip-ndb-optimized-node-selection` to
-  disable.
+  Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
 
-* [`--no-defaults`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_no-defaults)
+* `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--backup-password-from-stdin</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.24-ndb-8.0.24</td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr><tr><th>Introduced</th> <td>8.0.24-ndb-8.0.24</td> </tr></tbody></table>8
 
-  Do not read default options from any option file other than
-  login file.
+  Do not read default options from any option file other than login file.
 
-* [`--print-defaults`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_print-defaults)
+* `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--backup-password-from-stdin</code></td>
-</tr><tr><th>Introduced</th>
-<td>8.0.24-ndb-8.0.24</td>
-</tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup-password-from-stdin</code></td> </tr><tr><th>Introduced</th> <td>8.0.24-ndb-8.0.24</td> </tr></tbody></table>9
 
   Print program argument list and exit.
 
-* [`--try-reconnect=number`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_try-reconnect)
+* `--try-reconnect=number`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>0
 
-  If the connection to the management server is broken, the
-  node tries to reconnect to it every 5 seconds until it
-  succeeds. By using this option, it is possible to limit the
-  number of attempts to *`number`*
-  before giving up and reporting an error instead.
+  If the connection to the management server is broken, the node tries to reconnect to it every 5 seconds until it succeeds. By using this option, it is possible to limit the number of attempts to *`number`* before giving up and reporting an error instead.
 
-  This option is deprecated and subject to removal in a future
-  release. Use
-  [`--connect-retries`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_connect-retries), instead.
+  This option is deprecated and subject to removal in a future release. Use `--connect-retries`, instead.
 
-* [`--usage`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_usage)
+* `--usage`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>1
 
-  Display help text and exit; same as
-  [`--help`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_help).
+  Display help text and exit; same as `--help`.
 
-* [`--version`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_version)
+* `--version`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>2
 
   Display version information and exit.
 
-Additional information about using [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client")
-can be found in
-[Section 25.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "25.6.1 Commands in the NDB Cluster Management Client").
+Additional information about using **ndb_mgm** can be found in Section 25.6.1, “Commands in the NDB Cluster Management Client”.

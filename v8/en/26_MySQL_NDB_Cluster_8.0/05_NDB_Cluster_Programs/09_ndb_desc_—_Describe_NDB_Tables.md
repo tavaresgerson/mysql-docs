@@ -1,7 +1,6 @@
-### 25.5.9 ndb\_desc — Describe NDB Tables
+### 25.5.9 ndb_desc — Describe NDB Tables
 
-[**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables") provides a detailed description of
-one or more [`NDB`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 8.0") tables.
+**ndb_desc** provides a detailed description of one or more `NDB` tables.
 
 #### Usage
 
@@ -11,8 +10,7 @@ ndb_desc -c connection_string tbl_name -d db_name [options]
 ndb_desc -c connection_string index_name -d db_name -t tbl_name
 ```
 
-Additional options that can be used with
-[**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables") are listed later in this section.
+Additional options that can be used with **ndb_desc** are listed later in this section.
 
 #### Sample Output
 
@@ -37,7 +35,7 @@ INSERT INTO fish VALUES
     (NULL, 'grouper', 900, 125000), (NULL ,'puffer', 250, 2500);
 ```
 
-Output from [**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables"):
+Output from **ndb_desc**:
 
 ```
 $> ./ndb_desc -c localhost fish -d test -p
@@ -80,16 +78,9 @@ Partition       Row count       Commit count    Frag fixed memory       Frag var
 1               4               4               32768                   32768                   0               0
 ```
 
-Information about multiple tables can be obtained in a single
-invocation of [**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables") by using their names,
-separated by spaces. All of the tables must be in the same
-database.
+Information about multiple tables can be obtained in a single invocation of **ndb_desc** by using their names, separated by spaces. All of the tables must be in the same database.
 
-You can obtain additional information about a specific index
-using the `--table` (short form:
-`-t`) option and supplying the name of the index
-as the first argument to [**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables"), as shown
-here:
+You can obtain additional information about a specific index using the `--table` (short form: `-t`) option and supplying the name of the index as the first argument to **ndb_desc**, as shown here:
 
 ```
 $> ./ndb_desc uk -d test -t fish
@@ -131,29 +122,11 @@ NDB$TNODE Unsigned [64] PRIMARY KEY DISTRIBUTION KEY AT=FIXED ST=MEMORY
 PRIMARY KEY(NDB$TNODE) - UniqueHashIndex
 ```
 
-When an index is specified in this way, the
-[`--extra-partition-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-partition-info) and
-[`--extra-node-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-node-info) options have
-no effect.
+When an index is specified in this way, the `--extra-partition-info` and `--extra-node-info` options have no effect.
 
-The `Version` column in the output contains the
-table's schema object version. For information about
-interpreting this value, see
-[NDB Schema Object Versions](/doc/ndb-internals/en/ndb-internals-schema-object-versions.html).
+The `Version` column in the output contains the table's schema object version. For information about interpreting this value, see NDB Schema Object Versions.
 
-Three of the table properties that can be set using
-`NDB_TABLE` comments embedded in
-[`CREATE TABLE`](create-table.html "15.1.20 CREATE TABLE Statement") and
-[`ALTER TABLE`](alter-table.html "15.1.9 ALTER TABLE Statement") statements are also
-visible in [**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables") output. The table's
-`FRAGMENT_COUNT_TYPE` is always shown in the
-`FragmentCountType` column.
-`READ_ONLY` and
-`FULLY_REPLICATED`, if set to 1, are shown in
-the `Table options` column. You can see this
-after executing the following [`ALTER
-TABLE`](alter-table.html "15.1.9 ALTER TABLE Statement") statement in the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client")
-client:
+Three of the table properties that can be set using `NDB_TABLE` comments embedded in `CREATE TABLE` and `ALTER TABLE` statements are also visible in **ndb_desc** output. The table's `FRAGMENT_COUNT_TYPE` is always shown in the `FragmentCountType` column. `READ_ONLY` and `FULLY_REPLICATED`, if set to 1, are shown in the `Table options` column. You can see this after executing the following [`ALTER TABLE`](alter-table.html "15.1.9 ALTER TABLE Statement") statement in the **mysql** client:
 
 ```
 mysql> ALTER TABLE fish COMMENT='NDB_TABLE=READ_ONLY=1,FULLY_REPLICATED=1';
@@ -168,13 +141,7 @@ mysql> SHOW WARNINGS\G
 1 row in set (0.00 sec)
 ```
 
-The warning is issued because `READ_ONLY=1`
-requires that the table's fragment count type is (or be set
-to) `ONE_PER_LDM_PER_NODE_GROUP`;
-`NDB` sets this automatically in such cases.
-You can check that the `ALTER TABLE` statement
-has the desired effect using [`SHOW CREATE
-TABLE`](show-create-table.html "15.7.7.10 SHOW CREATE TABLE Statement"):
+The warning is issued because `READ_ONLY=1` requires that the table's fragment count type is (or be set to) `ONE_PER_LDM_PER_NODE_GROUP`; `NDB` sets this automatically in such cases. You can check that the `ALTER TABLE` statement has the desired effect using [`SHOW CREATE TABLE`](show-create-table.html "15.7.7.10 SHOW CREATE TABLE Statement"):
 
 ```
 mysql> SHOW CREATE TABLE fish\G
@@ -192,13 +159,7 @@ COMMENT='NDB_TABLE=READ_BACKUP=1,FULLY_REPLICATED=1'
 1 row in set (0.01 sec)
 ```
 
-Because `FRAGMENT_COUNT_TYPE` was not set
-explicitly, its value is not shown in the comment text printed
-by `SHOW CREATE TABLE`.
-[**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables"), however, displays the updated value
-for this attribute. The `Table options` column
-shows the binary properties just enabled. You can see this in
-the output shown here (emphasized text):
+Because `FRAGMENT_COUNT_TYPE` was not set explicitly, its value is not shown in the comment text printed by `SHOW CREATE TABLE`. **ndb_desc**, however, displays the updated value for this attribute. The `Table options` column shows the binary properties just enabled. You can see this in the output shown here (emphasized text):
 
 ```
 $> ./ndb_desc -c localhost fish -d test -p
@@ -239,17 +200,11 @@ uk$unique(name) - UniqueHashIndex
 Partition       Row count       Commit count    Frag fixed memory       Frag varsized memory    Extent_space    Free extent_space
 ```
 
-For more information about these table properties, see
-[Section 15.1.20.12, “Setting NDB Comment Options”](create-table-ndb-comment-options.html "15.1.20.12 Setting NDB Comment Options").
+For more information about these table properties, see Section 15.1.20.12, “Setting NDB Comment Options”.
 
-The `Extent_space` and `Free
-extent_space` columns are applicable only to
-`NDB` tables having columns on disk; for tables
-having only in-memory columns, these columns always contain the
-value `0`.
+The `Extent_space` and `Free extent_space` columns are applicable only to `NDB` tables having columns on disk; for tables having only in-memory columns, these columns always contain the value `0`.
 
-To illustrate their use, we modify the previous example. First,
-we must create the necessary Disk Data objects, as shown here:
+To illustrate their use, we modify the previous example. First, we must create the necessary Disk Data objects, as shown here:
 
 ```
 CREATE LOGFILE GROUP lg_1
@@ -275,16 +230,9 @@ ALTER TABLESPACE ts_1
     ENGINE NDB;
 ```
 
-(For more information on the statements just shown and the
-objects created by them, see
-[Section 25.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "25.6.11.1 NDB Cluster Disk Data Objects"), as well as
-[Section 15.1.16, “CREATE LOGFILE GROUP Statement”](create-logfile-group.html "15.1.16 CREATE LOGFILE GROUP Statement"), and
-[Section 15.1.21, “CREATE TABLESPACE Statement”](create-tablespace.html "15.1.21 CREATE TABLESPACE Statement").)
+(For more information on the statements just shown and the objects created by them, see Section 25.6.11.1, “NDB Cluster Disk Data Objects”, as well as Section 15.1.16, “CREATE LOGFILE GROUP Statement”, and Section 15.1.21, “CREATE TABLESPACE Statement”.)
 
-Now we can create and populate a version of the
-`fish` table that stores 2 of its columns on
-disk (deleting the previous version of the table first, if it
-already exists):
+Now we can create and populate a version of the `fish` table that stores 2 of its columns on disk (deleting the previous version of the table first, if it already exists):
 
 ```
 DROP TABLE IF EXISTS fish;
@@ -306,8 +254,7 @@ INSERT INTO fish VALUES
     (NULL, 'grouper', 900, 125000), (NULL ,'puffer', 250, 2500);
 ```
 
-When run against this version of the table,
-[**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables") displays the following output:
+When run against this version of the table, **ndb_desc** displays the following output:
 
 ```
 $> ./ndb_desc -c localhost fish -d test -p
@@ -352,617 +299,163 @@ Partition       Row count       Commit count    Frag fixed memory       Frag var
 1               4               4               32768                   32768                   1048576         1044400
 ```
 
-This means that 1048576 bytes are allocated from the tablespace
-for this table on each partition, of which 1044440 bytes remain
-free for additional storage. In other words, 1048576 - 1044440 =
-4136 bytes per partition is currently being used to store the
-data from this table's disk-based columns. The number of
-bytes shown as `Free extent_space` is available
-for storing on-disk column data from the `fish`
-table only; for this reason, it is not visible when selecting
-from the Information Schema [`FILES`](information-schema-files-table.html "28.3.15 The INFORMATION_SCHEMA FILES Table")
-table.
+This means that 1048576 bytes are allocated from the tablespace for this table on each partition, of which 1044440 bytes remain free for additional storage. In other words, 1048576 - 1044440 = 4136 bytes per partition is currently being used to store the data from this table's disk-based columns. The number of bytes shown as `Free extent_space` is available for storing on-disk column data from the `fish` table only; for this reason, it is not visible when selecting from the Information Schema `FILES` table.
 
-`Tablespace id` and
-`Tablespace` are displayed for Disk Data tables
-beginning with NDB 8.0.21.
+`Tablespace id` and `Tablespace` are displayed for Disk Data tables beginning with NDB 8.0.21.
 
-For fully replicated tables, [**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables") shows
-only the nodes holding primary partition fragment replicas;
-nodes with copy fragment replicas (only) are ignored. You can
-obtain such information, using the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client")
-client, from the
-[`table_distribution_status`](mysql-cluster-ndbinfo-table-distribution-status.html "25.6.16.56 The ndbinfo table_distribution_status Table"),
-[`table_fragments`](mysql-cluster-ndbinfo-table-fragments.html "25.6.16.57 The ndbinfo table_fragments Table"),
-[`table_info`](mysql-cluster-ndbinfo-table-info.html "25.6.16.58 The ndbinfo table_info Table"), and
-[`table_replicas`](mysql-cluster-ndbinfo-table-replicas.html "25.6.16.59 The ndbinfo table_replicas Table") tables in the
-[`ndbinfo`](mysql-cluster-ndbinfo.html "25.6.16 ndbinfo: The NDB Cluster Information Database") database.
+For fully replicated tables, **ndb_desc** shows only the nodes holding primary partition fragment replicas; nodes with copy fragment replicas (only) are ignored. You can obtain such information, using the **mysql** client, from the `table_distribution_status`, `table_fragments`, `table_info`, and `table_replicas` tables in the `ndbinfo` database.
 
-All options that can be used with [**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
-are shown in the following table. Additional descriptions follow
-the table.
+All options that can be used with **ndb_desc** are shown in the following table. Additional descriptions follow the table.
 
-**Table 25.31 Command-line options used with the program ndb\_desc**
+**Table 25.31 Command-line options used with the program ndb_desc**
 
-<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr>
-<th scope="col">Format</th>
-<th scope="col">Description</th>
-<th scope="col">Added, Deprecated, or Removed</th>
-</tr></thead><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_auto-inc">--auto-inc</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_auto-inc">-a</a>
-</code>
-</p></th>
-<td>Show next value for AUTO_INCREMENT oolumn if table has one</td>
-<td><p>
-                ADDED: NDB 8.0.21
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_blob-info">--blob-info</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_blob-info">-b</a>
-</code>
-</p></th>
-<td>Include partition information for BLOB tables in output. Requires that
-              the -p option also be used</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_character-sets-dir">--character-sets-dir=path</a>
-</code>
-</p></th>
-<td>Directory containing character sets</td>
-<td><p>
-                REMOVED: 8.0.31
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_connect-retries">--connect-retries=#</a>
-</code>
-</p></th>
-<td>Number of times to retry connection before giving up</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_connect-retry-delay">--connect-retry-delay=#</a>
-</code>
-</p></th>
-<td>Number of seconds to wait between attempts to contact management server</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_connect-string">--connect-string=connection_string</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_connect-string">-c
-                connection_string</a> </code>
-</p></th>
-<td>Same as --ndb-connectstring</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_context">--context</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_context">-x</a>
-</code>
-</p></th>
-<td>Show extra information for table such as database, schema, name, and
-              internal ID</td>
-<td><p>
-                ADDED: NDB 8.0.21
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_core-file">--core-file</a>
-</code>
-</p></th>
-<td>Write core file on error; used in debugging</td>
-<td><p>
-                REMOVED: 8.0.31
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_database">--database=name</a></code>,
-              </p><p>
-<code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_database">-d
-                name</a> </code>
-</p></th>
-<td>Name of database containing table</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_defaults-extra-file">--defaults-extra-file=path</a>
-</code>
-</p></th>
-<td>Read given file after global files are read</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_defaults-file">--defaults-file=path</a>
-</code>
-</p></th>
-<td>Read default options from given file only</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_defaults-group-suffix">--defaults-group-suffix=string</a>
-</code>
-</p></th>
-<td>Also read groups with concat(group, suffix)</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-node-info">--extra-node-info</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-node-info">-n</a>
-</code>
-</p></th>
-<td>Include partition-to-data-node mappings in output; requires
-              --extra-partition-info</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-partition-info">--extra-partition-info</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-partition-info">-p</a>
-</code>
-</p></th>
-<td>Display information about partitions</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_help">--help</a></code>,
-              </p><p>
-<code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_help">-?</a>
-</code>
-</p></th>
-<td>Display help text and exit</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_login-path">--login-path=path</a>
-</code>
-</p></th>
-<td>Read given path from login file</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-connectstring">--ndb-connectstring=connection_string</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-connectstring">-c
-                connection_string</a> </code>
-</p></th>
-<td>Set connect string for connecting to ndb_mgmd. Syntax:
-              "[nodeid=id;][host=]hostname[:port]". Overrides entries in
-              NDB_CONNECTSTRING and my.cnf</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-mgmd-host">--ndb-mgmd-host=connection_string</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-mgmd-host">-c
-                connection_string</a> </code>
-</p></th>
-<td>Same as --ndb-connectstring</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-nodeid">--ndb-nodeid=#</a>
-</code>
-</p></th>
-<td>Set node ID for this node, overriding any ID set by --ndb-connectstring</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-optimized-node-selection">--ndb-optimized-node-selection</a>
-</code>
-</p></th>
-<td>Enable optimizations for selection of nodes for transactions. Enabled by
-              default; use --skip-ndb-optimized-node-selection to
-              disable</td>
-<td><p>
-                REMOVED: 8.0.31
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_no-defaults">--no-defaults</a>
-</code>
-</p></th>
-<td>Do not read default options from any option file other than login file</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_print-defaults">--print-defaults</a>
-</code>
-</p></th>
-<td>Print program argument list and exit</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_retries">--retries=#</a></code>,
-              </p><p>
-<code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_retries">-r
-                #</a> </code>
-</p></th>
-<td>Number of times to retry the connection (once per second)</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_table">--table=name</a></code>,
-              </p><p>
-<code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_table">-t
-                name</a> </code>
-</p></th>
-<td>Specify the table in which to find an index. When this option is used,
-              -p and -n have no effect and are ignored</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_unqualified">--unqualified</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_unqualified">-u</a>
-</code>
-</p></th>
-<td>Use unqualified table names</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_usage">--usage</a></code>,
-              </p><p>
-<code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_usage">-?</a>
-</code>
-</p></th>
-<td>Display help text and exit; same as --help</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_version">--version</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_version">-V</a>
-</code>
-</p></th>
-<td>Display version information and exit</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody></table>
+<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th scope="col">Format</th> <th scope="col">Description</th> <th scope="col">Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th scope="row"><p> <code>--auto-inc</code>, </p><p> <code class="option"> -a </code> </p></th> <td>Show next value for AUTO_INCREMENT oolumn if table has one</td> <td><p> ADDED: NDB 8.0.21 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--blob-info</code>, </p><p> <code class="option"> -b </code> </p></th> <td>Include partition information for BLOB tables in output. Requires that the -p option also be used</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Directory containing character sets</td> <td><p> REMOVED: 8.0.31 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Number of times to retry connection before giving up</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Number of seconds to wait between attempts to contact management server</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--connect-string=connection_string</code>, </p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_connect-string">-c connection_string</a> </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--context</code>, </p><p> <code class="option"> -x </code> </p></th> <td>Show extra information for table such as database, schema, name, and internal ID</td> <td><p> ADDED: NDB 8.0.21 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --core-file </code> </p></th> <td>Write core file on error; used in debugging</td> <td><p> REMOVED: 8.0.31 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--database=name</code>, </p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_database">-d name</a> </code> </p></th> <td>Name of database containing table</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Read given file after global files are read</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Read default options from given file only</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Also read groups with concat(group, suffix)</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--extra-node-info</code>, </p><p> <code class="option"> -n </code> </p></th> <td>Include partition-to-data-node mappings in output; requires --extra-partition-info</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--extra-partition-info</code>, </p><p> <code class="option"> -p </code> </p></th> <td>Display information about partitions</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--help</code>, </p><p> <code class="option"> -? </code> </p></th> <td>Display help text and exit</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --login-path=path </code> </p></th> <td>Read given path from login file</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--ndb-connectstring=connection_string</code>, </p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-connectstring">-c connection_string</a> </code> </p></th> <td>Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--ndb-mgmd-host=connection_string</code>, </p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-mgmd-host">-c connection_string</a> </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Set node ID for this node, overriding any ID set by --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Enable optimizations for selection of nodes for transactions. Enabled by default; use --skip-ndb-optimized-node-selection to disable</td> <td><p> REMOVED: 8.0.31 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --no-defaults </code> </p></th> <td>Do not read default options from any option file other than login file</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --print-defaults </code> </p></th> <td>Print program argument list and exit</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--retries=#</code>, </p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_retries">-r #</a> </code> </p></th> <td>Number of times to retry the connection (once per second)</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--table=name</code>, </p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndb-desc.html#option_ndb_desc_table">-t name</a> </code> </p></th> <td>Specify the table in which to find an index. When this option is used, -p and -n have no effect and are ignored</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--unqualified</code>, </p><p> <code class="option"> -u </code> </p></th> <td>Use unqualified table names</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--usage</code>, </p><p> <code class="option"> -? </code> </p></th> <td>Display help text and exit; same as --help</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--version</code>, </p><p> <code class="option"> -V </code> </p></th> <td>Display version information and exit</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody></table>
 
-* [`--auto-inc`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_auto-inc),
-  `-a`
+* `--auto-inc`, `-a`
 
-  Show the next value for a table's
-  `AUTO_INCREMENT` column, if it has one.
+  Show the next value for a table's `AUTO_INCREMENT` column, if it has one.
 
-* [`--blob-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_blob-info),
-  `-b`
+* `--blob-info`, `-b`
 
-  Include information about subordinate
-  [`BLOB`](blob.html "13.3.4 The BLOB and TEXT Types") and
-  [`TEXT`](blob.html "13.3.4 The BLOB and TEXT Types") columns.
+  Include information about subordinate `BLOB` and `TEXT` columns.
 
-  Use of this option also requires the use of the
-  [`--extra-partition-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-partition-info)
-  (`-p`) option.
+  Use of this option also requires the use of the `--extra-partition-info` (`-p`) option.
 
-* [`--character-sets-dir`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_character-sets-dir)
+* `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>
 
   Directory containing character sets.
 
-* [`--connect-retries`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_connect-retries)
+* `--connect-retries`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
   Number of times to retry connection before giving up.
 
-* [`--connect-retry-delay`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_connect-retry-delay)
+* `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retry-delay=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">5</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">5</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>5</code></td> </tr></tbody></table>
 
-  Number of seconds to wait between attempts to contact
-  management server.
+  Number of seconds to wait between attempts to contact management server.
 
-* [`--connect-string`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_connect-string)
+* `--connect-string`
 
-  <table frame="box" rules="all" summary="Properties for connect-string"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-string=connection_string</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-string"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Same as
-  [`--ndb-connectstring`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-connectstring).
+  Same as `--ndb-connectstring`.
 
-* [`--context`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_context),
-  `-x`
+* `--context`, `-x`
 
-  Show additional contextual information for the table such as
-  schema, database name, table name, and the table's
-  internal ID.
+  Show additional contextual information for the table such as schema, database name, table name, and the table's internal ID.
 
-* [`--core-file`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_core-file)
+* `--core-file`
 
-  <table frame="box" rules="all" summary="Properties for core-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--core-file</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for core-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>
 
   Write core file on error; used in debugging.
 
-* [`--database=db_name`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_database),
-  `-d`
+* `--database=db_name`, `-d`
 
   Specify the database in which the table should be found.
 
-* [`--defaults-extra-file`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_defaults-extra-file)
+* `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--defaults-extra-file=path</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Read given file after global files are read.
 
-* [`--defaults-file`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_defaults-file)
+* `--defaults-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--defaults-file=path</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Read default options from given file only.
 
-* [`--defaults-group-suffix`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_defaults-group-suffix)
+* `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--defaults-group-suffix=string</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Also read groups with concat(group, suffix).
 
-* [`--extra-node-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-node-info),
-  `-n`
+* `--extra-node-info`, `-n`
 
-  Include information about the mappings between table
-  partitions and the data nodes upon which they reside. This
-  information can be useful for verifying distribution
-  awareness mechanisms and supporting more efficient
-  application access to the data stored in NDB Cluster.
+  Include information about the mappings between table partitions and the data nodes upon which they reside. This information can be useful for verifying distribution awareness mechanisms and supporting more efficient application access to the data stored in NDB Cluster.
 
-  Use of this option also requires the use of the
-  [`--extra-partition-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-partition-info)
-  (`-p`) option.
+  Use of this option also requires the use of the `--extra-partition-info` (`-p`) option.
 
-* [`--extra-partition-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-partition-info),
-  `-p`
+* `--extra-partition-info`, `-p`
 
-  Print additional information about the table's
-  partitions.
+  Print additional information about the table's partitions.
 
-* [`--help`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_help)
+* `--help`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--help</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display help text and exit.
 
-* [`--login-path`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_login-path)
+* `--login-path`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>0
 
   Read given path from login file.
 
-* [`--ndb-connectstring`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-connectstring)
+* `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>1
 
-  Set connect string for connecting to ndb\_mgmd. Syntax:
-  "[nodeid=id;][host=]hostname[:port]". Overrides entries in
-  NDB\_CONNECTSTRING and my.cnf.
+  Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf.
 
-* [`--ndb-mgmd-host`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-mgmd-host)
+* `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>2
 
-  Same as
-  [`--ndb-connectstring`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-connectstring).
+  Same as `--ndb-connectstring`.
 
-* [`--ndb-nodeid`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-nodeid)
+* `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>3
 
-  Set node ID for this node, overriding any ID set by
-  [`--ndb-connectstring`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-connectstring).
+  Set node ID for this node, overriding any ID set by `--ndb-connectstring`.
 
-* [`--ndb-optimized-node-selection`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-optimized-node-selection)
+* `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>4
 
-  Enable optimizations for selection of nodes for
-  transactions. Enabled by default; use
-  `--skip-ndb-optimized-node-selection` to
-  disable.
+  Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
 
-* [`--no-defaults`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_no-defaults)
+* `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>5
 
-  Do not read default options from any option file other than
-  login file.
+  Do not read default options from any option file other than login file.
 
-* [`--print-defaults`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_print-defaults)
+* `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>6
 
   Print program argument list and exit.
 
-* [`--retries=#`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_retries),
-  `-r`
+* `--retries=#`, `-r`
 
-  Try to connect this many times before giving up. One connect
-  attempt is made per second.
+  Try to connect this many times before giving up. One connect attempt is made per second.
 
-* [`--table=tbl_name`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_table),
-  `-t`
+* `--table=tbl_name`, `-t`
 
   Specify the table in which to look for an index.
 
-* [`--unqualified`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_unqualified),
-  `-u`
+* `--unqualified`, `-u`
 
   Use unqualified table names.
 
-* [`--usage`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_usage)
+* `--usage`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>7
 
-  Display help text and exit; same as
-  [`--help`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_help).
+  Display help text and exit; same as `--help`.
 
-* [`--version`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_version)
+* `--version`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>8
 
   Display version information and exit.
 

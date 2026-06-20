@@ -1,20 +1,10 @@
-#### 30.4.3.24 The schema\_auto\_increment\_columns View
+#### 30.4.3.24 The schema_auto_increment_columns View
 
-This view indicates which tables have
-`AUTO_INCREMENT` columns and provides
-information about those columns, such as the current and
-maximum column values and the usage ratio (ratio of used to
-possible values). By default, rows are sorted by descending
-usage ratio and maximum column value.
+This view indicates which tables have `AUTO_INCREMENT` columns and provides information about those columns, such as the current and maximum column values and the usage ratio (ratio of used to possible values). By default, rows are sorted by descending usage ratio and maximum column value.
 
-Tables in these schemas are excluded from view output:
-`mysql`, `sys`,
-`INFORMATION_SCHEMA`,
-`performance_schema`.
+Tables in these schemas are excluded from view output: `mysql`, `sys`, `INFORMATION_SCHEMA`, `performance_schema`.
 
-The
-[`schema_auto_increment_columns`](sys-schema-auto-increment-columns.html "30.4.3.24 The schema_auto_increment_columns View")
-view has these columns:
+The `schema_auto_increment_columns` view has these columns:
 
 * `table_schema`
 
@@ -22,8 +12,7 @@ view has these columns:
 
 * `table_name`
 
-  The table that contains the
-  `AUTO_INCREMENT` column.
+  The table that contains the `AUTO_INCREMENT` column.
 
 * `column_name`
 
@@ -35,10 +24,7 @@ view has these columns:
 
 * `column_type`
 
-  The column type of the column, which is the data type plus
-  possibly other information. For example, for a column with
-  a `bigint(20) unsigned` column type, the
-  data type is just `bigint`.
+  The column type of the column, which is the data type plus possibly other information. For example, for a column with a `bigint(20) unsigned` column type, the data type is just `bigint`.
 
 * `is_signed`
 
@@ -54,11 +40,8 @@ view has these columns:
 
 * `auto_increment`
 
-  The current `AUTO_INCREMENT` value for
-  the column.
+  The current `AUTO_INCREMENT` value for the column.
 
 * `auto_increment_ratio`
 
-  The ratio of used to permitted values for the column. This
-  indicates how much of the sequence of values is
-  “used up.”
+  The ratio of used to permitted values for the column. This indicates how much of the sequence of values is “used up.”

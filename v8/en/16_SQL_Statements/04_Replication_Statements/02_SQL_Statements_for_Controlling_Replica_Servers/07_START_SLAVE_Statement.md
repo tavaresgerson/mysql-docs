@@ -42,12 +42,4 @@ interval:
     (n >= 1)
 ```
 
-Starts the replication threads. From MySQL 8.0.22,
-[`START SLAVE`](start-slave.html "15.4.2.7 START SLAVE Statement") is deprecated and the
-alias [`START REPLICA`](start-replica.html "15.4.2.6 START REPLICA Statement") should be
-used instead. The statement works in the same way as before,
-only the terminology used for the statement and its output has
-changed. Both versions of the statement update the same status
-variables when used. Please see the documentation for
-[`START REPLICA`](start-replica.html "15.4.2.6 START REPLICA Statement") for a description
-of the statement.
+Starts the replication threads. From MySQL 8.0.22, `START SLAVE` is deprecated and the alias `START REPLICA` should be used instead. The statement works in the same way as before, only the terminology used for the statement and its output has changed. Both versions of the statement update the same status variables when used. Please see the documentation for `START REPLICA` for a description of the statement.

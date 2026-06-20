@@ -1,15 +1,10 @@
-#### 30.4.3.29 The schema\_table\_statistics and x$schema\_table\_statistics Views
+#### 30.4.3.29 The schema_table_statistics and x$schema_table_statistics Views
 
-These views summarize table statistics. By default, rows are
-sorted by descending total wait time (tables with most
-contention first).
+These views summarize table statistics. By default, rows are sorted by descending total wait time (tables with most contention first).
 
-These views user a helper view,
-`x$ps_schema_table_statistics_io`.
+These views user a helper view, `x$ps_schema_table_statistics_io`.
 
-The [`schema_table_statistics`](sys-schema-table-statistics.html "30.4.3.29 The schema_table_statistics and x$schema_table_statistics Views") and
-[`x$schema_table_statistics`](sys-schema-table-statistics.html "30.4.3.29 The schema_table_statistics and x$schema_table_statistics Views") views
-have these columns:
+The `schema_table_statistics` and `x$schema_table_statistics` views have these columns:
 
 * `table_schema`
 
@@ -29,8 +24,7 @@ have these columns:
 
 * `fetch_latency`
 
-  The total wait time of timed read I/O events for the
-  table.
+  The total wait time of timed read I/O events for the table.
 
 * `rows_inserted`
 
@@ -38,8 +32,7 @@ have these columns:
 
 * `insert_latency`
 
-  The total wait time of timed insert I/O events for the
-  table.
+  The total wait time of timed insert I/O events for the table.
 
 * `rows_updated`
 
@@ -47,8 +40,7 @@ have these columns:
 
 * `update_latency`
 
-  The total wait time of timed update I/O events for the
-  table.
+  The total wait time of timed update I/O events for the table.
 
 * `rows_deleted`
 
@@ -56,8 +48,7 @@ have these columns:
 
 * `delete_latency`
 
-  The total wait time of timed delete I/O events for the
-  table.
+  The total wait time of timed delete I/O events for the table.
 
 * `io_read_requests`
 
@@ -85,10 +76,8 @@ have these columns:
 
 * `io_misc_requests`
 
-  The total number of miscellaneous I/O requests for the
-  table.
+  The total number of miscellaneous I/O requests for the table.
 
 * `io_misc_latency`
 
-  The total wait time of miscellaneous I/O requests for the
-  table.
+  The total wait time of miscellaneous I/O requests for the table.

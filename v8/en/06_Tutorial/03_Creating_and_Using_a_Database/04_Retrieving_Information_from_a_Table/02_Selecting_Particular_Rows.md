@@ -1,18 +1,8 @@
 #### 5.3.4.2 Selecting Particular Rows
 
-As shown in the preceding section, it is easy to retrieve an
-entire table. Just omit the `WHERE` clause
-from the [`SELECT`](select.html "15.2.13 SELECT Statement") statement. But
-typically you don't want to see the entire table, particularly
-when it becomes large. Instead, you're usually more interested
-in answering a particular question, in which case you specify
-some constraints on the information you want. Let's look at
-some selection queries in terms of questions about your pets
-that they answer.
+As shown in the preceding section, it is easy to retrieve an entire table. Just omit the `WHERE` clause from the `SELECT` statement. But typically you don't want to see the entire table, particularly when it becomes large. Instead, you're usually more interested in answering a particular question, in which case you specify some constraints on the information you want. Let's look at some selection queries in terms of questions about your pets that they answer.
 
-You can select only particular rows from your table. For
-example, if you want to verify the change that you made to
-Bowser's birth date, select Bowser's record like this:
+You can select only particular rows from your table. For example, if you want to verify the change that you made to Bowser's birth date, select Bowser's record like this:
 
 ```
 mysql> SELECT * FROM pet WHERE name = 'Bowser';
@@ -23,18 +13,11 @@ mysql> SELECT * FROM pet WHERE name = 'Bowser';
 +--------+-------+---------+------+------------+------------+
 ```
 
-The output confirms that the year is correctly recorded as
-1989, not 1979.
+The output confirms that the year is correctly recorded as 1989, not 1979.
 
-String comparisons normally are case-insensitive, so you can
-specify the name as `'bowser'`,
-`'BOWSER'`, and so forth. The query result is
-the same.
+String comparisons normally are case-insensitive, so you can specify the name as `'bowser'`, `'BOWSER'`, and so forth. The query result is the same.
 
-You can specify conditions on any column, not just
-`name`. For example, if you want to know
-which animals were born during or after 1998, test the
-`birth` column:
+You can specify conditions on any column, not just `name`. For example, if you want to know which animals were born during or after 1998, test the `birth` column:
 
 ```
 mysql> SELECT * FROM pet WHERE birth >= '1998-1-1';
@@ -46,8 +29,7 @@ mysql> SELECT * FROM pet WHERE birth >= '1998-1-1';
 +----------+-------+---------+------+------------+-------+
 ```
 
-You can combine conditions, for example, to locate female
-dogs:
+You can combine conditions, for example, to locate female dogs:
 
 ```
 mysql> SELECT * FROM pet WHERE species = 'dog' AND sex = 'f';
@@ -58,9 +40,7 @@ mysql> SELECT * FROM pet WHERE species = 'dog' AND sex = 'f';
 +-------+--------+---------+------+------------+-------+
 ```
 
-The preceding query uses the [`AND`](logical-operators.html#operator_and)
-logical operator. There is also an
-[`OR`](logical-operators.html#operator_or) operator:
+The preceding query uses the `AND` logical operator. There is also an `OR` operator:
 
 ```
 mysql> SELECT * FROM pet WHERE species = 'snake' OR species = 'bird';
@@ -73,12 +53,7 @@ mysql> SELECT * FROM pet WHERE species = 'snake' OR species = 'bird';
 +----------+-------+---------+------+------------+-------+
 ```
 
-[`AND`](logical-operators.html#operator_and) and
-[`OR`](logical-operators.html#operator_or) may be intermixed, although
-[`AND`](logical-operators.html#operator_and) has higher precedence than
-[`OR`](logical-operators.html#operator_or). If you use both operators, it
-is a good idea to use parentheses to indicate explicitly how
-conditions should be grouped:
+`AND` and `OR` may be intermixed, although `AND` has higher precedence than `OR`. If you use both operators, it is a good idea to use parentheses to indicate explicitly how conditions should be grouped:
 
 ```
 mysql> SELECT * FROM pet WHERE (species = 'cat' AND sex = 'm')

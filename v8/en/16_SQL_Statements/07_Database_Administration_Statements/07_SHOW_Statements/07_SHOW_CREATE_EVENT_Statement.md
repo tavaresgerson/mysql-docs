@@ -4,12 +4,7 @@
 SHOW CREATE EVENT event_name
 ```
 
-This statement displays the [`CREATE
-EVENT`](create-event.html "15.1.13 CREATE EVENT Statement") statement needed to re-create a given event. It
-requires the [`EVENT`](privileges-provided.html#priv_event) privilege for
-the database from which the event is to be shown. For example
-(using the same event `e_daily` defined and
-then altered in [Section 15.7.7.18, “SHOW EVENTS Statement”](show-events.html "15.7.7.18 SHOW EVENTS Statement")):
+This statement displays the [`CREATE EVENT`](create-event.html "15.1.13 CREATE EVENT Statement") statement needed to re-create a given event. It requires the `EVENT` privilege for the database from which the event is to be shown. For example (using the same event `e_daily` defined and then altered in Section 15.7.7.18, “SHOW EVENTS Statement”):
 
 ```
 mysql> SHOW CREATE EVENT myschema.e_daily\G
@@ -38,15 +33,6 @@ collation_connection: utf8mb4_0900_ai_ci
   Database Collation: utf8mb4_0900_ai_ci
 ```
 
-`character_set_client` is the session value of
-the [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system
-variable when the event was created.
-`collation_connection` is the session value of
-the [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system
-variable when the event was created. `Database
-Collation` is the collation of the database with which
-the event is associated.
+`character_set_client` is the session value of the `character_set_client` system variable when the event was created. `collation_connection` is the session value of the `collation_connection` system variable when the event was created. `Database Collation` is the collation of the database with which the event is associated.
 
-The output reflects the current status of the event
-(`ENABLE`) rather than the status with which it
-was created.
+The output reflects the current status of the event (`ENABLE`) rather than the status with which it was created.

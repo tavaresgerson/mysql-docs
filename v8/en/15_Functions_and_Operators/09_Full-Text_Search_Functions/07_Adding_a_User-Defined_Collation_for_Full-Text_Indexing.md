@@ -2,37 +2,13 @@
 
 Warning
 
-User-defined collations are deprecated; you should expect
-support for them to be removed in a future version of MySQL.
-As of MySQL 8.0.33, the server issues a warning for any use of
-`COLLATE
-user_defined_collation` in
-an SQL statement; a warning is also issued when the server is
-started with [`--collation-server`](server-system-variables.html#sysvar_collation_server)
-set equal to the name of a user-defined collation.
+User-defined collations are deprecated; you should expect support for them to be removed in a future version of MySQL. As of MySQL 8.0.33, the server issues a warning for any use of `COLLATE user_defined_collation` in an SQL statement; a warning is also issued when the server is started with `--collation-server` set equal to the name of a user-defined collation.
 
-This section describes how to add a user-defined collation for
-full-text searches using the built-in full-text parser. The
-sample collation is like `latin1_swedish_ci`
-but treats the `'-'` character as a letter
-rather than as a punctuation character so that it can be indexed
-as a word character. General information about adding collations
-is given in [Section 12.14, “Adding a Collation to a Character Set”](adding-collation.html "12.14 Adding a Collation to a Character Set"); it is assumed
-that you have read it and are familiar with the files involved.
+This section describes how to add a user-defined collation for full-text searches using the built-in full-text parser. The sample collation is like `latin1_swedish_ci` but treats the `'-'` character as a letter rather than as a punctuation character so that it can be indexed as a word character. General information about adding collations is given in Section 12.14, “Adding a Collation to a Character Set”; it is assumed that you have read it and are familiar with the files involved.
 
-To add a collation for full-text indexing, use the following
-procedure. The instructions here add a collation for a simple
-character set, which as discussed in
-[Section 12.14, “Adding a Collation to a Character Set”](adding-collation.html "12.14 Adding a Collation to a Character Set"), can be created using a
-configuration file that describes the character set properties.
-For a complex character set such as Unicode, create collations
-using C source files that describe the character set properties.
+To add a collation for full-text indexing, use the following procedure. The instructions here add a collation for a simple character set, which as discussed in Section 12.14, “Adding a Collation to a Character Set”, can be created using a configuration file that describes the character set properties. For a complex character set such as Unicode, create collations using C source files that describe the character set properties.
 
-1. Add a collation to the `Index.xml` file.
-   The permitted range of IDs for user-defined collations is
-   given in [Section 12.14.2, “Choosing a Collation ID”](adding-collation-choosing-id.html "12.14.2 Choosing a Collation ID"). The
-   ID must be unused, so choose a value different from 1025 if
-   that ID is already taken on your system.
+1. Add a collation to the `Index.xml` file. The permitted range of IDs for user-defined collations is given in Section 12.14.2, “Choosing a Collation ID”. The ID must be unused, so choose a value different from 1025 if that ID is already taken on your system.
 
    ```
    <charset name="latin1">
@@ -41,10 +17,7 @@ using C source files that describe the character set properties.
    </charset>
    ```
 
-2. Declare the sort order for the collation in the
-   `latin1.xml` file. In this case, the
-   order can be copied from
-   `latin1_swedish_ci`:
+2. Declare the sort order for the collation in the `latin1.xml` file. In this case, the order can be copied from `latin1_swedish_ci`:
 
    ```
    <collation name="latin1_fulltext_ci">
@@ -69,12 +42,7 @@ using C source files that describe the character set properties.
    </collation>
    ```
 
-3. Modify the `ctype` array in
-   `latin1.xml`. Change the value
-   corresponding to 0x2D (which is the code for the
-   `'-'` character) from 10 (punctuation) to
-   01 (uppercase letter). In the following array, this is the
-   element in the fourth row down, third value from the end.
+3. Modify the `ctype` array in `latin1.xml`. Change the value corresponding to 0x2D (which is the code for the `'-'` character) from 10 (punctuation) to 01 (uppercase letter). In the following array, this is the element in the fourth row down, third value from the end.
 
    ```
    <ctype>
@@ -101,8 +69,7 @@ using C source files that describe the character set properties.
    ```
 
 4. Restart the server.
-5. To employ the new collation, include it in the definition of
-   columns that are to use it:
+5. To employ the new collation, include it in the definition of columns that are to use it:
 
    ```
    mysql> DROP TABLE IF EXISTS t1;
@@ -115,8 +82,7 @@ using C source files that describe the character set properties.
    Query OK, 0 rows affected (0.47 sec)
    ```
 
-6. Test the collation to verify that hyphen is considered as a
-   word character:
+6. Test the collation to verify that hyphen is considered as a word character:
 
    ```
    mysql> INSERT INTO t1 VALUEs ('----'),('....'),('abcd');

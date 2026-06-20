@@ -1,14 +1,10 @@
-### 28.4.5 The INFORMATION\_SCHEMA INNODB\_CACHED\_INDEXES Table
+### 28.4.5 The INFORMATION_SCHEMA INNODB_CACHED_INDEXES Table
 
-The [`INNODB_CACHED_INDEXES`](information-schema-innodb-cached-indexes-table.html "28.4.5 The INFORMATION_SCHEMA INNODB_CACHED_INDEXES Table") table
-reports the number of index pages cached in the
-`InnoDB` buffer pool for each index.
+The `INNODB_CACHED_INDEXES` table reports the number of index pages cached in the `InnoDB` buffer pool for each index.
 
-For related usage information and examples, see
-[Section 17.15.5, “InnoDB INFORMATION\_SCHEMA Buffer Pool Tables”](innodb-information-schema-buffer-pool-tables.html "17.15.5 InnoDB INFORMATION_SCHEMA Buffer Pool Tables").
+For related usage information and examples, see Section 17.15.5, “InnoDB INFORMATION_SCHEMA Buffer Pool Tables”.
 
-The [`INNODB_CACHED_INDEXES`](information-schema-innodb-cached-indexes-table.html "28.4.5 The INFORMATION_SCHEMA INNODB_CACHED_INDEXES Table") table has
-these columns:
+The `INNODB_CACHED_INDEXES` table has these columns:
 
 * `SPACE_ID`
 
@@ -16,19 +12,15 @@ these columns:
 
 * `INDEX_ID`
 
-  An identifier for the index. Index identifiers are unique
-  across all the databases in an instance.
+  An identifier for the index. Index identifiers are unique across all the databases in an instance.
 
 * `N_CACHED_PAGES`
 
-  The total number of index pages cached in the
-  `InnoDB` buffer pool for a specific index
-  since MySQL Server last started.
+  The total number of index pages cached in the `InnoDB` buffer pool for a specific index since MySQL Server last started.
 
 #### Examples
 
-This query returns the number of index pages cached in the
-`InnoDB` buffer pool for a specific index:
+This query returns the number of index pages cached in the `InnoDB` buffer pool for a specific index:
 
 ```
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_CACHED_INDEXES WHERE INDEX_ID=65\G
@@ -38,12 +30,7 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_CACHED_INDEXES WHERE INDEX_ID=65\
 N_CACHED_PAGES: 45
 ```
 
-This query returns the number of index pages cached in the
-`InnoDB` buffer pool for each index, using the
-[`INNODB_INDEXES`](information-schema-innodb-indexes-table.html "28.4.20 The INFORMATION_SCHEMA INNODB_INDEXES Table") and
-[`INNODB_TABLES`](information-schema-innodb-tables-table.html "28.4.23 The INFORMATION_SCHEMA INNODB_TABLES Table") tables to resolve the
-table name and index name for each `INDEX_ID`
-value.
+This query returns the number of index pages cached in the `InnoDB` buffer pool for each index, using the `INNODB_INDEXES` and `INNODB_TABLES` tables to resolve the table name and index name for each `INDEX_ID` value.
 
 ```
 SELECT
@@ -61,11 +48,6 @@ WHERE
 
 #### Notes
 
-* You must have the [`PROCESS`](privileges-provided.html#priv_process)
-  privilege to query this table.
+* You must have the `PROCESS` privilege to query this table.
 
-* Use the `INFORMATION_SCHEMA`
-  [`COLUMNS`](information-schema-columns-table.html "28.3.8 The INFORMATION_SCHEMA COLUMNS Table") table or the
-  [`SHOW COLUMNS`](show-columns.html "15.7.7.5 SHOW COLUMNS Statement") statement to view
-  additional information about the columns of this table,
-  including data types and default values.
+* Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.

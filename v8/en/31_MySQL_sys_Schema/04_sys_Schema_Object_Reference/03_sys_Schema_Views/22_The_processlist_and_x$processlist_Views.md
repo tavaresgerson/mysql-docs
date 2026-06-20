@@ -1,26 +1,10 @@
 #### 30.4.3.22 The processlist and x$processlist Views
 
-The MySQL process list indicates the operations currently
-being performed by the set of threads executing within the
-server. The [`processlist`](sys-processlist.html "30.4.3.22 The processlist and x$processlist Views") and
-[`x$processlist`](sys-processlist.html "30.4.3.22 The processlist and x$processlist Views") views summarize
-process information. They provide more complete information
-than the [`SHOW PROCESSLIST`](show-processlist.html "15.7.7.29 SHOW PROCESSLIST Statement")
-statement and the `INFORMATION_SCHEMA`
-[`PROCESSLIST`](information-schema-processlist-table.html "28.3.23 The INFORMATION_SCHEMA PROCESSLIST Table") table, and are also
-nonblocking. By default, rows are sorted by descending process
-time and descending wait time. For a comparison of process
-information sources, see
-[Sources of Process Information](processlist-access.html#processlist-sources "Sources of Process Information").
+The MySQL process list indicates the operations currently being performed by the set of threads executing within the server. The `processlist` and `x$processlist` views summarize process information. They provide more complete information than the `SHOW PROCESSLIST` statement and the `INFORMATION_SCHEMA` `PROCESSLIST` table, and are also nonblocking. By default, rows are sorted by descending process time and descending wait time. For a comparison of process information sources, see Sources of Process Information.
 
-The column descriptions here are brief. For additional
-information, see the description of the Performance Schema
-[`threads`](performance-schema-threads-table.html "29.12.21.8 The threads Table") table at
-[Section 29.12.21.8, “The threads Table”](performance-schema-threads-table.html "29.12.21.8 The threads Table").
+The column descriptions here are brief. For additional information, see the description of the Performance Schema `threads` table at Section 29.12.21.8, “The threads Table”.
 
-The [`processlist`](sys-processlist.html "30.4.3.22 The processlist and x$processlist Views") and
-[`x$processlist`](sys-processlist.html "30.4.3.22 The processlist and x$processlist Views") views have these
-columns:
+The `processlist` and `x$processlist` views have these columns:
 
 * `thd_id`
 
@@ -36,42 +20,27 @@ columns:
 
 * `db`
 
-  The default database for the thread, or
-  `NULL` if there is none.
+  The default database for the thread, or `NULL` if there is none.
 
 * `command`
 
-  For foreground threads, the type of command the thread is
-  executing on behalf of the client, or
-  `Sleep` if the session is idle.
+  For foreground threads, the type of command the thread is executing on behalf of the client, or `Sleep` if the session is idle.
 
 * `state`
 
-  An action, event, or state that indicates what the thread
-  is doing.
+  An action, event, or state that indicates what the thread is doing.
 
 * `time`
 
-  The time in seconds that the thread has been in its
-  current state.
+  The time in seconds that the thread has been in its current state.
 
 * `current_statement`
 
-  The statement the thread is executing, or
-  `NULL` if it is not executing any
-  statement.
+  The statement the thread is executing, or `NULL` if it is not executing any statement.
 
 * `execution_engine`
 
-  The query execution engine. The value is either
-  `PRIMARY` or
-  `SECONDARY`. For use with MySQL HeatWave Service and
-  MySQL HeatWave, where the `PRIMARY` engine is
-  `InnoDB` and `SECONDARY`
-  engine is MySQL HeatWave (`RAPID`). For MySQL Community Edition
-  Server, MySQL Enterprise Edition Server (on-premise), and MySQL HeatWave Service without
-  MySQL HeatWave, the value is always `PRIMARY`.
-  This column was added in MySQL 8.0.29.
+  The query execution engine. The value is either `PRIMARY` or `SECONDARY`. For use with MySQL HeatWave Service and MySQL HeatWave, where the `PRIMARY` engine is `InnoDB` and `SECONDARY` engine is MySQL HeatWave (`RAPID`). For MySQL Community Edition Server, MySQL Enterprise Edition Server (on-premise), and MySQL HeatWave Service without MySQL HeatWave, the value is always `PRIMARY`. This column was added in MySQL 8.0.29.
 
 * `statement_latency`
 
@@ -79,9 +48,7 @@ columns:
 
 * `progress`
 
-  The percentage of work completed for stages that support
-  progress reporting. See
-  [Section 30.3, “sys Schema Progress Reporting”](sys-schema-progress-reporting.html "30.3 sys Schema Progress Reporting").
+  The percentage of work completed for stages that support progress reporting. See Section 30.3, “sys Schema Progress Reporting”.
 
 * `lock_latency`
 
@@ -93,8 +60,7 @@ columns:
 
 * `rows_examined`
 
-  The number of rows read from storage engines by the
-  current statement.
+  The number of rows read from storage engines by the current statement.
 
 * `rows_sent`
 
@@ -106,23 +72,19 @@ columns:
 
 * `tmp_tables`
 
-  The number of internal in-memory temporary tables created
-  by the current statement.
+  The number of internal in-memory temporary tables created by the current statement.
 
 * `tmp_disk_tables`
 
-  The number of internal on-disk temporary tables created by
-  the current statement.
+  The number of internal on-disk temporary tables created by the current statement.
 
 * `full_scan`
 
-  The number of full table scans performed by the current
-  statement.
+  The number of full table scans performed by the current statement.
 
 * `last_statement`
 
-  The last statement executed by the thread, if there is no
-  currently executing statement or wait.
+  The last statement executed by the thread, if there is no currently executing statement or wait.
 
 * `last_statement_latency`
 
@@ -138,13 +100,11 @@ columns:
 
 * `last_wait_latency`
 
-  The wait time of the most recent wait event for the
-  thread.
+  The wait time of the most recent wait event for the thread.
 
 * `source`
 
-  The source file and line number containing the
-  instrumented code that produced the event.
+  The source file and line number containing the instrumented code that produced the event.
 
 * `trx_latency`
 
@@ -156,8 +116,7 @@ columns:
 
 * `trx_autocommit`
 
-  Whether autocommit mode was enabled when the current
-  transaction started.
+  Whether autocommit mode was enabled when the current transaction started.
 
 * `pid`
 

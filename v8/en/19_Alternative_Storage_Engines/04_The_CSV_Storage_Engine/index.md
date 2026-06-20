@@ -1,24 +1,12 @@
 ## 18.4 The CSV Storage Engine
 
-[18.4.1 Repairing and Checking CSV Tables](se-csv-repair.html)
+The `CSV` storage engine stores data in text files using comma-separated values format.
 
-[18.4.2 CSV Limitations](se-csv-limitations.html)
+The `CSV` storage engine is always compiled into the MySQL server.
 
-The `CSV` storage engine stores data in text files
-using comma-separated values format.
+To examine the source for the `CSV` engine, look in the `storage/csv` directory of a MySQL source distribution.
 
-The `CSV` storage engine is always compiled into
-the MySQL server.
-
-To examine the source for the `CSV` engine, look in
-the `storage/csv` directory of a MySQL source
-distribution.
-
-When you create a `CSV` table, the server creates a
-plain text data file having a name that begins with the table name
-and has a `.CSV` extension. When you store data
-into the table, the storage engine saves it into the data file in
-comma-separated values format.
+When you create a `CSV` table, the server creates a plain text data file having a name that begins with the table name and has a `.CSV` extension. When you store data into the table, the storage engine saves it into the data file in comma-separated values format.
 
 ```
 mysql> CREATE TABLE test (i INT NOT NULL, c CHAR(10) NOT NULL)
@@ -39,19 +27,13 @@ mysql> SELECT * FROM test;
 2 rows in set (0.00 sec)
 ```
 
-Creating a `CSV` table also creates a corresponding
-metafile that stores the state of the table and the number of rows
-that exist in the table. The name of this file is the same as the
-name of the table with the extension `CSM`.
+Creating a `CSV` table also creates a corresponding metafile that stores the state of the table and the number of rows that exist in the table. The name of this file is the same as the name of the table with the extension `CSM`.
 
-If you examine the `test.CSV` file in the
-database directory created by executing the preceding statements,
-its contents should look like this:
+If you examine the `test.CSV` file in the database directory created by executing the preceding statements, its contents should look like this:
 
 ```
 "1","record one"
 "2","record two"
 ```
 
-This format can be read, and even written, by spreadsheet
-applications such as Microsoft Excel.
+This format can be read, and even written, by spreadsheet applications such as Microsoft Excel.

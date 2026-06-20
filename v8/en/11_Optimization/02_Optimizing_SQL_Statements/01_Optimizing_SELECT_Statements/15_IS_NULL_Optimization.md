@@ -1,13 +1,6 @@
 #### 10.2.1.15 IS NULL Optimization
 
-MySQL can perform the same optimization on
-*`col_name`* [`IS
-NULL`](comparison-operators.html#operator_is-null) that it can use for
-*`col_name`* `=`
-*`constant_value`*. For example, MySQL
-can use indexes and ranges to search for
-`NULL` with [`IS
-NULL`](comparison-operators.html#operator_is-null).
+MySQL can perform the same optimization on *`col_name`* [`IS NULL`](comparison-operators.html#operator_is-null) that it can use for *`col_name`* `=` *`constant_value`*. For example, MySQL can use indexes and ranges to search for `NULL` with [`IS NULL`](comparison-operators.html#operator_is-null).
 
 Examples:
 
@@ -20,30 +13,13 @@ SELECT * FROM tbl_name
   WHERE key_col=const1 OR key_col=const2 OR key_col IS NULL;
 ```
 
-If a `WHERE` clause includes a
-*`col_name`* [`IS
-NULL`](comparison-operators.html#operator_is-null) condition for a column that is declared as
-`NOT NULL`, that expression is optimized
-away. This optimization does not occur in cases when the
-column might produce `NULL` anyway (for
-example, if it comes from a table on the right side of a
-`LEFT JOIN`).
+If a `WHERE` clause includes a *`col_name`* [`IS NULL`](comparison-operators.html#operator_is-null) condition for a column that is declared as `NOT NULL`, that expression is optimized away. This optimization does not occur in cases when the column might produce `NULL` anyway (for example, if it comes from a table on the right side of a `LEFT JOIN`).
 
-MySQL can also optimize the combination
-`col_name =
-expr OR
-col_name IS NULL`, a form
-that is common in resolved subqueries.
-[`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") shows
-[`ref_or_null`](explain-output.html#jointype_ref_or_null) when this
-optimization is used.
+MySQL can also optimize the combination `col_name = expr OR col_name IS NULL`, a form that is common in resolved subqueries. `EXPLAIN` shows `ref_or_null` when this optimization is used.
 
-This optimization can handle one [`IS
-NULL`](comparison-operators.html#operator_is-null) for any key part.
+This optimization can handle one [`IS NULL`](comparison-operators.html#operator_is-null) for any key part.
 
-Some examples of queries that are optimized, assuming that
-there is an index on columns `a` and
-`b` of table `t2`:
+Some examples of queries that are optimized, assuming that there is an index on columns `a` and `b` of table `t2`:
 
 ```
 SELECT * FROM t1 WHERE t1.a=expr OR t1.a IS NULL;
@@ -61,15 +37,9 @@ SELECT * FROM t1, t2
   OR (t1.a=t2.a AND t2.a IS NULL AND ...);
 ```
 
-[`ref_or_null`](explain-output.html#jointype_ref_or_null) works by first
-doing a read on the reference key, and then a separate search
-for rows with a `NULL` key value.
+`ref_or_null` works by first doing a read on the reference key, and then a separate search for rows with a `NULL` key value.
 
-The optimization can handle only one [`IS
-NULL`](comparison-operators.html#operator_is-null) level. In the following query, MySQL uses key
-lookups only on the expression `(t1.a=t2.a AND t2.a IS
-NULL)` and is not able to use the key part on
-`b`:
+The optimization can handle only one [`IS NULL`](comparison-operators.html#operator_is-null) level. In the following query, MySQL uses key lookups only on the expression `(t1.a=t2.a AND t2.a IS NULL)` and is not able to use the key part on `b`:
 
 ```
 SELECT * FROM t1, t2

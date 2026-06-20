@@ -1,9 +1,8 @@
 ## A.12 MySQL 8.0 FAQ: Connectors & APIs
 
-For common questions, issues, and answers relating to the MySQL
-Connectors and other APIs, see the following areas of the Manual:
+For common questions, issues, and answers relating to the MySQL Connectors and other APIs, see the following areas of the Manual:
 
-* [Using C API Features](/doc/c-api/8.0/en/c-api-features.html)
-* [Connector/ODBC Notes and Tips](/doc/connector-odbc/en/connector-odbc-usagenotes.html)
-* [Connector/NET Programming](/doc/connector-net/en/connector-net-programming.html)
-* [MySQL Connector/J Developer Guide](/doc/connector-j/en/)
+* Using C API Features
+* Connector/ODBC Notes and Tips
+* Connector/NET Programming
+* MySQL Connector/J Developer Guide

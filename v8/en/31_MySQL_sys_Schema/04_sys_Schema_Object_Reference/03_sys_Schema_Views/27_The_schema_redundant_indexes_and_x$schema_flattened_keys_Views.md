@@ -1,17 +1,10 @@
-#### 30.4.3.27 The schema\_redundant\_indexes and x$schema\_flattened\_keys Views
+#### 30.4.3.27 The schema_redundant_indexes and x$schema_flattened_keys Views
 
-The [`schema_redundant_indexes`](sys-schema-redundant-indexes.html "30.4.3.27 The schema_redundant_indexes and x$schema_flattened_keys Views")
-view displays indexes that duplicate other indexes or are made
-redundant by them. The
-[`x$schema_flattened_keys`](sys-schema-redundant-indexes.html "30.4.3.27 The schema_redundant_indexes and x$schema_flattened_keys Views")
-view is a helper view for
-[`schema_redundant_indexes`](sys-schema-redundant-indexes.html "30.4.3.27 The schema_redundant_indexes and x$schema_flattened_keys Views").
+The `schema_redundant_indexes` view displays indexes that duplicate other indexes or are made redundant by them. The `x$schema_flattened_keys` view is a helper view for `schema_redundant_indexes`.
 
-In the following column descriptions, the dominant index is
-the one that makes the redundant index redundant.
+In the following column descriptions, the dominant index is the one that makes the redundant index redundant.
 
-The [`schema_redundant_indexes`](sys-schema-redundant-indexes.html "30.4.3.27 The schema_redundant_indexes and x$schema_flattened_keys Views")
-view has these columns:
+The `schema_redundant_indexes` view has these columns:
 
 * `table_schema`
 
@@ -53,9 +46,7 @@ view has these columns:
 
   The statement to execute to drop the redundant index.
 
-The
-[`x$schema_flattened_keys`](sys-schema-redundant-indexes.html "30.4.3.27 The schema_redundant_indexes and x$schema_flattened_keys Views")
-view has these columns:
+The `x$schema_flattened_keys` view has these columns:
 
 * `table_schema`
 

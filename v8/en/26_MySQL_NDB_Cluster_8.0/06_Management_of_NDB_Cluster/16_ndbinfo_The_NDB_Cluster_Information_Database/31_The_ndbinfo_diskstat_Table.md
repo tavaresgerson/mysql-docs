@@ -1,10 +1,8 @@
 #### 25.6.16.31 The ndbinfo diskstat Table
 
-The `diskstat` table provides information about
-writes to Disk Data tablespaces during the past 1 second.
+The `diskstat` table provides information about writes to Disk Data tablespaces during the past 1 second.
 
-The `diskstat` table contains the following
-columns:
+The `diskstat` table contains the following columns:
 
 * `node_id`
 
@@ -12,8 +10,7 @@ columns:
 
 * `block_instance`
 
-  ID of reporting instance of
-  [`PGMAN`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-pgman.html)
+  ID of reporting instance of `PGMAN`
 
 * `pages_made_dirty`
 
@@ -37,8 +34,7 @@ columns:
 
 * `log_writes_issued`
 
-  Number of times a page write has required a log write during
-  the past second
+  Number of times a page write has required a log write during the past second
 
 * `log_writes_completed`
 
@@ -46,24 +42,16 @@ columns:
 
 * `get_page_calls_issued`
 
-  Number of `get_page()` calls issued during
-  the past second
+  Number of `get_page()` calls issued during the past second
 
 * `get_page_reqs_issued`
 
-  Number of times that a `get_page()` call
-  has resulted in a wait for I/O or completion of I/O already
-  begun during the past second
+  Number of times that a `get_page()` call has resulted in a wait for I/O or completion of I/O already begun during the past second
 
 * `get_page_reqs_completed`
 
-  Number of `get_page()` calls waiting for
-  I/O or I/O completion that have completed during the past
-  second
+  Number of `get_page()` calls waiting for I/O or I/O completion that have completed during the past second
 
 ##### Notes
 
-Each row in this table corresponds to an instance of
-[`PGMAN`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-pgman.html); there is one such
-instance per LDM thread plus an additional instance for each
-data node.
+Each row in this table corresponds to an instance of `PGMAN`; there is one such instance per LDM thread plus an additional instance for each data node.

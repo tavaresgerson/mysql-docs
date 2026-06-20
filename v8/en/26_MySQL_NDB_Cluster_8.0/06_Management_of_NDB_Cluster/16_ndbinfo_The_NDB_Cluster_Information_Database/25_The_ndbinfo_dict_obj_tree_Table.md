@@ -1,94 +1,50 @@
-#### 25.6.16.25 The ndbinfo dict\_obj\_tree Table
+#### 25.6.16.25 The ndbinfo dict_obj_tree Table
 
-The `dict_obj_tree` table provides a tree-based
-view of table information from the
-[`dict_obj_info`](mysql-cluster-ndbinfo-dict-obj-info.html "25.6.16.24 The ndbinfo dict_obj_info Table") table. This is
-intended primarily for use in testing, but can be useful in
-visualizing hierarchies of `NDB` database
-objects.
+The `dict_obj_tree` table provides a tree-based view of table information from the `dict_obj_info` table. This is intended primarily for use in testing, but can be useful in visualizing hierarchies of `NDB` database objects.
 
-The `dict_obj_tree` table contains the
-following columns:
+The `dict_obj_tree` table contains the following columns:
 
 * `type`
 
-  Type of [`DICT`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdict.html) object;
-  join on [`dict_obj_types`](mysql-cluster-ndbinfo-dict-obj-types.html "25.6.16.26 The ndbinfo dict_obj_types Table") to
-  obtain the name of the object type
+  Type of `DICT` object; join on `dict_obj_types` to obtain the name of the object type
 
 * `id`
 
-  Object identifier; same as the `id` column
-  in [`dict_obj_info`](mysql-cluster-ndbinfo-dict-obj-info.html "25.6.16.24 The ndbinfo dict_obj_info Table")
+  Object identifier; same as the `id` column in `dict_obj_info`
 
-  For Disk Data undo log files and data files, this is the
-  same as the value shown in the
-  `LOGFILE_GROUP_NUMBER` column of the
-  Information Schema [`FILES`](information-schema-files-table.html "28.3.15 The INFORMATION_SCHEMA FILES Table") table;
-  for undo log files, it also the same as the value shown for
-  the `log_id` column in the ndbinfo
-  [`logbuffers`](mysql-cluster-ndbinfo-logbuffers.html "25.6.16.42 The ndbinfo logbuffers Table") and
-  [`logspaces`](mysql-cluster-ndbinfo-logspaces.html "25.6.16.43 The ndbinfo logspaces Table") tables
+  For Disk Data undo log files and data files, this is the same as the value shown in the `LOGFILE_GROUP_NUMBER` column of the Information Schema `FILES` table; for undo log files, it also the same as the value shown for the `log_id` column in the ndbinfo `logbuffers` and `logspaces` tables
 
 * `name`
 
-  The fully qualified name of the object; the same as the
-  `fq_name` column in
-  [`dict_obj_info`](mysql-cluster-ndbinfo-dict-obj-info.html "25.6.16.24 The ndbinfo dict_obj_info Table")
+  The fully qualified name of the object; the same as the `fq_name` column in `dict_obj_info`
 
-  For a table, this is
-  `database_name/def/table_name`
-  (the same as its *`parent_name`*);
-  for an index of any type, this takes the form
-  `NDB$INDEX_index_id_CUSTOM`
+  For a table, this is `database_name/def/table_name` (the same as its *`parent_name`*); for an index of any type, this takes the form `NDB$INDEX_index_id_CUSTOM`
 
 * `parent_type`
 
-  The *`DICT`* object type of this
-  object's parent object; join on
-  [`dict_obj_types`](mysql-cluster-ndbinfo-dict-obj-types.html "25.6.16.26 The ndbinfo dict_obj_types Table") to obtain
-  the name of the object type
+  The *`DICT`* object type of this object's parent object; join on `dict_obj_types` to obtain the name of the object type
 
 * `parent_id`
 
-  Identifier for this object's parent object; the same as
-  the [`dict_obj_info`](mysql-cluster-ndbinfo-dict-obj-info.html "25.6.16.24 The ndbinfo dict_obj_info Table")
-  table's `id` column
+  Identifier for this object's parent object; the same as the `dict_obj_info` table's `id` column
 
 * `parent_name`
 
-  Fully qualified name of this object's parent object;
-  the same as the
-  [`dict_obj_info`](mysql-cluster-ndbinfo-dict-obj-info.html "25.6.16.24 The ndbinfo dict_obj_info Table") table's
-  `fq_name` column
+  Fully qualified name of this object's parent object; the same as the `dict_obj_info` table's `fq_name` column
 
-  For a table, this has the form
-  `database_name/def/table_name`.
-  For an index, the name is
-  `sys/def/table_id/index_name`.
-  For a primary key, it is
-  `sys/def/table_id/PRIMARY`,
-  and for a unique key it is
-  `sys/def/table_id/uk_name$unique`
+  For a table, this has the form `database_name/def/table_name`. For an index, the name is `sys/def/table_id/index_name`. For a primary key, it is `sys/def/table_id/PRIMARY`, and for a unique key it is `sys/def/table_id/uk_name$unique`
 
 * `root_type`
 
-  The *`DICT`* object type of the root
-  object; join on
-  [`dict_obj_types`](mysql-cluster-ndbinfo-dict-obj-types.html "25.6.16.26 The ndbinfo dict_obj_types Table") to obtain
-  the name of the object type
+  The *`DICT`* object type of the root object; join on `dict_obj_types` to obtain the name of the object type
 
 * `root_id`
 
-  Identifier for the root object; the same as the
-  [`dict_obj_info`](mysql-cluster-ndbinfo-dict-obj-info.html "25.6.16.24 The ndbinfo dict_obj_info Table") table's
-  `id` column
+  Identifier for the root object; the same as the `dict_obj_info` table's `id` column
 
 * `root_name`
 
-  Fully qualified name of the root object; the same as the
-  [`dict_obj_info`](mysql-cluster-ndbinfo-dict-obj-info.html "25.6.16.24 The ndbinfo dict_obj_info Table") table's
-  `fq_name` column
+  Fully qualified name of the root object; the same as the `dict_obj_info` table's `fq_name` column
 
 * `level`
 
@@ -96,29 +52,15 @@ following columns:
 
 * `path`
 
-  Complete path to the object in the
-  *`NDB`* object hierarchy; objects are
-  separated by a right arrow (represented as
-  `->`), starting with the root object on
-  the left
+  Complete path to the object in the *`NDB`* object hierarchy; objects are separated by a right arrow (represented as `->`), starting with the root object on the left
 
 * `indented_name`
 
-  The `name` prefixed with a right arrow
-  (represented as `->`) with a number of
-  spaces preceding it that correspond to the object's
-  depth in the hierarchy
+  The `name` prefixed with a right arrow (represented as `->`) with a number of spaces preceding it that correspond to the object's depth in the hierarchy
 
-The `path` column is useful for obtaining a
-complete path to a given `NDB` database object
-in a single line, whereas the `indented_name`
-column can be used to obtain a tree-like layout of complete
-hierarchy information for a desired object.
+The `path` column is useful for obtaining a complete path to a given `NDB` database object in a single line, whereas the `indented_name` column can be used to obtain a tree-like layout of complete hierarchy information for a desired object.
 
-*Example*: Assuming the existence of a
-`test` database and no existing table named
-`t1` in this database, execute the following
-SQL statement:
+*Example*: Assuming the existence of a `test` database and no existing table named `t1` in this database, execute the following SQL statement:
 
 ```
 CREATE TABLE test.t1 (
@@ -128,8 +70,7 @@ CREATE TABLE test.t1 (
 )   ENGINE = NDB;
 ```
 
-You can obtain the path to the table just created using the
-query shown here:
+You can obtain the path to the table just created using the query shown here:
 
 ```
 mysql> SELECT path FROM ndbinfo.dict_obj_tree
@@ -142,9 +83,7 @@ mysql> SELECT path FROM ndbinfo.dict_obj_tree
 1 row in set (0.14 sec)
 ```
 
-You can see the paths to all dependent objects of this table
-using the path to the table as the root name in a query like
-this one:
+You can see the paths to all dependent objects of this table using the path to the table as the root name in a query like this one:
 
 ```
 mysql> SELECT path FROM ndbinfo.dict_obj_tree
@@ -163,10 +102,7 @@ mysql> SELECT path FROM ndbinfo.dict_obj_tree
 7 rows in set (0.16 sec)
 ```
 
-To obtain a hierarchical view of the `t1` table
-with all its dependent objects, execute a query similar to this
-one which selects the indented name of each object having
-`test/def/t1` as the name of its root object:
+To obtain a hierarchical view of the `t1` table with all its dependent objects, execute a query similar to this one which selects the indented name of each object having `test/def/t1` as the name of its root object:
 
 ```
 mysql> SELECT indented_name FROM ndbinfo.dict_obj_tree
@@ -185,13 +121,7 @@ mysql> SELECT indented_name FROM ndbinfo.dict_obj_tree
 7 rows in set (0.15 sec)
 ```
 
-When working with Disk Data tables, note that, in this context,
-a tablespace or log file group is considered a root object. This
-means that you must know the name of any tablespace or log file
-group associated with a given table, or obtain this information
-from [`SHOW CREATE TABLE`](show-create-table.html "15.7.7.10 SHOW CREATE TABLE Statement") and then
-querying [`INFORMATION_SCHEMA.FILES`](information-schema-files-table.html "28.3.15 The INFORMATION_SCHEMA FILES Table"),
-or similar means as shown here:
+When working with Disk Data tables, note that, in this context, a tablespace or log file group is considered a root object. This means that you must know the name of any tablespace or log file group associated with a given table, or obtain this information from `SHOW CREATE TABLE` and then querying `INFORMATION_SCHEMA.FILES`, or similar means as shown here:
 
 ```
 mysql> SHOW CREATE TABLE test.dt_1\G
@@ -218,8 +148,7 @@ mysql> SELECT DISTINCT TABLESPACE_NAME, LOGFILE_GROUP_NAME
 1 row in set (0.00 sec)
 ```
 
-Now you can obtain hierarchical information for the table,
-tablespace, and log file group like this:
+Now you can obtain hierarchical information for the table, tablespace, and log file group like this:
 
 ```
 mysql> SELECT indented_name FROM ndbinfo.dict_obj_tree
@@ -258,5 +187,4 @@ mysql> SELECT indented_name FROM ndbinfo.dict_obj_tree
 3 rows in set (0.16 sec)
 ```
 
-The `dict_obj_tree` table was added in NDB
-8.0.24.
+The `dict_obj_tree` table was added in NDB 8.0.24.

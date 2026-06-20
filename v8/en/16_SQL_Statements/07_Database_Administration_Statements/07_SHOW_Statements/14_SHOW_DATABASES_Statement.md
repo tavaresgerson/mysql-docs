@@ -5,42 +5,16 @@ SHOW {DATABASES | SCHEMAS}
     [LIKE 'pattern' | WHERE expr]
 ```
 
-[`SHOW DATABASES`](show-databases.html "15.7.7.14 SHOW DATABASES Statement") lists the
-databases on the MySQL server host.
-[`SHOW
-SCHEMAS`](show-databases.html "15.7.7.14 SHOW DATABASES Statement") is a synonym for [`SHOW
-DATABASES`](show-databases.html "15.7.7.14 SHOW DATABASES Statement"). The [`LIKE`](string-comparison-functions.html#operator_like)
-clause, if present, indicates which database names to match. The
-`WHERE` clause can be given to select rows
-using more general conditions, as discussed in
-[Section 28.8, “Extensions to SHOW Statements”](extended-show.html "28.8 Extensions to SHOW Statements").
+`SHOW DATABASES` lists the databases on the MySQL server host. [`SHOW SCHEMAS`](show-databases.html "15.7.7.14 SHOW DATABASES Statement") is a synonym for [`SHOW DATABASES`](show-databases.html "15.7.7.14 SHOW DATABASES Statement"). The `LIKE` clause, if present, indicates which database names to match. The `WHERE` clause can be given to select rows using more general conditions, as discussed in Section 28.8, “Extensions to SHOW Statements”.
 
-You see only those databases for which you have some kind of
-privilege, unless you have the global [`SHOW
-DATABASES`](show-databases.html "15.7.7.14 SHOW DATABASES Statement") privilege. You can also get this list using
-the [**mysqlshow**](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information") command.
+You see only those databases for which you have some kind of privilege, unless you have the global [`SHOW DATABASES`](show-databases.html "15.7.7.14 SHOW DATABASES Statement") privilege. You can also get this list using the **mysqlshow** command.
 
-If the server was started with the
-[`--skip-show-database`](server-options.html#option_mysqld_skip-show-database) option, you
-cannot use this statement at all unless you have the
-[`SHOW DATABASES`](privileges-provided.html#priv_show-databases) privilege.
+If the server was started with the `--skip-show-database` option, you cannot use this statement at all unless you have the `SHOW DATABASES` privilege.
 
-MySQL implements databases as directories in the data directory,
-so this statement simply lists directories in that location.
-However, the output may include names of directories that do not
-correspond to actual databases.
+MySQL implements databases as directories in the data directory, so this statement simply lists directories in that location. However, the output may include names of directories that do not correspond to actual databases.
 
-Database information is also available from the
-`INFORMATION_SCHEMA`
-[`SCHEMATA`](information-schema-schemata-table.html "28.3.31 The INFORMATION_SCHEMA SCHEMATA Table") table. See
-[Section 28.3.31, “The INFORMATION\_SCHEMA SCHEMATA Table”](information-schema-schemata-table.html "28.3.31 The INFORMATION_SCHEMA SCHEMATA Table").
+Database information is also available from the `INFORMATION_SCHEMA` `SCHEMATA` table. See Section 28.3.31, “The INFORMATION_SCHEMA SCHEMATA Table”.
 
 Caution
 
-Because any static global privilege is considered a privilege
-for all databases, any static global privilege enables a user
-to see all database names with [`SHOW
-DATABASES`](show-databases.html "15.7.7.14 SHOW DATABASES Statement") or by examining the
-[`SCHEMATA`](information-schema-schemata-table.html "28.3.31 The INFORMATION_SCHEMA SCHEMATA Table") table of
-`INFORMATION_SCHEMA`, except databases that
-have been restricted at the database level by partial revokes.
+Because any static global privilege is considered a privilege for all databases, any static global privilege enables a user to see all database names with [`SHOW DATABASES`](show-databases.html "15.7.7.14 SHOW DATABASES Statement") or by examining the `SCHEMATA` table of `INFORMATION_SCHEMA`, except databases that have been restricted at the database level by partial revokes.

@@ -1,19 +1,12 @@
-#### 30.4.3.42 The user\_summary\_by\_file\_io and x$user\_summary\_by\_file\_io Views
+#### 30.4.3.42 The user_summary_by_file_io and x$user_summary_by_file_io Views
 
-These views summarize file I/O, grouped by user. By default,
-rows are sorted by descending total file I/O latency.
+These views summarize file I/O, grouped by user. By default, rows are sorted by descending total file I/O latency.
 
-The [`user_summary_by_file_io`](sys-user-summary-by-file-io.html "30.4.3.42 The user_summary_by_file_io and x$user_summary_by_file_io Views") and
-[`x$user_summary_by_file_io`](sys-user-summary-by-file-io.html "30.4.3.42 The user_summary_by_file_io and x$user_summary_by_file_io Views") views
-have these columns:
+The `user_summary_by_file_io` and `x$user_summary_by_file_io` views have these columns:
 
 * `user`
 
-  The client user name. Rows for which the
-  `USER` column in the underlying
-  Performance Schema table is `NULL` are
-  assumed to be for background threads and are reported with
-  a host name of `background`.
+  The client user name. Rows for which the `USER` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
 
 * `ios`
 

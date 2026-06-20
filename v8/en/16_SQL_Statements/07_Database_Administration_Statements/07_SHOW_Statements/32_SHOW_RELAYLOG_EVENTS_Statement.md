@@ -11,44 +11,19 @@ channel_option:
     FOR CHANNEL channel
 ```
 
-Shows the events in the relay log of a replica. If you do not
-specify
-`'log_name'`, the
-first relay log is displayed. This statement has no effect on
-the source. `SHOW RELAYLOG EVENTS` requires the
-[`REPLICATION SLAVE`](privileges-provided.html#priv_replication-slave) privilege.
+Shows the events in the relay log of a replica. If you do not specify `'log_name'`, the first relay log is displayed. This statement has no effect on the source. `SHOW RELAYLOG EVENTS` requires the `REPLICATION SLAVE` privilege.
 
-The `LIMIT` clause has the same syntax as for
-the [`SELECT`](select.html "15.2.13 SELECT Statement") statement. See
-[Section 15.2.13, “SELECT Statement”](select.html "15.2.13 SELECT Statement").
+The `LIMIT` clause has the same syntax as for the `SELECT` statement. See Section 15.2.13, “SELECT Statement”.
 
 Note
 
-Issuing a [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "15.7.7.32 SHOW RELAYLOG EVENTS Statement")
-with no `LIMIT` clause could start a very
-time- and resource-consuming process because the server
-returns to the client the complete contents of the relay log
-(including all statements modifying data that have been
-received by the replica).
+Issuing a `SHOW RELAYLOG EVENTS` with no `LIMIT` clause could start a very time- and resource-consuming process because the server returns to the client the complete contents of the relay log (including all statements modifying data that have been received by the replica).
 
-The optional `FOR CHANNEL
-channel` clause enables you
-to name which replication channel the statement applies to.
-Providing a `FOR CHANNEL
-channel` clause applies the
-statement to a specific replication channel. If no channel is
-named and no extra channels exist, the statement applies to the
-default channel.
+The optional `FOR CHANNEL channel` clause enables you to name which replication channel the statement applies to. Providing a `FOR CHANNEL channel` clause applies the statement to a specific replication channel. If no channel is named and no extra channels exist, the statement applies to the default channel.
 
-When using multiple replication channels, if a
-[`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "15.7.7.32 SHOW RELAYLOG EVENTS Statement") statement
-does not have a channel defined using a `FOR CHANNEL
-channel` clause an error is
-generated. See [Section 19.2.2, “Replication Channels”](replication-channels.html "19.2.2 Replication Channels") for more
-information.
+When using multiple replication channels, if a `SHOW RELAYLOG EVENTS` statement does not have a channel defined using a `FOR CHANNEL channel` clause an error is generated. See Section 19.2.2, “Replication Channels” for more information.
 
-[`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "15.7.7.32 SHOW RELAYLOG EVENTS Statement") displays the
-following fields for each event in the relay log:
+`SHOW RELAYLOG EVENTS` displays the following fields for each event in the relay log:
 
 * `Log_name`
 
@@ -68,20 +43,12 @@ following fields for each event in the relay log:
 
 * `End_log_pos`
 
-  The value of `End_log_pos` for this event
-  in the source's binary log.
+  The value of `End_log_pos` for this event in the source's binary log.
 
 * `Info`
 
-  More detailed information about the event type. The format
-  of this information depends on the event type.
+  More detailed information about the event type. The format of this information depends on the event type.
 
-For compressed transaction payloads, the
-`Transaction_payload_event` is first printed as
-a single unit, then it is unpacked and each event inside it is
-printed.
+For compressed transaction payloads, the `Transaction_payload_event` is first printed as a single unit, then it is unpacked and each event inside it is printed.
 
-Some events relating to the setting of user and system variables
-are not included in the output from [`SHOW
-RELAYLOG EVENTS`](show-relaylog-events.html "15.7.7.32 SHOW RELAYLOG EVENTS Statement"). To get complete coverage of events
-within a relay log, use [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files").
+Some events relating to the setting of user and system variables are not included in the output from [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "15.7.7.32 SHOW RELAYLOG EVENTS Statement"). To get complete coverage of events within a relay log, use **mysqlbinlog**.

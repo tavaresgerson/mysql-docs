@@ -1,88 +1,17 @@
 ## A.3 MySQL 8.0 FAQ: Server SQL Mode
 
-A.3.1. [What are server SQL modes?](faqs-sql-modes.html#faq-mysql-what-sql-modes)
+A.3.1. What are server SQL modes?
 
-A.3.2. [How many server SQL modes are there?](faqs-sql-modes.html#faq-mysql-count-sql-modes)
+A.3.2. How many server SQL modes are there?
 
-A.3.3. [How do you determine the server SQL mode?](faqs-sql-modes.html#faq-mysql-how-see-sql-mode)
+A.3.3. How do you determine the server SQL mode?
 
-A.3.4. [Is the mode dependent on the database or connection?](faqs-sql-modes.html#faq-mysql-sql-mode-dependency)
+A.3.4. Is the mode dependent on the database or connection?
 
-A.3.5. [Can the rules for strict mode be extended?](faqs-sql-modes.html#faq-mysql-extend-strict-mode)
+A.3.5. Can the rules for strict mode be extended?
 
-A.3.6. [Does strict mode impact performance?](faqs-sql-modes.html#faq-mysql-strict-impact)
+A.3.6. Does strict mode impact performance?
 
-A.3.7. [What is the default server SQL mode when MySQL 8.0 is installed?](faqs-sql-modes.html#faq-mysql-what-default-mode)
+A.3.7. What is the default server SQL mode when MySQL 8.0 is installed?
 
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><a name="faq-mysql-what-sql-modes"></a><a name="id480688"></a><p><b>A.3.1.</b></p></td><td align="left" valign="top"><p>
-        What are server SQL modes?
-      </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        Server SQL modes define what SQL syntax MySQL should support and
-        what kind of data validation checks it should perform. This
-        makes it easier to use MySQL in different environments and to
-        use MySQL together with other database servers. The MySQL Server
-        apply these modes individually to different clients. For more
-        information, see <a class="xref" href="sql-mode.html" title="7.1.11 Server SQL Modes">Section 7.1.11, “Server SQL Modes”</a>.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><a name="faq-mysql-count-sql-modes"></a><a name="id480694"></a><p><b>A.3.2.</b></p></td><td align="left" valign="top"><p>
-        How many server SQL modes are there?
-      </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        Each mode can be independently switched on and off. See
-        <a class="xref" href="sql-mode.html" title="7.1.11 Server SQL Modes">Section 7.1.11, “Server SQL Modes”</a>, for a complete list of available
-        modes.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><a name="faq-mysql-how-see-sql-mode"></a><a name="id480700"></a><p><b>A.3.3.</b></p></td><td align="left" valign="top"><p>
-        How do you determine the server SQL mode?
-      </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        You can set the default SQL mode (for <a class="link" href="mysqld.html" title="6.3.1 mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a>
-        startup) with the <a class="link" href="server-options.html#option_mysqld_sql-mode"><code class="option">--sql-mode</code></a>
-        option. Using the statement
-        <a class="link" href="set-variable.html" title="15.7.6.1 SET Syntax for Variable Assignment"><code class="literal">SET
-        [GLOBAL|SESSION]
-        sql_mode='<em class="replaceable"><code>modes</code></em>'</code></a>, you can
-        change the settings from within a connection, either locally to
-        the connection, or to take effect globally. You can retrieve the
-        current mode by issuing a <code class="literal">SELECT @@sql_mode</code>
-        statement.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><a name="faq-mysql-sql-mode-dependency"></a><a name="id480713"></a><p><b>A.3.4.</b></p></td><td align="left" valign="top"><p>
-        Is the mode dependent on the database or connection?
-      </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        A mode is not linked to a particular database. Modes can be set
-        locally to the session (connection), or globally for the server.
-        you can change these settings using
-        <a class="link" href="set-variable.html" title="15.7.6.1 SET Syntax for Variable Assignment"><code class="literal">SET
-        [GLOBAL|SESSION]
-        sql_mode='<em class="replaceable"><code>modes</code></em>'</code></a>.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><a name="faq-mysql-extend-strict-mode"></a><a name="id480721"></a><p><b>A.3.5.</b></p></td><td align="left" valign="top"><p>
-        Can the rules for strict mode be extended?
-      </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        When we refer to <span class="emphasis"><em>strict mode</em></span>, we mean a
-        mode where at least one of the modes
-        <a class="link" href="sql-mode.html#sqlmode_traditional"><code class="literal">TRADITIONAL</code></a>,
-        <a class="link" href="sql-mode.html#sqlmode_strict_trans_tables"><code class="literal">STRICT_TRANS_TABLES</code></a>, or
-        <a class="link" href="sql-mode.html#sqlmode_strict_all_tables"><code class="literal">STRICT_ALL_TABLES</code></a> is enabled.
-        Options can be combined, so you can add restrictions to a mode.
-        See <a class="xref" href="sql-mode.html" title="7.1.11 Server SQL Modes">Section 7.1.11, “Server SQL Modes”</a>, for more information.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><a name="faq-mysql-strict-impact"></a><a name="id480734"></a><p><b>A.3.6.</b></p></td><td align="left" valign="top"><p>
-        Does strict mode impact performance?
-      </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        The intensive validation of input data that some settings
-        requires more time than if the validation is not done. While the
-        performance impact is not that great, if you do not require such
-        validation (perhaps your application already handles all of
-        this), then MySQL gives you the option of leaving strict mode
-        disabled. However, if you do require it, strict mode can provide
-        such validation.
-      </p></td></tr><tr class="question"><td align="left" valign="top"><a name="faq-mysql-what-default-mode"></a><a name="id480739"></a><p><b>A.3.7.</b></p></td><td align="left" valign="top"><p>
-        What is the default server SQL mode when MySQL 8.0
-        is installed?
-      </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
-        The default SQL mode in MySQL 8.0 includes these modes:
-        <a class="link" href="sql-mode.html#sqlmode_only_full_group_by"><code class="literal">ONLY_FULL_GROUP_BY</code></a>,
-        <a class="link" href="sql-mode.html#sqlmode_strict_trans_tables"><code class="literal">STRICT_TRANS_TABLES</code></a>,
-        <a class="link" href="sql-mode.html#sqlmode_no_zero_in_date"><code class="literal">NO_ZERO_IN_DATE</code></a>,
-        <a class="link" href="sql-mode.html#sqlmode_no_zero_date"><code class="literal">NO_ZERO_DATE</code></a>,
-        <a class="link" href="sql-mode.html#sqlmode_error_for_division_by_zero"><code class="literal">ERROR_FOR_DIVISION_BY_ZERO</code></a>,
-        and <a class="link" href="sql-mode.html#sqlmode_no_engine_substitution"><code class="literal">NO_ENGINE_SUBSTITUTION</code></a>.
-      </p><p>
-        For information about all available modes and default MySQL
-        behavior, see <a class="xref" href="sql-mode.html" title="7.1.11 Server SQL Modes">Section 7.1.11, “Server SQL Modes”</a>.
-</p></td></tr></tbody></table>
+<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.3.1.</b></p></td><td align="left" valign="top"><p> What are server SQL modes? </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p> Server SQL modes define what SQL syntax MySQL should support and what kind of data validation checks it should perform. This makes it easier to use MySQL in different environments and to use MySQL together with other database servers. The MySQL Server apply these modes individually to different clients. For more information, see Section 7.1.11, “Server SQL Modes”. </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.3.2.</b></p></td><td align="left" valign="top"><p> How many server SQL modes are there? </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p> Each mode can be independently switched on and off. See Section 7.1.11, “Server SQL Modes”, for a complete list of available modes. </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.3.3.</b></p></td><td align="left" valign="top"><p> How do you determine the server SQL mode? </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p> You can set the default SQL mode (for mysqld startup) with the <code>--sql-mode</code> option. Using the statement <a class="link" href="set-variable.html" title="15.7.6.1 SET Syntax for Variable Assignment"><code class="literal">SET [GLOBAL|SESSION] sql_mode='<em class="replaceable"><code>modes</code></em>'</code></a>, you can change the settings from within a connection, either locally to the connection, or to take effect globally. You can retrieve the current mode by issuing a <code>SELECT @@sql_mode</code> statement. </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.3.4.</b></p></td><td align="left" valign="top"><p> Is the mode dependent on the database or connection? </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p> A mode is not linked to a particular database. Modes can be set locally to the session (connection), or globally for the server. you can change these settings using <a class="link" href="set-variable.html" title="15.7.6.1 SET Syntax for Variable Assignment"><code class="literal">SET [GLOBAL|SESSION] sql_mode='<em class="replaceable"><code>modes</code></em>'</code></a>. </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.3.5.</b></p></td><td align="left" valign="top"><p> Can the rules for strict mode be extended? </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p> When we refer to strict mode, we mean a mode where at least one of the modes <code>TRADITIONAL</code>, <code>STRICT_TRANS_TABLES</code>, or <code>STRICT_ALL_TABLES</code> is enabled. Options can be combined, so you can add restrictions to a mode. See Section 7.1.11, “Server SQL Modes”, for more information. </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.3.6.</b></p></td><td align="left" valign="top"><p> Does strict mode impact performance? </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p> The intensive validation of input data that some settings requires more time than if the validation is not done. While the performance impact is not that great, if you do not require such validation (perhaps your application already handles all of this), then MySQL gives you the option of leaving strict mode disabled. However, if you do require it, strict mode can provide such validation. </p></td></tr><tr class="question"><td align="left" valign="top"><p><b>A.3.7.</b></p></td><td align="left" valign="top"><p> What is the default server SQL mode when MySQL 8.0 is installed? </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p> The default SQL mode in MySQL 8.0 includes these modes: <code>ONLY_FULL_GROUP_BY</code>, <code>STRICT_TRANS_TABLES</code>, <code>NO_ZERO_IN_DATE</code>, <code>NO_ZERO_DATE</code>, <code>ERROR_FOR_DIVISION_BY_ZERO</code>, and <code>NO_ENGINE_SUBSTITUTION</code>. </p><p> For information about all available modes and default MySQL behavior, see Section 7.1.11, “Server SQL Modes”. </p></td></tr></tbody></table>

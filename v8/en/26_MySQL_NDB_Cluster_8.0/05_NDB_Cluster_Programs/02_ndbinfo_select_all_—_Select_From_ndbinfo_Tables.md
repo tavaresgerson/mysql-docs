@@ -1,21 +1,10 @@
-### 25.5.2 ndbinfo\_select\_all — Select From ndbinfo Tables
+### 25.5.2 ndbinfo_select_all — Select From ndbinfo Tables
 
-[**ndbinfo\_select\_all**](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables") is a client program that
-selects all rows and columns from one or more tables in the
-[`ndbinfo`](mysql-cluster-ndbinfo.html "25.6.16 ndbinfo: The NDB Cluster Information Database") database
+**ndbinfo_select_all** is a client program that selects all rows and columns from one or more tables in the `ndbinfo` database
 
-Not all `ndbinfo` tables available in the
-[**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") client can be read by this program (see
-later in this section). In addition,
-[**ndbinfo\_select\_all**](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables") can show information about
-some tables internal to `ndbinfo` which cannot
-be accessed using SQL, including the `tables`
-and `columns` metadata tables.
+Not all `ndbinfo` tables available in the **mysql** client can be read by this program (see later in this section). In addition, **ndbinfo_select_all** can show information about some tables internal to `ndbinfo` which cannot be accessed using SQL, including the `tables` and `columns` metadata tables.
 
-To select from one or more `ndbinfo` tables
-using [**ndbinfo\_select\_all**](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables"), it is necessary to
-supply the names of the tables when invoking the program as
-shown here:
+To select from one or more `ndbinfo` tables using **ndbinfo_select_all**, it is necessary to supply the names of the tables when invoking the program as shown here:
 
 ```
 $> ndbinfo_select_all table_name1  [table_name2] [...]
@@ -52,516 +41,145 @@ node_id log_type        log_id  log_part        total   used    high
 $>
 ```
 
-Options that can be used with
-[**ndbinfo\_select\_all**](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables") are shown in the following
-table. Additional descriptions follow the table.
+Options that can be used with **ndbinfo_select_all** are shown in the following table. Additional descriptions follow the table.
 
-**Table 25.25 Command-line options used with the program ndbinfo\_select\_all**
+**Table 25.25 Command-line options used with the program ndbinfo_select_all**
 
-<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr>
-<th scope="col">Format</th>
-<th scope="col">Description</th>
-<th scope="col">Added, Deprecated, or Removed</th>
-</tr></thead><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_character-sets-dir">--character-sets-dir=path</a>
-</code>
-</p></th>
-<td>Directory containing character sets</td>
-<td><p>
-                REMOVED: 8.0.31
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_connect-retries">--connect-retries=#</a>
-</code>
-</p></th>
-<td>Number of times to retry connection before giving up</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_connect-retry-delay">--connect-retry-delay=#</a>
-</code>
-</p></th>
-<td>Number of seconds to wait between attempts to contact management server</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_connect-string">--connect-string=connection-string</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_connect-string">-c
-                connection_string</a> </code>
-</p></th>
-<td>Same as --ndb-connectstring</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_core-file">--core-file</a>
-</code>
-</p></th>
-<td>Write core file on error; used in debugging</td>
-<td><p>
-                REMOVED: 8.0.31
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-select-all.html#option_ndb_select_all_database">--database=db_name</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-select-all.html#option_ndb_select_all_database">-d</a>
-</code>
-</p></th>
-<td>Name of database where table is located</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_defaults-extra-file">--defaults-extra-file=path</a>
-</code>
-</p></th>
-<td>Read given file after global files are read</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_defaults-file">--defaults-file=path</a>
-</code>
-</p></th>
-<td>Read default options from given file only</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_defaults-group-suffix">--defaults-group-suffix=string</a>
-</code>
-</p></th>
-<td>Also read groups with concat(group, suffix)</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_delay">--delay=#</a>
-</code>
-</p></th>
-<td>Set delay in seconds between loops</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_help">--help</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_help">-?</a>
-</code>
-</p></th>
-<td>Display help text and exit</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_login-path">--login-path=path</a>
-</code>
-</p></th>
-<td>Read given path from login file</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_loops">--loops=#</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_loops">-l</a>
-</code>
-</p></th>
-<td>Set number of times to perform select</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_ndb-connectstring">--ndb-connectstring=connection-string</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_ndb-connectstring">-c</a>
-</code>
-</p></th>
-<td>Set connect string for connecting to ndb_mgmd. Syntax:
-              "[nodeid=id;][host=]hostname[:port]". Overrides entries in
-              NDB_CONNECTSTRING and my.cnf</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_ndb-mgmd-host">--ndb-mgmd-host=connection-string</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_ndb-mgmd-host">-c</a>
-</code>
-</p></th>
-<td>Same as --ndb-connectstring</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_ndb-nodeid">--ndb-nodeid=#</a>
-</code>
-</p></th>
-<td>Set node ID for this node, overriding any ID set by --ndb-connectstring</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_no-defaults">--no-defaults</a>
-</code>
-</p></th>
-<td>Do not read default options from any option file other than login file</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_ndb-optimized-node-selection">--ndb-optimized-node-selection</a>
-</code>
-</p></th>
-<td>Enable optimizations for selection of nodes for transactions. Enabled by
-              default; use --skip-ndb-optimized-node-selection to
-              disable</td>
-<td><p>
-                REMOVED: 8.0.31
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndb-select-all.html#option_ndb_select_all_parallelism">--parallelism=#</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndb-select-all.html#option_ndb_select_all_parallelism">-p</a>
-</code>
-</p></th>
-<td>Set degree of parallelism</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_print-defaults">--print-defaults</a>
-</code>
-</p></th>
-<td>Print program argument list and exit</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_usage">--usage</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_usage">-?</a>
-</code>
-</p></th>
-<td>Display help text and exit; same as --help</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody><tbody><tr>
-<th scope="row"><p>
-<code class="option"><a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_version">--version</a></code>,
-              </p><p>
-<code class="option">
-<a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_version">-V</a>
-</code>
-</p></th>
-<td>Display version information and exit</td>
-<td><p>
-                (Supported in all NDB releases based on MySQL 8.0)
-              </p></td>
-</tr></tbody></table>
+<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th scope="col">Format</th> <th scope="col">Description</th> <th scope="col">Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th scope="row"><p> <code class="option"> --character-sets-dir=path </code> </p></th> <td>Directory containing character sets</td> <td><p> REMOVED: 8.0.31 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --connect-retries=# </code> </p></th> <td>Number of times to retry connection before giving up</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --connect-retry-delay=# </code> </p></th> <td>Number of seconds to wait between attempts to contact management server</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--connect-string=connection-string</code>, </p><p> <code class="option"> <a class="link" href="mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_connect-string">-c connection_string</a> </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --core-file </code> </p></th> <td>Write core file on error; used in debugging</td> <td><p> REMOVED: 8.0.31 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--database=db_name</code>, </p><p> <code class="option"> -d </code> </p></th> <td>Name of database where table is located</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --defaults-extra-file=path </code> </p></th> <td>Read given file after global files are read</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --defaults-file=path </code> </p></th> <td>Read default options from given file only</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --defaults-group-suffix=string </code> </p></th> <td>Also read groups with concat(group, suffix)</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --delay=# </code> </p></th> <td>Set delay in seconds between loops</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--help</code>, </p><p> <code class="option"> -? </code> </p></th> <td>Display help text and exit</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --login-path=path </code> </p></th> <td>Read given path from login file</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--loops=#</code>, </p><p> <code class="option"> -l </code> </p></th> <td>Set number of times to perform select</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--ndb-connectstring=connection-string</code>, </p><p> <code class="option"> -c </code> </p></th> <td>Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--ndb-mgmd-host=connection-string</code>, </p><p> <code class="option"> -c </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --ndb-nodeid=# </code> </p></th> <td>Set node ID for this node, overriding any ID set by --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --no-defaults </code> </p></th> <td>Do not read default options from any option file other than login file</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --ndb-optimized-node-selection </code> </p></th> <td>Enable optimizations for selection of nodes for transactions. Enabled by default; use --skip-ndb-optimized-node-selection to disable</td> <td><p> REMOVED: 8.0.31 </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--parallelism=#</code>, </p><p> <code class="option"> -p </code> </p></th> <td>Set degree of parallelism</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code class="option"> --print-defaults </code> </p></th> <td>Print program argument list and exit</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--usage</code>, </p><p> <code class="option"> -? </code> </p></th> <td>Display help text and exit; same as --help</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody><tbody><tr> <th scope="row"><p> <code>--version</code>, </p><p> <code class="option"> -V </code> </p></th> <td>Display version information and exit</td> <td><p> (Supported in all NDB releases based on MySQL 8.0) </p></td> </tr></tbody></table>
 
-* [`--character-sets-dir`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_character-sets-dir)
+* `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>
 
   Directory containing character sets.
 
-* [`--core-file`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_core-file)
+* `--core-file`
 
-  <table frame="box" rules="all" summary="Properties for core-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--core-file</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for core-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>
 
   Write core file on error; used in debugging.
 
-* [`--connect-retries`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_connect-retries)
+* `--connect-retries`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
   Number of times to retry connection before giving up.
 
-* [`--connect-retry-delay`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_connect-retry-delay)
+* `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retry-delay=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">5</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">5</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>5</code></td> </tr></tbody></table>
 
-  Number of seconds to wait between attempts to contact
-  management server.
+  Number of seconds to wait between attempts to contact management server.
 
-* [`--connect-string`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_connect-string)
+* `--connect-string`
 
-  <table frame="box" rules="all" summary="Properties for connect-string"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-string=connection-string</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-string"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connect-string=connection-string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Same as
-  [`--ndb-connectstring`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_ndb-connectstring).
+  Same as `--ndb-connectstring`.
 
-* [`--defaults-extra-file`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_defaults-extra-file)
+* `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--defaults-extra-file=path</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Read given file after global files are read.
 
-* [`--defaults-file`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_defaults-file)
+* `--defaults-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--defaults-file=path</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Read default options from given file only.
 
-* [`--defaults-group-suffix`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_defaults-group-suffix)
+* `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--defaults-group-suffix=string</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Also read groups with concat(group, suffix).
 
-* [`--delay=seconds`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_delay)
+* `--delay=seconds`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--delay=#</code></td>
-</tr><tr><th>Type</th>
-<td>Numeric</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">5</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">MAX_INT</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--delay=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>MAX_INT</code></td> </tr></tbody></table>
 
-  This option sets the number of seconds to wait between
-  executing loops. Has no effect if
-  [`--loops`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_loops) is set to
-  0 or 1.
+  This option sets the number of seconds to wait between executing loops. Has no effect if `--loops` is set to 0 or 1.
 
-* [`--help`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_help)
+* `--help`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>0
 
   Display help text and exit.
 
-* [`--login-path`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_login-path)
+* `--login-path`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>1
 
   Read given path from login file.
 
-* [`--loops=number`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_loops),
-  `-l number`
+* `--loops=number`, `-l number`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>2
 
-  This option sets the number of times to execute the select.
-  Use [`--delay`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_delay) to
-  set the time between loops.
+  This option sets the number of times to execute the select. Use `--delay` to set the time between loops.
 
-* [`--ndb-connectstring`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_ndb-connectstring)
+* `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>3
 
-  Set connect string for connecting to ndb\_mgmd. Syntax:
-  "[nodeid=id;][host=]hostname[:port]". Overrides entries in
-  NDB\_CONNECTSTRING and my.cnf.
+  Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf.
 
-* [`--ndb-mgmd-host`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_ndb-mgmd-host)
+* `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>4
 
-  Same as
-  [`--ndb-connectstring`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_ndb-connectstring).
+  Same as `--ndb-connectstring`.
 
-* [`--ndb-nodeid`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_ndb-nodeid)
+* `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>5
 
-  Set node ID for this node, overriding any ID set by
-  --ndb-connectstring.
+  Set node ID for this node, overriding any ID set by --ndb-connectstring.
 
-* [`--ndb-optimized-node-selection`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_ndb-optimized-node-selection)
+* `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>6
 
-  Enable optimizations for selection of nodes for
-  transactions. Enabled by default; use
-  `--skip-ndb-optimized-node-selection` to
-  disable.
+  Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
 
-* [`--no-defaults`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_no-defaults)
+* `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>7
 
-  Do not read default options from any option file other than
-  login file.
+  Do not read default options from any option file other than login file.
 
-* [`--print-defaults`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_print-defaults)
+* `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>8
 
   Print program argument list and exit.
 
-* [`--usage`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_usage)
+* `--usage`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>9
 
   Display help text and exit; same as --help.
 
-* [`--version`](mysql-cluster-programs-ndbinfo-select-all.html#option_ndbinfo_select_all_version)
+* `--version`
 
-  <table frame="box" rules="all" summary="Properties for core-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--core-file</code></td>
-</tr><tr><th>Removed</th>
-<td>8.0.31</td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for core-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr><tr><th>Removed</th> <td>8.0.31</td> </tr></tbody></table>0
 
   Display version information and exit.
 
-[**ndbinfo\_select\_all**](mysql-cluster-programs-ndbinfo-select-all.html "25.5.2 ndbinfo_select_all — Select From ndbinfo Tables") is unable to read the
-following tables:
+**ndbinfo_select_all** is unable to read the following tables:
 
-* [`arbitrator_validity_detail`](mysql-cluster-ndbinfo-arbitrator-validity-detail.html "25.6.16.1 The ndbinfo arbitrator_validity_detail Table")
-* [`arbitrator_validity_summary`](mysql-cluster-ndbinfo-arbitrator-validity-summary.html "25.6.16.2 The ndbinfo arbitrator_validity_summary Table")
-* [`cluster_locks`](mysql-cluster-ndbinfo-cluster-locks.html "25.6.16.6 The ndbinfo cluster_locks Table")
-* [`cluster_operations`](mysql-cluster-ndbinfo-cluster-operations.html "25.6.16.7 The ndbinfo cluster_operations Table")
-* [`cluster_transactions`](mysql-cluster-ndbinfo-cluster-transactions.html "25.6.16.8 The ndbinfo cluster_transactions Table")
-* [`disk_write_speed_aggregate_node`](mysql-cluster-ndbinfo-disk-write-speed-aggregate-node.html "25.6.16.29 The ndbinfo disk_write_speed_aggregate_node Table")
-* [`locks_per_fragment`](mysql-cluster-ndbinfo-locks-per-fragment.html "25.6.16.41 The ndbinfo locks_per_fragment Table")
-* [`memory_per_fragment`](mysql-cluster-ndbinfo-memory-per-fragment.html "25.6.16.46 The ndbinfo memory_per_fragment Table")
-* [`memoryusage`](mysql-cluster-ndbinfo-memoryusage.html "25.6.16.45 The ndbinfo memoryusage Table")
-* [`operations_per_fragment`](mysql-cluster-ndbinfo-operations-per-fragment.html "25.6.16.48 The ndbinfo operations_per_fragment Table")
-* [`server_locks`](mysql-cluster-ndbinfo-server-locks.html "25.6.16.53 The ndbinfo server_locks Table")
-* [`server_operations`](mysql-cluster-ndbinfo-server-operations.html "25.6.16.54 The ndbinfo server_operations Table")
-* [`server_transactions`](mysql-cluster-ndbinfo-server-transactions.html "25.6.16.55 The ndbinfo server_transactions Table")
-* [`table_info`](mysql-cluster-ndbinfo-table-info.html "25.6.16.58 The ndbinfo table_info Table")
+* `arbitrator_validity_detail`
+* `arbitrator_validity_summary`
+* `cluster_locks`
+* `cluster_operations`
+* `cluster_transactions`
+* `disk_write_speed_aggregate_node`
+* `locks_per_fragment`
+* `memory_per_fragment`
+* `memoryusage`
+* `operations_per_fragment`
+* `server_locks`
+* `server_operations`
+* `server_transactions`
+* `table_info`

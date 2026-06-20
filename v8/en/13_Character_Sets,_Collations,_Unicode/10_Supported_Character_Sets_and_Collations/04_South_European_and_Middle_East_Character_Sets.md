@@ -1,8 +1,6 @@
 ### 12.10.4 South European and Middle East Character Sets
 
-South European and Middle Eastern character sets supported by
-MySQL include Armenian, Arabic, Georgian, Greek, Hebrew, and
-Turkish.
+South European and Middle Eastern character sets supported by MySQL include Armenian, Arabic, Georgian, Greek, Hebrew, and Turkish.
 
 * `armscii8` (ARMSCII-8 Armenian) collations:
 

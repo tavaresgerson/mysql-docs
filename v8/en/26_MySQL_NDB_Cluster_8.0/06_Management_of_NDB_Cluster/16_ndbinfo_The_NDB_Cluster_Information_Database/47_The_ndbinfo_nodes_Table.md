@@ -1,13 +1,8 @@
 #### 25.6.16.47 The ndbinfo nodes Table
 
-This table contains information on the status of data nodes. For
-each data node that is running in the cluster, a corresponding
-row in this table provides the node's node ID, status, and
-uptime. For nodes that are starting, it also shows the current
-start phase.
+This table contains information on the status of data nodes. For each data node that is running in the cluster, a corresponding row in this table provides the node's node ID, status, and uptime. For nodes that are starting, it also shows the current start phase.
 
-The `nodes` table contains the following
-columns:
+The `nodes` table contains the following columns:
 
 * `node_id`
 
@@ -19,8 +14,7 @@ columns:
 
 * `status`
 
-  Current status of the data node; see text for possible
-  values.
+  Current status of the data node; see text for possible values.
 
 * `start_phase`
 
@@ -28,59 +22,17 @@ columns:
 
 * `config_generation`
 
-  The version of the cluster configuration file in use on this
-  data node.
+  The version of the cluster configuration file in use on this data node.
 
 ##### Notes
 
-The `uptime` column shows the time in seconds
-that this node has been running since it was last started or
-restarted. This is a [`BIGINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")
-value. This figure includes the time actually needed to start
-the node; in other words, this counter starts running the moment
-that [**ndbd**](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "25.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") is
-first invoked; thus, even for a node that has not yet finished
-starting, `uptime` may show a nonzero value.
+The `uptime` column shows the time in seconds that this node has been running since it was last started or restarted. This is a `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") value. This figure includes the time actually needed to start the node; in other words, this counter starts running the moment that **ndbd** or **ndbmtd**") is first invoked; thus, even for a node that has not yet finished starting, `uptime` may show a nonzero value.
 
-The `status` column shows the node's
-current status. This is one of: `NOTHING`,
-`CMVMI`, `STARTING`,
-`STARTED`, `SINGLEUSER`,
-`STOPPING_1`, `STOPPING_2`,
-`STOPPING_3`, or `STOPPING_4`.
-When the status is `STARTING`, you can see the
-current start phase in the `start_phase` column
-(see later in this section). `SINGLEUSER` is
-displayed in the `status` column for all data
-nodes when the cluster is in single user mode (see
-[Section 25.6.6, “NDB Cluster Single User Mode”](mysql-cluster-single-user-mode.html "25.6.6 NDB Cluster Single User Mode")). Seeing one of
-the `STOPPING` states does not necessarily mean
-that the node is shutting down but can mean rather that it is
-entering a new state. For example, if you put the cluster in
-single user mode, you can sometimes see data nodes report their
-state briefly as `STOPPING_2` before the status
-changes to `SINGLEUSER`.
+The `status` column shows the node's current status. This is one of: `NOTHING`, `CMVMI`, `STARTING`, `STARTED`, `SINGLEUSER`, `STOPPING_1`, `STOPPING_2`, `STOPPING_3`, or `STOPPING_4`. When the status is `STARTING`, you can see the current start phase in the `start_phase` column (see later in this section). `SINGLEUSER` is displayed in the `status` column for all data nodes when the cluster is in single user mode (see Section 25.6.6, “NDB Cluster Single User Mode”). Seeing one of the `STOPPING` states does not necessarily mean that the node is shutting down but can mean rather that it is entering a new state. For example, if you put the cluster in single user mode, you can sometimes see data nodes report their state briefly as `STOPPING_2` before the status changes to `SINGLEUSER`.
 
-The `start_phase` column uses the same range of
-values as those used in the output of the
-[**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client") client
-[`node_id
-STATUS`](mysql-cluster-mgm-client-commands.html#ndbclient-status) command (see
-[Section 25.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "25.6.1 Commands in the NDB Cluster Management Client")). If the
-node is not currently starting, then this column shows
-`0`. For a listing of NDB Cluster start phases
-with descriptions, see
-[Section 25.6.4, “Summary of NDB Cluster Start Phases”](mysql-cluster-start-phases.html "25.6.4 Summary of NDB Cluster Start Phases").
+The `start_phase` column uses the same range of values as those used in the output of the **ndb_mgm** client [`node_id STATUS`](mysql-cluster-mgm-client-commands.html#ndbclient-status) command (see Section 25.6.1, “Commands in the NDB Cluster Management Client”). If the node is not currently starting, then this column shows `0`. For a listing of NDB Cluster start phases with descriptions, see Section 25.6.4, “Summary of NDB Cluster Start Phases”.
 
-The `config_generation` column shows which
-version of the cluster configuration is in effect on each data
-node. This can be useful when performing a rolling restart of
-the cluster in order to make changes in configuration
-parameters. For example, from the output of the following
-[`SELECT`](select.html "15.2.13 SELECT Statement") statement, you can see
-that node 3 is not yet using the latest version of the cluster
-configuration (`6`) although nodes 1, 2, and 4
-are doing so:
+The `config_generation` column shows which version of the cluster configuration is in effect on each data node. This can be useful when performing a rolling restart of the cluster in order to make changes in configuration parameters. For example, from the output of the following `SELECT` statement, you can see that node 3 is not yet using the latest version of the cluster configuration (`6`) although nodes 1, 2, and 4 are doing so:
 
 ```
 mysql> USE ndbinfo;
@@ -97,13 +49,9 @@ mysql> SELECT * FROM nodes;
 2 rows in set (0.04 sec)
 ```
 
-Therefore, for the case just shown, you should restart node 3 to
-complete the rolling restart of the cluster.
+Therefore, for the case just shown, you should restart node 3 to complete the rolling restart of the cluster.
 
-Nodes that are stopped are not accounted for in this table.
-Suppose that you have an NDB Cluster with 4 data nodes (node IDs
-1, 2, 3 and 4), and all nodes are running normally, then this
-table contains 4 rows, 1 for each data node:
+Nodes that are stopped are not accounted for in this table. Suppose that you have an NDB Cluster with 4 data nodes (node IDs 1, 2, 3 and 4), and all nodes are running normally, then this table contains 4 rows, 1 for each data node:
 
 ```
 mysql> USE ndbinfo;
@@ -120,9 +68,7 @@ mysql> SELECT * FROM nodes;
 4 rows in set (0.04 sec)
 ```
 
-If you shut down one of the nodes, only the nodes that are still
-running are represented in the output of this
-[`SELECT`](select.html "15.2.13 SELECT Statement") statement, as shown here:
+If you shut down one of the nodes, only the nodes that are still running are represented in the output of this `SELECT` statement, as shown here:
 
 ```
 ndb_mgm> 2 STOP

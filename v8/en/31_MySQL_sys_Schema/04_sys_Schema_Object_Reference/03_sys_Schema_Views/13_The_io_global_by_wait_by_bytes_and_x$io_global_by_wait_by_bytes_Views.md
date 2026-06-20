@@ -1,18 +1,12 @@
-#### 30.4.3.13 The io\_global\_by\_wait\_by\_bytes and x$io\_global\_by\_wait\_by\_bytes Views
+#### 30.4.3.13 The io_global_by_wait_by_bytes and x$io_global_by_wait_by_bytes Views
 
-These views summarize global I/O consumers to display amount
-of I/O and time waiting for I/O, grouped by event. By default,
-rows are sorted by descending total I/O (bytes read and
-written).
+These views summarize global I/O consumers to display amount of I/O and time waiting for I/O, grouped by event. By default, rows are sorted by descending total I/O (bytes read and written).
 
-The [`io_global_by_wait_by_bytes`](sys-io-global-by-wait-by-bytes.html "30.4.3.13 The io_global_by_wait_by_bytes and x$io_global_by_wait_by_bytes Views")
-and [`x$io_global_by_wait_by_bytes`](sys-io-global-by-wait-by-bytes.html "30.4.3.13 The io_global_by_wait_by_bytes and x$io_global_by_wait_by_bytes Views")
-views have these columns:
+The `io_global_by_wait_by_bytes` and `x$io_global_by_wait_by_bytes` views have these columns:
 
 * `event_name`
 
-  The I/O event name, with the
-  `wait/io/file/` prefix stripped.
+  The I/O event name, with the `wait/io/file/` prefix stripped.
 
 * `total`
 
@@ -24,18 +18,15 @@ views have these columns:
 
 * `min_latency`
 
-  The minimum single wait time of timed occurrences of the
-  I/O event.
+  The minimum single wait time of timed occurrences of the I/O event.
 
 * `avg_latency`
 
-  The average wait time per timed occurrence of the I/O
-  event.
+  The average wait time per timed occurrence of the I/O event.
 
 * `max_latency`
 
-  The maximum single wait time of timed occurrences of the
-  I/O event.
+  The maximum single wait time of timed occurrences of the I/O event.
 
 * `count_read`
 
@@ -63,5 +54,4 @@ views have these columns:
 
 * `total_requested`
 
-  The total number of bytes read and written for the I/O
-  event.
+  The total number of bytes read and written for the I/O event.

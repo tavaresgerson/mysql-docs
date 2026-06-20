@@ -12,73 +12,25 @@ CREATE LOGFILE GROUP logfile_group
     ENGINE [=] engine_name
 ```
 
-This statement creates a new log file group named
-*`logfile_group`* having a single
-`UNDO` file named
-'*`undo_file`*'. A
-[`CREATE LOGFILE GROUP`](create-logfile-group.html "15.1.16 CREATE LOGFILE GROUP Statement") statement has
-one and only one `ADD UNDOFILE` clause. For rules
-covering the naming of log file groups, see
-[Section 11.2, “Schema Object Names”](identifiers.html "11.2 Schema Object Names").
+This statement creates a new log file group named *`logfile_group`* having a single `UNDO` file named '*`undo_file`*'. A `CREATE LOGFILE GROUP` statement has one and only one `ADD UNDOFILE` clause. For rules covering the naming of log file groups, see Section 11.2, “Schema Object Names”.
 
 Note
 
-All NDB Cluster Disk Data objects share the same namespace. This
-means that *each Disk Data object* must be
-uniquely named (and not merely each Disk Data object of a given
-type). For example, you cannot have a tablespace and a log file
-group with the same name, or a tablespace and a data file with
-the same name.
+All NDB Cluster Disk Data objects share the same namespace. This means that *each Disk Data object* must be uniquely named (and not merely each Disk Data object of a given type). For example, you cannot have a tablespace and a log file group with the same name, or a tablespace and a data file with the same name.
 
-There can be only one log file group per NDB Cluster instance at
-any given time.
+There can be only one log file group per NDB Cluster instance at any given time.
 
-The optional `INITIAL_SIZE` parameter sets the
-`UNDO` file's initial size; if not specified, it
-defaults to `128M` (128 megabytes). The optional
-`UNDO_BUFFER_SIZE` parameter sets the size used
-by the `UNDO` buffer for the log file group; The
-default value for `UNDO_BUFFER_SIZE` is
-`8M` (eight megabytes); this value cannot exceed
-the amount of system memory available. Both of these parameters
-are specified in bytes. You may optionally follow either or both
-of these with a one-letter abbreviation for an order of magnitude,
-similar to those used in `my.cnf`. Generally,
-this is one of the letters `M` (for megabytes)
-or `G` (for gigabytes).
+The optional `INITIAL_SIZE` parameter sets the `UNDO` file's initial size; if not specified, it defaults to `128M` (128 megabytes). The optional `UNDO_BUFFER_SIZE` parameter sets the size used by the `UNDO` buffer for the log file group; The default value for `UNDO_BUFFER_SIZE` is `8M` (eight megabytes); this value cannot exceed the amount of system memory available. Both of these parameters are specified in bytes. You may optionally follow either or both of these with a one-letter abbreviation for an order of magnitude, similar to those used in `my.cnf`. Generally, this is one of the letters `M` (for megabytes) or `G` (for gigabytes).
 
-Memory used for `UNDO_BUFFER_SIZE` comes from the
-global pool whose size is determined by the value of the
-[`SharedGlobalMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-sharedglobalmemory) data
-node configuration parameter. This includes any default value
-implied for this option by the setting of the
-[`InitialLogFileGroup`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-initiallogfilegroup) data
-node configuration parameter.
+Memory used for `UNDO_BUFFER_SIZE` comes from the global pool whose size is determined by the value of the `SharedGlobalMemory` data node configuration parameter. This includes any default value implied for this option by the setting of the `InitialLogFileGroup` data node configuration parameter.
 
-The maximum permitted for `UNDO_BUFFER_SIZE` is
-629145600 (600 MB).
+The maximum permitted for `UNDO_BUFFER_SIZE` is 629145600 (600 MB).
 
-On 32-bit systems, the maximum supported value for
-`INITIAL_SIZE` is 4294967296 (4 GB). (Bug #29186)
+On 32-bit systems, the maximum supported value for `INITIAL_SIZE` is 4294967296 (4 GB). (Bug #29186)
 
-The minimum allowed value for `INITIAL_SIZE` is
-1048576 (1 MB).
+The minimum allowed value for `INITIAL_SIZE` is 1048576 (1 MB).
 
-The `ENGINE` option determines the storage engine
-to be used by this log file group, with
-*`engine_name`* being the name of the
-storage engine. In MySQL 8.0, this must be
-[`NDB`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 8.0") (or
-[`NDBCLUSTER`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 8.0")). If
-`ENGINE` is not set, MySQL tries to use the
-engine specified by the
-[`default_storage_engine`](server-system-variables.html#sysvar_default_storage_engine) server
-system variable (formerly `storage_engine`). In
-any case, if the engine is not specified as
-[`NDB`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 8.0") or
-[`NDBCLUSTER`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 8.0"), the `CREATE
-LOGFILE GROUP` statement appears to succeed but actually
-fails to create the log file group, as shown here:
+The `ENGINE` option determines the storage engine to be used by this log file group, with *`engine_name`* being the name of the storage engine. In MySQL 8.0, this must be `NDB` (or `NDBCLUSTER`). If `ENGINE` is not set, MySQL tries to use the engine specified by the `default_storage_engine` server system variable (formerly `storage_engine`). In any case, if the engine is not specified as `NDB` or `NDBCLUSTER`, the `CREATE LOGFILE GROUP` statement appears to succeed but actually fails to create the log file group, as shown here:
 
 ```
 mysql> CREATE LOGFILE GROUP lg1
@@ -102,24 +54,11 @@ mysql> CREATE LOGFILE GROUP lg1
 Query OK, 0 rows affected (2.97 sec)
 ```
 
-The fact that the `CREATE LOGFILE GROUP`
-statement does not actually return an error when a
-non-`NDB` storage engine is named, but rather
-appears to succeed, is a known issue which we hope to address in a
-future release of NDB Cluster.
+The fact that the `CREATE LOGFILE GROUP` statement does not actually return an error when a non-`NDB` storage engine is named, but rather appears to succeed, is a known issue which we hope to address in a future release of NDB Cluster.
 
-*`REDO_BUFFER_SIZE`*,
-`NODEGROUP`, `WAIT`, and
-`COMMENT` are parsed but ignored, and so have no
-effect in MySQL 8.0. These options are intended for
-future expansion.
+*`REDO_BUFFER_SIZE`*, `NODEGROUP`, `WAIT`, and `COMMENT` are parsed but ignored, and so have no effect in MySQL 8.0. These options are intended for future expansion.
 
-When used with `ENGINE [=] NDB`, a log file group
-and associated `UNDO` log file are created on
-each Cluster data node. You can verify that the
-`UNDO` files were created and obtain information
-about them by querying the Information Schema
-[`FILES`](information-schema-files-table.html "28.3.15 The INFORMATION_SCHEMA FILES Table") table. For example:
+When used with `ENGINE [=] NDB`, a log file group and associated `UNDO` log file are created on each Cluster data node. You can verify that the `UNDO` files were created and obtain information about them by querying the Information Schema `FILES` table. For example:
 
 ```
 mysql> SELECT LOGFILE_GROUP_NAME, LOGFILE_GROUP_NUMBER, EXTRA
@@ -134,6 +73,4 @@ mysql> SELECT LOGFILE_GROUP_NAME, LOGFILE_GROUP_NUMBER, EXTRA
 2 rows in set (0.06 sec)
 ```
 
-[`CREATE LOGFILE GROUP`](create-logfile-group.html "15.1.16 CREATE LOGFILE GROUP Statement") is useful only
-with Disk Data storage for NDB Cluster. See
-[Section 25.6.11, “NDB Cluster Disk Data Tables”](mysql-cluster-disk-data.html "25.6.11 NDB Cluster Disk Data Tables").
+`CREATE LOGFILE GROUP` is useful only with Disk Data storage for NDB Cluster. See Section 25.6.11, “NDB Cluster Disk Data Tables”.

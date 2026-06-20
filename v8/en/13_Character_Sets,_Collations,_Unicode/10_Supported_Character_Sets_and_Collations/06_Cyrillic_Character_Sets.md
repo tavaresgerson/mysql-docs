@@ -1,8 +1,6 @@
 ### 12.10.6 Cyrillic Character Sets
 
-The Cyrillic character sets and collations are for use with
-Belarusian, Bulgarian, Russian, Ukrainian, and Serbian
-(Cyrillic) languages.
+The Cyrillic character sets and collations are for use with Belarusian, Bulgarian, Russian, Ukrainian, and Serbian (Cyrillic) languages.
 
 * `cp1251` (Windows Cyrillic) collations:
 

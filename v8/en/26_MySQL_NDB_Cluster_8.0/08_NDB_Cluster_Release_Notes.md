@@ -1,12 +1,5 @@
 ## 25.8 NDB Cluster Release Notes
 
-Changes in NDB Cluster releases are documented separately from
-this reference manual; you can find release notes for the changes
-in each NDB Cluster 8.0 release at
-[NDB 8.0
-Release Notes](/doc/relnotes/mysql-cluster/8.0/en/).
+Changes in NDB Cluster releases are documented separately from this reference manual; you can find release notes for the changes in each NDB Cluster 8.0 release at [NDB 8.0 Release Notes](/doc/relnotes/mysql-cluster/8.0/en/).
 
-You can obtain release notes for older versions of NDB Cluster
-from
-[NDB
-Cluster Release Notes](/doc/index-cluster.html#cluster-relnotes).
+You can obtain release notes for older versions of NDB Cluster from [NDB Cluster Release Notes](/doc/index-cluster.html#cluster-relnotes).

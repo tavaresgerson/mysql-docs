@@ -1,112 +1,44 @@
 ### 14.16.13 Spatial Convenience Functions
 
-The functions in this section provide convenience operations on
-geometry values.
+The functions in this section provide convenience operations on geometry values.
 
-Unless otherwise specified, functions in this section handle their
-geometry arguments as follows:
+Unless otherwise specified, functions in this section handle their geometry arguments as follows:
 
-* If any argument is `NULL`, the return value
-  is `NULL`.
+* If any argument is `NULL`, the return value is `NULL`.
 
-* If any geometry argument is not a syntactically well-formed
-  geometry, an
-  [`ER_GIS_INVALID_DATA`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_gis_invalid_data) error
-  occurs.
+* If any geometry argument is not a syntactically well-formed geometry, an `ER_GIS_INVALID_DATA` error occurs.
 
-* If any geometry argument is a syntactically well-formed
-  geometry in an undefined spatial reference system (SRS), an
-  [`ER_SRS_NOT_FOUND`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_srs_not_found) error occurs.
+* If any geometry argument is a syntactically well-formed geometry in an undefined spatial reference system (SRS), an `ER_SRS_NOT_FOUND` error occurs.
 
-* For functions that take multiple geometry arguments, if those
-  arguments are not in the same SRS, an
-  [`ER_GIS_DIFFERENT_SRIDS`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_gis_different_srids) error
-  occurs.
+* For functions that take multiple geometry arguments, if those arguments are not in the same SRS, an `ER_GIS_DIFFERENT_SRIDS` error occurs.
 
 * Otherwise, the return value is non-`NULL`.
 
 These convenience functions are available:
 
-* [`ST_Distance_Sphere(g1,
-  g2 [,
-  radius])`](spatial-convenience-functions.html#function_st-distance-sphere)
+* [`ST_Distance_Sphere(g1, g2 [, radius])`](spatial-convenience-functions.html#function_st-distance-sphere)
 
-  Returns the minimum spherical distance between
-  `Point` or `MultiPoint`
-  arguments on a sphere, in meters. (For general-purpose
-  distance calculations, see the
-  [`ST_Distance()`](spatial-relation-functions-object-shapes.html#function_st-distance) function.) The
-  optional *`radius`* argument should be
-  given in meters.
+  Returns the minimum spherical distance between `Point` or `MultiPoint` arguments on a sphere, in meters. (For general-purpose distance calculations, see the `ST_Distance()` function.) The optional *`radius`* argument should be given in meters.
 
-  If both geometry parameters are valid Cartesian
-  `Point` or `MultiPoint`
-  values in SRID 0, the return value is shortest distance
-  between the two geometries on a sphere with the provided
-  radius. If omitted, the default radius is 6,370,986 meters,
-  Point X and Y coordinates are interpreted as longitude and
-  latitude, respectively, in degrees.
+  If both geometry parameters are valid Cartesian `Point` or `MultiPoint` values in SRID 0, the return value is shortest distance between the two geometries on a sphere with the provided radius. If omitted, the default radius is 6,370,986 meters, Point X and Y coordinates are interpreted as longitude and latitude, respectively, in degrees.
 
-  If both geometry parameters are valid `Point`
-  or `MultiPoint` values in a geographic
-  spatial reference system (SRS), the return value is the
-  shortest distance between the two geometries on a sphere with
-  the provided radius. If omitted, the default radius is equal
-  to the mean radius, defined as (2a+b)/3, where a is the
-  semi-major axis and b is the semi-minor axis of the SRS.
+  If both geometry parameters are valid `Point` or `MultiPoint` values in a geographic spatial reference system (SRS), the return value is the shortest distance between the two geometries on a sphere with the provided radius. If omitted, the default radius is equal to the mean radius, defined as (2a+b)/3, where a is the semi-major axis and b is the semi-minor axis of the SRS.
 
-  [`ST_Distance_Sphere()`](spatial-convenience-functions.html#function_st-distance-sphere) handles
-  its arguments as described in the introduction to this
-  section, with these exceptions:
+  `ST_Distance_Sphere()` handles its arguments as described in the introduction to this section, with these exceptions:
 
-  + Supported geometry argument combinations are
-    `Point` and `Point`, or
-    `Point` and `MultiPoint`
-    (in any argument order). If at least one of the geometries
-    is neither `Point` nor
-    `MultiPoint`, and its SRID is 0, an
-    [`ER_NOT_IMPLEMENTED_FOR_CARTESIAN_SRS`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_not_implemented_for_cartesian_srs)
-    error occurs. If at least one of the geometries is neither
-    `Point` nor
-    `MultiPoint`, and its SRID refers to a
-    geographic SRS, an
-    [`ER_NOT_IMPLEMENTED_FOR_GEOGRAPHIC_SRS`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_not_implemented_for_geographic_srs)
-    error occurs. If any geometry refers to a projected SRS,
-    an
-    [`ER_NOT_IMPLEMENTED_FOR_PROJECTED_SRS`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_not_implemented_for_projected_srs)
-    error occurs.
+  + Supported geometry argument combinations are `Point` and `Point`, or `Point` and `MultiPoint` (in any argument order). If at least one of the geometries is neither `Point` nor `MultiPoint`, and its SRID is 0, an `ER_NOT_IMPLEMENTED_FOR_CARTESIAN_SRS` error occurs. If at least one of the geometries is neither `Point` nor `MultiPoint`, and its SRID refers to a geographic SRS, an `ER_NOT_IMPLEMENTED_FOR_GEOGRAPHIC_SRS` error occurs. If any geometry refers to a projected SRS, an `ER_NOT_IMPLEMENTED_FOR_PROJECTED_SRS` error occurs.
 
-  + If any argument has a longitude or latitude that is out of
-    range, an error occurs:
+  + If any argument has a longitude or latitude that is out of range, an error occurs:
 
-    - If a longitude value is not in the range (−180,
-      180], an
-      [`ER_GEOMETRY_PARAM_LONGITUDE_OUT_OF_RANGE`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_geometry_param_longitude_out_of_range)
-      error occurs
-      ([`ER_LONGITUDE_OUT_OF_RANGE`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_longitude_out_of_range)
-      prior to MySQL 8.0.12).
+    - If a longitude value is not in the range (−180, 180], an `ER_GEOMETRY_PARAM_LONGITUDE_OUT_OF_RANGE` error occurs (`ER_LONGITUDE_OUT_OF_RANGE` prior to MySQL 8.0.12).
 
-    - If a latitude value is not in the range [−90,
-      90], an
-      [`ER_GEOMETRY_PARAM_LATITUDE_OUT_OF_RANGE`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_geometry_param_latitude_out_of_range)
-      error occurs
-      ([`ER_LATITUDE_OUT_OF_RANGE`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_latitude_out_of_range)
-      prior to MySQL 8.0.12).
+    - If a latitude value is not in the range [−90, 90], an `ER_GEOMETRY_PARAM_LATITUDE_OUT_OF_RANGE` error occurs (`ER_LATITUDE_OUT_OF_RANGE` prior to MySQL 8.0.12).
 
-    Ranges shown are in degrees. If an SRS uses another unit,
-    the range uses the corresponding values in its unit. The
-    exact range limits deviate slightly due to floating-point
-    arithmetic.
+    Ranges shown are in degrees. If an SRS uses another unit, the range uses the corresponding values in its unit. The exact range limits deviate slightly due to floating-point arithmetic.
 
-  + If the *`radius`* argument is
-    present but not positive, an
-    [`ER_NONPOSITIVE_RADIUS`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_nonpositive_radius)
-    error occurs.
+  + If the *`radius`* argument is present but not positive, an `ER_NONPOSITIVE_RADIUS` error occurs.
 
-  + If the distance exceeds the range of a double-precision
-    number, an
-    [`ER_STD_OVERFLOW_ERROR`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_std_overflow_error)
-    error occurs.
+  + If the distance exceeds the range of a double-precision number, an `ER_STD_OVERFLOW_ERROR` error occurs.
 
   ```
   mysql> SET @pt1 = ST_GeomFromText('POINT(0 0)');
@@ -119,43 +51,21 @@ These convenience functions are available:
   +--------------------------------+
   ```
 
-* [`ST_IsValid(g)`](spatial-convenience-functions.html#function_st-isvalid)
+* `ST_IsValid(g)`
 
-  Returns 1 if the argument is geometrically valid, 0 if the
-  argument is not geometrically valid. Geometry validity is
-  defined by the OGC specification.
+  Returns 1 if the argument is geometrically valid, 0 if the argument is not geometrically valid. Geometry validity is defined by the OGC specification.
 
-  The only valid empty geometry is represented in the form of an
-  empty geometry collection value.
-  [`ST_IsValid()`](spatial-convenience-functions.html#function_st-isvalid) returns 1 in this
-  case. MySQL does not support GIS `EMPTY`
-  values such as `POINT EMPTY`.
+  The only valid empty geometry is represented in the form of an empty geometry collection value. `ST_IsValid()` returns 1 in this case. MySQL does not support GIS `EMPTY` values such as `POINT EMPTY`.
 
-  [`ST_IsValid()`](spatial-convenience-functions.html#function_st-isvalid) handles its
-  arguments as described in the introduction to this section,
-  with this exception:
+  `ST_IsValid()` handles its arguments as described in the introduction to this section, with this exception:
 
-  + If the geometry has a geographic SRS with a longitude or
-    latitude that is out of range, an error occurs:
+  + If the geometry has a geographic SRS with a longitude or latitude that is out of range, an error occurs:
 
-    - If a longitude value is not in the range (−180,
-      180], an
-      [`ER_GEOMETRY_PARAM_LONGITUDE_OUT_OF_RANGE`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_geometry_param_longitude_out_of_range)
-      error occurs
-      ([`ER_LONGITUDE_OUT_OF_RANGE`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_longitude_out_of_range)
-      prior to MySQL 8.0.12).
+    - If a longitude value is not in the range (−180, 180], an `ER_GEOMETRY_PARAM_LONGITUDE_OUT_OF_RANGE` error occurs (`ER_LONGITUDE_OUT_OF_RANGE` prior to MySQL 8.0.12).
 
-    - If a latitude value is not in the range [−90,
-      90], an
-      [`ER_GEOMETRY_PARAM_LATITUDE_OUT_OF_RANGE`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_geometry_param_latitude_out_of_range)
-      error occurs
-      ([`ER_LATITUDE_OUT_OF_RANGE`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_latitude_out_of_range)
-      prior to MySQL 8.0.12).
+    - If a latitude value is not in the range [−90, 90], an `ER_GEOMETRY_PARAM_LATITUDE_OUT_OF_RANGE` error occurs (`ER_LATITUDE_OUT_OF_RANGE` prior to MySQL 8.0.12).
 
-    Ranges shown are in degrees. If an SRS uses another unit,
-    the range uses the corresponding values in its unit. The
-    exact range limits deviate slightly due to floating-point
-    arithmetic.
+    Ranges shown are in degrees. If an SRS uses another unit, the range uses the corresponding values in its unit. The exact range limits deviate slightly due to floating-point arithmetic.
 
   ```
   mysql> SET @ls1 = ST_GeomFromText('LINESTRING(0 0,-0.00 0,0.0 0)');
@@ -174,54 +84,29 @@ These convenience functions are available:
   +------------------+
   ```
 
-* [`ST_MakeEnvelope(pt1,
-  pt2)`](spatial-convenience-functions.html#function_st-makeenvelope)
+* [`ST_MakeEnvelope(pt1, pt2)`](spatial-convenience-functions.html#function_st-makeenvelope)
 
-  Returns the rectangle that forms the envelope around two
-  points, as a `Point`,
-  `LineString`, or `Polygon`.
+  Returns the rectangle that forms the envelope around two points, as a `Point`, `LineString`, or `Polygon`.
 
-  Calculations are done using the Cartesian coordinate system
-  rather than on a sphere, spheroid, or on earth.
+  Calculations are done using the Cartesian coordinate system rather than on a sphere, spheroid, or on earth.
 
-  Given two points *`pt1`* and
-  *`pt2`*,
-  [`ST_MakeEnvelope()`](spatial-convenience-functions.html#function_st-makeenvelope) creates the
-  result geometry on an abstract plane like this:
+  Given two points *`pt1`* and *`pt2`*, `ST_MakeEnvelope()` creates the result geometry on an abstract plane like this:
 
-  + If *`pt1`* and
-    *`pt2`* are equal, the result is
-    the point *`pt1`*.
+  + If *`pt1`* and *`pt2`* are equal, the result is the point *`pt1`*.
 
-  + Otherwise, if `(pt1,
-    pt2)` is a vertical or
-    horizontal line segment, the result is the line segment
-    `(pt1,
-    pt2)`.
+  + Otherwise, if `(pt1, pt2)` is a vertical or horizontal line segment, the result is the line segment `(pt1, pt2)`.
 
-  + Otherwise, the result is a polygon using
-    *`pt1`* and
-    *`pt2`* as diagonal points.
+  + Otherwise, the result is a polygon using *`pt1`* and *`pt2`* as diagonal points.
 
   The result geometry has an SRID of 0.
 
-  [`ST_MakeEnvelope()`](spatial-convenience-functions.html#function_st-makeenvelope) handles its
-  arguments as described in the introduction to this section,
-  with these exceptions:
+  `ST_MakeEnvelope()` handles its arguments as described in the introduction to this section, with these exceptions:
 
-  + If the arguments are not `Point` values,
-    an [`ER_WRONG_ARGUMENTS`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_wrong_arguments)
-    error occurs.
+  + If the arguments are not `Point` values, an `ER_WRONG_ARGUMENTS` error occurs.
 
-  + An [`ER_GIS_INVALID_DATA`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_gis_invalid_data)
-    error occurs for the additional condition that any
-    coordinate value of the two points is infinite or
-    `NaN`.
+  + An `ER_GIS_INVALID_DATA` error occurs for the additional condition that any coordinate value of the two points is infinite or `NaN`.
 
-  + If any geometry has an SRID value for a geographic spatial
-    reference system (SRS), an
-    [`ER_NOT_IMPLEMENTED_FOR_GEOGRAPHIC_SRS`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_not_implemented_for_geographic_srs)
-    error occurs.
+  + If any geometry has an SRID value for a geographic spatial reference system (SRS), an `ER_NOT_IMPLEMENTED_FOR_GEOGRAPHIC_SRS` error occurs.
 
   ```
   mysql> SET @pt1 = ST_GeomFromText('POINT(0 0)');
@@ -234,37 +119,19 @@ These convenience functions are available:
   +----------------------------------------+
   ```
 
-* [`ST_Simplify(g,
-  max_distance)`](spatial-convenience-functions.html#function_st-simplify)
+* [`ST_Simplify(g, max_distance)`](spatial-convenience-functions.html#function_st-simplify)
 
-  Simplifies a geometry using the Douglas-Peucker algorithm and
-  returns a simplified value of the same type.
+  Simplifies a geometry using the Douglas-Peucker algorithm and returns a simplified value of the same type.
 
-  The geometry may be any geometry type, although the
-  Douglas-Peucker algorithm may not actually process every type.
-  A geometry collection is processed by giving its components
-  one by one to the simplification algorithm, and the returned
-  geometries are put into a geometry collection as result.
+  The geometry may be any geometry type, although the Douglas-Peucker algorithm may not actually process every type. A geometry collection is processed by giving its components one by one to the simplification algorithm, and the returned geometries are put into a geometry collection as result.
 
-  The *`max_distance`* argument is the
-  distance (in units of the input coordinates) of a vertex to
-  other segments to be removed. Vertices within this distance of
-  the simplified linestring are removed.
+  The *`max_distance`* argument is the distance (in units of the input coordinates) of a vertex to other segments to be removed. Vertices within this distance of the simplified linestring are removed.
 
-  According to Boost.Geometry, geometries might become invalid
-  as a result of the simplification process, and the process
-  might create self-intersections. To check the validity of the
-  result, pass it to
-  [`ST_IsValid()`](spatial-convenience-functions.html#function_st-isvalid).
+  According to Boost.Geometry, geometries might become invalid as a result of the simplification process, and the process might create self-intersections. To check the validity of the result, pass it to `ST_IsValid()`.
 
-  [`ST_Simplify()`](spatial-convenience-functions.html#function_st-simplify) handles its
-  arguments as described in the introduction to this section,
-  with this exception:
+  `ST_Simplify()` handles its arguments as described in the introduction to this section, with this exception:
 
-  + If the *`max_distance`* argument is
-    not positive, or is `NaN`, an
-    [`ER_WRONG_ARGUMENTS`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_wrong_arguments) error
-    occurs.
+  + If the *`max_distance`* argument is not positive, or is `NaN`, an `ER_WRONG_ARGUMENTS` error occurs.
 
   ```
   mysql> SET @g = ST_GeomFromText('LINESTRING(0 0,0 1,1 1,1 2,2 2,2 3,3 3)');
@@ -282,76 +149,33 @@ These convenience functions are available:
   +---------------------------------+
   ```
 
-* [`ST_Validate(g)`](spatial-convenience-functions.html#function_st-validate)
+* `ST_Validate(g)`
 
-  Validates a geometry according to the OGC specification. A
-  geometry can be syntactically well-formed (WKB value plus
-  SRID) but geometrically invalid. For example, this polygon is
-  geometrically invalid: `POLYGON((0 0, 0 0, 0 0, 0 0, 0
-  0))`
+  Validates a geometry according to the OGC specification. A geometry can be syntactically well-formed (WKB value plus SRID) but geometrically invalid. For example, this polygon is geometrically invalid: `POLYGON((0 0, 0 0, 0 0, 0 0, 0 0))`
 
-  [`ST_Validate()`](spatial-convenience-functions.html#function_st-validate) returns the
-  geometry if it is syntactically well-formed and is
-  geometrically valid, `NULL` if the argument
-  is not syntactically well-formed or is not geometrically valid
-  or is `NULL`.
+  `ST_Validate()` returns the geometry if it is syntactically well-formed and is geometrically valid, `NULL` if the argument is not syntactically well-formed or is not geometrically valid or is `NULL`.
 
-  [`ST_Validate()`](spatial-convenience-functions.html#function_st-validate) can be used to
-  filter out invalid geometry data, although at a cost. For
-  applications that require more precise results not tainted by
-  invalid data, this penalty may be worthwhile.
+  `ST_Validate()` can be used to filter out invalid geometry data, although at a cost. For applications that require more precise results not tainted by invalid data, this penalty may be worthwhile.
 
-  If the geometry argument is valid, it is returned as is,
-  except that if an input `Polygon` or
-  `MultiPolygon` has clockwise rings, those
-  rings are reversed before checking for validity. If the
-  geometry is valid, the value with the reversed rings is
-  returned.
+  If the geometry argument is valid, it is returned as is, except that if an input `Polygon` or `MultiPolygon` has clockwise rings, those rings are reversed before checking for validity. If the geometry is valid, the value with the reversed rings is returned.
 
-  The only valid empty geometry is represented in the form of an
-  empty geometry collection value.
-  [`ST_Validate()`](spatial-convenience-functions.html#function_st-validate) returns it
-  directly without further checks in this case.
+  The only valid empty geometry is represented in the form of an empty geometry collection value. `ST_Validate()` returns it directly without further checks in this case.
 
-  As of MySQL 8.0.13,
-  [`ST_Validate()`](spatial-convenience-functions.html#function_st-validate) handles its
-  arguments as described in the introduction to this section,
-  with these exceptions:
+  As of MySQL 8.0.13, `ST_Validate()` handles its arguments as described in the introduction to this section, with these exceptions:
 
-  + If the geometry has a geographic SRS with a longitude or
-    latitude that is out of range, an error occurs:
+  + If the geometry has a geographic SRS with a longitude or latitude that is out of range, an error occurs:
 
-    - If a longitude value is not in the range (−180,
-      180], an
-      [`ER_GEOMETRY_PARAM_LONGITUDE_OUT_OF_RANGE`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_geometry_param_longitude_out_of_range)
-      error occurs
-      ([`ER_LONGITUDE_OUT_OF_RANGE`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_longitude_out_of_range)
-      prior to MySQL 8.0.12).
+    - If a longitude value is not in the range (−180, 180], an `ER_GEOMETRY_PARAM_LONGITUDE_OUT_OF_RANGE` error occurs (`ER_LONGITUDE_OUT_OF_RANGE` prior to MySQL 8.0.12).
 
-    - If a latitude value is not in the range [−90,
-      90], an
-      [`ER_GEOMETRY_PARAM_LATITUDE_OUT_OF_RANGE`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_geometry_param_latitude_out_of_range)
-      error occurs
-      ([`ER_LATITUDE_OUT_OF_RANGE`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_latitude_out_of_range)
-      prior to MySQL 8.0.12).
+    - If a latitude value is not in the range [−90, 90], an `ER_GEOMETRY_PARAM_LATITUDE_OUT_OF_RANGE` error occurs (`ER_LATITUDE_OUT_OF_RANGE` prior to MySQL 8.0.12).
 
-    Ranges shown are in degrees. The exact range limits
-    deviate slightly due to floating-point arithmetic.
+    Ranges shown are in degrees. The exact range limits deviate slightly due to floating-point arithmetic.
 
-  Prior to MySQL 8.0.13,
-  [`ST_Validate()`](spatial-convenience-functions.html#function_st-validate) handles its
-  arguments as described in the introduction to this section,
-  with these exceptions:
+  Prior to MySQL 8.0.13, `ST_Validate()` handles its arguments as described in the introduction to this section, with these exceptions:
 
-  + If the geometry is not syntactically well-formed, the
-    return value is `NULL`. An
-    [`ER_GIS_INVALID_DATA`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_gis_invalid_data) error
-    does not occur.
+  + If the geometry is not syntactically well-formed, the return value is `NULL`. An `ER_GIS_INVALID_DATA` error does not occur.
 
-  + If the geometry has an SRID value for a geographic spatial
-    reference system (SRS), an
-    [`ER_NOT_IMPLEMENTED_FOR_GEOGRAPHIC_SRS`](/doc/mysql-errors/8.0/en/server-error-reference.html#error_er_not_implemented_for_geographic_srs)
-    error occurs.
+  + If the geometry has an SRID value for a geographic spatial reference system (SRS), an `ER_NOT_IMPLEMENTED_FOR_GEOGRAPHIC_SRS` error occurs.
 
   ```
   mysql> SET @ls1 = ST_GeomFromText('LINESTRING(0 0)');

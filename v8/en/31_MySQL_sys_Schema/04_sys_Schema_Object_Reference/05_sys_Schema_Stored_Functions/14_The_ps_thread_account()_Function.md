@@ -1,16 +1,10 @@
-#### 30.4.5.14 The ps\_thread\_account() Function
+#### 30.4.5.14 The ps_thread_account() Function
 
-Given a Performance Schema thread ID, returns the
-`user_name@host_name`
-account associated with the thread.
+Given a Performance Schema thread ID, returns the `user_name@host_name` account associated with the thread.
 
 ##### Parameters
 
-* `in_thread_id BIGINT UNSIGNED`: The
-  thread ID for which to return the account. The value
-  should match the `THREAD_ID` column
-  from some Performance Schema
-  [`threads`](performance-schema-threads-table.html "29.12.21.8 The threads Table") table row.
+* `in_thread_id BIGINT UNSIGNED`: The thread ID for which to return the account. The value should match the `THREAD_ID` column from some Performance Schema `threads` table row.
 
 ##### Return Value
 

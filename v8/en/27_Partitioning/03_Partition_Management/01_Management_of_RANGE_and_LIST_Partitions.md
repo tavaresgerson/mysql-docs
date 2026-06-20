@@ -1,21 +1,8 @@
 ### 26.3.1 Management of RANGE and LIST Partitions
 
-Adding and dropping of range and list partitions are handled in
-a similar fashion, so we discuss the management of both sorts of
-partitioning in this section. For information about working with
-tables that are partitioned by hash or key, see
-[Section 26.3.2, “Management of HASH and KEY Partitions”](partitioning-management-hash-key.html "26.3.2 Management of HASH and KEY Partitions").
+Adding and dropping of range and list partitions are handled in a similar fashion, so we discuss the management of both sorts of partitioning in this section. For information about working with tables that are partitioned by hash or key, see Section 26.3.2, “Management of HASH and KEY Partitions”.
 
-Dropping a partition from a table that is partitioned by either
-`RANGE` or by `LIST` can be
-accomplished using the
-[`ALTER
-TABLE`](alter-table-partition-operations.html "15.1.9.1 ALTER TABLE Partition Operations") statement with the `DROP
-PARTITION` option. Suppose that you have created a
-table that is partitioned by range and then populated with 10
-records using the following [`CREATE
-TABLE`](create-table.html "15.1.20 CREATE TABLE Statement") and [`INSERT`](insert.html "15.2.7 INSERT Statement")
-statements:
+Dropping a partition from a table that is partitioned by either `RANGE` or by `LIST` can be accomplished using the `ALTER TABLE` statement with the `DROP PARTITION` option. Suppose that you have created a table that is partitioned by range and then populated with 10 records using the following `CREATE TABLE` and `INSERT` statements:
 
 ```
 mysql> CREATE TABLE tr (id INT, name VARCHAR(50), purchased DATE)
@@ -44,8 +31,7 @@ Query OK, 10 rows affected (0.05 sec)
 Records: 10  Duplicates: 0  Warnings: 0
 ```
 
-You can see which items should have been inserted into partition
-`p2` as shown here:
+You can see which items should have been inserted into partition `p2` as shown here:
 
 ```
 mysql> SELECT * FROM tr
@@ -59,8 +45,7 @@ mysql> SELECT * FROM tr
 2 rows in set (0.00 sec)
 ```
 
-You can also get this information using partition selection, as
-shown here:
+You can also get this information using partition selection, as shown here:
 
 ```
 mysql> SELECT * FROM tr PARTITION (p2);
@@ -73,11 +58,9 @@ mysql> SELECT * FROM tr PARTITION (p2);
 2 rows in set (0.00 sec)
 ```
 
-See [Section 26.5, “Partition Selection”](partitioning-selection.html "26.5 Partition Selection"), for more
-information.
+See Section 26.5, “Partition Selection”, for more information.
 
-To drop the partition named `p2`, execute the
-following command:
+To drop the partition named `p2`, execute the following command:
 
 ```
 mysql> ALTER TABLE tr DROP PARTITION p2;
@@ -86,18 +69,9 @@ Query OK, 0 rows affected (0.03 sec)
 
 Note
 
-The [`NDBCLUSTER`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 8.0") storage engine
-does not support `ALTER TABLE ... DROP
-PARTITION`. It does, however, support the other
-partitioning-related extensions to
-[`ALTER
-TABLE`](alter-table-partition-operations.html "15.1.9.1 ALTER TABLE Partition Operations") that are described in this chapter.
+The `NDBCLUSTER` storage engine does not support `ALTER TABLE ... DROP PARTITION`. It does, however, support the other partitioning-related extensions to `ALTER TABLE` that are described in this chapter.
 
-It is very important to remember that, *when you drop a
-partition, you also delete all the data that was stored in that
-partition*. You can see that this is the case by
-re-running the previous [`SELECT`](select.html "15.2.13 SELECT Statement")
-query:
+It is very important to remember that, *when you drop a partition, you also delete all the data that was stored in that partition*. You can see that this is the case by re-running the previous `SELECT` query:
 
 ```
 mysql> SELECT * FROM tr WHERE purchased
@@ -107,38 +81,15 @@ Empty set (0.00 sec)
 
 Note
 
-`DROP PARTITION` is supported by native
-partitioning in-place APIs and may be used with
-`ALGORITHM={COPY|INPLACE}`. `DROP
-PARTITION` with `ALGORITHM=INPLACE`
-deletes data stored in the partition and drops the partition.
-However, `DROP PARTITION` with
-`ALGORITHM=COPY` or
-[`old_alter_table=ON`](server-system-variables.html#sysvar_old_alter_table) rebuilds
-the partitioned table and attempts to move data from the
-dropped partition to another partition with a compatible
-`PARTITION ... VALUES` definition. Data that
-cannot be moved to another partition is deleted.
+`DROP PARTITION` is supported by native partitioning in-place APIs and may be used with `ALGORITHM={COPY|INPLACE}`. `DROP PARTITION` with `ALGORITHM=INPLACE` deletes data stored in the partition and drops the partition. However, `DROP PARTITION` with `ALGORITHM=COPY` or `old_alter_table=ON` rebuilds the partitioned table and attempts to move data from the dropped partition to another partition with a compatible `PARTITION ... VALUES` definition. Data that cannot be moved to another partition is deleted.
 
-Because of this, you must have the
-[`DROP`](privileges-provided.html#priv_drop) privilege for a table before
-you can execute `ALTER TABLE ... DROP
-PARTITION` on that table.
+Because of this, you must have the `DROP` privilege for a table before you can execute `ALTER TABLE ... DROP PARTITION` on that table.
 
-If you wish to drop all data from all partitions while
-preserving the table definition and its partitioning scheme, use
-the [`TRUNCATE TABLE`](truncate-table.html "15.1.37 TRUNCATE TABLE Statement") statement.
-(See [Section 15.1.37, “TRUNCATE TABLE Statement”](truncate-table.html "15.1.37 TRUNCATE TABLE Statement").)
+If you wish to drop all data from all partitions while preserving the table definition and its partitioning scheme, use the `TRUNCATE TABLE` statement. (See Section 15.1.37, “TRUNCATE TABLE Statement”.)
 
-If you intend to change the partitioning of a table
-*without* losing data, use `ALTER
-TABLE ... REORGANIZE PARTITION` instead. See below or
-in [Section 15.1.9, “ALTER TABLE Statement”](alter-table.html "15.1.9 ALTER TABLE Statement"), for information about
-`REORGANIZE PARTITION`.
+If you intend to change the partitioning of a table *without* losing data, use `ALTER TABLE ... REORGANIZE PARTITION` instead. See below or in Section 15.1.9, “ALTER TABLE Statement”, for information about `REORGANIZE PARTITION`.
 
-If you now execute a [`SHOW CREATE
-TABLE`](show-create-table.html "15.7.7.10 SHOW CREATE TABLE Statement") statement, you can see how the partitioning
-makeup of the table has been changed:
+If you now execute a `SHOW CREATE TABLE` statement, you can see how the partitioning makeup of the table has been changed:
 
 ```
 mysql> SHOW CREATE TABLE tr\G
@@ -158,12 +109,7 @@ Create Table: CREATE TABLE `tr` (
 1 row in set (0.00 sec)
 ```
 
-When you insert new rows into the changed table with
-`purchased` column values between
-`'1995-01-01'` and
-`'2004-12-31'` inclusive, those rows are stored
-in partition `p3`. You can verify this as
-follows:
+When you insert new rows into the changed table with `purchased` column values between `'1995-01-01'` and `'2004-12-31'` inclusive, those rows are stored in partition `p3`. You can verify this as follows:
 
 ```
 mysql> INSERT INTO tr VALUES (11, 'pencil holder', '1995-07-12');
@@ -187,27 +133,11 @@ mysql> SELECT * FROM tr WHERE purchased
 Empty set (0.00 sec)
 ```
 
-The number of rows dropped from the table as a result of
-`ALTER TABLE ... DROP PARTITION` is not
-reported by the server as it would be by the equivalent
-[`DELETE`](delete.html "15.2.2 DELETE Statement") query.
+The number of rows dropped from the table as a result of `ALTER TABLE ... DROP PARTITION` is not reported by the server as it would be by the equivalent `DELETE` query.
 
-Dropping `LIST` partitions uses exactly the
-same `ALTER TABLE ... DROP PARTITION` syntax as
-used for dropping `RANGE` partitions. However,
-there is one important difference in the effect this has on your
-use of the table afterward: You can no longer insert into the
-table any rows having any of the values that were included in
-the value list defining the deleted partition. (See
-[Section 26.2.2, “LIST Partitioning”](partitioning-list.html "26.2.2 LIST Partitioning"), for an example.)
+Dropping `LIST` partitions uses exactly the same `ALTER TABLE ... DROP PARTITION` syntax as used for dropping `RANGE` partitions. However, there is one important difference in the effect this has on your use of the table afterward: You can no longer insert into the table any rows having any of the values that were included in the value list defining the deleted partition. (See Section 26.2.2, “LIST Partitioning”, for an example.)
 
-To add a new range or list partition to a previously partitioned
-table, use the `ALTER TABLE ... ADD PARTITION`
-statement. For tables which are partitioned by
-`RANGE`, this can be used to add a new range to
-the end of the list of existing partitions. Suppose that you
-have a partitioned table containing membership data for your
-organization, which is defined as follows:
+To add a new range or list partition to a previously partitioned table, use the `ALTER TABLE ... ADD PARTITION` statement. For tables which are partitioned by `RANGE`, this can be used to add a new range to the end of the list of existing partitions. Suppose that you have a partitioned table containing membership data for your organization, which is defined as follows:
 
 ```
 CREATE TABLE members (
@@ -223,22 +153,13 @@ PARTITION BY RANGE( YEAR(dob) ) (
 );
 ```
 
-Suppose further that the minimum age for members is 16. As the
-calendar approaches the end of 2015, you realize that you must
-soon be prepared to admit members who were born in 2000 (and
-later). You can modify the `members` table to
-accommodate new members born in the years 2000 to 2010 as shown
-here:
+Suppose further that the minimum age for members is 16. As the calendar approaches the end of 2015, you realize that you must soon be prepared to admit members who were born in 2000 (and later). You can modify the `members` table to accommodate new members born in the years 2000 to 2010 as shown here:
 
 ```
 ALTER TABLE members ADD PARTITION (PARTITION p3 VALUES LESS THAN (2010));
 ```
 
-With tables that are partitioned by range, you can use
-`ADD PARTITION` to add new partitions to the
-high end of the partitions list only. Trying to add a new
-partition in this manner between or before existing partitions
-results in an error as shown here:
+With tables that are partitioned by range, you can use `ADD PARTITION` to add new partitions to the high end of the partitions list only. Trying to add a new partition in this manner between or before existing partitions results in an error as shown here:
 
 ```
 mysql> ALTER TABLE members
@@ -248,9 +169,7 @@ ERROR 1463 (HY000): VALUES LESS THAN value must be strictly »
    increasing for each partition
 ```
 
-You can work around this problem by reorganizing the first
-partition into two new ones that split the range between them,
-like this:
+You can work around this problem by reorganizing the first partition into two new ones that split the range between them, like this:
 
 ```
 ALTER TABLE members
@@ -260,9 +179,7 @@ ALTER TABLE members
 );
 ```
 
-Using [`SHOW CREATE TABLE`](show-create-table.html "15.7.7.10 SHOW CREATE TABLE Statement") you can
-see that the `ALTER TABLE` statement has had
-the desired effect:
+Using `SHOW CREATE TABLE` you can see that the `ALTER TABLE` statement has had the desired effect:
 
 ```
 mysql> SHOW CREATE TABLE members\G
@@ -283,13 +200,9 @@ Create Table: CREATE TABLE `members` (
 1 row in set (0.00 sec)
 ```
 
-See also [Section 15.1.9.1, “ALTER TABLE Partition Operations”](alter-table-partition-operations.html "15.1.9.1 ALTER TABLE Partition Operations").
+See also Section 15.1.9.1, “ALTER TABLE Partition Operations”.
 
-You can also use `ALTER TABLE ... ADD
-PARTITION` to add new partitions to a table that is
-partitioned by `LIST`. Suppose a table
-`tt` is defined using the following
-[`CREATE TABLE`](create-table.html "15.1.20 CREATE TABLE Statement") statement:
+You can also use `ALTER TABLE ... ADD PARTITION` to add new partitions to a table that is partitioned by `LIST`. Suppose a table `tt` is defined using the following `CREATE TABLE` statement:
 
 ```
 CREATE TABLE tt (
@@ -302,18 +215,13 @@ PARTITION BY LIST(data) (
 );
 ```
 
-You can add a new partition in which to store rows having the
-`data` column values `7`,
-`14`, and `21` as shown:
+You can add a new partition in which to store rows having the `data` column values `7`, `14`, and `21` as shown:
 
 ```
 ALTER TABLE tt ADD PARTITION (PARTITION p2 VALUES IN (7, 14, 21));
 ```
 
-Keep in mind that you *cannot* add a new
-`LIST` partition encompassing any values that
-are already included in the value list of an existing partition.
-If you attempt to do so, an error results:
+Keep in mind that you *cannot* add a new `LIST` partition encompassing any values that are already included in the value list of an existing partition. If you attempt to do so, an error results:
 
 ```
 mysql> ALTER TABLE tt ADD PARTITION
@@ -322,26 +230,9 @@ ERROR 1465 (HY000): Multiple definition of same constant »
                     in list partitioning
 ```
 
-Because any rows with the `data` column value
-`12` have already been assigned to partition
-`p1`, you cannot create a new partition on
-table `tt` that includes `12`
-in its value list. To accomplish this, you could drop
-`p1`, and add `np` and then a
-new `p1` with a modified definition. However,
-as discussed earlier, this would result in the loss of all data
-stored in `p1`—and it is often the case
-that this is not what you really want to do. Another solution
-might appear to be to make a copy of the table with the new
-partitioning and to copy the data into it using
-[`CREATE TABLE ...
-SELECT ...`](create-table.html "15.1.20 CREATE TABLE Statement"), then drop the old table and rename the new
-one, but this could be very time-consuming when dealing with a
-large amounts of data. This also might not be feasible in
-situations where high availability is a requirement.
+Because any rows with the `data` column value `12` have already been assigned to partition `p1`, you cannot create a new partition on table `tt` that includes `12` in its value list. To accomplish this, you could drop `p1`, and add `np` and then a new `p1` with a modified definition. However, as discussed earlier, this would result in the loss of all data stored in `p1`—and it is often the case that this is not what you really want to do. Another solution might appear to be to make a copy of the table with the new partitioning and to copy the data into it using `CREATE TABLE ... SELECT ...`, then drop the old table and rename the new one, but this could be very time-consuming when dealing with a large amounts of data. This also might not be feasible in situations where high availability is a requirement.
 
-You can add multiple partitions in a single `ALTER TABLE
-... ADD PARTITION` statement as shown here:
+You can add multiple partitions in a single `ALTER TABLE ... ADD PARTITION` statement as shown here:
 
 ```
 CREATE TABLE employees (
@@ -363,11 +254,7 @@ ALTER TABLE employees ADD PARTITION (
 );
 ```
 
-Fortunately, MySQL's partitioning implementation provides ways
-to redefine partitions without losing data. Let us look first at
-a couple of simple examples involving `RANGE`
-partitioning. Recall the `members` table which
-is now defined as shown here:
+Fortunately, MySQL's partitioning implementation provides ways to redefine partitions without losing data. Let us look first at a couple of simple examples involving `RANGE` partitioning. Recall the `members` table which is now defined as shown here:
 
 ```
 mysql> SHOW CREATE TABLE members\G
@@ -388,14 +275,7 @@ Create Table: CREATE TABLE `members` (
 1 row in set (0.00 sec)
 ```
 
-Suppose that you would like to move all rows representing
-members born before 1960 into a separate partition. As we have
-already seen, this cannot be done using
-[`ALTER
-TABLE ... ADD PARTITION`](alter-table-partition-operations.html "15.1.9.1 ALTER TABLE Partition Operations"). However, you can use another
-partition-related extension to
-[`ALTER
-TABLE`](alter-table-partition-operations.html "15.1.9.1 ALTER TABLE Partition Operations") to accomplish this:
+Suppose that you would like to move all rows representing members born before 1960 into a separate partition. As we have already seen, this cannot be done using `ALTER TABLE ... ADD PARTITION`. However, you can use another partition-related extension to `ALTER TABLE` to accomplish this:
 
 ```
 ALTER TABLE members REORGANIZE PARTITION n0 INTO (
@@ -404,22 +284,9 @@ ALTER TABLE members REORGANIZE PARTITION n0 INTO (
 );
 ```
 
-In effect, this command splits partition `n0`
-into two new partitions `s0` and
-`s1`. It also moves the data that was stored in
-`n0` into the new partitions according to the
-rules embodied in the two `PARTITION ... VALUES
-...` clauses, so that `s0` contains
-only those records for which
-[`YEAR(dob)`](date-and-time-functions.html#function_year) is less than 1960 and
-`s1` contains those rows in which
-[`YEAR(dob)`](date-and-time-functions.html#function_year) is greater than or
-equal to 1960 but less than 1970.
+In effect, this command splits partition `n0` into two new partitions `s0` and `s1`. It also moves the data that was stored in `n0` into the new partitions according to the rules embodied in the two `PARTITION ... VALUES ...` clauses, so that `s0` contains only those records for which `YEAR(dob)` is less than 1960 and `s1` contains those rows in which `YEAR(dob)` is greater than or equal to 1960 but less than 1970.
 
-A `REORGANIZE PARTITION` clause may also be
-used for merging adjacent partitions. You can reverse the effect
-of the previous statement on the `members`
-table as shown here:
+A `REORGANIZE PARTITION` clause may also be used for merging adjacent partitions. You can reverse the effect of the previous statement on the `members` table as shown here:
 
 ```
 ALTER TABLE members REORGANIZE PARTITION s0,s1 INTO (
@@ -427,14 +294,9 @@ ALTER TABLE members REORGANIZE PARTITION s0,s1 INTO (
 );
 ```
 
-No data is lost in splitting or merging partitions using
-`REORGANIZE PARTITION`. In executing the above
-statement, MySQL moves all of the records that were stored in
-partitions `s0` and `s1` into
-partition `p0`.
+No data is lost in splitting or merging partitions using `REORGANIZE PARTITION`. In executing the above statement, MySQL moves all of the records that were stored in partitions `s0` and `s1` into partition `p0`.
 
-The general syntax for `REORGANIZE PARTITION`
-is shown here:
+The general syntax for `REORGANIZE PARTITION` is shown here:
 
 ```
 ALTER TABLE tbl_name
@@ -442,20 +304,7 @@ ALTER TABLE tbl_name
     INTO (partition_definitions);
 ```
 
-Here, *`tbl_name`* is the name of the
-partitioned table, and *`partition_list`*
-is a comma-separated list of names of one or more existing
-partitions to be changed.
-*`partition_definitions`* is a
-comma-separated list of new partition definitions, which follow
-the same rules as for the
-*`partition_definitions`* list used in
-[`CREATE TABLE`](create-table.html "15.1.20 CREATE TABLE Statement"). You are not limited
-to merging several partitions into one, or to splitting one
-partition into many, when using `REORGANIZE
-PARTITION`. For example, you can reorganize all four
-partitions of the `members` table into two,
-like this:
+Here, *`tbl_name`* is the name of the partitioned table, and *`partition_list`* is a comma-separated list of names of one or more existing partitions to be changed. *`partition_definitions`* is a comma-separated list of new partition definitions, which follow the same rules as for the *`partition_definitions`* list used in `CREATE TABLE`. You are not limited to merging several partitions into one, or to splitting one partition into many, when using `REORGANIZE PARTITION`. For example, you can reorganize all four partitions of the `members` table into two, like this:
 
 ```
 ALTER TABLE members REORGANIZE PARTITION p0,p1,p2,p3 INTO (
@@ -464,16 +313,7 @@ ALTER TABLE members REORGANIZE PARTITION p0,p1,p2,p3 INTO (
 );
 ```
 
-You can also use `REORGANIZE PARTITION` with
-tables that are partitioned by `LIST`. Let us
-return to the problem of adding a new partition to the
-list-partitioned `tt` table and failing because
-the new partition had a value that was already present in the
-value-list of one of the existing partitions. We can handle this
-by adding a partition that contains only nonconflicting values,
-and then reorganizing the new partition and the existing one so
-that the value which was stored in the existing one is now moved
-to the new one:
+You can also use `REORGANIZE PARTITION` with tables that are partitioned by `LIST`. Let us return to the problem of adding a new partition to the list-partitioned `tt` table and failing because the new partition had a value that was already present in the value-list of one of the existing partitions. We can handle this by adding a partition that contains only nonconflicting values, and then reorganizing the new partition and the existing one so that the value which was stored in the existing one is now moved to the new one:
 
 ```
 ALTER TABLE tt ADD PARTITION (PARTITION np VALUES IN (4, 8));
@@ -483,56 +323,21 @@ ALTER TABLE tt REORGANIZE PARTITION p1,np INTO (
 );
 ```
 
-Here are some key points to keep in mind when using
-`ALTER TABLE ... REORGANIZE PARTITION` to
-repartition tables that are partitioned by
-`RANGE` or `LIST`:
+Here are some key points to keep in mind when using `ALTER TABLE ... REORGANIZE PARTITION` to repartition tables that are partitioned by `RANGE` or `LIST`:
 
-* The `PARTITION` options used to determine
-  the new partitioning scheme are subject to the same rules as
-  those used with a [`CREATE
-  TABLE`](create-table.html "15.1.20 CREATE TABLE Statement") statement.
+* The `PARTITION` options used to determine the new partitioning scheme are subject to the same rules as those used with a `CREATE TABLE` statement.
 
-  A new `RANGE` partitioning scheme cannot
-  have any overlapping ranges; a new `LIST`
-  partitioning scheme cannot have any overlapping sets of
-  values.
+  A new `RANGE` partitioning scheme cannot have any overlapping ranges; a new `LIST` partitioning scheme cannot have any overlapping sets of values.
 
-* The combination of partitions in the
-  *`partition_definitions`* list should
-  account for the same range or set of values overall as the
-  combined partitions named in the
-  *`partition_list`*.
+* The combination of partitions in the *`partition_definitions`* list should account for the same range or set of values overall as the combined partitions named in the *`partition_list`*.
 
-  For example, partitions `p1` and
-  `p2` together cover the years 1980 through
-  1999 in the `members` table used as an
-  example in this section. Any reorganization of these two
-  partitions should cover the same range of years overall.
+  For example, partitions `p1` and `p2` together cover the years 1980 through 1999 in the `members` table used as an example in this section. Any reorganization of these two partitions should cover the same range of years overall.
 
-* For tables partitioned by `RANGE`, you can
-  reorganize only adjacent partitions; you cannot skip range
-  partitions.
+* For tables partitioned by `RANGE`, you can reorganize only adjacent partitions; you cannot skip range partitions.
 
-  For instance, you could not reorganize the example
-  `members` table using a statement beginning
-  with `ALTER TABLE members REORGANIZE PARTITION p0,p2
-  INTO ...` because `p0` covers the
-  years prior to 1970 and `p2` the years from
-  1990 through 1999 inclusive, so these are not adjacent
-  partitions. (You cannot skip partition `p1`
-  in this case.)
+  For instance, you could not reorganize the example `members` table using a statement beginning with `ALTER TABLE members REORGANIZE PARTITION p0,p2 INTO ...` because `p0` covers the years prior to 1970 and `p2` the years from 1990 through 1999 inclusive, so these are not adjacent partitions. (You cannot skip partition `p1` in this case.)
 
-* You cannot use `REORGANIZE PARTITION` to
-  change the type of partitioning used by the table (for
-  example, you cannot change `RANGE`
-  partitions to `HASH` partitions or the
-  reverse). You also cannot use this statement to change the
-  partitioning expression or column. To accomplish either of
-  these tasks without dropping and re-creating the table, you
-  can use
-  [`ALTER
-  TABLE ... PARTITION BY ...`](alter-table-partition-operations.html "15.1.9.1 ALTER TABLE Partition Operations"), as shown here:
+* You cannot use `REORGANIZE PARTITION` to change the type of partitioning used by the table (for example, you cannot change `RANGE` partitions to `HASH` partitions or the reverse). You also cannot use this statement to change the partitioning expression or column. To accomplish either of these tasks without dropping and re-creating the table, you can use `ALTER TABLE ... PARTITION BY ...`, as shown here:
 
   ```
   ALTER TABLE members

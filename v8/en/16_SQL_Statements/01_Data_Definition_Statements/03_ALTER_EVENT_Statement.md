@@ -12,24 +12,11 @@ ALTER
     [DO event_body]
 ```
 
-The [`ALTER EVENT`](alter-event.html "15.1.3 ALTER EVENT Statement") statement changes
-one or more of the characteristics of an existing event without
-the need to drop and recreate it. The syntax for each of the
-`DEFINER`, `ON SCHEDULE`,
-`ON COMPLETION`, `COMMENT`,
-`ENABLE` / `DISABLE`, and
-[`DO`](do.html "15.2.3 DO Statement") clauses is exactly the same as
-when used with [`CREATE EVENT`](create-event.html "15.1.13 CREATE EVENT Statement"). (See
-[Section 15.1.13, “CREATE EVENT Statement”](create-event.html "15.1.13 CREATE EVENT Statement").)
+The `ALTER EVENT` statement changes one or more of the characteristics of an existing event without the need to drop and recreate it. The syntax for each of the `DEFINER`, `ON SCHEDULE`, `ON COMPLETION`, `COMMENT`, `ENABLE` / `DISABLE`, and `DO` clauses is exactly the same as when used with `CREATE EVENT`. (See Section 15.1.13, “CREATE EVENT Statement”.)
 
-Any user can alter an event defined on a database for which that
-user has the [`EVENT`](privileges-provided.html#priv_event) privilege. When
-a user executes a successful [`ALTER
-EVENT`](alter-event.html "15.1.3 ALTER EVENT Statement") statement, that user becomes the definer for the
-affected event.
+Any user can alter an event defined on a database for which that user has the `EVENT` privilege. When a user executes a successful [`ALTER EVENT`](alter-event.html "15.1.3 ALTER EVENT Statement") statement, that user becomes the definer for the affected event.
 
-[`ALTER EVENT`](alter-event.html "15.1.3 ALTER EVENT Statement") works only with an
-existing event:
+`ALTER EVENT` works only with an existing event:
 
 ```
 mysql> ALTER EVENT no_such_event
@@ -38,8 +25,7 @@ mysql> ALTER EVENT no_such_event
 ERROR 1517 (HY000): Unknown event 'no_such_event'
 ```
 
-In each of the following examples, assume that the event named
-`myevent` is defined as shown here:
+In each of the following examples, assume that the event named `myevent` is defined as shown here:
 
 ```
 CREATE EVENT myevent
@@ -50,10 +36,7 @@ CREATE EVENT myevent
       UPDATE myschema.mytable SET mycol = mycol + 1;
 ```
 
-The following statement changes the schedule for
-`myevent` from once every six hours starting
-immediately to once every twelve hours, starting four hours from
-the time the statement is run:
+The following statement changes the schedule for `myevent` from once every six hours starting immediately to once every twelve hours, starting four hours from the time the statement is run:
 
 ```
 ALTER EVENT myevent
@@ -62,12 +45,7 @@ ALTER EVENT myevent
     STARTS CURRENT_TIMESTAMP + INTERVAL 4 HOUR;
 ```
 
-It is possible to change multiple characteristics of an event in a
-single statement. This example changes the SQL statement executed
-by `myevent` to one that deletes all records from
-`mytable`; it also changes the schedule for the
-event such that it executes once, one day after this
-[`ALTER EVENT`](alter-event.html "15.1.3 ALTER EVENT Statement") statement is run.
+It is possible to change multiple characteristics of an event in a single statement. This example changes the SQL statement executed by `myevent` to one that deletes all records from `mytable`; it also changes the schedule for the event such that it executes once, one day after this `ALTER EVENT` statement is run.
 
 ```
 ALTER EVENT myevent
@@ -77,73 +55,37 @@ ALTER EVENT myevent
       TRUNCATE TABLE myschema.mytable;
 ```
 
-Specify the options in an [`ALTER
-EVENT`](alter-event.html "15.1.3 ALTER EVENT Statement") statement only for those characteristics that you
-want to change; omitted options keep their existing values. This
-includes any default values for [`CREATE
-EVENT`](create-event.html "15.1.13 CREATE EVENT Statement") such as `ENABLE`.
+Specify the options in an [`ALTER EVENT`](alter-event.html "15.1.3 ALTER EVENT Statement") statement only for those characteristics that you want to change; omitted options keep their existing values. This includes any default values for [`CREATE EVENT`](create-event.html "15.1.13 CREATE EVENT Statement") such as `ENABLE`.
 
-To disable `myevent`, use this
-[`ALTER EVENT`](alter-event.html "15.1.3 ALTER EVENT Statement") statement:
+To disable `myevent`, use this `ALTER EVENT` statement:
 
 ```
 ALTER EVENT myevent
     DISABLE;
 ```
 
-The `ON SCHEDULE` clause may use expressions
-involving built-in MySQL functions and user variables to obtain
-any of the *`timestamp`* or
-*`interval`* values which it contains. You
-cannot use stored routines or loadable functions in such
-expressions, and you cannot use any table references; however, you
-can use `SELECT FROM DUAL`. This is true for both
-[`ALTER EVENT`](alter-event.html "15.1.3 ALTER EVENT Statement") and
-[`CREATE EVENT`](create-event.html "15.1.13 CREATE EVENT Statement") statements. References
-to stored routines, loadable functions, and tables in such cases
-are specifically not permitted, and fail with an error (see Bug
-#22830).
+The `ON SCHEDULE` clause may use expressions involving built-in MySQL functions and user variables to obtain any of the *`timestamp`* or *`interval`* values which it contains. You cannot use stored routines or loadable functions in such expressions, and you cannot use any table references; however, you can use `SELECT FROM DUAL`. This is true for both `ALTER EVENT` and `CREATE EVENT` statements. References to stored routines, loadable functions, and tables in such cases are specifically not permitted, and fail with an error (see Bug #22830).
 
-Although an [`ALTER EVENT`](alter-event.html "15.1.3 ALTER EVENT Statement") statement
-that contains another [`ALTER EVENT`](alter-event.html "15.1.3 ALTER EVENT Statement")
-statement in its [`DO`](do.html "15.2.3 DO Statement") clause appears
-to succeed, when the server attempts to execute the resulting
-scheduled event, the execution fails with an error.
+Although an `ALTER EVENT` statement that contains another `ALTER EVENT` statement in its `DO` clause appears to succeed, when the server attempts to execute the resulting scheduled event, the execution fails with an error.
 
-To rename an event, use the [`ALTER
-EVENT`](alter-event.html "15.1.3 ALTER EVENT Statement") statement's `RENAME TO` clause.
-This statement renames the event `myevent` to
-`yourevent`:
+To rename an event, use the [`ALTER EVENT`](alter-event.html "15.1.3 ALTER EVENT Statement") statement's `RENAME TO` clause. This statement renames the event `myevent` to `yourevent`:
 
 ```
 ALTER EVENT myevent
     RENAME TO yourevent;
 ```
 
-You can also move an event to a different database using
-`ALTER EVENT ... RENAME TO ...` and
-`db_name.event_name`
-notation, as shown here:
+You can also move an event to a different database using `ALTER EVENT ... RENAME TO ...` and `db_name.event_name` notation, as shown here:
 
 ```
 ALTER EVENT olddb.myevent
     RENAME TO newdb.myevent;
 ```
 
-To execute the previous statement, the user executing it must have
-the [`EVENT`](privileges-provided.html#priv_event) privilege on both the
-`olddb` and `newdb` databases.
+To execute the previous statement, the user executing it must have the `EVENT` privilege on both the `olddb` and `newdb` databases.
 
 Note
 
 There is no `RENAME EVENT` statement.
 
-The value `DISABLE ON SLAVE` is used on a replica
-instead of `ENABLE` or `DISABLE`
-to indicate an event that was created on the replication source
-server and replicated to the replica, but that is not executed on
-the replica. Normally, `DISABLE ON SLAVE` is set
-automatically as required; however, there are some circumstances
-under which you may want or need to change it manually. See
-[Section 19.5.1.16, “Replication of Invoked Features”](replication-features-invoked.html "19.5.1.16 Replication of Invoked Features"), for more
-information.
+The value `DISABLE ON SLAVE` is used on a replica instead of `ENABLE` or `DISABLE` to indicate an event that was created on the replication source server and replicated to the replica, but that is not executed on the replica. Normally, `DISABLE ON SLAVE` is set automatically as required; however, there are some circumstances under which you may want or need to change it manually. See Section 19.5.1.16, “Replication of Invoked Features”, for more information.

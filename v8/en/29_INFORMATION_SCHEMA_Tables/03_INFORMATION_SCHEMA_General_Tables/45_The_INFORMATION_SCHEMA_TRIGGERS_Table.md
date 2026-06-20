@@ -1,21 +1,16 @@
-### 28.3.45 The INFORMATION\_SCHEMA TRIGGERS Table
+### 28.3.45 The INFORMATION_SCHEMA TRIGGERS Table
 
-The [`TRIGGERS`](information-schema-triggers-table.html "28.3.45 The INFORMATION_SCHEMA TRIGGERS Table") table provides
-information about triggers. To see information about a table's
-triggers, you must have the [`TRIGGER`](privileges-provided.html#priv_trigger)
-privilege for the table.
+The `TRIGGERS` table provides information about triggers. To see information about a table's triggers, you must have the `TRIGGER` privilege for the table.
 
-The [`TRIGGERS`](information-schema-triggers-table.html "28.3.45 The INFORMATION_SCHEMA TRIGGERS Table") table has these columns:
+The `TRIGGERS` table has these columns:
 
 * `TRIGGER_CATALOG`
 
-  The name of the catalog to which the trigger belongs. This
-  value is always `def`.
+  The name of the catalog to which the trigger belongs. This value is always `def`.
 
 * `TRIGGER_SCHEMA`
 
-  The name of the schema (database) to which the trigger
-  belongs.
+  The name of the schema (database) to which the trigger belongs.
 
 * `TRIGGER_NAME`
 
@@ -23,29 +18,15 @@ The [`TRIGGERS`](information-schema-triggers-table.html "28.3.45 The INFORMATIO
 
 * `EVENT_MANIPULATION`
 
-  The trigger event. This is the type of operation on the
-  associated table for which the trigger activates. The value is
-  `INSERT` (a row was inserted),
-  `DELETE` (a row was deleted), or
-  `UPDATE` (a row was modified).
+  The trigger event. This is the type of operation on the associated table for which the trigger activates. The value is `INSERT` (a row was inserted), `DELETE` (a row was deleted), or `UPDATE` (a row was modified).
 
-* `EVENT_OBJECT_CATALOG`,
-  `EVENT_OBJECT_SCHEMA`, and
-  `EVENT_OBJECT_TABLE`
+* `EVENT_OBJECT_CATALOG`, `EVENT_OBJECT_SCHEMA`, and `EVENT_OBJECT_TABLE`
 
-  As noted in [Section 27.3, “Using Triggers”](triggers.html "27.3 Using Triggers"), every trigger is
-  associated with exactly one table. These columns indicate the
-  catalog and schema (database) in which this table occurs, and
-  the table name, respectively. The
-  `EVENT_OBJECT_CATALOG` value is always
-  `def`.
+  As noted in Section 27.3, “Using Triggers”, every trigger is associated with exactly one table. These columns indicate the catalog and schema (database) in which this table occurs, and the table name, respectively. The `EVENT_OBJECT_CATALOG` value is always `def`.
 
 * `ACTION_ORDER`
 
-  The ordinal position of the trigger's action within the list
-  of triggers on the same table with the same
-  `EVENT_MANIPULATION` and
-  `ACTION_TIMING` values.
+  The ordinal position of the trigger's action within the list of triggers on the same table with the same `EVENT_MANIPULATION` and `ACTION_TIMING` values.
 
 * `ACTION_CONDITION`
 
@@ -53,8 +34,7 @@ The [`TRIGGERS`](information-schema-triggers-table.html "28.3.45 The INFORMATIO
 
 * `ACTION_STATEMENT`
 
-  The trigger body; that is, the statement executed when the
-  trigger activates. This text uses UTF-8 encoding.
+  The trigger body; that is, the statement executed when the trigger activates. This text uses UTF-8 encoding.
 
 * `ACTION_ORIENTATION`
 
@@ -62,9 +42,7 @@ The [`TRIGGERS`](information-schema-triggers-table.html "28.3.45 The INFORMATIO
 
 * `ACTION_TIMING`
 
-  Whether the trigger activates before or after the triggering
-  event. The value is `BEFORE` or
-  `AFTER`.
+  Whether the trigger activates before or after the triggering event. The value is `BEFORE` or `AFTER`.
 
 * `ACTION_REFERENCE_OLD_TABLE`
 
@@ -74,55 +52,37 @@ The [`TRIGGERS`](information-schema-triggers-table.html "28.3.45 The INFORMATIO
 
   This value is always `NULL`.
 
-* `ACTION_REFERENCE_OLD_ROW` and
-  `ACTION_REFERENCE_NEW_ROW`
+* `ACTION_REFERENCE_OLD_ROW` and `ACTION_REFERENCE_NEW_ROW`
 
-  The old and new column identifiers, respectively. The
-  `ACTION_REFERENCE_OLD_ROW` value is always
-  `OLD` and the
-  `ACTION_REFERENCE_NEW_ROW` value is always
-  `NEW`.
+  The old and new column identifiers, respectively. The `ACTION_REFERENCE_OLD_ROW` value is always `OLD` and the `ACTION_REFERENCE_NEW_ROW` value is always `NEW`.
 
 * `CREATED`
 
-  The date and time when the trigger was created. This is a
-  `TIMESTAMP(2)` value (with a fractional part
-  in hundredths of seconds) for triggers.
+  The date and time when the trigger was created. This is a `TIMESTAMP(2)` value (with a fractional part in hundredths of seconds) for triggers.
 
 * `SQL_MODE`
 
-  The SQL mode in effect when the trigger was created, and under
-  which the trigger executes. For the permitted values, see
-  [Section 7.1.11, “Server SQL Modes”](sql-mode.html "7.1.11 Server SQL Modes").
+  The SQL mode in effect when the trigger was created, and under which the trigger executes. For the permitted values, see Section 7.1.11, “Server SQL Modes”.
 
 * `DEFINER`
 
-  The account named in the `DEFINER` clause
-  (often the user who created the trigger), in
-  `'user_name'@'host_name'`
-  format.
+  The account named in the `DEFINER` clause (often the user who created the trigger), in `'user_name'@'host_name'` format.
 
 * `CHARACTER_SET_CLIENT`
 
-  The session value of the
-  [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system
-  variable when the trigger was created.
+  The session value of the `character_set_client` system variable when the trigger was created.
 
 * `COLLATION_CONNECTION`
 
-  The session value of the
-  [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system
-  variable when the trigger was created.
+  The session value of the `collation_connection` system variable when the trigger was created.
 
 * `DATABASE_COLLATION`
 
-  The collation of the database with which the trigger is
-  associated.
+  The collation of the database with which the trigger is associated.
 
 #### Example
 
-The following example uses the `ins_sum` trigger
-defined in [Section 27.3, “Using Triggers”](triggers.html "27.3 Using Triggers"):
+The following example uses the `ins_sum` trigger defined in Section 27.3, “Using Triggers”:
 
 ```
 mysql> SELECT * FROM INFORMATION_SCHEMA.TRIGGERS
@@ -155,6 +115,4 @@ ACTION_REFERENCE_NEW_TABLE: NULL
         DATABASE_COLLATION: utf8mb4_0900_ai_ci
 ```
 
-Trigger information is also available from the
-[`SHOW TRIGGERS`](show-triggers.html "15.7.7.40 SHOW TRIGGERS Statement") statement. See
-[Section 15.7.7.40, “SHOW TRIGGERS Statement”](show-triggers.html "15.7.7.40 SHOW TRIGGERS Statement").
+Trigger information is also available from the `SHOW TRIGGERS` statement. See Section 15.7.7.40, “SHOW TRIGGERS Statement”.

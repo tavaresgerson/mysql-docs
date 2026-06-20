@@ -1,52 +1,24 @@
-#### 30.4.4.22 The ps\_trace\_statement\_digest() Procedure
+#### 30.4.4.22 The ps_trace_statement_digest() Procedure
 
-Traces all Performance Schema instrumentation for a specific
-statement digest.
+Traces all Performance Schema instrumentation for a specific statement digest.
 
-If you find a statement of interest within the Performance
-Schema
-[`events_statements_summary_by_digest`](performance-schema-statement-summary-tables.html "29.12.20.3 Statement Summary Tables")
-table, specify its `DIGEST` column MD5 value
-to this procedure and indicate the polling duration and
-interval. The result is a report of all statistics tracked
-within Performance Schema for that digest for the interval.
+If you find a statement of interest within the Performance Schema `events_statements_summary_by_digest` table, specify its `DIGEST` column MD5 value to this procedure and indicate the polling duration and interval. The result is a report of all statistics tracked within Performance Schema for that digest for the interval.
 
-The procedure also attempts to execute
-[`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") for the longest running
-example of the digest during the interval. This attempt might
-fail because the Performance Schema truncates long
-`SQL_TEXT` values. Consequently,
-[`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") fails, due to parse
-errors.
+The procedure also attempts to execute `EXPLAIN` for the longest running example of the digest during the interval. This attempt might fail because the Performance Schema truncates long `SQL_TEXT` values. Consequently, `EXPLAIN` fails, due to parse errors.
 
-This procedure disables binary logging during its execution by
-manipulating the session value of the
-[`sql_log_bin`](replication-options-binary-log.html#sysvar_sql_log_bin) system variable.
-That is a restricted operation, so the procedure requires
-privileges sufficient to set restricted session variables. See
-[Section 7.1.9.1, “System Variable Privileges”](system-variable-privileges.html "7.1.9.1 System Variable Privileges").
+This procedure disables binary logging during its execution by manipulating the session value of the `sql_log_bin` system variable. That is a restricted operation, so the procedure requires privileges sufficient to set restricted session variables. See Section 7.1.9.1, “System Variable Privileges”.
 
 ##### Parameters
 
-* `in_digest VARCHAR(32)`: The statement
-  digest identifier to analyze.
+* `in_digest VARCHAR(32)`: The statement digest identifier to analyze.
 
-* `in_runtime INT`: How long to run the
-  analysis in seconds.
+* `in_runtime INT`: How long to run the analysis in seconds.
 
-* `in_interval DECIMAL(2,2)`: The
-  analysis interval in seconds (which can be fractional)
-  at which to try to take snapshots.
+* `in_interval DECIMAL(2,2)`: The analysis interval in seconds (which can be fractional) at which to try to take snapshots.
 
-* `in_start_fresh BOOLEAN`: Whether to
-  truncate the Performance Schema
-  [`events_statements_history_long`](performance-schema-events-statements-history-long-table.html "29.12.6.3 The events_statements_history_long Table")
-  and
-  [`events_stages_history_long`](performance-schema-events-stages-history-long-table.html "29.12.5.3 The events_stages_history_long Table")
-  tables before starting.
+* `in_start_fresh BOOLEAN`: Whether to truncate the Performance Schema `events_statements_history_long` and `events_stages_history_long` tables before starting.
 
-* `in_auto_enable BOOLEAN`: Whether to
-  automatically enable required consumers.
+* `in_auto_enable BOOLEAN`: Whether to automatically enable required consumers.
 
 ##### Example
 

@@ -1,42 +1,24 @@
 ### 2.9.3 Testing the Server
 
-After the data directory is initialized and you have started the
-server, perform some simple tests to make sure that it works
-satisfactorily. This section assumes that your current location is
-the MySQL installation directory and that it has a
-`bin` subdirectory containing the MySQL
-programs used here. If that is not true, adjust the command path
-names accordingly.
+After the data directory is initialized and you have started the server, perform some simple tests to make sure that it works satisfactorily. This section assumes that your current location is the MySQL installation directory and that it has a `bin` subdirectory containing the MySQL programs used here. If that is not true, adjust the command path names accordingly.
 
-Alternatively, add the `bin` directory to your
-`PATH` environment variable setting. That enables
-your shell (command interpreter) to find MySQL programs properly,
-so that you can run a program by typing only its name, not its
-path name. See [Section 6.2.9, “Setting Environment Variables”](setting-environment-variables.html "6.2.9 Setting Environment Variables").
+Alternatively, add the `bin` directory to your `PATH` environment variable setting. That enables your shell (command interpreter) to find MySQL programs properly, so that you can run a program by typing only its name, not its path name. See Section 6.2.9, “Setting Environment Variables”.
 
-Use [**mysqladmin**](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program") to verify that the server is
-running. The following commands provide simple tests to check
-whether the server is up and responding to connections:
+Use **mysqladmin** to verify that the server is running. The following commands provide simple tests to check whether the server is up and responding to connections:
 
 ```
 $> bin/mysqladmin version
 $> bin/mysqladmin variables
 ```
 
-If you cannot connect to the server, specify a `-u
-root` option to connect as `root`. If you
-have assigned a password for the `root` account
-already, you'll also need to specify `-p` on the
-command line and enter the password when prompted. For example:
+If you cannot connect to the server, specify a `-u root` option to connect as `root`. If you have assigned a password for the `root` account already, you'll also need to specify `-p` on the command line and enter the password when prompted. For example:
 
 ```
 $> bin/mysqladmin -u root -p version
 Enter password: (enter root password here)
 ```
 
-The output from [**mysqladmin version**](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program") varies
-slightly depending on your platform and version of MySQL, but
-should be similar to that shown here:
+The output from **mysqladmin version** varies slightly depending on your platform and version of MySQL, but should be similar to that shown here:
 
 ```
 $> bin/mysqladmin version
@@ -54,33 +36,25 @@ Opens: 0  Flush tables: 1  Open tables: 19
 Queries per second avg: 0.000
 ```
 
-To see what else you can do with [**mysqladmin**](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program"),
-invoke it with the [`--help`](mysqladmin.html#option_mysqladmin_help)
-option.
+To see what else you can do with **mysqladmin**, invoke it with the `--help` option.
 
-Verify that you can shut down the server (include a
-`-p` option if the `root` account
-has a password already):
+Verify that you can shut down the server (include a `-p` option if the `root` account has a password already):
 
 ```
 $> bin/mysqladmin -u root shutdown
 ```
 
-Verify that you can start the server again. Do this by using
-[**mysqld\_safe**](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script") or by invoking
-[**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") directly. For example:
+Verify that you can start the server again. Do this by using **mysqld_safe** or by invoking **mysqld** directly. For example:
 
 ```
 $> bin/mysqld_safe --user=mysql &
 ```
 
-If [**mysqld\_safe**](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script") fails, see
-[Section 2.9.2.1, “Troubleshooting Problems Starting the MySQL Server”](starting-server-troubleshooting.html "2.9.2.1 Troubleshooting Problems Starting the MySQL Server").
+If **mysqld_safe** fails, see Section 2.9.2.1, “Troubleshooting Problems Starting the MySQL Server”.
 
-Run some simple tests to verify that you can retrieve information
-from the server. The output should be similar to that shown here.
+Run some simple tests to verify that you can retrieve information from the server. The output should be similar to that shown here.
 
-Use [**mysqlshow**](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information") to see what databases exist:
+Use **mysqlshow** to see what databases exist:
 
 ```
 $> bin/mysqlshow
@@ -94,12 +68,9 @@ $> bin/mysqlshow
 +--------------------+
 ```
 
-The list of installed databases may vary, but always includes at
-least `mysql` and
-`information_schema`.
+The list of installed databases may vary, but always includes at least `mysql` and `information_schema`.
 
-If you specify a database name, [**mysqlshow**](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information")
-displays a list of the tables within the database:
+If you specify a database name, **mysqlshow** displays a list of the tables within the database:
 
 ```
 $> bin/mysqlshow mysql
@@ -144,8 +115,7 @@ Database: mysql
 +---------------------------+
 ```
 
-Use the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") program to select information
-from a table in the `mysql` schema:
+Use the **mysql** program to select information from a table in the `mysql` schema:
 
 ```
 $> bin/mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
@@ -156,12 +126,6 @@ $> bin/mysql -e "SELECT User, Host, plugin FROM mysql.user" mysql
 +------+-----------+-----------------------+
 ```
 
-At this point, your server is running and you can access it. To
-tighten security if you have not yet assigned a password to the
-initial account, follow the instructions in
-[Section 2.9.4, “Securing the Initial MySQL Account”](default-privileges.html "2.9.4 Securing the Initial MySQL Account").
+At this point, your server is running and you can access it. To tighten security if you have not yet assigned a password to the initial account, follow the instructions in Section 2.9.4, “Securing the Initial MySQL Account”.
 
-For more information about [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client"),
-[**mysqladmin**](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program"), and [**mysqlshow**](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information"),
-see [Section 6.5.1, “mysql — The MySQL Command-Line Client”](mysql.html "6.5.1 mysql — The MySQL Command-Line Client"), [Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program"), and
-[Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "6.5.7 mysqlshow — Display Database, Table, and Column Information").
+For more information about **mysql**, **mysqladmin**, and **mysqlshow**, see Section 6.5.1, “mysql — The MySQL Command-Line Client”, Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”, and Section 6.5.7, “mysqlshow — Display Database, Table, and Column Information”.

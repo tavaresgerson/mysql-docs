@@ -1,17 +1,12 @@
-### 28.3.43 The INFORMATION\_SCHEMA TABLE\_CONSTRAINTS\_EXTENSIONS Table
+### 28.3.43 The INFORMATION_SCHEMA TABLE_CONSTRAINTS_EXTENSIONS Table
 
-The [`TABLE_CONSTRAINTS_EXTENSIONS`](information-schema-table-constraints-extensions-table.html "28.3.43 The INFORMATION_SCHEMA TABLE_CONSTRAINTS_EXTENSIONS Table")
-table (available as of MySQL 8.0.21) provides information about
-table constraint attributes defined for primary and secondary
-storage engines.
+The `TABLE_CONSTRAINTS_EXTENSIONS` table (available as of MySQL 8.0.21) provides information about table constraint attributes defined for primary and secondary storage engines.
 
 Note
 
-The [`TABLE_CONSTRAINTS_EXTENSIONS`](information-schema-table-constraints-extensions-table.html "28.3.43 The INFORMATION_SCHEMA TABLE_CONSTRAINTS_EXTENSIONS Table")
-table is reserved for future use.
+The `TABLE_CONSTRAINTS_EXTENSIONS` table is reserved for future use.
 
-The [`TABLE_CONSTRAINTS_EXTENSIONS`](information-schema-table-constraints-extensions-table.html "28.3.43 The INFORMATION_SCHEMA TABLE_CONSTRAINTS_EXTENSIONS Table")
-table has these columns:
+The `TABLE_CONSTRAINTS_EXTENSIONS` table has these columns:
 
 * `CONSTRAINT_CATALOG`
 
@@ -31,10 +26,8 @@ table has these columns:
 
 * `ENGINE_ATTRIBUTE`
 
-  Constraint attributes defined for the primary storage engine.
-  Reserved for future use.
+  Constraint attributes defined for the primary storage engine. Reserved for future use.
 
 * `SECONDARY_ENGINE_ATTRIBUTE`
 
-  Constraint attributes defined for the secondary storage
-  engine. Reserved for future use.
+  Constraint attributes defined for the secondary storage engine. Reserved for future use.

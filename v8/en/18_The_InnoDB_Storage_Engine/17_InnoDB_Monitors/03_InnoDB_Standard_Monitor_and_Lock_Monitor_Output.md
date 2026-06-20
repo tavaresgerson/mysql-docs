@@ -1,18 +1,8 @@
 ### 17.17.3 InnoDB Standard Monitor and Lock Monitor Output
 
-The Lock Monitor is the same as the Standard Monitor except that
-it includes additional lock information. Enabling either monitor
-for periodic output turns on the same output stream, but the
-stream includes extra information if the Lock Monitor is enabled.
-For example, if you enable the Standard Monitor and Lock Monitor,
-that turns on a single output stream. The stream includes extra
-lock information until you disable the Lock Monitor.
+The Lock Monitor is the same as the Standard Monitor except that it includes additional lock information. Enabling either monitor for periodic output turns on the same output stream, but the stream includes extra information if the Lock Monitor is enabled. For example, if you enable the Standard Monitor and Lock Monitor, that turns on a single output stream. The stream includes extra lock information until you disable the Lock Monitor.
 
-Standard Monitor output is limited to 1MB when produced using the
-[`SHOW ENGINE INNODB
-STATUS`](show-engine.html "15.7.7.15 SHOW ENGINE Statement") statement. This limit does not apply to output
-written to server standard error output
-(`stderr`).
+Standard Monitor output is limited to 1MB when produced using the [`SHOW ENGINE INNODB STATUS`](show-engine.html "15.7.7.15 SHOW ENGINE Statement") statement. This limit does not apply to output written to server standard error output (`stderr`).
 
 Example Standard Monitor output:
 
@@ -215,119 +205,56 @@ END OF INNODB MONITOR OUTPUT
 
 #### Standard Monitor Output Sections
 
-For a description of each metric reported by the Standard
-Monitor, refer to the
-[Metrics](/doc/mysql-em-plugin/en/myoem-metrics.html)
-chapter in the
-[Oracle
-Enterprise Manager for MySQL Database User's Guide](/doc/mysql-em-plugin/en/).
+For a description of each metric reported by the Standard Monitor, refer to the Metrics chapter in the [Oracle Enterprise Manager for MySQL Database User's Guide](/doc/mysql-em-plugin/en/).
 
 * `Status`
 
-  This section shows the timestamp, the monitor name, and the
-  number of seconds that per-second averages are based on. The
-  number of seconds is the elapsed time between the current
-  time and the last time `InnoDB` Monitor
-  output was printed.
+  This section shows the timestamp, the monitor name, and the number of seconds that per-second averages are based on. The number of seconds is the elapsed time between the current time and the last time `InnoDB` Monitor output was printed.
 
 * `BACKGROUND THREAD`
 
-  The `srv_master_thread` lines shows work
-  done by the main background thread.
+  The `srv_master_thread` lines shows work done by the main background thread.
 
 * `SEMAPHORES`
 
-  This section reports threads waiting for a semaphore and
-  statistics on how many times threads have needed a spin or a
-  wait on a mutex or a rw-lock semaphore. A large number of
-  threads waiting for semaphores may be a result of disk I/O,
-  or contention problems inside `InnoDB`.
-  Contention can be due to heavy parallelism of queries or
-  problems in operating system thread scheduling. Setting the
-  [`innodb_thread_concurrency`](innodb-parameters.html#sysvar_innodb_thread_concurrency)
-  system variable smaller than the default value might help in
-  such situations. The `Spin rounds per wait`
-  line shows the number of spinlock rounds per OS wait for a
-  mutex.
+  This section reports threads waiting for a semaphore and statistics on how many times threads have needed a spin or a wait on a mutex or a rw-lock semaphore. A large number of threads waiting for semaphores may be a result of disk I/O, or contention problems inside `InnoDB`. Contention can be due to heavy parallelism of queries or problems in operating system thread scheduling. Setting the `innodb_thread_concurrency` system variable smaller than the default value might help in such situations. The `Spin rounds per wait` line shows the number of spinlock rounds per OS wait for a mutex.
 
-  Mutex metrics are reported by
-  [`SHOW ENGINE
-  INNODB MUTEX`](show-engine.html "15.7.7.15 SHOW ENGINE Statement").
+  Mutex metrics are reported by [`SHOW ENGINE INNODB MUTEX`](show-engine.html "15.7.7.15 SHOW ENGINE Statement").
 
 * `LATEST FOREIGN KEY ERROR`
 
-  This section provides information about the most recent
-  foreign key constraint error. It is not present if no such
-  error has occurred. The contents include the statement that
-  failed as well as information about the constraint that
-  failed and the referenced and referencing tables.
+  This section provides information about the most recent foreign key constraint error. It is not present if no such error has occurred. The contents include the statement that failed as well as information about the constraint that failed and the referenced and referencing tables.
 
 * `LATEST DETECTED DEADLOCK`
 
-  This section provides information about the most recent
-  deadlock. It is not present if no deadlock has occurred. The
-  contents show which transactions are involved, the statement
-  each was attempting to execute, the locks they have and
-  need, and which transaction `InnoDB`
-  decided to roll back to break the deadlock. The lock modes
-  reported in this section are explained in
-  [Section 17.7.1, “InnoDB Locking”](innodb-locking.html "17.7.1 InnoDB Locking").
+  This section provides information about the most recent deadlock. It is not present if no deadlock has occurred. The contents show which transactions are involved, the statement each was attempting to execute, the locks they have and need, and which transaction `InnoDB` decided to roll back to break the deadlock. The lock modes reported in this section are explained in Section 17.7.1, “InnoDB Locking”.
 
 * `TRANSACTIONS`
 
-  If this section reports lock waits, your applications might
-  have lock contention. The output can also help to trace the
-  reasons for transaction deadlocks.
+  If this section reports lock waits, your applications might have lock contention. The output can also help to trace the reasons for transaction deadlocks.
 
 * `FILE I/O`
 
-  This section provides information about threads that
-  `InnoDB` uses to perform various types of
-  I/O. The first few of these are dedicated to general
-  `InnoDB` processing. The contents also
-  display information for pending I/O operations and
-  statistics for I/O performance.
+  This section provides information about threads that `InnoDB` uses to perform various types of I/O. The first few of these are dedicated to general `InnoDB` processing. The contents also display information for pending I/O operations and statistics for I/O performance.
 
-  The number of these threads are controlled by the
-  [`innodb_read_io_threads`](innodb-parameters.html#sysvar_innodb_read_io_threads) and
-  [`innodb_write_io_threads`](innodb-parameters.html#sysvar_innodb_write_io_threads)
-  parameters. See [Section 17.14, “InnoDB Startup Options and System Variables”](innodb-parameters.html "17.14 InnoDB Startup Options and System Variables").
+  The number of these threads are controlled by the `innodb_read_io_threads` and `innodb_write_io_threads` parameters. See Section 17.14, “InnoDB Startup Options and System Variables”.
 
 * `INSERT BUFFER AND ADAPTIVE HASH INDEX`
 
-  This section shows the status of the
-  `InnoDB` insert buffer (also referred to as
-  the [change buffer](glossary.html#glos_change_buffer "change buffer"))
-  and the adaptive hash index.
+  This section shows the status of the `InnoDB` insert buffer (also referred to as the change buffer) and the adaptive hash index.
 
-  For related information, see
-  [Section 17.5.2, “Change Buffer”](innodb-change-buffer.html "17.5.2 Change Buffer"), and
-  [Section 17.5.3, “Adaptive Hash Index”](innodb-adaptive-hash.html "17.5.3 Adaptive Hash Index").
+  For related information, see Section 17.5.2, “Change Buffer”, and Section 17.5.3, “Adaptive Hash Index”.
 
 * `LOG`
 
-  This section displays information about the
-  `InnoDB` log. The contents include the
-  current log sequence number, how far the log has been
-  flushed to disk, and the position at which
-  `InnoDB` last took a checkpoint. (See
-  [Section 17.11.3, “InnoDB Checkpoints”](innodb-checkpoints.html "17.11.3 InnoDB Checkpoints").) The section also
-  displays information about pending writes and write
-  performance statistics.
+  This section displays information about the `InnoDB` log. The contents include the current log sequence number, how far the log has been flushed to disk, and the position at which `InnoDB` last took a checkpoint. (See Section 17.11.3, “InnoDB Checkpoints”.) The section also displays information about pending writes and write performance statistics.
 
 * `BUFFER POOL AND MEMORY`
 
-  This section gives you statistics on pages read and written.
-  You can calculate from these numbers how many data file I/O
-  operations your queries currently are doing.
+  This section gives you statistics on pages read and written. You can calculate from these numbers how many data file I/O operations your queries currently are doing.
 
-  For buffer pool statistics descriptions, see
-  [Monitoring the Buffer Pool Using the InnoDB Standard Monitor](innodb-buffer-pool.html#innodb-buffer-pool-monitoring "Monitoring the Buffer Pool Using the InnoDB Standard Monitor"). For
-  additional information about the operation of the buffer
-  pool, see [Section 17.5.1, “Buffer Pool”](innodb-buffer-pool.html "17.5.1 Buffer Pool").
+  For buffer pool statistics descriptions, see Monitoring the Buffer Pool Using the InnoDB Standard Monitor. For additional information about the operation of the buffer pool, see Section 17.5.1, “Buffer Pool”.
 
 * `ROW OPERATIONS`
 
-  This section shows what the main thread is doing, including
-  the number and performance rate for each type of row
-  operation.
+  This section shows what the main thread is doing, including the number and performance rate for each type of row operation.
