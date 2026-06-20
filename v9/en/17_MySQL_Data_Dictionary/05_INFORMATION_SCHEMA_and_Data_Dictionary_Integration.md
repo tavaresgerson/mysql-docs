@@ -1,4 +1,4 @@
-## 16.5 INFORMATION\_SCHEMA and Data Dictionary Integration
+## 16.5 INFORMATION_SCHEMA and Data Dictionary Integration
 
 With the introduction of the data dictionary, the following `INFORMATION_SCHEMA` tables are implemented as views on data dictionary tables:
 
@@ -52,6 +52,6 @@ In addition to the introduction of views on data dictionary tables, table statis
 
 `information_schema_stats_expiry` can be set to `0` to have `INFORMATION_SCHEMA` queries retrieve the latest statistics directly from the storage engine, which is not as fast as retrieving cached statistics.
 
-For more information, see Section 10.2.3, “Optimizing INFORMATION\_SCHEMA Queries”.
+For more information, see Section 10.2.3, “Optimizing INFORMATION_SCHEMA Queries”.
 
 `INFORMATION_SCHEMA` tables in MySQL 9.5 are closely tied to the data dictionary, resulting in several usage differences. See Section 16.7, “Data Dictionary Usage Differences”.

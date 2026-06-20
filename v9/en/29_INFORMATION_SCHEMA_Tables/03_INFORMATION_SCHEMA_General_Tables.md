@@ -1,18 +1,18 @@
-## 28.3 INFORMATION\_SCHEMA General Tables
+## 28.3 INFORMATION_SCHEMA General Tables
 
 The following sections describe what may be denoted as the “general” set of `INFORMATION_SCHEMA` tables. These are the tables not associated with particular storage engines, components, or plugins.
 
 
-### 28.3.1 INFORMATION\_SCHEMA General Table Reference
+### 28.3.1 INFORMATION_SCHEMA General Table Reference
 
 The following table summarizes `INFORMATION_SCHEMA` general tables. For greater detail, see the individual table descriptions.
 
-**Table 28.2 INFORMATION\_SCHEMA General Tables**
+**Table 28.2 INFORMATION_SCHEMA General Tables**
 
-<table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA general tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="information-schema-administrable-role-authorizations-table.html" title="28.3.2 The INFORMATION_SCHEMA ADMINISTRABLE_ROLE_AUTHORIZATIONS Table"><code class="literal">ADMINISTRABLE_ROLE_AUTHORIZATIONS</code></a></td> <td>Grantable users or roles for current user or role</td> </tr><tr><td><a class="link" href="information-schema-applicable-roles-table.html" title="28.3.3 The INFORMATION_SCHEMA APPLICABLE_ROLES Table"><code class="literal">APPLICABLE_ROLES</code></a></td> <td>Applicable roles for current user</td> </tr><tr><td><a class="link" href="information-schema-character-sets-table.html" title="28.3.4 The INFORMATION_SCHEMA CHARACTER_SETS Table"><code class="literal">CHARACTER_SETS</code></a></td> <td>Available character sets</td> </tr><tr><td><a class="link" href="information-schema-check-constraints-table.html" title="28.3.5 The INFORMATION_SCHEMA CHECK_CONSTRAINTS Table"><code class="literal">CHECK_CONSTRAINTS</code></a></td> <td>Table and column CHECK constraints</td> </tr><tr><td><a class="link" href="information-schema-collation-character-set-applicability-table.html" title="28.3.7 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table"><code class="literal">COLLATION_CHARACTER_SET_APPLICABILITY</code></a></td> <td>Character set applicable to each collation</td> </tr><tr><td><a class="link" href="information-schema-collations-table.html" title="28.3.6 The INFORMATION_SCHEMA COLLATIONS Table"><code class="literal">COLLATIONS</code></a></td> <td>Collations for each character set</td> </tr><tr><td><a class="link" href="information-schema-column-privileges-table.html" title="28.3.10 The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table"><code class="literal">COLUMN_PRIVILEGES</code></a></td> <td>Privileges defined on columns</td> </tr><tr><td><a class="link" href="information-schema-column-statistics-table.html" title="28.3.11 The INFORMATION_SCHEMA COLUMN_STATISTICS Table"><code class="literal">COLUMN_STATISTICS</code></a></td> <td>Histogram statistics for column values</td> </tr><tr><td><a class="link" href="information-schema-columns-table.html" title="28.3.8 The INFORMATION_SCHEMA COLUMNS Table"><code class="literal">COLUMNS</code></a></td> <td>Columns in each table</td> </tr><tr><td><a class="link" href="information-schema-columns-extensions-table.html" title="28.3.9 The INFORMATION_SCHEMA COLUMNS_EXTENSIONS Table"><code class="literal">COLUMNS_EXTENSIONS</code></a></td> <td>Column attributes for primary and secondary storage engines</td> </tr><tr><td><a class="link" href="information-schema-enabled-roles-table.html" title="28.3.12 The INFORMATION_SCHEMA ENABLED_ROLES Table"><code class="literal">ENABLED_ROLES</code></a></td> <td>Roles enabled within current session</td> </tr><tr><td><a class="link" href="information-schema-engines-table.html" title="28.3.13 The INFORMATION_SCHEMA ENGINES Table"><code class="literal">ENGINES</code></a></td> <td>Storage engine properties</td> </tr><tr><td><a class="link" href="information-schema-events-table.html" title="28.3.14 The INFORMATION_SCHEMA EVENTS Table"><code class="literal">EVENTS</code></a></td> <td>Event Manager events</td> </tr><tr><td><a class="link" href="information-schema-files-table.html" title="28.3.15 The INFORMATION_SCHEMA FILES Table"><code class="literal">FILES</code></a></td> <td>Files that store tablespace data</td> </tr><tr><td><a class="link" href="information-schema-key-column-usage-table.html" title="28.3.16 The INFORMATION_SCHEMA KEY_COLUMN_USAGE Table"><code class="literal">KEY_COLUMN_USAGE</code></a></td> <td>Which key columns have constraints</td> </tr><tr><td><a class="link" href="information-schema-keywords-table.html" title="28.3.17 The INFORMATION_SCHEMA KEYWORDS Table"><code class="literal">KEYWORDS</code></a></td> <td>MySQL keywords</td> </tr><tr><td><a class="link" href="information-schema-libraries-table.html" title="28.3.22 The INFORMATION_SCHEMA LIBRARIES Table"><code class="literal">LIBRARIES</code></a></td> <td>Information about JavaScript libraries</td> </tr><tr><td><a class="link" href="information-schema-ndb-transid-mysql-connection-map-table.html" title="28.3.23 The INFORMATION_SCHEMA ndb_transid_mysql_connection_map Table"><code class="literal">ndb_transid_mysql_connection_map</code></a></td> <td>NDB transaction information</td> </tr><tr><td><a class="link" href="information-schema-optimizer-trace-table.html" title="28.3.24 The INFORMATION_SCHEMA OPTIMIZER_TRACE Table"><code class="literal">OPTIMIZER_TRACE</code></a></td> <td>Information produced by optimizer trace activity</td> </tr><tr><td><a class="link" href="information-schema-parameters-table.html" title="28.3.25 The INFORMATION_SCHEMA PARAMETERS Table"><code class="literal">PARAMETERS</code></a></td> <td>Stored routine parameters and stored function return values</td> </tr><tr><td><a class="link" href="information-schema-partitions-table.html" title="28.3.26 The INFORMATION_SCHEMA PARTITIONS Table"><code class="literal">PARTITIONS</code></a></td> <td>Table partition information</td> </tr><tr><td><a class="link" href="information-schema-plugins-table.html" title="28.3.27 The INFORMATION_SCHEMA PLUGINS Table"><code class="literal">PLUGINS</code></a></td> <td>Plugin information</td> </tr><tr><td><a class="link" href="information-schema-processlist-table.html" title="28.3.28 The INFORMATION_SCHEMA PROCESSLIST Table"><code class="literal">PROCESSLIST</code></a></td> <td>Information about currently executing threads</td> </tr><tr><td><a class="link" href="information-schema-profiling-table.html" title="28.3.29 The INFORMATION_SCHEMA PROFILING Table"><code class="literal">PROFILING</code></a></td> <td>Statement profiling information</td> </tr><tr><td><a class="link" href="information-schema-referential-constraints-table.html" title="28.3.30 The INFORMATION_SCHEMA REFERENTIAL_CONSTRAINTS Table"><code class="literal">REFERENTIAL_CONSTRAINTS</code></a></td> <td>Foreign key information</td> </tr><tr><td><a class="link" href="information-schema-resource-groups-table.html" title="28.3.31 The INFORMATION_SCHEMA RESOURCE_GROUPS Table"><code class="literal">RESOURCE_GROUPS</code></a></td> <td>Resource group information</td> </tr><tr><td><a class="link" href="information-schema-role-column-grants-table.html" title="28.3.32 The INFORMATION_SCHEMA ROLE_COLUMN_GRANTS Table"><code class="literal">ROLE_COLUMN_GRANTS</code></a></td> <td>Column privileges for roles available to or granted by currently enabled roles</td> </tr><tr><td><a class="link" href="information-schema-role-routine-grants-table.html" title="28.3.33 The INFORMATION_SCHEMA ROLE_ROUTINE_GRANTS Table"><code class="literal">ROLE_ROUTINE_GRANTS</code></a></td> <td>Routine privileges for roles available to or granted by currently enabled roles</td> </tr><tr><td><a class="link" href="information-schema-role-table-grants-table.html" title="28.3.34 The INFORMATION_SCHEMA ROLE_TABLE_GRANTS Table"><code class="literal">ROLE_TABLE_GRANTS</code></a></td> <td>Table privileges for roles available to or granted by currently enabled roles</td> </tr><tr><td><a class="link" href="information-schema-routine-libraries-table.html" title="28.3.35 The INFORMATION_SCHEMA ROUTINE_LIBRARIES Table"><code class="literal">ROUTINE_LIBRARIES</code></a></td> <td>Information about libraries used in JavaScript stored routines</td> </tr><tr><td><a class="link" href="information-schema-routines-table.html" title="28.3.36 The INFORMATION_SCHEMA ROUTINES Table"><code class="literal">ROUTINES</code></a></td> <td>Stored routine information</td> </tr><tr><td><a class="link" href="information-schema-schema-privileges-table.html" title="28.3.39 The INFORMATION_SCHEMA SCHEMA_PRIVILEGES Table"><code class="literal">SCHEMA_PRIVILEGES</code></a></td> <td>Privileges defined on schemas</td> </tr><tr><td><a class="link" href="information-schema-schemata-table.html" title="28.3.37 The INFORMATION_SCHEMA SCHEMATA Table"><code class="literal">SCHEMATA</code></a></td> <td>Schema information</td> </tr><tr><td><a class="link" href="information-schema-schemata-extensions-table.html" title="28.3.38 The INFORMATION_SCHEMA SCHEMATA_EXTENSIONS Table"><code class="literal">SCHEMATA_EXTENSIONS</code></a></td> <td>Schema options</td> </tr><tr><td><a class="link" href="information-schema-st-geometry-columns-table.html" title="28.3.41 The INFORMATION_SCHEMA ST_GEOMETRY_COLUMNS Table"><code class="literal">ST_GEOMETRY_COLUMNS</code></a></td> <td>Columns in each table that store spatial data</td> </tr><tr><td><a class="link" href="information-schema-st-spatial-reference-systems-table.html" title="28.3.42 The INFORMATION_SCHEMA ST_SPATIAL_REFERENCE_SYSTEMS Table"><code class="literal">ST_SPATIAL_REFERENCE_SYSTEMS</code></a></td> <td>Available spatial reference systems</td> </tr><tr><td><a class="link" href="information-schema-st-units-of-measure-table.html" title="28.3.43 The INFORMATION_SCHEMA ST_UNITS_OF_MEASURE Table"><code class="literal">ST_UNITS_OF_MEASURE</code></a></td> <td>Acceptable units for ST_Distance()</td> </tr><tr><td><a class="link" href="information-schema-statistics-table.html" title="28.3.40 The INFORMATION_SCHEMA STATISTICS Table"><code class="literal">STATISTICS</code></a></td> <td>Table index statistics</td> </tr><tr><td><a class="link" href="information-schema-table-constraints-table.html" title="28.3.47 The INFORMATION_SCHEMA TABLE_CONSTRAINTS Table"><code class="literal">TABLE_CONSTRAINTS</code></a></td> <td>Which tables have constraints</td> </tr><tr><td><a class="link" href="information-schema-table-constraints-extensions-table.html" title="28.3.48 The INFORMATION_SCHEMA TABLE_CONSTRAINTS_EXTENSIONS Table"><code class="literal">TABLE_CONSTRAINTS_EXTENSIONS</code></a></td> <td>Table constraint attributes for primary and secondary storage engines</td> </tr><tr><td><a class="link" href="information-schema-table-privileges-table.html" title="28.3.49 The INFORMATION_SCHEMA TABLE_PRIVILEGES Table"><code class="literal">TABLE_PRIVILEGES</code></a></td> <td>Privileges defined on tables</td> </tr><tr><td><a class="link" href="information-schema-tables-table.html" title="28.3.44 The INFORMATION_SCHEMA TABLES Table"><code class="literal">TABLES</code></a></td> <td>Table information</td> </tr><tr><td><a class="link" href="information-schema-tables-extensions-table.html" title="28.3.45 The INFORMATION_SCHEMA TABLES_EXTENSIONS Table"><code class="literal">TABLES_EXTENSIONS</code></a></td> <td>Table attributes for primary and secondary storage engines</td> </tr><tr><td><a class="link" href="information-schema-tablespaces-extensions-table.html" title="28.3.46 The INFORMATION_SCHEMA TABLESPACES_EXTENSIONS Table"><code class="literal">TABLESPACES_EXTENSIONS</code></a></td> <td>Tablespace attributes for primary storage engines</td> </tr><tr><td><a class="link" href="information-schema-triggers-table.html" title="28.3.50 The INFORMATION_SCHEMA TRIGGERS Table"><code class="literal">TRIGGERS</code></a></td> <td>Trigger information</td> </tr><tr><td><a class="link" href="information-schema-user-attributes-table.html" title="28.3.51 The INFORMATION_SCHEMA USER_ATTRIBUTES Table"><code class="literal">USER_ATTRIBUTES</code></a></td> <td>User comments and attributes</td> </tr><tr><td><a class="link" href="information-schema-user-privileges-table.html" title="28.3.52 The INFORMATION_SCHEMA USER_PRIVILEGES Table"><code class="literal">USER_PRIVILEGES</code></a></td> <td>Privileges defined globally per user</td> </tr><tr><td><a class="link" href="information-schema-view-routine-usage-table.html" title="28.3.54 The INFORMATION_SCHEMA VIEW_ROUTINE_USAGE Table"><code class="literal">VIEW_ROUTINE_USAGE</code></a></td> <td>Stored functions used in views</td> </tr><tr><td><a class="link" href="information-schema-view-table-usage-table.html" title="28.3.55 The INFORMATION_SCHEMA VIEW_TABLE_USAGE Table"><code class="literal">VIEW_TABLE_USAGE</code></a></td> <td>Tables and views used in views</td> </tr><tr><td><a class="link" href="information-schema-views-table.html" title="28.3.53 The INFORMATION_SCHEMA VIEWS Table"><code class="literal">VIEWS</code></a></td> <td>View information</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA general tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>ADMINISTRABLE_ROLE_AUTHORIZATIONS</code></td> <td>Grantable users or roles for current user or role</td> </tr><tr><td><code>APPLICABLE_ROLES</code></td> <td>Applicable roles for current user</td> </tr><tr><td><code>CHARACTER_SETS</code></td> <td>Available character sets</td> </tr><tr><td><code>CHECK_CONSTRAINTS</code></td> <td>Table and column CHECK constraints</td> </tr><tr><td><code>COLLATION_CHARACTER_SET_APPLICABILITY</code></td> <td>Character set applicable to each collation</td> </tr><tr><td><code>COLLATIONS</code></td> <td>Collations for each character set</td> </tr><tr><td><code>COLUMN_PRIVILEGES</code></td> <td>Privileges defined on columns</td> </tr><tr><td><code>COLUMN_STATISTICS</code></td> <td>Histogram statistics for column values</td> </tr><tr><td><code>COLUMNS</code></td> <td>Columns in each table</td> </tr><tr><td><code>COLUMNS_EXTENSIONS</code></td> <td>Column attributes for primary and secondary storage engines</td> </tr><tr><td><code>ENABLED_ROLES</code></td> <td>Roles enabled within current session</td> </tr><tr><td><code>ENGINES</code></td> <td>Storage engine properties</td> </tr><tr><td><code>EVENTS</code></td> <td>Event Manager events</td> </tr><tr><td><code>FILES</code></td> <td>Files that store tablespace data</td> </tr><tr><td><code>KEY_COLUMN_USAGE</code></td> <td>Which key columns have constraints</td> </tr><tr><td><code>KEYWORDS</code></td> <td>MySQL keywords</td> </tr><tr><td><code>LIBRARIES</code></td> <td>Information about JavaScript libraries</td> </tr><tr><td><code>ndb_transid_mysql_connection_map</code></td> <td>NDB transaction information</td> </tr><tr><td><code>OPTIMIZER_TRACE</code></td> <td>Information produced by optimizer trace activity</td> </tr><tr><td><code>PARAMETERS</code></td> <td>Stored routine parameters and stored function return values</td> </tr><tr><td><code>PARTITIONS</code></td> <td>Table partition information</td> </tr><tr><td><code>PLUGINS</code></td> <td>Plugin information</td> </tr><tr><td><code>PROCESSLIST</code></td> <td>Information about currently executing threads</td> </tr><tr><td><code>PROFILING</code></td> <td>Statement profiling information</td> </tr><tr><td><code>REFERENTIAL_CONSTRAINTS</code></td> <td>Foreign key information</td> </tr><tr><td><code>RESOURCE_GROUPS</code></td> <td>Resource group information</td> </tr><tr><td><code>ROLE_COLUMN_GRANTS</code></td> <td>Column privileges for roles available to or granted by currently enabled roles</td> </tr><tr><td><code>ROLE_ROUTINE_GRANTS</code></td> <td>Routine privileges for roles available to or granted by currently enabled roles</td> </tr><tr><td><code>ROLE_TABLE_GRANTS</code></td> <td>Table privileges for roles available to or granted by currently enabled roles</td> </tr><tr><td><code>ROUTINE_LIBRARIES</code></td> <td>Information about libraries used in JavaScript stored routines</td> </tr><tr><td><code>ROUTINES</code></td> <td>Stored routine information</td> </tr><tr><td><code>SCHEMA_PRIVILEGES</code></td> <td>Privileges defined on schemas</td> </tr><tr><td><code>SCHEMATA</code></td> <td>Schema information</td> </tr><tr><td><code>SCHEMATA_EXTENSIONS</code></td> <td>Schema options</td> </tr><tr><td><code>ST_GEOMETRY_COLUMNS</code></td> <td>Columns in each table that store spatial data</td> </tr><tr><td><code>ST_SPATIAL_REFERENCE_SYSTEMS</code></td> <td>Available spatial reference systems</td> </tr><tr><td><code>ST_UNITS_OF_MEASURE</code></td> <td>Acceptable units for ST_Distance()</td> </tr><tr><td><code>STATISTICS</code></td> <td>Table index statistics</td> </tr><tr><td><code>TABLE_CONSTRAINTS</code></td> <td>Which tables have constraints</td> </tr><tr><td><code>TABLE_CONSTRAINTS_EXTENSIONS</code></td> <td>Table constraint attributes for primary and secondary storage engines</td> </tr><tr><td><code>TABLE_PRIVILEGES</code></td> <td>Privileges defined on tables</td> </tr><tr><td><code>TABLES</code></td> <td>Table information</td> </tr><tr><td><code>TABLES_EXTENSIONS</code></td> <td>Table attributes for primary and secondary storage engines</td> </tr><tr><td><code>TABLESPACES_EXTENSIONS</code></td> <td>Tablespace attributes for primary storage engines</td> </tr><tr><td><code>TRIGGERS</code></td> <td>Trigger information</td> </tr><tr><td><code>USER_ATTRIBUTES</code></td> <td>User comments and attributes</td> </tr><tr><td><code>USER_PRIVILEGES</code></td> <td>Privileges defined globally per user</td> </tr><tr><td><code>VIEW_ROUTINE_USAGE</code></td> <td>Stored functions used in views</td> </tr><tr><td><code>VIEW_TABLE_USAGE</code></td> <td>Tables and views used in views</td> </tr><tr><td><code>VIEWS</code></td> <td>View information</td> </tr></tbody></table>
 
 
-### 28.3.2 The INFORMATION\_SCHEMA ADMINISTRABLE\_ROLE\_AUTHORIZATIONS Table
+### 28.3.2 The INFORMATION_SCHEMA ADMINISTRABLE_ROLE_AUTHORIZATIONS Table
 
 The `ADMINISTRABLE_ROLE_AUTHORIZATIONS` table provides information about which roles applicable for the current user or role can be granted to other users or roles.
 
@@ -55,7 +55,7 @@ The `ADMINISTRABLE_ROLE_AUTHORIZATIONS` table has these columns:
   `YES` or `NO`, depending on whether the role is mandatory.
 
 
-### 28.3.3 The INFORMATION\_SCHEMA APPLICABLE\_ROLES Table
+### 28.3.3 The INFORMATION_SCHEMA APPLICABLE_ROLES Table
 
 The `APPLICABLE_ROLES` table provides information about the roles that are applicable for the current user.
 
@@ -98,7 +98,7 @@ The `APPLICABLE_ROLES` table has these columns:
   `YES` or `NO`, depending on whether the role is mandatory.
 
 
-### 28.3.4 The INFORMATION\_SCHEMA CHARACTER\_SETS Table
+### 28.3.4 The INFORMATION_SCHEMA CHARACTER_SETS Table
 
 The `CHARACTER_SETS` table provides information about available character sets.
 
@@ -133,7 +133,7 @@ SHOW CHARACTER SET
 ```
 
 
-### 28.3.5 The INFORMATION\_SCHEMA CHECK\_CONSTRAINTS Table
+### 28.3.5 The INFORMATION_SCHEMA CHECK_CONSTRAINTS Table
 
 `CREATE TABLE` supports the core features of table and column `CHECK` constraints; the `CHECK_CONSTRAINTS` table provides information about these constraints.
 
@@ -156,7 +156,7 @@ The `CHECK_CONSTRAINTS` table has these columns:
   The expression that specifies the constraint condition.
 
 
-### 28.3.6 The INFORMATION\_SCHEMA COLLATIONS Table
+### 28.3.6 The INFORMATION_SCHEMA COLLATIONS Table
 
 The `COLLATIONS` table provides information about collations for each character set.
 
@@ -203,7 +203,7 @@ SHOW COLLATION
 ```
 
 
-### 28.3.7 The INFORMATION\_SCHEMA COLLATION\_CHARACTER\_SET\_APPLICABILITY Table
+### 28.3.7 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table
 
 The `COLLATION_CHARACTER_SET_APPLICABILITY` table indicates what character set is applicable for what collation.
 
@@ -222,9 +222,9 @@ The `COLLATION_CHARACTER_SET_APPLICABILITY` table has these columns:
 The `COLLATION_CHARACTER_SET_APPLICABILITY` columns are equivalent to the first two columns displayed by the `SHOW COLLATION` statement.
 
 
-### 28.3.8 The INFORMATION\_SCHEMA COLUMNS Table
+### 28.3.8 The INFORMATION_SCHEMA COLUMNS Table
 
-The `COLUMNS` table provides information about columns in tables. The related `ST_GEOMETRY_COLUMNS` table provides information about table columns that store spatial data. See Section 28.3.41, “The INFORMATION\_SCHEMA ST\_GEOMETRY\_COLUMNS Table”.
+The `COLUMNS` table provides information about columns in tables. The related `ST_GEOMETRY_COLUMNS` table provides information about table columns that store spatial data. See Section 28.3.41, “The INFORMATION_SCHEMA ST_GEOMETRY_COLUMNS Table”.
 
 The `COLUMNS` table has these columns:
 
@@ -366,7 +366,7 @@ SHOW COLUMNS
 Information about generated invisible primary key columns is visible in this table by default. You can cause such information to be hidden by setting [`show_gipk_in_create_table_and_information_schema = OFF`](server-system-variables.html#sysvar_show_gipk_in_create_table_and_information_schema). For more information, see Section 15.1.24.11, “Generated Invisible Primary Keys”.
 
 
-### 28.3.9 The INFORMATION\_SCHEMA COLUMNS\_EXTENSIONS Table
+### 28.3.9 The INFORMATION_SCHEMA COLUMNS_EXTENSIONS Table
 
 The `COLUMNS_EXTENSIONS` table provides information about column attributes defined for primary and secondary storage engines.
 
@@ -401,7 +401,7 @@ The `COLUMNS_EXTENSIONS` table has these columns:
   Column attributes defined for the secondary storage engine. Reserved for future use.
 
 
-### 28.3.10 The INFORMATION\_SCHEMA COLUMN\_PRIVILEGES Table
+### 28.3.10 The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table
 
 The `COLUMN_PRIVILEGES` table provides information about column privileges. It takes its values from the `mysql.columns_priv` system table.
 
@@ -450,7 +450,7 @@ SHOW GRANTS ...
 ```
 
 
-### 28.3.11 The INFORMATION\_SCHEMA COLUMN\_STATISTICS Table
+### 28.3.11 The INFORMATION_SCHEMA COLUMN_STATISTICS Table
 
 The `COLUMN_STATISTICS` table provides access to histogram statistics for column values.
 
@@ -477,7 +477,7 @@ The `COLUMN_STATISTICS` table has these columns:
   A `JSON` object describing the column statistics, stored as a histogram.
 
 
-### 28.3.12 The INFORMATION\_SCHEMA ENABLED\_ROLES Table
+### 28.3.12 The INFORMATION_SCHEMA ENABLED_ROLES Table
 
 The `ENABLED_ROLES` table provides information about the roles that are enabled within the current session.
 
@@ -500,7 +500,7 @@ The `ENABLED_ROLES` table has these columns:
   `YES` or `NO`, depending on whether the role is mandatory.
 
 
-### 28.3.13 The INFORMATION\_SCHEMA ENGINES Table
+### 28.3.13 The INFORMATION_SCHEMA ENGINES Table
 
 The `ENGINES` table provides information about storage engines. This is particularly useful for checking whether a storage engine is supported, or to see what the default engine is.
 
@@ -514,7 +514,7 @@ The `ENGINES` table has these columns:
 
   The server's level of support for the storage engine, as shown in the following table.
 
-  <table summary="Values for the SUPPORT column in the INFORMATION_SCHEMA.ENGINES table."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Value</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code class="literal">YES</code></td> <td>The engine is supported and is active</td> </tr><tr> <td><code class="literal">DEFAULT</code></td> <td>Like <code class="literal">YES</code>, plus this is the default engine</td> </tr><tr> <td><code class="literal">NO</code></td> <td>The engine is not supported</td> </tr><tr> <td><code class="literal">DISABLED</code></td> <td>The engine is supported but has been disabled</td> </tr></tbody></table>
+  <table summary="Values for the SUPPORT column in the INFORMATION_SCHEMA.ENGINES table."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Value</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code>YES</code></td> <td>The engine is supported and is active</td> </tr><tr> <td><code>DEFAULT</code></td> <td>Like <code>YES</code>, plus this is the default engine</td> </tr><tr> <td><code>NO</code></td> <td>The engine is not supported</td> </tr><tr> <td><code>DISABLED</code></td> <td>The engine is supported but has been disabled</td> </tr></tbody></table>
 
   A value of `NO` means that the server was compiled without support for the engine, so it cannot be enabled at runtime.
 
@@ -553,7 +553,7 @@ SHOW ENGINES
 ```
 
 
-### 28.3.14 The INFORMATION\_SCHEMA EVENTS Table
+### 28.3.14 The INFORMATION_SCHEMA EVENTS Table
 
 The `EVENTS` table provides information about Event Manager events, which are discussed in Section 27.5, “Using the Event Scheduler”.
 
@@ -751,7 +751,7 @@ SHOW EVENTS
 ```
 
 
-### 28.3.15 The INFORMATION\_SCHEMA FILES Table
+### 28.3.15 The INFORMATION_SCHEMA FILES Table
 
 The `FILES` table provides information about the files in which MySQL tablespace data is stored.
 
@@ -1004,7 +1004,7 @@ The following notes apply to `InnoDB` data files.
 
 #### NDB Notes
 
-* The `FILES` table provides information about Disk Data *files* only; you cannot use it for determining disk space allocation or availability for individual `NDB` tables. However, it is possible to see how much space is allocated for each `NDB` table having data stored on disk—as well as how much remains available for storage of data on disk for that table—using **ndb\_desc**.
+* The `FILES` table provides information about Disk Data *files* only; you cannot use it for determining disk space allocation or availability for individual `NDB` tables. However, it is possible to see how much space is allocated for each `NDB` table having data stored on disk—as well as how much remains available for storage of data on disk for that table—using **ndb_desc**.
 
 * Much of the information contained in the `FILES` table can also be found in the `ndbinfo` `files` table.
 
@@ -1042,12 +1042,12 @@ The following notes apply to `InnoDB` data files.
 
   The extent size can be set in a [`CREATE TABLESPACE`](create-tablespace.html "15.1.25 CREATE TABLESPACE Statement") statement. For more information, see Section 15.1.25, “CREATE TABLESPACE Statement”.
 
-* You can obtain information about Disk Data tablespaces using the **ndb\_desc** utility. For more information, see Section 25.6.11.1, “NDB Cluster Disk Data Objects”, as well as the description of **ndb\_desc**.
+* You can obtain information about Disk Data tablespaces using the **ndb_desc** utility. For more information, see Section 25.6.11.1, “NDB Cluster Disk Data Objects”, as well as the description of **ndb_desc**.
 
 * For additional information, and examples of creating, dropping, and obtaining information about NDB Cluster Disk Data objects, see Section 25.6.11, “NDB Cluster Disk Data Tables”.
 
 
-### 28.3.16 The INFORMATION\_SCHEMA KEY\_COLUMN\_USAGE Table
+### 28.3.16 The INFORMATION_SCHEMA KEY_COLUMN_USAGE Table
 
 The `KEY_COLUMN_USAGE` table describes which key columns have constraints. This table provides no information about functional key parts because they are expressions and the table provides information only about columns.
 
@@ -1133,7 +1133,7 @@ For those two tables, the `KEY_COLUMN_USAGE` table has two rows:
 * One row with `CONSTRAINT_NAME` = `'CO'`, `TABLE_NAME` = `'t3'`, `COLUMN_NAME` = `'s2'`, `ORDINAL_POSITION` = `1`, `POSITION_IN_UNIQUE_CONSTRAINT` = `1`.
 
 
-### 28.3.17 The INFORMATION\_SCHEMA KEYWORDS Table
+### 28.3.17 The INFORMATION_SCHEMA KEYWORDS Table
 
 The `KEYWORDS` table lists the words considered keywords by MySQL and, for each one, indicates whether it is reserved. Reserved keywords may require special treatment in some contexts, such as special quoting when used as identifiers (see Section 11.3, “Keywords and Reserved Words”). This table provides applications a runtime source of MySQL keyword information.
 
@@ -1165,7 +1165,7 @@ SELECT WORD FROM INFORMATION_SCHEMA.KEYWORDS WHERE NOT RESERVED;
 If you build MySQL from source, the build process generates a `keyword_list.h` header file containing an array of keywords and their reserved status. This file can be found in the `sql` directory under the build directory. This file may be useful for applications that require a static source for the keyword list.
 
 
-### 28.3.18 The INFORMATION SCHEMA JSON\_DUALITY\_VIEWS Table
+### 28.3.18 The INFORMATION SCHEMA JSON_DUALITY_VIEWS Table
 
 The `JSON_DUALITY_VIEWS` table provides information about JSON duality views accessible by the current user. There is one row in this table for each such view.
 
@@ -1230,7 +1230,7 @@ The `JSON_DUALITY_VIEWS` table contains the columns listed here:
 The root table name and other information are shown only if the user has some type of privilege on the root table; the user must also have `SHOW VIEW` and `SELECT` privileges on the view.
 
 
-### 28.3.19 The INFORMATION SCHEMA JSON\_DUALITY\_VIEW\_COLUMNS Table
+### 28.3.19 The INFORMATION SCHEMA JSON_DUALITY_VIEW_COLUMNS Table
 
 The `JSON_DUALITY_VIEW_COLUMNS` table shows information about all columns referenced by any JSON duality view which is accessible by the current user. There is one row per table reference.
 
@@ -1293,7 +1293,7 @@ The `JSON_DUALITY_VIEW_COLUMNS` table has the following columns:
   `1` if insert, update, or delete are not allowed, otherwise `0`. (In other words, this is `1` only when `ALLOW_INSERT`, `ALLOW_UPDATE`, and `ALLOW_DELETE` are all `0`.)
 
 
-### 28.3.20 The INFORMATION SCHEMA JSON\_DUALITY\_VIEW\_LINKS Table
+### 28.3.20 The INFORMATION SCHEMA JSON_DUALITY_VIEW_LINKS Table
 
 The `JSON_DUALITY_VIEW_LINKS` table shows information about the relationships between parent and child tables for all views accessible by the current user. There is one row per view.
 
@@ -1352,7 +1352,7 @@ The `JSON_DUALITY_VIEW_LINKS` table has the columns shown here:
   Name of the applicable JSON key, if any.
 
 
-### 28.3.21 The INFORMATION SCHEMA JSON\_DUALITY\_VIEW\_TABLES Table
+### 28.3.21 The INFORMATION SCHEMA JSON_DUALITY_VIEW_TABLES Table
 
 The `JSON_DUALITY_VIEW_TABLES` table shows information about all tables referenced by any JSON duality view which is accessible by the current user. This table contains one row per table reference.
 
@@ -1419,7 +1419,7 @@ The `JSON_DUALITY_VIEW_TABLES` table has the columns listed here:
   One of `nested` (arrays) or `singleton` (otherwise).
 
 
-### 28.3.22 The INFORMATION\_SCHEMA LIBRARIES Table
+### 28.3.22 The INFORMATION_SCHEMA LIBRARIES Table
 
 The `LIBRARIES` table contains information about JavaScript and WebAssembly libraries known to the MLE JavaScript component (see Section 7.5.7, “Multilingual Engine Component (MLE)”")).
 
@@ -1520,11 +1520,11 @@ NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
 ```
 
 
-### 28.3.23 The INFORMATION\_SCHEMA ndb\_transid\_mysql\_connection\_map Table
+### 28.3.23 The INFORMATION_SCHEMA ndb_transid_mysql_connection_map Table
 
 The `ndb_transid_mysql_connection_map` table provides a mapping between `NDB` transactions, `NDB` transaction coordinators, and MySQL Servers attached to an NDB Cluster as API nodes. This information is used when populating the `server_operations` and `server_transactions` tables of the `ndbinfo` NDB Cluster information database.
 
-<table summary="Columns in the INFORMATION_SCHEMA ndb_transid_mysql_connection_map table. The table lists INFORMATION_SCHEMA names along with corresponding SHOW names (if applicable), and remarks."><col style="width: 40%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th scope="col"><code class="literal">INFORMATION_SCHEMA</code> Name</th> <th scope="col"><code class="literal">SHOW</code> Name</th> <th scope="col">Remarks</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">mysql_connection_id</code></th> <td></td> <td>MySQL Server connection ID</td> </tr><tr> <th scope="row"><code class="literal">node_id</code></th> <td></td> <td>Transaction coordinator node ID</td> </tr><tr> <th scope="row"><code class="literal">ndb_transid</code></th> <td></td> <td><a class="link" href="mysql-cluster.html" title="Chapter 25 MySQL NDB Cluster 9.5"><code class="literal">NDB</code></a> transaction ID</td> </tr></tbody></table>
+<table summary="Columns in the INFORMATION_SCHEMA ndb_transid_mysql_connection_map table. The table lists INFORMATION_SCHEMA names along with corresponding SHOW names (if applicable), and remarks."><col style="width: 40%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th scope="col"><code>INFORMATION_SCHEMA</code> Name</th> <th scope="col"><code>SHOW</code> Name</th> <th scope="col">Remarks</th> </tr></thead><tbody><tr> <th scope="row"><code>mysql_connection_id</code></th> <td></td> <td>MySQL Server connection ID</td> </tr><tr> <th scope="row"><code>node_id</code></th> <td></td> <td>Transaction coordinator node ID</td> </tr><tr> <th scope="row"><code>ndb_transid</code></th> <td></td> <td><code>NDB</code> transaction ID</td> </tr></tbody></table>
 
 The `mysql_connection_id` is the same as the connection or session ID shown in the output of `SHOW PROCESSLIST`.
 
@@ -1574,7 +1574,7 @@ Although the names of this table and its columns are displayed using lowercase, 
 For this table to be created, the MySQL Server must be a binary supplied with the NDB Cluster distribution, or one built from the NDB Cluster sources with `NDB` storage engine support enabled. It is not available in the standard MySQL 9.5 Server.
 
 
-### 28.3.24 The INFORMATION\_SCHEMA OPTIMIZER\_TRACE Table
+### 28.3.24 The INFORMATION_SCHEMA OPTIMIZER_TRACE Table
 
 The `OPTIMIZER_TRACE` table provides information produced by the optimizer tracing capability for traced statements. To enable tracking, use the `optimizer_trace` system variable. For details, see Section 10.15, “Tracing the Optimizer”.
 
@@ -1597,7 +1597,7 @@ The `OPTIMIZER_TRACE` table has these columns:
   If a traced query uses views or stored routines that have `SQL SECURITY` with a value of `DEFINER`, it may be that a user other than the definer is denied from seeing the trace of the query. In that case, the trace is shown as empty and `INSUFFICIENT_PRIVILEGES` has a value of 1. Otherwise, the value is 0.
 
 
-### 28.3.25 The INFORMATION\_SCHEMA PARAMETERS Table
+### 28.3.25 The INFORMATION_SCHEMA PARAMETERS Table
 
 The `PARAMETERS` table provides information about parameters for stored routines (stored procedures and stored functions), and about return values for stored functions. The `PARAMETERS` table does not include built-in (native) functions or loadable functions.
 
@@ -1675,7 +1675,7 @@ The `PARAMETERS` table has these columns:
   `PROCEDURE` for stored procedures, `FUNCTION` for stored functions.
 
 
-### 28.3.26 The INFORMATION\_SCHEMA PARTITIONS Table
+### 28.3.26 The INFORMATION_SCHEMA PARTITIONS Table
 
 The `PARTITIONS` table provides information about table partitions. Each row in this table corresponds to an individual partition or subpartition of a partitioned table. For more information about partitioning tables, see Chapter 26, *Partitioning*.
 
@@ -1768,37 +1768,37 @@ The `PARTITIONS` table has these columns:
 
   For partitioned `InnoDB` tables, the row count given in the `TABLE_ROWS` column is only an estimated value used in SQL optimization, and may not always be exact.
 
-  For `NDB` tables, you can also obtain this information using the **ndb\_desc** utility.
+  For `NDB` tables, you can also obtain this information using the **ndb_desc** utility.
 
 * `AVG_ROW_LENGTH`
 
   The average length of the rows stored in this partition or subpartition, in bytes. This is the same as `DATA_LENGTH` divided by `TABLE_ROWS`.
 
-  For `NDB` tables, you can also obtain this information using the **ndb\_desc** utility.
+  For `NDB` tables, you can also obtain this information using the **ndb_desc** utility.
 
 * `DATA_LENGTH`
 
   The total length of all rows stored in this partition or subpartition, in bytes; that is, the total number of bytes stored in the partition or subpartition.
 
-  For `NDB` tables, you can also obtain this information using the **ndb\_desc** utility.
+  For `NDB` tables, you can also obtain this information using the **ndb_desc** utility.
 
 * `MAX_DATA_LENGTH`
 
   The maximum number of bytes that can be stored in this partition or subpartition.
 
-  For `NDB` tables, you can also obtain this information using the **ndb\_desc** utility.
+  For `NDB` tables, you can also obtain this information using the **ndb_desc** utility.
 
 * `INDEX_LENGTH`
 
   The length of the index file for this partition or subpartition, in bytes.
 
-  For partitions of `NDB` tables, whether the tables use implicit or explicit partitioning, the `INDEX_LENGTH` column value is always 0. However, you can obtain equivalent information using the **ndb\_desc** utility.
+  For partitions of `NDB` tables, whether the tables use implicit or explicit partitioning, the `INDEX_LENGTH` column value is always 0. However, you can obtain equivalent information using the **ndb_desc** utility.
 
 * `DATA_FREE`
 
   The number of bytes allocated to the partition or subpartition but not used.
 
-  For `NDB` tables, you can also obtain this information using the **ndb\_desc** utility.
+  For `NDB` tables, you can also obtain this information using the **ndb_desc** utility.
 
 * `CREATE_TIME`
 
@@ -1849,7 +1849,7 @@ The `PARTITIONS` table has these columns:
   + The `PARTITION_COMMENT` column is empty.
 
 
-### 28.3.27 The INFORMATION\_SCHEMA PLUGINS Table
+### 28.3.27 The INFORMATION_SCHEMA PLUGINS Table
 
 The `PLUGINS` table provides information about server plugins.
 
@@ -1919,7 +1919,7 @@ SHOW PLUGINS;
 ```
 
 
-### 28.3.28 The INFORMATION\_SCHEMA PROCESSLIST Table
+### 28.3.28 The INFORMATION_SCHEMA PROCESSLIST Table
 
 Important
 
@@ -1986,7 +1986,7 @@ SHOW FULL PROCESSLIST
 You can obtain information about use of this table by checking the values of the server status variables `Deprecated_use_i_s_processlist_count` and `Deprecated_use_i_s_processlist_last_timestamp`. `Deprecated_use_i_s_processlist_count` shows the number of times the `PROCESSLIST` table has been accessed since the last server restart; `Deprecated_use_i_s_processlist_last_timestamp` provides the last time the table was accessed, as a Unix timestamp.
 
 
-### 28.3.29 The INFORMATION\_SCHEMA PROFILING Table
+### 28.3.29 The INFORMATION_SCHEMA PROFILING Table
 
 The `PROFILING` table provides statement profiling information. Its contents correspond to the information produced by the [`SHOW PROFILE`](show-profile.html "15.7.7.33 SHOW PROFILE Statement") and `SHOW PROFILES` statements (see Section 15.7.7.33, “SHOW PROFILE Statement”). The table is empty unless the `profiling` session variable is set to 1.
 
@@ -2055,7 +2055,7 @@ WHERE QUERY_ID = 2 ORDER BY SEQ;
 ```
 
 
-### 28.3.30 The INFORMATION\_SCHEMA REFERENTIAL\_CONSTRAINTS Table
+### 28.3.30 The INFORMATION_SCHEMA REFERENTIAL_CONSTRAINTS Table
 
 The `REFERENTIAL_CONSTRAINTS` table provides information about foreign keys.
 
@@ -2106,7 +2106,7 @@ The `REFERENTIAL_CONSTRAINTS` table has these columns:
   The name of the table referenced by the constraint.
 
 
-### 28.3.31 The INFORMATION\_SCHEMA RESOURCE\_GROUPS Table
+### 28.3.31 The INFORMATION_SCHEMA RESOURCE_GROUPS Table
 
 The `RESOURCE_GROUPS` table provides access to information about resource groups. For general discussion of the resource group capability, see Section 7.1.16, “Resource Groups”.
 
@@ -2135,7 +2135,7 @@ The `RESOURCE_GROUPS` table has these columns:
   The priority for threads assigned to the resource group. The priority ranges from -20 (highest priority) to 19 (lowest priority). System resource groups have a priority that ranges from -20 to 0. User resource groups have a priority that ranges from 0 to 19.
 
 
-### 28.3.32 The INFORMATION\_SCHEMA ROLE\_COLUMN\_GRANTS Table
+### 28.3.32 The INFORMATION_SCHEMA ROLE_COLUMN_GRANTS Table
 
 The `ROLE_COLUMN_GRANTS` table provides information about the column privileges for roles that are available to or granted by the currently enabled roles.
 
@@ -2182,7 +2182,7 @@ The `ROLE_COLUMN_GRANTS` table has these columns:
   `YES` or `NO`, depending on whether the role is grantable to other accounts.
 
 
-### 28.3.33 The INFORMATION\_SCHEMA ROLE\_ROUTINE\_GRANTS Table
+### 28.3.33 The INFORMATION_SCHEMA ROLE_ROUTINE_GRANTS Table
 
 The `ROLE_ROUTINE_GRANTS` table provides information about the routine privileges for roles that are available to or granted by the currently enabled roles.
 
@@ -2237,7 +2237,7 @@ The `ROLE_ROUTINE_GRANTS` table has these columns:
   `YES` or `NO`, depending on whether the role is grantable to other accounts.
 
 
-### 28.3.34 The INFORMATION\_SCHEMA ROLE\_TABLE\_GRANTS Table
+### 28.3.34 The INFORMATION_SCHEMA ROLE_TABLE_GRANTS Table
 
 The `ROLE_TABLE_GRANTS` table provides information about the table privileges for roles that are available to or granted by the currently enabled roles.
 
@@ -2280,7 +2280,7 @@ The `ROLE_TABLE_GRANTS` table has these columns:
   `YES` or `NO`, depending on whether the role is grantable to other accounts.
 
 
-### 28.3.35 The INFORMATION\_SCHEMA ROUTINE\_LIBRARIES Table
+### 28.3.35 The INFORMATION_SCHEMA ROUTINE_LIBRARIES Table
 
 The `ROUTINE_LIBRARIES` table lists different JavaScript routines and the libraries supported by MLE Component (see Section 7.5.7, “Multilingual Engine Component (MLE)”")) that are imported by these JavaScript routines.
 
@@ -2346,7 +2346,7 @@ LIBRARY_VERSION: NULL
 All stored routines importing libraries are listed in the `ROUTINE_LIBRARIES` table even if the referenced Library does not exist.
 
 
-### 28.3.36 The INFORMATION\_SCHEMA ROUTINES Table
+### 28.3.36 The INFORMATION_SCHEMA ROUTINES Table
 
 The `ROUTINES` table provides information about stored routines (stored procedures and stored functions). The `ROUTINES` table does not include built-in (native) functions or loadable functions.
 
@@ -2487,7 +2487,7 @@ The `ROUTINES` table has these columns:
 * Information about stored function return values is also available in the `PARAMETERS` table. The return value row for a stored function can be identified as the row that has an `ORDINAL_POSITION` value of 0.
 
 
-### 28.3.37 The INFORMATION\_SCHEMA SCHEMATA Table
+### 28.3.37 The INFORMATION_SCHEMA SCHEMATA Table
 
 A schema is a database, so the `SCHEMATA` table provides information about databases.
 
@@ -2539,7 +2539,7 @@ Because any static global privilege is considered a privilege for all databases,
 * The `SCHEMATA_EXTENSIONS` table augments the `SCHEMATA` table with information about schema options.
 
 
-### 28.3.38 The INFORMATION\_SCHEMA SCHEMATA\_EXTENSIONS Table
+### 28.3.38 The INFORMATION_SCHEMA SCHEMATA_EXTENSIONS Table
 
 The `SCHEMATA_EXTENSIONS` table augments the `SCHEMATA` table with information about schema options.
 
@@ -2584,7 +2584,7 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.SCHEMATA_EXTENSIONS
 * `SCHEMATA_EXTENSIONS` is a nonstandard `INFORMATION_SCHEMA` table.
 
 
-### 28.3.39 The INFORMATION\_SCHEMA SCHEMA\_PRIVILEGES Table
+### 28.3.39 The INFORMATION_SCHEMA SCHEMA_PRIVILEGES Table
 
 The `SCHEMA_PRIVILEGES` table provides information about schema (database) privileges. It takes its values from the `mysql.db` system table.
 
@@ -2623,11 +2623,11 @@ SHOW GRANTS ...
 ```
 
 
-### 28.3.40 The INFORMATION\_SCHEMA STATISTICS Table
+### 28.3.40 The INFORMATION_SCHEMA STATISTICS Table
 
 The `STATISTICS` table provides information about table indexes.
 
-Columns in `STATISTICS` that represent table statistics hold cached values. The `information_schema_stats_expiry` system variable defines the period of time before cached table statistics expire. The default is 86400 seconds (24 hours). If there are no cached statistics or statistics have expired, statistics are retrieved from storage engines when querying table statistics columns. To update cached values at any time for a given table, use `ANALYZE TABLE`. To always retrieve the latest statistics directly from storage engines, set `information_schema_stats_expiry=0`. For more information, see Section 10.2.3, “Optimizing INFORMATION\_SCHEMA Queries”.
+Columns in `STATISTICS` that represent table statistics hold cached values. The `information_schema_stats_expiry` system variable defines the period of time before cached table statistics expire. The default is 86400 seconds (24 hours). If there are no cached statistics or statistics have expired, statistics are retrieved from storage engines when querying table statistics columns. To update cached values at any time for a given table, use `ANALYZE TABLE`. To always retrieve the latest statistics directly from storage engines, set `information_schema_stats_expiry=0`. For more information, see Section 10.2.3, “Optimizing INFORMATION_SCHEMA Queries”.
 
 Note
 
@@ -2738,7 +2738,7 @@ SHOW INDEX
 Information about generated invisible primary key columns is visible in this table by default. You can cause such information to be hidden by setting [`show_gipk_in_create_table_and_information_schema = OFF`](server-system-variables.html#sysvar_show_gipk_in_create_table_and_information_schema). For more information, see Section 15.1.24.11, “Generated Invisible Primary Keys”.
 
 
-### 28.3.41 The INFORMATION\_SCHEMA ST\_GEOMETRY\_COLUMNS Table
+### 28.3.41 The INFORMATION_SCHEMA ST_GEOMETRY_COLUMNS Table
 
 The `ST_GEOMETRY_COLUMNS` table provides information about table columns that store spatial data. This table is based on the SQL/MM (ISO/IEC 13249-3) standard, with extensions as noted. MySQL implements `ST_GEOMETRY_COLUMNS` as a view on the `INFORMATION_SCHEMA` `COLUMNS` table.
 
@@ -2773,7 +2773,7 @@ The `ST_GEOMETRY_COLUMNS` table has these columns:
   The column data type. Permitted values are: `geometry`, `point`, `linestring`, `polygon`, `multipoint`, `multilinestring`, `multipolygon`, `geometrycollection`. This column is a MySQL extension to the standard.
 
 
-### 28.3.42 The INFORMATION\_SCHEMA ST\_SPATIAL\_REFERENCE\_SYSTEMS Table
+### 28.3.42 The INFORMATION_SCHEMA ST_SPATIAL_REFERENCE_SYSTEMS Table
 
 The `ST_SPATIAL_REFERENCE_SYSTEMS` table provides information about available spatial reference systems (SRSs) for spatial data. This table is based on the SQL/MM (ISO/IEC 13249-3) standard.
 
@@ -2864,7 +2864,7 @@ To enable manipulation of SRS entries stored in the data dictionary, MySQL provi
 * `DROP SPATIAL REFERENCE SYSTEM`: See Section 15.1.36, “DROP SPATIAL REFERENCE SYSTEM Statement”.
 
 
-### 28.3.43 The INFORMATION\_SCHEMA ST\_UNITS\_OF\_MEASURE Table
+### 28.3.43 The INFORMATION_SCHEMA ST_UNITS_OF_MEASURE Table
 
 The `ST_UNITS_OF_MEASURE` table provides information about acceptable units for the `ST_Distance()` function.
 
@@ -2887,11 +2887,11 @@ The `ST_UNITS_OF_MEASURE` table has these columns:
   A description of the unit.
 
 
-### 28.3.44 The INFORMATION\_SCHEMA TABLES Table
+### 28.3.44 The INFORMATION_SCHEMA TABLES Table
 
 The `TABLES` table provides information about tables in databases.
 
-Columns in `TABLES` that represent table statistics hold cached values. The `information_schema_stats_expiry` system variable defines the period of time before cached table statistics expire. The default is 86400 seconds (24 hours). If there are no cached statistics or statistics have expired, statistics are retrieved from storage engines when querying table statistics columns. To update cached values at any time for a given table, use `ANALYZE TABLE`. To always retrieve the latest statistics directly from storage engines, set `information_schema_stats_expiry` to `0`. For more information, see Section 10.2.3, “Optimizing INFORMATION\_SCHEMA Queries”.
+Columns in `TABLES` that represent table statistics hold cached values. The `information_schema_stats_expiry` system variable defines the period of time before cached table statistics expire. The default is 86400 seconds (24 hours). If there are no cached statistics or statistics have expired, statistics are retrieved from storage engines when querying table statistics columns. To update cached values at any time for a given table, use `ANALYZE TABLE`. To always retrieve the latest statistics directly from storage engines, set `information_schema_stats_expiry` to `0`. For more information, see Section 10.2.3, “Optimizing INFORMATION_SCHEMA Queries”.
 
 Note
 
@@ -2984,7 +2984,7 @@ The `TABLES` table has these columns:
       AND   TABLE_NAME   = 'mytable';
   ```
 
-  For more information, see Section 28.3.26, “The INFORMATION\_SCHEMA PARTITIONS Table”.
+  For more information, see Section 28.3.26, “The INFORMATION_SCHEMA PARTITIONS Table”.
 
 * `AUTO_INCREMENT`
 
@@ -3074,7 +3074,7 @@ SHOW FULL TABLES
 ```
 
 
-### 28.3.45 The INFORMATION\_SCHEMA TABLES\_EXTENSIONS Table
+### 28.3.45 The INFORMATION_SCHEMA TABLES_EXTENSIONS Table
 
 The `TABLES_EXTENSIONS` table provides information about table attributes defined for primary and secondary storage engines.
 
@@ -3105,7 +3105,7 @@ The `TABLES_EXTENSIONS` table has these columns:
   Table attributes defined for the secondary storage engine. Reserved for future use.
 
 
-### 28.3.46 The INFORMATION\_SCHEMA TABLESPACES\_EXTENSIONS Table
+### 28.3.46 The INFORMATION_SCHEMA TABLESPACES_EXTENSIONS Table
 
 The `TABLESPACES_EXTENSIONS` table provides information about tablespace attributes defined for primary storage engines.
 
@@ -3124,7 +3124,7 @@ The `TABLESPACES_EXTENSIONS` table has these columns:
   Tablespace attributes defined for the primary storage engine. Reserved for future use.
 
 
-### 28.3.47 The INFORMATION\_SCHEMA TABLE\_CONSTRAINTS Table
+### 28.3.47 The INFORMATION_SCHEMA TABLE_CONSTRAINTS Table
 
 The `TABLE_CONSTRAINTS` table describes which tables have constraints.
 
@@ -3161,7 +3161,7 @@ The `TABLE_CONSTRAINTS` table has these columns:
   For `CHECK` constraints, the value is `YES` or `NO` to indicate whether the constraint is enforced. For other constraints, the value is always `YES`.
 
 
-### 28.3.48 The INFORMATION\_SCHEMA TABLE\_CONSTRAINTS\_EXTENSIONS Table
+### 28.3.48 The INFORMATION_SCHEMA TABLE_CONSTRAINTS_EXTENSIONS Table
 
 The `TABLE_CONSTRAINTS_EXTENSIONS` table provides information about table constraint attributes defined for primary and secondary storage engines.
 
@@ -3196,7 +3196,7 @@ The `TABLE_CONSTRAINTS_EXTENSIONS` table has these columns:
   Constraint attributes defined for the secondary storage engine. Reserved for future use.
 
 
-### 28.3.49 The INFORMATION\_SCHEMA TABLE\_PRIVILEGES Table
+### 28.3.49 The INFORMATION_SCHEMA TABLE_PRIVILEGES Table
 
 The `TABLE_PRIVILEGES` table provides information about table privileges. It takes its values from the `mysql.tables_priv` system table.
 
@@ -3239,7 +3239,7 @@ SHOW GRANTS ...
 ```
 
 
-### 28.3.50 The INFORMATION\_SCHEMA TRIGGERS Table
+### 28.3.50 The INFORMATION_SCHEMA TRIGGERS Table
 
 The `TRIGGERS` table provides information about triggers. To see information about a table's triggers, you must have the `TRIGGER` privilege for the table.
 
@@ -3359,7 +3359,7 @@ ACTION_REFERENCE_NEW_TABLE: NULL
 Trigger information is also available from the `SHOW TRIGGERS` statement. See Section 15.7.7.41, “SHOW TRIGGERS Statement”.
 
 
-### 28.3.51 The INFORMATION\_SCHEMA USER\_ATTRIBUTES Table
+### 28.3.51 The INFORMATION_SCHEMA USER_ATTRIBUTES Table
 
 The `USER_ATTRIBUTES` table provides information about user comments and user attributes. It takes its values from the `mysql.user` system table.
 
@@ -3412,7 +3412,7 @@ The `USER_ATTRIBUTES` table has these columns:
 For more information about specifying account comments and attributes, see Section 15.7.1.3, “CREATE USER Statement”.
 
 
-### 28.3.52 The INFORMATION\_SCHEMA USER\_PRIVILEGES Table
+### 28.3.52 The INFORMATION_SCHEMA USER_PRIVILEGES Table
 
 The `USER_PRIVILEGES` table provides information about global privileges. It takes its values from the `mysql.user` system table.
 
@@ -3447,7 +3447,7 @@ SHOW GRANTS ...
 ```
 
 
-### 28.3.53 The INFORMATION\_SCHEMA VIEWS Table
+### 28.3.53 The INFORMATION_SCHEMA VIEWS Table
 
 The `VIEWS` table provides information about views in databases. You must have the `SHOW VIEW` privilege to access this table.
 
@@ -3533,7 +3533,7 @@ mysql> SELECT VIEW_DEFINITION FROM INFORMATION_SCHEMA.VIEWS
 The advantage of storing a view definition in canonical form is that changes made later to the value of `sql_mode` do not affect the results from the view. However, an additional consequence is that comments prior to `SELECT` are stripped from the definition by the server.
 
 
-### 28.3.54 The INFORMATION\_SCHEMA VIEW\_ROUTINE\_USAGE Table
+### 28.3.54 The INFORMATION_SCHEMA VIEW_ROUTINE_USAGE Table
 
 The `VIEW_ROUTINE_USAGE` table provides access to information about stored functions used in view definitions. The table does not list information about built-in (native) functions or loadable functions used in the definitions.
 
@@ -3566,7 +3566,7 @@ The `VIEW_ROUTINE_USAGE` table has these columns:
   The name of the function used in the view definition.
 
 
-### 28.3.55 The INFORMATION\_SCHEMA VIEW\_TABLE\_USAGE Table
+### 28.3.55 The INFORMATION_SCHEMA VIEW_TABLE_USAGE Table
 
 The `VIEW_TABLE_USAGE` table provides access to information about tables and views used in view definitions.
 

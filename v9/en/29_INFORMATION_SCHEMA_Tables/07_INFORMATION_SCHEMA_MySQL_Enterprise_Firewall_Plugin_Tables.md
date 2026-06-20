@@ -1,20 +1,20 @@
-## 28.7 INFORMATION\_SCHEMA MySQL Enterprise Firewall Plugin Tables
+## 28.7 INFORMATION_SCHEMA MySQL Enterprise Firewall Plugin Tables
 
 The following sections describe the `INFORMATION_SCHEMA` tables associated with the MySQL Enterprise Firewall plugin (see Section 8.4.8.1, “The MySQL Enterprise Firewall Plugin”). They provide views into the firewall in-memory data cache. These tables are available only if the appropriate firewall plugins are enabled. Like the firewall plugin, these tables are deprecated, and subject to removal in a future version of MySQL.
 
 These `INFORMATION_SCHEMA` tables are *not* used or supported by the MySQL Enterprise Firewall component.
 
 
-### 28.7.1 INFORMATION\_SCHEMA Firewall Plugin Table Reference
+### 28.7.1 INFORMATION_SCHEMA Firewall Plugin Table Reference
 
 The following table summarizes `INFORMATION_SCHEMA` tables used by the MySQL Enterprise Firewall plugin. For greater detail, see the individual table descriptions.
 
-**Table 28.9 INFORMATION\_SCHEMA Firewall Tables**
+**Table 28.9 INFORMATION_SCHEMA Firewall Tables**
 
-<table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA firewall tables."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Table Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="information-schema-mysql-firewall-users-table.html" title="28.7.2 The INFORMATION_SCHEMA MYSQL_FIREWALL_USERS Table"><code class="literal">MYSQL_FIREWALL_USERS</code></a></th> <td>Firewall in-memory data for account profiles</td> <td>Yes</td> </tr><tr><th scope="row"><a class="link" href="information-schema-mysql-firewall-whitelist-table.html" title="28.7.3 The INFORMATION_SCHEMA MYSQL_FIREWALL_WHITELIST Table"><code class="literal">MYSQL_FIREWALL_WHITELIST</code></a></th> <td>Firewall in-memory data for account profile allowlists</td> <td>Yes</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA firewall tables."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Table Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th scope="row"><code>MYSQL_FIREWALL_USERS</code></th> <td>Firewall in-memory data for account profiles</td> <td>Yes</td> </tr><tr><th scope="row"><code>MYSQL_FIREWALL_WHITELIST</code></th> <td>Firewall in-memory data for account profile allowlists</td> <td>Yes</td> </tr></tbody></table>
 
 
-### 28.7.2 The INFORMATION\_SCHEMA MYSQL\_FIREWALL\_USERS Table
+### 28.7.2 The INFORMATION_SCHEMA MYSQL_FIREWALL_USERS Table
 
 The `MYSQL_FIREWALL_USERS` table provides a view into the in-memory data cache for the MySQL Enterprise Firewall plugin. It lists names and operational modes of registered firewall account profiles. It is used in conjunction with the `mysql.firewall_users` system table that provides persistent storage of firewall data; see MySQL Enterprise Firewall Tables.
 
@@ -31,7 +31,7 @@ The `MYSQL_FIREWALL_USERS` table has these columns:
 This table is deprecated and subject to removal in a future MySQL version. See Migrating Account Profiles to Group Profiles.
 
 
-### 28.7.3 The INFORMATION\_SCHEMA MYSQL\_FIREWALL\_WHITELIST Table
+### 28.7.3 The INFORMATION_SCHEMA MYSQL_FIREWALL_WHITELIST Table
 
 The `MYSQL_FIREWALL_WHITELIST` table provides a view into the in-memory data cache for the MySQL Enterprise Firewall plugin. It lists allowlist rules of registered firewall account profiles. It is used in conjunction with the `mysql.firewall_whitelist` system table that provides persistent storage of firewall data; see MySQL Enterprise Firewall Tables.
 

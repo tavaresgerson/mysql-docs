@@ -23,7 +23,7 @@ The following table summarizes all available Performance Schema tables. For grea
 
 **Table 29.1 Performance Schema Tables**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="performance-schema-accounts-table.html" title="29.12.8.1 The accounts Table"><code class="literal">accounts</code></a></td> <td>Connection statistics per client account</td> </tr><tr><td><a class="link" href="performance-schema-binary-log-transaction-compression-stats-table.html" title="29.12.11.1 The binary_log_transaction_compression_stats Table"><code class="literal">binary_log_transaction_compression_stats</code></a></td> <td>Binary log transaction compression</td> </tr><tr><td><a class="link" href="performance-schema-clone-progress-table.html" title="29.12.19.2 The clone_progress Table"><code class="literal">clone_progress</code></a></td> <td>Clone operation progress</td> </tr><tr><td><a class="link" href="performance-schema-clone-status-table.html" title="29.12.19.1 The clone_status Table"><code class="literal">clone_status</code></a></td> <td>Clone operation status</td> </tr><tr><td><a class="link" href="performance-schema-component-scheduler-tasks-table.html" title="29.12.22.1 The component_scheduler_tasks Table"><code class="literal">component_scheduler_tasks</code></a></td> <td>Status of scheduled tasks</td> </tr><tr><td><a class="link" href="performance-schema-cond-instances-table.html" title="29.12.3.1 The cond_instances Table"><code class="literal">cond_instances</code></a></td> <td>Synchronization object instances</td> </tr><tr><td><a class="link" href="performance-schema-connection-control-failed-login-attempts-table.html" title="29.12.22.2 The connection_control_failed_login_attempts Table"><code class="literal">connection_control_failed_login_attempts</code></a></td> <td>Current number of consecutive failed connection attempts per account</td> </tr><tr><td><a class="link" href="performance-schema-data-lock-waits-table.html" title="29.12.13.2 The data_lock_waits Table"><code class="literal">data_lock_waits</code></a></td> <td>Data lock wait relationships</td> </tr><tr><td><a class="link" href="performance-schema-data-locks-table.html" title="29.12.13.1 The data_locks Table"><code class="literal">data_locks</code></a></td> <td>Data locks held and requested</td> </tr><tr><td><a class="link" href="performance-schema-error-log-table.html" title="29.12.22.3 The error_log Table"><code class="literal">error_log</code></a></td> <td>Server error log recent entries</td> </tr><tr><td><a class="link" href="performance-schema-error-summary-tables.html" title="29.12.20.11 Error Summary Tables"><code class="literal">events_errors_summary_by_account_by_error</code></a></td> <td>Errors per account and error code</td> </tr><tr><td><a class="link" href="performance-schema-error-summary-tables.html" title="29.12.20.11 Error Summary Tables"><code class="literal">events_errors_summary_by_host_by_error</code></a></td> <td>Errors per host and error code</td> </tr><tr><td><a class="link" href="performance-schema-error-summary-tables.html" title="29.12.20.11 Error Summary Tables"><code class="literal">events_errors_summary_by_thread_by_error</code></a></td> <td>Errors per thread and error code</td> </tr><tr><td><a class="link" href="performance-schema-error-summary-tables.html" title="29.12.20.11 Error Summary Tables"><code class="literal">events_errors_summary_by_user_by_error</code></a></td> <td>Errors per user and error code</td> </tr><tr><td><a class="link" href="performance-schema-error-summary-tables.html" title="29.12.20.11 Error Summary Tables"><code class="literal">events_errors_summary_global_by_error</code></a></td> <td>Errors per error code</td> </tr><tr><td><a class="link" href="performance-schema-events-stages-current-table.html" title="29.12.5.1 The events_stages_current Table"><code class="literal">events_stages_current</code></a></td> <td>Current stage events</td> </tr><tr><td><a class="link" href="performance-schema-events-stages-history-table.html" title="29.12.5.2 The events_stages_history Table"><code class="literal">events_stages_history</code></a></td> <td>Most recent stage events per thread</td> </tr><tr><td><a class="link" href="performance-schema-events-stages-history-long-table.html" title="29.12.5.3 The events_stages_history_long Table"><code class="literal">events_stages_history_long</code></a></td> <td>Most recent stage events overall</td> </tr><tr><td><a class="link" href="performance-schema-stage-summary-tables.html" title="29.12.20.2 Stage Summary Tables"><code class="literal">events_stages_summary_by_account_by_event_name</code></a></td> <td>Stage events per account and event name</td> </tr><tr><td><a class="link" href="performance-schema-stage-summary-tables.html" title="29.12.20.2 Stage Summary Tables"><code class="literal">events_stages_summary_by_host_by_event_name</code></a></td> <td>Stage events per host name and event name</td> </tr><tr><td><a class="link" href="performance-schema-stage-summary-tables.html" title="29.12.20.2 Stage Summary Tables"><code class="literal">events_stages_summary_by_thread_by_event_name</code></a></td> <td>Stage waits per thread and event name</td> </tr><tr><td><a class="link" href="performance-schema-stage-summary-tables.html" title="29.12.20.2 Stage Summary Tables"><code class="literal">events_stages_summary_by_user_by_event_name</code></a></td> <td>Stage events per user name and event name</td> </tr><tr><td><a class="link" href="performance-schema-stage-summary-tables.html" title="29.12.20.2 Stage Summary Tables"><code class="literal">events_stages_summary_global_by_event_name</code></a></td> <td>Stage waits per event name</td> </tr><tr><td><a class="link" href="performance-schema-events-statements-current-table.html" title="29.12.6.1 The events_statements_current Table"><code class="literal">events_statements_current</code></a></td> <td>Current statement events</td> </tr><tr><td><a class="link" href="performance-schema-statement-histogram-summary-tables.html" title="29.12.20.4 Statement Histogram Summary Tables"><code class="literal">events_statements_histogram_by_digest</code></a></td> <td>Statement histograms per schema and digest value</td> </tr><tr><td><a class="link" href="performance-schema-statement-histogram-summary-tables.html" title="29.12.20.4 Statement Histogram Summary Tables"><code class="literal">events_statements_histogram_global</code></a></td> <td>Statement histogram summarized globally</td> </tr><tr><td><a class="link" href="performance-schema-events-statements-history-table.html" title="29.12.6.2 The events_statements_history Table"><code class="literal">events_statements_history</code></a></td> <td>Most recent statement events per thread</td> </tr><tr><td><a class="link" href="performance-schema-events-statements-history-long-table.html" title="29.12.6.3 The events_statements_history_long Table"><code class="literal">events_statements_history_long</code></a></td> <td>Most recent statement events overall</td> </tr><tr><td><a class="link" href="performance-schema-statement-summary-tables.html" title="29.12.20.3 Statement Summary Tables"><code class="literal">events_statements_summary_by_account_by_event_name</code></a></td> <td>Statement events per account and event name</td> </tr><tr><td><a class="link" href="performance-schema-statement-summary-tables.html" title="29.12.20.3 Statement Summary Tables"><code class="literal">events_statements_summary_by_digest</code></a></td> <td>Statement events per schema and digest value</td> </tr><tr><td><a class="link" href="performance-schema-statement-summary-tables.html" title="29.12.20.3 Statement Summary Tables"><code class="literal">events_statements_summary_by_host_by_event_name</code></a></td> <td>Statement events per host name and event name</td> </tr><tr><td><a class="link" href="performance-schema-statement-summary-tables.html" title="29.12.20.3 Statement Summary Tables"><code class="literal">events_statements_summary_by_program</code></a></td> <td>Statement events per stored program</td> </tr><tr><td><a class="link" href="performance-schema-statement-summary-tables.html" title="29.12.20.3 Statement Summary Tables"><code class="literal">events_statements_summary_by_thread_by_event_name</code></a></td> <td>Statement events per thread and event name</td> </tr><tr><td><a class="link" href="performance-schema-statement-summary-tables.html" title="29.12.20.3 Statement Summary Tables"><code class="literal">events_statements_summary_by_user_by_event_name</code></a></td> <td>Statement events per user name and event name</td> </tr><tr><td><a class="link" href="performance-schema-statement-summary-tables.html" title="29.12.20.3 Statement Summary Tables"><code class="literal">events_statements_summary_global_by_event_name</code></a></td> <td>Statement events per event name</td> </tr><tr><td><a class="link" href="performance-schema-events-transactions-current-table.html" title="29.12.7.1 The events_transactions_current Table"><code class="literal">events_transactions_current</code></a></td> <td>Current transaction events</td> </tr><tr><td><a class="link" href="performance-schema-events-transactions-history-table.html" title="29.12.7.2 The events_transactions_history Table"><code class="literal">events_transactions_history</code></a></td> <td>Most recent transaction events per thread</td> </tr><tr><td><a class="link" href="performance-schema-events-transactions-history-long-table.html" title="29.12.7.3 The events_transactions_history_long Table"><code class="literal">events_transactions_history_long</code></a></td> <td>Most recent transaction events overall</td> </tr><tr><td><a class="link" href="performance-schema-transaction-summary-tables.html" title="29.12.20.5 Transaction Summary Tables"><code class="literal">events_transactions_summary_by_account_by_event_name</code></a></td> <td>Transaction events per account and event name</td> </tr><tr><td><a class="link" href="performance-schema-transaction-summary-tables.html" title="29.12.20.5 Transaction Summary Tables"><code class="literal">events_transactions_summary_by_host_by_event_name</code></a></td> <td>Transaction events per host name and event name</td> </tr><tr><td><a class="link" href="performance-schema-transaction-summary-tables.html" title="29.12.20.5 Transaction Summary Tables"><code class="literal">events_transactions_summary_by_thread_by_event_name</code></a></td> <td>Transaction events per thread and event name</td> </tr><tr><td><a class="link" href="performance-schema-transaction-summary-tables.html" title="29.12.20.5 Transaction Summary Tables"><code class="literal">events_transactions_summary_by_user_by_event_name</code></a></td> <td>Transaction events per user name and event name</td> </tr><tr><td><a class="link" href="performance-schema-transaction-summary-tables.html" title="29.12.20.5 Transaction Summary Tables"><code class="literal">events_transactions_summary_global_by_event_name</code></a></td> <td>Transaction events per event name</td> </tr><tr><td><a class="link" href="performance-schema-events-waits-current-table.html" title="29.12.4.1 The events_waits_current Table"><code class="literal">events_waits_current</code></a></td> <td>Current wait events</td> </tr><tr><td><a class="link" href="performance-schema-events-waits-history-table.html" title="29.12.4.2 The events_waits_history Table"><code class="literal">events_waits_history</code></a></td> <td>Most recent wait events per thread</td> </tr><tr><td><a class="link" href="performance-schema-events-waits-history-long-table.html" title="29.12.4.3 The events_waits_history_long Table"><code class="literal">events_waits_history_long</code></a></td> <td>Most recent wait events overall</td> </tr><tr><td><a class="link" href="performance-schema-wait-summary-tables.html" title="29.12.20.1 Wait Event Summary Tables"><code class="literal">events_waits_summary_by_account_by_event_name</code></a></td> <td>Wait events per account and event name</td> </tr><tr><td><a class="link" href="performance-schema-wait-summary-tables.html" title="29.12.20.1 Wait Event Summary Tables"><code class="literal">events_waits_summary_by_host_by_event_name</code></a></td> <td>Wait events per host name and event name</td> </tr><tr><td><a class="link" href="performance-schema-wait-summary-tables.html" title="29.12.20.1 Wait Event Summary Tables"><code class="literal">events_waits_summary_by_instance</code></a></td> <td>Wait events per instance</td> </tr><tr><td><a class="link" href="performance-schema-wait-summary-tables.html" title="29.12.20.1 Wait Event Summary Tables"><code class="literal">events_waits_summary_by_thread_by_event_name</code></a></td> <td>Wait events per thread and event name</td> </tr><tr><td><a class="link" href="performance-schema-wait-summary-tables.html" title="29.12.20.1 Wait Event Summary Tables"><code class="literal">events_waits_summary_by_user_by_event_name</code></a></td> <td>Wait events per user name and event name</td> </tr><tr><td><a class="link" href="performance-schema-wait-summary-tables.html" title="29.12.20.1 Wait Event Summary Tables"><code class="literal">events_waits_summary_global_by_event_name</code></a></td> <td>Wait events per event name</td> </tr><tr><td><a class="link" href="performance-schema-file-instances-table.html" title="29.12.3.2 The file_instances Table"><code class="literal">file_instances</code></a></td> <td>File instances</td> </tr><tr><td><a class="link" href="performance-schema-file-summary-tables.html" title="29.12.20.7 File I/O Summary Tables"><code class="literal">file_summary_by_event_name</code></a></td> <td>File events per event name</td> </tr><tr><td><a class="link" href="performance-schema-file-summary-tables.html" title="29.12.20.7 File I/O Summary Tables"><code class="literal">file_summary_by_instance</code></a></td> <td>File events per file instance</td> </tr><tr><td><a class="link" href="performance-schema-firewall-group-allowlist-table.html" title="29.12.17.2 The firewall_group_allowlist Table"><code class="literal">firewall_group_allowlist</code></a></td> <td>Firewall in-memory data for group profile allowlists</td> </tr><tr><td><a class="link" href="performance-schema-firewall-groups-table.html" title="29.12.17.1 The firewall_groups Table"><code class="literal">firewall_groups</code></a></td> <td>Firewall in-memory data for group profiles</td> </tr><tr><td><a class="link" href="performance-schema-firewall-membership-table.html" title="29.12.17.3 The firewall_membership Table"><code class="literal">firewall_membership</code></a></td> <td>Firewall in-memory data for group profile members</td> </tr><tr><td><a class="link" href="performance-schema-status-variable-tables.html" title="29.12.15 Performance Schema Status Variable Tables"><code class="literal">global_status</code></a></td> <td>Global status variables</td> </tr><tr><td><a class="link" href="performance-schema-global-variable-attributes-table.html" title="29.12.14.1 Performance Schema global_variable_attributes Table"><code class="literal">global_variable_attributes</code></a></td> <td>Attribute-value pairs assigned to global variables</td> </tr><tr><td><a class="link" href="performance-schema-system-variable-tables.html" title="29.12.14 Performance Schema System Variable Tables"><code class="literal">global_variables</code></a></td> <td>Global system variables</td> </tr><tr><td><a class="link" href="performance-schema-host-cache-table.html" title="29.12.22.4 The host_cache Table"><code class="literal">host_cache</code></a></td> <td>Information from internal host cache</td> </tr><tr><td><a class="link" href="performance-schema-hosts-table.html" title="29.12.8.2 The hosts Table"><code class="literal">hosts</code></a></td> <td>Connection statistics per client host name</td> </tr><tr><td><a class="link" href="performance-schema-keyring-component-status-table.html" title="29.12.18.1 The keyring_component_status Table"><code class="literal">keyring_component_status</code></a></td> <td>Status information for installed keyring component</td> </tr><tr><td><a class="link" href="performance-schema-keyring-keys-table.html" title="29.12.18.2 The keyring_keys table"><code class="literal">keyring_keys</code></a></td> <td>Metadata for keyring keys</td> </tr><tr><td><a class="link" href="performance-schema-log-status-table.html" title="29.12.22.6 The log_status Table"><code class="literal">log_status</code></a></td> <td>Information about server logs for backup purposes</td> </tr><tr><td><a class="link" href="performance-schema-memory-summary-tables.html" title="29.12.20.10 Memory Summary Tables"><code class="literal">memory_summary_by_account_by_event_name</code></a></td> <td>Memory operations per account and event name</td> </tr><tr><td><a class="link" href="performance-schema-memory-summary-tables.html" title="29.12.20.10 Memory Summary Tables"><code class="literal">memory_summary_by_host_by_event_name</code></a></td> <td>Memory operations per host and event name</td> </tr><tr><td><a class="link" href="performance-schema-memory-summary-tables.html" title="29.12.20.10 Memory Summary Tables"><code class="literal">memory_summary_by_thread_by_event_name</code></a></td> <td>Memory operations per thread and event name</td> </tr><tr><td><a class="link" href="performance-schema-memory-summary-tables.html" title="29.12.20.10 Memory Summary Tables"><code class="literal">memory_summary_by_user_by_event_name</code></a></td> <td>Memory operations per user and event name</td> </tr><tr><td><a class="link" href="performance-schema-memory-summary-tables.html" title="29.12.20.10 Memory Summary Tables"><code class="literal">memory_summary_global_by_event_name</code></a></td> <td>Memory operations globally per event name</td> </tr><tr><td><a class="link" href="performance-schema-metadata-locks-table.html" title="29.12.13.3 The metadata_locks Table"><code class="literal">metadata_locks</code></a></td> <td>Metadata locks and lock requests</td> </tr><tr><td><a class="link" href="performance-schema-mutex-instances-table.html" title="29.12.3.3 The mutex_instances Table"><code class="literal">mutex_instances</code></a></td> <td>Mutex synchronization object instances</td> </tr><tr><td><a class="link" href="performance-schema-mysql-option-table.html" title="29.12.22.7 The mysql_option Table"><code class="literal">mysql_option</code></a></td> <td>Features known to Option tracker in MySQL server, components, and plugins</td> </tr><tr><td><a class="link" href="performance-schema-ndb-replication-applier-status-table.html" title="29.12.12.3 The ndb_replication_applier_status Table"><code class="literal">ndb_replication_applier_status</code></a></td> <td>NDB replication applier status information for each replication channel</td> </tr><tr><td><a class="link" href="performance-schema-ndb-sync-excluded-objects-table.html" title="29.12.12.2 The ndb_sync_excluded_objects Table"><code class="literal">ndb_sync_excluded_objects</code></a></td> <td>NDB objects which cannot be synchronized</td> </tr><tr><td><a class="link" href="performance-schema-ndb-sync-pending-objects-table.html" title="29.12.12.1 The ndb_sync_pending_objects Table"><code class="literal">ndb_sync_pending_objects</code></a></td> <td>NDB objects waiting for synchronization</td> </tr><tr><td><a class="link" href="performance-schema-objects-summary-global-by-type-table.html" title="29.12.20.6 Object Wait Summary Table"><code class="literal">objects_summary_global_by_type</code></a></td> <td>Object summaries</td> </tr><tr><td><a class="link" href="performance-schema-performance-timers-table.html" title="29.12.22.8 The performance_timers Table"><code class="literal">performance_timers</code></a></td> <td>Which event timers are available</td> </tr><tr><td><a class="link" href="performance-schema-system-variable-tables.html" title="29.12.14 Performance Schema System Variable Tables"><code class="literal">persisted_variables</code></a></td> <td>Contents of mysqld-auto.cnf file</td> </tr><tr><td><a class="link" href="performance-schema-prepared-statements-instances-table.html" title="29.12.6.4 The prepared_statements_instances Table"><code class="literal">prepared_statements_instances</code></a></td> <td>Prepared statement instances and statistics</td> </tr><tr><td><a class="link" href="performance-schema-processlist-table.html" title="29.12.22.9 The processlist Table"><code class="literal">processlist</code></a></td> <td>Process list information</td> </tr><tr><td><a class="link" href="performance-schema-replication-applier-configuration-table.html" title="29.12.11.2 The replication_applier_configuration Table"><code class="literal">replication_applier_configuration</code></a></td> <td>Configuration parameters for replication applier on replica</td> </tr><tr><td><a class="link" href="performance-schema-replication-applier-filters-table.html" title="29.12.11.3 The replication_applier_filters Table"><code class="literal">replication_applier_filters</code></a></td> <td>Channel-specific replication filters on current replica</td> </tr><tr><td><a class="link" href="performance-schema-replication-applier-global-filters-table.html" title="29.12.11.4 The replication_applier_global_filters Table"><code class="literal">replication_applier_global_filters</code></a></td> <td>Global replication filters on current replica</td> </tr><tr><td><a class="link" href="performance-schema-replication-applier-status-table.html" title="29.12.11.7 The replication_applier_status Table"><code class="literal">replication_applier_status</code></a></td> <td>Current status of replication applier on replica</td> </tr><tr><td><a class="link" href="performance-schema-replication-applier-status-by-coordinator-table.html" title="29.12.11.8 The replication_applier_status_by_coordinator Table"><code class="literal">replication_applier_status_by_coordinator</code></a></td> <td>SQL or coordinator thread applier status</td> </tr><tr><td><a class="link" href="performance-schema-replication-applier-status-by-worker-table.html" title="29.12.11.9 The replication_applier_status_by_worker Table"><code class="literal">replication_applier_status_by_worker</code></a></td> <td>Worker thread applier status</td> </tr><tr><td><a class="link" href="performance-schema-replication-asynchronous-connection-failover-table.html" title="29.12.11.10 The replication_asynchronous_connection_failover Table"><code class="literal">replication_asynchronous_connection_failover</code></a></td> <td>Source lists for asynchronous connection failover mechanism</td> </tr><tr><td><a class="link" href="performance-schema-replication-asynchronous-connection-failover-managed-table.html" title="29.12.11.11 The replication_asynchronous_connection_failover_managed Table"><code class="literal">replication_asynchronous_connection_failover_managed</code></a></td> <td>Managed source lists for asynchronous connection failover mechanism</td> </tr><tr><td><a class="link" href="performance-schema-replication-connection-configuration-table.html" title="29.12.11.12 The replication_connection_configuration Table"><code class="literal">replication_connection_configuration</code></a></td> <td>Configuration parameters for connecting to source</td> </tr><tr><td><a class="link" href="performance-schema-replication-connection-status-table.html" title="29.12.11.13 The replication_connection_status Table"><code class="literal">replication_connection_status</code></a></td> <td>Current status of connection to source</td> </tr><tr><td><a class="link" href="performance-schema-replication-group-communication-information-table.html" title="29.12.11.14 The replication_group_communication_information Table"><code class="literal">replication_group_communication_information</code></a></td> <td>Replication group configuration options</td> </tr><tr><td><a class="link" href="performance-schema-replication-group-configuration-version-table.html" title="29.12.11.15 The replication_group_configuration_version Table"><code class="literal">replication_group_configuration_version</code></a></td> <td>Version of the member actions configuration for replication group members</td> </tr><tr><td><a class="link" href="performance-schema-replication-group-member-actions-table.html" title="29.12.11.16 The replication_group_member_actions Table"><code class="literal">replication_group_member_actions</code></a></td> <td>Member actions that are included in the member actions configuration for replication group members</td> </tr><tr><td><a class="link" href="performance-schema-replication-group-member-stats-table.html" title="29.12.11.17 The replication_group_member_stats Table"><code class="literal">replication_group_member_stats</code></a></td> <td>Replication group member statistics</td> </tr><tr><td><a class="link" href="performance-schema-replication-group-members-table.html" title="29.12.11.18 The replication_group_members Table"><code class="literal">replication_group_members</code></a></td> <td>Replication group member network and status</td> </tr><tr><td><a class="link" href="performance-schema-rwlock-instances-table.html" title="29.12.3.4 The rwlock_instances Table"><code class="literal">rwlock_instances</code></a></td> <td>Lock synchronization object instances</td> </tr><tr><td><a class="link" href="performance-schema-session-account-connect-attrs-table.html" title="29.12.9.1 The session_account_connect_attrs Table"><code class="literal">session_account_connect_attrs</code></a></td> <td>Connection attributes per for current session</td> </tr><tr><td><a class="link" href="performance-schema-session-connect-attrs-table.html" title="29.12.9.2 The session_connect_attrs Table"><code class="literal">session_connect_attrs</code></a></td> <td>Connection attributes for all sessions</td> </tr><tr><td><a class="link" href="performance-schema-status-variable-tables.html" title="29.12.15 Performance Schema Status Variable Tables"><code class="literal">session_status</code></a></td> <td>Status variables for current session</td> </tr><tr><td><a class="link" href="performance-schema-system-variable-tables.html" title="29.12.14 Performance Schema System Variable Tables"><code class="literal">session_variables</code></a></td> <td>System variables for current session</td> </tr><tr><td><a class="link" href="performance-schema-setup-actors-table.html" title="29.12.2.1 The setup_actors Table"><code class="literal">setup_actors</code></a></td> <td>How to initialize monitoring for new foreground threads</td> </tr><tr><td><a class="link" href="performance-schema-setup-consumers-table.html" title="29.12.2.2 The setup_consumers Table"><code class="literal">setup_consumers</code></a></td> <td>Consumers for which event information can be stored</td> </tr><tr><td><a class="link" href="performance-schema-setup-instruments-table.html" title="29.12.2.3 The setup_instruments Table"><code class="literal">setup_instruments</code></a></td> <td>Classes of instrumented objects for which events can be collected</td> </tr><tr><td><a class="link" href="performance-schema-setup-objects-table.html" title="29.12.2.4 The setup_objects Table"><code class="literal">setup_objects</code></a></td> <td>Which objects should be monitored</td> </tr><tr><td><a class="link" href="performance-schema-setup-threads-table.html" title="29.12.2.5 The setup_threads Table"><code class="literal">setup_threads</code></a></td> <td>Instrumented thread names and attributes</td> </tr><tr><td><a class="link" href="performance-schema-socket-instances-table.html" title="29.12.3.5 The socket_instances Table"><code class="literal">socket_instances</code></a></td> <td>Active connection instances</td> </tr><tr><td><a class="link" href="performance-schema-socket-summary-tables.html" title="29.12.20.9 Socket Summary Tables"><code class="literal">socket_summary_by_event_name</code></a></td> <td>Socket waits and I/O per event name</td> </tr><tr><td><a class="link" href="performance-schema-socket-summary-tables.html" title="29.12.20.9 Socket Summary Tables"><code class="literal">socket_summary_by_instance</code></a></td> <td>Socket waits and I/O per instance</td> </tr><tr><td><a class="link" href="performance-schema-status-variable-summary-tables.html" title="29.12.20.12 Status Variable Summary Tables"><code class="literal">status_by_account</code></a></td> <td>Session status variables per account</td> </tr><tr><td><a class="link" href="performance-schema-status-variable-summary-tables.html" title="29.12.20.12 Status Variable Summary Tables"><code class="literal">status_by_host</code></a></td> <td>Session status variables per host name</td> </tr><tr><td><a class="link" href="performance-schema-status-variable-tables.html" title="29.12.15 Performance Schema Status Variable Tables"><code class="literal">status_by_thread</code></a></td> <td>Session status variables per session</td> </tr><tr><td><a class="link" href="performance-schema-status-variable-summary-tables.html" title="29.12.20.12 Status Variable Summary Tables"><code class="literal">status_by_user</code></a></td> <td>Session status variables per user name</td> </tr><tr><td><a class="link" href="performance-schema-table-handles-table.html" title="29.12.13.4 The table_handles Table"><code class="literal">table_handles</code></a></td> <td>Table locks and lock requests</td> </tr><tr><td><a class="link" href="performance-schema-table-wait-summary-tables.html#performance-schema-table-io-waits-summary-by-index-usage-table" title="29.12.20.8.2 The table_io_waits_summary_by_index_usage Table"><code class="literal">table_io_waits_summary_by_index_usage</code></a></td> <td>Table I/O waits per index</td> </tr><tr><td><a class="link" href="performance-schema-table-wait-summary-tables.html#performance-schema-table-io-waits-summary-by-table-table" title="29.12.20.8.1 The table_io_waits_summary_by_table Table"><code class="literal">table_io_waits_summary_by_table</code></a></td> <td>Table I/O waits per table</td> </tr><tr><td><a class="link" href="performance-schema-table-wait-summary-tables.html#performance-schema-table-lock-waits-summary-by-table-table" title="29.12.20.8.3 The table_lock_waits_summary_by_table Table"><code class="literal">table_lock_waits_summary_by_table</code></a></td> <td>Table lock waits per table</td> </tr><tr><td><a class="link" href="performance-schema-threads-table.html" title="29.12.22.10 The threads Table"><code class="literal">threads</code></a></td> <td>Information about server threads</td> </tr><tr><td><a class="link" href="performance-schema-tls-channel-status-table.html" title="29.12.22.11 The tls_channel_status Table"><code class="literal">tls_channel_status</code></a></td> <td>TLS status for each connection interface</td> </tr><tr><td><a class="link" href="performance-schema-tp-thread-group-state-table.html" title="29.12.16.2 The tp_thread_group_state Table"><code class="literal">tp_thread_group_state</code></a></td> <td>Thread pool thread group states</td> </tr><tr><td><a class="link" href="performance-schema-tp-thread-group-stats-table.html" title="29.12.16.3 The tp_thread_group_stats Table"><code class="literal">tp_thread_group_stats</code></a></td> <td>Thread pool thread group statistics</td> </tr><tr><td><a class="link" href="performance-schema-tp-thread-state-table.html" title="29.12.16.4 The tp_thread_state Table"><code class="literal">tp_thread_state</code></a></td> <td>Thread pool thread information</td> </tr><tr><td><a class="link" href="performance-schema-user-defined-functions-table.html" title="29.12.22.12 The user_defined_functions Table"><code class="literal">user_defined_functions</code></a></td> <td>Registered loadable functions</td> </tr><tr><td><a class="link" href="performance-schema-user-variable-tables.html" title="29.12.10 Performance Schema User-Defined Variable Tables"><code class="literal">user_variables_by_thread</code></a></td> <td>User-defined variables per thread</td> </tr><tr><td><a class="link" href="performance-schema-users-table.html" title="29.12.8.3 The users Table"><code class="literal">users</code></a></td> <td>Connection statistics per client user name</td> </tr><tr><td><a class="link" href="performance-schema-system-variable-tables.html" title="29.12.14 Performance Schema System Variable Tables"><code class="literal">variables_by_thread</code></a></td> <td>Session system variables per session</td> </tr><tr><td><a class="link" href="performance-schema-system-variable-tables.html" title="29.12.14 Performance Schema System Variable Tables"><code class="literal">variables_info</code></a></td> <td>How system variables were most recently set</td> </tr><tr><td><a class="link" href="performance-schema-system-variable-tables.html" title="29.12.14 Performance Schema System Variable Tables"><code class="literal">variables_metadata</code></a></td> <td>System variable metadata, including scope, type, range, and description</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists all Performance Schema tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>accounts</code></td> <td>Connection statistics per client account</td> </tr><tr><td><code>binary_log_transaction_compression_stats</code></td> <td>Binary log transaction compression</td> </tr><tr><td><code>clone_progress</code></td> <td>Clone operation progress</td> </tr><tr><td><code>clone_status</code></td> <td>Clone operation status</td> </tr><tr><td><code>component_scheduler_tasks</code></td> <td>Status of scheduled tasks</td> </tr><tr><td><code>cond_instances</code></td> <td>Synchronization object instances</td> </tr><tr><td><code>connection_control_failed_login_attempts</code></td> <td>Current number of consecutive failed connection attempts per account</td> </tr><tr><td><code>data_lock_waits</code></td> <td>Data lock wait relationships</td> </tr><tr><td><code>data_locks</code></td> <td>Data locks held and requested</td> </tr><tr><td><code>error_log</code></td> <td>Server error log recent entries</td> </tr><tr><td><code>events_errors_summary_by_account_by_error</code></td> <td>Errors per account and error code</td> </tr><tr><td><code>events_errors_summary_by_host_by_error</code></td> <td>Errors per host and error code</td> </tr><tr><td><code>events_errors_summary_by_thread_by_error</code></td> <td>Errors per thread and error code</td> </tr><tr><td><code>events_errors_summary_by_user_by_error</code></td> <td>Errors per user and error code</td> </tr><tr><td><code>events_errors_summary_global_by_error</code></td> <td>Errors per error code</td> </tr><tr><td><code>events_stages_current</code></td> <td>Current stage events</td> </tr><tr><td><code>events_stages_history</code></td> <td>Most recent stage events per thread</td> </tr><tr><td><code>events_stages_history_long</code></td> <td>Most recent stage events overall</td> </tr><tr><td><code>events_stages_summary_by_account_by_event_name</code></td> <td>Stage events per account and event name</td> </tr><tr><td><code>events_stages_summary_by_host_by_event_name</code></td> <td>Stage events per host name and event name</td> </tr><tr><td><code>events_stages_summary_by_thread_by_event_name</code></td> <td>Stage waits per thread and event name</td> </tr><tr><td><code>events_stages_summary_by_user_by_event_name</code></td> <td>Stage events per user name and event name</td> </tr><tr><td><code>events_stages_summary_global_by_event_name</code></td> <td>Stage waits per event name</td> </tr><tr><td><code>events_statements_current</code></td> <td>Current statement events</td> </tr><tr><td><code>events_statements_histogram_by_digest</code></td> <td>Statement histograms per schema and digest value</td> </tr><tr><td><code>events_statements_histogram_global</code></td> <td>Statement histogram summarized globally</td> </tr><tr><td><code>events_statements_history</code></td> <td>Most recent statement events per thread</td> </tr><tr><td><code>events_statements_history_long</code></td> <td>Most recent statement events overall</td> </tr><tr><td><code>events_statements_summary_by_account_by_event_name</code></td> <td>Statement events per account and event name</td> </tr><tr><td><code>events_statements_summary_by_digest</code></td> <td>Statement events per schema and digest value</td> </tr><tr><td><code>events_statements_summary_by_host_by_event_name</code></td> <td>Statement events per host name and event name</td> </tr><tr><td><code>events_statements_summary_by_program</code></td> <td>Statement events per stored program</td> </tr><tr><td><code>events_statements_summary_by_thread_by_event_name</code></td> <td>Statement events per thread and event name</td> </tr><tr><td><code>events_statements_summary_by_user_by_event_name</code></td> <td>Statement events per user name and event name</td> </tr><tr><td><code>events_statements_summary_global_by_event_name</code></td> <td>Statement events per event name</td> </tr><tr><td><code>events_transactions_current</code></td> <td>Current transaction events</td> </tr><tr><td><code>events_transactions_history</code></td> <td>Most recent transaction events per thread</td> </tr><tr><td><code>events_transactions_history_long</code></td> <td>Most recent transaction events overall</td> </tr><tr><td><code>events_transactions_summary_by_account_by_event_name</code></td> <td>Transaction events per account and event name</td> </tr><tr><td><code>events_transactions_summary_by_host_by_event_name</code></td> <td>Transaction events per host name and event name</td> </tr><tr><td><code>events_transactions_summary_by_thread_by_event_name</code></td> <td>Transaction events per thread and event name</td> </tr><tr><td><code>events_transactions_summary_by_user_by_event_name</code></td> <td>Transaction events per user name and event name</td> </tr><tr><td><code>events_transactions_summary_global_by_event_name</code></td> <td>Transaction events per event name</td> </tr><tr><td><code>events_waits_current</code></td> <td>Current wait events</td> </tr><tr><td><code>events_waits_history</code></td> <td>Most recent wait events per thread</td> </tr><tr><td><code>events_waits_history_long</code></td> <td>Most recent wait events overall</td> </tr><tr><td><code>events_waits_summary_by_account_by_event_name</code></td> <td>Wait events per account and event name</td> </tr><tr><td><code>events_waits_summary_by_host_by_event_name</code></td> <td>Wait events per host name and event name</td> </tr><tr><td><code>events_waits_summary_by_instance</code></td> <td>Wait events per instance</td> </tr><tr><td><code>events_waits_summary_by_thread_by_event_name</code></td> <td>Wait events per thread and event name</td> </tr><tr><td><code>events_waits_summary_by_user_by_event_name</code></td> <td>Wait events per user name and event name</td> </tr><tr><td><code>events_waits_summary_global_by_event_name</code></td> <td>Wait events per event name</td> </tr><tr><td><code>file_instances</code></td> <td>File instances</td> </tr><tr><td><code>file_summary_by_event_name</code></td> <td>File events per event name</td> </tr><tr><td><code>file_summary_by_instance</code></td> <td>File events per file instance</td> </tr><tr><td><code>firewall_group_allowlist</code></td> <td>Firewall in-memory data for group profile allowlists</td> </tr><tr><td><code>firewall_groups</code></td> <td>Firewall in-memory data for group profiles</td> </tr><tr><td><code>firewall_membership</code></td> <td>Firewall in-memory data for group profile members</td> </tr><tr><td><code>global_status</code></td> <td>Global status variables</td> </tr><tr><td><code>global_variable_attributes</code></td> <td>Attribute-value pairs assigned to global variables</td> </tr><tr><td><code>global_variables</code></td> <td>Global system variables</td> </tr><tr><td><code>host_cache</code></td> <td>Information from internal host cache</td> </tr><tr><td><code>hosts</code></td> <td>Connection statistics per client host name</td> </tr><tr><td><code>keyring_component_status</code></td> <td>Status information for installed keyring component</td> </tr><tr><td><code>keyring_keys</code></td> <td>Metadata for keyring keys</td> </tr><tr><td><code>log_status</code></td> <td>Information about server logs for backup purposes</td> </tr><tr><td><code>memory_summary_by_account_by_event_name</code></td> <td>Memory operations per account and event name</td> </tr><tr><td><code>memory_summary_by_host_by_event_name</code></td> <td>Memory operations per host and event name</td> </tr><tr><td><code>memory_summary_by_thread_by_event_name</code></td> <td>Memory operations per thread and event name</td> </tr><tr><td><code>memory_summary_by_user_by_event_name</code></td> <td>Memory operations per user and event name</td> </tr><tr><td><code>memory_summary_global_by_event_name</code></td> <td>Memory operations globally per event name</td> </tr><tr><td><code>metadata_locks</code></td> <td>Metadata locks and lock requests</td> </tr><tr><td><code>mutex_instances</code></td> <td>Mutex synchronization object instances</td> </tr><tr><td><code>mysql_option</code></td> <td>Features known to Option tracker in MySQL server, components, and plugins</td> </tr><tr><td><code>ndb_replication_applier_status</code></td> <td>NDB replication applier status information for each replication channel</td> </tr><tr><td><code>ndb_sync_excluded_objects</code></td> <td>NDB objects which cannot be synchronized</td> </tr><tr><td><code>ndb_sync_pending_objects</code></td> <td>NDB objects waiting for synchronization</td> </tr><tr><td><code>objects_summary_global_by_type</code></td> <td>Object summaries</td> </tr><tr><td><code>performance_timers</code></td> <td>Which event timers are available</td> </tr><tr><td><code>persisted_variables</code></td> <td>Contents of mysqld-auto.cnf file</td> </tr><tr><td><code>prepared_statements_instances</code></td> <td>Prepared statement instances and statistics</td> </tr><tr><td><code>processlist</code></td> <td>Process list information</td> </tr><tr><td><code>replication_applier_configuration</code></td> <td>Configuration parameters for replication applier on replica</td> </tr><tr><td><code>replication_applier_filters</code></td> <td>Channel-specific replication filters on current replica</td> </tr><tr><td><code>replication_applier_global_filters</code></td> <td>Global replication filters on current replica</td> </tr><tr><td><code>replication_applier_status</code></td> <td>Current status of replication applier on replica</td> </tr><tr><td><code>replication_applier_status_by_coordinator</code></td> <td>SQL or coordinator thread applier status</td> </tr><tr><td><code>replication_applier_status_by_worker</code></td> <td>Worker thread applier status</td> </tr><tr><td><code>replication_asynchronous_connection_failover</code></td> <td>Source lists for asynchronous connection failover mechanism</td> </tr><tr><td><code>replication_asynchronous_connection_failover_managed</code></td> <td>Managed source lists for asynchronous connection failover mechanism</td> </tr><tr><td><code>replication_connection_configuration</code></td> <td>Configuration parameters for connecting to source</td> </tr><tr><td><code>replication_connection_status</code></td> <td>Current status of connection to source</td> </tr><tr><td><code>replication_group_communication_information</code></td> <td>Replication group configuration options</td> </tr><tr><td><code>replication_group_configuration_version</code></td> <td>Version of the member actions configuration for replication group members</td> </tr><tr><td><code>replication_group_member_actions</code></td> <td>Member actions that are included in the member actions configuration for replication group members</td> </tr><tr><td><code>replication_group_member_stats</code></td> <td>Replication group member statistics</td> </tr><tr><td><code>replication_group_members</code></td> <td>Replication group member network and status</td> </tr><tr><td><code>rwlock_instances</code></td> <td>Lock synchronization object instances</td> </tr><tr><td><code>session_account_connect_attrs</code></td> <td>Connection attributes per for current session</td> </tr><tr><td><code>session_connect_attrs</code></td> <td>Connection attributes for all sessions</td> </tr><tr><td><code>session_status</code></td> <td>Status variables for current session</td> </tr><tr><td><code>session_variables</code></td> <td>System variables for current session</td> </tr><tr><td><code>setup_actors</code></td> <td>How to initialize monitoring for new foreground threads</td> </tr><tr><td><code>setup_consumers</code></td> <td>Consumers for which event information can be stored</td> </tr><tr><td><code>setup_instruments</code></td> <td>Classes of instrumented objects for which events can be collected</td> </tr><tr><td><code>setup_objects</code></td> <td>Which objects should be monitored</td> </tr><tr><td><code>setup_threads</code></td> <td>Instrumented thread names and attributes</td> </tr><tr><td><code>socket_instances</code></td> <td>Active connection instances</td> </tr><tr><td><code>socket_summary_by_event_name</code></td> <td>Socket waits and I/O per event name</td> </tr><tr><td><code>socket_summary_by_instance</code></td> <td>Socket waits and I/O per instance</td> </tr><tr><td><code>status_by_account</code></td> <td>Session status variables per account</td> </tr><tr><td><code>status_by_host</code></td> <td>Session status variables per host name</td> </tr><tr><td><code>status_by_thread</code></td> <td>Session status variables per session</td> </tr><tr><td><code>status_by_user</code></td> <td>Session status variables per user name</td> </tr><tr><td><code>table_handles</code></td> <td>Table locks and lock requests</td> </tr><tr><td><code>table_io_waits_summary_by_index_usage</code></td> <td>Table I/O waits per index</td> </tr><tr><td><code>table_io_waits_summary_by_table</code></td> <td>Table I/O waits per table</td> </tr><tr><td><code>table_lock_waits_summary_by_table</code></td> <td>Table lock waits per table</td> </tr><tr><td><code>threads</code></td> <td>Information about server threads</td> </tr><tr><td><code>tls_channel_status</code></td> <td>TLS status for each connection interface</td> </tr><tr><td><code>tp_thread_group_state</code></td> <td>Thread pool thread group states</td> </tr><tr><td><code>tp_thread_group_stats</code></td> <td>Thread pool thread group statistics</td> </tr><tr><td><code>tp_thread_state</code></td> <td>Thread pool thread information</td> </tr><tr><td><code>user_defined_functions</code></td> <td>Registered loadable functions</td> </tr><tr><td><code>user_variables_by_thread</code></td> <td>User-defined variables per thread</td> </tr><tr><td><code>users</code></td> <td>Connection statistics per client user name</td> </tr><tr><td><code>variables_by_thread</code></td> <td>Session system variables per session</td> </tr><tr><td><code>variables_info</code></td> <td>How system variables were most recently set</td> </tr><tr><td><code>variables_metadata</code></td> <td>System variable metadata, including scope, type, range, and description</td> </tr></tbody></table>
 
 
 ### 29.12.2 Performance Schema Setup Tables
@@ -45,7 +45,7 @@ These setup tables are available:
 * `setup_threads`: Instrumented thread names and attributes
 
 
-#### 29.12.2.1 The setup\_actors Table
+#### 29.12.2.1 The setup_actors Table
 
 The `setup_actors` table contains information that determines whether to enable monitoring and historical event logging for new foreground server threads (threads associated with client connections). This table has a maximum size of 100 rows by default. To change the table size, modify the `performance_schema_setup_actors_size` system variable at server startup.
 
@@ -97,7 +97,7 @@ The `setup_actors` table has these indexes:
 `TRUNCATE TABLE` is permitted for the `setup_actors` table. It removes the rows.
 
 
-#### 29.12.2.2 The setup\_consumers Table
+#### 29.12.2.2 The setup_consumers Table
 
 The `setup_consumers` table lists the types of consumers for which event information can be stored and which are enabled:
 
@@ -145,7 +145,7 @@ The `setup_consumers` table has these indexes:
 `TRUNCATE TABLE` is not permitted for the `setup_consumers` table.
 
 
-#### 29.12.2.3 The setup\_instruments Table
+#### 29.12.2.3 The setup_instruments Table
 
 The `setup_instruments` table lists classes of instrumented objects for which events can be collected:
 
@@ -364,7 +364,7 @@ With export of thread names to the operating system, the output looks like this,
 Different thread instances within the same class are numbered to provide distinct names where that is feasible. Due to constraints on name lengths with respect to potentially large numbers of connections, connections are named simply `connection`.
 
 
-#### 29.12.2.4 The setup\_objects Table
+#### 29.12.2.4 The setup_objects Table
 
 The `setup_objects` table controls whether the Performance Schema monitors particular objects. This table has a maximum size of 100 rows by default. To change the table size, modify the `performance_schema_setup_objects_size` system variable at server startup.
 
@@ -441,7 +441,7 @@ The `setup_objects` table has these indexes:
 `TRUNCATE TABLE` is permitted for the `setup_objects` table. It removes the rows.
 
 
-#### 29.12.2.5 The setup\_threads Table
+#### 29.12.2.5 The setup_threads Table
 
 The `setup_threads` table lists instrumented thread classes. It exposes thread class names and attributes:
 
@@ -507,7 +507,7 @@ The `setup_threads` table has these columns:
 
 * `VOLATILITY`
 
-  The instrument volatility. This column has the same meaning as in the `setup_instruments` table. See Section 29.12.2.3, “The setup\_instruments Table”.
+  The instrument volatility. This column has the same meaning as in the `setup_instruments` table. See Section 29.12.2.3, “The setup_instruments Table”.
 
 * `DOCUMENTATION`
 
@@ -538,7 +538,7 @@ These tables list instrumented synchronization objects, files, and connections. 
 The `mutex_instances.LOCKED_BY_THREAD_ID` and `rwlock_instances.WRITE_LOCKED_BY_THREAD_ID` columns are extremely important for investigating performance bottlenecks or deadlocks. For examples of how to use them for this purpose, see Section 29.19, “Using the Performance Schema to Diagnose Problems”
 
 
-#### 29.12.3.1 The cond\_instances Table
+#### 29.12.3.1 The cond_instances Table
 
 The `cond_instances` table lists all the conditions seen by the Performance Schema while the server executes. A condition is a synchronization mechanism used in the code to signal that a specific event has happened, so that a thread waiting for this condition can resume work.
 
@@ -562,7 +562,7 @@ The `cond_instances` table has these indexes:
 `TRUNCATE TABLE` is not permitted for the `cond_instances` table.
 
 
-#### 29.12.3.2 The file\_instances Table
+#### 29.12.3.2 The file_instances Table
 
 The `file_instances` table lists all the files seen by the Performance Schema when executing file I/O instrumentation. If a file on disk has never been opened, it is not shown in `file_instances`. When a file is deleted from the disk, it is also removed from the `file_instances` table.
 
@@ -588,7 +588,7 @@ The `file_instances` table has these indexes:
 `TRUNCATE TABLE` is not permitted for the `file_instances` table.
 
 
-#### 29.12.3.3 The mutex\_instances Table
+#### 29.12.3.3 The mutex_instances Table
 
 The `mutex_instances` table lists all the mutexes seen by the Performance Schema while the server executes. A mutex is a synchronization mechanism used in the code to enforce that only one thread at a given time can have access to some common resource. The resource is said to be “protected” by the mutex.
 
@@ -645,7 +645,7 @@ By performing queries on both of the following tables, a monitoring application 
 * `mutex_instances`, to see which other thread currently owns a mutex
 
 
-#### 29.12.3.4 The rwlock\_instances Table
+#### 29.12.3.4 The rwlock_instances Table
 
 The `rwlock_instances` table lists all the rwlock (read write lock) instances seen by the Performance Schema while the server executes. An `rwlock` is a synchronization mechanism used in the code to enforce that threads at a given time can have access to some common resource following certain rules. The resource is said to be “protected” by the `rwlock`. The access is either shared (many threads can have a read lock at the same time), exclusive (only one thread can have a write lock at a given time), or shared-exclusive (a thread can have a write lock while permitting inconsistent reads by other threads). Shared-exclusive access is otherwise known as an `sxlock` and optimizes concurrency and improves scalability for read-write workloads.
 
@@ -688,7 +688,7 @@ By performing queries on both of the following tables, a monitoring application 
 There is a limitation: The `rwlock_instances` can be used only to identify the thread holding a write lock, but not the threads holding a read lock.
 
 
-#### 29.12.3.5 The socket\_instances Table
+#### 29.12.3.5 The socket_instances Table
 
 The `socket_instances` table provides a real-time snapshot of the active connections to the MySQL server. The table contains one row per TCP/IP or Unix socket file connection. Information available in this table provides a real-time snapshot of the active connections to the server. (Additional information is available in socket summary tables, including network activity such as socket operations and number of bytes transmitted and received; see Section 29.12.20.9, “Socket Summary Tables”).
 
@@ -902,7 +902,7 @@ To collect only specific wait events, enable only the corresponding wait instrum
 For additional information about configuring event collection, see Section 29.3, “Performance Schema Startup Configuration”, and Section 29.4, “Performance Schema Runtime Configuration”.
 
 
-#### 29.12.4.1 The events\_waits\_current Table
+#### 29.12.4.1 The events_waits_current Table
 
 The `events_waits_current` table contains current wait events. The table stores one row per thread showing the current status of the thread's most recent monitored wait event, so there is no system variable for configuring the table size.
 
@@ -1039,13 +1039,13 @@ The `events_waits_current` table has these indexes:
 `TRUNCATE TABLE` is permitted for the `events_waits_current` table. It removes the rows.
 
 
-#### 29.12.4.2 The events\_waits\_history Table
+#### 29.12.4.2 The events_waits_history Table
 
 The `events_waits_history` table contains the *`N`* most recent wait events that have ended per thread. Wait events are not added to the table until they have ended. When the table contains the maximum number of rows for a given thread, the oldest thread row is discarded when a new row for that thread is added. When a thread ends, all its rows are discarded.
 
 The Performance Schema autosizes the value of *`N`* during server startup. To set the number of rows per thread explicitly, set the `performance_schema_events_waits_history_size` system variable at server startup.
 
-The `events_waits_history` table has the same columns and indexing as `events_waits_current`. See Section 29.12.4.1, “The events\_waits\_current Table”.
+The `events_waits_history` table has the same columns and indexing as `events_waits_current`. See Section 29.12.4.1, “The events_waits_current Table”.
 
 `TRUNCATE TABLE` is permitted for the `events_waits_history` table. It removes the rows.
 
@@ -1054,13 +1054,13 @@ For more information about the relationship between the three wait event tables,
 For information about configuring whether to collect wait events, see Section 29.12.4, “Performance Schema Wait Event Tables”.
 
 
-#### 29.12.4.3 The events\_waits\_history\_long Table
+#### 29.12.4.3 The events_waits_history_long Table
 
 The `events_waits_history_long` table contains *`N`* the most recent wait events that have ended globally, across all threads. Wait events are not added to the table until they have ended. When the table becomes full, the oldest row is discarded when a new row is added, regardless of which thread generated either row.
 
 The Performance Schema autosizes the value of *`N`* during server startup. To set the table size explicitly, set the `performance_schema_events_waits_history_long_size` system variable at server startup.
 
-The `events_waits_history_long` table has the same columns as `events_waits_current`. See Section 29.12.4.1, “The events\_waits\_current Table”. Unlike `events_waits_current`, `events_waits_history_long` has no indexing.
+The `events_waits_history_long` table has the same columns as `events_waits_current`. See Section 29.12.4.1, “The events_waits_current Table”. Unlike `events_waits_current`, `events_waits_history_long` has no indexing.
 
 `TRUNCATE TABLE` is permitted for the `events_waits_history_long` table. It removes the rows.
 
@@ -1274,7 +1274,7 @@ WHERE NAME LIKE 'events_stages_%';
 To see the progress of an ongoing [`ALTER TABLE`](alter-table.html "15.1.11 ALTER TABLE Statement") statement, select from the `events_stages_current` table.
 
 
-#### 29.12.5.1 The events\_stages\_current Table
+#### 29.12.5.1 The events_stages_current Table
 
 The `events_stages_current` table contains current stage events. The table stores one row per thread showing the current status of the thread's most recent monitored stage event, so there is no system variable for configuring the table size.
 
@@ -1331,13 +1331,13 @@ The `events_stages_current` table has these indexes:
 `TRUNCATE TABLE` is permitted for the `events_stages_current` table. It removes the rows.
 
 
-#### 29.12.5.2 The events\_stages\_history Table
+#### 29.12.5.2 The events_stages_history Table
 
 The `events_stages_history` table contains the *`N`* most recent stage events that have ended per thread. Stage events are not added to the table until they have ended. When the table contains the maximum number of rows for a given thread, the oldest thread row is discarded when a new row for that thread is added. When a thread ends, all its rows are discarded.
 
 The Performance Schema autosizes the value of *`N`* during server startup. To set the number of rows per thread explicitly, set the `performance_schema_events_stages_history_size` system variable at server startup.
 
-The `events_stages_history` table has the same columns and indexing as `events_stages_current`. See Section 29.12.5.1, “The events\_stages\_current Table”.
+The `events_stages_history` table has the same columns and indexing as `events_stages_current`. See Section 29.12.5.1, “The events_stages_current Table”.
 
 `TRUNCATE TABLE` is permitted for the `events_stages_history` table. It removes the rows.
 
@@ -1346,13 +1346,13 @@ For more information about the relationship between the three stage event tables
 For information about configuring whether to collect stage events, see Section 29.12.5, “Performance Schema Stage Event Tables”.
 
 
-#### 29.12.5.3 The events\_stages\_history\_long Table
+#### 29.12.5.3 The events_stages_history_long Table
 
 The `events_stages_history_long` table contains the *`N`* most recent stage events that have ended globally, across all threads. Stage events are not added to the table until they have ended. When the table becomes full, the oldest row is discarded when a new row is added, regardless of which thread generated either row.
 
 The Performance Schema autosizes the value of *`N`* during server startup. To set the table size explicitly, set the `performance_schema_events_stages_history_long_size` system variable at server startup.
 
-The `events_stages_history_long` table has the same columns as `events_stages_current`. See Section 29.12.5.1, “The events\_stages\_current Table”. Unlike `events_stages_current`, `events_stages_history_long` has no indexing.
+The `events_stages_history_long` table has the same columns as `events_stages_current`. See Section 29.12.5.1, “The events_stages_current Table”. Unlike `events_stages_current`, `events_stages_history_long` has no indexing.
 
 `TRUNCATE TABLE` is permitted for the `events_stages_history_long` table. It removes the rows.
 
@@ -1541,7 +1541,7 @@ For statistics to be collected for statements, it is not sufficient to enable on
 No statistics are aggregated for abstract instruments such as `statement/abstract/Query` because no statement is ever classified with an abstract instrument as the final statement name.
 
 
-#### 29.12.6.1 The events\_statements\_current Table
+#### 29.12.6.1 The events_statements_current Table
 
 The `events_statements_current` table contains current statement events. The table stores one row per thread showing the current status of the thread's most recent monitored statement event, so there is no system variable for configuring the table size.
 
@@ -1635,7 +1635,7 @@ The `events_statements_current` table has these columns:
 
 * `ROWS_AFFECTED`
 
-  The number of rows affected by the statement. For a description of the meaning of “affected,” see mysql\_affected\_rows().
+  The number of rows affected by the statement. For a description of the meaning of “affected,” see mysql_affected_rows().
 
 * `ROWS_SENT`
 
@@ -1750,13 +1750,13 @@ The `events_statements_current` table has these indexes:
 `TRUNCATE TABLE` is permitted for the `events_statements_current` table. It removes the rows.
 
 
-#### 29.12.6.2 The events\_statements\_history Table
+#### 29.12.6.2 The events_statements_history Table
 
 The `events_statements_history` table contains the *`N`* most recent statement events that have ended per thread. Statement events are not added to the table until they have ended. When the table contains the maximum number of rows for a given thread, the oldest thread row is discarded when a new row for that thread is added. When a thread ends, all its rows are discarded.
 
 The Performance Schema autosizes the value of *`N`* during server startup. To set the number of rows per thread explicitly, set the `performance_schema_events_statements_history_size` system variable at server startup.
 
-The `events_statements_history` table has the same columns and indexing as `events_statements_current`. See Section 29.12.6.1, “The events\_statements\_current Table”.
+The `events_statements_history` table has the same columns and indexing as `events_statements_current`. See Section 29.12.6.1, “The events_statements_current Table”.
 
 `TRUNCATE TABLE` is permitted for the `events_statements_history` table. It removes the rows.
 
@@ -1765,13 +1765,13 @@ For more information about the relationship between the three `events_statements
 For information about configuring whether to collect statement events, see Section 29.12.6, “Performance Schema Statement Event Tables”.
 
 
-#### 29.12.6.3 The events\_statements\_history\_long Table
+#### 29.12.6.3 The events_statements_history_long Table
 
 The `events_statements_history_long` table contains the *`N`* most recent statement events that have ended globally, across all threads. Statement events are not added to the table until they have ended. When the table becomes full, the oldest row is discarded when a new row is added, regardless of which thread generated either row.
 
 The value of *`N`* is autosized at server startup. To set the table size explicitly, set the `performance_schema_events_statements_history_long_size` system variable at server startup.
 
-The `events_statements_history_long` table has the same columns as `events_statements_current`. See Section 29.12.6.1, “The events\_statements\_current Table”. Unlike `events_statements_current`, `events_statements_history_long` has no indexing.
+The `events_statements_history_long` table has the same columns as `events_statements_current`. See Section 29.12.6.1, “The events_statements_current Table”. Unlike `events_statements_current`, `events_statements_history_long` has no indexing.
 
 `TRUNCATE TABLE` is permitted for the `events_statements_history_long` table. It removes the rows.
 
@@ -1780,17 +1780,17 @@ For more information about the relationship between the three `events_statements
 For information about configuring whether to collect statement events, see Section 29.12.6, “Performance Schema Statement Event Tables”.
 
 
-#### 29.12.6.4 The prepared\_statements\_instances Table
+#### 29.12.6.4 The prepared_statements_instances Table
 
 The Performance Schema provides instrumentation for prepared statements, for which there are two protocols:
 
 * The binary protocol. This is accessed through the MySQL C API and maps onto underlying server commands as shown in the following table.
 
-  <table summary="How the binary protocol accessed through the MySQL C API maps onto underlying server commands."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>C API Function</th> <th>Corresponding Server Command</th> </tr></thead><tbody><tr> <td><a class="ulink" href="/doc/c-api/9.5/en/mysql-stmt-prepare.html" target="_top"><code class="literal">mysql_stmt_prepare()</code></a></td> <td><code class="literal">COM_STMT_PREPARE</code></td> </tr><tr> <td><a class="ulink" href="/doc/c-api/9.5/en/mysql-stmt-execute.html" target="_top"><code class="literal">mysql_stmt_execute()</code></a></td> <td><code class="literal">COM_STMT_EXECUTE</code></td> </tr><tr> <td><a class="ulink" href="/doc/c-api/9.5/en/mysql-stmt-close.html" target="_top"><code class="literal">mysql_stmt_close()</code></a></td> <td><code class="literal">COM_STMT_CLOSE</code></td> </tr></tbody></table>
+  <table summary="How the binary protocol accessed through the MySQL C API maps onto underlying server commands."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>C API Function</th> <th>Corresponding Server Command</th> </tr></thead><tbody><tr> <td><code>mysql_stmt_prepare()</code></td> <td><code>COM_STMT_PREPARE</code></td> </tr><tr> <td><code>mysql_stmt_execute()</code></td> <td><code>COM_STMT_EXECUTE</code></td> </tr><tr> <td><code>mysql_stmt_close()</code></td> <td><code>COM_STMT_CLOSE</code></td> </tr></tbody></table>
 
 * The text protocol. This is accessed using SQL statements and maps onto underlying server commands as shown in the following table.
 
-  <table summary="How the text protocol accessed using SQL statements maps onto underlying server commands."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>SQL Statement</th> <th>Corresponding Server Command</th> </tr></thead><tbody><tr> <td><a class="link" href="prepare.html" title="15.5.1 PREPARE Statement"><code class="literal">PREPARE</code></a></td> <td><code class="literal">SQLCOM_PREPARE</code></td> </tr><tr> <td><a class="link" href="execute.html" title="15.5.2 EXECUTE Statement"><code class="literal">EXECUTE</code></a></td> <td><code class="literal">SQLCOM_EXECUTE</code></td> </tr><tr> <td><a class="link" href="deallocate-prepare.html" title="15.5.3 DEALLOCATE PREPARE Statement"><code class="literal">DEALLOCATE PREPARE</code></a>, <a class="link" href="deallocate-prepare.html" title="15.5.3 DEALLOCATE PREPARE Statement"><code class="literal">DROP PREPARE</code></a></td> <td><code class="literal">SQLCOM_DEALLOCATE PREPARE</code></td> </tr></tbody></table>
+  <table summary="How the text protocol accessed using SQL statements maps onto underlying server commands."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>SQL Statement</th> <th>Corresponding Server Command</th> </tr></thead><tbody><tr> <td><code>PREPARE</code></td> <td><code>SQLCOM_PREPARE</code></td> </tr><tr> <td><code>EXECUTE</code></td> <td><code>SQLCOM_EXECUTE</code></td> </tr><tr> <td><code>DEALLOCATE PREPARE</code>, <code>DROP PREPARE</code></td> <td><code>SQLCOM_DEALLOCATE PREPARE</code></td> </tr></tbody></table>
 
 Performance Schema prepared statement instrumentation covers both protocols. The following discussion refers to the server commands rather than the C API functions or SQL statements.
 
@@ -1798,7 +1798,7 @@ Information about prepared statements is available in the `prepared_statements_i
 
 Collection of prepared statement information depends on the statement instruments shown in the following table. These instruments are enabled by default. To modify them, update the `setup_instruments` table.
 
-<table summary="Collection of prepared statement information depends on the statement instruments shown in this table."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Instrument</th> <th>Server Command</th> </tr></thead><tbody><tr> <td><code class="literal">statement/com/Prepare</code></td> <td><code class="literal">COM_STMT_PREPARE</code></td> </tr><tr> <td><code class="literal">statement/com/Execute</code></td> <td><code class="literal">COM_STMT_EXECUTE</code></td> </tr><tr> <td><code class="literal">statement/sql/prepare_sql</code></td> <td><code class="literal">SQLCOM_PREPARE</code></td> </tr><tr> <td><code class="literal">statement/sql/execute_sql</code></td> <td><code class="literal">SQLCOM_EXECUTE</code></td> </tr></tbody></table>
+<table summary="Collection of prepared statement information depends on the statement instruments shown in this table."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Instrument</th> <th>Server Command</th> </tr></thead><tbody><tr> <td><code>statement/com/Prepare</code></td> <td><code>COM_STMT_PREPARE</code></td> </tr><tr> <td><code>statement/com/Execute</code></td> <td><code>COM_STMT_EXECUTE</code></td> </tr><tr> <td><code>statement/sql/prepare_sql</code></td> <td><code>SQLCOM_PREPARE</code></td> </tr><tr> <td><code>statement/sql/execute_sql</code></td> <td><code>SQLCOM_EXECUTE</code></td> </tr></tbody></table>
 
 The Performance Schema manages the contents of the `prepared_statements_instances` table as follows:
 
@@ -2109,7 +2109,7 @@ Savepoint statements are recorded as separate statement events. Transaction even
 Errors and warnings that occur within a transaction are recorded in statement events, but not in the corresponding transaction event. This includes transaction-specific errors and warnings, such as a rollback on a nontransactional table or GTID consistency errors.
 
 
-#### 29.12.7.1 The events\_transactions\_current Table
+#### 29.12.7.1 The events_transactions_current Table
 
 The `events_transactions_current` table contains current transaction events. The table stores one row per thread showing the current status of the thread's most recent monitored transaction event, so there is no system variable for configuring the table size. For example:
 
@@ -2232,13 +2232,13 @@ The `events_transactions_current` table has these indexes:
 `TRUNCATE TABLE` is permitted for the `events_transactions_current` table. It removes the rows.
 
 
-#### 29.12.7.2 The events\_transactions\_history Table
+#### 29.12.7.2 The events_transactions_history Table
 
 The `events_transactions_history` table contains the *`N`* most recent transaction events that have ended per thread. Transaction events are not added to the table until they have ended. When the table contains the maximum number of rows for a given thread, the oldest thread row is discarded when a new row for that thread is added. When a thread ends, all its rows are discarded.
 
 The Performance Schema autosizes the value of *`N`* during server startup. To set the number of rows per thread explicitly, set the `performance_schema_events_transactions_history_size` system variable at server startup.
 
-The `events_transactions_history` table has the same columns and indexing as `events_transactions_current`. See Section 29.12.7.1, “The events\_transactions\_current Table”.
+The `events_transactions_history` table has the same columns and indexing as `events_transactions_current`. See Section 29.12.7.1, “The events_transactions_current Table”.
 
 `TRUNCATE TABLE` is permitted for the `events_transactions_history` table. It removes the rows.
 
@@ -2247,13 +2247,13 @@ For more information about the relationship between the three transaction event 
 For information about configuring whether to collect transaction events, see Section 29.12.7, “Performance Schema Transaction Tables”.
 
 
-#### 29.12.7.3 The events\_transactions\_history\_long Table
+#### 29.12.7.3 The events_transactions_history_long Table
 
 The `events_transactions_history_long` table contains the *`N`* most recent transaction events that have ended globally, across all threads. Transaction events are not added to the table until they have ended. When the table becomes full, the oldest row is discarded when a new row is added, regardless of which thread generated either row.
 
 The Performance Schema autosizes the value of *`N`* is autosized at server startup. To set the table size explicitly, set the `performance_schema_events_transactions_history_long_size` system variable at server startup.
 
-The `events_transactions_history_long` table has the same columns as `events_transactions_current`. See Section 29.12.7.1, “The events\_transactions\_current Table”. Unlike `events_transactions_current`, `events_transactions_history_long` has no indexing.
+The `events_transactions_history_long` table has the same columns as `events_transactions_current`. See Section 29.12.7.1, “The events_transactions_current Table”. Unlike `events_transactions_current`, `events_transactions_history_long` has no indexing.
 
 `TRUNCATE TABLE` is permitted for the `events_transactions_history_long` table. It removes the rows.
 
@@ -2347,7 +2347,7 @@ For details about individual connection summary tables, consult the section that
 
 **Table 29.2 Implicit Effects of Connection Table Truncation**
 
-<table summary="Which Performance Schema summary tables are implicity truncated by connection table truncation."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Truncated Connection Table</th> <th>Implicitly Truncated Summary Tables</th> </tr></thead><tbody><tr> <td><code class="literal">accounts</code></td> <td>Tables with names containing <code class="literal">_summary_by_account</code>, <code class="literal">_summary_by_thread</code></td> </tr><tr> <td><code class="literal">hosts</code></td> <td>Tables with names containing <code class="literal">_summary_by_account</code>, <code class="literal">_summary_by_host</code>, <code class="literal">_summary_by_thread</code></td> </tr><tr> <td><code class="literal">users</code></td> <td>Tables with names containing <code class="literal">_summary_by_account</code>, <code class="literal">_summary_by_user</code>, <code class="literal">_summary_by_thread</code></td> </tr></tbody></table>
+<table summary="Which Performance Schema summary tables are implicity truncated by connection table truncation."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Truncated Connection Table</th> <th>Implicitly Truncated Summary Tables</th> </tr></thead><tbody><tr> <td><code>accounts</code></td> <td>Tables with names containing <code>_summary_by_account</code>, <code>_summary_by_thread</code></td> </tr><tr> <td><code>hosts</code></td> <td>Tables with names containing <code>_summary_by_account</code>, <code>_summary_by_host</code>, <code>_summary_by_thread</code></td> </tr><tr> <td><code>users</code></td> <td>Tables with names containing <code>_summary_by_account</code>, <code>_summary_by_user</code>, <code>_summary_by_thread</code></td> </tr></tbody></table>
 
 Truncating a `_summary_global` summary table also implicitly truncates its corresponding connection and thread summary tables. For example, truncating `events_waits_summary_global_by_event_name` implicitly truncates the wait event summary tables that are aggregated by account, host, user, or thread.
 
@@ -2618,7 +2618,7 @@ On the server side, these size checks on connection attribute data occur:
   + A `_truncated` attribute is added to the session attributes with a value indicating how many bytes were lost, if the attribute buffer has sufficient space. This enables the Performance Schema to expose per-connection truncation information in the connection attribute tables. This information can be examined without having to check the error log.
 
 
-#### 29.12.9.1 The session\_account\_connect\_attrs Table
+#### 29.12.9.1 The session_account_connect_attrs Table
 
 Application programs can provide key-value connection attributes to be passed to the server at connect time. For descriptions of common attributes, see Section 29.12.9, “Performance Schema Connection Attribute Tables”.
 
@@ -2649,7 +2649,7 @@ The `session_account_connect_attrs` table has these indexes:
 `TRUNCATE TABLE` is not permitted for the `session_account_connect_attrs` table.
 
 
-#### 29.12.9.2 The session\_connect\_attrs Table
+#### 29.12.9.2 The session_connect_attrs Table
 
 Application programs can provide key-value connection attributes to be passed to the server at connect time. For descriptions of common attributes, see Section 29.12.9, “Performance Schema Connection Attribute Tables”.
 
@@ -2853,7 +2853,7 @@ The information in the Performance Schema replication tables differs somewhat fr
 The first column of the replication Performance Schema tables is `CHANNEL_NAME`. This enables the tables to be viewed per replication channel. In a non-multisource replication setup there is a single default replication channel. When you are using multiple replication channels on a replica, you can filter the tables per replication channel to monitor a specific replication channel. See Section 19.2.2, “Replication Channels” and Section 19.1.5.8, “Monitoring Multi-Source Replication” for more information.
 
 
-#### 29.12.11.1 The binary\_log\_transaction\_compression\_stats Table
+#### 29.12.11.1 The binary_log_transaction_compression_stats Table
 
 This table shows statistical information for transaction payloads written to the binary log and relay log, and can be used to calculate the effects of enabling binary log transaction compression. For information on binary log transaction compression, see Section 7.4.4.5, “Binary Log Transaction Compression”.
 
@@ -2922,7 +2922,7 @@ The `binary_log_transaction_compression_stats` table has no indexes.
 `TRUNCATE TABLE` is permitted for the `binary_log_transaction_compression_stats` table.
 
 
-#### 29.12.11.2 The replication\_applier\_configuration Table
+#### 29.12.11.2 The replication_applier_configuration Table
 
 This table shows the configuration parameters that affect transactions applied by the replica. Parameters stored in the table can be changed at runtime with the `CHANGE REPLICATION SOURCE TO` statement.
 
@@ -2964,10 +2964,10 @@ The `replication_applier_configuration` table has these indexes:
 
 The following table shows the correspondence between `replication_applier_configuration` columns and [`SHOW REPLICA STATUS`](show-replica-status.html "15.7.7.36 SHOW REPLICA STATUS Statement") columns.
 
-<table summary="Correspondence between replication_applier_configuration columns and SHOW REPLICA STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code class="literal">replication_applier_configuration</code> Column</th> <th><code class="literal">SHOW REPLICA STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code class="literal">DESIRED_DELAY</code></td> <td><code class="literal">SQL_Delay</code></td> </tr></tbody></table>
+<table summary="Correspondence between replication_applier_configuration columns and SHOW REPLICA STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_applier_configuration</code> Column</th> <th><code>SHOW REPLICA STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code>DESIRED_DELAY</code></td> <td><code>SQL_Delay</code></td> </tr></tbody></table>
 
 
-#### 29.12.11.3 The replication\_applier\_filters Table
+#### 29.12.11.3 The replication_applier_filters Table
 
 This table shows the replication channel specific filters configured on this replica. Each row provides information on a replication channel's configured type of filter. The `replication_applier_filters` table has these columns:
 
@@ -3004,7 +3004,7 @@ This table shows the replication channel specific filters configured on this rep
   The number of times the replication filter has been used since it was configured.
 
 
-#### 29.12.11.4 The replication\_applier\_global\_filters Table
+#### 29.12.11.4 The replication_applier_global_filters Table
 
 This table shows the global replication filters configured on this replica. The `replication_applier_global_filters` table has these columns:
 
@@ -3029,7 +3029,7 @@ This table shows the global replication filters configured on this replica. The 
   Timestamp of when the replication filter was configured.
 
 
-#### 29.12.11.5 The replication\_applier\_metrics Table
+#### 29.12.11.5 The replication_applier_metrics Table
 
 This table provides replication applier statistics such as wait times, wait counts, transaction counts, event counts, and byte counts for the applier coordinator.
 
@@ -3176,7 +3176,7 @@ The `replication_applier_metrics` table has these columns:
   This information is reset when the replica is restarted or the channel on the replica is deleted. It is not reset when the applier stops.
 
 
-#### 29.12.11.6 The replication\_applier\_progress\_by\_worker Table
+#### 29.12.11.6 The replication_applier_progress_by_worker Table
 
 This table provides information about the transaction currently being applied by a given worker. If there is no such transaction, this table is empty.
 
@@ -3217,7 +3217,7 @@ The `replication_applier_progress_by_worker` table has these columns:
   This information is available only for workers executing transactions.
 
 
-#### 29.12.11.7 The replication\_applier\_status Table
+#### 29.12.11.7 The replication_applier_status Table
 
 This table shows the current general transaction execution status on the replica. The table provides information about general aspects of transaction applier status that are not specific to any thread involved. Thread-specific status information is available in the `replication_applier_status_by_coordinator` table (and `replication_applier_status_by_worker` if the replica is multithreaded).
 
@@ -3247,10 +3247,10 @@ The `replication_applier_status` table has these indexes:
 
 The following table shows the correspondence between `replication_applier_status` columns and [`SHOW REPLICA STATUS`](show-replica-status.html "15.7.7.36 SHOW REPLICA STATUS Statement") columns.
 
-<table summary="Correspondence between replication_applier_status columns and SHOW REPLICA STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code class="literal">replication_applier_status</code> Column</th> <th><code class="literal">SHOW REPLICA STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code class="literal">SERVICE_STATE</code></td> <td>None</td> </tr><tr> <td><code class="literal">REMAINING_DELAY</code></td> <td><code class="literal">SQL_Remaining_Delay</code></td> </tr></tbody></table>
+<table summary="Correspondence between replication_applier_status columns and SHOW REPLICA STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_applier_status</code> Column</th> <th><code>SHOW REPLICA STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code>SERVICE_STATE</code></td> <td>None</td> </tr><tr> <td><code>REMAINING_DELAY</code></td> <td><code>SQL_Remaining_Delay</code></td> </tr></tbody></table>
 
 
-#### 29.12.11.8 The replication\_applier\_status\_by\_coordinator Table
+#### 29.12.11.8 The replication_applier_status_by_coordinator Table
 
 For a multithreaded replica, the replica uses multiple worker threads and a coordinator thread to manage them, and this table shows the status of the coordinator thread. For a single-threaded replica, this table is empty. For a multithreaded replica, the `replication_applier_status_by_worker` table shows the status of the worker threads. This table provides information about the last transaction which was buffered by the coordinator thread to a worker’s queue, as well as the transaction it is currently buffering. The start timestamp refers to when this thread read the first event of the transaction from the relay log to buffer it to a worker’s queue, while the end timestamp refers to when the last event finished buffering to the worker’s queue.
 
@@ -3325,10 +3325,10 @@ The `replication_applier_status_by_coordinator` table has these indexes:
 
 The following table shows the correspondence between `replication_applier_status_by_coordinator` columns and [`SHOW REPLICA STATUS`](show-replica-status.html "15.7.7.36 SHOW REPLICA STATUS Statement") columns.
 
-<table summary="Correspondence between replication_applier_status_by_coordinator columns and SHOW REPLICA STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code class="literal">replication_applier_status_by_coordinator</code> Column</th> <th><code class="literal">SHOW REPLICA STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code class="literal">THREAD_ID</code></td> <td>None</td> </tr><tr> <td><code class="literal">SERVICE_STATE</code></td> <td><code class="literal">Replica_SQL_Running</code></td> </tr><tr> <td><code class="literal">LAST_ERROR_NUMBER</code></td> <td><code class="literal">Last_SQL_Errno</code></td> </tr><tr> <td><code class="literal">LAST_ERROR_MESSAGE</code></td> <td><code class="literal">Last_SQL_Error</code></td> </tr><tr> <td><code class="literal">LAST_ERROR_TIMESTAMP</code></td> <td><code class="literal">Last_SQL_Error_Timestamp</code></td> </tr></tbody></table>
+<table summary="Correspondence between replication_applier_status_by_coordinator columns and SHOW REPLICA STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_applier_status_by_coordinator</code> Column</th> <th><code>SHOW REPLICA STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code>THREAD_ID</code></td> <td>None</td> </tr><tr> <td><code>SERVICE_STATE</code></td> <td><code>Replica_SQL_Running</code></td> </tr><tr> <td><code>LAST_ERROR_NUMBER</code></td> <td><code>Last_SQL_Errno</code></td> </tr><tr> <td><code>LAST_ERROR_MESSAGE</code></td> <td><code>Last_SQL_Error</code></td> </tr><tr> <td><code>LAST_ERROR_TIMESTAMP</code></td> <td><code>Last_SQL_Error_Timestamp</code></td> </tr></tbody></table>
 
 
-#### 29.12.11.9 The replication\_applier\_status\_by\_worker Table
+#### 29.12.11.9 The replication_applier_status_by_worker Table
 
 This table provides details of the transactions handled by applier threads on a replica or Group Replication group member. For a single-threaded replica, data is shown for the replica's single applier thread. For a multithreaded replica, data is shown individually for each applier thread. The applier threads on a multithreaded replica are sometimes called workers. The number of applier threads on a replica or Group Replication group member is set by the `replica_parallel_workers` system variable. A multithreaded replica also has a coordinator thread to manage the applier threads, and the status of this thread is shown in the `replication_applier_status_by_coordinator` table.
 
@@ -3442,10 +3442,10 @@ The `replication_applier_status_by_worker` table has these indexes:
 
 The following table shows the correspondence between `replication_applier_status_by_worker` columns and [`SHOW REPLICA STATUS`](show-replica-status.html "15.7.7.36 SHOW REPLICA STATUS Statement") columns.
 
-<table summary="Correspondence between replication_applier_status_by_worker columns and SHOW REPLICA STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code class="literal">replication_applier_status_by_worker</code> Column</th> <th><code class="literal">SHOW REPLICA STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code class="literal">WORKER_ID</code></td> <td>None</td> </tr><tr> <td><code class="literal">THREAD_ID</code></td> <td>None</td> </tr><tr> <td><code class="literal">SERVICE_STATE</code></td> <td>None</td> </tr><tr> <td><code class="literal">LAST_ERROR_NUMBER</code></td> <td><code class="literal">Last_SQL_Errno</code></td> </tr><tr> <td><code class="literal">LAST_ERROR_MESSAGE</code></td> <td><code class="literal">Last_SQL_Error</code></td> </tr><tr> <td><code class="literal">LAST_ERROR_TIMESTAMP</code></td> <td><code class="literal">Last_SQL_Error_Timestamp</code></td> </tr></tbody></table>
+<table summary="Correspondence between replication_applier_status_by_worker columns and SHOW REPLICA STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_applier_status_by_worker</code> Column</th> <th><code>SHOW REPLICA STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code>WORKER_ID</code></td> <td>None</td> </tr><tr> <td><code>THREAD_ID</code></td> <td>None</td> </tr><tr> <td><code>SERVICE_STATE</code></td> <td>None</td> </tr><tr> <td><code>LAST_ERROR_NUMBER</code></td> <td><code>Last_SQL_Errno</code></td> </tr><tr> <td><code>LAST_ERROR_MESSAGE</code></td> <td><code>Last_SQL_Error</code></td> </tr><tr> <td><code>LAST_ERROR_TIMESTAMP</code></td> <td><code>Last_SQL_Error_Timestamp</code></td> </tr></tbody></table>
 
 
-#### 29.12.11.10 The replication\_asynchronous\_connection\_failover Table
+#### 29.12.11.10 The replication_asynchronous_connection_failover Table
 
 This table holds the replica's source lists for each replication channel for the asynchronous connection failover mechanism. The asynchronous connection failover mechanism automatically establishes an asynchronous (source to replica) replication connection to a new source from the appropriate list after the existing connection from the replica to its source fails. When asynchronous connection failover is enabled for a group of replicas managed by Group Replication, the source lists are broadcast to all group members when they join, and also when the lists change.
 
@@ -3486,7 +3486,7 @@ The `replication_asynchronous_connection_failover` table has these indexes:
 `TRUNCATE TABLE` is not permitted for the `replication_asynchronous_connection_failover` table.
 
 
-#### 29.12.11.11 The replication\_asynchronous\_connection\_failover\_managed Table
+#### 29.12.11.11 The replication_asynchronous_connection_failover_managed Table
 
 This table holds configuration information used by the replica's asynchronous connection failover mechanism to handle managed groups, including Group Replication topologies.
 
@@ -3523,7 +3523,7 @@ The `replication_asynchronous_connection_failover_managed` table has these index
 `TRUNCATE TABLE` is not permitted for the `replication_asynchronous_connection_failover_managed` table.
 
 
-#### 29.12.11.12 The replication\_connection\_configuration Table
+#### 29.12.11.12 The replication_connection_configuration Table
 
 This table shows the configuration parameters used by the replica for connecting to the source. Parameters stored in the table can be changed at runtime with the `CHANGE REPLICATION SOURCE TO` statement.
 
@@ -3637,10 +3637,10 @@ The `replication_connection_configuration` table has these indexes:
 
 The following table shows the correspondence between `replication_connection_configuration` columns and [`SHOW REPLICA STATUS`](show-replica-status.html "15.7.7.36 SHOW REPLICA STATUS Statement") columns.
 
-<table summary="Correspondence between replication_connection_configuration columns and SHOW REPLICA STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code class="literal">replication_connection_configuration</code> Column</th> <th><code class="literal">SHOW REPLICA STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code class="literal">CHANNEL_NAME</code></td> <td><code class="literal">Channel_name</code></td> </tr><tr> <td><code class="literal">HOST</code></td> <td><code class="literal">Source_Host</code></td> </tr><tr> <td><code class="literal">PORT</code></td> <td><code class="literal">Source_Port</code></td> </tr><tr> <td><code class="literal">USER</code></td> <td><code class="literal">Source_User</code></td> </tr><tr> <td><code class="literal">NETWORK_INTERFACE</code></td> <td><code class="literal">Source_Bind</code></td> </tr><tr> <td><code class="literal">AUTO_POSITION</code></td> <td><code class="literal">Auto_Position</code></td> </tr><tr> <td><code class="literal">SSL_ALLOWED</code></td> <td><code class="literal">Source_SSL_Allowed</code></td> </tr><tr> <td><code class="literal">SSL_CA_FILE</code></td> <td><code class="literal">Source_SSL_CA_File</code></td> </tr><tr> <td><code class="literal">SSL_CA_PATH</code></td> <td><code class="literal">Source_SSL_CA_Path</code></td> </tr><tr> <td><code class="literal">SSL_CERTIFICATE</code></td> <td><code class="literal">Source_SSL_Cert</code></td> </tr><tr> <td><code class="literal">SSL_CIPHER</code></td> <td><code class="literal">Source_SSL_Cipher</code></td> </tr><tr> <td><code class="literal">SSL_KEY</code></td> <td><code class="literal">Source_SSL_Key</code></td> </tr><tr> <td><code class="literal">SSL_VERIFY_SERVER_CERTIFICATE</code></td> <td><code class="literal">Source_SSL_Verify_Server_Cert</code></td> </tr><tr> <td><code class="literal">SSL_CRL_FILE</code></td> <td><code class="literal">Source_SSL_Crl</code></td> </tr><tr> <td><code class="literal">SSL_CRL_PATH</code></td> <td><code class="literal">Source_SSL_Crlpath</code></td> </tr><tr> <td><code class="literal">CONNECTION_RETRY_INTERVAL</code></td> <td><code class="literal">Source_Connect_Retry</code></td> </tr><tr> <td><code class="literal">CONNECTION_RETRY_COUNT</code></td> <td><code class="literal">Source_Retry_Count</code></td> </tr><tr> <td><code class="literal">HEARTBEAT_INTERVAL</code></td> <td>None</td> </tr><tr> <td><code class="literal">TLS_VERSION</code></td> <td><code class="literal">Source_TLS_Version</code></td> </tr><tr> <td><code class="literal">PUBLIC_KEY_PATH</code></td> <td><code class="literal">Source_public_key_path</code></td> </tr><tr> <td><code class="literal">GET_PUBLIC_KEY</code></td> <td><code class="literal">Get_source_public_key</code></td> </tr><tr> <td><code class="literal">NETWORK_NAMESPACE</code></td> <td><code class="literal">Network_Namespace</code></td> </tr><tr> <td><code class="literal">COMPRESSION_ALGORITHM</code></td> <td>[None]</td> </tr><tr> <td><code class="literal">ZSTD_COMPRESSION_LEVEL</code></td> <td>[None]</td> </tr><tr> <td><code class="literal">GTID_ONLY</code></td> <td>[None]</td> </tr></tbody></table>
+<table summary="Correspondence between replication_connection_configuration columns and SHOW REPLICA STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_connection_configuration</code> Column</th> <th><code>SHOW REPLICA STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code>CHANNEL_NAME</code></td> <td><code>Channel_name</code></td> </tr><tr> <td><code>HOST</code></td> <td><code>Source_Host</code></td> </tr><tr> <td><code>PORT</code></td> <td><code>Source_Port</code></td> </tr><tr> <td><code>USER</code></td> <td><code>Source_User</code></td> </tr><tr> <td><code>NETWORK_INTERFACE</code></td> <td><code>Source_Bind</code></td> </tr><tr> <td><code>AUTO_POSITION</code></td> <td><code>Auto_Position</code></td> </tr><tr> <td><code>SSL_ALLOWED</code></td> <td><code>Source_SSL_Allowed</code></td> </tr><tr> <td><code>SSL_CA_FILE</code></td> <td><code>Source_SSL_CA_File</code></td> </tr><tr> <td><code>SSL_CA_PATH</code></td> <td><code>Source_SSL_CA_Path</code></td> </tr><tr> <td><code>SSL_CERTIFICATE</code></td> <td><code>Source_SSL_Cert</code></td> </tr><tr> <td><code>SSL_CIPHER</code></td> <td><code>Source_SSL_Cipher</code></td> </tr><tr> <td><code>SSL_KEY</code></td> <td><code>Source_SSL_Key</code></td> </tr><tr> <td><code>SSL_VERIFY_SERVER_CERTIFICATE</code></td> <td><code>Source_SSL_Verify_Server_Cert</code></td> </tr><tr> <td><code>SSL_CRL_FILE</code></td> <td><code>Source_SSL_Crl</code></td> </tr><tr> <td><code>SSL_CRL_PATH</code></td> <td><code>Source_SSL_Crlpath</code></td> </tr><tr> <td><code>CONNECTION_RETRY_INTERVAL</code></td> <td><code>Source_Connect_Retry</code></td> </tr><tr> <td><code>CONNECTION_RETRY_COUNT</code></td> <td><code>Source_Retry_Count</code></td> </tr><tr> <td><code>HEARTBEAT_INTERVAL</code></td> <td>None</td> </tr><tr> <td><code>TLS_VERSION</code></td> <td><code>Source_TLS_Version</code></td> </tr><tr> <td><code>PUBLIC_KEY_PATH</code></td> <td><code>Source_public_key_path</code></td> </tr><tr> <td><code>GET_PUBLIC_KEY</code></td> <td><code>Get_source_public_key</code></td> </tr><tr> <td><code>NETWORK_NAMESPACE</code></td> <td><code>Network_Namespace</code></td> </tr><tr> <td><code>COMPRESSION_ALGORITHM</code></td> <td>[None]</td> </tr><tr> <td><code>ZSTD_COMPRESSION_LEVEL</code></td> <td>[None]</td> </tr><tr> <td><code>GTID_ONLY</code></td> <td>[None]</td> </tr></tbody></table>
 
 
-#### 29.12.11.13 The replication\_connection\_status Table
+#### 29.12.11.13 The replication_connection_status Table
 
 This table shows the current status of the I/O thread that handles the replica's connection to the source, information on the last transaction queued in the relay log, and information on the transaction currently being queued in the relay log.
 
@@ -3735,10 +3735,10 @@ The `replication_connection_status` table has these indexes:
 
 The following table shows the correspondence between `replication_connection_status` columns and [`SHOW REPLICA STATUS`](show-replica-status.html "15.7.7.36 SHOW REPLICA STATUS Statement") columns.
 
-<table summary="Correspondence between replication_connection_status columns and SHOW REPLICA STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code class="literal">replication_connection_status</code> Column</th> <th><code class="literal">SHOW REPLICA STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code class="literal">SOURCE_UUID</code></td> <td><code class="literal">Master_UUID</code></td> </tr><tr> <td><code class="literal">THREAD_ID</code></td> <td>None</td> </tr><tr> <td><code class="literal">SERVICE_STATE</code></td> <td><code class="literal">Replica_IO_Running</code></td> </tr><tr> <td><code class="literal">RECEIVED_TRANSACTION_SET</code></td> <td><code class="literal">Retrieved_Gtid_Set</code></td> </tr><tr> <td><code class="literal">LAST_ERROR_NUMBER</code></td> <td><code class="literal">Last_IO_Errno</code></td> </tr><tr> <td><code class="literal">LAST_ERROR_MESSAGE</code></td> <td><code class="literal">Last_IO_Error</code></td> </tr><tr> <td><code class="literal">LAST_ERROR_TIMESTAMP</code></td> <td><code class="literal">Last_IO_Error_Timestamp</code></td> </tr></tbody></table>
+<table summary="Correspondence between replication_connection_status columns and SHOW REPLICA STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_connection_status</code> Column</th> <th><code>SHOW REPLICA STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code>SOURCE_UUID</code></td> <td><code>Master_UUID</code></td> </tr><tr> <td><code>THREAD_ID</code></td> <td>None</td> </tr><tr> <td><code>SERVICE_STATE</code></td> <td><code>Replica_IO_Running</code></td> </tr><tr> <td><code>RECEIVED_TRANSACTION_SET</code></td> <td><code>Retrieved_Gtid_Set</code></td> </tr><tr> <td><code>LAST_ERROR_NUMBER</code></td> <td><code>Last_IO_Errno</code></td> </tr><tr> <td><code>LAST_ERROR_MESSAGE</code></td> <td><code>Last_IO_Error</code></td> </tr><tr> <td><code>LAST_ERROR_TIMESTAMP</code></td> <td><code>Last_IO_Error_Timestamp</code></td> </tr></tbody></table>
 
 
-#### 29.12.11.14 The replication\_group\_communication\_information Table
+#### 29.12.11.14 The replication_group_communication_information Table
 
 This table shows group configuration options for the whole replication group. The table is available only when Group Replication is installed.
 
@@ -3781,7 +3781,7 @@ The `replication_group_communication_information` table has no indexes.
 `TRUNCATE TABLE` is not permitted for the `replication_group_communication_information` table.
 
 
-#### 29.12.11.15 The replication\_group\_configuration\_version Table
+#### 29.12.11.15 The replication_group_configuration_version Table
 
 This table displays the version of the member actions configuration for replication group members. The table is available only when Group Replication is installed. Whenever a member action is enabled or disabled using the `group_replication_enable_member_action()` and `group_replication_disable_member_action()` functions, the version number is incremented. You can reset the member actions configuration using the `group_replication_reset_member_actions()` function, which resets the member actions configuration to the default settings, and resets its version number to 1. For more information, see Section 20.5.1.5, “Configuring Member Actions”.
 
@@ -3800,7 +3800,7 @@ The `replication_group_configuration_version` table has no indexes.
 `TRUNCATE TABLE` is not permitted for the `replication_group_configuration_version` table.
 
 
-#### 29.12.11.16 The replication\_group\_member\_actions Table
+#### 29.12.11.16 The replication_group_member_actions Table
 
 This table lists the member actions that are included in the member actions configuration for replication group members. The table is available only when Group Replication is installed. You can reset the member actions configuration using the `group_replication_reset_member_actions()` function. For more information, see Section 20.5.1.5, “Configuring Member Actions”.
 
@@ -3835,7 +3835,7 @@ The `replication_group_member_actions` table has no indexes.
 `TRUNCATE TABLE` is not permitted for the `replication_group_member_actions` table.
 
 
-#### 29.12.11.17 The replication\_group\_member\_stats Table
+#### 29.12.11.17 The replication_group_member_stats Table
 
 This table shows statistical information for replication group members. It is populated only when Group Replication is running.
 
@@ -3898,7 +3898,7 @@ The `replication_group_member_stats` table has no indexes.
 `TRUNCATE TABLE` is not permitted for the `replication_group_member_stats` table.
 
 
-#### 29.12.11.18 The replication\_group\_members Table
+#### 29.12.11.18 The replication_group_members Table
 
 This table shows network and status information for replication group members. The network addresses shown are the addresses used to connect clients to the group, and should not be confused with the member's internal group communication address specified by `group_replication_local_address`.
 
@@ -3914,7 +3914,7 @@ The `replication_group_members` table has these columns:
 
 * `MEMBER_HOST`
 
-  Network address of this member (host name or IP address). Retrieved from the member's `hostname` variable. This is the address which clients connect to, unlike the group\_replication\_local\_address which is used for internal group communication.
+  Network address of this member (host name or IP address). Retrieved from the member's `hostname` variable. This is the address which clients connect to, unlike the group_replication_local_address which is used for internal group communication.
 
 * `MEMBER_PORT`
 
@@ -3959,7 +3959,7 @@ The following table shows all Performance Schema tables relating to the `NDBCLUS
 
 **Table 29.3 Performance Schema NDB Tables**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema tables relating to NDB Cluster."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="performance-schema-ndb-replication-applier-status-table.html" title="29.12.12.3 The ndb_replication_applier_status Table"><code class="literal">ndb_replication_applier_status</code></a></td> <td>NDB replication applier status information for each replication channel</td> </tr><tr><td><a class="link" href="performance-schema-ndb-sync-excluded-objects-table.html" title="29.12.12.2 The ndb_sync_excluded_objects Table"><code class="literal">ndb_sync_excluded_objects</code></a></td> <td>NDB objects which cannot be synchronized</td> </tr><tr><td><a class="link" href="performance-schema-ndb-sync-pending-objects-table.html" title="29.12.12.1 The ndb_sync_pending_objects Table"><code class="literal">ndb_sync_pending_objects</code></a></td> <td>NDB objects waiting for synchronization</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists all Performance Schema tables relating to NDB Cluster."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>ndb_replication_applier_status</code></td> <td>NDB replication applier status information for each replication channel</td> </tr><tr><td><code>ndb_sync_excluded_objects</code></td> <td>NDB objects which cannot be synchronized</td> </tr><tr><td><code>ndb_sync_pending_objects</code></td> <td>NDB objects waiting for synchronization</td> </tr></tbody></table>
 
 Note
 
@@ -3975,10 +3975,10 @@ Information about the current state of automatic synchronization is exposed by a
 
 These tables are described in more detail in the next two sections.
 
-Historically, information about the state of the `NDB` replication applier was available only as a set of server status variables, which reflected the state of the default replication channel only. The `ndb_replication_applier_status` table provides this information for each active replication channel. See Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”, for a detailed description of this table and its columns.
+Historically, information about the state of the `NDB` replication applier was available only as a set of server status variables, which reflected the state of the default replication channel only. The `ndb_replication_applier_status` table provides this information for each active replication channel. See Section 29.12.12.3, “The ndb_replication_applier_status Table”, for a detailed description of this table and its columns.
 
 
-#### 29.12.12.1 The ndb\_sync\_pending\_objects Table
+#### 29.12.12.1 The ndb_sync_pending_objects Table
 
 This table provides information about `NDB` database objects for which mismatches have been detected and which are waiting to be synchronized between the `NDB` dictionary and the MySQL data dictionary.
 
@@ -4007,7 +4007,7 @@ The `ndb_sync_pending_objects` table has these columns:
 * `TYPE`: The type of the object awaiting synchronization; this is one of `LOGFILE GROUP`, `TABLESPACE`, `SCHEMA`, or `TABLE`
 
 
-#### 29.12.12.2 The ndb\_sync\_excluded\_objects Table
+#### 29.12.12.2 The ndb_sync_excluded_objects Table
 
 This table provides information about `NDB` database objects which cannot be automatically synchronized between NDB Cluster's dictionary and the MySQL data dictionary.
 
@@ -4090,7 +4090,7 @@ The `ndb_sync_excluded_objects` table has these columns:
   This list is not necessarily exhaustive, and is subject to change in future `NDB` releases.
 
 
-#### 29.12.12.3 The ndb\_replication\_applier\_status Table
+#### 29.12.12.3 The ndb_replication_applier_status Table
 
 `NDBCLUSTER` exposes its internal replication applier state for observation using global status variables such as `Ndb_replica_max_replicated_epoch` and `Ndb_api_trans_start_count_replica`, but these values reflect the state of the default replication channel only. The `ndb_replication_applier_status` provides the same information, but on a per-channel basis; with the exception of `CHANNEL_NAME`, each column in this table corresponds to a server status variable; where applicable, this information is included in the column descriptions provided later in this section.
 
@@ -4288,9 +4288,9 @@ The Performance Schema exposes lock information through these tables:
 The following sections describe these tables in more detail.
 
 
-#### 29.12.13.1 The data\_locks Table
+#### 29.12.13.1 The data_locks Table
 
-The `data_locks` table shows data locks held and requested. For information about which lock requests are blocked by which held locks, see Section 29.12.13.2, “The data\_lock\_waits Table”.
+The `data_locks` table shows data locks held and requested. For information about which lock requests are blocked by which held locks, see Section 29.12.13.2, “The data_lock_waits Table”.
 
 Example data lock information:
 
@@ -4332,7 +4332,7 @@ OBJECT_INSTANCE_BEGIN: 139664350544872
 
 Unlike most Performance Schema data collection, there are no instruments for controlling whether data lock information is collected or system variables for controlling data lock table sizes. The Performance Schema collects information that is already available in the server, so there is no memory or CPU overhead to generate this information or need for parameters that control its collection.
 
-Use the `data_locks` table to help diagnose performance problems that occur during times of heavy concurrent load. For `InnoDB`, see the discussion of this topic at Section 17.15.2, “InnoDB INFORMATION\_SCHEMA Transaction and Locking Information”.
+Use the `data_locks` table to help diagnose performance problems that occur during times of heavy concurrent load. For `InnoDB`, see the discussion of this topic at Section 17.15.2, “InnoDB INFORMATION_SCHEMA Transaction and Locking Information”.
 
 The `data_locks` table has these columns:
 
@@ -4435,7 +4435,7 @@ The `data_locks` table has these indexes:
 `TRUNCATE TABLE` is not permitted for the `data_locks` table.
 
 
-#### 29.12.13.2 The data\_lock\_waits Table
+#### 29.12.13.2 The data_lock_waits Table
 
 The `data_lock_waits` table implements a many-to-many relationship showing which data lock requests in the `data_locks` table are blocked by which held data locks in the `data_locks` table. Held locks in `data_locks` appear in `data_lock_waits` only if they block some lock request.
 
@@ -4461,9 +4461,9 @@ REQUESTING_OBJECT_INSTANCE_BEGIN: 140211086465800
 
 Unlike most Performance Schema data collection, there are no instruments for controlling whether data lock information is collected or system variables for controlling data lock table sizes. The Performance Schema collects information that is already available in the server, so there is no memory or CPU overhead to generate this information or need for parameters that control its collection.
 
-Use the `data_lock_waits` table to help diagnose performance problems that occur during times of heavy concurrent load. For `InnoDB`, see the discussion of this topic at Section 17.15.2, “InnoDB INFORMATION\_SCHEMA Transaction and Locking Information”.
+Use the `data_lock_waits` table to help diagnose performance problems that occur during times of heavy concurrent load. For `InnoDB`, see the discussion of this topic at Section 17.15.2, “InnoDB INFORMATION_SCHEMA Transaction and Locking Information”.
 
-Because the columns in the `data_lock_waits` table are similar to those in the `data_locks` table, the column descriptions here are abbreviated. For more detailed column descriptions, see Section 29.12.13.1, “The data\_locks Table”.
+Because the columns in the `data_lock_waits` table are similar to those in the `data_locks` table, the column descriptions here are abbreviated. For more detailed column descriptions, see Section 29.12.13.1, “The data_locks Table”.
 
 The `data_lock_waits` table has these columns:
 
@@ -4528,7 +4528,7 @@ The `data_lock_waits` table has these indexes:
 `TRUNCATE TABLE` is not permitted for the `data_lock_waits` table.
 
 
-#### 29.12.13.3 The metadata\_locks Table
+#### 29.12.13.3 The metadata_locks Table
 
 MySQL uses metadata locking to manage concurrent access to database objects and to ensure data consistency; see Section 10.11.4, “Metadata Locking”. Metadata locking applies not just to tables, but also to schemas, stored programs (procedures, functions, triggers, scheduled events), tablespaces, user locks acquired with the `GET_LOCK()` function (see Section 14.14, “Locking Functions”), and locks acquired with the locking service described in Section 7.6.8.1, “The Locking Service”.
 
@@ -4655,7 +4655,7 @@ The `metadata_locks` table has these indexes:
 `TRUNCATE TABLE` is not permitted for the `metadata_locks` table.
 
 
-#### 29.12.13.4 The table\_handles Table
+#### 29.12.13.4 The table_handles Table
 
 The Performance Schema exposes table lock information through the `table_handles` table to show the table locks currently in effect for each opened table handle. `table_handles` reports what is recorded by the table lock instrumentation. This information shows which table handles the server has open, how they are locked, and by which sessions.
 
@@ -4751,9 +4751,9 @@ The MySQL server maintains many system variables that indicate how it is configu
 
 * `variables_by_thread`: Session system variables for each active session. An application that wants to know the session variable values for specific sessions should use this table. It includes session variables only, identified by thread ID.
 
-* `persisted_variables`: Provides a SQL interface to the `mysqld-auto.cnf` file that stores persisted global system variable settings. See Section 29.12.14.2, “Performance Schema persisted\_variables Table”.
+* `persisted_variables`: Provides a SQL interface to the `mysqld-auto.cnf` file that stores persisted global system variable settings. See Section 29.12.14.2, “Performance Schema persisted_variables Table”.
 
-* `variables_info`: Shows, for each system variable, the source from which it was most recently set, and its range of values. See Section 29.12.14.3, “Performance Schema variables\_info Table”.
+* `variables_info`: Shows, for each system variable, the source from which it was most recently set, and its range of values. See Section 29.12.14.3, “Performance Schema variables_info Table”.
 
 The `SENSITIVE_VARIABLES_OBSERVER` privilege is required to view the values of sensitive system variables in these tables.
 
@@ -4796,7 +4796,7 @@ The `variables_by_thread` table contains system variable information only about 
 `TRUNCATE TABLE` is not supported for Performance Schema system variable tables.
 
 
-#### 29.12.14.1 Performance Schema global\_variable\_attributes Table
+#### 29.12.14.1 Performance Schema global_variable_attributes Table
 
 The `global_variable_attributes` table provides information about attributes and their values that have been set by the server for global variables such as `offline_mode` or `read_only`.
 
@@ -4821,7 +4821,7 @@ The `global_variable_attributes` table contains the columns listed here:
 The `global_variable_attributes` table is read-only, and neither the table nor any rows it contains can be modified by users. For an example of how the server uses system variable attributes, see the description of the `offline_mode` variable.
 
 
-#### 29.12.14.2 Performance Schema persisted\_variables Table
+#### 29.12.14.2 Performance Schema persisted_variables Table
 
 The `persisted_variables` table provides an SQL interface to the `mysqld-auto.cnf` file that stores persisted global system variable settings, enabling the file contents to be inspected at runtime using `SELECT` statements. Variables are persisted using [`SET PERSIST`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment") or `PERSIST_ONLY` statements; see Section 15.7.6.1, “SET Syntax for Variable Assignment”. The table contains a row for each persisted system variable in the file. Variables not persisted do not appear in the table.
 
@@ -4884,7 +4884,7 @@ The `persisted_variables` table has these columns:
 `TRUNCATE TABLE` is not permitted for the `persisted_variables` table.
 
 
-#### 29.12.14.3 Performance Schema variables\_info Table
+#### 29.12.14.3 Performance Schema variables_info Table
 
 The `variables_info` table shows, for each system variable, the source from which it was most recently set, and its range of values.
 
@@ -4970,7 +4970,7 @@ If a variable with a `VARIABLE_SOURCE` value other than `DYNAMIC` is set at runt
 
 A system variable that has only a session value (such as `debug_sync`) cannot be set at startup or persisted. For session-only system variables, `VARIABLE_SOURCE` can be only `COMPILED` or `DYNAMIC`.
 
-If a system variable has an unexpected `VARIABLE_SOURCE` value, consider your server startup method. For example, **mysqld\_safe** reads option files and passes certain options it finds there as part of the command line that it uses to start **mysqld**. Consequently, some system variables that you set in option files might display in `variables_info` as `COMMAND_LINE`, rather than as `GLOBAL` or `SERVER` as you might otherwise expect.
+If a system variable has an unexpected `VARIABLE_SOURCE` value, consider your server startup method. For example, **mysqld_safe** reads option files and passes certain options it finds there as part of the command line that it uses to start **mysqld**. Consequently, some system variables that you set in option files might display in `variables_info` as `COMMAND_LINE`, rather than as `GLOBAL` or `SERVER` as you might otherwise expect.
 
 Some sample queries that use the `variables_info` table, with representative output:
 
@@ -5030,7 +5030,7 @@ Some sample queries that use the `variables_info` table, with representative out
   ```
 
 
-#### 29.12.14.4 Performance Schema variables\_metadata Table
+#### 29.12.14.4 Performance Schema variables_metadata Table
 
 The `variables_metadata` table shows, for each server system variable, its name, scope, type, range of values (where applicable), and description.
 
@@ -5052,7 +5052,7 @@ The `variables_metadata` table contains these columns:
 
     The variable can have global or session scope.
 
-  + SESSION\_ONLY
+  + SESSION_ONLY
 
     The variable is session-only.
 
@@ -5236,7 +5236,7 @@ Rows in these tables represent snapshots in time. In the case of `tp_thread_stat
 The Performance Schema thread pool tables are implemented by the thread pool plugin and are loaded and unloaded when that plugin is loaded and unloaded (see Section 7.6.3.2, “Thread Pool Installation”). No special configuration step for the tables is needed. However, the tables depend on the thread pool plugin being enabled. If the thread pool plugin is loaded but disabled, the tables are not created.
 
 
-#### 29.12.16.1 The tp\_connections Table
+#### 29.12.16.1 The tp_connections Table
 
 The `tp_connections` table contains one row per connection managed by the Thread Pool plugin. Each row provides information about the current state of a thread pool connection.
 
@@ -5319,7 +5319,7 @@ The `tp_connections` table contains the following rows:
   The accumulated time between the return from waiting on file descriptors; this includes the time spent queued for queries which are not executed directly.
 
 
-#### 29.12.16.2 The tp\_thread\_group\_state Table
+#### 29.12.16.2 The tp_thread_group_state Table
 
 The `tp_thread_group_state` table has one row per thread group in the thread pool. Each row provides information about the current state of a group.
 
@@ -5419,7 +5419,7 @@ The `tp_thread_group_state` table has these columns:
 
 * `QUERY_THREADS_COUNT`
 
-  same as num\_query\_threads, but used for different purposes?
+  same as num_query_threads, but used for different purposes?
 
 * `TIME_OF_EARLIEST_CON_EXPIRE`
 
@@ -5430,7 +5430,7 @@ The `tp_thread_group_state` table has one index; this is a unique index on the `
 `TRUNCATE TABLE` is not permitted for the `tp_thread_group_state` table.
 
 
-#### 29.12.16.3 The tp\_thread\_group\_stats Table
+#### 29.12.16.3 The tp_thread_group_stats Table
 
 The `tp_thread_group_stats` table reports statistics per thread group. There is one row per group.
 
@@ -5531,7 +5531,7 @@ The `tp_thread_group_stats` table has these indexes:
 `TRUNCATE TABLE` is not permitted for the `tp_thread_group_stats` table.
 
 
-#### 29.12.16.4 The tp\_thread\_state Table
+#### 29.12.16.4 The tp_thread_state Table
 
 The `tp_thread_state` table has one row per thread created by the thread pool to handle connections.
 
@@ -5555,9 +5555,9 @@ The `tp_thread_state` table has these columns:
 
   The `WAIT_TYPE` value is a string that describes the type of wait, as shown in the following table.
 
-  **Table 29.4 tp\_thread\_state Table WAIT\_TYPE Values**
+  **Table 29.4 tp_thread_state Table WAIT_TYPE Values**
 
-  <table summary="tp_thread_state table WAIT_TYPE values. The first column is the wait type. The second column describes the wait type."><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>Wait Type</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code class="literal">THD_WAIT_SLEEP</code></td> <td>Waiting for sleep</td> </tr><tr> <td><code class="literal">THD_WAIT_DISKIO</code></td> <td>Waiting for Disk IO</td> </tr><tr> <td><code class="literal">THD_WAIT_ROW_LOCK</code></td> <td>Waiting for row lock</td> </tr><tr> <td><code class="literal">THD_WAIT_GLOBAL_LOCK</code></td> <td>Waiting for global lock</td> </tr><tr> <td><code class="literal">THD_WAIT_META_DATA_LOCK</code></td> <td>Waiting for metadata lock</td> </tr><tr> <td><code class="literal">THD_WAIT_TABLE_LOCK</code></td> <td>Waiting for table lock</td> </tr><tr> <td><code class="literal">THD_WAIT_USER_LOCK</code></td> <td>Waiting for user lock</td> </tr><tr> <td><code class="literal">THD_WAIT_BINLOG</code></td> <td>Waiting for binlog</td> </tr><tr> <td><code class="literal">THD_WAIT_GROUP_COMMIT</code></td> <td>Waiting for group commit</td> </tr><tr> <td><code class="literal">THD_WAIT_SYNC</code></td> <td>Waiting for fsync</td> </tr></tbody></table>
+  <table summary="tp_thread_state table WAIT_TYPE values. The first column is the wait type. The second column describes the wait type."><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>Wait Type</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code>THD_WAIT_SLEEP</code></td> <td>Waiting for sleep</td> </tr><tr> <td><code>THD_WAIT_DISKIO</code></td> <td>Waiting for Disk IO</td> </tr><tr> <td><code>THD_WAIT_ROW_LOCK</code></td> <td>Waiting for row lock</td> </tr><tr> <td><code>THD_WAIT_GLOBAL_LOCK</code></td> <td>Waiting for global lock</td> </tr><tr> <td><code>THD_WAIT_META_DATA_LOCK</code></td> <td>Waiting for metadata lock</td> </tr><tr> <td><code>THD_WAIT_TABLE_LOCK</code></td> <td>Waiting for table lock</td> </tr><tr> <td><code>THD_WAIT_USER_LOCK</code></td> <td>Waiting for user lock</td> </tr><tr> <td><code>THD_WAIT_BINLOG</code></td> <td>Waiting for binlog</td> </tr><tr> <td><code>THD_WAIT_GROUP_COMMIT</code></td> <td>Waiting for group commit</td> </tr><tr> <td><code>THD_WAIT_SYNC</code></td> <td>Waiting for fsync</td> </tr></tbody></table>
 
 * `TP_THREAD_TYPE`
 
@@ -5619,7 +5619,7 @@ The following sections describe the Performance Schema tables associated with My
 These tables are supported by both the firewall plugin (deprecated) and the MySQL Enterprise Firewall component.
 
 
-#### 29.12.17.1 The firewall\_groups Table
+#### 29.12.17.1 The firewall_groups Table
 
 The `firewall_groups` table provides a view into the in-memory data cache for MySQL Enterprise Firewall. It lists names and operational modes of registered firewall group profiles. It is used in conjunction with the `mysql.firewall_groups` system table that provides persistent storage of firewall data; see MySQL Enterprise Firewall Tables.
 
@@ -5646,7 +5646,7 @@ The `firewall_groups` table has no indexes.
 `TRUNCATE TABLE` is not permitted for the `firewall_groups` table.
 
 
-#### 29.12.17.2 The firewall\_group\_allowlist Table
+#### 29.12.17.2 The firewall_group_allowlist Table
 
 The `firewall_group_allowlist` table provides a view into the in-memory data cache for MySQL Enterprise Firewall. It lists allowlist rules of registered firewall group profiles. It is used in conjunction with the `mysql.firewall_group_allowlist` system table that provides persistent storage of firewall data; see MySQL Enterprise Firewall Tables.
 
@@ -5665,7 +5665,7 @@ The `firewall_group_allowlist` table has no indexes.
 `TRUNCATE TABLE` is not permitted for the `firewall_group_allowlist` table.
 
 
-#### 29.12.17.3 The firewall\_membership Table
+#### 29.12.17.3 The firewall_membership Table
 
 The `firewall_membership` table provides a view into the in-memory data cache for MySQL Enterprise Firewall. It lists the members (accounts) of registered firewall group profiles. It is used in conjunction with the `mysql.firewall_membership` system table that provides persistent storage of firewall data; see MySQL Enterprise Firewall Tables.
 
@@ -5693,7 +5693,7 @@ The following sections describe the Performance Schema tables associated with th
 * `keyring_keys`: Metadata for keys in the MySQL keyring.
 
 
-#### 29.12.18.1 The keyring\_component\_status Table
+#### 29.12.18.1 The keyring_component_status Table
 
 The `keyring_component_status` table provides status information about the properties of the keyring component in use, if one is installed. The table is empty if no keyring component is installed (for example, if the keyring is not being used, or is configured to manage the keystore using a keyring plugin rather than a keyring component).
 
@@ -5732,7 +5732,7 @@ The `keyring_component_status` table has no indexes.
 `TRUNCATE TABLE` is not permitted for the `keyring_component_status` table.
 
 
-#### 29.12.18.2 The keyring\_keys table
+#### 29.12.18.2 The keyring_keys table
 
 MySQL Server supports a keyring that enables internal server components and plugins to securely store sensitive information for later retrieval. See Section 8.4.5, “The MySQL Keyring”.
 
@@ -5770,7 +5770,7 @@ The Performance Schema clone tables are implemented by the clone plugin and are 
 The Performance Schema clone plugin tables are used only on the recipient MySQL server instance. The data is persisted across server shutdown and restart.
 
 
-#### 29.12.19.1 The clone\_status Table
+#### 29.12.19.1 The clone_status Table
 
 The `clone_status` table shows the status of the current or last executed cloning operation only. The table only ever contains one row of data, or is empty.
 
@@ -5827,7 +5827,7 @@ The `clone_status` table has these columns:
 The `clone_status` table is read-only. DDL, including `TRUNCATE TABLE`, is not permitted.
 
 
-#### 29.12.19.2 The clone\_progress Table
+#### 29.12.19.2 The clone_progress Table
 
 The `clone_progress` table shows progress information for the current or last executed cloning operation only.
 
@@ -5894,67 +5894,67 @@ Summary tables can be truncated with `TRUNCATE TABLE`. Generally, the effect is 
 
 **Table 29.5 Performance Schema Wait Event Summary Tables**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema wait event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="performance-schema-wait-summary-tables.html" title="29.12.20.1 Wait Event Summary Tables"><code class="literal">events_waits_summary_by_account_by_event_name</code></a></td> <td>Wait events per account and event name</td> </tr><tr><td><a class="link" href="performance-schema-wait-summary-tables.html" title="29.12.20.1 Wait Event Summary Tables"><code class="literal">events_waits_summary_by_host_by_event_name</code></a></td> <td>Wait events per host name and event name</td> </tr><tr><td><a class="link" href="performance-schema-wait-summary-tables.html" title="29.12.20.1 Wait Event Summary Tables"><code class="literal">events_waits_summary_by_instance</code></a></td> <td>Wait events per instance</td> </tr><tr><td><a class="link" href="performance-schema-wait-summary-tables.html" title="29.12.20.1 Wait Event Summary Tables"><code class="literal">events_waits_summary_by_thread_by_event_name</code></a></td> <td>Wait events per thread and event name</td> </tr><tr><td><a class="link" href="performance-schema-wait-summary-tables.html" title="29.12.20.1 Wait Event Summary Tables"><code class="literal">events_waits_summary_by_user_by_event_name</code></a></td> <td>Wait events per user name and event name</td> </tr><tr><td><a class="link" href="performance-schema-wait-summary-tables.html" title="29.12.20.1 Wait Event Summary Tables"><code class="literal">events_waits_summary_global_by_event_name</code></a></td> <td>Wait events per event name</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists all Performance Schema wait event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>events_waits_summary_by_account_by_event_name</code></td> <td>Wait events per account and event name</td> </tr><tr><td><code>events_waits_summary_by_host_by_event_name</code></td> <td>Wait events per host name and event name</td> </tr><tr><td><code>events_waits_summary_by_instance</code></td> <td>Wait events per instance</td> </tr><tr><td><code>events_waits_summary_by_thread_by_event_name</code></td> <td>Wait events per thread and event name</td> </tr><tr><td><code>events_waits_summary_by_user_by_event_name</code></td> <td>Wait events per user name and event name</td> </tr><tr><td><code>events_waits_summary_global_by_event_name</code></td> <td>Wait events per event name</td> </tr></tbody></table>
 
 #### Stage Summaries
 
 **Table 29.6 Performance Schema Stage Event Summary Tables**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema stage event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="performance-schema-stage-summary-tables.html" title="29.12.20.2 Stage Summary Tables"><code class="literal">events_stages_summary_by_account_by_event_name</code></a></td> <td>Stage events per account and event name</td> </tr><tr><td><a class="link" href="performance-schema-stage-summary-tables.html" title="29.12.20.2 Stage Summary Tables"><code class="literal">events_stages_summary_by_host_by_event_name</code></a></td> <td>Stage events per host name and event name</td> </tr><tr><td><a class="link" href="performance-schema-stage-summary-tables.html" title="29.12.20.2 Stage Summary Tables"><code class="literal">events_stages_summary_by_thread_by_event_name</code></a></td> <td>Stage waits per thread and event name</td> </tr><tr><td><a class="link" href="performance-schema-stage-summary-tables.html" title="29.12.20.2 Stage Summary Tables"><code class="literal">events_stages_summary_by_user_by_event_name</code></a></td> <td>Stage events per user name and event name</td> </tr><tr><td><a class="link" href="performance-schema-stage-summary-tables.html" title="29.12.20.2 Stage Summary Tables"><code class="literal">events_stages_summary_global_by_event_name</code></a></td> <td>Stage waits per event name</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists all Performance Schema stage event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>events_stages_summary_by_account_by_event_name</code></td> <td>Stage events per account and event name</td> </tr><tr><td><code>events_stages_summary_by_host_by_event_name</code></td> <td>Stage events per host name and event name</td> </tr><tr><td><code>events_stages_summary_by_thread_by_event_name</code></td> <td>Stage waits per thread and event name</td> </tr><tr><td><code>events_stages_summary_by_user_by_event_name</code></td> <td>Stage events per user name and event name</td> </tr><tr><td><code>events_stages_summary_global_by_event_name</code></td> <td>Stage waits per event name</td> </tr></tbody></table>
 
 #### Statement Summaries
 
 **Table 29.7 Performance Schema Statement Event Summary Tables**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema statement event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="performance-schema-statement-histogram-summary-tables.html" title="29.12.20.4 Statement Histogram Summary Tables"><code class="literal">events_statements_histogram_by_digest</code></a></td> <td>Statement histograms per schema and digest value</td> </tr><tr><td><a class="link" href="performance-schema-statement-histogram-summary-tables.html" title="29.12.20.4 Statement Histogram Summary Tables"><code class="literal">events_statements_histogram_global</code></a></td> <td>Statement histogram summarized globally</td> </tr><tr><td><a class="link" href="performance-schema-statement-summary-tables.html" title="29.12.20.3 Statement Summary Tables"><code class="literal">events_statements_summary_by_account_by_event_name</code></a></td> <td>Statement events per account and event name</td> </tr><tr><td><a class="link" href="performance-schema-statement-summary-tables.html" title="29.12.20.3 Statement Summary Tables"><code class="literal">events_statements_summary_by_digest</code></a></td> <td>Statement events per schema and digest value</td> </tr><tr><td><a class="link" href="performance-schema-statement-summary-tables.html" title="29.12.20.3 Statement Summary Tables"><code class="literal">events_statements_summary_by_host_by_event_name</code></a></td> <td>Statement events per host name and event name</td> </tr><tr><td><a class="link" href="performance-schema-statement-summary-tables.html" title="29.12.20.3 Statement Summary Tables"><code class="literal">events_statements_summary_by_program</code></a></td> <td>Statement events per stored program</td> </tr><tr><td><a class="link" href="performance-schema-statement-summary-tables.html" title="29.12.20.3 Statement Summary Tables"><code class="literal">events_statements_summary_by_thread_by_event_name</code></a></td> <td>Statement events per thread and event name</td> </tr><tr><td><a class="link" href="performance-schema-statement-summary-tables.html" title="29.12.20.3 Statement Summary Tables"><code class="literal">events_statements_summary_by_user_by_event_name</code></a></td> <td>Statement events per user name and event name</td> </tr><tr><td><a class="link" href="performance-schema-statement-summary-tables.html" title="29.12.20.3 Statement Summary Tables"><code class="literal">events_statements_summary_global_by_event_name</code></a></td> <td>Statement events per event name</td> </tr><tr><td><a class="link" href="performance-schema-prepared-statements-instances-table.html" title="29.12.6.4 The prepared_statements_instances Table"><code class="literal">prepared_statements_instances</code></a></td> <td>Prepared statement instances and statistics</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists all Performance Schema statement event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>events_statements_histogram_by_digest</code></td> <td>Statement histograms per schema and digest value</td> </tr><tr><td><code>events_statements_histogram_global</code></td> <td>Statement histogram summarized globally</td> </tr><tr><td><code>events_statements_summary_by_account_by_event_name</code></td> <td>Statement events per account and event name</td> </tr><tr><td><code>events_statements_summary_by_digest</code></td> <td>Statement events per schema and digest value</td> </tr><tr><td><code>events_statements_summary_by_host_by_event_name</code></td> <td>Statement events per host name and event name</td> </tr><tr><td><code>events_statements_summary_by_program</code></td> <td>Statement events per stored program</td> </tr><tr><td><code>events_statements_summary_by_thread_by_event_name</code></td> <td>Statement events per thread and event name</td> </tr><tr><td><code>events_statements_summary_by_user_by_event_name</code></td> <td>Statement events per user name and event name</td> </tr><tr><td><code>events_statements_summary_global_by_event_name</code></td> <td>Statement events per event name</td> </tr><tr><td><code>prepared_statements_instances</code></td> <td>Prepared statement instances and statistics</td> </tr></tbody></table>
 
 #### Transaction Summaries
 
 **Table 29.8 Performance Schema Transaction Event Summary Tables**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema transaction event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="performance-schema-transaction-summary-tables.html" title="29.12.20.5 Transaction Summary Tables"><code class="literal">events_transactions_summary_by_account_by_event_name</code></a></td> <td>Transaction events per account and event name</td> </tr><tr><td><a class="link" href="performance-schema-transaction-summary-tables.html" title="29.12.20.5 Transaction Summary Tables"><code class="literal">events_transactions_summary_by_host_by_event_name</code></a></td> <td>Transaction events per host name and event name</td> </tr><tr><td><a class="link" href="performance-schema-transaction-summary-tables.html" title="29.12.20.5 Transaction Summary Tables"><code class="literal">events_transactions_summary_by_thread_by_event_name</code></a></td> <td>Transaction events per thread and event name</td> </tr><tr><td><a class="link" href="performance-schema-transaction-summary-tables.html" title="29.12.20.5 Transaction Summary Tables"><code class="literal">events_transactions_summary_by_user_by_event_name</code></a></td> <td>Transaction events per user name and event name</td> </tr><tr><td><a class="link" href="performance-schema-transaction-summary-tables.html" title="29.12.20.5 Transaction Summary Tables"><code class="literal">events_transactions_summary_global_by_event_name</code></a></td> <td>Transaction events per event name</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists all Performance Schema transaction event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>events_transactions_summary_by_account_by_event_name</code></td> <td>Transaction events per account and event name</td> </tr><tr><td><code>events_transactions_summary_by_host_by_event_name</code></td> <td>Transaction events per host name and event name</td> </tr><tr><td><code>events_transactions_summary_by_thread_by_event_name</code></td> <td>Transaction events per thread and event name</td> </tr><tr><td><code>events_transactions_summary_by_user_by_event_name</code></td> <td>Transaction events per user name and event name</td> </tr><tr><td><code>events_transactions_summary_global_by_event_name</code></td> <td>Transaction events per event name</td> </tr></tbody></table>
 
 #### Object Wait Summaries
 
 **Table 29.9 Performance Schema Object Event Summary Tables**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema object event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="performance-schema-objects-summary-global-by-type-table.html" title="29.12.20.6 Object Wait Summary Table"><code class="literal">objects_summary_global_by_type</code></a></td> <td>Object summaries</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists all Performance Schema object event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>objects_summary_global_by_type</code></td> <td>Object summaries</td> </tr></tbody></table>
 
 #### File I/O Summaries
 
 **Table 29.10 Performance Schema File I/O Event Summary Tables**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema file I/O event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="performance-schema-file-summary-tables.html" title="29.12.20.7 File I/O Summary Tables"><code class="literal">file_summary_by_event_name</code></a></td> <td>File events per event name</td> </tr><tr><td><a class="link" href="performance-schema-file-summary-tables.html" title="29.12.20.7 File I/O Summary Tables"><code class="literal">file_summary_by_instance</code></a></td> <td>File events per file instance</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists all Performance Schema file I/O event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>file_summary_by_event_name</code></td> <td>File events per event name</td> </tr><tr><td><code>file_summary_by_instance</code></td> <td>File events per file instance</td> </tr></tbody></table>
 
 #### Table I/O and Lock Wait Summaries
 
 **Table 29.11 Performance Schema Table I/O and Lock Wait Event Summary Tables**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema table I/O and lock event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="performance-schema-table-wait-summary-tables.html#performance-schema-table-io-waits-summary-by-index-usage-table" title="29.12.20.8.2 The table_io_waits_summary_by_index_usage Table"><code class="literal">table_io_waits_summary_by_index_usage</code></a></td> <td>Table I/O waits per index</td> </tr><tr><td><a class="link" href="performance-schema-table-wait-summary-tables.html#performance-schema-table-io-waits-summary-by-table-table" title="29.12.20.8.1 The table_io_waits_summary_by_table Table"><code class="literal">table_io_waits_summary_by_table</code></a></td> <td>Table I/O waits per table</td> </tr><tr><td><a class="link" href="performance-schema-table-wait-summary-tables.html#performance-schema-table-lock-waits-summary-by-table-table" title="29.12.20.8.3 The table_lock_waits_summary_by_table Table"><code class="literal">table_lock_waits_summary_by_table</code></a></td> <td>Table lock waits per table</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists all Performance Schema table I/O and lock event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>table_io_waits_summary_by_index_usage</code></td> <td>Table I/O waits per index</td> </tr><tr><td><code>table_io_waits_summary_by_table</code></td> <td>Table I/O waits per table</td> </tr><tr><td><code>table_lock_waits_summary_by_table</code></td> <td>Table lock waits per table</td> </tr></tbody></table>
 
 #### Socket Summaries
 
 **Table 29.12 Performance Schema Socket Event Summary Tables**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema socket event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="performance-schema-socket-summary-tables.html" title="29.12.20.9 Socket Summary Tables"><code class="literal">socket_summary_by_event_name</code></a></td> <td>Socket waits and I/O per event name</td> </tr><tr><td><a class="link" href="performance-schema-socket-summary-tables.html" title="29.12.20.9 Socket Summary Tables"><code class="literal">socket_summary_by_instance</code></a></td> <td>Socket waits and I/O per instance</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists all Performance Schema socket event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>socket_summary_by_event_name</code></td> <td>Socket waits and I/O per event name</td> </tr><tr><td><code>socket_summary_by_instance</code></td> <td>Socket waits and I/O per instance</td> </tr></tbody></table>
 
 #### Memory Summaries
 
 **Table 29.13 Performance Schema Memory Operation Summary Tables**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema memory operation summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="performance-schema-memory-summary-tables.html" title="29.12.20.10 Memory Summary Tables"><code class="literal">memory_summary_by_account_by_event_name</code></a></td> <td>Memory operations per account and event name</td> </tr><tr><td><a class="link" href="performance-schema-memory-summary-tables.html" title="29.12.20.10 Memory Summary Tables"><code class="literal">memory_summary_by_host_by_event_name</code></a></td> <td>Memory operations per host and event name</td> </tr><tr><td><a class="link" href="performance-schema-memory-summary-tables.html" title="29.12.20.10 Memory Summary Tables"><code class="literal">memory_summary_by_thread_by_event_name</code></a></td> <td>Memory operations per thread and event name</td> </tr><tr><td><a class="link" href="performance-schema-memory-summary-tables.html" title="29.12.20.10 Memory Summary Tables"><code class="literal">memory_summary_by_user_by_event_name</code></a></td> <td>Memory operations per user and event name</td> </tr><tr><td><a class="link" href="performance-schema-memory-summary-tables.html" title="29.12.20.10 Memory Summary Tables"><code class="literal">memory_summary_global_by_event_name</code></a></td> <td>Memory operations globally per event name</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists all Performance Schema memory operation summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>memory_summary_by_account_by_event_name</code></td> <td>Memory operations per account and event name</td> </tr><tr><td><code>memory_summary_by_host_by_event_name</code></td> <td>Memory operations per host and event name</td> </tr><tr><td><code>memory_summary_by_thread_by_event_name</code></td> <td>Memory operations per thread and event name</td> </tr><tr><td><code>memory_summary_by_user_by_event_name</code></td> <td>Memory operations per user and event name</td> </tr><tr><td><code>memory_summary_global_by_event_name</code></td> <td>Memory operations globally per event name</td> </tr></tbody></table>
 
 #### Error Summaries
 
 **Table 29.14 Performance Schema Error Summary Tables**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema error summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="performance-schema-error-summary-tables.html" title="29.12.20.11 Error Summary Tables"><code class="literal">events_errors_summary_by_account_by_error</code></a></td> <td>Errors per account and error code</td> </tr><tr><td><a class="link" href="performance-schema-error-summary-tables.html" title="29.12.20.11 Error Summary Tables"><code class="literal">events_errors_summary_by_host_by_error</code></a></td> <td>Errors per host and error code</td> </tr><tr><td><a class="link" href="performance-schema-error-summary-tables.html" title="29.12.20.11 Error Summary Tables"><code class="literal">events_errors_summary_by_thread_by_error</code></a></td> <td>Errors per thread and error code</td> </tr><tr><td><a class="link" href="performance-schema-error-summary-tables.html" title="29.12.20.11 Error Summary Tables"><code class="literal">events_errors_summary_by_user_by_error</code></a></td> <td>Errors per user and error code</td> </tr><tr><td><a class="link" href="performance-schema-error-summary-tables.html" title="29.12.20.11 Error Summary Tables"><code class="literal">events_errors_summary_global_by_error</code></a></td> <td>Errors per error code</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists all Performance Schema error summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>events_errors_summary_by_account_by_error</code></td> <td>Errors per account and error code</td> </tr><tr><td><code>events_errors_summary_by_host_by_error</code></td> <td>Errors per host and error code</td> </tr><tr><td><code>events_errors_summary_by_thread_by_error</code></td> <td>Errors per thread and error code</td> </tr><tr><td><code>events_errors_summary_by_user_by_error</code></td> <td>Errors per user and error code</td> </tr><tr><td><code>events_errors_summary_global_by_error</code></td> <td>Errors per error code</td> </tr></tbody></table>
 
 #### Status Variable Summaries
 
 **Table 29.15 Performance Schema Error Status Variable Summary Tables**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema stage event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="performance-schema-stage-summary-tables.html" title="29.12.20.2 Stage Summary Tables"><code class="literal">events_stages_summary_by_account_by_event_name</code></a></td> <td>Stage events per account and event name</td> </tr><tr><td><a class="link" href="performance-schema-stage-summary-tables.html" title="29.12.20.2 Stage Summary Tables"><code class="literal">events_stages_summary_by_host_by_event_name</code></a></td> <td>Stage events per host name and event name</td> </tr><tr><td><a class="link" href="performance-schema-stage-summary-tables.html" title="29.12.20.2 Stage Summary Tables"><code class="literal">events_stages_summary_by_thread_by_event_name</code></a></td> <td>Stage waits per thread and event name</td> </tr><tr><td><a class="link" href="performance-schema-stage-summary-tables.html" title="29.12.20.2 Stage Summary Tables"><code class="literal">events_stages_summary_by_user_by_event_name</code></a></td> <td>Stage events per user name and event name</td> </tr><tr><td><a class="link" href="performance-schema-stage-summary-tables.html" title="29.12.20.2 Stage Summary Tables"><code class="literal">events_stages_summary_global_by_event_name</code></a></td> <td>Stage waits per event name</td> </tr></tbody></table>0
+<table frame="box" rules="all" summary="A reference that lists all Performance Schema stage event summary tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>events_stages_summary_by_account_by_event_name</code></td> <td>Stage events per account and event name</td> </tr><tr><td><code>events_stages_summary_by_host_by_event_name</code></td> <td>Stage events per host name and event name</td> </tr><tr><td><code>events_stages_summary_by_thread_by_event_name</code></td> <td>Stage waits per thread and event name</td> </tr><tr><td><code>events_stages_summary_by_user_by_event_name</code></td> <td>Stage events per user name and event name</td> </tr><tr><td><code>events_stages_summary_global_by_event_name</code></td> <td>Stage waits per event name</td> </tr></tbody></table>0
 
 
 #### 29.12.20.1 Wait Event Summary Tables
@@ -6674,7 +6674,7 @@ The following sections describe the table I/O and lock wait summary tables:
 
 * `table_lock_waits_summary_by_table`: Table lock waits per table
 
-##### 29.12.20.8.1 The table\_io\_waits\_summary\_by\_table Table
+##### 29.12.20.8.1 The table_io_waits_summary_by_table Table
 
 The `table_io_waits_summary_by_table` table aggregates all table I/O wait events, as generated by the `wait/io/table/sql/handler` instrument. The grouping is by table.
 
@@ -6716,7 +6716,7 @@ The `table_io_waits_summary_by_table` table has these indexes:
 
 `TRUNCATE TABLE` is permitted for table I/O summary tables. It resets the summary columns to zero rather than removing rows. Truncating this table also truncates the `table_io_waits_summary_by_index_usage` table.
 
-##### 29.12.20.8.2 The table\_io\_waits\_summary\_by\_index\_usage Table
+##### 29.12.20.8.2 The table_io_waits_summary_by_index_usage Table
 
 The `table_io_waits_summary_by_index_usage` table aggregates all table index I/O wait events, as generated by the `wait/io/table/sql/handler` instrument. The grouping is by table index.
 
@@ -6734,7 +6734,7 @@ The `table_io_waits_summary_by_index_usage` table has these indexes:
 
 `TRUNCATE TABLE` is permitted for table I/O summary tables. It resets the summary columns to zero rather than removing rows. This table is also truncated by truncation of the `table_io_waits_summary_by_table` table. A DDL operation that changes the index structure of a table may cause the per-index statistics to be reset.
 
-##### 29.12.20.8.3 The table\_lock\_waits\_summary\_by\_table Table
+##### 29.12.20.8.3 The table_lock_waits_summary_by_table Table
 
 The `table_lock_waits_summary_by_table` table aggregates all table lock wait events, as generated by the `wait/lock/table/sql/handler` instrument. The grouping is by table.
 
@@ -7256,7 +7256,7 @@ The Performance Schema supports [`TRUNCATE TABLE`](truncate-table.html "15.1.42�
 The following sections describe tables associated with the Telemetry services:
 
 
-#### 29.12.21.1 The setup\_loggers Table
+#### 29.12.21.1 The setup_loggers Table
 
 The `setup_loggers` table lists the registered loggers:
 
@@ -7280,7 +7280,7 @@ mysql>  select * from performance_schema.setup_loggers;
 * `DESCRIPTION`: A text description of the logger.
 
 
-#### 29.12.21.2 The setup\_meters Table
+#### 29.12.21.2 The setup_meters Table
 
 The `setup_meters` table lists the registered meters:
 
@@ -7314,7 +7314,7 @@ mysql> select * from performance_schema.setup_meters;
 `FREQUENCY` and `ENABLED` can be edited.
 
 
-#### 29.12.21.3 The setup\_metrics Table
+#### 29.12.21.3 The setup_metrics Table
 
 The `setup_metrics` table lists the available metrics:
 
@@ -7466,7 +7466,7 @@ The following sections describe tables that do not fall into the table categorie
 * `user_defined_functions`: Loadable functions registered by a component, plugin, or [`CREATE FUNCTION`](create-function-loadable.html "15.7.4.1 CREATE FUNCTION Statement for Loadable Functions") statement.
 
 
-#### 29.12.22.1 The component\_scheduler\_tasks Table
+#### 29.12.22.1 The component_scheduler_tasks Table
 
 The `component_scheduler_tasks` table contains a row for each scheduled task. Each row contains information about the ongoing progress of a task that applications, components, and plugins can implement, optionally, using the `scheduler` component (see Section 7.5.5, “Scheduler Component”). For example, the `audit_log` server plugin utilizes the `scheduler` component to run a regular, recurring flush of its memory cache:
 
@@ -7514,7 +7514,7 @@ The `component_scheduler_tasks` table has the following columns:
   A counter that increments by one every time the execution of the task fails. It wraps around.
 
 
-#### 29.12.22.2 The connection\_control\_failed\_login\_attempts Table
+#### 29.12.22.2 The connection_control_failed_login_attempts Table
 
 This table provides information about the current number of consecutive failed connection attempts per account.
 
@@ -7531,7 +7531,7 @@ The `connection_control_failed_login_attempts` table has the these columns:
 This table is created and updated by the Connection Control component. It replaces the Information Schema `CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS` table, which—like the Connection Control plugins—is now deprecated, and subject to removal in a future version of MySQL. For more information, see Section 8.4.2, “The Connection Control Component”.
 
 
-#### 29.12.22.3 The error\_log Table
+#### 29.12.22.3 The error_log Table
 
 Of the logs the MySQL server maintains, one is the error log to which it writes diagnostic messages (see Section 7.4.2, “The Error Log”). Typically, the server writes diagnostics to a file on the server host or to a system log service. Depending on error log configuration, the server can also write the most recent error events to the Performance Schema `error_log` table. Granting the `SELECT` privilege for the `error_log` table thus gives clients and applications access to error log contents using SQL queries, enabling DBAs to provide access to the log without the need to permit direct file system access on the server host.
 
@@ -7637,7 +7637,7 @@ The `error_log` table has these indexes:
 
 `TRUNCATE TABLE` is not permitted for the `error_log` table.
 
-##### Implementation and Configuration of the error\_log Table
+##### Implementation and Configuration of the error_log Table
 
 The Performance Schema `error_log` table is populated by error log sink components that write to the table in addition to writing formatted error events to the error log. Performance Schema support by log sinks has two parts:
 
@@ -7665,10 +7665,10 @@ Any configuration that affects output written to the error log affects `error_lo
 
 The `error_log` table is a view on a fixed-size, in-memory ring buffer, with old events automatically discarded as necessary to make room for new ones. As shown in the following table, several status variables provide information about ongoing `error_log` operation.
 
-<table summary="error_log table status variables."><col style="width: 35%"/><col style="width: 35%"/><thead><tr> <th>Status Variable</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><a class="link" href="server-status-variables.html#statvar_Error_log_buffered_bytes"><code class="literal">Error_log_buffered_bytes</code></a></td> <td>Bytes used in table</td> </tr><tr> <td><a class="link" href="server-status-variables.html#statvar_Error_log_buffered_events"><code class="literal">Error_log_buffered_events</code></a></td> <td>Events present in table</td> </tr><tr> <td><a class="link" href="server-status-variables.html#statvar_Error_log_expired_events"><code class="literal">Error_log_expired_events</code></a></td> <td>Events discarded from table</td> </tr><tr> <td><a class="link" href="server-status-variables.html#statvar_Error_log_latest_write"><code class="literal">Error_log_latest_write</code></a></td> <td>Time of last write to table</td> </tr></tbody></table>
+<table summary="error_log table status variables."><col style="width: 35%"/><col style="width: 35%"/><thead><tr> <th>Status Variable</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code>Error_log_buffered_bytes</code></td> <td>Bytes used in table</td> </tr><tr> <td><code>Error_log_buffered_events</code></td> <td>Events present in table</td> </tr><tr> <td><code>Error_log_expired_events</code></td> <td>Events discarded from table</td> </tr><tr> <td><code>Error_log_latest_write</code></td> <td>Time of last write to table</td> </tr></tbody></table>
 
 
-#### 29.12.22.4 The host\_cache Table
+#### 29.12.22.4 The host_cache Table
 
 The MySQL server maintains an in-memory host cache that contains client host name and IP address information and is used to avoid Domain Name System (DNS) lookups. The `host_cache` table exposes the contents of this cache. The `host_cache_size` system variable controls the size of the host cache, as well as the size of the `host_cache` table. For operational and configuration information about the host cache, see Section 7.1.12.3, “DNS Lookups and the Host Cache”.
 
@@ -7806,7 +7806,7 @@ The `host_cache` table has these indexes:
 `TRUNCATE TABLE` is permitted for the `host_cache` table. It requires the `DROP` privilege for the table. Truncating the table flushes the host cache, which has the effects described in Flushing the Host Cache.
 
 
-#### 29.12.22.5 The innodb\_redo\_log\_files Table
+#### 29.12.22.5 The innodb_redo_log_files Table
 
 The `innodb_redo_log_files` table contains a row for each active `InnoDB` redo log file.
 
@@ -7841,7 +7841,7 @@ The `innodb_redo_log_files` table has the following columns:
   Reserved for future use.
 
 
-#### 29.12.22.6 The log\_status Table
+#### 29.12.22.6 The log_status Table
 
 The `log_status` table provides information that enables an online backup tool to copy the required log files without locking those resources for the duration of the copy process.
 
@@ -7884,7 +7884,7 @@ The `BACKUP_ADMIN` privilege, as well as the `SELECT` privilege, is required for
 `TRUNCATE TABLE` is not permitted for the `log_status` table.
 
 
-#### 29.12.22.7 The mysql\_option Table
+#### 29.12.22.7 The mysql_option Table
 
 The `mysql_option` table provides information about options available in the MySQL Server, or in components and plugins that are currently or previously have been installed:
 
@@ -7929,7 +7929,7 @@ This table is read-only, and cannot be truncated, although it is updated by the 
 Usage data for options and features listed in `mysql_option` can be found in the `mysql_option.option_usage` table, which is described in Section 7.5.8.1, “Option Tracker Tables”.
 
 
-#### 29.12.22.8 The performance\_timers Table
+#### 29.12.22.8 The performance_timers Table
 
 The `performance_timers` table shows which event timers are available:
 
@@ -8339,7 +8339,7 @@ The `threads` table has these indexes:
 `TRUNCATE TABLE` is not permitted for the `threads` table.
 
 
-#### 29.12.22.11 The tls\_channel\_status Table
+#### 29.12.22.11 The tls_channel_status Table
 
 Connection interface TLS properties are set at server startup, and can be updated at runtime using the `ALTER INSTANCE RELOAD TLS` statement. See [Server-Side Runtime Configuration and Monitoring for Encrypted Connections](using-encrypted-connections.html#using-encrypted-connections-server-side-runtime-configuration "Server-Side Runtime Configuration and Monitoring for Encrypted Connections").
 
@@ -8411,7 +8411,7 @@ The `tls_channel_status` table has no indexes.
 `TRUNCATE TABLE` is not permitted for the `tls_channel_status` table.
 
 
-#### 29.12.22.12 The user\_defined\_functions Table
+#### 29.12.22.12 The user_defined_functions Table
 
 The `user_defined_functions` table contains a row for each loadable function registered automatically by a component or plugin, or manually by a [`CREATE FUNCTION`](create-function-loadable.html "15.7.4.1 CREATE FUNCTION Statement for Loadable Functions") statement. For information about operations that add or remove table rows, see Section 7.7.1, “Installing and Uninstalling Loadable Functions”.
 

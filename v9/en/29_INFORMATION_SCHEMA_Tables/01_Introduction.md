@@ -2,16 +2,16 @@
 
 `INFORMATION_SCHEMA` provides access to database metadata, information about the MySQL server such as the name of a database or table, the data type of a column, or access privileges. Other terms that are sometimes used for this information are data dictionary and system catalog.
 
-* INFORMATION\_SCHEMA Usage Notes
+* INFORMATION_SCHEMA Usage Notes
 * Character Set Considerations
-* INFORMATION\_SCHEMA as Alternative to SHOW Statements
-* INFORMATION\_SCHEMA and Privileges
+* INFORMATION_SCHEMA as Alternative to SHOW Statements
+* INFORMATION_SCHEMA and Privileges
 * Performance Considerations
 * Standards Considerations
-* Conventions in the INFORMATION\_SCHEMA Reference Sections
+* Conventions in the INFORMATION_SCHEMA Reference Sections
 * Related Information
 
-### INFORMATION\_SCHEMA Usage Notes
+### INFORMATION_SCHEMA Usage Notes
 
 `INFORMATION_SCHEMA` is a database within each MySQL instance, the place that stores information about all the other databases that the MySQL server maintains. The `INFORMATION_SCHEMA` database contains several read-only tables. They are actually views, not base tables, so there are no files associated with them, and you cannot set triggers on them. Also, there is no database directory with that name.
 
@@ -58,9 +58,9 @@ The definition for character columns (for example, `TABLES.TABLE_NAME`) is gener
 
 64. MySQL uses the default collation for this character set (`utf8mb3_general_ci`) for all searches, sorts, comparisons, and other string operations on such columns.
 
-Because some MySQL objects are represented as files, searches in `INFORMATION_SCHEMA` string columns can be affected by file system case sensitivity. For more information, see Section 12.8.7, “Using Collation in INFORMATION\_SCHEMA Searches”.
+Because some MySQL objects are represented as files, searches in `INFORMATION_SCHEMA` string columns can be affected by file system case sensitivity. For more information, see Section 12.8.7, “Using Collation in INFORMATION_SCHEMA Searches”.
 
-### INFORMATION\_SCHEMA as Alternative to SHOW Statements
+### INFORMATION_SCHEMA as Alternative to SHOW Statements
 
 The `SELECT ... FROM INFORMATION_SCHEMA` statement is intended as a more consistent way to provide access to the information provided by the various `SHOW` statements that MySQL supports (`SHOW DATABASES`, `SHOW TABLES`, and so forth). Using `SELECT` has these advantages, compared to `SHOW`:
 
@@ -75,7 +75,7 @@ The `SELECT ... FROM INFORMATION_SCHEMA` statement is intended as a more consist
 
 Because `SHOW` is familiar and widely used, the `SHOW` statements remain as an alternative. In fact, along with the implementation of `INFORMATION_SCHEMA`, there are enhancements to `SHOW` as described in Section 28.8, “Extensions to SHOW Statements”.
 
-### INFORMATION\_SCHEMA and Privileges
+### INFORMATION_SCHEMA and Privileges
 
 For most `INFORMATION_SCHEMA` tables, each MySQL user has the right to access them, but can see only the rows in the tables that correspond to objects for which the user has the proper access privileges. In some cases (for example, the `ROUTINE_DEFINITION` column in the `INFORMATION_SCHEMA` `ROUTINES` table), users who have insufficient privileges see `NULL`. Some tables have different privilege requirements; for these, the requirements are mentioned in the applicable table descriptions. For example, `InnoDB` tables (tables with names that begin with `INNODB_`) require the `PROCESS` privilege.
 
@@ -83,7 +83,7 @@ The same privileges apply to selecting information from `INFORMATION_SCHEMA` and
 
 ### Performance Considerations
 
-`INFORMATION_SCHEMA` queries that search for information from more than one database might take a long time and impact performance. To check the efficiency of a query, you can use `EXPLAIN`. For information about using `EXPLAIN` output to tune `INFORMATION_SCHEMA` queries, see Section 10.2.3, “Optimizing INFORMATION\_SCHEMA Queries”.
+`INFORMATION_SCHEMA` queries that search for information from more than one database might take a long time and impact performance. To check the efficiency of a query, you can use `EXPLAIN`. For information about using `EXPLAIN` output to tune `INFORMATION_SCHEMA` queries, see Section 10.2.3, “Optimizing INFORMATION_SCHEMA Queries”.
 
 ### Standards Considerations
 
@@ -95,7 +95,7 @@ Although other DBMSs use a variety of names, like `syscat` or `system`, the stan
 
 To avoid using any name that is reserved in the standard or in DB2, SQL Server, or Oracle, we changed the names of some columns marked “MySQL extension”. (For example, we changed `COLLATION` to `TABLE_COLLATION` in the `TABLES` table.) See the list of reserved words near the end of this article: <https://web.archive.org/web/20070428032454/http://www.dbazine.com/db2/db2-disarticles/gulutzan5>.
 
-### Conventions in the INFORMATION\_SCHEMA Reference Sections
+### Conventions in the INFORMATION_SCHEMA Reference Sections
 
 The following sections describe each of the tables and columns in `INFORMATION_SCHEMA`. For each column, there are three pieces of information:
 
@@ -111,14 +111,14 @@ Many sections indicate what `SHOW` statement is equivalent to a `SELECT` that re
 
 These sections discuss additional `INFORMATION_SCHEMA`-related topics:
 
-* information about `INFORMATION_SCHEMA` tables specific to the `InnoDB` storage engine: Section 28.4, “INFORMATION\_SCHEMA InnoDB Tables”
+* information about `INFORMATION_SCHEMA` tables specific to the `InnoDB` storage engine: Section 28.4, “INFORMATION_SCHEMA InnoDB Tables”
 
-* information about `INFORMATION_SCHEMA` tables specific to the thread pool plugin: Section 28.5, “INFORMATION\_SCHEMA Thread Pool Tables”
+* information about `INFORMATION_SCHEMA` tables specific to the thread pool plugin: Section 28.5, “INFORMATION_SCHEMA Thread Pool Tables”
 
-* information about `INFORMATION_SCHEMA` tables specific to the `CONNECTION_CONTROL` plugin: Section 28.6, “INFORMATION\_SCHEMA Connection Control Tables”
+* information about `INFORMATION_SCHEMA` tables specific to the `CONNECTION_CONTROL` plugin: Section 28.6, “INFORMATION_SCHEMA Connection Control Tables”
 
-* Answers to questions that are often asked concerning the `INFORMATION_SCHEMA` database: Section A.7, “MySQL 9.5 FAQ: INFORMATION\_SCHEMA”
+* Answers to questions that are often asked concerning the `INFORMATION_SCHEMA` database: Section A.7, “MySQL 9.5 FAQ: INFORMATION_SCHEMA”
 
-* `INFORMATION_SCHEMA` queries and the optimizer: Section 10.2.3, “Optimizing INFORMATION\_SCHEMA Queries”
+* `INFORMATION_SCHEMA` queries and the optimizer: Section 10.2.3, “Optimizing INFORMATION_SCHEMA Queries”
 
-* The effect of collation on `INFORMATION_SCHEMA` comparisons: Section 12.8.7, “Using Collation in INFORMATION\_SCHEMA Searches”
+* The effect of collation on `INFORMATION_SCHEMA` comparisons: Section 12.8.7, “Using Collation in INFORMATION_SCHEMA Searches”

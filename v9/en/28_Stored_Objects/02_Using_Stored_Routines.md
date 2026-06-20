@@ -43,7 +43,7 @@ Stored functions cannot be recursive.
 
 Recursion in stored procedures is permitted but disabled by default. To enable recursion, set the `max_sp_recursion_depth` server system variable to a value greater than zero. Stored procedure recursion increases the demand on thread stack space. If you increase the value of `max_sp_recursion_depth`, it may be necessary to increase thread stack size by increasing the value of `thread_stack` at server startup. See Section 7.1.8, “Server System Variables”, for more information.
 
-MySQL supports a very useful extension that enables the use of regular `SELECT` statements (that is, without using cursors or local variables) inside a stored procedure. The result set of such a query is simply sent directly to the client. Multiple `SELECT` statements generate multiple result sets, so the client must use a MySQL client library that supports multiple result sets. This means the client must use a client library from a version of MySQL at least as recent as 4.1. The client should also specify the `CLIENT_MULTI_RESULTS` option when it connects. For C programs, this can be done with the `mysql_real_connect()` C API function. See mysql\_real\_connect(), and Multiple Statement Execution Support.
+MySQL supports a very useful extension that enables the use of regular `SELECT` statements (that is, without using cursors or local variables) inside a stored procedure. The result set of such a query is simply sent directly to the client. Multiple `SELECT` statements generate multiple result sets, so the client must use a MySQL client library that supports multiple result sets. This means the client must use a client library from a version of MySQL at least as recent as 4.1. The client should also specify the `CLIENT_MULTI_RESULTS` option when it connects. For C programs, this can be done with the `mysql_real_connect()` C API function. See mysql_real_connect(), and Multiple Statement Execution Support.
 
 A user variable referenced by a statement in a stored procedure has its type determined the first time the procedure is invoked, and retains this type each time the procedure is invoked thereafter.
 
@@ -83,7 +83,7 @@ The MySQL grant system takes stored routines into account as follows:
 
 To obtain metadata about stored routines:
 
-* Query the `ROUTINES` table of the `INFORMATION_SCHEMA` database. See Section 28.3.36, “The INFORMATION\_SCHEMA ROUTINES Table”.
+* Query the `ROUTINES` table of the `INFORMATION_SCHEMA` database. See Section 28.3.36, “The INFORMATION_SCHEMA ROUTINES Table”.
 
 * Use the `SHOW CREATE PROCEDURE` and `SHOW CREATE FUNCTION` statements to see routine definitions. See Section 15.7.7.11, “SHOW CREATE PROCEDURE Statement”.
 
@@ -92,7 +92,7 @@ To obtain metadata about stored routines:
 * Use the `SHOW PROCEDURE CODE` and `SHOW FUNCTION CODE` statements to see a representation of the internal implementation of the routine. See Section 15.7.7.30, “SHOW PROCEDURE CODE Statement”.
 
 
-### 27.2.4 Stored Procedures, Functions, Triggers, and LAST\_INSERT\_ID()
+### 27.2.4 Stored Procedures, Functions, Triggers, and LAST_INSERT_ID()
 
 Within the body of a stored routine (procedure or function) or a trigger, the value of `LAST_INSERT_ID()` changes the same way as for statements executed outside the body of these kinds of objects (see Section 14.15, “Information Functions”). The effect of a stored routine or trigger upon the value of `LAST_INSERT_ID()` that is seen by following statements depends on the kind of routine:
 

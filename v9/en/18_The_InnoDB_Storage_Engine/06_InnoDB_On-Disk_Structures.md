@@ -54,7 +54,7 @@ CREATE TABLE t5 (id INT AUTO_INCREMENT, b CHAR (20), PRIMARY KEY (id));
 CREATE TABLE t6 (id INT AUTO_INCREMENT, a INT, b CHAR (20), PRIMARY KEY (id,a));
 ```
 
-For more information about auto-increment columns, see Section 17.6.1.6, “AUTO\_INCREMENT Handling in InnoDB”.
+For more information about auto-increment columns, see Section 17.6.1.6, “AUTO_INCREMENT Handling in InnoDB”.
 
 Although a table works correctly without defining a primary key, the primary key is involved with many aspects of performance and is a crucial design aspect for any large or frequently used table. It is recommended that you always specify a primary key in the `CREATE TABLE` statement. If you create the table, load data, and then run `ALTER TABLE` to add a primary key later, that operation is much slower than defining the primary key when creating the table. For more information about primary keys, see Section 17.6.2.1, “Clustered and Secondary Indexes”.
 
@@ -103,7 +103,7 @@ ZIP_PAGE_SIZE: 0
  INSTANT_COLS: 0
 ```
 
-For more information, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For more information, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.
 
 
 #### 17.6.1.2 Creating Tables Externally
@@ -801,18 +801,18 @@ If you set up a numeric ID column for the primary key, use that value to cross-r
 * Methods of moving or copying `InnoDB` tables to a different server are described in Section 17.6.1.4, “Moving or Copying InnoDB Tables”.
 
 
-#### 17.6.1.6 AUTO\_INCREMENT Handling in InnoDB
+#### 17.6.1.6 AUTO_INCREMENT Handling in InnoDB
 
 `InnoDB` provides a configurable locking mechanism that can significantly improve scalability and performance of SQL statements that add rows to tables with `AUTO_INCREMENT` columns. To use the `AUTO_INCREMENT` mechanism with an `InnoDB` table, an `AUTO_INCREMENT` column must be defined as the first or only column of some index such that it is possible to perform the equivalent of an indexed `SELECT MAX(ai_col)` lookup on the table to obtain the maximum column value. The index is not required to be a `PRIMARY KEY` or `UNIQUE`, but to avoid duplicate values in the `AUTO_INCREMENT` column, those index types are recommended.
 
 This section describes the `AUTO_INCREMENT` lock modes, usage implications of different `AUTO_INCREMENT` lock mode settings, and how `InnoDB` initializes the `AUTO_INCREMENT` counter.
 
-* InnoDB AUTO\_INCREMENT Lock Modes
-* InnoDB AUTO\_INCREMENT Lock Mode Usage Implications
-* InnoDB AUTO\_INCREMENT Counter Initialization
+* InnoDB AUTO_INCREMENT Lock Modes
+* InnoDB AUTO_INCREMENT Lock Mode Usage Implications
+* InnoDB AUTO_INCREMENT Counter Initialization
 * Notes
 
-##### InnoDB AUTO\_INCREMENT Lock Modes
+##### InnoDB AUTO_INCREMENT Lock Modes
 
 This section describes the `AUTO_INCREMENT` lock modes used to generate auto-increment values, and how each lock mode affects replication. The auto-increment lock mode is configured at startup using the `innodb_autoinc_lock_mode` variable.
 
@@ -899,7 +899,7 @@ The default setting of interleaved lock mode in MySQL 9.5 reflects the change fr
 
   If the only statements executing are “simple inserts” where the number of rows to be inserted is known ahead of time, there are no gaps in the numbers generated for a single statement, except for “mixed-mode inserts”. However, when “bulk inserts” are executed, there may be gaps in the auto-increment values assigned by any given statement.
 
-##### InnoDB AUTO\_INCREMENT Lock Mode Usage Implications
+##### InnoDB AUTO_INCREMENT Lock Mode Usage Implications
 
 * Using auto-increment with replication
 
@@ -1049,7 +1049,7 @@ The default setting of interleaved lock mode in MySQL 9.5 reflects the change fr
   +----+
   ```
 
-##### InnoDB AUTO\_INCREMENT Counter Initialization
+##### InnoDB AUTO_INCREMENT Counter Initialization
 
 This section describes how `InnoDB` initializes `AUTO_INCREMENT` counters.
 
@@ -1169,7 +1169,7 @@ Full-text search is performed using [`MATCH() ... AGAINST`](fulltext-search.html
 * InnoDB Full-Text Index Design
 * InnoDB Full-Text Index Tables
 * InnoDB Full-Text Index Cache
-* InnoDB Full-Text Index DOC\_ID and FTS\_DOC\_ID Column
+* InnoDB Full-Text Index DOC_ID and FTS_DOC_ID Column
 * InnoDB Full-Text Index Deletion Handling
 * InnoDB Full-Text Index Transaction Handling
 * Monitoring InnoDB Full-Text Indexes
@@ -1237,11 +1237,11 @@ Common index tables are retained even if full-text indexes are dropped. When a f
 
 * `fts_*_deleted` and `fts_*_deleted_cache`
 
-  Contain the document IDs (DOC\_ID) for documents that are deleted but whose data is not yet removed from the full-text index. The `fts_*_deleted_cache` is the in-memory version of the `fts_*_deleted` table.
+  Contain the document IDs (DOC_ID) for documents that are deleted but whose data is not yet removed from the full-text index. The `fts_*_deleted_cache` is the in-memory version of the `fts_*_deleted` table.
 
 * `fts_*_being_deleted` and `fts_*_being_deleted_cache`
 
-  Contain the document IDs (DOC\_ID) for documents that are deleted and whose data is currently in the process of being removed from the full-text index. The `fts_*_being_deleted_cache` table is the in-memory version of the `fts_*_being_deleted` table.
+  Contain the document IDs (DOC_ID) for documents that are deleted and whose data is currently in the process of being removed from the full-text index. The `fts_*_being_deleted_cache` table is the in-memory version of the `fts_*_being_deleted` table.
 
 * `fts_*_config`
 
@@ -1257,7 +1257,7 @@ The `innodb_ft_cache_size` variable is used to configure the full-text index cac
 
 The full-text index cache stores the same information as auxiliary index tables. However, the full-text index cache only caches tokenized data for recently inserted rows. The data that is already flushed to disk (to the auxiliary index tables) is not brought back into the full-text index cache when queried. The data in auxiliary index tables is queried directly, and results from the auxiliary index tables are merged with results from the full-text index cache before being returned.
 
-##### InnoDB Full-Text Index DOC\_ID and FTS\_DOC\_ID Column
+##### InnoDB Full-Text Index DOC_ID and FTS_DOC_ID Column
 
 `InnoDB` uses a unique document identifier referred to as the `DOC_ID` to map words in the full-text index to document records where the word appears. The mapping requires an `FTS_DOC_ID` column on the indexed table. If an `FTS_DOC_ID` column is not defined, `InnoDB` automatically adds a hidden `FTS_DOC_ID` column when the full-text index is created. The following example demonstrates this behavior.
 
@@ -1382,7 +1382,7 @@ You can monitor and examine the special text-processing aspects of `InnoDB` full
 
 You can also view basic information for full-text indexes and tables by querying `INNODB_INDEXES` and `INNODB_TABLES`.
 
-For more information, see Section 17.15.4, “InnoDB INFORMATION\_SCHEMA FULLTEXT Index Tables”.
+For more information, see Section 17.15.4, “InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables”.
 
 
 ### 17.6.3 Tablespaces
@@ -1699,9 +1699,9 @@ For a general tablespace to contain compressed tables (`ROW_FORMAT=COMPRESSED`),
 
 The following table shows permitted `innodb_page_size`, `FILE_BLOCK_SIZE`, and `KEY_BLOCK_SIZE` combinations. `FILE_BLOCK_SIZE` values may also be specified in bytes. To determine a valid `KEY_BLOCK_SIZE` value for a given `FILE_BLOCK_SIZE`, divide the `FILE_BLOCK_SIZE` value by 1024. Table compression is not support for 32K and 64K `InnoDB` page sizes. For more information about `KEY_BLOCK_SIZE`, see `CREATE TABLE`, and Section 17.9.1.2, “Creating Compressed Tables”.
 
-**Table 17.3 Permitted Page Size, FILE\_BLOCK\_SIZE, and KEY\_BLOCK\_SIZE Combinations for Compressed Tables**
+**Table 17.3 Permitted Page Size, FILE_BLOCK_SIZE, and KEY_BLOCK_SIZE Combinations for Compressed Tables**
 
-<table frame="all"><col style="width: 33%"/><col style="width: 33%"/><col style="width: 34%"/><thead><tr> <th scope="col">InnoDB Page Size (innodb_page_size)</th> <th scope="col">Permitted FILE_BLOCK_SIZE Value</th> <th scope="col">Permitted KEY_BLOCK_SIZE Value</th> </tr></thead><tbody><tr> <th scope="row">64KB</th> <td>64K (65536)</td> <td>Compression is not supported</td> </tr><tr> <th scope="row">32KB</th> <td>32K (32768)</td> <td>Compression is not supported</td> </tr><tr> <th scope="row">16KB</th> <td>16K (16384)</td> <td>None. If <a class="link" href="innodb-parameters.html#sysvar_innodb_page_size"><code class="literal">innodb_page_size</code></a> is equal to <code class="literal">FILE_BLOCK_SIZE</code>, the tablespace cannot contain a compressed table.</td> </tr><tr> <th scope="row">16KB</th> <td>8K (8192)</td> <td>8</td> </tr><tr> <th scope="row">16KB</th> <td>4K (4096)</td> <td>4</td> </tr><tr> <th scope="row">16KB</th> <td>2K (2048)</td> <td>2</td> </tr><tr> <th scope="row">16KB</th> <td>1K (1024)</td> <td>1</td> </tr><tr> <th scope="row">8KB</th> <td>8K (8192)</td> <td>None. If <a class="link" href="innodb-parameters.html#sysvar_innodb_page_size"><code class="literal">innodb_page_size</code></a> is equal to <code class="literal">FILE_BLOCK_SIZE</code>, the tablespace cannot contain a compressed table.</td> </tr><tr> <th scope="row">8KB</th> <td>4K (4096)</td> <td>4</td> </tr><tr> <th scope="row">8KB</th> <td>2K (2048)</td> <td>2</td> </tr><tr> <th scope="row">8KB</th> <td>1K (1024)</td> <td>1</td> </tr><tr> <th scope="row">4KB</th> <td>4K (4096)</td> <td>None. If <a class="link" href="innodb-parameters.html#sysvar_innodb_page_size"><code class="literal">innodb_page_size</code></a> is equal to <code class="literal">FILE_BLOCK_SIZE</code>, the tablespace cannot contain a compressed table.</td> </tr><tr> <th scope="row">4KB</th> <td>2K (2048)</td> <td>2</td> </tr><tr> <th scope="row">4KB</th> <td>1K (1024)</td> <td>1</td> </tr></tbody></table>
+<table frame="all"><col style="width: 33%"/><col style="width: 33%"/><col style="width: 34%"/><thead><tr> <th scope="col">InnoDB Page Size (innodb_page_size)</th> <th scope="col">Permitted FILE_BLOCK_SIZE Value</th> <th scope="col">Permitted KEY_BLOCK_SIZE Value</th> </tr></thead><tbody><tr> <th scope="row">64KB</th> <td>64K (65536)</td> <td>Compression is not supported</td> </tr><tr> <th scope="row">32KB</th> <td>32K (32768)</td> <td>Compression is not supported</td> </tr><tr> <th scope="row">16KB</th> <td>16K (16384)</td> <td>None. If <code>innodb_page_size</code> is equal to <code>FILE_BLOCK_SIZE</code>, the tablespace cannot contain a compressed table.</td> </tr><tr> <th scope="row">16KB</th> <td>8K (8192)</td> <td>8</td> </tr><tr> <th scope="row">16KB</th> <td>4K (4096)</td> <td>4</td> </tr><tr> <th scope="row">16KB</th> <td>2K (2048)</td> <td>2</td> </tr><tr> <th scope="row">16KB</th> <td>1K (1024)</td> <td>1</td> </tr><tr> <th scope="row">8KB</th> <td>8K (8192)</td> <td>None. If <code>innodb_page_size</code> is equal to <code>FILE_BLOCK_SIZE</code>, the tablespace cannot contain a compressed table.</td> </tr><tr> <th scope="row">8KB</th> <td>4K (4096)</td> <td>4</td> </tr><tr> <th scope="row">8KB</th> <td>2K (2048)</td> <td>2</td> </tr><tr> <th scope="row">8KB</th> <td>1K (1024)</td> <td>1</td> </tr><tr> <th scope="row">4KB</th> <td>4K (4096)</td> <td>None. If <code>innodb_page_size</code> is equal to <code>FILE_BLOCK_SIZE</code>, the tablespace cannot contain a compressed table.</td> </tr><tr> <th scope="row">4KB</th> <td>2K (2048)</td> <td>2</td> </tr><tr> <th scope="row">4KB</th> <td>1K (1024)</td> <td>1</td> </tr></tbody></table>
 
 This example demonstrates creating a general tablespace and adding a compressed table. The example assumes a default `innodb_page_size` of 16KB. The `FILE_BLOCK_SIZE` of 8192 requires that the compressed table have a `KEY_BLOCK_SIZE` of 8.
 
@@ -1848,7 +1848,7 @@ Additional undo tablespaces can be created at runtime using SQL statements. See 
 
 The initial undo tablespace size is normally 16MiB. The initial size may differ when a new undo tablespace is created by a truncate operation. In this case, if the file extension size is larger than 16MB, and the previous file extension occurred within the last second, the new undo tablespace is created at a quarter of the size defined by the `innodb_max_undo_log_size` variable.
 
-An undo tablespace is extended by a minimum of 16MB. To handle aggressive growth, the file extension size is doubled if the previous file extension happened less than 0.1 seconds earlier. Doubling of the extension size can occur multiple times to a maximum of 256MB. If the previous file extension occurred more than 0.1 seconds earlier, the extension size is reduced by half, which can also occur multiple times, to a minimum of 16MB. If the `AUTOEXTEND_SIZE` option is defined for an undo tablespace, it is extended by the greater of the `AUTOEXTEND_SIZE` setting and the extension size determined by the logic described above. For information about the `AUTOEXTEND_SIZE` option, see Section 17.6.3.9, “Tablespace AUTOEXTEND\_SIZE Configuration”.
+An undo tablespace is extended by a minimum of 16MB. To handle aggressive growth, the file extension size is doubled if the previous file extension happened less than 0.1 seconds earlier. Doubling of the extension size can occur multiple times to a maximum of 256MB. If the previous file extension occurred more than 0.1 seconds earlier, the extension size is reduced by half, which can also occur multiple times, to a minimum of 16MB. If the `AUTOEXTEND_SIZE` option is defined for an undo tablespace, it is extended by the greater of the `AUTOEXTEND_SIZE` setting and the extension size determined by the logic described above. For information about the `AUTOEXTEND_SIZE` option, see Section 17.6.3.9, “Tablespace AUTOEXTEND_SIZE Configuration”.
 
 ##### Adding Undo Tablespaces
 
@@ -2046,7 +2046,7 @@ The easiest way to avoid the potential performance impact is to increase the num
 SELECT NAME, SUBSYSTEM, COMMENT FROM INFORMATION_SCHEMA.INNODB_METRICS WHERE NAME LIKE '%truncate%';
 ```
 
-For information about enabling counters and querying counter data, see Section 17.15.6, “InnoDB INFORMATION\_SCHEMA Metrics Table”.
+For information about enabling counters and querying counter data, see Section 17.15.6, “InnoDB INFORMATION_SCHEMA Metrics Table”.
 
 ###### Undo Tablespace Truncation Limit
 
@@ -2129,7 +2129,7 @@ TABLESPACE_NAME: innodb_temporary
    MAXIMUM_SIZE: NULL
 ```
 
-`TotalSizeBytes` shows the current size of the global temporary tablespace data file. For information about other field values, see Section 28.3.15, “The INFORMATION\_SCHEMA FILES Table”.
+`TotalSizeBytes` shows the current size of the global temporary tablespace data file. For information about other field values, see Section 28.3.15, “The INFORMATION_SCHEMA FILES Table”.
 
 Alternatively, check the global temporary tablespace data file size on your operating system. The global temporary tablespace data file is located in the directory defined by the `innodb_temp_data_file_path` variable.
 
@@ -2230,16 +2230,16 @@ Starting the server with tablespace path validation disabled after moving tables
 
 You can optimize how `InnoDB` allocates space to file-per-table and general tablespaces on Linux. By default, when additional space is required, `InnoDB` allocates pages to the tablespace and physically writes NULLs to those pages. This behavior can affect performance if new pages are allocated frequently. You can disable `innodb_extend_and_initialize` on Linux systems to avoid physically writing NULLs to newly allocated tablespace pages. When `innodb_extend_and_initialize` is disabled, space is allocated to tablespace files using `posix_fallocate()` calls, which reserve space without physically writing NULLs.
 
-When pages are allocated using `posix_fallocate()` calls, the extension size is small by default and pages are often allocated only a few at a time, which can cause fragmentation and increase random I/O. To avoid this issue, increase the tablespace extension size when enabling `posix_fallocate()` calls. Tablespace extension size can be increased up to 4GB using the `AUTOEXTEND_SIZE` option. For more information, see Section 17.6.3.9, “Tablespace AUTOEXTEND\_SIZE Configuration”.
+When pages are allocated using `posix_fallocate()` calls, the extension size is small by default and pages are often allocated only a few at a time, which can cause fragmentation and increase random I/O. To avoid this issue, increase the tablespace extension size when enabling `posix_fallocate()` calls. Tablespace extension size can be increased up to 4GB using the `AUTOEXTEND_SIZE` option. For more information, see Section 17.6.3.9, “Tablespace AUTOEXTEND_SIZE Configuration”.
 
 `InnoDB` writes a redo log record before allocating a new tablespace page. If a page allocation operation is interrupted, the operation is replayed from the redo log record during recovery. (A page allocation operation replayed from a redo log record physically writes NULLs to the newly allocated page.) A redo log record is written before allocating a page regardless of the `innodb_extend_and_initialize` setting.
 
 On non-Linux systems and Windows, `InnoDB` allocates new pages to the tablespace and physically writes NULLs to those pages, which is the default behavior. Attempting to disable `innodb_extend_and_initialize` on those systems returns the following error:
 
-Changing innodb\_extend\_and\_initialize not supported on this platform. Falling back to the default.
+Changing innodb_extend_and_initialize not supported on this platform. Falling back to the default.
 
 
-#### 17.6.3.9 Tablespace AUTOEXTEND\_SIZE Configuration
+#### 17.6.3.9 Tablespace AUTOEXTEND_SIZE Configuration
 
 By default, when a file-per-table or general tablespace requires additional space, the tablespace is extended incrementally according to the following rules:
 
@@ -2281,7 +2281,7 @@ The maximum allowed `AUTOEXTEND_SIZE` is 4GB. The maximum tablespace size is des
 
 The minimum `AUTOEXTEND_SIZE` setting depends on the `InnoDB` page size, as shown in the following table:
 
-<table summary="The minimum AUTOEXTEND_SIZE for each InnoDB page size"><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>InnoDB Page Size</th> <th>Minimum AUTOEXTEND_SIZE</th> </tr></thead><tbody><tr> <td><code class="literal">4K</code></td> <td><code class="literal">4M</code></td> </tr><tr> <td><code class="literal">8K</code></td> <td><code class="literal">4M</code></td> </tr><tr> <td><code class="literal">16K</code></td> <td><code class="literal">4M</code></td> </tr><tr> <td><code class="literal">32K</code></td> <td><code class="literal">8M</code></td> </tr><tr> <td><code class="literal">64K</code></td> <td><code class="literal">16M</code></td> </tr></tbody></table>
+<table summary="The minimum AUTOEXTEND_SIZE for each InnoDB page size"><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>InnoDB Page Size</th> <th>Minimum AUTOEXTEND_SIZE</th> </tr></thead><tbody><tr> <td><code>4K</code></td> <td><code>4M</code></td> </tr><tr> <td><code>8K</code></td> <td><code>4M</code></td> </tr><tr> <td><code>16K</code></td> <td><code>4M</code></td> </tr><tr> <td><code>32K</code></td> <td><code>8M</code></td> </tr><tr> <td><code>64K</code></td> <td><code>16M</code></td> </tr></tbody></table>
 
 The default `InnoDB` page size is 16K (16384 bytes). To determine the `InnoDB` page size for your MySQL instance, query the `innodb_page_size` setting:
 
@@ -2698,7 +2698,7 @@ Each undo tablespace and the global temporary tablespace individually support a 
 
 The number of transactions that a rollback segment supports depends on the number of undo slots in the rollback segment and the number of undo logs required by each transaction. The number of undo slots in a rollback segment differs according to `InnoDB` page size.
 
-<table summary="Number of undo slots in a rollback segment for each InnoDB page size"><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>InnoDB Page Size</th> <th>Number of Undo Slots in a Rollback Segment (InnoDB Page Size / 16)</th> </tr></thead><tbody><tr> <td><code class="literal">4096 (4KB)</code></td> <td><code class="literal">256</code></td> </tr><tr> <td><code class="literal">8192 (8KB)</code></td> <td><code class="literal">512</code></td> </tr><tr> <td><code class="literal">16384 (16KB)</code></td> <td><code class="literal">1024</code></td> </tr><tr> <td><code class="literal">32768 (32KB)</code></td> <td><code class="literal">2048</code></td> </tr><tr> <td><code class="literal">65536 (64KB)</code></td> <td><code class="literal">4096</code></td> </tr></tbody></table>
+<table summary="Number of undo slots in a rollback segment for each InnoDB page size"><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>InnoDB Page Size</th> <th>Number of Undo Slots in a Rollback Segment (InnoDB Page Size / 16)</th> </tr></thead><tbody><tr> <td><code>4096 (4KB)</code></td> <td><code>256</code></td> </tr><tr> <td><code>8192 (8KB)</code></td> <td><code>512</code></td> </tr><tr> <td><code>16384 (16KB)</code></td> <td><code>1024</code></td> </tr><tr> <td><code>32768 (32KB)</code></td> <td><code>2048</code></td> </tr><tr> <td><code>65536 (64KB)</code></td> <td><code>4096</code></td> </tr></tbody></table>
 
 A transaction is assigned up to four undo logs, one for each of the following operation types:
 

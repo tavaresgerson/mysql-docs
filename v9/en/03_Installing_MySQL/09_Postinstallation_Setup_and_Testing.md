@@ -181,7 +181,7 @@ When initializing the data directory, you should not specify any options other t
 
 Note
 
-The data directory initialization sequence performed by the server does not substitute for the actions performed by **mysql\_secure\_installation**.
+The data directory initialization sequence performed by the server does not substitute for the actions performed by **mysql_secure_installation**.
 
 When invoked with the `--initialize` or `--initialize-insecure` option, **mysqld** performs the following actions during the data directory initialization sequence:
 
@@ -290,7 +290,7 @@ It is possible to put those statements in a file to be executed using the `init_
 
 This section describes how start the server on Unix and Unix-like systems. (For Windows, see Section 2.3.3.5, “Starting the Server for the First Time”.) For some suggested commands that you can use to test whether the server is accessible and working properly, see Section 2.9.3, “Testing the Server”.
 
-Start the MySQL server like this if your installation includes **mysqld\_safe**:
+Start the MySQL server like this if your installation includes **mysqld_safe**:
 
 ```
 $> bin/mysqld_safe --user=mysql &
@@ -298,7 +298,7 @@ $> bin/mysqld_safe --user=mysql &
 
 Note
 
-For Linux systems on which MySQL is installed using RPM packages, server startup and shutdown is managed using systemd rather than **mysqld\_safe**, and **mysqld\_safe** is not installed. See Section 2.5.9, “Managing MySQL Server with systemd”.
+For Linux systems on which MySQL is installed using RPM packages, server startup and shutdown is managed using systemd rather than **mysqld_safe**, and **mysqld_safe** is not installed. See Section 2.5.9, “Managing MySQL Server with systemd”.
 
 Start the server like this if your installation includes systemd support:
 
@@ -308,7 +308,7 @@ $> systemctl start mysqld
 
 Substitute the appropriate service name if it differs from `mysqld` (for example, `mysql` on SLES systems).
 
-It is important that the MySQL server be run using an unprivileged (non-`root`) login account. To ensure this, run **mysqld\_safe** as `root` and include the `--user` option as shown. Otherwise, you should execute the program while logged in as `mysql`, in which case you can omit the `--user` option from the command.
+It is important that the MySQL server be run using an unprivileged (non-`root`) login account. To ensure this, run **mysqld_safe** as `root` and include the `--user` option as shown. Otherwise, you should execute the program while logged in as `mysql`, in which case you can omit the `--user` option from the command.
 
 For further instructions for running MySQL as an unprivileged user, see Section 8.1.5, “How to Run MySQL as a Normal User”.
 
@@ -316,7 +316,7 @@ If the command fails immediately and prints `mysqld ended`, look for information
 
 If the server is unable to access the data directory it starts or read the grant tables in the `mysql` schema, it writes a message to its error log. Such problems can occur if you neglected to create the grant tables by initializing the data directory before proceeding to this step, or if you ran the command that initializes the data directory without the `--user` option. Remove the `data` directory and run the command with the `--user` option.
 
-If you have other problems starting the server, see Section 2.9.2.1, “Troubleshooting Problems Starting the MySQL Server”. For more information about **mysqld\_safe**, see Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”. For more information about systemd support, see Section 2.5.9, “Managing MySQL Server with systemd”.
+If you have other problems starting the server, see Section 2.9.2.1, “Troubleshooting Problems Starting the MySQL Server”. For more information about **mysqld_safe**, see Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”. For more information about systemd support, see Section 2.5.9, “Managing MySQL Server with systemd”.
 
 
 #### 2.9.2.1 Troubleshooting Problems Starting the MySQL Server
@@ -338,7 +338,7 @@ If you have problems starting the server, here are some things to try:
 
 * Make sure that the server knows where to find the data directory. The **mysqld** server uses this directory as its current directory. This is where it expects to find databases and where it expects to write log files. The server also writes the pid (process ID) file in the data directory.
 
-  The default data directory location is hardcoded when the server is compiled. To determine what the default path settings are, invoke **mysqld** with the `--verbose` and `--help` options. If the data directory is located somewhere else on your system, specify that location with the `--datadir` option to **mysqld** or **mysqld\_safe**, on the command line or in an option file. Otherwise, the server does not work properly. As an alternative to the `--datadir` option, you can specify **mysqld** the location of the base directory under which MySQL is installed with the `--basedir`, and **mysqld** looks for the `data` directory there.
+  The default data directory location is hardcoded when the server is compiled. To determine what the default path settings are, invoke **mysqld** with the `--verbose` and `--help` options. If the data directory is located somewhere else on your system, specify that location with the `--datadir` option to **mysqld** or **mysqld_safe**, on the command line or in an option file. Otherwise, the server does not work properly. As an alternative to the `--datadir` option, you can specify **mysqld** the location of the base directory under which MySQL is installed with the `--basedir`, and **mysqld** looks for the `data` directory there.
 
   To check the effect of specifying path options, invoke **mysqld** with those options followed by the `--verbose` and `--help` options. For example, if you change location to the directory where **mysqld** is installed and then run the following command, it shows the effect of starting the server with a base directory of `/usr/local`:
 
@@ -453,13 +453,13 @@ Verify that you can shut down the server (include a `-p` option if the `root` ac
 $> bin/mysqladmin -u root shutdown
 ```
 
-Verify that you can start the server again. Do this by using **mysqld\_safe** or by invoking **mysqld** directly. For example:
+Verify that you can start the server again. Do this by using **mysqld_safe** or by invoking **mysqld** directly. For example:
 
 ```
 $> bin/mysqld_safe --user=mysql &
 ```
 
-If **mysqld\_safe** fails, see Section 2.9.2.1, “Troubleshooting Problems Starting the MySQL Server”.
+If **mysqld_safe** fails, see Section 2.9.2.1, “Troubleshooting Problems Starting the MySQL Server”.
 
 Run some simple tests to verify that you can retrieve information from the server. The output should be similar to that shown here.
 
@@ -552,7 +552,7 @@ Alternative means for performing the process described in this section:
 
 * On Windows, you can perform the process during installation with MySQL Configurator (see Section 2.3.2, “Configuration: Using MySQL Configurator”).
 
-* On all platforms, the MySQL distribution includes **mysql\_secure\_installation**, a command-line utility that automates much of the process of securing a MySQL installation.
+* On all platforms, the MySQL distribution includes **mysql_secure_installation**, a command-line utility that automates much of the process of securing a MySQL installation.
 
 * On all platforms, MySQL Workbench is available and offers the ability to manage user accounts (see Chapter 33, *MySQL Workbench* ).
 
@@ -640,26 +640,26 @@ Generally, you start the **mysqld** server in one of these ways:
 
 * On Windows, you can set up a MySQL service that runs automatically when Windows starts. See Section 2.3.3.8, “Starting MySQL as a Windows Service”.
 
-* On Unix and Unix-like systems, you can invoke **mysqld\_safe**, which tries to determine the proper options for **mysqld** and then runs it with those options. See Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”.
+* On Unix and Unix-like systems, you can invoke **mysqld_safe**, which tries to determine the proper options for **mysqld** and then runs it with those options. See Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”.
 
 * On Linux systems that support systemd, you can use it to control the server. See Section 2.5.9, “Managing MySQL Server with systemd”.
 
-* On systems that use System V-style run directories (that is, `/etc/init.d` and run-level specific directories), invoke **mysql.server**. This script is used primarily at system startup and shutdown. It usually is installed under the name `mysql`. The **mysql.server** script starts the server by invoking **mysqld\_safe**. See Section 6.3.3, “mysql.server — MySQL Server Startup Script”.
+* On systems that use System V-style run directories (that is, `/etc/init.d` and run-level specific directories), invoke **mysql.server**. This script is used primarily at system startup and shutdown. It usually is installed under the name `mysql`. The **mysql.server** script starts the server by invoking **mysqld_safe**. See Section 6.3.3, “mysql.server — MySQL Server Startup Script”.
 
-* On macOS, install a launchd daemon to enable automatic MySQL startup at system startup. The daemon starts the server by invoking **mysqld\_safe**. For details, see Section 2.4.3, “Installing and Using the MySQL Launch Daemon”. A MySQL Preference Pane also provides control for starting and stopping MySQL through the System Preferences. See Section 2.4.4, “Installing and Using the MySQL Preference Pane”.
+* On macOS, install a launchd daemon to enable automatic MySQL startup at system startup. The daemon starts the server by invoking **mysqld_safe**. For details, see Section 2.4.3, “Installing and Using the MySQL Launch Daemon”. A MySQL Preference Pane also provides control for starting and stopping MySQL through the System Preferences. See Section 2.4.4, “Installing and Using the MySQL Preference Pane”.
 
 * On Solaris, use the service management framework (SMF) system to initiate and control MySQL startup.
 
-systemd, the **mysqld\_safe** and **mysql.server** scripts, Solaris SMF, and the macOS Startup Item (or MySQL Preference Pane) can be used to start the server manually, or automatically at system startup time. systemd, **mysql.server**, and the Startup Item also can be used to stop the server.
+systemd, the **mysqld_safe** and **mysql.server** scripts, Solaris SMF, and the macOS Startup Item (or MySQL Preference Pane) can be used to start the server manually, or automatically at system startup time. systemd, **mysql.server**, and the Startup Item also can be used to stop the server.
 
 The following table shows which option groups the server and startup scripts read from option files.
 
 **Table 2.16 MySQL Startup Scripts and Supported Server Option Groups**
 
-<table summary="MySQL startup scripts and the server option groups they support."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Script</th> <th>Option Groups</th> </tr></thead><tbody><tr> <td><a class="link" href="mysqld.html" title="6.3.1 mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a></td> <td><code class="literal">[mysqld]</code>, <code class="literal">[server]</code>, <code class="literal">[mysqld-<em class="replaceable"><code>major_version</code></em>]</code></td> </tr><tr> <td><a class="link" href="mysqld-safe.html" title="6.3.2 mysqld_safe — MySQL Server Startup Script"><span class="command"><strong>mysqld_safe</strong></span></a></td> <td><code class="literal">[mysqld]</code>, <code class="literal">[server]</code>, <code class="literal">[mysqld_safe]</code></td> </tr><tr> <td><a class="link" href="mysql-server.html" title="6.3.3 mysql.server — MySQL Server Startup Script"><span class="command"><strong>mysql.server</strong></span></a></td> <td><code class="literal">[mysqld]</code>, <code class="literal">[mysql.server]</code>, <code class="literal">[server]</code></td> </tr></tbody></table>
+<table summary="MySQL startup scripts and the server option groups they support."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Script</th> <th>Option Groups</th> </tr></thead><tbody><tr> <td>mysqld</td> <td><code>[mysqld]</code>, <code>[server]</code>, <code>[mysqld-<code>major_version</code>]</code></td> </tr><tr> <td>mysqld_safe</td> <td><code>[mysqld]</code>, <code>[server]</code>, <code>[mysqld_safe]</code></td> </tr><tr> <td>mysql.server</td> <td><code>[mysqld]</code>, <code>[mysql.server]</code>, <code>[server]</code></td> </tr></tbody></table>
 
 `[mysqld-major_version]` means that groups with names like `[mysqld-9.4]` and `[mysqld-9.5]` are read by servers having versions 9.4.x, 9.5.x, and so forth. This feature can be used to specify options that can be read only by servers within a given release series.
 
-For backward compatibility, **mysql.server** also reads the `[mysql_server]` group and **mysqld\_safe** also reads the `[safe_mysqld]` group. To be current, you should update your option files to use the `[mysql.server]` and `[mysqld_safe]` groups instead.
+For backward compatibility, **mysql.server** also reads the `[mysql_server]` group and **mysqld_safe** also reads the `[safe_mysqld]` group. To be current, you should update your option files to use the `[mysql.server]` and `[mysqld_safe]` groups instead.
 
 For more information on MySQL configuration files and their structure and contents, see Section 6.2.2.2, “Using Option Files”.

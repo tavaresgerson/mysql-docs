@@ -274,7 +274,7 @@ The `innodb_stats_method` system variable has a global value; the `myisam_stats_
 
 To regenerate `MyISAM` table statistics, you can use any of the following methods:
 
-* Execute [**myisamchk --stats\_method=*`method_name`* --analyze**](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility")
+* Execute [**myisamchk --stats_method=*`method_name`* --analyze**](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility")
 
 * Change the table to cause its statistics to go out of date (for example, insert a row and then delete it), and then set `myisam_stats_method` and issue an `ANALYZE TABLE` statement
 

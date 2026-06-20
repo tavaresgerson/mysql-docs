@@ -14,7 +14,7 @@ With MySQL's statement-based replication, there may be issues with replicating s
 For additional information specific to replication and `InnoDB`, see Section 17.19, “InnoDB and MySQL Replication”. For information relating to replication with NDB Cluster, see Section 25.7, “NDB Cluster Replication”.
 
 
-#### 19.5.1.1 Replication and AUTO\_INCREMENT
+#### 19.5.1.1 Replication and AUTO_INCREMENT
 
 Statement-based replication of `AUTO_INCREMENT`, `LAST_INSERT_ID()`, and `TIMESTAMP` values is carried out subject to the following exceptions:
 
@@ -22,7 +22,7 @@ Statement-based replication of `AUTO_INCREMENT`, `LAST_INSERT_ID()`, and `TIMEST
 
 * An `INSERT` into a table that has a composite primary key that includes an `AUTO_INCREMENT` column that is not the first column of this composite key is not safe for statement-based logging or replication. These statements are marked as unsafe. (Bug #11754117, Bug #45670)
 
-  This issue does not affect tables using the `InnoDB` storage engine, since an `InnoDB` table with an AUTO\_INCREMENT column requires at least one key where the auto-increment column is the only or leftmost column.
+  This issue does not affect tables using the `InnoDB` storage engine, since an `InnoDB` table with an AUTO_INCREMENT column requires at least one key where the auto-increment column is the only or leftmost column.
 
 * Adding an `AUTO_INCREMENT` column to a table with `ALTER TABLE` might not produce the same ordering of the rows on the replica and the source. This occurs because the order in which the rows are numbered depends on the specific storage engine used for the table and the order in which the rows were inserted. If it is important to have the same order on the source and replica, the rows must be ordered before assigning an `AUTO_INCREMENT` number. Assuming that you want to add an `AUTO_INCREMENT` column to a table `t1` that has columns `col1` and `col2`, the following statements produce a new table `t2` identical to `t1` but with an `AUTO_INCREMENT` column:
 
@@ -108,7 +108,7 @@ MySQL applies these rules when [`CREATE TABLE ... SELECT`](create-table-select.h
 MySQL 9.5 does not allow a [`CREATE TABLE ... SELECT`](create-table-select.html "15.1.24.4 CREATE TABLE ... SELECT Statement") statement to make any changes in tables other than the table that is created by the statement.
 
 
-#### 19.5.1.8 Replication of CURRENT\_USER()
+#### 19.5.1.8 Replication of CURRENT_USER()
 
 The following statements support use of the `CURRENT_USER()` function to take the place of the name of, and possibly the host for, an affected user or a definer:
 
@@ -251,21 +251,21 @@ Whether you use statement-based or row-based replication, the replica's copy of 
 
 **Type conversion modes.** The global value of the system variable `replica_type_conversions` controls the type conversion mode used on the replica. This variable takes a set of values from the following list, which describes the effects of each mode on the replica's type-conversion behavior:
 
-ALL\_LOSSY :   In this mode, type conversions that would mean loss of information are permitted.
+ALL_LOSSY :   In this mode, type conversions that would mean loss of information are permitted.
 
     This does not imply that non-lossy conversions are permitted, merely that only cases requiring either lossy conversions or no conversion at all are permitted; for example, enabling *only* this mode permits an `INT` column to be converted to `TINYINT` (a lossy conversion), but not a `TINYINT` column to an `INT` column (non-lossy). Attempting the latter conversion in this case would cause replication to stop with an error on the replica.
 
-ALL\_NON\_LOSSY :   This mode permits conversions that do not require truncation or other special handling of the source value; that is, it permits conversions where the target type has a wider range than the source type.
+ALL_NON_LOSSY :   This mode permits conversions that do not require truncation or other special handling of the source value; that is, it permits conversions where the target type has a wider range than the source type.
 
     Setting this mode has no bearing on whether lossy conversions are permitted; this is controlled with the `ALL_LOSSY` mode. If only `ALL_NON_LOSSY` is set, but not `ALL_LOSSY`, then attempting a conversion that would result in the loss of data (such as `INT` to `TINYINT`, or `CHAR(25)` to `VARCHAR(20)`) causes the replica to stop with an error.
 
-ALL\_LOSSY,ALL\_NON\_LOSSY :   When this mode is set, all supported type conversions are permitted, whether or not they are lossy conversions.
+ALL_LOSSY,ALL_NON_LOSSY :   When this mode is set, all supported type conversions are permitted, whether or not they are lossy conversions.
 
-ALL\_SIGNED :   Treat promoted integer types as signed values (the default behavior).
+ALL_SIGNED :   Treat promoted integer types as signed values (the default behavior).
 
-ALL\_UNSIGNED :   Treat promoted integer types as unsigned values.
+ALL_UNSIGNED :   Treat promoted integer types as unsigned values.
 
-ALL\_SIGNED,ALL\_UNSIGNED :   Treat promoted integer types as signed if possible, otherwise as unsigned.
+ALL_SIGNED,ALL_UNSIGNED :   Treat promoted integer types as signed if possible, otherwise as unsigned.
 
 [*empty*] :   When `replica_type_conversions` is not set, no attribute promotion or demotion is permitted; this means that all columns in the source and target tables must be of the same types.
 
@@ -342,7 +342,7 @@ Certain functions do not replicate well under some conditions:
 
 * The `USER()`, `CURRENT_USER()` (or `CURRENT_USER`), `UUID()`, `VERSION()`, and `LOAD_FILE()` functions are replicated without change and thus do not work reliably on the replica unless row-based replication is enabled. (See Section 19.2.1, “Replication Formats”.)
 
-  `USER()` and `CURRENT_USER()` are automatically replicated using row-based replication when using `MIXED` mode, and generate a warning in `STATEMENT` mode. (See also Section 19.5.1.8, “Replication of CURRENT\_USER()”").) This is also true for `VERSION()` and `RAND()`.
+  `USER()` and `CURRENT_USER()` are automatically replicated using row-based replication when using `MIXED` mode, and generate a warning in `STATEMENT` mode. (See also Section 19.5.1.8, “Replication of CURRENT_USER()”").) This is also true for `VERSION()` and `RAND()`.
 
 * For `NOW()`, the binary log includes the timestamp. This means that the value *as returned by the call to this function on the source* is replicated to the replica. To avoid unexpected results when replicating between MySQL servers in different time zones, set the time zone on both source and replica. For more information, see Section 19.5.1.34, “Replication and Time Zones”.
 
@@ -580,7 +580,7 @@ If a `PRIVILEGE_CHECKS_USER` account has been used to help secure the replicatio
 When **mysqlbinlog** reads log events for `LOAD DATA` statements logged in statement-based format, a generated local file is created in a temporary directory. These temporary files are not automatically removed by **mysqlbinlog** or any other MySQL program. If you do use `LOAD DATA` statements with statement-based binary logging, you should delete the temporary files yourself after you no longer need the statement log. For more information, see Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”.
 
 
-#### 19.5.1.21 Replication and max\_allowed\_packet
+#### 19.5.1.21 Replication and max_allowed_packet
 
 `max_allowed_packet` sets an upper limit on the size of any single message between the MySQL server and clients, including replicas. If you are replicating large column values (such as might be found in `TEXT` or `BLOB` columns) and `max_allowed_packet` is too small on the source, the source fails with an error, and the replica shuts down the replication I/O (receiver) thread. If `max_allowed_packet` is too small on the replica, this also causes the replica to stop the I/O thread.
 
@@ -672,9 +672,9 @@ If there are no suitable indexes after ruling out these index types, the algorit
 
 3. Any other index. If more than one such index is available, the algorithm chooses the leftmost of these indexes.
 
-If the algorithm is able to select a primary key or a unique index where every column in the index has a `NOT NULL` attribute, it uses this index to iterate over the rows in the `UPDATE` or `DELETE` operation. For each row in the row event, the algorithm looks up the row in the index to locate the table record to update. If no matching record is found, it returns the error ER\_KEY\_NOT\_FOUND and stops the replication applier thread.
+If the algorithm is able to select a primary key or a unique index where every column in the index has a `NOT NULL` attribute, it uses this index to iterate over the rows in the `UPDATE` or `DELETE` operation. For each row in the row event, the algorithm looks up the row in the index to locate the table record to update. If no matching record is found, it returns the error ER_KEY_NOT_FOUND and stops the replication applier thread.
 
-If the algorithm was not able to find a suitable index, or was only able to find an index that was non-unique or contained nulls, a hash table is used to assist in identifying the table records. The algorithm creates a hash table containing the rows in the `UPDATE` or `DELETE` operation, with the key as the full before-image of the row. The algorithm then iterates over all the records in the target table, using the selected index if it found one, or else performing a full table scan. For each record in the target table, it determines whether that row exists in the hash table. If the row is found in the hash table, the record in the target table is updated, and the row is deleted from the hash table. When all the records in the target table have been checked, the algorithm verifies whether the hash table is now empty. If there are any unmatched rows remaining in the hash table, the algorithm returns the error ER\_KEY\_NOT\_FOUND and stops the replication applier thread.
+If the algorithm was not able to find a suitable index, or was only able to find an index that was non-unique or contained nulls, a hash table is used to assist in identifying the table records. The algorithm creates a hash table containing the rows in the `UPDATE` or `DELETE` operation, with the key as the full before-image of the row. The algorithm then iterates over all the records in the target table, using the selected index if it found one, or else performing a full table scan. For each record in the target table, it determines whether that row exists in the hash table. If the row is found in the hash table, the record in the target table is updated, and the row is deleted from the hash table. When all the records in the target table have been checked, the algorithm verifies whether the hash table is now empty. If there are any unmatched rows remaining in the hash table, the algorithm returns the error ER_KEY_NOT_FOUND and stops the replication applier thread.
 
 
 #### 19.5.1.29 Replication and Source or Replica Shutdowns
@@ -853,7 +853,7 @@ The server uses these rules for binary logging:
 A mixed statement that updates a transactional table is considered unsafe if the statement also performs either of the following actions:
 
 * Updates or reads a temporary table
-* Reads a nontransactional table and the transaction isolation level is less than REPEATABLE\_READ
+* Reads a nontransactional table and the transaction isolation level is less than REPEATABLE_READ
 
 A mixed statement following the update of a transactional table within a transaction is considered unsafe if it performs either of the following actions:
 

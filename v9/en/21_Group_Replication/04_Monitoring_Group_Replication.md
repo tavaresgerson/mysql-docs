@@ -2,11 +2,11 @@
 
 You can use the MySQL [Performance Schema](performance-schema.html "Chapter 29 MySQL Performance Schema") to monitor Group Replication. These Performance Schema tables display information specific to Group Replication:
 
-* `replication_group_member_stats`: See Section 20.4.4, “The replication\_group\_member\_stats Table”.
+* `replication_group_member_stats`: See Section 20.4.4, “The replication_group_member_stats Table”.
 
-* `replication_group_members`: See Section 20.4.3, “The replication\_group\_members Table”.
+* `replication_group_members`: See Section 20.4.3, “The replication_group_members Table”.
 
-* `replication_group_communication_information`: See Section 29.12.11.14, “The replication\_group\_communication\_information Table”.
+* `replication_group_communication_information`: See Section 29.12.11.14, “The replication_group_communication_information Table”.
 
 These Performance Schema replication tables also show information relating to Group Replication:
 
@@ -88,10 +88,10 @@ A group member can be in the following states:
 
 `UNREACHABLE` :   The local failure detector suspects that the member cannot be contacted, because the group's messages are timing out. This can happen if a member is disconnected involuntarily, for example. If you see this status for other servers, it can also mean that the member where you query this table is part of a partition, where a subset of the group's servers can contact each other but cannot contact the other servers in the group. For more information, see Section 20.7.8, “Handling a Network Partition and Loss of Quorum”.
 
-See Section 20.4.3, “The replication\_group\_members Table” for an example of the Performance Schema table contents.
+See Section 20.4.3, “The replication_group_members Table” for an example of the Performance Schema table contents.
 
 
-### 20.4.3 The replication\_group\_members Table
+### 20.4.3 The replication_group_members Table
 
 The `performance_schema.replication_group_members` table is used for monitoring the status of the different server instances that are members of the group. The information in the table is updated whenever there is a view change, for example when the configuration of the group is dynamically changed when a new member joins. At that point, servers exchange some of their metadata to synchronize themselves and continue to cooperate together. The information is shared between all the server instances that are members of the replication group, so information on all the group members can be queried from any member. This table can be used to get a high level view of the state of a replication group, for example by issuing:
 
@@ -112,7 +112,7 @@ Based on this result we can see that the group consists of three members. Shown 
 For more information about the `MEMBER_HOST` value and its impact on the distributed recovery process, see Section 20.2.1.3, “User Credentials For Distributed Recovery”.
 
 
-### 20.4.4 The replication\_group\_member\_stats Table
+### 20.4.4 The replication_group_member_stats Table
 
 Each member in a replication group certifies and applies transactions received by the group. Statistics regarding the certifier and applier procedures are useful to understand how the applier queue is growing, how many conflicts have been found, how many transactions were checked, which transactions are committed everywhere, and so on.
 

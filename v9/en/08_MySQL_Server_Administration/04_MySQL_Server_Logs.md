@@ -2,7 +2,7 @@
 
 MySQL Server has several logs that can help you find out what activity is taking place.
 
-<table summary="MySQL Server log types and the information written to each log."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Log Type</th> <th>Information Written to Log</th> </tr></thead><tbody><tr> <td>Error log</td> <td>Problems encountered starting, running, or stopping <a class="link" href="mysqld.html" title="6.3.1 mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a></td> </tr><tr> <td>General query log</td> <td>Established client connections and statements received from clients</td> </tr><tr> <td>Binary log</td> <td>Statements that change data (also used for replication)</td> </tr><tr> <td>Relay log</td> <td>Data changes received from a replication source server</td> </tr><tr> <td>Slow query log</td> <td>Queries that took more than <a class="link" href="server-system-variables.html#sysvar_long_query_time"><code class="literal">long_query_time</code></a> seconds to execute</td> </tr><tr> <td>DDL logs</td> <td>Atomic DDL operations performed by DDL statements</td> </tr></tbody></table>
+<table summary="MySQL Server log types and the information written to each log."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Log Type</th> <th>Information Written to Log</th> </tr></thead><tbody><tr> <td>Error log</td> <td>Problems encountered starting, running, or stopping mysqld</td> </tr><tr> <td>General query log</td> <td>Established client connections and statements received from clients</td> </tr><tr> <td>Binary log</td> <td>Statements that change data (also used for replication)</td> </tr><tr> <td>Relay log</td> <td>Data changes received from a replication source server</td> </tr><tr> <td>Slow query log</td> <td>Queries that took more than <code>long_query_time</code> seconds to execute</td> </tr><tr> <td>DDL logs</td> <td>Atomic DDL operations performed by DDL statements</td> </tr></tbody></table>
 
 By default, no logs are enabled, except the error log on Windows. For information about DDL log behavior, see Viewing DDL Logs. The following log-specific sections provide information about the server options that enable logging.
 
@@ -126,11 +126,11 @@ This section discusses how to configure the MySQL server for logging of diagnost
 
 The error log contains a record of **mysqld** startup and shutdown times. It also contains diagnostic messages such as errors, warnings, and notes that occur during server startup and shutdown, and while the server is running. For example, if **mysqld** notices that a table needs to be automatically checked or repaired, it writes a message to the error log.
 
-Depending on error log configuration, error messages may also populate the Performance Schema `error_log` table, to provide an SQL interface to the log and enable its contents to be queried. See Section 29.12.22.3, “The error\_log Table”.
+Depending on error log configuration, error messages may also populate the Performance Schema `error_log` table, to provide an SQL interface to the log and enable its contents to be queried. See Section 29.12.22.3, “The error_log Table”.
 
 On some operating systems, the error log contains a stack trace if **mysqld** exits abnormally. The trace can be used to determine where **mysqld** exited. See Section 7.9, “Debugging MySQL”.
 
-If used to start **mysqld**, **mysqld\_safe** may write messages to the error log. For example, when **mysqld\_safe** notices abnormal **mysqld** exits, it restarts **mysqld** and writes a `mysqld restarted` message to the error log.
+If used to start **mysqld**, **mysqld_safe** may write messages to the error log. For example, when **mysqld_safe** notices abnormal **mysqld** exits, it restarts **mysqld** and writes a `mysqld restarted` message to the error log.
 
 The following sections discuss aspects of configuring error logging.
 
@@ -183,7 +183,7 @@ The combination of `log_filter_internal` and `log_sink_internal` implements the 
 
 * The output destination is determined by the `--log-error` option (and, on Windows, `--pid-file` and `--console`). These determine whether to write error messages to the console or a file and, if to a file, the error log file name. See Section 7.4.2.2, “Default Error Log Destination Configuration”.
 
-* The `log_error_verbosity` and `log_error_suppression_list` system variables affect which types of log events `log_filter_internal` permits or suppresses. See Section 7.4.2.5, “Priority-Based Error Log Filtering (log\_filter\_internal)”").
+* The `log_error_verbosity` and `log_error_suppression_list` system variables affect which types of log events `log_filter_internal` permits or suppresses. See Section 7.4.2.5, “Priority-Based Error Log Filtering (log_filter_internal)”").
 
 When configuring `log_error_services`, be aware of the following characteristics:
 
@@ -360,7 +360,7 @@ If you need to revert from an implicit configuration to an explicit configuratio
 
 ##### Troubleshooting Configuration Issues
 
-Log components listed in the `log_error_services` value at startup are loaded implicitly early in the MySQL Server startup sequence. If the log component was loaded previously using `INSTALL COMPONENT`, the server attempts to load the component again later in the startup sequence, which produces the warning Cannot load component from specified URN: 'file://component\_*`component_name`*'.
+Log components listed in the `log_error_services` value at startup are loaded implicitly early in the MySQL Server startup sequence. If the log component was loaded previously using `INSTALL COMPONENT`, the server attempts to load the component again later in the startup sequence, which produces the warning Cannot load component from specified URN: 'file://component_*`component_name`*'.
 
 You can check for this warning in the error log or by querying the Performance Schema `error_log` table using the following query:
 
@@ -397,7 +397,7 @@ UNINSTALL COMPONENT 'file://component_log_sink_json';
 
 ##### Log Sink Performance Schema Support
 
-If enabled log components include a sink that provides Performance Schema support, events written to the error log are also written to the Performance Schema `error_log` table. This enables examining error log contents using SQL queries. Currently, the traditional-format `log_sink_internal` and JSON-format `log_sink_json` sinks support this capability. See Section 29.12.22.3, “The error\_log Table”.
+If enabled log components include a sink that provides Performance Schema support, events written to the error log are also written to the Performance Schema `error_log` table. This enables examining error log contents using SQL queries. Currently, the traditional-format `log_sink_internal` and JSON-format `log_sink_json` sinks support this capability. See Section 29.12.22.3, “The error_log Table”.
 
 
 #### 7.4.2.2 Default Error Log Destination Configuration
@@ -434,7 +434,7 @@ On Unix and Unix-like systems, **mysqld** uses the `--log-error` option to deter
 
 * If `--log-error` is given to name a file, the default destination is that file (with an `.err` suffix added if the name has no suffix). The file location is under the data directory unless an absolute path name is given to specify a different location.
 
-* If `--log-error` is given in an option file in a `[mysqld]`, `[server]`, or `[mysqld_safe]` section, on systems that use **mysqld\_safe** to start the server, **mysqld\_safe** finds and uses the option, and passes it to **mysqld**.
+* If `--log-error` is given in an option file in a `[mysqld]`, `[server]`, or `[mysqld_safe]` section, on systems that use **mysqld_safe** to start the server, **mysqld_safe** finds and uses the option, and passes it to **mysqld**.
 
 Note
 
@@ -587,12 +587,12 @@ Optional error event fields fall into the following categories:
 
 Error log configuration normally includes one log filter component and one or more log sink components. For error log filtering, MySQL offers a choice of components:
 
-* `log_filter_internal`: This filter component provides error log filtering based on log event priority and error code, in combination with the `log_error_verbosity` and `log_error_suppression_list` system variables. `log_filter_internal` is built in and enabled by default. See Section 7.4.2.5, “Priority-Based Error Log Filtering (log\_filter\_internal)”").
+* `log_filter_internal`: This filter component provides error log filtering based on log event priority and error code, in combination with the `log_error_verbosity` and `log_error_suppression_list` system variables. `log_filter_internal` is built in and enabled by default. See Section 7.4.2.5, “Priority-Based Error Log Filtering (log_filter_internal)”").
 
-* `log_filter_dragnet`: This filter component provides error log filtering based on user-supplied rules, in combination with the `dragnet.log_error_filter_rules` system variable. See Section 7.4.2.6, “Rule-Based Error Log Filtering (log\_filter\_dragnet)”").
+* `log_filter_dragnet`: This filter component provides error log filtering based on user-supplied rules, in combination with the `dragnet.log_error_filter_rules` system variable. See Section 7.4.2.6, “Rule-Based Error Log Filtering (log_filter_dragnet)”").
 
 
-#### 7.4.2.5 Priority-Based Error Log Filtering (log\_filter\_internal)
+#### 7.4.2.5 Priority-Based Error Log Filtering (log_filter_internal)
 
 The `log_filter_internal` log filter component implements a simple form of log filtering based on error event priority and error code. To affect how `log_filter_internal` permits or suppresses error, warning, and information events intended for the error log, set the `log_error_verbosity` and `log_error_suppression_list` system variables.
 
@@ -606,7 +606,7 @@ The `log_filter_internal` log filter component implements a simple form of log f
 
 Events intended for the error log have a priority of `ERROR`, `WARNING`, or `INFORMATION`. The `log_error_verbosity` system variable controls verbosity based on which priorities to permit for messages written to the log, as shown in the following table.
 
-<table summary="Permitted log_error_verbosity values and corresponding permitted message priorities."><col style="width: 40%"/><col style="width: 40%"/><thead><tr> <th>log_error_verbosity Value</th> <th>Permitted Message Priorities</th> </tr></thead><tbody><tr> <td>1</td> <td><code class="literal">ERROR</code></td> </tr><tr> <td>2</td> <td><code class="literal">ERROR</code>, <code class="literal">WARNING</code></td> </tr><tr> <td>3</td> <td><code class="literal">ERROR</code>, <code class="literal">WARNING</code>, <code class="literal">INFORMATION</code></td> </tr></tbody></table>
+<table summary="Permitted log_error_verbosity values and corresponding permitted message priorities."><col style="width: 40%"/><col style="width: 40%"/><thead><tr> <th>log_error_verbosity Value</th> <th>Permitted Message Priorities</th> </tr></thead><tbody><tr> <td>1</td> <td><code>ERROR</code></td> </tr><tr> <td>2</td> <td><code>ERROR</code>, <code>WARNING</code></td> </tr><tr> <td>3</td> <td><code>ERROR</code>, <code>WARNING</code>, <code>INFORMATION</code></td> </tr></tbody></table>
 
 If `log_error_verbosity` is 2 or greater, the server logs messages about statements that are unsafe for statement-based logging. If the value is 3, the server logs aborted connections and access-denied errors for new connection attempts. See Section B.3.2.9, “Communication Errors and Aborted Connections”.
 
@@ -676,7 +676,7 @@ log_error_verbosity=1     # error messages only
 In this case, `log_error_verbosity` permits messages with `ERROR` priority and discards messages with `WARNING` or `INFORMATION` priority. Setting `log_error_suppression_list` has no effect because all error codes it might suppress are already discarded due to the `log_error_verbosity` setting.
 
 
-#### 7.4.2.6 Rule-Based Error Log Filtering (log\_filter\_dragnet)
+#### 7.4.2.6 Rule-Based Error Log Filtering (log_filter_dragnet)
 
 The `log_filter_dragnet` log filter component enables log filtering based on user-defined rules.
 
@@ -736,11 +736,11 @@ UNINSTALL COMPONENT 'file://component_log_filter_dragnet';
 
 The following sections describe aspects of `log_filter_dragnet` operation in more detail:
 
-* Grammar for log\_filter\_dragnet Rule Language
-* Actions for log\_filter\_dragnet Rules
-* Field References in log\_filter\_dragnet Rules
+* Grammar for log_filter_dragnet Rule Language
+* Actions for log_filter_dragnet Rules
+* Field References in log_filter_dragnet Rules
 
-##### Grammar for log\_filter\_dragnet Rule Language
+##### Grammar for log_filter_dragnet Rule Language
 
 The following grammar defines the language for `log_filter_dragnet` filter rules. Each rule is an `IF` statement terminated by a period (`.`) character. The language is not case-sensitive.
 
@@ -888,7 +888,7 @@ For convenience, `log_filter_dragnet` supports symbolic names for comparisons to
 
 Symbolic names can be specified as quoted strings for comparison with string fields, but in such cases the names are strings that have no special meaning and `log_filter_dragnet` does not resolve them to the corresponding numeric value. Also, typos may go undetected, whereas an error occurs immediately on `SET` for attempts to use an unquoted symbol unknown to the server.
 
-##### Actions for log\_filter\_dragnet Rules
+##### Actions for log_filter_dragnet Rules
 
 `log_filter_dragnet` supports these actions in filter rules:
 
@@ -919,7 +919,7 @@ Symbolic names can be specified as quoted strings for comparison with string fie
   IF myfield == 2 THEN unset.
   ```
 
-##### Field References in log\_filter\_dragnet Rules
+##### Field References in log_filter_dragnet Rules
 
 `log_filter_dragnet` rules support references to core, optional, and user-defined fields in error events.
 
@@ -929,7 +929,7 @@ Symbolic names can be specified as quoted strings for comparison with string fie
 
 ###### Core Field References
 
-The `log_filter_dragnet` grammar at Grammar for log\_filter\_dragnet Rule Language names the core fields that filter rules recognize. For general descriptions of these fields, see Section 7.4.2.3, “Error Event Fields”, with which you are assumed to be familiar. The following remarks provide additional information only as it pertains specifically to core field references as used within `log_filter_dragnet` rules.
+The `log_filter_dragnet` grammar at Grammar for log_filter_dragnet Rule Language names the core fields that filter rules recognize. For general descriptions of these fields, see Section 7.4.2.3, “Error Event Fields”, with which you are assumed to be familiar. The following remarks provide additional information only as it pertains specifically to core field references as used within `log_filter_dragnet` rules.
 
 * `prio`
 
@@ -942,7 +942,7 @@ The `log_filter_dragnet` grammar at Grammar for log\_filter\_dragnet Rule Langua
 
   The following table shows the permitted priority levels.
 
-  <table summary="Error event priority levels."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th scope="col">Event Type</th> <th scope="col">Priority Symbol</th> <th scope="col">Numeric Priority</th> </tr></thead><tbody><tr> <th align="left" scope="row">Error event</th> <td><code class="literal">ERROR</code></td> <td>1</td> </tr><tr> <th align="left" scope="row">Warning event</th> <td><code class="literal">WARNING</code></td> <td>2</td> </tr><tr> <th align="left" scope="row">Note/information event</th> <td><code class="literal">INFORMATION</code></td> <td>3</td> </tr></tbody></table>
+  <table summary="Error event priority levels."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th scope="col">Event Type</th> <th scope="col">Priority Symbol</th> <th scope="col">Numeric Priority</th> </tr></thead><tbody><tr> <th align="left" scope="row">Error event</th> <td><code>ERROR</code></td> <td>1</td> </tr><tr> <th align="left" scope="row">Warning event</th> <td><code>WARNING</code></td> <td>2</td> </tr><tr> <th align="left" scope="row">Note/information event</th> <td><code>INFORMATION</code></td> <td>3</td> </tr></tbody></table>
 
   There is also a message priority of `SYSTEM`, but system messages cannot be filtered and are always written to the error log.
 
@@ -989,7 +989,7 @@ The `log_filter_dragnet` grammar at Grammar for log\_filter\_dragnet Rule Langua
 
 ###### Optional Field References
 
-The `log_filter_dragnet` grammar at Grammar for log\_filter\_dragnet Rule Language names the optional fields that filter rules recognize. For general descriptions of these fields, see Section 7.4.2.3, “Error Event Fields”, with which you are assumed to be familiar. The following remarks provide additional information only as it pertains specifically to optional field references as used within `log_filter_dragnet` rules.
+The `log_filter_dragnet` grammar at Grammar for log_filter_dragnet Rule Language names the optional fields that filter rules recognize. For general descriptions of these fields, see Section 7.4.2.3, “Error Event Fields”, with which you are assumed to be familiar. The following remarks provide additional information only as it pertains specifically to optional field references as used within `log_filter_dragnet` rules.
 
 * `label`
 
@@ -1082,13 +1082,13 @@ Each error log sink (writer) component has a characteristic output format it use
 
 For names and descriptions of the fields in error events, see Section 7.4.2.3, “Error Event Fields”. For all log sinks, the thread ID included in error log messages is that of the thread within **mysqld** responsible for writing the message. This ID indicates which part of the server produced the message, and is consistent with general query log and slow query log messages, which include the connection thread ID.
 
-* log\_sink\_internal Output Format
-* log\_sink\_json Output Format
-* log\_sink\_syseventlog Output Format
+* log_sink_internal Output Format
+* log_sink_json Output Format
+* log_sink_syseventlog Output Format
 * Early-Startup Logging Output Format
 * System Variables That Affect Error Log Format
 
-##### log\_sink\_internal Output Format
+##### log_sink_internal Output Format
 
 The internal log sink produces traditional error log output. For example:
 
@@ -1109,7 +1109,7 @@ The `[` and `]` square bracket characters are literal characters in the message 
 
 The `label` value corresponds to the string form of the `prio` error event priority field.
 
-##### log\_sink\_json Output Format
+##### log_sink_json Output Format
 
 The JSON-format log sink produces messages as JSON objects that contain key-value pairs. For example:
 
@@ -1154,7 +1154,7 @@ mysql> SELECT FROM_UNIXTIME(1596723903109022/1000000.0);
 +-------------------------------------------+
 ```
 
-##### log\_sink\_syseventlog Output Format
+##### log_sink_syseventlog Output Format
 
 The system log sink produces output that conforms to the system log format used on the local platform.
 
@@ -1442,7 +1442,7 @@ Switching the replication format at runtime is not recommended when any temporar
 
 Switching the replication format while replication is ongoing can also cause issues. Each MySQL Server can set its own and only its own binary logging format (true whether `binlog_format` is set with global or session scope). This means that changing the logging format on a replication source server does not cause a replica to change its logging format to match. When using `STATEMENT` mode, the `binlog_format` system variable is not replicated. When using `MIXED` or `ROW` logging mode, it is replicated but is ignored by the replica.
 
-A replica is not able to convert binary log entries received in `ROW` logging format to `STATEMENT` format for use in its own binary log. The replica must therefore use `ROW` or `MIXED` format if the source does. Changing the binary logging format on the source from `STATEMENT` to `ROW` or `MIXED` while replication is ongoing to a replica with `STATEMENT` format can cause replication to fail with errors such as Error executing row event: 'Cannot execute statement: impossible to write to binary log since statement is in row format and BINLOG\_FORMAT = STATEMENT.' Changing the binary logging format on the replica to `STATEMENT` format when the source is still using `MIXED` or `ROW` format also causes the same type of replication failure. To change the format safely, you must stop replication and ensure that the same change is made on both the source and the replica.
+A replica is not able to convert binary log entries received in `ROW` logging format to `STATEMENT` format for use in its own binary log. The replica must therefore use `ROW` or `MIXED` format if the source does. Changing the binary logging format on the source from `STATEMENT` to `ROW` or `MIXED` while replication is ongoing to a replica with `STATEMENT` format can cause replication to fail with errors such as Error executing row event: 'Cannot execute statement: impossible to write to binary log since statement is in row format and BINLOG_FORMAT = STATEMENT.' Changing the binary logging format on the replica to `STATEMENT` format when the source is still using `MIXED` or `ROW` format also causes the same type of replication failure. To change the format safely, you must stop replication and ensure that the same change is made on both the source and the replica.
 
 If you are using `InnoDB` tables and the transaction isolation level is [`READ COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed) or [`READ UNCOMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-uncommitted), only row-based logging can be used. It is *possible* to change the logging format to `STATEMENT`, but doing so at runtime leads very rapidly to errors because `InnoDB` can no longer perform inserts.
 
@@ -1465,7 +1465,7 @@ When running in `MIXED` logging format, the server automatically switches from s
 
 * When one or more tables with `AUTO_INCREMENT` columns are updated and a trigger or stored function is invoked. Like all other unsafe statements, this generates a warning if `binlog_format = STATEMENT`.
 
-  For more information, see Section 19.5.1.1, “Replication and AUTO\_INCREMENT”.
+  For more information, see Section 19.5.1.1, “Replication and AUTO_INCREMENT”.
 
 * When the body of a view requires row-based replication, the statement creating the view also uses it. For example, this occurs when the statement creating a view uses the `UUID()` function.
 
@@ -1519,13 +1519,13 @@ In addition to the decisions above, individual engines can also determine the lo
 
 A given storage engine can support either or both logging formats. The following table lists the formats supported by each engine.
 
-<table summary="Logging formats supported by each storage engine."><col style="width: 50%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th scope="col">Storage Engine</th> <th scope="col">Row Logging Supported</th> <th scope="col">Statement Logging Supported</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">ARCHIVE</code></th> <td>Yes</td> <td>Yes</td> </tr><tr> <th scope="row"><code class="literal">BLACKHOLE</code></th> <td>Yes</td> <td>Yes</td> </tr><tr> <th scope="row"><code class="literal">CSV</code></th> <td>Yes</td> <td>Yes</td> </tr><tr> <th scope="row"><code class="literal">EXAMPLE</code></th> <td>Yes</td> <td>No</td> </tr><tr> <th scope="row"><code class="literal">FEDERATED</code></th> <td>Yes</td> <td>Yes</td> </tr><tr> <th scope="row"><code class="literal">HEAP</code></th> <td>Yes</td> <td>Yes</td> </tr><tr> <th scope="row"><code class="literal">InnoDB</code></th> <td>Yes</td> <td>Yes when the transaction isolation level is <a class="link" href="innodb-transaction-isolation-levels.html#isolevel_repeatable-read"><code class="literal">REPEATABLE READ</code></a> or <a class="link" href="innodb-transaction-isolation-levels.html#isolevel_serializable"><code class="literal">SERIALIZABLE</code></a>; No otherwise.</td> </tr><tr> <th scope="row"><code class="literal">MyISAM</code></th> <td>Yes</td> <td>Yes</td> </tr><tr> <th scope="row"><code class="literal">MERGE</code></th> <td>Yes</td> <td>Yes</td> </tr><tr> <th scope="row"><a class="link" href="mysql-cluster.html" title="Chapter 25 MySQL NDB Cluster 9.5"><code class="literal">NDB</code></a></th> <td>Yes</td> <td>No</td> </tr></tbody></table>
+<table summary="Logging formats supported by each storage engine."><col style="width: 50%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th scope="col">Storage Engine</th> <th scope="col">Row Logging Supported</th> <th scope="col">Statement Logging Supported</th> </tr></thead><tbody><tr> <th scope="row"><code>ARCHIVE</code></th> <td>Yes</td> <td>Yes</td> </tr><tr> <th scope="row"><code>BLACKHOLE</code></th> <td>Yes</td> <td>Yes</td> </tr><tr> <th scope="row"><code>CSV</code></th> <td>Yes</td> <td>Yes</td> </tr><tr> <th scope="row"><code>EXAMPLE</code></th> <td>Yes</td> <td>No</td> </tr><tr> <th scope="row"><code>FEDERATED</code></th> <td>Yes</td> <td>Yes</td> </tr><tr> <th scope="row"><code>HEAP</code></th> <td>Yes</td> <td>Yes</td> </tr><tr> <th scope="row"><code>InnoDB</code></th> <td>Yes</td> <td>Yes when the transaction isolation level is <code>REPEATABLE READ</code> or <code>SERIALIZABLE</code>; No otherwise.</td> </tr><tr> <th scope="row"><code>MyISAM</code></th> <td>Yes</td> <td>Yes</td> </tr><tr> <th scope="row"><code>MERGE</code></th> <td>Yes</td> <td>Yes</td> </tr><tr> <th scope="row"><code>NDB</code></th> <td>Yes</td> <td>No</td> </tr></tbody></table>
 
 Whether a statement is to be logged and the logging mode to be used is determined according to the type of statement (safe, unsafe, or binary injected), the binary logging format (`STATEMENT`, `ROW`, or `MIXED`), and the logging capabilities of the storage engine (statement capable, row capable, both, or neither). (Binary injection refers to logging a change that must be logged using `ROW` format.)
 
-Statements may be logged with or without a warning; failed statements are not logged, but generate errors in the log. This is shown in the following decision table. **Type**, **binlog\_format**, **SLC**, and **RLC** columns outline the conditions, and **Error / Warning** and **Logged as** columns represent the corresponding actions. **SLC** stands for “statement-logging capable”, and **RLC** stands for “row-logging capable”.
+Statements may be logged with or without a warning; failed statements are not logged, but generate errors in the log. This is shown in the following decision table. **Type**, **binlog_format**, **SLC**, and **RLC** columns outline the conditions, and **Error / Warning** and **Logged as** columns represent the corresponding actions. **SLC** stands for “statement-logging capable”, and **RLC** stands for “row-logging capable”.
 
-<table summary="The information in this table is used to determine if a statement is to be logged and the logging mode to be used. The table outlines conditions (Safe/unsafe, binlog_format, SLC, RLR) and corresponding actions."><col style="width: 10%"/><col style="width: 25%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 20%"/><col style="width: 25%"/><thead><tr> <th scope="col">Type</th> <th scope="col"><a class="link" href="replication-options-binary-log.html#sysvar_binlog_format"><code class="literal">binlog_format</code></a></th> <th scope="col">SLC</th> <th scope="col">RLC</th> <th scope="col">Error / Warning</th> <th scope="col">Logged as</th> </tr></thead><tbody><tr> <th scope="row">*</th> <td><code class="literal">*</code></td> <td>No</td> <td>No</td> <td><span class="errortext">Error: Cannot execute statement</span>: Binary logging is impossible since at least one engine is involved that is both row-incapable and statement-incapable.</td> <td><code class="literal">-</code></td> </tr><tr> <th scope="row">Safe</th> <td><code class="literal">STATEMENT</code></td> <td>Yes</td> <td>No</td> <td>-</td> <td><code class="literal">STATEMENT</code></td> </tr><tr> <th scope="row">Safe</th> <td><code class="literal">MIXED</code></td> <td>Yes</td> <td>No</td> <td>-</td> <td><code class="literal">STATEMENT</code></td> </tr><tr> <th scope="row">Safe</th> <td><code class="literal">ROW</code></td> <td>Yes</td> <td>No</td> <td><span class="errortext">Error: Cannot execute statement</span>: Binary logging is impossible since <code class="literal">BINLOG_FORMAT = ROW</code> and at least one table uses a storage engine that is not capable of row-based logging.</td> <td><code class="literal">-</code></td> </tr><tr> <th scope="row">Unsafe</th> <td><code class="literal">STATEMENT</code></td> <td>Yes</td> <td>No</td> <td><span class="errortext">Warning: Unsafe statement binlogged in statement format</span>, since <code class="literal">BINLOG_FORMAT = STATEMENT</code></td> <td><code class="literal">STATEMENT</code></td> </tr><tr> <th scope="row">Unsafe</th> <td><code class="literal">MIXED</code></td> <td>Yes</td> <td>No</td> <td><span class="errortext">Error: Cannot execute statement</span>: Binary logging of an unsafe statement is impossible when the storage engine is limited to statement-based logging, even if <code class="literal">BINLOG_FORMAT = MIXED</code>.</td> <td><code class="literal">-</code></td> </tr><tr> <th scope="row">Unsafe</th> <td><code class="literal">ROW</code></td> <td>Yes</td> <td>No</td> <td><span class="errortext">Error: Cannot execute statement</span>: Binary logging is impossible since <code class="literal">BINLOG_FORMAT = ROW</code> and at least one table uses a storage engine that is not capable of row-based logging.</td> <td>-</td> </tr><tr> <th scope="row">Row Injection</th> <td><code class="literal">STATEMENT</code></td> <td>Yes</td> <td>No</td> <td><span class="errortext">Error: Cannot execute row injection</span>: Binary logging is not possible since at least one table uses a storage engine that is not capable of row-based logging.</td> <td>-</td> </tr><tr> <th scope="row">Row Injection</th> <td><code class="literal">MIXED</code></td> <td>Yes</td> <td>No</td> <td><span class="errortext">Error: Cannot execute row injection</span>: Binary logging is not possible since at least one table uses a storage engine that is not capable of row-based logging.</td> <td>-</td> </tr><tr> <th scope="row">Row Injection</th> <td><code class="literal">ROW</code></td> <td>Yes</td> <td>No</td> <td><span class="errortext">Error: Cannot execute row injection</span>: Binary logging is not possible since at least one table uses a storage engine that is not capable of row-based logging.</td> <td>-</td> </tr><tr> <th scope="row">Safe</th> <td><code class="literal">STATEMENT</code></td> <td>No</td> <td>Yes</td> <td><span class="errortext">Error: Cannot execute statement</span>: Binary logging is impossible since <code class="literal">BINLOG_FORMAT = STATEMENT</code> and at least one table uses a storage engine that is not capable of statement-based logging.</td> <td><code class="literal">-</code></td> </tr><tr> <th scope="row">Safe</th> <td><code class="literal">MIXED</code></td> <td>No</td> <td>Yes</td> <td>-</td> <td><code class="literal">ROW</code></td> </tr><tr> <th scope="row">Safe</th> <td><code class="literal">ROW</code></td> <td>No</td> <td>Yes</td> <td>-</td> <td><code class="literal">ROW</code></td> </tr><tr> <th scope="row">Unsafe</th> <td><code class="literal">STATEMENT</code></td> <td>No</td> <td>Yes</td> <td><span class="errortext">Error: Cannot execute statement</span>: Binary logging is impossible since <code class="literal">BINLOG_FORMAT = STATEMENT</code> and at least one table uses a storage engine that is not capable of statement-based logging.</td> <td>-</td> </tr><tr> <th scope="row">Unsafe</th> <td><code class="literal">MIXED</code></td> <td>No</td> <td>Yes</td> <td>-</td> <td><code class="literal">ROW</code></td> </tr><tr> <th scope="row">Unsafe</th> <td><code class="literal">ROW</code></td> <td>No</td> <td>Yes</td> <td>-</td> <td><code class="literal">ROW</code></td> </tr><tr> <th scope="row">Row Injection</th> <td><code class="literal">STATEMENT</code></td> <td>No</td> <td>Yes</td> <td><span class="errortext">Error: Cannot execute row injection</span>: Binary logging is not possible since <code class="literal">BINLOG_FORMAT = STATEMENT</code>.</td> <td><code class="literal">-</code></td> </tr><tr> <th scope="row">Row Injection</th> <td><code class="literal">MIXED</code></td> <td>No</td> <td>Yes</td> <td>-</td> <td><code class="literal">ROW</code></td> </tr><tr> <th scope="row">Row Injection</th> <td><code class="literal">ROW</code></td> <td>No</td> <td>Yes</td> <td>-</td> <td><code class="literal">ROW</code></td> </tr><tr> <th scope="row">Safe</th> <td><code class="literal">STATEMENT</code></td> <td>Yes</td> <td>Yes</td> <td>-</td> <td><code class="literal">STATEMENT</code></td> </tr><tr> <th scope="row">Safe</th> <td><code class="literal">MIXED</code></td> <td>Yes</td> <td>Yes</td> <td>-</td> <td><code class="literal">STATEMENT</code></td> </tr><tr> <th scope="row">Safe</th> <td><code class="literal">ROW</code></td> <td>Yes</td> <td>Yes</td> <td>-</td> <td><code class="literal">ROW</code></td> </tr><tr> <th scope="row">Unsafe</th> <td><code class="literal">STATEMENT</code></td> <td>Yes</td> <td>Yes</td> <td><span class="errortext">Warning: Unsafe statement binlogged in statement format</span> since <code class="literal">BINLOG_FORMAT = STATEMENT</code>.</td> <td><code class="literal">STATEMENT</code></td> </tr><tr> <th scope="row">Unsafe</th> <td><code class="literal">MIXED</code></td> <td>Yes</td> <td>Yes</td> <td>-</td> <td><code class="literal">ROW</code></td> </tr><tr> <th scope="row">Unsafe</th> <td><code class="literal">ROW</code></td> <td>Yes</td> <td>Yes</td> <td>-</td> <td><code class="literal">ROW</code></td> </tr><tr> <th scope="row">Row Injection</th> <td><code class="literal">STATEMENT</code></td> <td>Yes</td> <td>Yes</td> <td><span class="errortext">Error: Cannot execute row injection</span>: Binary logging is not possible because <code class="literal">BINLOG_FORMAT = STATEMENT</code>.</td> <td>-</td> </tr><tr> <th scope="row">Row Injection</th> <td><code class="literal">MIXED</code></td> <td>Yes</td> <td>Yes</td> <td>-</td> <td><code class="literal">ROW</code></td> </tr><tr> <th scope="row">Row Injection</th> <td><code class="literal">ROW</code></td> <td>Yes</td> <td>Yes</td> <td>-</td> <td><code class="literal">ROW</code></td> </tr></tbody></table>
+<table summary="The information in this table is used to determine if a statement is to be logged and the logging mode to be used. The table outlines conditions (Safe/unsafe, binlog_format, SLC, RLR) and corresponding actions."><col style="width: 10%"/><col style="width: 25%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 20%"/><col style="width: 25%"/><thead><tr> <th scope="col">Type</th> <th scope="col"><code>binlog_format</code></th> <th scope="col">SLC</th> <th scope="col">RLC</th> <th scope="col">Error / Warning</th> <th scope="col">Logged as</th> </tr></thead><tbody><tr> <th scope="row">*</th> <td><code>*</code></td> <td>No</td> <td>No</td> <td>Error: Cannot execute statement: Binary logging is impossible since at least one engine is involved that is both row-incapable and statement-incapable.</td> <td><code>-</code></td> </tr><tr> <th scope="row">Safe</th> <td><code>STATEMENT</code></td> <td>Yes</td> <td>No</td> <td>-</td> <td><code>STATEMENT</code></td> </tr><tr> <th scope="row">Safe</th> <td><code>MIXED</code></td> <td>Yes</td> <td>No</td> <td>-</td> <td><code>STATEMENT</code></td> </tr><tr> <th scope="row">Safe</th> <td><code>ROW</code></td> <td>Yes</td> <td>No</td> <td>Error: Cannot execute statement: Binary logging is impossible since <code>BINLOG_FORMAT = ROW</code> and at least one table uses a storage engine that is not capable of row-based logging.</td> <td><code>-</code></td> </tr><tr> <th scope="row">Unsafe</th> <td><code>STATEMENT</code></td> <td>Yes</td> <td>No</td> <td>Warning: Unsafe statement binlogged in statement format, since <code>BINLOG_FORMAT = STATEMENT</code></td> <td><code>STATEMENT</code></td> </tr><tr> <th scope="row">Unsafe</th> <td><code>MIXED</code></td> <td>Yes</td> <td>No</td> <td>Error: Cannot execute statement: Binary logging of an unsafe statement is impossible when the storage engine is limited to statement-based logging, even if <code>BINLOG_FORMAT = MIXED</code>.</td> <td><code>-</code></td> </tr><tr> <th scope="row">Unsafe</th> <td><code>ROW</code></td> <td>Yes</td> <td>No</td> <td>Error: Cannot execute statement: Binary logging is impossible since <code>BINLOG_FORMAT = ROW</code> and at least one table uses a storage engine that is not capable of row-based logging.</td> <td>-</td> </tr><tr> <th scope="row">Row Injection</th> <td><code>STATEMENT</code></td> <td>Yes</td> <td>No</td> <td>Error: Cannot execute row injection: Binary logging is not possible since at least one table uses a storage engine that is not capable of row-based logging.</td> <td>-</td> </tr><tr> <th scope="row">Row Injection</th> <td><code>MIXED</code></td> <td>Yes</td> <td>No</td> <td>Error: Cannot execute row injection: Binary logging is not possible since at least one table uses a storage engine that is not capable of row-based logging.</td> <td>-</td> </tr><tr> <th scope="row">Row Injection</th> <td><code>ROW</code></td> <td>Yes</td> <td>No</td> <td>Error: Cannot execute row injection: Binary logging is not possible since at least one table uses a storage engine that is not capable of row-based logging.</td> <td>-</td> </tr><tr> <th scope="row">Safe</th> <td><code>STATEMENT</code></td> <td>No</td> <td>Yes</td> <td>Error: Cannot execute statement: Binary logging is impossible since <code>BINLOG_FORMAT = STATEMENT</code> and at least one table uses a storage engine that is not capable of statement-based logging.</td> <td><code>-</code></td> </tr><tr> <th scope="row">Safe</th> <td><code>MIXED</code></td> <td>No</td> <td>Yes</td> <td>-</td> <td><code>ROW</code></td> </tr><tr> <th scope="row">Safe</th> <td><code>ROW</code></td> <td>No</td> <td>Yes</td> <td>-</td> <td><code>ROW</code></td> </tr><tr> <th scope="row">Unsafe</th> <td><code>STATEMENT</code></td> <td>No</td> <td>Yes</td> <td>Error: Cannot execute statement: Binary logging is impossible since <code>BINLOG_FORMAT = STATEMENT</code> and at least one table uses a storage engine that is not capable of statement-based logging.</td> <td>-</td> </tr><tr> <th scope="row">Unsafe</th> <td><code>MIXED</code></td> <td>No</td> <td>Yes</td> <td>-</td> <td><code>ROW</code></td> </tr><tr> <th scope="row">Unsafe</th> <td><code>ROW</code></td> <td>No</td> <td>Yes</td> <td>-</td> <td><code>ROW</code></td> </tr><tr> <th scope="row">Row Injection</th> <td><code>STATEMENT</code></td> <td>No</td> <td>Yes</td> <td>Error: Cannot execute row injection: Binary logging is not possible since <code>BINLOG_FORMAT = STATEMENT</code>.</td> <td><code>-</code></td> </tr><tr> <th scope="row">Row Injection</th> <td><code>MIXED</code></td> <td>No</td> <td>Yes</td> <td>-</td> <td><code>ROW</code></td> </tr><tr> <th scope="row">Row Injection</th> <td><code>ROW</code></td> <td>No</td> <td>Yes</td> <td>-</td> <td><code>ROW</code></td> </tr><tr> <th scope="row">Safe</th> <td><code>STATEMENT</code></td> <td>Yes</td> <td>Yes</td> <td>-</td> <td><code>STATEMENT</code></td> </tr><tr> <th scope="row">Safe</th> <td><code>MIXED</code></td> <td>Yes</td> <td>Yes</td> <td>-</td> <td><code>STATEMENT</code></td> </tr><tr> <th scope="row">Safe</th> <td><code>ROW</code></td> <td>Yes</td> <td>Yes</td> <td>-</td> <td><code>ROW</code></td> </tr><tr> <th scope="row">Unsafe</th> <td><code>STATEMENT</code></td> <td>Yes</td> <td>Yes</td> <td>Warning: Unsafe statement binlogged in statement format since <code>BINLOG_FORMAT = STATEMENT</code>.</td> <td><code>STATEMENT</code></td> </tr><tr> <th scope="row">Unsafe</th> <td><code>MIXED</code></td> <td>Yes</td> <td>Yes</td> <td>-</td> <td><code>ROW</code></td> </tr><tr> <th scope="row">Unsafe</th> <td><code>ROW</code></td> <td>Yes</td> <td>Yes</td> <td>-</td> <td><code>ROW</code></td> </tr><tr> <th scope="row">Row Injection</th> <td><code>STATEMENT</code></td> <td>Yes</td> <td>Yes</td> <td>Error: Cannot execute row injection: Binary logging is not possible because <code>BINLOG_FORMAT = STATEMENT</code>.</td> <td>-</td> </tr><tr> <th scope="row">Row Injection</th> <td><code>MIXED</code></td> <td>Yes</td> <td>Yes</td> <td>-</td> <td><code>ROW</code></td> </tr><tr> <th scope="row">Row Injection</th> <td><code>ROW</code></td> <td>Yes</td> <td>Yes</td> <td>-</td> <td><code>ROW</code></td> </tr></tbody></table>
 
 When a warning is produced by the determination, a standard MySQL warning is produced (and is available using `SHOW WARNINGS`). The information is also written to the **mysqld** error log. Only one error for each error instance per client connection is logged to prevent flooding the log. The log message includes the SQL statement that was attempted.
 

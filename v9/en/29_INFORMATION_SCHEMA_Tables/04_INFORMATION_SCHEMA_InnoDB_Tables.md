@@ -1,24 +1,24 @@
-## 28.4 INFORMATION\_SCHEMA InnoDB Tables
+## 28.4 INFORMATION_SCHEMA InnoDB Tables
 
-This section provides table definitions for `INFORMATION_SCHEMA` `InnoDB` tables. For related information and examples, see Section 17.15, “InnoDB INFORMATION\_SCHEMA Tables”.
+This section provides table definitions for `INFORMATION_SCHEMA` `InnoDB` tables. For related information and examples, see Section 17.15, “InnoDB INFORMATION_SCHEMA Tables”.
 
 `INFORMATION_SCHEMA` `InnoDB` tables can be used to monitor ongoing `InnoDB` activity, to detect inefficiencies before they turn into issues, or to troubleshoot performance and capacity issues. As your database becomes bigger and busier, running up against the limits of your hardware capacity, you monitor and tune these aspects to keep the database running smoothly.
 
 
-### 28.4.1 INFORMATION\_SCHEMA InnoDB Table Reference
+### 28.4.1 INFORMATION_SCHEMA InnoDB Table Reference
 
 The following table summarizes `INFORMATION_SCHEMA` InnoDB tables. For greater detail, see the individual table descriptions.
 
-**Table 28.3 INFORMATION\_SCHEMA InnoDB Tables**
+**Table 28.3 INFORMATION_SCHEMA InnoDB Tables**
 
-<table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA InnoDB tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="information-schema-innodb-buffer-page-table.html" title="28.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table"><code class="literal">INNODB_BUFFER_PAGE</code></a></td> <td>Pages in InnoDB buffer pool</td> </tr><tr><td><a class="link" href="information-schema-innodb-buffer-page-lru-table.html" title="28.4.3 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU Table"><code class="literal">INNODB_BUFFER_PAGE_LRU</code></a></td> <td>LRU ordering of pages in InnoDB buffer pool</td> </tr><tr><td><a class="link" href="information-schema-innodb-buffer-pool-stats-table.html" title="28.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table"><code class="literal">INNODB_BUFFER_POOL_STATS</code></a></td> <td>InnoDB buffer pool statistics</td> </tr><tr><td><a class="link" href="information-schema-innodb-cached-indexes-table.html" title="28.4.5 The INFORMATION_SCHEMA INNODB_CACHED_INDEXES Table"><code class="literal">INNODB_CACHED_INDEXES</code></a></td> <td>Number of index pages cached per index in InnoDB buffer pool</td> </tr><tr><td><a class="link" href="information-schema-innodb-cmp-table.html" title="28.4.6 The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables"><code class="literal">INNODB_CMP</code></a></td> <td>Status for operations related to compressed InnoDB tables</td> </tr><tr><td><a class="link" href="information-schema-innodb-cmp-per-index-table.html" title="28.4.8 The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables"><code class="literal">INNODB_CMP_PER_INDEX</code></a></td> <td>Status for operations related to compressed InnoDB tables and indexes</td> </tr><tr><td><a class="link" href="information-schema-innodb-cmp-per-index-table.html" title="28.4.8 The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables"><code class="literal">INNODB_CMP_PER_INDEX_RESET</code></a></td> <td>Status for operations related to compressed InnoDB tables and indexes</td> </tr><tr><td><a class="link" href="information-schema-innodb-cmp-table.html" title="28.4.6 The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables"><code class="literal">INNODB_CMP_RESET</code></a></td> <td>Status for operations related to compressed InnoDB tables</td> </tr><tr><td><a class="link" href="information-schema-innodb-cmpmem-table.html" title="28.4.7 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables"><code class="literal">INNODB_CMPMEM</code></a></td> <td>Status for compressed pages within InnoDB buffer pool</td> </tr><tr><td><a class="link" href="information-schema-innodb-cmpmem-table.html" title="28.4.7 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables"><code class="literal">INNODB_CMPMEM_RESET</code></a></td> <td>Status for compressed pages within InnoDB buffer pool</td> </tr><tr><td><a class="link" href="information-schema-innodb-columns-table.html" title="28.4.9 The INFORMATION_SCHEMA INNODB_COLUMNS Table"><code class="literal">INNODB_COLUMNS</code></a></td> <td>Columns in each InnoDB table</td> </tr><tr><td><a class="link" href="information-schema-innodb-datafiles-table.html" title="28.4.10 The INFORMATION_SCHEMA INNODB_DATAFILES Table"><code class="literal">INNODB_DATAFILES</code></a></td> <td>Data file path information for InnoDB file-per-table and general tablespaces</td> </tr><tr><td><a class="link" href="information-schema-innodb-fields-table.html" title="28.4.11 The INFORMATION_SCHEMA INNODB_FIELDS Table"><code class="literal">INNODB_FIELDS</code></a></td> <td>Key columns of InnoDB indexes</td> </tr><tr><td><a class="link" href="information-schema-innodb-foreign-table.html" title="28.4.12 The INFORMATION_SCHEMA INNODB_FOREIGN Table"><code class="literal">INNODB_FOREIGN</code></a></td> <td>InnoDB foreign-key metadata</td> </tr><tr><td><a class="link" href="information-schema-innodb-foreign-cols-table.html" title="28.4.13 The INFORMATION_SCHEMA INNODB_FOREIGN_COLS Table"><code class="literal">INNODB_FOREIGN_COLS</code></a></td> <td>InnoDB foreign-key column status information</td> </tr><tr><td><a class="link" href="information-schema-innodb-ft-being-deleted-table.html" title="28.4.14 The INFORMATION_SCHEMA INNODB_FT_BEING_DELETED Table"><code class="literal">INNODB_FT_BEING_DELETED</code></a></td> <td>Snapshot of INNODB_FT_DELETED table</td> </tr><tr><td><a class="link" href="information-schema-innodb-ft-config-table.html" title="28.4.15 The INFORMATION_SCHEMA INNODB_FT_CONFIG Table"><code class="literal">INNODB_FT_CONFIG</code></a></td> <td>Metadata for InnoDB table FULLTEXT index and associated processing</td> </tr><tr><td><a class="link" href="information-schema-innodb-ft-default-stopword-table.html" title="28.4.16 The INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD Table"><code class="literal">INNODB_FT_DEFAULT_STOPWORD</code></a></td> <td>Default list of stopwords for InnoDB FULLTEXT indexes</td> </tr><tr><td><a class="link" href="information-schema-innodb-ft-deleted-table.html" title="28.4.17 The INFORMATION_SCHEMA INNODB_FT_DELETED Table"><code class="literal">INNODB_FT_DELETED</code></a></td> <td>Rows deleted from InnoDB table FULLTEXT index</td> </tr><tr><td><a class="link" href="information-schema-innodb-ft-index-cache-table.html" title="28.4.18 The INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE Table"><code class="literal">INNODB_FT_INDEX_CACHE</code></a></td> <td>Token information for newly inserted rows in InnoDB FULLTEXT index</td> </tr><tr><td><a class="link" href="information-schema-innodb-ft-index-table-table.html" title="28.4.19 The INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE Table"><code class="literal">INNODB_FT_INDEX_TABLE</code></a></td> <td>Inverted index information for processing text searches against InnoDB table FULLTEXT index</td> </tr><tr><td><a class="link" href="information-schema-innodb-indexes-table.html" title="28.4.20 The INFORMATION_SCHEMA INNODB_INDEXES Table"><code class="literal">INNODB_INDEXES</code></a></td> <td>InnoDB index metadata</td> </tr><tr><td><a class="link" href="information-schema-innodb-metrics-table.html" title="28.4.21 The INFORMATION_SCHEMA INNODB_METRICS Table"><code class="literal">INNODB_METRICS</code></a></td> <td>InnoDB performance information</td> </tr><tr><td><a class="link" href="information-schema-innodb-session-temp-tablespaces-table.html" title="28.4.22 The INFORMATION_SCHEMA INNODB_SESSION_TEMP_TABLESPACES Table"><code class="literal">INNODB_SESSION_TEMP_TABLESPACES</code></a></td> <td>Session temporary-tablespace metadata</td> </tr><tr><td><a class="link" href="information-schema-innodb-tables-table.html" title="28.4.23 The INFORMATION_SCHEMA INNODB_TABLES Table"><code class="literal">INNODB_TABLES</code></a></td> <td>InnoDB table metadata</td> </tr><tr><td><a class="link" href="information-schema-innodb-tablespaces-table.html" title="28.4.24 The INFORMATION_SCHEMA INNODB_TABLESPACES Table"><code class="literal">INNODB_TABLESPACES</code></a></td> <td>InnoDB file-per-table, general, and undo tablespace metadata</td> </tr><tr><td><a class="link" href="information-schema-innodb-tablespaces-brief-table.html" title="28.4.25 The INFORMATION_SCHEMA INNODB_TABLESPACES_BRIEF Table"><code class="literal">INNODB_TABLESPACES_BRIEF</code></a></td> <td>Brief file-per-table, general, undo, and system tablespace metadata</td> </tr><tr><td><a class="link" href="information-schema-innodb-tablestats-table.html" title="28.4.26 The INFORMATION_SCHEMA INNODB_TABLESTATS View"><code class="literal">INNODB_TABLESTATS</code></a></td> <td>InnoDB table low-level status information</td> </tr><tr><td><a class="link" href="information-schema-innodb-temp-table-info-table.html" title="28.4.27 The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table"><code class="literal">INNODB_TEMP_TABLE_INFO</code></a></td> <td>Information about active user-created InnoDB temporary tables</td> </tr><tr><td><a class="link" href="information-schema-innodb-trx-table.html" title="28.4.28 The INFORMATION_SCHEMA INNODB_TRX Table"><code class="literal">INNODB_TRX</code></a></td> <td>Active InnoDB transaction information</td> </tr><tr><td><a class="link" href="information-schema-innodb-virtual-table.html" title="28.4.29 The INFORMATION_SCHEMA INNODB_VIRTUAL Table"><code class="literal">INNODB_VIRTUAL</code></a></td> <td>InnoDB virtual generated column metadata</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA InnoDB tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>INNODB_BUFFER_PAGE</code></td> <td>Pages in InnoDB buffer pool</td> </tr><tr><td><code>INNODB_BUFFER_PAGE_LRU</code></td> <td>LRU ordering of pages in InnoDB buffer pool</td> </tr><tr><td><code>INNODB_BUFFER_POOL_STATS</code></td> <td>InnoDB buffer pool statistics</td> </tr><tr><td><code>INNODB_CACHED_INDEXES</code></td> <td>Number of index pages cached per index in InnoDB buffer pool</td> </tr><tr><td><code>INNODB_CMP</code></td> <td>Status for operations related to compressed InnoDB tables</td> </tr><tr><td><code>INNODB_CMP_PER_INDEX</code></td> <td>Status for operations related to compressed InnoDB tables and indexes</td> </tr><tr><td><code>INNODB_CMP_PER_INDEX_RESET</code></td> <td>Status for operations related to compressed InnoDB tables and indexes</td> </tr><tr><td><code>INNODB_CMP_RESET</code></td> <td>Status for operations related to compressed InnoDB tables</td> </tr><tr><td><code>INNODB_CMPMEM</code></td> <td>Status for compressed pages within InnoDB buffer pool</td> </tr><tr><td><code>INNODB_CMPMEM_RESET</code></td> <td>Status for compressed pages within InnoDB buffer pool</td> </tr><tr><td><code>INNODB_COLUMNS</code></td> <td>Columns in each InnoDB table</td> </tr><tr><td><code>INNODB_DATAFILES</code></td> <td>Data file path information for InnoDB file-per-table and general tablespaces</td> </tr><tr><td><code>INNODB_FIELDS</code></td> <td>Key columns of InnoDB indexes</td> </tr><tr><td><code>INNODB_FOREIGN</code></td> <td>InnoDB foreign-key metadata</td> </tr><tr><td><code>INNODB_FOREIGN_COLS</code></td> <td>InnoDB foreign-key column status information</td> </tr><tr><td><code>INNODB_FT_BEING_DELETED</code></td> <td>Snapshot of INNODB_FT_DELETED table</td> </tr><tr><td><code>INNODB_FT_CONFIG</code></td> <td>Metadata for InnoDB table FULLTEXT index and associated processing</td> </tr><tr><td><code>INNODB_FT_DEFAULT_STOPWORD</code></td> <td>Default list of stopwords for InnoDB FULLTEXT indexes</td> </tr><tr><td><code>INNODB_FT_DELETED</code></td> <td>Rows deleted from InnoDB table FULLTEXT index</td> </tr><tr><td><code>INNODB_FT_INDEX_CACHE</code></td> <td>Token information for newly inserted rows in InnoDB FULLTEXT index</td> </tr><tr><td><code>INNODB_FT_INDEX_TABLE</code></td> <td>Inverted index information for processing text searches against InnoDB table FULLTEXT index</td> </tr><tr><td><code>INNODB_INDEXES</code></td> <td>InnoDB index metadata</td> </tr><tr><td><code>INNODB_METRICS</code></td> <td>InnoDB performance information</td> </tr><tr><td><code>INNODB_SESSION_TEMP_TABLESPACES</code></td> <td>Session temporary-tablespace metadata</td> </tr><tr><td><code>INNODB_TABLES</code></td> <td>InnoDB table metadata</td> </tr><tr><td><code>INNODB_TABLESPACES</code></td> <td>InnoDB file-per-table, general, and undo tablespace metadata</td> </tr><tr><td><code>INNODB_TABLESPACES_BRIEF</code></td> <td>Brief file-per-table, general, undo, and system tablespace metadata</td> </tr><tr><td><code>INNODB_TABLESTATS</code></td> <td>InnoDB table low-level status information</td> </tr><tr><td><code>INNODB_TEMP_TABLE_INFO</code></td> <td>Information about active user-created InnoDB temporary tables</td> </tr><tr><td><code>INNODB_TRX</code></td> <td>Active InnoDB transaction information</td> </tr><tr><td><code>INNODB_VIRTUAL</code></td> <td>InnoDB virtual generated column metadata</td> </tr></tbody></table>
 
 
-### 28.4.2 The INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE Table
+### 28.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table
 
 The `INNODB_BUFFER_PAGE` table provides information about each page in the `InnoDB` buffer pool.
 
-For related usage information and examples, see Section 17.15.5, “InnoDB INFORMATION\_SCHEMA Buffer Pool Tables”.
+For related usage information and examples, see Section 17.15.5, “InnoDB INFORMATION_SCHEMA Buffer Pool Tables”.
 
 Warning
 
@@ -46,9 +46,9 @@ The `INNODB_BUFFER_PAGE` table has these columns:
 
   The page type. The following table shows the permitted values.
 
-  **Table 28.4 INNODB\_BUFFER\_PAGE.PAGE\_TYPE Values**
+  **Table 28.4 INNODB_BUFFER_PAGE.PAGE_TYPE Values**
 
-  <table summary="Mapping for interpreting INNODB_BUFFER_PAGE.PAGE_TYPE values."><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Page Type</th> <th>Description</th> </tr></thead><tbody><tr> <td><code class="literal">ALLOCATED</code></td> <td>Freshly allocated page</td> </tr><tr> <td><code class="literal">BLOB</code></td> <td>Uncompressed BLOB page</td> </tr><tr> <td><code class="literal">COMPRESSED_BLOB2</code></td> <td>Subsequent comp BLOB page</td> </tr><tr> <td><code class="literal">COMPRESSED_BLOB</code></td> <td>First compressed BLOB page</td> </tr><tr> <td><code class="literal">ENCRYPTED_RTREE</code></td> <td>Encrypted R-tree</td> </tr><tr> <td><code class="literal">EXTENT_DESCRIPTOR</code></td> <td>Extent descriptor page</td> </tr><tr> <td><code class="literal">FILE_SPACE_HEADER</code></td> <td>File space header</td> </tr><tr> <td><code class="literal">FIL_PAGE_TYPE_UNUSED</code></td> <td>Unused</td> </tr><tr> <td><code class="literal">IBUF_BITMAP</code></td> <td>Insert buffer bitmap</td> </tr><tr> <td><code class="literal">IBUF_FREE_LIST</code></td> <td>Insert buffer free list</td> </tr><tr> <td><code class="literal">IBUF_INDEX</code></td> <td>Insert buffer index</td> </tr><tr> <td><code class="literal">INDEX</code></td> <td>B-tree node</td> </tr><tr> <td><code class="literal">INODE</code></td> <td>Index node</td> </tr><tr> <td><code class="literal">LOB_DATA</code></td> <td>Uncompressed LOB data</td> </tr><tr> <td><code class="literal">LOB_FIRST</code></td> <td>First page of uncompressed LOB</td> </tr><tr> <td><code class="literal">LOB_INDEX</code></td> <td>Uncompressed LOB index</td> </tr><tr> <td><code class="literal">PAGE_IO_COMPRESSED</code></td> <td>Compressed page</td> </tr><tr> <td><code class="literal">PAGE_IO_COMPRESSED_ENCRYPTED</code></td> <td>Compressed and encrypted page</td> </tr><tr> <td><code class="literal">PAGE_IO_ENCRYPTED</code></td> <td>Encrypted page</td> </tr><tr> <td><code class="literal">RSEG_ARRAY</code></td> <td>Rollback segment array</td> </tr><tr> <td><code class="literal">RTREE_INDEX</code></td> <td>R-tree index</td> </tr><tr> <td><code class="literal">SDI_BLOB</code></td> <td>Uncompressed SDI BLOB</td> </tr><tr> <td><code class="literal">SDI_COMPRESSED_BLOB</code></td> <td>Compressed SDI BLOB</td> </tr><tr> <td><code class="literal">SDI_INDEX</code></td> <td>SDI index</td> </tr><tr> <td><code class="literal">SYSTEM</code></td> <td>System page</td> </tr><tr> <td><code class="literal">TRX_SYSTEM</code></td> <td>Transaction system data</td> </tr><tr> <td><code class="literal">UNDO_LOG</code></td> <td>Undo log page</td> </tr><tr> <td><code class="literal">UNKNOWN</code></td> <td>Unknown</td> </tr><tr> <td><code class="literal">ZLOB_DATA</code></td> <td>Compressed LOB data</td> </tr><tr> <td><code class="literal">ZLOB_FIRST</code></td> <td>First page of compressed LOB</td> </tr><tr> <td><code class="literal">ZLOB_FRAG</code></td> <td>Compressed LOB fragment</td> </tr><tr> <td><code class="literal">ZLOB_FRAG_ENTRY</code></td> <td>Compressed LOB fragment index</td> </tr><tr> <td><code class="literal">ZLOB_INDEX</code></td> <td>Compressed LOB index</td> </tr></tbody></table>
+  <table summary="Mapping for interpreting INNODB_BUFFER_PAGE.PAGE_TYPE values."><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Page Type</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>ALLOCATED</code></td> <td>Freshly allocated page</td> </tr><tr> <td><code>BLOB</code></td> <td>Uncompressed BLOB page</td> </tr><tr> <td><code>COMPRESSED_BLOB2</code></td> <td>Subsequent comp BLOB page</td> </tr><tr> <td><code>COMPRESSED_BLOB</code></td> <td>First compressed BLOB page</td> </tr><tr> <td><code>ENCRYPTED_RTREE</code></td> <td>Encrypted R-tree</td> </tr><tr> <td><code>EXTENT_DESCRIPTOR</code></td> <td>Extent descriptor page</td> </tr><tr> <td><code>FILE_SPACE_HEADER</code></td> <td>File space header</td> </tr><tr> <td><code>FIL_PAGE_TYPE_UNUSED</code></td> <td>Unused</td> </tr><tr> <td><code>IBUF_BITMAP</code></td> <td>Insert buffer bitmap</td> </tr><tr> <td><code>IBUF_FREE_LIST</code></td> <td>Insert buffer free list</td> </tr><tr> <td><code>IBUF_INDEX</code></td> <td>Insert buffer index</td> </tr><tr> <td><code>INDEX</code></td> <td>B-tree node</td> </tr><tr> <td><code>INODE</code></td> <td>Index node</td> </tr><tr> <td><code>LOB_DATA</code></td> <td>Uncompressed LOB data</td> </tr><tr> <td><code>LOB_FIRST</code></td> <td>First page of uncompressed LOB</td> </tr><tr> <td><code>LOB_INDEX</code></td> <td>Uncompressed LOB index</td> </tr><tr> <td><code>PAGE_IO_COMPRESSED</code></td> <td>Compressed page</td> </tr><tr> <td><code>PAGE_IO_COMPRESSED_ENCRYPTED</code></td> <td>Compressed and encrypted page</td> </tr><tr> <td><code>PAGE_IO_ENCRYPTED</code></td> <td>Encrypted page</td> </tr><tr> <td><code>RSEG_ARRAY</code></td> <td>Rollback segment array</td> </tr><tr> <td><code>RTREE_INDEX</code></td> <td>R-tree index</td> </tr><tr> <td><code>SDI_BLOB</code></td> <td>Uncompressed SDI BLOB</td> </tr><tr> <td><code>SDI_COMPRESSED_BLOB</code></td> <td>Compressed SDI BLOB</td> </tr><tr> <td><code>SDI_INDEX</code></td> <td>SDI index</td> </tr><tr> <td><code>SYSTEM</code></td> <td>System page</td> </tr><tr> <td><code>TRX_SYSTEM</code></td> <td>Transaction system data</td> </tr><tr> <td><code>UNDO_LOG</code></td> <td>Undo log page</td> </tr><tr> <td><code>UNKNOWN</code></td> <td>Unknown</td> </tr><tr> <td><code>ZLOB_DATA</code></td> <td>Compressed LOB data</td> </tr><tr> <td><code>ZLOB_FIRST</code></td> <td>First page of compressed LOB</td> </tr><tr> <td><code>ZLOB_FRAG</code></td> <td>Compressed LOB fragment</td> </tr><tr> <td><code>ZLOB_FRAG_ENTRY</code></td> <td>Compressed LOB fragment index</td> </tr><tr> <td><code>ZLOB_INDEX</code></td> <td>Compressed LOB index</td> </tr></tbody></table>
 
 * `FLUSH_TYPE`
 
@@ -98,9 +98,9 @@ The `INNODB_BUFFER_PAGE` table has these columns:
 
   The page state. The following table shows the permitted values.
 
-  **Table 28.5 INNODB\_BUFFER\_PAGE.PAGE\_STATE Values**
+  **Table 28.5 INNODB_BUFFER_PAGE.PAGE_STATE Values**
 
-  <table summary="Mapping for interpreting INNODB_BUFFER_PAGE.PAGE_STATE values."><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Page State</th> <th>Description</th> </tr></thead><tbody><tr> <td><code class="literal">FILE_PAGE</code></td> <td>A buffered file page</td> </tr><tr> <td><code class="literal">MEMORY</code></td> <td>Contains a main memory object</td> </tr><tr> <td><code class="literal">NOT_USED</code></td> <td>In the free list</td> </tr><tr> <td><code class="literal">NULL</code></td> <td>Clean compressed pages, compressed pages in the flush list, pages used as buffer pool watch sentinels</td> </tr><tr> <td><code class="literal">READY_FOR_USE</code></td> <td>A free page</td> </tr><tr> <td><code class="literal">REMOVE_HASH</code></td> <td>Hash index should be removed before placing in the free list</td> </tr></tbody></table>
+  <table summary="Mapping for interpreting INNODB_BUFFER_PAGE.PAGE_STATE values."><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Page State</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>FILE_PAGE</code></td> <td>A buffered file page</td> </tr><tr> <td><code>MEMORY</code></td> <td>Contains a main memory object</td> </tr><tr> <td><code>NOT_USED</code></td> <td>In the free list</td> </tr><tr> <td><code>NULL</code></td> <td>Clean compressed pages, compressed pages in the flush list, pages used as buffer pool watch sentinels</td> </tr><tr> <td><code>READY_FOR_USE</code></td> <td>A free page</td> </tr><tr> <td><code>REMOVE_HASH</code></td> <td>Hash index should be removed before placing in the free list</td> </tr></tbody></table>
 
 * `IO_FIX`
 
@@ -157,13 +157,13 @@ OLDEST_MODIFICATION: 0
 * When tables, table rows, partitions, or indexes are deleted, associated pages remain in the buffer pool until space is required for other data. The `INNODB_BUFFER_PAGE` table reports information about these pages until they are evicted from the buffer pool. For more information about how the `InnoDB` manages buffer pool data, see Section 17.5.1, “Buffer Pool”.
 
 
-### 28.4.3 The INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE\_LRU Table
+### 28.4.3 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU Table
 
 The `INNODB_BUFFER_PAGE_LRU` table provides information about the pages in the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool"); in particular, how they are ordered in the LRU list that determines which pages to evict from the buffer pool when it becomes full.
 
 The `INNODB_BUFFER_PAGE_LRU` table has the same columns as the `INNODB_BUFFER_PAGE` table with a few exceptions. It has `LRU_POSITION` and `COMPRESSED` columns instead of `BLOCK_ID` and `PAGE_STATE` columns, and it does not include and `IS_STALE` column.
 
-For related usage information and examples, see Section 17.15.5, “InnoDB INFORMATION\_SCHEMA Buffer Pool Tables”.
+For related usage information and examples, see Section 17.15.5, “InnoDB INFORMATION_SCHEMA Buffer Pool Tables”.
 
 Warning
 
@@ -191,9 +191,9 @@ The `INNODB_BUFFER_PAGE_LRU` table has these columns:
 
   The page type. The following table shows the permitted values.
 
-  **Table 28.6 INNODB\_BUFFER\_PAGE\_LRU.PAGE\_TYPE Values**
+  **Table 28.6 INNODB_BUFFER_PAGE_LRU.PAGE_TYPE Values**
 
-  <table summary="Mapping for interpreting INNODB_BUFFER_PAGE_LRU.PAGE_TYPE values."><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Page Type</th> <th>Description</th> </tr></thead><tbody><tr> <td><code class="literal">ALLOCATED</code></td> <td>Freshly allocated page</td> </tr><tr> <td><code class="literal">BLOB</code></td> <td>Uncompressed BLOB page</td> </tr><tr> <td><code class="literal">COMPRESSED_BLOB2</code></td> <td>Subsequent comp BLOB page</td> </tr><tr> <td><code class="literal">COMPRESSED_BLOB</code></td> <td>First compressed BLOB page</td> </tr><tr> <td><code class="literal">ENCRYPTED_RTREE</code></td> <td>Encrypted R-tree</td> </tr><tr> <td><code class="literal">EXTENT_DESCRIPTOR</code></td> <td>Extent descriptor page</td> </tr><tr> <td><code class="literal">FILE_SPACE_HEADER</code></td> <td>File space header</td> </tr><tr> <td><code class="literal">FIL_PAGE_TYPE_UNUSED</code></td> <td>Unused</td> </tr><tr> <td><code class="literal">IBUF_BITMAP</code></td> <td>Insert buffer bitmap</td> </tr><tr> <td><code class="literal">IBUF_FREE_LIST</code></td> <td>Insert buffer free list</td> </tr><tr> <td><code class="literal">IBUF_INDEX</code></td> <td>Insert buffer index</td> </tr><tr> <td><code class="literal">INDEX</code></td> <td>B-tree node</td> </tr><tr> <td><code class="literal">INODE</code></td> <td>Index node</td> </tr><tr> <td><code class="literal">LOB_DATA</code></td> <td>Uncompressed LOB data</td> </tr><tr> <td><code class="literal">LOB_FIRST</code></td> <td>First page of uncompressed LOB</td> </tr><tr> <td><code class="literal">LOB_INDEX</code></td> <td>Uncompressed LOB index</td> </tr><tr> <td><code class="literal">PAGE_IO_COMPRESSED</code></td> <td>Compressed page</td> </tr><tr> <td><code class="literal">PAGE_IO_COMPRESSED_ENCRYPTED</code></td> <td>Compressed and encrypted page</td> </tr><tr> <td><code class="literal">PAGE_IO_ENCRYPTED</code></td> <td>Encrypted page</td> </tr><tr> <td><code class="literal">RSEG_ARRAY</code></td> <td>Rollback segment array</td> </tr><tr> <td><code class="literal">RTREE_INDEX</code></td> <td>R-tree index</td> </tr><tr> <td><code class="literal">SDI_BLOB</code></td> <td>Uncompressed SDI BLOB</td> </tr><tr> <td><code class="literal">SDI_COMPRESSED_BLOB</code></td> <td>Compressed SDI BLOB</td> </tr><tr> <td><code class="literal">SDI_INDEX</code></td> <td>SDI index</td> </tr><tr> <td><code class="literal">SYSTEM</code></td> <td>System page</td> </tr><tr> <td><code class="literal">TRX_SYSTEM</code></td> <td>Transaction system data</td> </tr><tr> <td><code class="literal">UNDO_LOG</code></td> <td>Undo log page</td> </tr><tr> <td><code class="literal">UNKNOWN</code></td> <td>Unknown</td> </tr><tr> <td><code class="literal">ZLOB_DATA</code></td> <td>Compressed LOB data</td> </tr><tr> <td><code class="literal">ZLOB_FIRST</code></td> <td>First page of compressed LOB</td> </tr><tr> <td><code class="literal">ZLOB_FRAG</code></td> <td>Compressed LOB fragment</td> </tr><tr> <td><code class="literal">ZLOB_FRAG_ENTRY</code></td> <td>Compressed LOB fragment index</td> </tr><tr> <td><code class="literal">ZLOB_INDEX</code></td> <td>Compressed LOB index</td> </tr></tbody></table>
+  <table summary="Mapping for interpreting INNODB_BUFFER_PAGE_LRU.PAGE_TYPE values."><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Page Type</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>ALLOCATED</code></td> <td>Freshly allocated page</td> </tr><tr> <td><code>BLOB</code></td> <td>Uncompressed BLOB page</td> </tr><tr> <td><code>COMPRESSED_BLOB2</code></td> <td>Subsequent comp BLOB page</td> </tr><tr> <td><code>COMPRESSED_BLOB</code></td> <td>First compressed BLOB page</td> </tr><tr> <td><code>ENCRYPTED_RTREE</code></td> <td>Encrypted R-tree</td> </tr><tr> <td><code>EXTENT_DESCRIPTOR</code></td> <td>Extent descriptor page</td> </tr><tr> <td><code>FILE_SPACE_HEADER</code></td> <td>File space header</td> </tr><tr> <td><code>FIL_PAGE_TYPE_UNUSED</code></td> <td>Unused</td> </tr><tr> <td><code>IBUF_BITMAP</code></td> <td>Insert buffer bitmap</td> </tr><tr> <td><code>IBUF_FREE_LIST</code></td> <td>Insert buffer free list</td> </tr><tr> <td><code>IBUF_INDEX</code></td> <td>Insert buffer index</td> </tr><tr> <td><code>INDEX</code></td> <td>B-tree node</td> </tr><tr> <td><code>INODE</code></td> <td>Index node</td> </tr><tr> <td><code>LOB_DATA</code></td> <td>Uncompressed LOB data</td> </tr><tr> <td><code>LOB_FIRST</code></td> <td>First page of uncompressed LOB</td> </tr><tr> <td><code>LOB_INDEX</code></td> <td>Uncompressed LOB index</td> </tr><tr> <td><code>PAGE_IO_COMPRESSED</code></td> <td>Compressed page</td> </tr><tr> <td><code>PAGE_IO_COMPRESSED_ENCRYPTED</code></td> <td>Compressed and encrypted page</td> </tr><tr> <td><code>PAGE_IO_ENCRYPTED</code></td> <td>Encrypted page</td> </tr><tr> <td><code>RSEG_ARRAY</code></td> <td>Rollback segment array</td> </tr><tr> <td><code>RTREE_INDEX</code></td> <td>R-tree index</td> </tr><tr> <td><code>SDI_BLOB</code></td> <td>Uncompressed SDI BLOB</td> </tr><tr> <td><code>SDI_COMPRESSED_BLOB</code></td> <td>Compressed SDI BLOB</td> </tr><tr> <td><code>SDI_INDEX</code></td> <td>SDI index</td> </tr><tr> <td><code>SYSTEM</code></td> <td>System page</td> </tr><tr> <td><code>TRX_SYSTEM</code></td> <td>Transaction system data</td> </tr><tr> <td><code>UNDO_LOG</code></td> <td>Undo log page</td> </tr><tr> <td><code>UNKNOWN</code></td> <td>Unknown</td> </tr><tr> <td><code>ZLOB_DATA</code></td> <td>Compressed LOB data</td> </tr><tr> <td><code>ZLOB_FIRST</code></td> <td>First page of compressed LOB</td> </tr><tr> <td><code>ZLOB_FRAG</code></td> <td>Compressed LOB fragment</td> </tr><tr> <td><code>ZLOB_FRAG_ENTRY</code></td> <td>Compressed LOB fragment index</td> </tr><tr> <td><code>ZLOB_INDEX</code></td> <td>Compressed LOB index</td> </tr></tbody></table>
 
 * `FLUSH_TYPE`
 
@@ -297,13 +297,13 @@ OLDEST_MODIFICATION: 0
 * When tables, table rows, partitions, or indexes are deleted, associated pages remain in the buffer pool until space is required for other data. The `INNODB_BUFFER_PAGE_LRU` table reports information about these pages until they are evicted from the buffer pool. For more information about how the `InnoDB` manages buffer pool data, see Section 17.5.1, “Buffer Pool”.
 
 
-### 28.4.4 The INFORMATION\_SCHEMA INNODB\_BUFFER\_POOL\_STATS Table
+### 28.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table
 
 The `INNODB_BUFFER_POOL_STATS` table provides much of the same buffer pool information provided in [`SHOW ENGINE INNODB STATUS`](show-engine.html "15.7.7.17 SHOW ENGINE Statement") output. Much of the same information may also be obtained using `InnoDB` buffer pool [server status variables](server-status-variables.html "7.1.10 Server Status Variables").
 
 The idea of making pages in the buffer pool “young” or “not young” refers to transferring them between the sublists at the head and tail of the buffer pool data structure. Pages made “young” take longer to age out of the buffer pool, while pages made “not young” are moved much closer to the point of eviction.
 
-For related usage information and examples, see Section 17.15.5, “InnoDB INFORMATION\_SCHEMA Buffer Pool Tables”.
+For related usage information and examples, see Section 17.15.5, “InnoDB INFORMATION_SCHEMA Buffer Pool Tables”.
 
 The `INNODB_BUFFER_POOL_STATS` table has these columns:
 
@@ -483,11 +483,11 @@ NOT_YOUNG_MAKE_PER_THOUSAND_GETS: 0
 * Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.
 
 
-### 28.4.5 The INFORMATION\_SCHEMA INNODB\_CACHED\_INDEXES Table
+### 28.4.5 The INFORMATION_SCHEMA INNODB_CACHED_INDEXES Table
 
 The `INNODB_CACHED_INDEXES` table reports the number of index pages cached in the `InnoDB` buffer pool for each index.
 
-For related usage information and examples, see Section 17.15.5, “InnoDB INFORMATION\_SCHEMA Buffer Pool Tables”.
+For related usage information and examples, see Section 17.15.5, “InnoDB INFORMATION_SCHEMA Buffer Pool Tables”.
 
 The `INNODB_CACHED_INDEXES` table has these columns:
 
@@ -538,7 +538,7 @@ WHERE
 * Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.
 
 
-### 28.4.6 The INFORMATION\_SCHEMA INNODB\_CMP and INNODB\_CMP\_RESET Tables
+### 28.4.6 The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables
 
 The `INNODB_CMP` and `INNODB_CMP_RESET` tables provide status information on operations related to compressed `InnoDB` tables.
 
@@ -620,7 +620,7 @@ uncompress_time: 0
 * For usage information, see Section 17.9.1.4, “Monitoring InnoDB Table Compression at Runtime” and Section 17.15.1.3, “Using the Compression Information Schema Tables”. For general information about `InnoDB` table compression, see Section 17.9, “InnoDB Table and Page Compression”.
 
 
-### 28.4.7 The INFORMATION\_SCHEMA INNODB\_CMPMEM and INNODB\_CMPMEM\_RESET Tables
+### 28.4.7 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables
 
 The `INNODB_CMPMEM` and `INNODB_CMPMEM_RESET` tables provide status information on compressed pages within the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool").
 
@@ -702,7 +702,7 @@ buffer_pool_instance: 0
 * For usage information, see Section 17.9.1.4, “Monitoring InnoDB Table Compression at Runtime” and Section 17.15.1.3, “Using the Compression Information Schema Tables”. For general information about `InnoDB` table compression, see Section 17.9, “InnoDB Table and Page Compression”.
 
 
-### 28.4.8 The INFORMATION\_SCHEMA INNODB\_CMP\_PER\_INDEX and INNODB\_CMP\_PER\_INDEX\_RESET Tables
+### 28.4.8 The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables
 
 The `INNODB_CMP_PER_INDEX` and `INNODB_CMP_PER_INDEX_RESET` tables provide status information on operations related to compressed `InnoDB` tables and indexes, with separate statistics for each combination of database, table, and index, to help you evaluate the performance and usefulness of compression for specific tables.
 
@@ -779,11 +779,11 @@ uncompress_time: 0
 * For usage information, see Section 17.9.1.4, “Monitoring InnoDB Table Compression at Runtime” and Section 17.15.1.3, “Using the Compression Information Schema Tables”. For general information about `InnoDB` table compression, see Section 17.9, “InnoDB Table and Page Compression”.
 
 
-### 28.4.9 The INFORMATION\_SCHEMA INNODB\_COLUMNS Table
+### 28.4.9 The INFORMATION_SCHEMA INNODB_COLUMNS Table
 
 The `INNODB_COLUMNS` table provides metadata about `InnoDB` table columns.
 
-For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.
 
 The `INNODB_COLUMNS` table has these columns:
 
@@ -797,7 +797,7 @@ The `INNODB_COLUMNS` table has these columns:
 
 * `POS`
 
-  The ordinal position of the column within the table, starting from 0 and incrementing sequentially. When a column is dropped, the remaining columns are reordered so that the sequence has no gaps. The `POS` value for a virtual generated column encodes the column sequence number and ordinal position of the column. For more information, see the `POS` column description in Section 28.4.29, “The INFORMATION\_SCHEMA INNODB\_VIRTUAL Table”.
+  The ordinal position of the column within the table, starting from 0 and incrementing sequentially. When a column is dropped, the remaining columns are reordered so that the sequence has no gaps. The `POS` value for a virtual generated column encodes the column sequence number and ordinal position of the column. For more information, see the `POS` column description in Section 28.4.29, “The INFORMATION_SCHEMA INNODB_VIRTUAL Table”.
 
 * `MTYPE`
 
@@ -859,11 +859,11 @@ DEFAULT_VALUE: NULL
 * Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.
 
 
-### 28.4.10 The INFORMATION\_SCHEMA INNODB\_DATAFILES Table
+### 28.4.10 The INFORMATION_SCHEMA INNODB_DATAFILES Table
 
 The `INNODB_DATAFILES` table provides data file path information for `InnoDB` file-per-table and general tablespaces.
 
-For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.
 
 Note
 
@@ -895,11 +895,11 @@ SPACE: 57
 * Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.
 
 
-### 28.4.11 The INFORMATION\_SCHEMA INNODB\_FIELDS Table
+### 28.4.11 The INFORMATION_SCHEMA INNODB_FIELDS Table
 
 The `INNODB_FIELDS` table provides metadata about the key columns (fields) of `InnoDB` indexes.
 
-For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.
 
 The `INNODB_FIELDS` table has these columns:
 
@@ -932,11 +932,11 @@ INDEX_ID: 117
 * Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.
 
 
-### 28.4.12 The INFORMATION\_SCHEMA INNODB\_FOREIGN Table
+### 28.4.12 The INFORMATION_SCHEMA INNODB_FOREIGN Table
 
 The `INNODB_FOREIGN` table provides metadata about `InnoDB` foreign keys.
 
-For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.
 
 The `INNODB_FOREIGN` table has these columns:
 
@@ -979,11 +979,11 @@ REF_NAME: test/parent
 * Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.
 
 
-### 28.4.13 The INFORMATION\_SCHEMA INNODB\_FOREIGN\_COLS Table
+### 28.4.13 The INFORMATION_SCHEMA INNODB_FOREIGN_COLS Table
 
 The `INNODB_FOREIGN_COLS` table provides status information about `InnoDB` foreign key columns.
 
-For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.
 
 The `INNODB_FOREIGN_COLS` table has these columns:
 
@@ -1021,13 +1021,13 @@ REF_COL_NAME: id
 * Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.
 
 
-### 28.4.14 The INFORMATION\_SCHEMA INNODB\_FT\_BEING\_DELETED Table
+### 28.4.14 The INFORMATION_SCHEMA INNODB_FT_BEING_DELETED Table
 
 The `INNODB_FT_BEING_DELETED` table provides a snapshot of the `INNODB_FT_DELETED` table; it is used only during an `OPTIMIZE TABLE` maintenance operation. When [`OPTIMIZE TABLE`](optimize-table.html "15.7.3.4 OPTIMIZE TABLE Statement") is run, the `INNODB_FT_BEING_DELETED` table is emptied, and `DOC_ID` values are removed from the `INNODB_FT_DELETED` table. Because the contents of `INNODB_FT_BEING_DELETED` typically have a short lifetime, this table has limited utility for monitoring or debugging. For information about running `OPTIMIZE TABLE` on tables with `FULLTEXT` indexes, see Section 14.9.6, “Fine-Tuning MySQL Full-Text Search”.
 
 This table is empty initially. Before querying it, set the value of the `innodb_ft_aux_table` system variable to the name (including the database name) of the table that contains the `FULLTEXT` index (for example, `test/articles`). The output appears similar to the example provided for the `INNODB_FT_DELETED` table.
 
-For related usage information and examples, see Section 17.15.4, “InnoDB INFORMATION\_SCHEMA FULLTEXT Index Tables”.
+For related usage information and examples, see Section 17.15.4, “InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables”.
 
 The `INNODB_FT_BEING_DELETED` table has these columns:
 
@@ -1044,13 +1044,13 @@ The `INNODB_FT_BEING_DELETED` table has these columns:
 * For more information about `InnoDB` `FULLTEXT` search, see Section 17.6.2.4, “InnoDB Full-Text Indexes”, and Section 14.9, “Full-Text Search Functions”.
 
 
-### 28.4.15 The INFORMATION\_SCHEMA INNODB\_FT\_CONFIG Table
+### 28.4.15 The INFORMATION_SCHEMA INNODB_FT_CONFIG Table
 
 The `INNODB_FT_CONFIG` table provides metadata about the `FULLTEXT` index and associated processing for an `InnoDB` table.
 
 This table is empty initially. Before querying it, set the value of the `innodb_ft_aux_table` system variable to the name (including the database name) of the table that contains the `FULLTEXT` index (for example, `test/articles`).
 
-For related usage information and examples, see Section 17.15.4, “InnoDB INFORMATION\_SCHEMA FULLTEXT Index Tables”.
+For related usage information and examples, see Section 17.15.4, “InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables”.
 
 The `INNODB_FT_CONFIG` table has these columns:
 
@@ -1097,11 +1097,11 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_CONFIG;
 * For more information about `InnoDB` `FULLTEXT` search, see Section 17.6.2.4, “InnoDB Full-Text Indexes”, and Section 14.9, “Full-Text Search Functions”.
 
 
-### 28.4.16 The INFORMATION\_SCHEMA INNODB\_FT\_DEFAULT\_STOPWORD Table
+### 28.4.16 The INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD Table
 
 The `INNODB_FT_DEFAULT_STOPWORD` table holds a list of stopwords that are used by default when creating a `FULLTEXT` index on `InnoDB` tables. For information about the default `InnoDB` stopword list and how to define your own stopword lists, see Section 14.9.4, “Full-Text Stopwords”.
 
-For related usage information and examples, see Section 17.15.4, “InnoDB INFORMATION\_SCHEMA FULLTEXT Index Tables”.
+For related usage information and examples, see Section 17.15.4, “InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables”.
 
 The `INNODB_FT_DEFAULT_STOPWORD` table has these columns:
 
@@ -1165,13 +1165,13 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_DEFAULT_STOPWORD;
 * For more information about `InnoDB` `FULLTEXT` search, see Section 17.6.2.4, “InnoDB Full-Text Indexes”, and Section 14.9, “Full-Text Search Functions”.
 
 
-### 28.4.17 The INFORMATION\_SCHEMA INNODB\_FT\_DELETED Table
+### 28.4.17 The INFORMATION_SCHEMA INNODB_FT_DELETED Table
 
 The `INNODB_FT_DELETED` table stores rows that are deleted from the `FULLTEXT` index for an `InnoDB` table. To avoid expensive index reorganization during DML operations for an `InnoDB` `FULLTEXT` index, the information about newly deleted words is stored separately, filtered out of search results when you do a text search, and removed from the main search index only when you issue an `OPTIMIZE TABLE` statement for the `InnoDB` table. For more information, see Optimizing InnoDB Full-Text Indexes.
 
 This table is empty initially. Before querying it, set the value of the `innodb_ft_aux_table` system variable to the name (including the database name) of the table that contains the `FULLTEXT` index (for example, `test/articles`).
 
-For related usage information and examples, see Section 17.15.4, “InnoDB INFORMATION\_SCHEMA FULLTEXT Index Tables”.
+For related usage information and examples, see Section 17.15.4, “InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables”.
 
 The `INNODB_FT_DELETED` table has these columns:
 
@@ -1201,13 +1201,13 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_DELETED;
 * For more information about `InnoDB` `FULLTEXT` search, see Section 17.6.2.4, “InnoDB Full-Text Indexes”, and Section 14.9, “Full-Text Search Functions”.
 
 
-### 28.4.18 The INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_CACHE Table
+### 28.4.18 The INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE Table
 
 The `INNODB_FT_INDEX_CACHE` table provides token information about newly inserted rows in a `FULLTEXT` index. To avoid expensive index reorganization during DML operations, the information about newly indexed words is stored separately, and combined with the main search index only when [`OPTIMIZE TABLE`](optimize-table.html "15.7.3.4 OPTIMIZE TABLE Statement") is run, when the server is shut down, or when the cache size exceeds a limit defined by the `innodb_ft_cache_size` or `innodb_ft_total_cache_size` system variable.
 
 This table is empty initially. Before querying it, set the value of the `innodb_ft_aux_table` system variable to the name (including the database name) of the table that contains the `FULLTEXT` index (for example, `test/articles`).
 
-For related usage information and examples, see Section 17.15.4, “InnoDB INFORMATION\_SCHEMA FULLTEXT Index Tables”.
+For related usage information and examples, see Section 17.15.4, “InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables”.
 
 The `INNODB_FT_INDEX_CACHE` table has these columns:
 
@@ -1279,13 +1279,13 @@ The `INNODB_FT_INDEX_CACHE` table has these columns:
 * For more information about `InnoDB` `FULLTEXT` search, see Section 17.6.2.4, “InnoDB Full-Text Indexes”, and Section 14.9, “Full-Text Search Functions”.
 
 
-### 28.4.19 The INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_TABLE Table
+### 28.4.19 The INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE Table
 
 The `INNODB_FT_INDEX_TABLE` table provides information about the inverted index used to process text searches against the `FULLTEXT` index of an `InnoDB` table.
 
 This table is empty initially. Before querying it, set the value of the `innodb_ft_aux_table` system variable to the name (including the database name) of the table that contains the `FULLTEXT` index (for example, `test/articles`).
 
-For related usage information and examples, see Section 17.15.4, “InnoDB INFORMATION\_SCHEMA FULLTEXT Index Tables”.
+For related usage information and examples, see Section 17.15.4, “InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables”.
 
 The `INNODB_FT_INDEX_TABLE` table has these columns:
 
@@ -1368,11 +1368,11 @@ The `INNODB_FT_INDEX_TABLE` table has these columns:
 * For more information about `InnoDB` `FULLTEXT` search, see Section 17.6.2.4, “InnoDB Full-Text Indexes”, and Section 14.9, “Full-Text Search Functions”.
 
 
-### 28.4.20 The INFORMATION\_SCHEMA INNODB\_INDEXES Table
+### 28.4.20 The INFORMATION_SCHEMA INNODB_INDEXES Table
 
 The `INNODB_INDEXES` table provides metadata about `InnoDB` indexes.
 
-For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.
 
 The `INNODB_INDEXES` table has these columns:
 
@@ -1439,7 +1439,7 @@ MERGE_THRESHOLD: 50
 * Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.
 
 
-### 28.4.21 The INFORMATION\_SCHEMA INNODB\_METRICS Table
+### 28.4.21 The INFORMATION_SCHEMA INNODB_METRICS Table
 
 The `INNODB_METRICS` table provides a wide variety of `InnoDB` performance information, complementing the specific focus areas of the Performance Schema tables for `InnoDB`. With simple queries, you can check the overall health of the system. With more detailed queries, you can diagnose issues such as performance bottlenecks, resource shortages, and application issues.
 
@@ -1447,7 +1447,7 @@ Each monitor represents a point within the `InnoDB` source code that is instrume
 
 By default, relatively little data is collected. To start, stop, and reset counters, set one of the system variables `innodb_monitor_enable`, `innodb_monitor_disable`, `innodb_monitor_reset`, or `innodb_monitor_reset_all`, using the name of the counter, the name of the module, a wildcard match for such a name using the “%” character, or the special keyword `all`.
 
-For usage information, see Section 17.15.6, “InnoDB INFORMATION\_SCHEMA Metrics Table”.
+For usage information, see Section 17.15.6, “InnoDB INFORMATION_SCHEMA Metrics Table”.
 
 The `INNODB_METRICS` table has these columns:
 
@@ -1552,7 +1552,7 @@ AVG_COUNT_RESET: NULL
 * Transaction counter `COUNT` values may differ from the number of transaction events reported in Performance Schema `EVENTS_TRANSACTIONS_SUMMARY` tables. `InnoDB` counts only those transactions that it executes, whereas Performance Schema collects events for all non-aborted transactions initiated by the server, including empty transactions.
 
 
-### 28.4.22 The INFORMATION\_SCHEMA INNODB\_SESSION\_TEMP\_TABLESPACES Table
+### 28.4.22 The INFORMATION_SCHEMA INNODB_SESSION_TEMP_TABLESPACES Table
 
 The `INNODB_SESSION_TEMP_TABLESPACES` table provides metadata about session temporary tablespaces used for internal and user-created temporary tables.
 
@@ -1609,11 +1609,11 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SESSION_TEMP_TABLESPACES;
 * Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.
 
 
-### 28.4.23 The INFORMATION\_SCHEMA INNODB\_TABLES Table
+### 28.4.23 The INFORMATION_SCHEMA INNODB_TABLES Table
 
 The `INNODB_TABLES` table provides metadata about `InnoDB` tables.
 
-For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.
 
 The `INNODB_TABLES` table has these columns:
 
@@ -1685,11 +1685,11 @@ TOTAL_ROW_VERSIONS: 3
 * Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.
 
 
-### 28.4.24 The INFORMATION\_SCHEMA INNODB\_TABLESPACES Table
+### 28.4.24 The INFORMATION_SCHEMA INNODB_TABLESPACES Table
 
 The `INNODB_TABLESPACES` table provides metadata about `InnoDB` file-per-table, general, and undo tablespaces.
 
-For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.
 
 Note
 
@@ -1804,7 +1804,7 @@ SERVER_VERSION: 8.4.0
 * Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.
 
 
-### 28.4.25 The INFORMATION\_SCHEMA INNODB\_TABLESPACES\_BRIEF Table
+### 28.4.25 The INFORMATION_SCHEMA INNODB_TABLESPACES_BRIEF Table
 
 The `INNODB_TABLESPACES_BRIEF` table provides space ID, name, path, flag, and space type metadata for file-per-table, general, undo, and system tablespaces.
 
@@ -1852,7 +1852,7 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_TABLESPACES_BRIEF WHERE SPACE = 7
 * Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.
 
 
-### 28.4.26 The INFORMATION\_SCHEMA INNODB\_TABLESTATS View
+### 28.4.26 The INFORMATION_SCHEMA INNODB_TABLESTATS View
 
 The `INNODB_TABLESTATS` table provides a view of low-level status information about `InnoDB` tables. This data is used by the MySQL optimizer to calculate which index to use when querying an `InnoDB` table. This information is derived from in-memory data structures rather than data stored on disk. There is no corresponding internal `InnoDB` system table.
 
@@ -1862,7 +1862,7 @@ Table statistics are updated only for `DELETE` or `UPDATE` operations that modif
 
 `ANALYZE TABLE` clears table statistics and sets the `STATS_INITIALIZED` column to `Uninitialized`. Statistics are collected again the next time the table is accessed.
 
-For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.
 
 The `INNODB_TABLESTATS` table has these columns:
 
@@ -1927,11 +1927,11 @@ STATS_INITIALIZED: Initialized
 * Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.
 
 
-### 28.4.27 The INFORMATION\_SCHEMA INNODB\_TEMP\_TABLE\_INFO Table
+### 28.4.27 The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table
 
 The `INNODB_TEMP_TABLE_INFO` table provides information about user-created `InnoDB` temporary tables that are active in an `InnoDB` instance. It does not provide information about internal `InnoDB` temporary tables used by the optimizer. The `INNODB_TEMP_TABLE_INFO` table is created when first queried, exists only in memory, and is not persisted to disk.
 
-For usage information and examples, see Section 17.15.7, “InnoDB INFORMATION\_SCHEMA Temporary Table Info Table”.
+For usage information and examples, see Section 17.15.7, “InnoDB INFORMATION_SCHEMA Temporary Table Info Table”.
 
 The `INNODB_TEMP_TABLE_INFO` table has these columns:
 
@@ -1972,7 +1972,7 @@ TABLE_ID: 97
 * Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.
 
 
-### 28.4.28 The INFORMATION\_SCHEMA INNODB\_TRX Table
+### 28.4.28 The INFORMATION_SCHEMA INNODB_TRX Table
 
 The `INNODB_TRX` table provides information about every transaction currently executing inside `InnoDB`, including whether the transaction is waiting for a lock, when the transaction started, and the SQL statement the transaction is executing, if any.
 
@@ -2123,7 +2123,7 @@ trx_autocommit_non_locking: 0
 * Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.
 
 
-### 28.4.29 The INFORMATION\_SCHEMA INNODB\_VIRTUAL Table
+### 28.4.29 The INFORMATION_SCHEMA INNODB_VIRTUAL Table
 
 The `INNODB_VIRTUAL` table provides metadata about `InnoDB` [virtual generated columns](/doc/refman/8.4/en/glossary.html#glos_virtual_generated_column) and columns upon which virtual generated columns are based.
 

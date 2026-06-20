@@ -41,7 +41,7 @@ To achieve better performance, you can specify the following option differently 
 
 Having different temporary directories also makes it easier to determine which MySQL server created any given temporary file.
 
-If you have multiple MySQL installations in different locations, you can specify the base directory for each installation with the `--basedir=dir_name` option. This causes each instance to automatically use a different data directory, log files, and PID file because the default for each of those parameters is relative to the base directory. In that case, the only other options you need to specify are the `--socket` and `--port` options. Suppose that you install different versions of MySQL using `tar` file binary distributions. These install in different locations, so you can start the server for each installation using the command **bin/mysqld\_safe** under its corresponding base directory. **mysqld\_safe** determines the proper `--basedir` option to pass to **mysqld**, and you need specify only the `--socket` and `--port` options to **mysqld\_safe**.
+If you have multiple MySQL installations in different locations, you can specify the base directory for each installation with the `--basedir=dir_name` option. This causes each instance to automatically use a different data directory, log files, and PID file because the default for each of those parameters is relative to the base directory. In that case, the only other options you need to specify are the `--socket` and `--port` options. Suppose that you install different versions of MySQL using `tar` file binary distributions. These install in different locations, so you can start the server for each installation using the command **bin/mysqld_safe** under its corresponding base directory. **mysqld_safe** determines the proper `--basedir` option to pass to **mysqld**, and you need specify only the `--socket` and `--port` options to **mysqld_safe**.
 
 As discussed in the following sections, it is possible to start additional servers by specifying appropriate command options or by setting environment variables. However, if you need to run multiple servers on a more permanent basis, it is more convenient to use option files to specify for each server those option values that must be unique to it. The `--defaults-file` option is useful for this purpose.
 
@@ -243,7 +243,7 @@ To remove multiple services, use **SC DELETE *`mysqld_service_name`*** for each 
 
 Note
 
-The discussion here uses **mysqld\_safe** to launch multiple instances of MySQL. For MySQL installation using an RPM distribution, server startup and shutdown is managed by systemd on several Linux platforms. On these platforms, **mysqld\_safe** is not installed because it is unnecessary. For information about using systemd to handle multiple MySQL instances, see Section 2.5.9, “Managing MySQL Server with systemd”.
+The discussion here uses **mysqld_safe** to launch multiple instances of MySQL. For MySQL installation using an RPM distribution, server startup and shutdown is managed by systemd on several Linux platforms. On these platforms, **mysqld_safe** is not installed because it is unnecessary. For information about using systemd to handle multiple MySQL instances, see Section 2.5.9, “Managing MySQL Server with systemd”.
 
 One way is to run multiple MySQL instances on Unix is to compile different servers with different default TCP/IP ports and Unix socket files so that each one listens on different network interfaces. Compiling in different base directories for each installation also results automatically in a separate, compiled-in data directory, log file, and PID file location for each server.
 
@@ -273,7 +273,7 @@ You need not compile a new MySQL server just to start with a different Unix sock
 $> mysqld_safe --socket=file_name --port=port_number
 ```
 
-To start a second server, provide different `--socket` and `--port` option values, and pass a `--datadir=dir_name` option to **mysqld\_safe** so that the server uses a different data directory.
+To start a second server, provide different `--socket` and `--port` option values, and pass a `--datadir=dir_name` option to **mysqld_safe** so that the server uses a different data directory.
 
 Alternatively, put the options for each server in a different option file, then start each server using a `--defaults-file` option that specifies the path to the appropriate option file. For example, if the option files for two server instances are named `/usr/local/mysql/my.cnf` and `/usr/local/mysql/my.cnf2`, start the servers like this: command:
 
@@ -296,7 +296,7 @@ This is a quick way of starting a second server to use for testing. The nice thi
 
 Section 6.9, “Environment Variables”, includes a list of other environment variables you can use to affect MySQL programs.
 
-On Unix, the **mysqld\_multi** script provides another way to start multiple servers. See Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”.
+On Unix, the **mysqld_multi** script provides another way to start multiple servers. See Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”.
 
 
 ### 7.8.4 Using Client Programs in a Multiple-Server Environment

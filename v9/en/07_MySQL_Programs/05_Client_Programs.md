@@ -50,29 +50,29 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 **Table 6.10 mysql Client Options**
 
-<table frame="box" rules="all" summary="Command-line options available for the mysql client."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysql-command-options.html#option_mysql_authentication-oci-client-config-profile">--authentication-oci-client-config-profile</a></td> <td>Name of the OCI profile defined in the OCI config file to use</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_authentication-openid-connect-client-id-token-file">--authentication-openid-connect-client-id-token-file</a></td> <td>Full path to the OpenID Connect Identity token file</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_auto-rehash">--auto-rehash</a></td> <td>Enable automatic rehashing</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_auto-vertical-output">--auto-vertical-output</a></td> <td>Enable automatic vertical result set display</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_batch">--batch</a></td> <td>Do not use history file</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_binary-as-hex">--binary-as-hex</a></td> <td>Display binary values in hexadecimal notation</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_binary-mode">--binary-mode</a></td> <td>Disable \r\n - to - \n translation and treatment of \0 as end-of-query</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_bind-address">--bind-address</a></td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets are installed</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_column-names">--column-names</a></td> <td>Write column names in results</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_column-type-info">--column-type-info</a></td> <td>Display result set metadata</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_commands">--commands</a></td> <td>Enable or disable processing of local mysql client commands</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_comments">--comments</a></td> <td>Whether to retain or strip comments in statements sent to the server</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_connect-expired-password">--connect-expired-password</a></td> <td>Indicate to server that client can handle expired-password sandbox mode</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_connect-timeout">--connect-timeout</a></td> <td>Number of seconds before connection timeout</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_database">--database</a></td> <td>The database to use</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_debug">--debug</a></td> <td>Write debugging log; supported only if MySQL was built with debugging support</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_debug-check">--debug-check</a></td> <td>Print debugging information when program exits</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_debug-info">--debug-info</a></td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_default-auth">--default-auth</a></td> <td>Authentication plugin to use</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_default-character-set">--default-character-set</a></td> <td>Specify default character set</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_delimiter">--delimiter</a></td> <td>Set the statement delimiter</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_dns-srv-name">--dns-srv-name</a></td> <td>Use DNS SRV lookup for host information</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Enable cleartext authentication plugin</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_execute">--execute</a></td> <td>Execute the statement and quit</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_force">--force</a></td> <td>Continue even if an SQL error occurs</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_histignore">--histignore</a></td> <td>Patterns specifying which statements to ignore for logging</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_html">--html</a></td> <td>Produce HTML output</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_ignore-spaces">--ignore-spaces</a></td> <td>Ignore spaces after function names</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_init-command">--init-command</a></td> <td>SQL statement to execute after connecting</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_init-command-add">--init-command-add</a></td> <td>Add an additional SQL statement to execute after connecting or re-connecting to MySQL server</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_line-numbers">--line-numbers</a></td> <td>Write line numbers for errors</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_load-data-local-dir">--load-data-local-dir</a></td> <td>Directory for files named in LOAD DATA LOCAL statements</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_local-infile">--local-infile</a></td> <td>Enable or disable for LOCAL capability for LOAD DATA</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_max-allowed-packet">--max-allowed-packet</a></td> <td>Maximum packet length to send to or receive from server</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_max-join-size">--max-join-size</a></td> <td>The automatic limit for rows in a join when using --safe-updates</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_named-commands">--named-commands</a></td> <td>Enable named mysql commands</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_net-buffer-length">--net-buffer-length</a></td> <td>Buffer size for TCP/IP and socket communication</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_network-namespace">--network-namespace</a></td> <td>Specify network namespace</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_no-auto-rehash">--no-auto-rehash</a></td> <td>Disable automatic rehashing</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_no-beep">--no-beep</a></td> <td>Do not beep when errors occur</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_oci-config-file">--oci-config-file</a></td> <td>Defines an alternate location for the Oracle Cloud Infrastructure CLI configuration file.</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_one-database">--one-database</a></td> <td>Ignore statements except those for the default database named on the command line</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_pager">--pager</a></td> <td>Use the given command for paging query output</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_plugin-authentication-kerberos-client-mode">--plugin-authentication-kerberos-client-mode</a></td> <td>Permit GSSAPI pluggable authentication through the MIT Kerberos library on Windows</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_plugin-authentication-webauthn-client-preserve-privacy">--plugin-authentication-webauthn-client-preserve-privacy</a></td> <td>Permit user to choose a key to be used for assertion</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_plugin-authentication-webauthn-device">--plugin-authentication-webauthn-device</a></td> <td>Specifies which libfido2 device to use. Default is 0 (first device)</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_plugin-dir">--plugin-dir</a></td> <td>Directory where plugins are installed</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_prompt">--prompt</a></td> <td>Set the prompt to the specified format</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_quick">--quick</a></td> <td>Do not cache each query result</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_raw">--raw</a></td> <td>Write column values without escape conversion</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_reconnect">--reconnect</a></td> <td>If the connection to the server is lost, automatically try to reconnect</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_register-factor">--register-factor</a></td> <td>Multifactor authentication factors for which registration must be done</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_safe-updates">--safe-updates</a>, <a class="link" href="mysql-command-options.html#option_mysql_safe-updates">--i-am-a-dummy</a></td> <td>Allow only UPDATE and DELETE statements that specify key values</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_select-limit">--select-limit</a></td> <td>The automatic limit for SELECT statements when using --safe-updates</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_show-warnings">--show-warnings</a></td> <td>Show warnings after each statement if there are any</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_sigint-ignore">--sigint-ignore</a></td> <td>Ignore SIGINT signals (typically the result of typing Control+C)</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_silent">--silent</a></td> <td>Silent mode</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_auto-rehash">--skip-auto-rehash</a></td> <td>Disable automatic rehashing</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_skip-column-names">--skip-column-names</a></td> <td>Do not write column names in results</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_skip-line-numbers">--skip-line-numbers</a></td> <td>Skip line numbers for errors</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_named-commands">--skip-named-commands</a></td> <td>Disable named mysql commands</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_pager">--skip-pager</a></td> <td>Disable paging</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_reconnect">--skip-reconnect</a></td> <td>Disable reconnecting</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_skip-system-command">--skip-system-command</a></td> <td>Disable system (\!) command</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_ssl">--ssl-crl</a></td> <td>File that contains certificate revocation lists</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_ssl">--ssl-crlpath</a></td> <td>Directory that contains certificate revocation-list files</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_syslog">--syslog</a></td> <td>Log interactive statements to syslog</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_system-command">--system-command</a></td> <td>Enable or disable system (\!) command</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_table">--table</a></td> <td>Display output in tabular format</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_tee">--tee</a></td> <td>Append a copy of output to named file</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_telemetry_client">--telemetry_client</a></td> <td>Enables the telemetry client.</td> </tr><tr><td><a class="link" href="telemetry-trace-configuration.html#option_mysql_telemetry_client.otel_bsp_max_export_batch_size">--otel_bsp_max_export_batch_size</a></td> <td>See variable OTEL_BSP_MAX_EXPORT_BATCH_SIZE.</td> </tr><tr><td><a class="link" href="telemetry-trace-configuration.html#option_mysql_telemetry_client.otel_bsp_max_queue_size">--otel_bsp_max_queue_size</a></td> <td>See variable OTEL_BSP_MAX_QUEUE_SIZE.</td> </tr><tr><td><a class="link" href="telemetry-trace-configuration.html#option_mysql_telemetry_client.otel_bsp_schedule_delay">--otel_bsp_schedule_delay</a></td> <td>See variable OTEL_BSP_SCHEDULE_DELAY.</td> </tr><tr><td><a class="link" href="telemetry-trace-configuration.html#option_mysql_telemetry_client.otel_exporter_otlp_traces_certificates">--otel_exporter_otlp_traces_certificates</a></td> <td>Not in use at this time. Reserved for future development.</td> </tr><tr><td><a class="link" href="telemetry-trace-configuration.html#option_mysql_telemetry_client.otel_exporter_otlp_traces_client_certificates">--otel_exporter_otlp_traces_client_certificates</a></td> <td>Not in use at this time. Reserved for future development.</td> </tr><tr><td><a class="link" href="telemetry-trace-configuration.html#option_mysql_telemetry_client.otel_exporter_otlp_traces_client_key">--otel_exporter_otlp_traces_client_key</a></td> <td>Not in use at this time. Reserved for future development.</td> </tr><tr><td><a class="link" href="telemetry-trace-configuration.html#option_mysql_telemetry_client.otel_exporter_otlp_traces_compression">--otel_exporter_otlp_traces_compression</a></td> <td>Compression type</td> </tr><tr><td><a class="link" href="telemetry-trace-configuration.html#option_mysql_telemetry_client.otel_exporter_otlp_traces_endpoint">--otel_exporter_otlp_traces_endpoint</a></td> <td>The trace export endpoint</td> </tr><tr><td><a class="link" href="telemetry-trace-configuration.html#option_mysql_telemetry_client.otel_exporter_otlp_traces_headers">--otel_exporter_otlp_traces_headers</a></td> <td>Key-value pairs to be used as headers associated with HTTP requests</td> </tr><tr><td><a class="link" href="telemetry-trace-configuration.html#option_mysql_telemetry_client.otel_exporter_otlp_traces_protocol">--otel_exporter_otlp_traces_protocol</a></td> <td>The OTLP transport protocol</td> </tr><tr><td><a class="link" href="telemetry-trace-configuration.html#option_mysql_telemetry_client.otel_exporter_otlp_traces_timeout">--otel_exporter_otlp_traces_timeout</a></td> <td>Time OLTP exporter waits for each batch export</td> </tr><tr><td><a class="link" href="telemetry-trace-configuration.html#option_mysql_telemetry_client.otel-help">--otel-help</a></td> <td>When enabled, prints help about telemetry_client options.</td> </tr><tr><td><a class="link" href="telemetry-trace-configuration.html#option_mysql_telemetry_client.otel_log_level">--otel_log_level</a></td> <td>Controls which opentelemetry logs are printed in the server logs</td> </tr><tr><td><a class="link" href="telemetry-trace-configuration.html#option_mysql_telemetry_client.otel_resource_attributes">--otel_resource_attributes</a></td> <td>See corresponding OpenTelemetry variable OTEL_RESOURCE_ATTRIBUTES.</td> </tr><tr><td><a class="link" href="telemetry-trace-configuration.html#option_mysql_telemetry_client.otel-trace">--otel-trace</a></td> <td>This system variable controls whether telemetry traces are collected or not.</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_unbuffered">--unbuffered</a></td> <td>Flush the buffer after each query</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_vertical">--vertical</a></td> <td>Print query output rows vertically (one line per column value)</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_wait">--wait</a></td> <td>If the connection cannot be established, wait and retry instead of aborting</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_xml">--xml</a></td> <td>Produce XML output</td> </tr><tr><td><a class="link" href="mysql-command-options.html#option_mysql_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for the mysql client."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--authentication-oci-client-config-profile</td> <td>Name of the OCI profile defined in the OCI config file to use</td> </tr><tr><td>--authentication-openid-connect-client-id-token-file</td> <td>Full path to the OpenID Connect Identity token file</td> </tr><tr><td>--auto-rehash</td> <td>Enable automatic rehashing</td> </tr><tr><td>--auto-vertical-output</td> <td>Enable automatic vertical result set display</td> </tr><tr><td>--batch</td> <td>Do not use history file</td> </tr><tr><td>--binary-as-hex</td> <td>Display binary values in hexadecimal notation</td> </tr><tr><td>--binary-mode</td> <td>Disable \r\n - to - \n translation and treatment of \0 as end-of-query</td> </tr><tr><td>--bind-address</td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets are installed</td> </tr><tr><td>--column-names</td> <td>Write column names in results</td> </tr><tr><td>--column-type-info</td> <td>Display result set metadata</td> </tr><tr><td>--commands</td> <td>Enable or disable processing of local mysql client commands</td> </tr><tr><td>--comments</td> <td>Whether to retain or strip comments in statements sent to the server</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--connect-expired-password</td> <td>Indicate to server that client can handle expired-password sandbox mode</td> </tr><tr><td>--connect-timeout</td> <td>Number of seconds before connection timeout</td> </tr><tr><td>--database</td> <td>The database to use</td> </tr><tr><td>--debug</td> <td>Write debugging log; supported only if MySQL was built with debugging support</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--default-auth</td> <td>Authentication plugin to use</td> </tr><tr><td>--default-character-set</td> <td>Specify default character set</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--delimiter</td> <td>Set the statement delimiter</td> </tr><tr><td>--dns-srv-name</td> <td>Use DNS SRV lookup for host information</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--execute</td> <td>Execute the statement and quit</td> </tr><tr><td>--force</td> <td>Continue even if an SQL error occurs</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--histignore</td> <td>Patterns specifying which statements to ignore for logging</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--html</td> <td>Produce HTML output</td> </tr><tr><td>--ignore-spaces</td> <td>Ignore spaces after function names</td> </tr><tr><td>--init-command</td> <td>SQL statement to execute after connecting</td> </tr><tr><td>--init-command-add</td> <td>Add an additional SQL statement to execute after connecting or re-connecting to MySQL server</td> </tr><tr><td>--line-numbers</td> <td>Write line numbers for errors</td> </tr><tr><td>--load-data-local-dir</td> <td>Directory for files named in LOAD DATA LOCAL statements</td> </tr><tr><td>--local-infile</td> <td>Enable or disable for LOCAL capability for LOAD DATA</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--max-allowed-packet</td> <td>Maximum packet length to send to or receive from server</td> </tr><tr><td>--max-join-size</td> <td>The automatic limit for rows in a join when using --safe-updates</td> </tr><tr><td>--named-commands</td> <td>Enable named mysql commands</td> </tr><tr><td>--net-buffer-length</td> <td>Buffer size for TCP/IP and socket communication</td> </tr><tr><td>--network-namespace</td> <td>Specify network namespace</td> </tr><tr><td>--no-auto-rehash</td> <td>Disable automatic rehashing</td> </tr><tr><td>--no-beep</td> <td>Do not beep when errors occur</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--oci-config-file</td> <td>Defines an alternate location for the Oracle Cloud Infrastructure CLI configuration file.</td> </tr><tr><td>--one-database</td> <td>Ignore statements except those for the default database named on the command line</td> </tr><tr><td>--pager</td> <td>Use the given command for paging query output</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--plugin-authentication-kerberos-client-mode</td> <td>Permit GSSAPI pluggable authentication through the MIT Kerberos library on Windows</td> </tr><tr><td>--plugin-authentication-webauthn-client-preserve-privacy</td> <td>Permit user to choose a key to be used for assertion</td> </tr><tr><td>--plugin-authentication-webauthn-device</td> <td>Specifies which libfido2 device to use. Default is 0 (first device)</td> </tr><tr><td>--plugin-dir</td> <td>Directory where plugins are installed</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--prompt</td> <td>Set the prompt to the specified format</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--quick</td> <td>Do not cache each query result</td> </tr><tr><td>--raw</td> <td>Write column values without escape conversion</td> </tr><tr><td>--reconnect</td> <td>If the connection to the server is lost, automatically try to reconnect</td> </tr><tr><td>--register-factor</td> <td>Multifactor authentication factors for which registration must be done</td> </tr><tr><td>--safe-updates, --i-am-a-dummy</td> <td>Allow only UPDATE and DELETE statements that specify key values</td> </tr><tr><td>--select-limit</td> <td>The automatic limit for SELECT statements when using --safe-updates</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--show-warnings</td> <td>Show warnings after each statement if there are any</td> </tr><tr><td>--sigint-ignore</td> <td>Ignore SIGINT signals (typically the result of typing Control+C)</td> </tr><tr><td>--silent</td> <td>Silent mode</td> </tr><tr><td>--skip-auto-rehash</td> <td>Disable automatic rehashing</td> </tr><tr><td>--skip-column-names</td> <td>Do not write column names in results</td> </tr><tr><td>--skip-line-numbers</td> <td>Skip line numbers for errors</td> </tr><tr><td>--skip-named-commands</td> <td>Disable named mysql commands</td> </tr><tr><td>--skip-pager</td> <td>Disable paging</td> </tr><tr><td>--skip-reconnect</td> <td>Disable reconnecting</td> </tr><tr><td>--skip-system-command</td> <td>Disable system (\!) command</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-crl</td> <td>File that contains certificate revocation lists</td> </tr><tr><td>--ssl-crlpath</td> <td>Directory that contains certificate revocation-list files</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--syslog</td> <td>Log interactive statements to syslog</td> </tr><tr><td>--system-command</td> <td>Enable or disable system (\!) command</td> </tr><tr><td>--table</td> <td>Display output in tabular format</td> </tr><tr><td>--tee</td> <td>Append a copy of output to named file</td> </tr><tr><td>--telemetry_client</td> <td>Enables the telemetry client.</td> </tr><tr><td>--otel_bsp_max_export_batch_size</td> <td>See variable OTEL_BSP_MAX_EXPORT_BATCH_SIZE.</td> </tr><tr><td>--otel_bsp_max_queue_size</td> <td>See variable OTEL_BSP_MAX_QUEUE_SIZE.</td> </tr><tr><td>--otel_bsp_schedule_delay</td> <td>See variable OTEL_BSP_SCHEDULE_DELAY.</td> </tr><tr><td>--otel_exporter_otlp_traces_certificates</td> <td>Not in use at this time. Reserved for future development.</td> </tr><tr><td>--otel_exporter_otlp_traces_client_certificates</td> <td>Not in use at this time. Reserved for future development.</td> </tr><tr><td>--otel_exporter_otlp_traces_client_key</td> <td>Not in use at this time. Reserved for future development.</td> </tr><tr><td>--otel_exporter_otlp_traces_compression</td> <td>Compression type</td> </tr><tr><td>--otel_exporter_otlp_traces_endpoint</td> <td>The trace export endpoint</td> </tr><tr><td>--otel_exporter_otlp_traces_headers</td> <td>Key-value pairs to be used as headers associated with HTTP requests</td> </tr><tr><td>--otel_exporter_otlp_traces_protocol</td> <td>The OTLP transport protocol</td> </tr><tr><td>--otel_exporter_otlp_traces_timeout</td> <td>Time OLTP exporter waits for each batch export</td> </tr><tr><td>--otel-help</td> <td>When enabled, prints help about telemetry_client options.</td> </tr><tr><td>--otel_log_level</td> <td>Controls which opentelemetry logs are printed in the server logs</td> </tr><tr><td>--otel_resource_attributes</td> <td>See corresponding OpenTelemetry variable OTEL_RESOURCE_ATTRIBUTES.</td> </tr><tr><td>--otel-trace</td> <td>This system variable controls whether telemetry traces are collected or not.</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--unbuffered</td> <td>Flush the buffer after each query</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--vertical</td> <td>Print query output rows vertically (one line per column value)</td> </tr><tr><td>--wait</td> <td>If the connection cannot be established, wait and retry instead of aborting</td> </tr><tr><td>--xml</td> <td>Produce XML output</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
 * `--authentication-oci-client-config-profile`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   Specify the name of the OCI configuration profile to use. If not set, the default profile is used.
 
 * `--authentication-openid-connect-client-id-token-file`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>
 
   For OpenID Connect, this sets the required Identity token to authenticate with a mapped MySQL user. It's a full filepath to the Identity token file used when connecting to the MySQL server. For additional information, see Section 8.4.1.9, “OpenID Connect Pluggable Authentication”.
 
 * `--auto-rehash`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>
 
   Enable automatic rehashing. This option is on by default, which enables database, table, and column name completion. Use `--disable-auto-rehash` to disable rehashing. That causes **mysql** to start faster, but you must issue the `rehash` command or its `\#` shortcut if you want to use name completion.
 
@@ -84,13 +84,13 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--auto-vertical-output`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>
 
   Cause result sets to be displayed vertically if they are too wide for the current window, and using normal tabular format otherwise. (This applies to statements terminated by `;` or `\G`.)
 
 * `--batch`, `-B`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>
 
   Print results using tab as the column separator, with each row on a new line. With this option, **mysql** does not use the history file.
 
@@ -98,7 +98,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--binary-as-hex`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE in noninteractive mode</code></td> </tr></tbody></table>
 
   When this option is given, **mysql** displays binary data using hexadecimal notation (`0xvalue`). This occurs whether the overall output display format is tabular, vertical, HTML, or XML.
 
@@ -160,7 +160,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--binary-mode`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>
 
   This option helps when processing **mysqlbinlog** output that may contain `BLOB` values. By default, **mysql** translates `\r\n` in statement strings to `\n` and interprets `\0` as the statement terminator. `--binary-mode` disables both features. It also disables all **mysql** commands except `charset` and `delimiter` in noninteractive mode (for input piped to **mysql** or loaded using the `source` command).
 
@@ -168,31 +168,31 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--bind-address=ip_address`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   On a computer having multiple network interfaces, use this option to select which interface to use for connecting to the MySQL server.
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>0
 
   The directory where character sets are installed. See Section 12.15, “Character Set Configuration”.
 
 * `--column-names`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>1
 
   Write column names in results.
 
 * `--column-type-info`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>2
 
   Display result set metadata. This information corresponds to the contents of C API `MYSQL_FIELD` data structures. See C API Basic Data Structures.
 
 * `--commands`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>3
 
   Whether to enable or disable processing of local **mysql** client commands. Setting this option to `FALSE` disables such processing, and has the effects listed here:
 
@@ -235,7 +235,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--comments`, `-c`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>4
 
   Whether to preserve or strip comments in statements sent to the server. The default is to preserve them; to strip them, start **mysql** with `--skip-comments`.
 
@@ -247,7 +247,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--compress`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>5
 
   Compress all information sent between the client and the server if possible. See Section 6.2.8, “Connection Compression Control”.
 
@@ -255,7 +255,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--compression-algorithms=value`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>6
 
   The permitted compression algorithms for connections to the server. The available algorithms are the same as for the `protocol_compression_algorithms` system variable. The default value is `uncompressed`.
 
@@ -263,25 +263,25 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--connect-expired-password`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>7
 
   Indicate to the server that the client can handle sandbox mode if the account used to connect has an expired password. This can be useful for noninteractive invocations of **mysql** because normally the server disconnects noninteractive clients that attempt to connect using an account with an expired password. (See Section 8.2.16, “Server Handling of Expired Passwords”.)
 
 * `--connect-timeout=value`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>8
 
   The number of seconds before connection timeout. (Default value is `0`.)
 
 * `--database=db_name`, `-D db_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>9
 
   The database to use. This is useful primarily in an option file.
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>0
 
   Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o,/tmp/mysql.trace`.
 
@@ -289,7 +289,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--debug-check`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>1
 
   Print some debugging information when the program exits.
 
@@ -297,7 +297,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--debug-info`, `-T`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>2
 
   Print debugging information and memory and CPU usage statistics when the program exits.
 
@@ -305,13 +305,13 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>3
 
   A hint about which client-side authentication plugin to use. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--default-character-set=charset_name`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>4
 
   Use *`charset_name`* as the default character set for the client and connection.
 
@@ -321,7 +321,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>5
 
   Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -329,7 +329,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>6
 
   Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -339,7 +339,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>7
 
   Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysql** normally reads the `[client]` and `[mysql]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysql** also reads the `[client_other]` and `[mysql_other]` groups.
 
@@ -347,7 +347,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--delimiter=str`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>8
 
   Set the statement delimiter. The default is the semicolon character (`;`).
 
@@ -357,7 +357,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--dns-srv-name=name`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>9
 
   Specifies the name of a DNS SRV record that determines the candidate hosts to use for establishing a connection to a MySQL server. For information about DNS SRV support in MySQL, see Section 6.2.6, “Connecting to the Server Using DNS SRV Records”.
 
@@ -385,25 +385,25 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>0
 
   Enable the `mysql_clear_password` cleartext authentication plugin. (See Section 8.4.1.3, “Client-Side Cleartext Pluggable Authentication”.)
 
 * `--execute=statement`, `-e statement`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>1
 
   Execute the statement and quit. The default output format is like that produced with `--batch`. See Section 6.2.2.1, “Using Options on the Command Line”, for some examples. With this option, **mysql** does not use the history file.
 
 * `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>2
 
   Continue even if an SQL error occurs.
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>3
 
   Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -413,13 +413,13 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--histignore`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>4
 
   A list of one or more colon-separated patterns specifying statements to ignore for logging purposes. These patterns are added to the default pattern list (`"*IDENTIFIED*:*PASSWORD*"`). The value specified for this option affects logging of statements written to the history file, and to `syslog` if the `--syslog` option is given. For more information, see Section 6.5.1.3, “mysql Client Logging”.
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>5
 
   Connect to the MySQL server on the given host.
 
@@ -427,37 +427,37 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--html`, `-H`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>6
 
   Produce HTML output.
 
 * `--ignore-spaces`, `-i`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>7
 
   Ignore spaces after function names. The effect of this is described in the discussion for the `IGNORE_SPACE` SQL mode (see Section 7.1.11, “Server SQL Modes”).
 
 * `--init-command=str`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>8
 
   Single SQL statement to execute after connecting to the server. If auto-reconnect is enabled, the statement is executed again after reconnection occurs. The definition resets existing statements defined by it or `init-command-add`.
 
 * `--init-command-add=str`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>9
 
   Add an additional SQL statement to execute after connecting or reconnecting to the MySQL server. It's usable without `--init-command` but has no effect if used before it because `init-command` resets the list of commands to call.
 
 * `--line-numbers`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>0
 
   Write line numbers for errors. Disable this with `--skip-line-numbers`.
 
 * `--load-data-local-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>1
 
   This option affects the client-side `LOCAL` capability for `LOAD DATA` operations. It specifies the directory in which files named in [`LOAD DATA LOCAL`](load-data.html "15.2.9 LOAD DATA Statement") statements must be located. The effect of `--load-data-local-dir` depends on whether `LOCAL` data loading is enabled or disabled:
 
@@ -479,7 +479,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--local-infile[={0|1}]`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>2
 
   By default, `LOCAL` capability for `LOAD DATA` is determined by the default compiled into the MySQL client library. To enable or disable `LOCAL` data loading explicitly, use the `--local-infile` option. When given with no value, the option enables `LOCAL` data loading. When given as `--local-infile=0` or `--local-infile=1`, the option disables or enables `LOCAL` data loading.
 
@@ -489,15 +489,15 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>3
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>4
 
   Skips reading options from the login path file.
 
@@ -507,31 +507,31 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--max-allowed-packet=value`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>5
 
   The maximum size of the buffer for client/server communication. The default is 16MB, the maximum is 1GB.
 
 * `--max-join-size=value`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>6
 
   The automatic limit for rows in a join when using `--safe-updates`. (Default value is 1,000,000.)
 
 * `--named-commands`, `-G`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>7
 
   Enable named **mysql** commands. Long-format commands are permitted, not just short-format commands. For example, `quit` and `\q` both are recognized. Use `--skip-named-commands` to disable named commands. See Section 6.5.1.2, “mysql Client Commands”.
 
 * `--net-buffer-length=value`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>8
 
   The buffer size for TCP/IP and socket communication. (Default value is 16KB.)
 
 * `--network-namespace=name`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-auto-rehash</code></td> </tr></tbody></table>9
 
   The network namespace to use for TCP/IP connections. If omitted, the connection uses the default (global) namespace. For information about network namespaces, see Section 7.1.14, “Network Namespace Support”.
 
@@ -539,35 +539,35 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--no-auto-rehash`, `-A`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>0
 
   This has the same effect as `--skip-auto-rehash`. See the description for `--auto-rehash`.
 
 * `--no-beep`, `-b`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>1
 
   Do not beep when errors occur.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>2
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
-  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--oci-config-file=PATH`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>3
 
   Alternate path to the Oracle Cloud Infrastructure CLI configuration file. Specify the location of the configuration file. If your existing default profile is the correct one, you do not need to specify this option. However, if you have an existing configuration file, with multiple profiles or a different default from the tenancy of the user you want to connect with, specify this option.
 
 * `--one-database`, `-o`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>4
 
   Ignore statements except those that occur while the default database is the one named on the command line. This option is rudimentary and should be used with care. Statement filtering is based only on `USE` statements.
 
@@ -595,13 +595,13 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--pager[=command]`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>5
 
   Use the given command for paging query output. If the command is omitted, the default pager is the value of your `PAGER` environment variable. Valid pagers are **less**, **more**, **cat [> filename]**, and so forth. This option works only on Unix and only in interactive mode. To disable paging, use `--skip-pager`. Section 6.5.1.2, “mysql Client Commands”, discusses output paging further.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>6
 
   The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysql** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -629,13 +629,13 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>7
 
   On Windows, connect to the server using a named pipe. This option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
 
 * `--plugin-authentication-kerberos-client-mode=value`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>8
 
   On Windows, the `authentication_kerberos_client` authentication plugin supports this plugin option. It provides two possible values that the client user can set at runtime: `SSPI` and `GSSAPI`.
 
@@ -645,7 +645,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--plugin-authentication-webauthn-client-preserve-privacy={OFF|ON}`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-vertical-output</code></td> </tr></tbody></table>9
 
   Determines how assertions are sent to server in case there is more than one discoverable credential stored for a given RP ID (a unique name given to the relying-party server, which is the MySQL server). If the FIDO2 device contains multiple resident keys for a given RP ID, this option allows the user to choose a key to be used for assertion. It provides two possible values that the client user can set. The default value is `OFF`. If set to `OFF`, the challenge is signed by all credentials available for a given RP ID and all signatures are sent to server. If set to `ON`, the user is prompted to choose the credential to be used for signature.
 
@@ -657,7 +657,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--plugin-authentication-webauthn-device=#`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>0
 
   Determiens which device to use for `libfido` authentication. The default is the first device (`0`).
 
@@ -669,19 +669,19 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>1
 
   The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysql** does not find it. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>2
 
   For TCP/IP connections, the port number to use.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>3
 
   Print the program name and all options that it gets from option files.
 
@@ -689,19 +689,19 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--prompt=format_str`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>4
 
   Set the prompt to the specified format. The default is `mysql>`. The special sequences that the prompt can contain are described in Section 6.5.1.2, “mysql Client Commands”.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>5
 
   The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 6.2.7, “Connection Transport Protocols”.
 
 * `--quick`, `-q`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>6
 
   Do not cache each query result, print each row as it is received. This may slow down the server if the output is suspended. With this option, **mysql** does not use the history file.
 
@@ -731,7 +731,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--raw`, `-r`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>7
 
   For tabular output, the “boxing” around columns enables one column value to be distinguished from another. For nontabular output (such as is produced in batch mode or when the `--batch` or `--silent` option is given), special characters are escaped in the output so they can be identified easily. Newline, tab, `NUL`, and backslash are written as `\n`, `\t`, `\0`, and `\\`. The `--raw` option disables this character escaping.
 
@@ -759,13 +759,13 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--reconnect`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>8
 
   If the connection to the server is lost, automatically try to reconnect. A single reconnect attempt is made each time the connection is lost. To suppress reconnection behavior, use `--skip-reconnect`.
 
 * `--register-factor=value`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--batch</code></td> </tr></tbody></table>9
 
   The factor or factors for which FIDO/FIDO2 device registration must be performed before WebAuthn device-based authentication can be used. This option value must be a single value, or two values separated by commas. Each value must be 2 or 3, so the permitted option values are `'2'`, `'3'`, `'2,3'` and `'3,2'`.
 
@@ -807,19 +807,19 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--safe-updates`, `--i-am-a-dummy`, `-U`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE in noninteractive mode</code></td> </tr></tbody></table>0
 
   If this option is enabled, `UPDATE` and `DELETE` statements that do not use a key in the `WHERE` clause or a `LIMIT` clause produce an error. In addition, restrictions are placed on `SELECT` statements that produce (or are estimated to produce) very large result sets. If you have set this option in an option file, you can use `--skip-safe-updates` on the command line to override it. For more information about this option, see Using Safe-Updates Mode (--safe-updates)").
 
 * `--select-limit=value`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE in noninteractive mode</code></td> </tr></tbody></table>1
 
   The automatic limit for `SELECT` statements when using `--safe-updates`. (Default value is 1,000.)
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE in noninteractive mode</code></td> </tr></tbody></table>2
 
   The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -831,7 +831,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE in noninteractive mode</code></td> </tr></tbody></table>3
 
   On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
 
@@ -839,13 +839,13 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--show-warnings`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE in noninteractive mode</code></td> </tr></tbody></table>4
 
   Cause warnings to be shown after each statement if there are any. This option applies to interactive and batch mode.
 
 * `--sigint-ignore`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE in noninteractive mode</code></td> </tr></tbody></table>5
 
   Ignore `SIGINT` signals (typically the result of typing **Control+C**).
 
@@ -853,7 +853,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE in noninteractive mode</code></td> </tr></tbody></table>6
 
   Silent mode. Produce less output. This option can be given multiple times to produce less and less output.
 
@@ -861,7 +861,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--skip-column-names`, `-N`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE in noninteractive mode</code></td> </tr></tbody></table>7
 
   Do not write column names in results. Use of this option causes the output to be right-aligned, as shown here:
 
@@ -882,19 +882,19 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--skip-line-numbers`, `-L`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE in noninteractive mode</code></td> </tr></tbody></table>8
 
   Do not write line numbers for errors. Useful when you want to compare result files that include error messages.
 
 * `--skip-system-command`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE in noninteractive mode</code></td> </tr></tbody></table>9
 
   Disables the `system` (`\!`) command. Equivalent to `--system-command=OFF`.
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>0
 
   For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
 
@@ -906,7 +906,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>1
 
   Controls whether to enable FIPS mode on the client side. The `--ssl-fips-mode` option differs from other `--ssl-xxx` options in that it is not used to establish encrypted connections, but rather to affect which cryptographic operations to permit. See Section 8.8, “FIPS Support”.
 
@@ -924,7 +924,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--syslog`, `-j`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>2
 
   This option causes **mysql** to send interactive statements to the system logging facility. On Unix, this is `syslog`; on Windows, it is the Windows Event Log. The destination where logged messages appear is system dependent. On Linux, the destination is often the `/var/log/messages` file.
 
@@ -943,7 +943,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--system-command[={ON|OFF}]`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>3
 
   Enable or disable the `system` (`\!`) command. This option is disabled by default, which means the `system` command is rejected with an error. To enable it, use `--system-command=ON`.
 
@@ -951,25 +951,25 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--table`, `-t`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>4
 
   Display output in table format. This is the default for interactive use, but can be used to produce table output in batch mode.
 
 * `--tee=file_name`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>5
 
   Append a copy of output to the given file. This option works only in interactive mode. Section 6.5.1.2, “mysql Client Commands”, discusses tee files further.
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>6
 
   The permissible ciphersuites for encrypted connections that use TLSv1.3. The value is a list of one or more colon-separated ciphersuite names. The ciphersuites that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--tls-sni-servername=server_name`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>7
 
   When specified, the name is passed to the `libmysqlclient` C API library using the `MYSQL_OPT_TLS_SNI_SERVERNAME` option of `mysql_options()`. The server name is not case-sensitive. To show which server name the client specified for the current session, if any, check the `Tls_sni_server_name` status variable.
 
@@ -977,49 +977,49 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>8
 
   The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--unbuffered`, `-n`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binary-mode</code></td> </tr></tbody></table>9
 
   Flush the buffer after each query.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>0
 
   The user name of the MySQL account to use for connecting to the server.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>1
 
   Verbose mode. Produce more output about what the program does. This option can be given multiple times to produce more and more output. (For example, `-v -v -v` produces table output format even in batch mode.)
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>2
 
   Display version information and exit.
 
 * `--vertical`, `-E`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>3
 
   Print query output rows vertically (one line per column value). Without this option, you can specify vertical output for individual statements by terminating them with `\G`.
 
 * `--wait`, `-w`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>4
 
   If the connection cannot be established, wait and retry instead of aborting.
 
 * `--xml`, `-X`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>5
 
   Produce XML output.
 
@@ -1060,7 +1060,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `--zstd-compression-level=level`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>6
 
   The compression level to use for connections to the server that use the `zstd` compression algorithm. The permitted levels are from 1 to 22, with larger values indicating increasing levels of compression. The default `zstd` compression level is 3. The compression level setting has no effect on connections that do not use `zstd` compression.
 
@@ -1068,7 +1068,7 @@ On Unix, the **mysql** client logs statements executed interactively to a histor
 
 * `telemetry_client`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>7
 
   Enables the telemetry client plugin (Linux only).
 
@@ -1235,7 +1235,7 @@ The use of short-form commands within multiple-line `/* ... */` comments is not 
 
   Reset the connection to clear the session state. This includes clearing any current query attributes defined using the `query_attributes` command.
 
-  Resetting a connection has effects similar to `mysql_change_user()` or an auto-reconnect except that the connection is not closed and reopened, and re-authentication is not done. See mysql\_change\_user(), and Automatic Reconnection Control.
+  Resetting a connection has effects similar to `mysql_change_user()` or an auto-reconnect except that the connection is not closed and reopened, and re-authentication is not done. See mysql_change_user(), and Automatic Reconnection Control.
 
   This example shows how `resetconnection` clears a value maintained in the session state:
 
@@ -1339,7 +1339,7 @@ You can also combine the `tee` and `pager` functions. Have a `tee` file enabled 
 
 The `prompt` command reconfigures the default `mysql>` prompt. The string for defining the prompt can contain the following special sequences.
 
-<table summary="prompt command options that are used to configure the mysql&gt; prompt."><col style="width: 15%"/><col style="width: 75%"/><thead><tr> <th>Option</th> <th>Description</th> </tr></thead><tbody><tr> <td><code class="literal">\C</code></td> <td>The current connection identifier</td> </tr><tr> <td><code class="literal">\c</code></td> <td>A counter that increments for each statement you issue</td> </tr><tr> <td><code class="literal">\D</code></td> <td>The full current date</td> </tr><tr> <td><code class="literal">\d</code></td> <td>The default database</td> </tr><tr> <td><code class="literal">\h</code></td> <td>The server host</td> </tr><tr> <td><code class="literal">\l</code></td> <td>The current delimiter</td> </tr><tr> <td><code class="literal">\m</code></td> <td>Minutes of the current time</td> </tr><tr> <td><code class="literal">\n</code></td> <td>A newline character</td> </tr><tr> <td><code class="literal">\O</code></td> <td>The current month in three-letter format (Jan, Feb, …)</td> </tr><tr> <td><code class="literal">\o</code></td> <td>The current month in numeric format</td> </tr><tr> <td><code class="literal">\P</code></td> <td>am/pm</td> </tr><tr> <td><code class="literal">\p</code></td> <td>The current TCP/IP port or socket file</td> </tr><tr> <td><code class="literal">\R</code></td> <td>The current time, in 24-hour military time (0–23)</td> </tr><tr> <td><code class="literal">\r</code></td> <td>The current time, standard 12-hour time (1–12)</td> </tr><tr> <td><code class="literal">\S</code></td> <td>Semicolon</td> </tr><tr> <td><code class="literal">\s</code></td> <td>Seconds of the current time</td> </tr><tr> <td><code class="literal">\T</code></td> <td>Print an asterisk (<code class="literal">*</code>) if the current session is inside a transaction block</td> </tr><tr> <td><code class="literal">\t</code></td> <td>A tab character</td> </tr><tr> <td><code class="literal">\U</code></td> <td><p> Your full <code class="literal"><em class="replaceable"><code>user_name</code></em>@<em class="replaceable"><code>host_name</code></em></code> account name </p></td> </tr><tr> <td><code class="literal">\u</code></td> <td>Your user name</td> </tr><tr> <td><code class="literal">\v</code></td> <td>The server version</td> </tr><tr> <td><code class="literal">\w</code></td> <td>The current day of the week in three-letter format (Mon, Tue, …)</td> </tr><tr> <td><code class="literal">\Y</code></td> <td>The current year, four digits</td> </tr><tr> <td><code class="literal">\y</code></td> <td>The current year, two digits</td> </tr><tr> <td><code class="literal">\_</code></td> <td>A space</td> </tr><tr> <td><code class="literal">\ </code></td> <td>A space (a space follows the backslash)</td> </tr><tr> <td><code class="literal">\'</code></td> <td>Single quote</td> </tr><tr> <td><code class="literal">\"</code></td> <td>Double quote</td> </tr><tr> <td><code class="literal">\\</code></td> <td>A literal <code class="literal">\</code> backslash character</td> </tr><tr> <td><code class="literal">\<em class="replaceable"><code>x</code></em></code></td> <td><p> <em class="replaceable"><code>x</code></em>, for any <span class="quote">“<span class="quote"><em class="replaceable"><code>x</code></em></span>”</span> not listed above </p></td> </tr></tbody></table>
+<table summary="prompt command options that are used to configure the mysql&gt; prompt."><col style="width: 15%"/><col style="width: 75%"/><thead><tr> <th>Option</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>\C</code></td> <td>The current connection identifier</td> </tr><tr> <td><code>\c</code></td> <td>A counter that increments for each statement you issue</td> </tr><tr> <td><code>\D</code></td> <td>The full current date</td> </tr><tr> <td><code>\d</code></td> <td>The default database</td> </tr><tr> <td><code>\h</code></td> <td>The server host</td> </tr><tr> <td><code>\l</code></td> <td>The current delimiter</td> </tr><tr> <td><code>\m</code></td> <td>Minutes of the current time</td> </tr><tr> <td><code>\n</code></td> <td>A newline character</td> </tr><tr> <td><code>\O</code></td> <td>The current month in three-letter format (Jan, Feb, …)</td> </tr><tr> <td><code>\o</code></td> <td>The current month in numeric format</td> </tr><tr> <td><code>\P</code></td> <td>am/pm</td> </tr><tr> <td><code>\p</code></td> <td>The current TCP/IP port or socket file</td> </tr><tr> <td><code>\R</code></td> <td>The current time, in 24-hour military time (0–23)</td> </tr><tr> <td><code>\r</code></td> <td>The current time, standard 12-hour time (1–12)</td> </tr><tr> <td><code>\S</code></td> <td>Semicolon</td> </tr><tr> <td><code>\s</code></td> <td>Seconds of the current time</td> </tr><tr> <td><code>\T</code></td> <td>Print an asterisk (<code>*</code>) if the current session is inside a transaction block</td> </tr><tr> <td><code>\t</code></td> <td>A tab character</td> </tr><tr> <td><code>\U</code></td> <td><p> Your full <code><code>user_name</code>@<code>host_name</code></code> account name </p></td> </tr><tr> <td><code>\u</code></td> <td>Your user name</td> </tr><tr> <td><code>\v</code></td> <td>The server version</td> </tr><tr> <td><code>\w</code></td> <td>The current day of the week in three-letter format (Mon, Tue, …)</td> </tr><tr> <td><code>\Y</code></td> <td>The current year, four digits</td> </tr><tr> <td><code>\y</code></td> <td>The current year, two digits</td> </tr><tr> <td><code>_</code></td> <td>A space</td> </tr><tr> <td><code>\ </code></td> <td>A space (a space follows the backslash)</td> </tr><tr> <td><code>\'</code></td> <td>Single quote</td> </tr><tr> <td><code>\"</code></td> <td>Double quote</td> </tr><tr> <td><code>\\</code></td> <td>A literal <code>\</code> backslash character</td> </tr><tr> <td><code>\<code>x</code></code></td> <td><p> <code>x</code>, for any “<code>x</code>” not listed above </p></td> </tr></tbody></table>
 
 You can set the prompt in several ways:
 
@@ -1360,7 +1360,7 @@ You can set the prompt in several ways:
 
   ```
   [mysql]
-  prompt=(\\u@\\h) [\\d]>\\_
+  prompt=(\\u@\\h) [\\d]>_
   ```
 
   In this example, note that the backslashes are doubled. If you set the prompt using the `prompt` option in an option file, it is advisable to double the backslashes when using the special prompt options. There is some overlap in the set of permissible prompt options and the set of special escape sequences that are recognized in option files. (The rules for escape sequences in option files are listed in Section 6.2.2.2, “Using Option Files”.) The overlap may cause you problems if you use single backslashes. For example, `\s` is interpreted as a space rather than as the current seconds value. The following example shows how to define a prompt within an option file to include the current time in `hh:mm:ss>` format:
@@ -1373,8 +1373,8 @@ You can set the prompt in several ways:
 * *Set the prompt interactively.* You can change your prompt interactively by using the `prompt` (or `\R`) command. For example:
 
   ```
-  mysql> prompt (\u@\h) [\d]>\_
-  PROMPT set to '(\u@\h) [\d]>\_'
+  mysql> prompt (\u@\h) [\d]>_
+  PROMPT set to '(\u@\h) [\d]>_'
   (user@host) [database]>
   (user@host) [database]> prompt
   Returning to default PROMPT of mysql>
@@ -1996,29 +1996,29 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 **Table 6.11 mysqladmin Options**
 
-<table frame="box" rules="all" summary="Command-line options available for mysqladmin."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_bind-address">--bind-address</a></td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets can be found</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_connect-timeout">--connect-timeout</a></td> <td>Number of seconds before connection timeout</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_count">--count</a></td> <td>Number of iterations to make for repeated command execution</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_debug-check">--debug-check</a></td> <td>Print debugging information when program exits</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_debug-info">--debug-info</a></td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_default-auth">--default-auth</a></td> <td>Authentication plugin to use</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_default-character-set">--default-character-set</a></td> <td>Specify default character set</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Enable cleartext authentication plugin</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_force">--force</a></td> <td>Continue even if an SQL error occurs</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_no-beep">--no-beep</a></td> <td>Do not beep when errors occur</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_plugin-dir">--plugin-dir</a></td> <td>Directory where plugins are installed</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_relative">--relative</a></td> <td>Show the difference between the current and previous values when used with the --sleep option</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_show-warnings">--show-warnings</a></td> <td>Show warnings after statement execution</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_shutdown-timeout">--shutdown-timeout</a></td> <td>The maximum number of seconds to wait for server shutdown</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_silent">--silent</a></td> <td>Silent mode</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_sleep">--sleep</a></td> <td>Execute commands repeatedly, sleeping for delay seconds in between</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_vertical">--vertical</a></td> <td>Print query output rows vertically (one line per column value)</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_wait">--wait</a></td> <td>If the connection cannot be established, wait and retry instead of aborting</td> </tr><tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for mysqladmin."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--bind-address</td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets can be found</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--connect-timeout</td> <td>Number of seconds before connection timeout</td> </tr><tr><td>--count</td> <td>Number of iterations to make for repeated command execution</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--default-auth</td> <td>Authentication plugin to use</td> </tr><tr><td>--default-character-set</td> <td>Specify default character set</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--force</td> <td>Continue even if an SQL error occurs</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--no-beep</td> <td>Do not beep when errors occur</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--plugin-dir</td> <td>Directory where plugins are installed</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--relative</td> <td>Show the difference between the current and previous values when used with the --sleep option</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--show-warnings</td> <td>Show warnings after statement execution</td> </tr><tr><td>--shutdown-timeout</td> <td>The maximum number of seconds to wait for server shutdown</td> </tr><tr><td>--silent</td> <td>Silent mode</td> </tr><tr><td>--sleep</td> <td>Execute commands repeatedly, sleeping for delay seconds in between</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--vertical</td> <td>Print query output rows vertically (one line per column value)</td> </tr><tr><td>--wait</td> <td>If the connection cannot be established, wait and retry instead of aborting</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
 * `--bind-address=ip_address`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   On a computer having multiple network interfaces, use this option to select which interface to use for connecting to the MySQL server.
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   The directory where character sets are installed. See Section 12.15, “Character Set Configuration”.
 
 * `--compress`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Compress all information sent between the client and the server if possible. See Section 6.2.8, “Connection Compression Control”.
 
@@ -2026,7 +2026,7 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 * `--compression-algorithms=value`
 
-  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code class="literal">uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>
 
   The permitted compression algorithms for connections to the server. The available algorithms are the same as for the `protocol_compression_algorithms` system variable. The default value is `uncompressed`.
 
@@ -2034,19 +2034,19 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 * `--connect-timeout=value`
 
-  <table frame="box" rules="all" summary="Properties for connect-timeout"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-timeout=value</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">43200</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-timeout"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connect-timeout=value</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>43200</code></td> </tr></tbody></table>
 
   The maximum number of seconds before connection timeout. The default value is 43200 (12 hours).
 
 * `--count=N`, `-c N`
 
-  <table frame="box" rules="all" summary="Properties for count"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--count=#</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for count"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--count=#</code></td> </tr></tbody></table>
 
   The number of iterations to make for repeated command execution if the `--sleep` option is given.
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--debug[=debug_options]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">d:t:o,/tmp/mysqladmin.trace</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug[=debug_options]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>d:t:o,/tmp/mysqladmin.trace</code></td> </tr></tbody></table>
 
   Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o,/tmp/mysqladmin.trace`.
 
@@ -2054,7 +2054,7 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 * `--debug-check`
 
-  <table frame="box" rules="all" summary="Properties for debug-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--debug-check</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for debug-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug-check</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Print some debugging information when the program exits.
 
@@ -2062,7 +2062,7 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 * `--debug-info`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>0
 
   Print debugging information and memory and CPU usage statistics when the program exits.
 
@@ -2070,19 +2070,19 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>1
 
   A hint about which client-side authentication plugin to use. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--default-character-set=charset_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>2
 
   Use *`charset_name`* as the default character set. See Section 12.15, “Character Set Configuration”.
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>3
 
   Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -2090,7 +2090,7 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>4
 
   Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -2100,7 +2100,7 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>5
 
   Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysqladmin** normally reads the `[client]` and `[mysqladmin]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysqladmin** also reads the `[client_other]` and `[mysqladmin_other]` groups.
 
@@ -2108,19 +2108,19 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 * `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>6
 
   Enable the `mysql_clear_password` cleartext authentication plugin. (See Section 8.4.1.3, “Client-Side Cleartext Pluggable Authentication”.)
 
 * `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>7
 
   Do not ask for confirmation for the `drop db_name` command. With multiple commands, continue even if an error occurs.
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>8
 
   Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -2130,21 +2130,21 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>9
 
   Connect to the MySQL server on the given host.
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>0
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>1
 
   Skips reading options from the login path file.
 
@@ -2154,23 +2154,23 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 * `--no-beep`, `-b`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>2
 
   Suppress the warning beep that is emitted by default for errors such as a failure to connect to the server.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>3
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
-  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>4
 
   The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqladmin** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -2198,25 +2198,25 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>5
 
   On Windows, connect to the server using a named pipe. This option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>6
 
   The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysqladmin** does not find it. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>7
 
   For TCP/IP connections, the port number to use.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>8
 
   Print the program name and all options that it gets from option files.
 
@@ -2224,19 +2224,19 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>9
 
   The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 6.2.7, “Connection Transport Protocols”.
 
 * `--relative`, `-r`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>0
 
   Show the difference between the current and previous values when used with the `--sleep` option. This option works only with the `extended-status` command.
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>1
 
   The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -2248,7 +2248,7 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 * `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>2
 
   On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
 
@@ -2256,31 +2256,31 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 * `--show-warnings`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>3
 
   Show warnings resulting from execution of statements sent to the server.
 
 * `--shutdown-timeout=value`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>4
 
   The maximum number of seconds to wait for server shutdown. The default value is 3600 (1 hour).
 
 * `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>5
 
   Exit silently if a connection to the server cannot be established.
 
 * `--sleep=delay`, `-i delay`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>6
 
   Execute commands repeatedly, sleeping for *`delay`* seconds in between. The `--count` option determines the number of iterations. If `--count` is not given, **mysqladmin** executes commands indefinitely until interrupted.
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>7
 
   For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
 
@@ -2292,7 +2292,7 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 * `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>8
 
   Controls whether to enable FIPS mode on the client side. The `--ssl-fips-mode` option differs from other `--ssl-xxx` options in that it is not used to establish encrypted connections, but rather to affect which cryptographic operations to permit. See Section 8.8, “FIPS Support”.
 
@@ -2310,13 +2310,13 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>9
 
   The permissible ciphersuites for encrypted connections that use TLSv1.3. The value is a list of one or more colon-separated ciphersuite names. The ciphersuites that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--tls-sni-servername=server_name`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>0
 
   When specified, the name is passed to the `libmysqlclient` C API library using the `MYSQL_OPT_TLS_SNI_SERVERNAME` option of `mysql_options()`. The server name is not case-sensitive. To show which server name the client specified for the current session, if any, check the `Tls_sni_server_name` status variable.
 
@@ -2324,13 +2324,13 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>1
 
   The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>2
 
   The user name of the MySQL account to use for connecting to the server.
 
@@ -2338,31 +2338,31 @@ If you execute **mysqladmin shutdown** when connecting to a local server using a
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>3
 
   Verbose mode. Print more information about what the program does.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>4
 
   Display version information and exit.
 
 * `--vertical`, `-E`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>5
 
   Print output vertically. This is similar to `--relative`, but prints output vertically.
 
 * `--wait[=count]`, `-w[count]`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>6
 
   If the connection cannot be established, wait and retry instead of aborting. If a *`count`* value is given, it indicates the number of times to retry. The default is one time.
 
 * `--zstd-compression-level=level`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>7
 
   The compression level to use for connections to the server that use the `zstd` compression algorithm. The permitted levels are from 1 to 22, with larger values indicating increasing levels of compression. The default `zstd` compression level is 3. The compression level setting has no effect on connections that do not use `zstd` compression.
 
@@ -2407,77 +2407,77 @@ If you do not name any tables following *`db_name`* or if you use the `--databas
 
 The names shown in the following table can be used to change **mysqlcheck** default behavior.
 
-<table summary="Command names that can be used to change mysqlcheck default behavior."><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Command</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><span class="command"><strong>mysqlrepair</strong></span></td> <td>The default option is <a class="link" href="mysqlcheck.html#option_mysqlcheck_repair"><code class="option">--repair</code></a></td> </tr><tr> <td><span class="command"><strong>mysqlanalyze</strong></span></td> <td>The default option is <a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze"><code class="option">--analyze</code></a></td> </tr><tr> <td><span class="command"><strong>mysqloptimize</strong></span></td> <td>The default option is <a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize"><code class="option">--optimize</code></a></td> </tr></tbody></table>
+<table summary="Command names that can be used to change mysqlcheck default behavior."><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Command</th> <th>Meaning</th> </tr></thead><tbody><tr> <td>mysqlrepair</td> <td>The default option is <code>--repair</code></td> </tr><tr> <td>mysqlanalyze</td> <td>The default option is <code>--analyze</code></td> </tr><tr> <td>mysqloptimize</td> <td>The default option is <code>--optimize</code></td> </tr></tbody></table>
 
 **mysqlcheck** supports the following options, which can be specified on the command line or in the `[mysqlcheck]` and `[client]` groups of an option file. For information about option files used by MySQL programs, see Section 6.2.2.2, “Using Option Files”.
 
 **Table 6.12 mysqlcheck Options**
 
-<table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Check all tables in all databases</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analyze the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets are installed</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Check the tables for errors</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Check only tables that have changed since the last check</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interpret all arguments as database names</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Print debugging information when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Specify default character set</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Enable cleartext authentication plugin</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extended</a></td> <td>Check and repair tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--fast</a></td> <td>Check only tables that have not been closed properly</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></td> <td>Continue even if an SQL error occurs</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">--optimize</a></td> <td>Optimize the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--quick</a></td> <td>The fastest method of checking</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--repair</a></td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silent</a></td> <td>Silent mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></td> <td>Omit this database from performed operations</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--tables</a></td> <td>Overrides the --databases or -B option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></td> <td>For repair operations on MyISAM tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--all-databases</td> <td>Check all tables in all databases</td> </tr><tr><td>--all-in-1</td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td>--analyze</td> <td>Analyze the tables</td> </tr><tr><td>--auto-repair</td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td>--bind-address</td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets are installed</td> </tr><tr><td>--check</td> <td>Check the tables for errors</td> </tr><tr><td>--check-only-changed</td> <td>Check only tables that have changed since the last check</td> </tr><tr><td>--check-upgrade</td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--databases</td> <td>Interpret all arguments as database names</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--default-character-set</td> <td>Specify default character set</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--extended</td> <td>Check and repair tables</td> </tr><tr><td>--fast</td> <td>Check only tables that have not been closed properly</td> </tr><tr><td>--force</td> <td>Continue even if an SQL error occurs</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--medium-check</td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--optimize</td> <td>Optimize the tables</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--quick</td> <td>The fastest method of checking</td> </tr><tr><td>--repair</td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--silent</td> <td>Silent mode</td> </tr><tr><td>--skip-database</td> <td>Omit this database from performed operations</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tables</td> <td>Overrides the --databases or -B option</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--use-frm</td> <td>For repair operations on MyISAM tables</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--write-binlog</td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
 * `--all-databases`, `-A`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>
 
   Check all tables in all databases. This is the same as using the `--databases` option and naming all the databases on the command line, except that the `INFORMATION_SCHEMA` and `performance_schema` databases are not checked. They can be checked by explicitly naming them with the `--databases` option.
 
 * `--all-in-1`, `-1`
 
-  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-in-1</code></td> </tr></tbody></table>
 
   Instead of issuing a statement for each table, execute a single statement for each database that names all the tables from that database to be processed.
 
 * `--analyze`, `-a`
 
-  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--analyze</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--analyze</code></td> </tr></tbody></table>
 
   Analyze the tables.
 
 * `--auto-repair`
 
-  <table frame="box" rules="all" summary="Properties for auto-repair"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-repair</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for auto-repair"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-repair</code></td> </tr></tbody></table>
 
   If a checked table is corrupted, automatically fix it. Any necessary repairs are done after all tables have been checked.
 
 * `--bind-address=ip_address`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   On a computer having multiple network interfaces, use this option to select which interface to use for connecting to the MySQL server.
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   The directory where character sets are installed. See Section 12.15, “Character Set Configuration”.
 
 * `--check`, `-c`
 
-  <table frame="box" rules="all" summary="Properties for check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--check</code></td> </tr></tbody></table>
 
   Check the tables for errors. This is the default operation.
 
 * `--check-only-changed`, `-C`
 
-  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Check all tables in all databases</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analyze the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets are installed</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Check the tables for errors</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Check only tables that have changed since the last check</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interpret all arguments as database names</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Print debugging information when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Specify default character set</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Enable cleartext authentication plugin</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extended</a></td> <td>Check and repair tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--fast</a></td> <td>Check only tables that have not been closed properly</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></td> <td>Continue even if an SQL error occurs</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">--optimize</a></td> <td>Optimize the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--quick</a></td> <td>The fastest method of checking</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--repair</a></td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silent</a></td> <td>Silent mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></td> <td>Omit this database from performed operations</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--tables</a></td> <td>Overrides the --databases or -B option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></td> <td>For repair operations on MyISAM tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--all-databases</td> <td>Check all tables in all databases</td> </tr><tr><td>--all-in-1</td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td>--analyze</td> <td>Analyze the tables</td> </tr><tr><td>--auto-repair</td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td>--bind-address</td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets are installed</td> </tr><tr><td>--check</td> <td>Check the tables for errors</td> </tr><tr><td>--check-only-changed</td> <td>Check only tables that have changed since the last check</td> </tr><tr><td>--check-upgrade</td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--databases</td> <td>Interpret all arguments as database names</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--default-character-set</td> <td>Specify default character set</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--extended</td> <td>Check and repair tables</td> </tr><tr><td>--fast</td> <td>Check only tables that have not been closed properly</td> </tr><tr><td>--force</td> <td>Continue even if an SQL error occurs</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--medium-check</td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--optimize</td> <td>Optimize the tables</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--quick</td> <td>The fastest method of checking</td> </tr><tr><td>--repair</td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--silent</td> <td>Silent mode</td> </tr><tr><td>--skip-database</td> <td>Omit this database from performed operations</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tables</td> <td>Overrides the --databases or -B option</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--use-frm</td> <td>For repair operations on MyISAM tables</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--write-binlog</td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>0
 
   Check only tables that have changed since the last check or that have not been closed properly.
 
 * `--check-upgrade`, `-g`
 
-  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Check all tables in all databases</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analyze the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets are installed</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Check the tables for errors</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Check only tables that have changed since the last check</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interpret all arguments as database names</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Print debugging information when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Specify default character set</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Enable cleartext authentication plugin</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extended</a></td> <td>Check and repair tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--fast</a></td> <td>Check only tables that have not been closed properly</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></td> <td>Continue even if an SQL error occurs</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">--optimize</a></td> <td>Optimize the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--quick</a></td> <td>The fastest method of checking</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--repair</a></td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silent</a></td> <td>Silent mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></td> <td>Omit this database from performed operations</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--tables</a></td> <td>Overrides the --databases or -B option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></td> <td>For repair operations on MyISAM tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--all-databases</td> <td>Check all tables in all databases</td> </tr><tr><td>--all-in-1</td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td>--analyze</td> <td>Analyze the tables</td> </tr><tr><td>--auto-repair</td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td>--bind-address</td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets are installed</td> </tr><tr><td>--check</td> <td>Check the tables for errors</td> </tr><tr><td>--check-only-changed</td> <td>Check only tables that have changed since the last check</td> </tr><tr><td>--check-upgrade</td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--databases</td> <td>Interpret all arguments as database names</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--default-character-set</td> <td>Specify default character set</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--extended</td> <td>Check and repair tables</td> </tr><tr><td>--fast</td> <td>Check only tables that have not been closed properly</td> </tr><tr><td>--force</td> <td>Continue even if an SQL error occurs</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--medium-check</td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--optimize</td> <td>Optimize the tables</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--quick</td> <td>The fastest method of checking</td> </tr><tr><td>--repair</td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--silent</td> <td>Silent mode</td> </tr><tr><td>--skip-database</td> <td>Omit this database from performed operations</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tables</td> <td>Overrides the --databases or -B option</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--use-frm</td> <td>For repair operations on MyISAM tables</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--write-binlog</td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>1
 
   Invoke `CHECK TABLE` with the `FOR UPGRADE` option to check tables for incompatibilities with the current version of the server.
 
 * `--compress`
 
-  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Check all tables in all databases</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analyze the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets are installed</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Check the tables for errors</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Check only tables that have changed since the last check</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interpret all arguments as database names</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Print debugging information when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Specify default character set</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Enable cleartext authentication plugin</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extended</a></td> <td>Check and repair tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--fast</a></td> <td>Check only tables that have not been closed properly</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></td> <td>Continue even if an SQL error occurs</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">--optimize</a></td> <td>Optimize the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--quick</a></td> <td>The fastest method of checking</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--repair</a></td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silent</a></td> <td>Silent mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></td> <td>Omit this database from performed operations</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--tables</a></td> <td>Overrides the --databases or -B option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></td> <td>For repair operations on MyISAM tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--all-databases</td> <td>Check all tables in all databases</td> </tr><tr><td>--all-in-1</td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td>--analyze</td> <td>Analyze the tables</td> </tr><tr><td>--auto-repair</td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td>--bind-address</td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets are installed</td> </tr><tr><td>--check</td> <td>Check the tables for errors</td> </tr><tr><td>--check-only-changed</td> <td>Check only tables that have changed since the last check</td> </tr><tr><td>--check-upgrade</td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--databases</td> <td>Interpret all arguments as database names</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--default-character-set</td> <td>Specify default character set</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--extended</td> <td>Check and repair tables</td> </tr><tr><td>--fast</td> <td>Check only tables that have not been closed properly</td> </tr><tr><td>--force</td> <td>Continue even if an SQL error occurs</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--medium-check</td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--optimize</td> <td>Optimize the tables</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--quick</td> <td>The fastest method of checking</td> </tr><tr><td>--repair</td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--silent</td> <td>Silent mode</td> </tr><tr><td>--skip-database</td> <td>Omit this database from performed operations</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tables</td> <td>Overrides the --databases or -B option</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--use-frm</td> <td>For repair operations on MyISAM tables</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--write-binlog</td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>2
 
   Compress all information sent between the client and the server if possible. See Section 6.2.8, “Connection Compression Control”.
 
@@ -2485,7 +2485,7 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--compression-algorithms=value`
 
-  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Check all tables in all databases</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analyze the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets are installed</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Check the tables for errors</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Check only tables that have changed since the last check</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interpret all arguments as database names</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Print debugging information when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Specify default character set</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Enable cleartext authentication plugin</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extended</a></td> <td>Check and repair tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--fast</a></td> <td>Check only tables that have not been closed properly</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></td> <td>Continue even if an SQL error occurs</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">--optimize</a></td> <td>Optimize the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--quick</a></td> <td>The fastest method of checking</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--repair</a></td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silent</a></td> <td>Silent mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></td> <td>Omit this database from performed operations</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--tables</a></td> <td>Overrides the --databases or -B option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></td> <td>For repair operations on MyISAM tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--all-databases</td> <td>Check all tables in all databases</td> </tr><tr><td>--all-in-1</td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td>--analyze</td> <td>Analyze the tables</td> </tr><tr><td>--auto-repair</td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td>--bind-address</td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets are installed</td> </tr><tr><td>--check</td> <td>Check the tables for errors</td> </tr><tr><td>--check-only-changed</td> <td>Check only tables that have changed since the last check</td> </tr><tr><td>--check-upgrade</td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--databases</td> <td>Interpret all arguments as database names</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--default-character-set</td> <td>Specify default character set</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--extended</td> <td>Check and repair tables</td> </tr><tr><td>--fast</td> <td>Check only tables that have not been closed properly</td> </tr><tr><td>--force</td> <td>Continue even if an SQL error occurs</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--medium-check</td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--optimize</td> <td>Optimize the tables</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--quick</td> <td>The fastest method of checking</td> </tr><tr><td>--repair</td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--silent</td> <td>Silent mode</td> </tr><tr><td>--skip-database</td> <td>Omit this database from performed operations</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tables</td> <td>Overrides the --databases or -B option</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--use-frm</td> <td>For repair operations on MyISAM tables</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--write-binlog</td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>3
 
   The permitted compression algorithms for connections to the server. The available algorithms are the same as for the `protocol_compression_algorithms` system variable. The default value is `uncompressed`.
 
@@ -2493,13 +2493,13 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--databases`, `-B`
 
-  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Check all tables in all databases</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analyze the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets are installed</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Check the tables for errors</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Check only tables that have changed since the last check</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interpret all arguments as database names</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Print debugging information when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Specify default character set</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Enable cleartext authentication plugin</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extended</a></td> <td>Check and repair tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--fast</a></td> <td>Check only tables that have not been closed properly</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></td> <td>Continue even if an SQL error occurs</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">--optimize</a></td> <td>Optimize the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--quick</a></td> <td>The fastest method of checking</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--repair</a></td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silent</a></td> <td>Silent mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></td> <td>Omit this database from performed operations</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--tables</a></td> <td>Overrides the --databases or -B option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></td> <td>For repair operations on MyISAM tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--all-databases</td> <td>Check all tables in all databases</td> </tr><tr><td>--all-in-1</td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td>--analyze</td> <td>Analyze the tables</td> </tr><tr><td>--auto-repair</td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td>--bind-address</td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets are installed</td> </tr><tr><td>--check</td> <td>Check the tables for errors</td> </tr><tr><td>--check-only-changed</td> <td>Check only tables that have changed since the last check</td> </tr><tr><td>--check-upgrade</td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--databases</td> <td>Interpret all arguments as database names</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--default-character-set</td> <td>Specify default character set</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--extended</td> <td>Check and repair tables</td> </tr><tr><td>--fast</td> <td>Check only tables that have not been closed properly</td> </tr><tr><td>--force</td> <td>Continue even if an SQL error occurs</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--medium-check</td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--optimize</td> <td>Optimize the tables</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--quick</td> <td>The fastest method of checking</td> </tr><tr><td>--repair</td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--silent</td> <td>Silent mode</td> </tr><tr><td>--skip-database</td> <td>Omit this database from performed operations</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tables</td> <td>Overrides the --databases or -B option</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--use-frm</td> <td>For repair operations on MyISAM tables</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--write-binlog</td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>4
 
   Process all tables in the named databases. Normally, **mysqlcheck** treats the first name argument on the command line as a database name and any following names as table names. With this option, it treats all name arguments as database names.
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Check all tables in all databases</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analyze the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets are installed</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Check the tables for errors</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Check only tables that have changed since the last check</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interpret all arguments as database names</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Print debugging information when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Specify default character set</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Enable cleartext authentication plugin</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extended</a></td> <td>Check and repair tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--fast</a></td> <td>Check only tables that have not been closed properly</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></td> <td>Continue even if an SQL error occurs</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">--optimize</a></td> <td>Optimize the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--quick</a></td> <td>The fastest method of checking</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--repair</a></td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silent</a></td> <td>Silent mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></td> <td>Omit this database from performed operations</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--tables</a></td> <td>Overrides the --databases or -B option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></td> <td>For repair operations on MyISAM tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--all-databases</td> <td>Check all tables in all databases</td> </tr><tr><td>--all-in-1</td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td>--analyze</td> <td>Analyze the tables</td> </tr><tr><td>--auto-repair</td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td>--bind-address</td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets are installed</td> </tr><tr><td>--check</td> <td>Check the tables for errors</td> </tr><tr><td>--check-only-changed</td> <td>Check only tables that have changed since the last check</td> </tr><tr><td>--check-upgrade</td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--databases</td> <td>Interpret all arguments as database names</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--default-character-set</td> <td>Specify default character set</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--extended</td> <td>Check and repair tables</td> </tr><tr><td>--fast</td> <td>Check only tables that have not been closed properly</td> </tr><tr><td>--force</td> <td>Continue even if an SQL error occurs</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--medium-check</td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--optimize</td> <td>Optimize the tables</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--quick</td> <td>The fastest method of checking</td> </tr><tr><td>--repair</td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--silent</td> <td>Silent mode</td> </tr><tr><td>--skip-database</td> <td>Omit this database from performed operations</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tables</td> <td>Overrides the --databases or -B option</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--use-frm</td> <td>For repair operations on MyISAM tables</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--write-binlog</td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>5
 
   Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o`.
 
@@ -2507,7 +2507,7 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--debug-check`
 
-  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Check all tables in all databases</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analyze the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets are installed</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Check the tables for errors</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Check only tables that have changed since the last check</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interpret all arguments as database names</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Print debugging information when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Specify default character set</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Enable cleartext authentication plugin</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extended</a></td> <td>Check and repair tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--fast</a></td> <td>Check only tables that have not been closed properly</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></td> <td>Continue even if an SQL error occurs</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">--optimize</a></td> <td>Optimize the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--quick</a></td> <td>The fastest method of checking</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--repair</a></td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silent</a></td> <td>Silent mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></td> <td>Omit this database from performed operations</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--tables</a></td> <td>Overrides the --databases or -B option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></td> <td>For repair operations on MyISAM tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--all-databases</td> <td>Check all tables in all databases</td> </tr><tr><td>--all-in-1</td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td>--analyze</td> <td>Analyze the tables</td> </tr><tr><td>--auto-repair</td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td>--bind-address</td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets are installed</td> </tr><tr><td>--check</td> <td>Check the tables for errors</td> </tr><tr><td>--check-only-changed</td> <td>Check only tables that have changed since the last check</td> </tr><tr><td>--check-upgrade</td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--databases</td> <td>Interpret all arguments as database names</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--default-character-set</td> <td>Specify default character set</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--extended</td> <td>Check and repair tables</td> </tr><tr><td>--fast</td> <td>Check only tables that have not been closed properly</td> </tr><tr><td>--force</td> <td>Continue even if an SQL error occurs</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--medium-check</td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--optimize</td> <td>Optimize the tables</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--quick</td> <td>The fastest method of checking</td> </tr><tr><td>--repair</td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--silent</td> <td>Silent mode</td> </tr><tr><td>--skip-database</td> <td>Omit this database from performed operations</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tables</td> <td>Overrides the --databases or -B option</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--use-frm</td> <td>For repair operations on MyISAM tables</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--write-binlog</td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>6
 
   Print some debugging information when the program exits.
 
@@ -2515,7 +2515,7 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--debug-info`
 
-  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Check all tables in all databases</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analyze the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets are installed</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Check the tables for errors</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Check only tables that have changed since the last check</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interpret all arguments as database names</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Print debugging information when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Specify default character set</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Enable cleartext authentication plugin</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extended</a></td> <td>Check and repair tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--fast</a></td> <td>Check only tables that have not been closed properly</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></td> <td>Continue even if an SQL error occurs</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">--optimize</a></td> <td>Optimize the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--quick</a></td> <td>The fastest method of checking</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--repair</a></td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silent</a></td> <td>Silent mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></td> <td>Omit this database from performed operations</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--tables</a></td> <td>Overrides the --databases or -B option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></td> <td>For repair operations on MyISAM tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--all-databases</td> <td>Check all tables in all databases</td> </tr><tr><td>--all-in-1</td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td>--analyze</td> <td>Analyze the tables</td> </tr><tr><td>--auto-repair</td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td>--bind-address</td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets are installed</td> </tr><tr><td>--check</td> <td>Check the tables for errors</td> </tr><tr><td>--check-only-changed</td> <td>Check only tables that have changed since the last check</td> </tr><tr><td>--check-upgrade</td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--databases</td> <td>Interpret all arguments as database names</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--default-character-set</td> <td>Specify default character set</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--extended</td> <td>Check and repair tables</td> </tr><tr><td>--fast</td> <td>Check only tables that have not been closed properly</td> </tr><tr><td>--force</td> <td>Continue even if an SQL error occurs</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--medium-check</td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--optimize</td> <td>Optimize the tables</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--quick</td> <td>The fastest method of checking</td> </tr><tr><td>--repair</td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--silent</td> <td>Silent mode</td> </tr><tr><td>--skip-database</td> <td>Omit this database from performed operations</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tables</td> <td>Overrides the --databases or -B option</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--use-frm</td> <td>For repair operations on MyISAM tables</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--write-binlog</td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>7
 
   Print debugging information and memory and CPU usage statistics when the program exits.
 
@@ -2523,13 +2523,13 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--default-character-set=charset_name`
 
-  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Check all tables in all databases</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analyze the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets are installed</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Check the tables for errors</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Check only tables that have changed since the last check</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interpret all arguments as database names</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Print debugging information when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Specify default character set</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Enable cleartext authentication plugin</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extended</a></td> <td>Check and repair tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--fast</a></td> <td>Check only tables that have not been closed properly</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></td> <td>Continue even if an SQL error occurs</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">--optimize</a></td> <td>Optimize the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--quick</a></td> <td>The fastest method of checking</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--repair</a></td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silent</a></td> <td>Silent mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></td> <td>Omit this database from performed operations</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--tables</a></td> <td>Overrides the --databases or -B option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></td> <td>For repair operations on MyISAM tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--all-databases</td> <td>Check all tables in all databases</td> </tr><tr><td>--all-in-1</td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td>--analyze</td> <td>Analyze the tables</td> </tr><tr><td>--auto-repair</td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td>--bind-address</td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets are installed</td> </tr><tr><td>--check</td> <td>Check the tables for errors</td> </tr><tr><td>--check-only-changed</td> <td>Check only tables that have changed since the last check</td> </tr><tr><td>--check-upgrade</td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--databases</td> <td>Interpret all arguments as database names</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--default-character-set</td> <td>Specify default character set</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--extended</td> <td>Check and repair tables</td> </tr><tr><td>--fast</td> <td>Check only tables that have not been closed properly</td> </tr><tr><td>--force</td> <td>Continue even if an SQL error occurs</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--medium-check</td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--optimize</td> <td>Optimize the tables</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--quick</td> <td>The fastest method of checking</td> </tr><tr><td>--repair</td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--silent</td> <td>Silent mode</td> </tr><tr><td>--skip-database</td> <td>Omit this database from performed operations</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tables</td> <td>Overrides the --databases or -B option</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--use-frm</td> <td>For repair operations on MyISAM tables</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--write-binlog</td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>8
 
   Use *`charset_name`* as the default character set. See Section 12.15, “Character Set Configuration”.
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Check all tables in all databases</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analyze the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets are installed</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Check the tables for errors</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Check only tables that have changed since the last check</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interpret all arguments as database names</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Print debugging information when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Specify default character set</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Enable cleartext authentication plugin</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_extended">--extended</a></td> <td>Check and repair tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_fast">--fast</a></td> <td>Check only tables that have not been closed properly</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_force">--force</a></td> <td>Continue even if an SQL error occurs</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_medium-check">--medium-check</a></td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize">--optimize</a></td> <td>Optimize the tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_quick">--quick</a></td> <td>The fastest method of checking</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_repair">--repair</a></td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_silent">--silent</a></td> <td>Silent mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_skip-database">--skip-database</a></td> <td>Omit this database from performed operations</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tables">--tables</a></td> <td>Overrides the --databases or -B option</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_use-frm">--use-frm</a></td> <td>For repair operations on MyISAM tables</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_write-binlog">--write-binlog</a></td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Command-line options available for mysqlcheck."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--all-databases</td> <td>Check all tables in all databases</td> </tr><tr><td>--all-in-1</td> <td>Execute a single statement for each database that names all the tables from that database</td> </tr><tr><td>--analyze</td> <td>Analyze the tables</td> </tr><tr><td>--auto-repair</td> <td>If a checked table is corrupted, automatically fix it</td> </tr><tr><td>--bind-address</td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets are installed</td> </tr><tr><td>--check</td> <td>Check the tables for errors</td> </tr><tr><td>--check-only-changed</td> <td>Check only tables that have changed since the last check</td> </tr><tr><td>--check-upgrade</td> <td>Invoke CHECK TABLE with the FOR UPGRADE option</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--databases</td> <td>Interpret all arguments as database names</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--default-character-set</td> <td>Specify default character set</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--extended</td> <td>Check and repair tables</td> </tr><tr><td>--fast</td> <td>Check only tables that have not been closed properly</td> </tr><tr><td>--force</td> <td>Continue even if an SQL error occurs</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--medium-check</td> <td>Do a check that is faster than an --extended operation</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--optimize</td> <td>Optimize the tables</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--quick</td> <td>The fastest method of checking</td> </tr><tr><td>--repair</td> <td>Perform a repair that can fix almost anything except unique keys that are not unique</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--silent</td> <td>Silent mode</td> </tr><tr><td>--skip-database</td> <td>Omit this database from performed operations</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tables</td> <td>Overrides the --databases or -B option</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--use-frm</td> <td>For repair operations on MyISAM tables</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--write-binlog</td> <td>Log ANALYZE, OPTIMIZE, REPAIR statements to binary log. --skip-write-binlog adds NO_WRITE_TO_BINLOG to these statements</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>9
 
   Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -2537,7 +2537,7 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>0
 
   Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -2547,7 +2547,7 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>1
 
   Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysqlcheck** normally reads the `[client]` and `[mysqlcheck]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysqlcheck** also reads the `[client_other]` and `[mysqlcheck_other]` groups.
 
@@ -2555,7 +2555,7 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--extended`, `-e`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>2
 
   If you are using this option to check tables, it ensures that they are 100% consistent but takes a long time.
 
@@ -2563,31 +2563,31 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>3
 
   A hint about which client-side authentication plugin to use. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>4
 
   Enable the `mysql_clear_password` cleartext authentication plugin. (See Section 8.4.1.3, “Client-Side Cleartext Pluggable Authentication”.)
 
 * `--fast`, `-F`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>5
 
   Check only tables that have not been closed properly.
 
 * `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>6
 
   Continue even if an SQL error occurs.
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>7
 
   Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -2597,21 +2597,21 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>8
 
   Connect to the MySQL server on the given host.
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>9
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>0
 
   Skips reading options from the login path file.
 
@@ -2621,29 +2621,29 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--medium-check`, `-m`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>1
 
   Do a check that is faster than an `--extended` operation. This finds only 99.99% of all errors, which should be good enough in most cases.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>2
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
-  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--optimize`, `-o`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>3
 
   Optimize the tables.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>4
 
   The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqlcheck** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -2671,25 +2671,25 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>5
 
   On Windows, connect to the server using a named pipe. This option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>6
 
   The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysqlcheck** does not find it. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>7
 
   For TCP/IP connections, the port number to use.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>8
 
   Print the program name and all options that it gets from option files.
 
@@ -2697,13 +2697,13 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for all-databases"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-databases</code></td> </tr></tbody></table>9
 
   The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 6.2.7, “Connection Transport Protocols”.
 
 * `--quick`, `-q`
 
-  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-in-1</code></td> </tr></tbody></table>0
 
   If you are using this option to check tables, it prevents the check from scanning the rows to check for incorrect links. This is the fastest check method.
 
@@ -2711,13 +2711,13 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--repair`, `-r`
 
-  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-in-1</code></td> </tr></tbody></table>1
 
   Perform a repair that can fix almost anything except unique keys that are not unique.
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-in-1</code></td> </tr></tbody></table>2
 
   The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -2729,7 +2729,7 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-in-1</code></td> </tr></tbody></table>3
 
   On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
 
@@ -2737,19 +2737,19 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-in-1</code></td> </tr></tbody></table>4
 
   Silent mode. Print only error messages.
 
 * `--skip-database=db_name`
 
-  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-in-1</code></td> </tr></tbody></table>5
 
   Do not include the named database (case-sensitive) in the operations performed by **mysqlcheck**.
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-in-1</code></td> </tr></tbody></table>6
 
   For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
 
@@ -2761,7 +2761,7 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-in-1</code></td> </tr></tbody></table>7
 
   Controls whether to enable FIPS mode on the client side. The `--ssl-fips-mode` option differs from other `--ssl-xxx` options in that it is not used to establish encrypted connections, but rather to affect which cryptographic operations to permit. See Section 8.8, “FIPS Support”.
 
@@ -2779,19 +2779,19 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--tables`
 
-  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-in-1</code></td> </tr></tbody></table>8
 
   Override the `--databases` or `-B` option. All name arguments following the option are regarded as table names.
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--all-in-1</code></td> </tr></tbody></table>9
 
   The permissible ciphersuites for encrypted connections that use TLSv1.3. The value is a list of one or more colon-separated ciphersuite names. The ciphersuites that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--tls-sni-servername=server_name`
 
-  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--analyze</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--analyze</code></td> </tr></tbody></table>0
 
   When specified, the name is passed to the `libmysqlclient` C API library using the `MYSQL_OPT_TLS_SNI_SERVERNAME` option of `mysql_options()`. The server name is not case-sensitive. To show which server name the client specified for the current session, if any, check the `Tls_sni_server_name` status variable.
 
@@ -2799,43 +2799,43 @@ The names shown in the following table can be used to change **mysqlcheck** defa
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--analyze</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--analyze</code></td> </tr></tbody></table>1
 
   The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--use-frm`
 
-  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--analyze</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--analyze</code></td> </tr></tbody></table>2
 
   For repair operations on `MyISAM` tables, get the table structure from the data dictionary so that the table can be repaired even if the `.MYI` header is corrupted.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--analyze</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--analyze</code></td> </tr></tbody></table>3
 
   The user name of the MySQL account to use for connecting to the server.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--analyze</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--analyze</code></td> </tr></tbody></table>4
 
   Verbose mode. Print information about the various stages of program operation.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--analyze</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--analyze</code></td> </tr></tbody></table>5
 
   Display version information and exit.
 
 * `--write-binlog`
 
-  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--analyze</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--analyze</code></td> </tr></tbody></table>6
 
   This option is enabled by default, so that `ANALYZE TABLE`, `OPTIMIZE TABLE`, and `REPAIR TABLE` statements generated by **mysqlcheck** are written to the binary log. Use `--skip-write-binlog` to cause `NO_WRITE_TO_BINLOG` to be added to the statements so that they are not logged. Use the `--skip-write-binlog` when these statements should not be sent to replicas or run when using the binary logs for recovery from backup.
 
 * `--zstd-compression-level=level`
 
-  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--analyze</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--analyze</code></td> </tr></tbody></table>7
 
   The compression level to use for connections to the server that use the `zstd` compression algorithm. The permitted levels are from 1 to 22, with larger values indicating increasing levels of compression. The default `zstd` compression level is 3. The compression level setting has no effect on connections that do not use `zstd` compression.
 
@@ -2944,7 +2944,7 @@ To see a list of the options your version of **mysqldump** supports, issue the c
 
 **Table 6.13 mysqldump Options**
 
-<table frame="box" rules="all" summary="Command-line options available for mysqldump."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqldump.html#option_mysqldump_add-drop-database">--add-drop-database</a></td> <td>Add DROP DATABASE statement before each CREATE DATABASE statement</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_add-drop-table">--add-drop-table</a></td> <td>Add DROP TABLE statement before each CREATE TABLE statement</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_add-drop-trigger">--add-drop-trigger</a></td> <td>Add DROP TRIGGER statement before each CREATE TRIGGER statement</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_add-drop-user">--add-drop-user</a></td> <td>Add DROP USER statement before each CREATE USER statement; has no effect if --users is not also specified</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_add-locks">--add-locks</a></td> <td>Surround each table dump with LOCK TABLES and UNLOCK TABLES statements</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_all-databases">--all-databases</a></td> <td>Dump all tables in all databases</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_allow-keywords">--allow-keywords</a></td> <td>Allow creation of column names that are keywords</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_apply-replica-statements">--apply-replica-statements</a></td> <td>Include STOP REPLICA prior to CHANGE REPLICATION SOURCE TO statement and START REPLICA at end of output</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_apply-slave-statements">--apply-slave-statements</a></td> <td>Include STOP SLAVE prior to CHANGE MASTER statement and START SLAVE at end of output</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_bind-address">--bind-address</a></td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets are installed</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_column-statistics">--column-statistics</a></td> <td>Write ANALYZE TABLE statements to generate statistics histograms</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_comments">--comments</a></td> <td>Add comments to dump file</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_compact">--compact</a></td> <td>Produce more compact output</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_compatible">--compatible</a></td> <td>Produce output that is more compatible with other database systems or with older MySQL servers</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_complete-insert">--complete-insert</a></td> <td>Use complete INSERT statements that include column names</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_create-options">--create-options</a></td> <td>Include all MySQL-specific table options in CREATE TABLE statements</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_databases">--databases</a></td> <td>Interpret all name arguments as database names</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_debug-check">--debug-check</a></td> <td>Print debugging information when program exits</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_debug-info">--debug-info</a></td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_default-auth">--default-auth</a></td> <td>Authentication plugin to use</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_default-character-set">--default-character-set</a></td> <td>Specify default character set</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_delete-master-logs">--delete-master-logs</a></td> <td>On a replication source server, delete the binary logs after performing the dump operation</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_delete-source-logs">--delete-source-logs</a></td> <td>On a replication source server, delete the binary logs after performing the dump operation</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_disable-keys">--disable-keys</a></td> <td>For each table, surround INSERT statements with statements to disable and enable keys</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_dump-date">--dump-date</a></td> <td>Include dump date as "Dump completed on" comment if --comments is given</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_dump-replica">--dump-replica</a></td> <td>Include CHANGE REPLICATION SOURCE TO statement that lists binary log coordinates of replica's source</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_dump-slave">--dump-slave</a></td> <td>Include CHANGE MASTER statement that lists binary log coordinates of replica's source</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Enable cleartext authentication plugin</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_events">--events</a></td> <td>Dump events from dumped databases</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_exclude-user">--exclude-user</a></td> <td>Account to exclude, in user@host format. Has no effect if --users is not also specified</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_extended-insert">--extended-insert</a></td> <td>Use multiple-row INSERT syntax</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_fields">--fields-enclosed-by</a></td> <td>This option is used with the --tab option and has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_fields">--fields-escaped-by</a></td> <td>This option is used with the --tab option and has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_fields">--fields-optionally-enclosed-by</a></td> <td>This option is used with the --tab option and has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_fields">--fields-terminated-by</a></td> <td>This option is used with the --tab option and has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_flush-logs">--flush-logs</a></td> <td>Flush MySQL server log files before starting dump</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_flush-privileges">--flush-privileges</a></td> <td>Emit a FLUSH PRIVILEGES statement after dumping mysql database</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_force">--force</a></td> <td>Continue even if an SQL error occurs during a table dump</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_hex-blob">--hex-blob</a></td> <td>Dump binary columns using hexadecimal notation</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_ignore-error">--ignore-error</a></td> <td>Ignore specified errors</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_ignore-table">--ignore-table</a></td> <td>Do not dump given table</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_ignore-views">--ignore-views</a></td> <td>Skip dumping table views</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_include-master-host-port">--include-master-host-port</a></td> <td>Include MASTER_HOST/MASTER_PORT options in CHANGE MASTER statement produced with --dump-slave</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_include-source-host-port">--include-source-host-port</a></td> <td>Include SOURCE_HOST and SOURCE_PORT options in CHANGE REPLICATION SOURCE TO statement produced with --dump-replica</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_include-user">--include-user</a></td> <td>Account to include, in user@host format. Has no effect if --users is not also specified</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_init-command">--init-command</a></td> <td>Single SQL statement to execute after connecting or re-connecting to MySQL server; resets existing defined commands</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_init-command-add">--init-command-add</a></td> <td>Add an additional SQL statement to execute after connecting or re-connecting to MySQL server</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_insert-ignore">--insert-ignore</a></td> <td>Write INSERT IGNORE rather than INSERT statements</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_lines-terminated-by">--lines-terminated-by</a></td> <td>This option is used with the --tab option and has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_lock-all-tables">--lock-all-tables</a></td> <td>Lock all tables across all databases</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_lock-tables">--lock-tables</a></td> <td>Lock all tables before dumping them</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_log-error">--log-error</a></td> <td>Append warnings and errors to named file</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_master-data">--master-data</a></td> <td>Write the binary log file name and position to the output</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_max-allowed-packet">--max-allowed-packet</a></td> <td>Maximum packet length to send to or receive from server</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_mysqld-long-query-time">--mysqld-long-query-time</a></td> <td>Session value for slow query threshold</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_net-buffer-length">--net-buffer-length</a></td> <td>Buffer size for TCP/IP and socket communication</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_network-timeout">--network-timeout</a></td> <td>Increase network timeouts to permit larger table dumps</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_no-autocommit">--no-autocommit</a></td> <td>Enclose the INSERT statements for each dumped table within SET autocommit = 0 and COMMIT statements</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_no-create-db">--no-create-db</a></td> <td>Do not write CREATE DATABASE statements</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_no-create-info">--no-create-info</a></td> <td>Do not write CREATE TABLE statements that re-create each dumped table</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_no-data">--no-data</a></td> <td>Do not dump table contents</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_no-set-names">--no-set-names</a></td> <td>Same as --skip-set-charset</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_no-tablespaces">--no-tablespaces</a></td> <td>Do not write any CREATE LOGFILE GROUP or CREATE TABLESPACE statements in output</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_opt">--opt</a></td> <td>Shorthand for --add-drop-table --add-locks --create-options --disable-keys --extended-insert --lock-tables --quick --set-charset</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_order-by-primary">--order-by-primary</a></td> <td>Dump each table's rows sorted by its primary key, or by its first unique index</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_output-as-version">--output-as-version</a></td> <td>Determines replica and event terminology used in dumps; for compatibility with older versions</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_plugin-authentication-kerberos-client-mode">--plugin-authentication-kerberos-client-mode</a></td> <td>Permit GSSAPI pluggable authentication through the MIT Kerberos library on Windows</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_plugin-dir">--plugin-dir</a></td> <td>Directory where plugins are installed</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_quick">--quick</a></td> <td>Retrieve rows for a table from the server a row at a time</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_quote-names">--quote-names</a></td> <td>Quote identifiers within backtick characters</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_replace">--replace</a></td> <td>Write REPLACE statements rather than INSERT statements</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_result-file">--result-file</a></td> <td>Direct output to a given file</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_routines">--routines</a></td> <td>Dump stored routines (procedures and functions) from dumped databases</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_set-charset">--set-charset</a></td> <td>Add SET NAMES default_character_set to output</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_set-gtid-purged">--set-gtid-purged</a></td> <td>Whether to add SET @@GLOBAL.GTID_PURGED to output</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_show-create-skip-secondary-engine">--show-create-skip-secondary-engine</a></td> <td>Exclude SECONDARY ENGINE clause from CREATE TABLE statements</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_single-transaction">--single-transaction</a></td> <td>Issue a BEGIN SQL statement before dumping data from server</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_add-drop-table">--skip-add-drop-table</a></td> <td>Do not add a DROP TABLE statement before each CREATE TABLE statement</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_add-locks">--skip-add-locks</a></td> <td>Do not add locks</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_skip-comments">--skip-comments</a></td> <td>Do not add comments to dump file</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_compact">--skip-compact</a></td> <td>Do not produce more compact output</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_disable-keys">--skip-disable-keys</a></td> <td>Do not disable keys</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_extended-insert">--skip-extended-insert</a></td> <td>Turn off extended-insert</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_skip-generated-invisible-primary-key">--skip-generated-invisible-primary-key</a></td> <td>Do not include generated invisible primary keys in dump file</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_skip-opt">--skip-opt</a></td> <td>Turn off options set by --opt</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_quick">--skip-quick</a></td> <td>Do not retrieve rows for a table from the server a row at a time</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_quote-names">--skip-quote-names</a></td> <td>Do not quote identifiers</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_set-charset">--skip-set-charset</a></td> <td>Do not write SET NAMES statement</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_triggers">--skip-triggers</a></td> <td>Do not dump triggers</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_tz-utc">--skip-tz-utc</a></td> <td>Turn off tz-utc</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_source-data">--source-data</a></td> <td>Write the binary log file name and position to the output</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_tab">--tab</a></td> <td>Produce tab-separated data files</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_tables">--tables</a></td> <td>Override --databases or -B option</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_triggers">--triggers</a></td> <td>Dump triggers for each dumped table</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_tz-utc">--tz-utc</a></td> <td>Add SET TIME_ZONE='+00:00' to dump file</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_users">--users</a></td> <td>Dump user account information as CREATE USER and GRANT statements</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_where">--where</a></td> <td>Dump only rows selected by given WHERE condition</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_xml">--xml</a></td> <td>Produce XML output</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for mysqldump."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--add-drop-database</td> <td>Add DROP DATABASE statement before each CREATE DATABASE statement</td> </tr><tr><td>--add-drop-table</td> <td>Add DROP TABLE statement before each CREATE TABLE statement</td> </tr><tr><td>--add-drop-trigger</td> <td>Add DROP TRIGGER statement before each CREATE TRIGGER statement</td> </tr><tr><td>--add-drop-user</td> <td>Add DROP USER statement before each CREATE USER statement; has no effect if --users is not also specified</td> </tr><tr><td>--add-locks</td> <td>Surround each table dump with LOCK TABLES and UNLOCK TABLES statements</td> </tr><tr><td>--all-databases</td> <td>Dump all tables in all databases</td> </tr><tr><td>--allow-keywords</td> <td>Allow creation of column names that are keywords</td> </tr><tr><td>--apply-replica-statements</td> <td>Include STOP REPLICA prior to CHANGE REPLICATION SOURCE TO statement and START REPLICA at end of output</td> </tr><tr><td>--apply-slave-statements</td> <td>Include STOP SLAVE prior to CHANGE MASTER statement and START SLAVE at end of output</td> </tr><tr><td>--bind-address</td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets are installed</td> </tr><tr><td>--column-statistics</td> <td>Write ANALYZE TABLE statements to generate statistics histograms</td> </tr><tr><td>--comments</td> <td>Add comments to dump file</td> </tr><tr><td>--compact</td> <td>Produce more compact output</td> </tr><tr><td>--compatible</td> <td>Produce output that is more compatible with other database systems or with older MySQL servers</td> </tr><tr><td>--complete-insert</td> <td>Use complete INSERT statements that include column names</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--create-options</td> <td>Include all MySQL-specific table options in CREATE TABLE statements</td> </tr><tr><td>--databases</td> <td>Interpret all name arguments as database names</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--default-auth</td> <td>Authentication plugin to use</td> </tr><tr><td>--default-character-set</td> <td>Specify default character set</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--delete-master-logs</td> <td>On a replication source server, delete the binary logs after performing the dump operation</td> </tr><tr><td>--delete-source-logs</td> <td>On a replication source server, delete the binary logs after performing the dump operation</td> </tr><tr><td>--disable-keys</td> <td>For each table, surround INSERT statements with statements to disable and enable keys</td> </tr><tr><td>--dump-date</td> <td>Include dump date as "Dump completed on" comment if --comments is given</td> </tr><tr><td>--dump-replica</td> <td>Include CHANGE REPLICATION SOURCE TO statement that lists binary log coordinates of replica's source</td> </tr><tr><td>--dump-slave</td> <td>Include CHANGE MASTER statement that lists binary log coordinates of replica's source</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--events</td> <td>Dump events from dumped databases</td> </tr><tr><td>--exclude-user</td> <td>Account to exclude, in user@host format. Has no effect if --users is not also specified</td> </tr><tr><td>--extended-insert</td> <td>Use multiple-row INSERT syntax</td> </tr><tr><td>--fields-enclosed-by</td> <td>This option is used with the --tab option and has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td>--fields-escaped-by</td> <td>This option is used with the --tab option and has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td>--fields-optionally-enclosed-by</td> <td>This option is used with the --tab option and has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td>--fields-terminated-by</td> <td>This option is used with the --tab option and has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td>--flush-logs</td> <td>Flush MySQL server log files before starting dump</td> </tr><tr><td>--flush-privileges</td> <td>Emit a FLUSH PRIVILEGES statement after dumping mysql database</td> </tr><tr><td>--force</td> <td>Continue even if an SQL error occurs during a table dump</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--hex-blob</td> <td>Dump binary columns using hexadecimal notation</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--ignore-error</td> <td>Ignore specified errors</td> </tr><tr><td>--ignore-table</td> <td>Do not dump given table</td> </tr><tr><td>--ignore-views</td> <td>Skip dumping table views</td> </tr><tr><td>--include-master-host-port</td> <td>Include MASTER_HOST/MASTER_PORT options in CHANGE MASTER statement produced with --dump-slave</td> </tr><tr><td>--include-source-host-port</td> <td>Include SOURCE_HOST and SOURCE_PORT options in CHANGE REPLICATION SOURCE TO statement produced with --dump-replica</td> </tr><tr><td>--include-user</td> <td>Account to include, in user@host format. Has no effect if --users is not also specified</td> </tr><tr><td>--init-command</td> <td>Single SQL statement to execute after connecting or re-connecting to MySQL server; resets existing defined commands</td> </tr><tr><td>--init-command-add</td> <td>Add an additional SQL statement to execute after connecting or re-connecting to MySQL server</td> </tr><tr><td>--insert-ignore</td> <td>Write INSERT IGNORE rather than INSERT statements</td> </tr><tr><td>--lines-terminated-by</td> <td>This option is used with the --tab option and has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td>--lock-all-tables</td> <td>Lock all tables across all databases</td> </tr><tr><td>--lock-tables</td> <td>Lock all tables before dumping them</td> </tr><tr><td>--log-error</td> <td>Append warnings and errors to named file</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--master-data</td> <td>Write the binary log file name and position to the output</td> </tr><tr><td>--max-allowed-packet</td> <td>Maximum packet length to send to or receive from server</td> </tr><tr><td>--mysqld-long-query-time</td> <td>Session value for slow query threshold</td> </tr><tr><td>--net-buffer-length</td> <td>Buffer size for TCP/IP and socket communication</td> </tr><tr><td>--network-timeout</td> <td>Increase network timeouts to permit larger table dumps</td> </tr><tr><td>--no-autocommit</td> <td>Enclose the INSERT statements for each dumped table within SET autocommit = 0 and COMMIT statements</td> </tr><tr><td>--no-create-db</td> <td>Do not write CREATE DATABASE statements</td> </tr><tr><td>--no-create-info</td> <td>Do not write CREATE TABLE statements that re-create each dumped table</td> </tr><tr><td>--no-data</td> <td>Do not dump table contents</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--no-set-names</td> <td>Same as --skip-set-charset</td> </tr><tr><td>--no-tablespaces</td> <td>Do not write any CREATE LOGFILE GROUP or CREATE TABLESPACE statements in output</td> </tr><tr><td>--opt</td> <td>Shorthand for --add-drop-table --add-locks --create-options --disable-keys --extended-insert --lock-tables --quick --set-charset</td> </tr><tr><td>--order-by-primary</td> <td>Dump each table's rows sorted by its primary key, or by its first unique index</td> </tr><tr><td>--output-as-version</td> <td>Determines replica and event terminology used in dumps; for compatibility with older versions</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--plugin-authentication-kerberos-client-mode</td> <td>Permit GSSAPI pluggable authentication through the MIT Kerberos library on Windows</td> </tr><tr><td>--plugin-dir</td> <td>Directory where plugins are installed</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--quick</td> <td>Retrieve rows for a table from the server a row at a time</td> </tr><tr><td>--quote-names</td> <td>Quote identifiers within backtick characters</td> </tr><tr><td>--replace</td> <td>Write REPLACE statements rather than INSERT statements</td> </tr><tr><td>--result-file</td> <td>Direct output to a given file</td> </tr><tr><td>--routines</td> <td>Dump stored routines (procedures and functions) from dumped databases</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--set-charset</td> <td>Add SET NAMES default_character_set to output</td> </tr><tr><td>--set-gtid-purged</td> <td>Whether to add SET @@GLOBAL.GTID_PURGED to output</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--show-create-skip-secondary-engine</td> <td>Exclude SECONDARY ENGINE clause from CREATE TABLE statements</td> </tr><tr><td>--single-transaction</td> <td>Issue a BEGIN SQL statement before dumping data from server</td> </tr><tr><td>--skip-add-drop-table</td> <td>Do not add a DROP TABLE statement before each CREATE TABLE statement</td> </tr><tr><td>--skip-add-locks</td> <td>Do not add locks</td> </tr><tr><td>--skip-comments</td> <td>Do not add comments to dump file</td> </tr><tr><td>--skip-compact</td> <td>Do not produce more compact output</td> </tr><tr><td>--skip-disable-keys</td> <td>Do not disable keys</td> </tr><tr><td>--skip-extended-insert</td> <td>Turn off extended-insert</td> </tr><tr><td>--skip-generated-invisible-primary-key</td> <td>Do not include generated invisible primary keys in dump file</td> </tr><tr><td>--skip-opt</td> <td>Turn off options set by --opt</td> </tr><tr><td>--skip-quick</td> <td>Do not retrieve rows for a table from the server a row at a time</td> </tr><tr><td>--skip-quote-names</td> <td>Do not quote identifiers</td> </tr><tr><td>--skip-set-charset</td> <td>Do not write SET NAMES statement</td> </tr><tr><td>--skip-triggers</td> <td>Do not dump triggers</td> </tr><tr><td>--skip-tz-utc</td> <td>Turn off tz-utc</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--source-data</td> <td>Write the binary log file name and position to the output</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tab</td> <td>Produce tab-separated data files</td> </tr><tr><td>--tables</td> <td>Override --databases or -B option</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--triggers</td> <td>Dump triggers for each dumped table</td> </tr><tr><td>--tz-utc</td> <td>Add SET TIME_ZONE='+00:00' to dump file</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--users</td> <td>Dump user account information as CREATE USER and GRANT statements</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--where</td> <td>Dump only rows selected by given WHERE condition</td> </tr><tr><td>--xml</td> <td>Produce XML output</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
 
 #### Connection Options
 
@@ -2952,13 +2952,13 @@ The **mysqldump** command logs into a MySQL server to extract information. The f
 
 * `--bind-address=ip_address`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   On a computer having multiple network interfaces, use this option to select which interface to use for connecting to the MySQL server.
 
 * `--compress`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Compress all information sent between the client and the server if possible. See Section 6.2.8, “Connection Compression Control”.
 
@@ -2966,7 +2966,7 @@ The **mysqldump** command logs into a MySQL server to extract information. The f
 
 * `--compression-algorithms=value`
 
-  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code class="literal">uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>
 
   The permitted compression algorithms for connections to the server. The available algorithms are the same as for the `protocol_compression_algorithms` system variable. The default value is `uncompressed`.
 
@@ -2974,19 +2974,19 @@ The **mysqldump** command logs into a MySQL server to extract information. The f
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   A hint about which client-side authentication plugin to use. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Enable the `mysql_clear_password` cleartext authentication plugin. (See Section 8.4.1.3, “Client-Side Cleartext Pluggable Authentication”.)
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
 
   Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -2996,21 +2996,21 @@ The **mysqldump** command logs into a MySQL server to extract information. The f
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host</code></td> </tr></tbody></table>
 
   Dump data from the MySQL server on the given host. The default host is `localhost`.
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--no-login-paths</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-login-paths</code></td> </tr></tbody></table>
 
   Skips reading options from the login path file.
 
@@ -3020,7 +3020,7 @@ The **mysqldump** command logs into a MySQL server to extract information. The f
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>0
 
   The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqldump** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -3048,13 +3048,13 @@ The **mysqldump** command logs into a MySQL server to extract information. The f
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>1
 
   On Windows, connect to the server using a named pipe. This option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
 
 * `--plugin-authentication-kerberos-client-mode=value`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>2
 
   On Windows, the `authentication_kerberos_client` authentication plugin supports this plugin option. It provides two possible values that the client user can set at runtime: `SSPI` and `GSSAPI`.
 
@@ -3064,25 +3064,25 @@ The **mysqldump** command logs into a MySQL server to extract information. The f
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>3
 
   The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysqldump** does not find it. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>4
 
   For TCP/IP connections, the port number to use.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>5
 
   The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 6.2.7, “Connection Transport Protocols”.
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>6
 
   The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -3094,7 +3094,7 @@ The **mysqldump** command logs into a MySQL server to extract information. The f
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>7
 
   For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
 
@@ -3106,7 +3106,7 @@ The **mysqldump** command logs into a MySQL server to extract information. The f
 
 * `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>8
 
   Controls whether to enable FIPS mode on the client side. The `--ssl-fips-mode` option differs from other `--ssl-xxx` options in that it is not used to establish encrypted connections, but rather to affect which cryptographic operations to permit. See Section 8.8, “FIPS Support”.
 
@@ -3124,13 +3124,13 @@ The **mysqldump** command logs into a MySQL server to extract information. The f
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>9
 
   The permissible ciphersuites for encrypted connections that use TLSv1.3. The value is a list of one or more colon-separated ciphersuite names. The ciphersuites that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--tls-sni-servername=server_name`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>0
 
   When specified, the name is passed to the `libmysqlclient` C API library using the `MYSQL_OPT_TLS_SNI_SERVERNAME` option of `mysql_options()`. The server name is not case-sensitive. To show which server name the client specified for the current session, if any, check the `Tls_sni_server_name` status variable.
 
@@ -3138,13 +3138,13 @@ The **mysqldump** command logs into a MySQL server to extract information. The f
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>1
 
   The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>2
 
   The user name of the MySQL account to use for connecting to the server.
 
@@ -3152,7 +3152,7 @@ The **mysqldump** command logs into a MySQL server to extract information. The f
 
 * `--zstd-compression-level=level`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>3
 
   The compression level to use for connections to the server that use the `zstd` compression algorithm. The permitted levels are from 1 to 22, with larger values indicating increasing levels of compression. The default `zstd` compression level is 3. The compression level setting has no effect on connections that do not use `zstd` compression.
 
@@ -3164,7 +3164,7 @@ These options are used to control which option files to read.
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>4
 
   Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -3172,7 +3172,7 @@ These options are used to control which option files to read.
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>5
 
   Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -3182,7 +3182,7 @@ These options are used to control which option files to read.
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>6
 
   Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysqldump** normally reads the `[client]` and `[mysqldump]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysqldump** also reads the `[client_other]` and `[mysqldump_other]` groups.
 
@@ -3190,17 +3190,17 @@ These options are used to control which option files to read.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>7
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
-  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>8
 
   Print the program name and all options that it gets from option files.
 
@@ -3212,7 +3212,7 @@ Usage scenarios for **mysqldump** include setting up an entire new MySQL instanc
 
 * `--add-drop-database`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>9
 
   Write a `DROP DATABASE` statement before each [`CREATE DATABASE`](create-database.html "15.1.14 CREATE DATABASE Statement") statement. This option is typically used in conjunction with the `--all-databases` or `--databases` option because no `CREATE DATABASE` statements are written unless one of those options is specified.
 
@@ -3224,31 +3224,31 @@ Usage scenarios for **mysqldump** include setting up an entire new MySQL instanc
 
 * `--add-drop-table`
 
-  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code class="literal">uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>0
 
   Write a `DROP TABLE` statement before each `CREATE TABLE` statement.
 
 * `--add-drop-trigger`
 
-  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code class="literal">uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>1
 
   Write a `DROP TRIGGER` statement before each [`CREATE TRIGGER`](create-trigger.html "15.1.26 CREATE TRIGGER Statement") statement.
 
 * `--all-tablespaces`, `-Y`
 
-  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code class="literal">uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>2
 
   Adds to a table dump all SQL statements needed to create any tablespaces used by an `NDB` table. This information is not otherwise included in the output from **mysqldump**. This option is currently relevant only to NDB Cluster tables.
 
 * `--no-create-db`, `-n`
 
-  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code class="literal">uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>3
 
   Suppress the `CREATE DATABASE` statements that are otherwise included in the output if the `--databases` or `--all-databases` option is given.
 
 * `--no-create-info`, `-t`
 
-  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code class="literal">uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>4
 
   Do not write `CREATE TABLE` statements that create each dumped table.
 
@@ -3258,13 +3258,13 @@ Usage scenarios for **mysqldump** include setting up an entire new MySQL instanc
 
 * `--no-tablespaces`, `-y`
 
-  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code class="literal">uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>5
 
   This option suppresses all [`CREATE LOGFILE GROUP`](create-logfile-group.html "15.1.20 CREATE LOGFILE GROUP Statement") and [`CREATE TABLESPACE`](create-tablespace.html "15.1.25 CREATE TABLESPACE Statement") statements in the output of **mysqldump**.
 
 * `--replace`
 
-  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code class="literal">uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>6
 
   Write `REPLACE` statements rather than `INSERT` statements.
 
@@ -3274,19 +3274,19 @@ The following options print debugging information, encode debugging information 
 
 * `--allow-keywords`
 
-  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code class="literal">uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>7
 
   Permit creation of column names that are keywords. This works by prefixing each column name with the table name.
 
 * `--comments`, `-i`
 
-  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code class="literal">uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>8
 
   Write additional information in the dump file such as program version, server version, and host. This option is enabled by default. To suppress this additional information, use `--skip-comments`.
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code class="literal">uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>9
 
   Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default value is `d:t:o,/tmp/mysqldump.trace`.
 
@@ -3294,7 +3294,7 @@ The following options print debugging information, encode debugging information 
 
 * `--debug-check`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>0
 
   Print some debugging information when the program exits.
 
@@ -3302,7 +3302,7 @@ The following options print debugging information, encode debugging information 
 
 * `--debug-info`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>1
 
   Print debugging information and memory and CPU usage statistics when the program exits.
 
@@ -3310,7 +3310,7 @@ The following options print debugging information, encode debugging information 
 
 * `--dump-date`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>2
 
   If the `--comments` option is given, **mysqldump** produces a comment at the end of the dump of the following form:
 
@@ -3322,7 +3322,7 @@ The following options print debugging information, encode debugging information 
 
 * `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>3
 
   Ignore all errors; continue even if an SQL error occurs during a table dump.
 
@@ -3332,19 +3332,19 @@ The following options print debugging information, encode debugging information 
 
 * `--log-error=file_name`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>4
 
   Log warnings and errors by appending them to the named file. The default is to do no logging.
 
 * `--skip-comments`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>5
 
   See the description for the `--comments` option.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>6
 
   Verbose mode. Print more information about what the program does.
 
@@ -3354,13 +3354,13 @@ The following options display information about the **mysqldump** command itself
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>7
 
   Display a help message and exit.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>8
 
   Display version information and exit.
 
@@ -3370,25 +3370,25 @@ The following options change how the **mysqldump** command represents character 
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>9
 
   The directory where character sets are installed. See Section 12.15, “Character Set Configuration”.
 
 * `--default-character-set=charset_name`
 
-  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>0
 
   Use *`charset_name`* as the default character set. See Section 12.15, “Character Set Configuration”. If no character set is specified, **mysqldump** uses `utf8mb4`.
 
 * `--no-set-names`, `-N`
 
-  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>1
 
   Turns off the `--set-charset` setting, the same as specifying `--skip-set-charset`.
 
 * `--set-charset`
 
-  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>2
 
   Write [`SET NAMES default_character_set`](set-names.html "15.7.6.3 SET NAMES Statement") to the output. This option is enabled by default. To suppress the `SET NAMES` statement, use `--skip-set-charset`.
 
@@ -3398,31 +3398,31 @@ The **mysqldump** command is frequently used to create an empty instance, or an 
 
 * `--apply-replica-statements`
 
-  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>3
 
   For a replica dump produced with the `--dump-replica` option, this option adds a [`STOP REPLICA`](stop-replica.html "15.4.2.5 STOP REPLICA Statement") statement before the statement with the binary log coordinates, and a [`START REPLICA`](start-replica.html "15.4.2.4 START REPLICA Statement") statement at the end of the output.
 
 * `--apply-slave-statements`
 
-  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>4
 
   This is a deprecated alias for `--apply-replica-statements`.
 
 * `--delete-source-logs`
 
-  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>5
 
   On a replication source server, delete the binary logs by sending a `PURGE BINARY LOGS` statement to the server after performing the dump operation. The options require the `RELOAD` privilege as well as privileges sufficient to execute that statement. This option automatically enables `--source-data`.
 
 * `--delete-master-logs`
 
-  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>6
 
   This is a deprecated alias for `--delete-source-logs`.
 
 * `--dump-replica[=value]`
 
-  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>7
 
   This option is similar to `--source-data`, except that it is used to dump a replica server to produce a dump file that can be used to set up another server as a replica that has the same source as the dumped server. The option causes the dump output to include a [`CHANGE REPLICATION SOURCE TO`](change-replication-source-to.html "15.4.2.2 CHANGE REPLICATION SOURCE TO Statement") statement that indicates the binary log coordinates (file name and position) of the dumped replica's source. The `CHANGE REPLICATION SOURCE TO` statement reads the values of `Relay_Master_Log_File` and `Exec_Master_Log_Pos` from the [`SHOW REPLICA STATUS`](show-replica-status.html "15.7.7.36 SHOW REPLICA STATUS Statement") output and uses them for `SOURCE_LOG_FILE` and `SOURCE_LOG_POS` respectively. These are the replication source server coordinates from which the replica starts replicating.
 
@@ -3446,31 +3446,31 @@ The **mysqldump** command is frequently used to create an empty instance, or an 
 
 * `--dump-slave[=value]`
 
-  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>8
 
   This is a deprecated alias for `--dump-replica`.
 
 * `--include-source-host-port`
 
-  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for enable-cleartext-plugin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--enable-cleartext-plugin</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>9
 
   Adds the `SOURCE_HOST` and `SOURCE_PORT` options for the host name and TCP/IP port number of the replica's source, to the `CHANGE REPLICATION SOURCE TO` statement in a replica dump produced with the `--dump-replica` option.
 
 * `--include-master-host-port`
 
-  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>0
 
   This is a deprecated alias for `--include-source-host-port`.
 
 * `--master-data[=value]`
 
-  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>1
 
   This is a deprecated alias for `--source-data`.
 
 * `--output-as-version=value`
 
-  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>2
 
   Determines the level of terminology used for statements relating to replicas and events, making it possible to create dumps compatible with older versions of MySQL that do not accept the newer terminology. This option can take any one of the following values, with effects described as listed here:
 
@@ -3486,7 +3486,7 @@ The **mysqldump** command is frequently used to create an empty instance, or an 
 
 * `--source-data[=value]`
 
-  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>3
 
   Used to dump a replication source server to produce a dump file that can be used to set up another server as a replica of the source. The options cause the dump output to include a [`CHANGE REPLICATION SOURCE TO`](change-replication-source-to.html "15.4.2.2 CHANGE REPLICATION SOURCE TO Statement") statement that indicates the binary log coordinates (file name and position) of the dumped server. These are the replication source server coordinates from which the replica should start replicating after you load the dump file into the replica.
 
@@ -3500,7 +3500,7 @@ The **mysqldump** command is frequently used to create an empty instance, or an 
 
 * `--set-gtid-purged=value`
 
-  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>4
 
   This option is for servers that use GTID-based replication (`gtid_mode=ON`). It controls the inclusion of a `SET @@GLOBAL.gtid_purged` statement in the dump output, which updates the value of `gtid_purged` on a server where the dump file is reloaded, to add the GTID set from the source server's `gtid_executed` system variable. `gtid_purged` holds the GTIDs of all transactions that have been applied on the server, but do not exist on any binary log file on the server. **mysqldump** therefore adds the GTIDs for the transactions that were executed on the source server, so that the target server records these transactions as applied, although it does not have them in its binary logs. `--set-gtid-purged` also controls the inclusion of a `SET @@SESSION.sql_log_bin=0` statement, which disables binary logging while the dump file is being reloaded. This statement prevents new GTIDs from being generated and assigned to the transactions in the dump file as they are executed, so that the original GTIDs for the transactions are used.
 
@@ -3528,43 +3528,43 @@ The following options specify how to represent the entire dump file or certain k
 
 * `--compact`
 
-  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>5
 
   Produce more compact output. This option enables the `--skip-add-drop-table`, `--skip-add-locks`, `--skip-comments`, `--skip-disable-keys`, and `--skip-set-charset` options.
 
 * `--compatible=name`
 
-  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>6
 
   Produce output that is more compatible with other database systems or with older MySQL servers. The only permitted value for this option is `ansi`, which has the same meaning as the corresponding option for setting the server SQL mode. See Section 7.1.11, “Server SQL Modes”.
 
 * `--complete-insert`, `-c`
 
-  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>7
 
   Use complete `INSERT` statements that include column names.
 
 * `--create-options`
 
-  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>8
 
   Include all MySQL-specific table options in the `CREATE TABLE` statements.
 
 * `--fields-terminated-by=...`, `--fields-enclosed-by=...`, `--fields-optionally-enclosed-by=...`, `--fields-escaped-by=...`
 
-  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>9
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host</code></td> </tr></tbody></table>0
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host</code></td> </tr></tbody></table>1
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host</code></td> </tr></tbody></table>2
 
   These options are used with the `--tab` option and have the same meaning as the corresponding `FIELDS` clauses for `LOAD DATA`. See Section 15.2.9, “LOAD DATA Statement”.
 
 * `--hex-blob`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host</code></td> </tr></tbody></table>3
 
   Dump binary columns using hexadecimal notation (for example, `'abc'` becomes `0x616263`). The affected data types are `BINARY`, `VARBINARY`, `BLOB` types, `BIT`, all spatial data types, and other non-binary data types when used with the [`binary` character set](charset-binary-set.html "12.10.8 The Binary Character Set").
 
@@ -3572,19 +3572,19 @@ The following options specify how to represent the entire dump file or certain k
 
 * `--lines-terminated-by=...`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host</code></td> </tr></tbody></table>4
 
   This option is used with the `--tab` option and has the same meaning as the corresponding `LINES` clause for `LOAD DATA`. See Section 15.2.9, “LOAD DATA Statement”.
 
 * `--quote-names`, `-Q`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host</code></td> </tr></tbody></table>5
 
   Quote identifiers (such as database, table, and column names) within `` ` `` characters. If the `ANSI_QUOTES` SQL mode is enabled, identifiers are quoted within `"` characters. This option is enabled by default. It can be disabled with `--skip-quote-names`, but this option should be given after any option such as `--compatible` that may enable `--quote-names`.
 
 * `--result-file=file_name`, `-r file_name`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host</code></td> </tr></tbody></table>6
 
   Direct output to the named file. The result file is created and its previous contents overwritten, even if an error occurs while generating the dump.
 
@@ -3592,13 +3592,13 @@ The following options specify how to represent the entire dump file or certain k
 
 * `--show-create-skip-secondary-engine=value`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host</code></td> </tr></tbody></table>7
 
   Excludes the `SECONDARY ENGINE` clause from `CREATE TABLE` statements. It does so by enabling the `show_create_table_skip_secondary_engine` system variable for the duration of the dump operation. Alternatively, you can enable the `show_create_table_skip_secondary_engine` system variable prior to using **mysqldump**.
 
 * `--tab=dir_name`, `-T dir_name`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host</code></td> </tr></tbody></table>8
 
   Produce tab-separated text-format data files. For each dumped table, **mysqldump** creates a `tbl_name.sql` file that contains the [`CREATE TABLE`](create-table.html "15.1.24 CREATE TABLE Statement") statement that creates the table, and the server writes a `tbl_name.txt` file that contains its data. The option value is the directory in which to write the files.
 
@@ -3612,19 +3612,19 @@ The following options specify how to represent the entire dump file or certain k
 
 * `--tz-utc`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host</code></td> </tr></tbody></table>9
 
   This option enables `TIMESTAMP` columns to be dumped and reloaded between servers in different time zones. **mysqldump** sets its connection time zone to UTC and adds `SET TIME_ZONE='+00:00'` to the dump file. Without this option, `TIMESTAMP` columns are dumped and reloaded in the time zones local to the source and destination servers, which can cause the values to change if the servers are in different time zones. `--tz-utc` also protects against changes due to daylight saving time. `--tz-utc` is enabled by default. To disable it, use `--skip-tz-utc`.
 
 * `--xml`, `-X`
 
-  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>0
 
   Write dump output as well-formed XML.
 
   **`NULL`, `'NULL'`, and Empty Values**: For a column named *`column_name`*, the `NULL` value, an empty string, and the string value `'NULL'` are distinguished from one another in the output generated by this option as follows.
 
-  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>1
 
   The output from the **mysql** client when run using the `--xml` option also follows the preceding rules. (See Section 6.5.1.1, “mysql Client Options”.)
 
@@ -3682,13 +3682,13 @@ The following options control which kinds of schema objects are written to the d
 
 * `--add-drop-user`
 
-  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>2
 
   With `--users`, include `DROP USER` statements prior to any `CREATE USER` statements. No effect if the `--users` option is not also used.
 
 * `--all-databases`, `-A`
 
-  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>3
 
   Dump all tables in all databases. This is the same as using the `--databases` option and naming all the databases on the command line.
 
@@ -3700,7 +3700,7 @@ The following options control which kinds of schema objects are written to the d
 
 * `--databases`, `-B`
 
-  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>4
 
   Dump several databases. Normally, **mysqldump** treats the first name argument on the command line as a database name and following names as table names. With this option, it treats all name arguments as database names. [`CREATE DATABASE`](create-database.html "15.1.14 CREATE DATABASE Statement") and `USE` statements are included in the output before each new database.
 
@@ -3712,7 +3712,7 @@ The following options control which kinds of schema objects are written to the d
 
 * `--events`, `-E`
 
-  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>5
 
   Include Event Scheduler events for the dumped databases in the output. This option requires the `EVENT` privileges for those databases.
 
@@ -3720,7 +3720,7 @@ The following options control which kinds of schema objects are written to the d
 
 * `--exclude-user=user@host`
 
-  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>6
 
   Exclude the specified user account, in *`user`*@*`host`* format, in the output. *`user`* and *`host`* should each be unquoted unless the identifier contains any of a single quote (`'`), space (), backslash (`\`), percent sign (`%`), or period character (`.`), in which case it should be encased in signle quotes.
 
@@ -3730,7 +3730,7 @@ The following options control which kinds of schema objects are written to the d
 
 * `--include-user=user@host`
 
-  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>7
 
   Include only the user account provided, specified in *`user`*@*`host`* format, in the output. *`user`* and *`host`* should each be unquoted unless the identifier contains any of a single quote (`'`), space (), backslash (`\`), percent sign (`%`), or period character (`.`), in which case it should be encased in signle quotes.
 
@@ -3740,43 +3740,43 @@ The following options control which kinds of schema objects are written to the d
 
 * `--ignore-error=error[,error]...`
 
-  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>8
 
   Ignore the specified errors. The option value is a list of comma-separated error numbers specifying the errors to ignore during **mysqldump** execution. If the `--force` option is also given to ignore all errors, `--force` takes precedence.
 
 * `--ignore-table=db_name.tbl_name`
 
-  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>9
 
   Do not dump the given table, which must be specified using both the database and table names. To ignore multiple tables, use this option multiple times. This option also can be used to ignore views.
 
 * `--ignore-views=boolean`
 
-  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--no-login-paths</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-login-paths</code></td> </tr></tbody></table>0
 
   Skips table views in the dump file.
 
 * `--init-command=str`
 
-  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--no-login-paths</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-login-paths</code></td> </tr></tbody></table>1
 
   Single SQL statement to execute after connecting to the MySQL server. The definition resets existing statements defined by it or `init-command-add`.
 
 * `--init-command-add=str`
 
-  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--no-login-paths</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-login-paths</code></td> </tr></tbody></table>2
 
   Add an additional SQL statement to execute after connecting or reconnecting to the MySQL server. It's usable without `--init-command` but has no effect if used before it because `init-command` resets the list of commands to call.
 
 * `--no-data`, `-d`
 
-  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--no-login-paths</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-login-paths</code></td> </tr></tbody></table>3
 
   Do not write any table row information (that is, do not dump table contents). This is useful if you want to dump only the `CREATE TABLE` statement for the table (for example, to create an empty copy of the table by loading the dump file).
 
 * `--routines`, `-R`
 
-  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--no-login-paths</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-login-paths</code></td> </tr></tbody></table>4
 
   Include stored routines (procedures and functions) for the dumped databases in the output. This option requires the global `SELECT` privilege.
 
@@ -3784,19 +3784,19 @@ The following options control which kinds of schema objects are written to the d
 
 * `--skip-generated-invisible-primary-key`
 
-  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--no-login-paths</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-login-paths</code></td> </tr></tbody></table>5
 
   This option causes generated invisible primary keys to be excluded from the output. For more information, see Section 15.1.24.11, “Generated Invisible Primary Keys”.
 
 * `--tables`
 
-  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--no-login-paths</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-login-paths</code></td> </tr></tbody></table>6
 
   Override the `--databases` or `-B` option. **mysqldump** regards all name arguments following the option as table names.
 
 * `--triggers`
 
-  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--no-login-paths</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-login-paths</code></td> </tr></tbody></table>7
 
   Include triggers for each dumped table in the output. This option is enabled by default; disable it with `--skip-triggers`.
 
@@ -3806,7 +3806,7 @@ The following options control which kinds of schema objects are written to the d
 
 * `--users`
 
-  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--no-login-paths</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-login-paths</code></td> </tr></tbody></table>8
 
   Include account information as part of the dump, in the form of `CREATE USER` and `GRANT` statements. To cause the CREATE USER statement to be preceded by DROP USER statements in the dump, also specify the `--add-drop-user` option along with `--users`.
 
@@ -3828,7 +3828,7 @@ The following options control which kinds of schema objects are written to the d
   + `mysql.password_history`
 * `--where='where_condition'`, `-w 'where_condition'`
 
-  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--no-login-paths</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-login-paths</code></td> </tr></tbody></table>9
 
   Dump only rows selected by the given `WHERE` condition. Quotes around the condition are mandatory if it contains spaces or other characters that are special to your command interpreter.
 
@@ -3848,31 +3848,31 @@ Performance is also affected by the [transactional options](mysqldump.html#mysql
 
 * `--column-statistics`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>00
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>00
 
   Add `ANALYZE TABLE` statements to the output to generate histogram statistics for dumped tables when the dump file is reloaded. This option is disabled by default because histogram generation for large tables can take a long time.
 
 * `--disable-keys`, `-K`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>01
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>01
 
   For each table, surround the `INSERT` statements with `/*!40000 ALTER TABLE tbl_name DISABLE KEYS */;` and `/*!40000 ALTER TABLE tbl_name ENABLE KEYS */;` statements. This makes loading the dump file faster because the indexes are created after all rows are inserted. This option is effective only for nonunique indexes of `MyISAM` tables.
 
 * `--extended-insert`, `-e`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>02
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>02
 
   Write `INSERT` statements using multiple-row syntax that includes several `VALUES` lists. This results in a smaller dump file and speeds up inserts when the file is reloaded.
 
 * `--insert-ignore`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>03
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>03
 
   Write [`INSERT IGNORE`](insert.html "15.2.7 INSERT Statement") statements rather than `INSERT` statements.
 
 * `--max-allowed-packet=value`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>04
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>04
 
   The maximum size of the buffer for client/server communication. The default is 24MB, the maximum is 1GB.
 
@@ -3882,7 +3882,7 @@ Performance is also affected by the [transactional options](mysqldump.html#mysql
 
 * `--mysqld-long-query-time=value`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>05
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>05
 
   Set the session value of the `long_query_time` system variable. Use this option if you want to increase the time allowed for queries from **mysqldump** before they are logged to the slow query log file. **mysqldump** performs a full table scan, which means its queries can often exceed a global `long_query_time` setting that is useful for regular queries. The default global setting is 10 seconds.
 
@@ -3890,19 +3890,19 @@ Performance is also affected by the [transactional options](mysqldump.html#mysql
 
 * `--net-buffer-length=value`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>06
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>06
 
   The initial size of the buffer for client/server communication. When creating multiple-row `INSERT` statements (as with the `--extended-insert` or `--opt` option), **mysqldump** creates rows up to `--net-buffer-length` bytes long. If you increase this variable, ensure that the MySQL server `net_buffer_length` system variable has a value at least this large.
 
 * `--network-timeout`, `-M`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>07
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>07
 
   Enable large tables to be dumped by setting `--max-allowed-packet` to its maximum value and network read and write timeouts to a large value. This option is enabled by default. To disable it, use `--skip-network-timeout`.
 
 * `--opt`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>08
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>08
 
   This option, enabled by default, is shorthand for the combination of `--add-drop-table` `--add-locks` `--create-options` `--disable-keys` `--extended-insert` `--lock-tables` `--quick` `--set-charset`. It gives a fast dump operation and produces a dump file that can be reloaded into a MySQL server quickly.
 
@@ -3910,13 +3910,13 @@ Performance is also affected by the [transactional options](mysqldump.html#mysql
 
 * `--quick`, `-q`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>09
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>09
 
   This option is useful for dumping large tables. It forces **mysqldump** to retrieve rows for a table from the server a row at a time rather than retrieving the entire row set and buffering it in memory before writing it out.
 
 * `--skip-opt`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>10
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>10
 
   See the description for the `--opt` option.
 
@@ -3926,19 +3926,19 @@ The following options trade off the performance of the dump operation, against t
 
 * `--add-locks`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>11
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>11
 
   Surround each table dump with [`LOCK TABLES`](lock-tables.html "15.3.6 LOCK TABLES and UNLOCK TABLES Statements") and [`UNLOCK TABLES`](lock-tables.html "15.3.6 LOCK TABLES and UNLOCK TABLES Statements") statements. This results in faster inserts when the dump file is reloaded. See Section 10.2.5.1, “Optimizing INSERT Statements”.
 
 * `--flush-logs`, `-F`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>12
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>12
 
   Flush the MySQL server log files before starting the dump. This option requires the `RELOAD` privilege. If you use this option in combination with the `--all-databases` option, the logs are flushed *for each database dumped*. The exception is when using `--lock-all-tables`, `--source-data`, or `--single-transaction`. In these cases, the logs are flushed only once, corresponding to the moment that all tables are locked by `FLUSH TABLES WITH READ LOCK`. If you want your dump and the log flush to happen at exactly the same moment, you should use `--flush-logs` together with `--lock-all-tables`, `--source-data`, or `--single-transaction`.
 
 * `--flush-privileges`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>13
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>13
 
   Add a `FLUSH PRIVILEGES` statement to the dump output after dumping the `mysql` database. This option should be used any time the dump contains the `mysql` database and any other database that depends on the data in the `mysql` database for proper restoration.
 
@@ -3948,13 +3948,13 @@ The following options trade off the performance of the dump operation, against t
 
 * `--lock-all-tables`, `-x`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>14
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>14
 
   Lock all tables across all databases. This is achieved by acquiring a global read lock for the duration of the whole dump. This option automatically turns off `--single-transaction` and `--lock-tables`.
 
 * `--lock-tables`, `-l`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>15
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>15
 
   For each dumped database, lock all tables to be dumped before dumping them. The tables are locked with `READ LOCAL` to permit concurrent inserts in the case of `MyISAM` tables. For transactional tables such as `InnoDB`, `--single-transaction` is a much better option than `--lock-tables` because it does not need to lock the tables at all.
 
@@ -3964,19 +3964,19 @@ The following options trade off the performance of the dump operation, against t
 
 * `--no-autocommit`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>16
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>16
 
   Enclose the `INSERT` statements for each dumped table within `SET autocommit = 0` and `COMMIT` statements.
 
 * `--order-by-primary`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>17
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>17
 
   Dump each table's rows sorted by its primary key, or by its first unique index, if such an index exists. This is useful when dumping a `MyISAM` table to be loaded into an `InnoDB` table, but makes the dump operation take considerably longer.
 
 * `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>18
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>18
 
   On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
 
@@ -3984,7 +3984,7 @@ The following options trade off the performance of the dump operation, against t
 
 * `--single-transaction`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>19
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>19
 
   This option sets the transaction isolation mode to `REPEATABLE READ` and sends a [`START TRANSACTION`](commit.html "15.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") SQL statement to the server before dumping data. It is useful only with transactional tables such as `InnoDB`, because then it dumps the consistent state of the database at the time when [`START TRANSACTION`](commit.html "15.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") was issued without blocking any applications.
 
@@ -4103,35 +4103,35 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 **Table 6.14 mysqlimport Options**
 
-<table frame="box" rules="all" summary="Command-line options available for mysqlimport."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_bind-address">--bind-address</a></td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets can be found</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_columns">--columns</a></td> <td>This option takes a comma-separated list of column names as its value</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_debug-check">--debug-check</a></td> <td>Print debugging information when program exits</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_debug-info">--debug-info</a></td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_default-character-set">--default-character-set</a></td> <td>Specify default character set</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_delete">--delete</a></td> <td>Empty the table before importing the text file</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Enable cleartext authentication plugin</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_fields">--fields-enclosed-by</a></td> <td>This option has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_fields">--fields-escaped-by</a></td> <td>This option has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_fields">--fields-optionally-enclosed-by</a></td> <td>This option has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_fields">--fields-terminated-by</a></td> <td>This option has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_force">--force</a></td> <td>Continue even if an SQL error occurs</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_ignore">--ignore</a></td> <td>See the description for the --replace option</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_ignore-lines">--ignore-lines</a></td> <td>Ignore the first N lines of the data file</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_lines-terminated-by">--lines-terminated-by</a></td> <td>This option has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_local">--local</a></td> <td>Read input files locally from the client host</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_lock-tables">--lock-tables</a></td> <td>Lock all tables for writing before processing any text files</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_low-priority">--low-priority</a></td> <td>Use LOW_PRIORITY when loading the table</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_replace">--replace</a></td> <td>The --replace and --ignore options control handling of input rows that duplicate existing rows on unique key values</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_silent">--silent</a></td> <td>Produce output only when errors occur</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_use-threads">--use-threads</a></td> <td>Number of threads for parallel file-loading</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for mysqlimport."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--bind-address</td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets can be found</td> </tr><tr><td>--columns</td> <td>This option takes a comma-separated list of column names as its value</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--default-character-set</td> <td>Specify default character set</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--delete</td> <td>Empty the table before importing the text file</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--fields-enclosed-by</td> <td>This option has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td>--fields-escaped-by</td> <td>This option has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td>--fields-optionally-enclosed-by</td> <td>This option has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td>--fields-terminated-by</td> <td>This option has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td>--force</td> <td>Continue even if an SQL error occurs</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--ignore</td> <td>See the description for the --replace option</td> </tr><tr><td>--ignore-lines</td> <td>Ignore the first N lines of the data file</td> </tr><tr><td>--lines-terminated-by</td> <td>This option has the same meaning as the corresponding clause for LOAD DATA</td> </tr><tr><td>--local</td> <td>Read input files locally from the client host</td> </tr><tr><td>--lock-tables</td> <td>Lock all tables for writing before processing any text files</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--low-priority</td> <td>Use LOW_PRIORITY when loading the table</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--replace</td> <td>The --replace and --ignore options control handling of input rows that duplicate existing rows on unique key values</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--silent</td> <td>Produce output only when errors occur</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--use-threads</td> <td>Number of threads for parallel file-loading</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
 * `--bind-address=ip_address`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   On a computer having multiple network interfaces, use this option to select which interface to use for connecting to the MySQL server.
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   The directory where character sets are installed. See Section 12.15, “Character Set Configuration”.
 
 * `--columns=column_list`, `-c column_list`
 
-  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--columns=column_list</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>
 
   This option takes a list of comma-separated column names as its value. The order of the column names indicates how to match data file columns with table columns.
 
 * `--compress`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Compress all information sent between the client and the server if possible. See Section 6.2.8, “Connection Compression Control”.
 
@@ -4139,7 +4139,7 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 * `--compression-algorithms=value`
 
-  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code class="literal">uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>
 
   The permitted compression algorithms for connections to the server. The available algorithms are the same as for the `protocol_compression_algorithms` system variable. The default value is `uncompressed`.
 
@@ -4147,7 +4147,7 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--debug[=debug_options]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">d:t:o</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug[=debug_options]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>d:t:o</code></td> </tr></tbody></table>
 
   Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o`.
 
@@ -4155,7 +4155,7 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 * `--debug-check`
 
-  <table frame="box" rules="all" summary="Properties for debug-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--debug-check</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for debug-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug-check</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Print some debugging information when the program exits.
 
@@ -4163,7 +4163,7 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 * `--debug-info`
 
-  <table frame="box" rules="all" summary="Properties for debug-info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--debug-info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for debug-info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug-info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Print debugging information and memory and CPU usage statistics when the program exits.
 
@@ -4171,19 +4171,19 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 * `--default-character-set=charset_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>0
 
   Use *`charset_name`* as the default character set. See Section 12.15, “Character Set Configuration”.
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>1
 
   A hint about which client-side authentication plugin to use. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>2
 
   Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -4191,7 +4191,7 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>3
 
   Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -4201,7 +4201,7 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>4
 
   Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysqlimport** normally reads the `[client]` and `[mysqlimport]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysqlimport** also reads the `[client_other]` and `[mysqlimport_other]` groups.
 
@@ -4209,37 +4209,37 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 * `--delete`, `-D`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>5
 
   Empty the table before importing the text file.
 
 * `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>6
 
   Enable the `mysql_clear_password` cleartext authentication plugin. (See Section 8.4.1.3, “Client-Side Cleartext Pluggable Authentication”.)
 
 * `--fields-terminated-by=...`, `--fields-enclosed-by=...`, `--fields-optionally-enclosed-by=...`, `--fields-escaped-by=...`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>7
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>8
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>9
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>0
 
   These options have the same meaning as the corresponding clauses for `LOAD DATA`. See Section 15.2.9, “LOAD DATA Statement”.
 
 * `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>1
 
   Ignore errors. For example, if a table for a text file does not exist, continue processing any remaining files. Without `--force`, **mysqlimport** exits if a table does not exist.
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>2
 
   Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -4249,31 +4249,31 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>3
 
   Import data to the MySQL server on the given host. The default host is `localhost`.
 
 * `--ignore`, `-i`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>4
 
   See the description for the `--replace` option.
 
 * `--ignore-lines=N`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>5
 
   Ignore the first *`N`* lines of the data file.
 
 * `--lines-terminated-by=...`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>6
 
   This option has the same meaning as the corresponding clause for `LOAD DATA`. For example, to import Windows files that have lines terminated with carriage return/linefeed pairs, use `--lines-terminated-by="\r\n"`. (You might have to double the backslashes, depending on the escaping conventions of your command interpreter.) See Section 15.2.9, “LOAD DATA Statement”.
 
 * `--local`, `-L`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>7
 
   By default, files are read by the server on the server host. With this option, **mysqlimport** reads input files locally on the client host.
 
@@ -4281,21 +4281,21 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 * `--lock-tables`, `-l`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>8
 
   Lock *all* tables for writing before processing any text files. This ensures that all tables are synchronized on the server.
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>9
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>0
 
   Skips reading options from the login path file.
 
@@ -4305,23 +4305,23 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 * `--low-priority`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>1
 
   Use `LOW_PRIORITY` when loading the table. This affects only storage engines that use only table-level locking (such as `MyISAM`, `MEMORY`, and `MERGE`).
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>2
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
-  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>3
 
   The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqlimport** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -4349,25 +4349,25 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>4
 
   On Windows, connect to the server using a named pipe. This option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>5
 
   The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysqlimport** does not find it. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>6
 
   For TCP/IP connections, the port number to use.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>7
 
   Print the program name and all options that it gets from option files.
 
@@ -4375,19 +4375,19 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>8
 
   The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 6.2.7, “Connection Transport Protocols”.
 
 * `--replace`, `-r`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>9
 
   The `--replace` and `--ignore` options control handling of input rows that duplicate existing rows on unique key values. If you specify `--replace`, new rows replace existing rows that have the same unique key value. If you specify `--ignore`, input rows that duplicate an existing row on a unique key value are skipped. If you do not specify either option, an error occurs when a duplicate key value is found, and the rest of the text file is ignored.
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--columns=column_list</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>0
 
   The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -4399,7 +4399,7 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 * `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--columns=column_list</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>1
 
   On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
 
@@ -4407,13 +4407,13 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 * `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--columns=column_list</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>2
 
   Silent mode. Produce output only when errors occur.
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--columns=column_list</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>3
 
   For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
 
@@ -4425,7 +4425,7 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 * `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--columns=column_list</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>4
 
   Controls whether to enable FIPS mode on the client side. The `--ssl-fips-mode` option differs from other `--ssl-xxx` options in that it is not used to establish encrypted connections, but rather to affect which cryptographic operations to permit. See Section 8.8, “FIPS Support”.
 
@@ -4443,13 +4443,13 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--columns=column_list</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>5
 
   The permissible ciphersuites for encrypted connections that use TLSv1.3. The value is a list of one or more colon-separated ciphersuite names. The ciphersuites that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--tls-sni-servername=server_name`
 
-  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--columns=column_list</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>6
 
   When specified, the name is passed to the `libmysqlclient` C API library using the `MYSQL_OPT_TLS_SNI_SERVERNAME` option of `mysql_options()`. The server name is not case-sensitive. To show which server name the client specified for the current session, if any, check the `Tls_sni_server_name` status variable.
 
@@ -4457,37 +4457,37 @@ For each text file named on the command line, **mysqlimport** strips any extensi
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--columns=column_list</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>7
 
   The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--columns=column_list</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>8
 
   The user name of the MySQL account to use for connecting to the server.
 
 * `--use-threads=N`
 
-  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--columns=column_list</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for columns"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--columns=column_list</code></td> </tr></tbody></table>9
 
   Load files in parallel using *`N`* threads.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>0
 
   Verbose mode. Print more information about what the program does.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>1
 
   Display version information and exit.
 
 * `--zstd-compression-level=level`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>2
 
   The compression level to use for connections to the server that use the `zstd` compression algorithm. The permitted levels are from 1 to 22, with larger values indicating increasing levels of compression. The default `zstd` compression level is 3. The compression level setting has no effect on connections that do not use `zstd` compression.
 
@@ -4546,29 +4546,29 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
 **Table 6.15 mysqlshow Options**
 
-<table frame="box" rules="all" summary="Command-line options available for mysqlshow."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_bind-address">--bind-address</a></td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets can be found</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_count">--count</a></td> <td>Show the number of rows per table</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_debug-check">--debug-check</a></td> <td>Print debugging information when program exits</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_debug-info">--debug-info</a></td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_default-character-set">--default-character-set</a></td> <td>Specify default character set</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Enable cleartext authentication plugin</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_keys">--keys</a></td> <td>Show table indexes</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_show-table-type">--show-table-type</a></td> <td>Show a column indicating the table type</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_status">--status</a></td> <td>Display extra information about each table</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for mysqlshow."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--bind-address</td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets can be found</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--count</td> <td>Show the number of rows per table</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--default-character-set</td> <td>Specify default character set</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--keys</td> <td>Show table indexes</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--show-table-type</td> <td>Show a column indicating the table type</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--status</td> <td>Display extra information about each table</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
 * `--bind-address=ip_address`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   On a computer having multiple network interfaces, use this option to select which interface to use for connecting to the MySQL server.
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   The directory where character sets are installed. See Section 12.15, “Character Set Configuration”.
 
 * `--compress`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Compress all information sent between the client and the server if possible. See Section 6.2.8, “Connection Compression Control”.
 
@@ -4576,7 +4576,7 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
 * `--compression-algorithms=value`
 
-  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code class="literal">uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>
 
   The permitted compression algorithms for connections to the server. The available algorithms are the same as for the `protocol_compression_algorithms` system variable. The default value is `uncompressed`.
 
@@ -4584,13 +4584,13 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
 * `--count`
 
-  <table frame="box" rules="all" summary="Properties for count"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--count</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for count"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--count</code></td> </tr></tbody></table>
 
   Show the number of rows per table. This can be slow for non-`MyISAM` tables.
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--debug[=debug_options]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">d:t:o</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug[=debug_options]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>d:t:o</code></td> </tr></tbody></table>
 
   Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o`.
 
@@ -4598,7 +4598,7 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
 * `--debug-check`
 
-  <table frame="box" rules="all" summary="Properties for debug-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--debug-check</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for debug-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug-check</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Print some debugging information when the program exits.
 
@@ -4606,7 +4606,7 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
 * `--debug-info`
 
-  <table frame="box" rules="all" summary="Properties for debug-info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--debug-info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for debug-info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug-info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Print debugging information and memory and CPU usage statistics when the program exits.
 
@@ -4614,19 +4614,19 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
 * `--default-character-set=charset_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>0
 
   Use *`charset_name`* as the default character set. See Section 12.15, “Character Set Configuration”.
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>1
 
   A hint about which client-side authentication plugin to use. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>2
 
   Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -4634,7 +4634,7 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>3
 
   Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -4644,7 +4644,7 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>4
 
   Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysqlshow** normally reads the `[client]` and `[mysqlshow]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysqlshow** also reads the `[client_other]` and `[mysqlshow_other]` groups.
 
@@ -4652,13 +4652,13 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
 * `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>5
 
   Enable the `mysql_clear_password` cleartext authentication plugin. (See Section 8.4.1.3, “Client-Side Cleartext Pluggable Authentication”.)
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>6
 
   Request from the server the RSA public key that it uses for key pair-based password exchange. This option applies to clients that connect to the server using an account that authenticates with the `caching_sha2_password` authentication plugin. For connections by such accounts, the server does not send the public key to the client unless requested. The option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not needed, as is the case when the client connects to the server using a secure connection.
 
@@ -4668,27 +4668,27 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>7
 
   Connect to the MySQL server on the given host.
 
 * `--keys`, `-k`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>8
 
   Show table indexes.
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>9
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>0
 
   Skips reading options from the login path file.
 
@@ -4698,17 +4698,17 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>1
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
-  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>2
 
   The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqlshow** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -4736,25 +4736,25 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>3
 
   On Windows, connect to the server using a named pipe. This option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>4
 
   The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysqlshow** does not find it. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>5
 
   For TCP/IP connections, the port number to use.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>6
 
   Print the program name and all options that it gets from option files.
 
@@ -4762,13 +4762,13 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>7
 
   The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 6.2.7, “Connection Transport Protocols”.
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>8
 
   The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -4780,7 +4780,7 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
 * `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>9
 
   On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
 
@@ -4788,13 +4788,13 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
 * `--show-table-type`, `-t`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>0
 
   Show a column indicating the table type, as in [`SHOW FULL TABLES`](show-tables.html "15.7.7.40 SHOW TABLES Statement"). The type is `BASE TABLE` or `VIEW`.
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>1
 
   For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
 
@@ -4806,7 +4806,7 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
 * `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>2
 
   Controls whether to enable FIPS mode on the client side. The `--ssl-fips-mode` option differs from other `--ssl-xxx` options in that it is not used to establish encrypted connections, but rather to affect which cryptographic operations to permit. See Section 8.8, “FIPS Support”.
 
@@ -4824,19 +4824,19 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
 * `--status`, `-i`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>3
 
   Display extra information about each table.
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>4
 
   The permissible ciphersuites for encrypted connections that use TLSv1.3. The value is a list of one or more colon-separated ciphersuite names. The ciphersuites that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--tls-sni-servername=server_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>5
 
   When specified, the name is passed to the `libmysqlclient` C API library using the `MYSQL_OPT_TLS_SNI_SERVERNAME` option of `mysql_options()`. The server name is not case-sensitive. To show which server name the client specified for the current session, if any, check the `Tls_sni_server_name` status variable.
 
@@ -4844,31 +4844,31 @@ If the last argument contains shell or SQL wildcard characters (`*`, `?`, `%`, o
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>6
 
   The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>7
 
   The user name of the MySQL account to use for connecting to the server.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>8
 
   Verbose mode. Print more information about what the program does. This option can be used multiple times to increase the amount of information.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>9
 
   Display version information and exit.
 
 * `--zstd-compression-level=level`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>0
 
   The compression level to use for connections to the server that use the `zstd` compression algorithm. The permitted levels are from 1 to 22, with larger values indicating increasing levels of compression. The default `zstd` compression level is 3. The compression level setting has no effect on connections that do not use `zstd` compression.
 
@@ -4925,77 +4925,77 @@ mysqlslap --concurrency=5
 
 **Table 6.16 mysqlslap Options**
 
-<table frame="box" rules="all" summary="Command-line options available for mysqlslap."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_auto-generate-sql">--auto-generate-sql</a></td> <td>Generate SQL statements automatically when they are not supplied in files or using command options</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_auto-generate-sql-add-autoincrement">--auto-generate-sql-add-autoincrement</a></td> <td>Add AUTO_INCREMENT column to automatically generated tables</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_auto-generate-sql-execute-number">--auto-generate-sql-execute-number</a></td> <td>Specify how many queries to generate automatically</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_auto-generate-sql-guid-primary">--auto-generate-sql-guid-primary</a></td> <td>Add a GUID-based primary key to automatically generated tables</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_auto-generate-sql-load-type">--auto-generate-sql-load-type</a></td> <td>Specify the test load type</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_auto-generate-sql-secondary-indexes">--auto-generate-sql-secondary-indexes</a></td> <td>Specify how many secondary indexes to add to automatically generated tables</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_auto-generate-sql-unique-query-number">--auto-generate-sql-unique-query-number</a></td> <td>How many different queries to generate for automatic tests</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_auto-generate-sql-unique-write-number">--auto-generate-sql-unique-write-number</a></td> <td>How many different queries to generate for --auto-generate-sql-write-number</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_auto-generate-sql-write-number">--auto-generate-sql-write-number</a></td> <td>How many row inserts to perform on each thread</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_commit">--commit</a></td> <td>How many statements to execute before committing</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_concurrency">--concurrency</a></td> <td>Number of clients to simulate when issuing the SELECT statement</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_create">--create</a></td> <td>File or string containing the statement to use for creating the table</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_create-schema">--create-schema</a></td> <td>Schema in which to run the tests</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_csv">--csv</a></td> <td>Generate output in comma-separated values format</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_debug-check">--debug-check</a></td> <td>Print debugging information when program exits</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_debug-info">--debug-info</a></td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_delimiter">--delimiter</a></td> <td>Delimiter to use in SQL statements</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_detach">--detach</a></td> <td>Detach (close and reopen) each connection after each N statements</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Enable cleartext authentication plugin</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_engine">--engine</a></td> <td>Storage engine to use for creating the table</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_iterations">--iterations</a></td> <td>Number of times to run the tests</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_no-drop">--no-drop</a></td> <td>Do not drop any schema created during the test run</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_number-char-cols">--number-char-cols</a></td> <td>Number of VARCHAR columns to use if --auto-generate-sql is specified</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_number-int-cols">--number-int-cols</a></td> <td>Number of INT columns to use if --auto-generate-sql is specified</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_number-of-queries">--number-of-queries</a></td> <td>Limit each client to approximately this number of queries</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_only-print">--only-print</a></td> <td>Do not connect to databases. mysqlslap only prints what it would have done</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_post-query">--post-query</a></td> <td>File or string containing the statement to execute after the tests have completed</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_post-system">--post-system</a></td> <td>String to execute using system() after the tests have completed</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_pre-query">--pre-query</a></td> <td>File or string containing the statement to execute before running the tests</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_pre-system">--pre-system</a></td> <td>String to execute using system() before running the tests</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_query">--query</a></td> <td>File or string containing the SELECT statement to use for retrieving data</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_silent">--silent</a></td> <td>Silent mode</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_sql-mode">--sql-mode</a></td> <td>Set SQL mode for client session</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for mysqlslap."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--auto-generate-sql</td> <td>Generate SQL statements automatically when they are not supplied in files or using command options</td> </tr><tr><td>--auto-generate-sql-add-autoincrement</td> <td>Add AUTO_INCREMENT column to automatically generated tables</td> </tr><tr><td>--auto-generate-sql-execute-number</td> <td>Specify how many queries to generate automatically</td> </tr><tr><td>--auto-generate-sql-guid-primary</td> <td>Add a GUID-based primary key to automatically generated tables</td> </tr><tr><td>--auto-generate-sql-load-type</td> <td>Specify the test load type</td> </tr><tr><td>--auto-generate-sql-secondary-indexes</td> <td>Specify how many secondary indexes to add to automatically generated tables</td> </tr><tr><td>--auto-generate-sql-unique-query-number</td> <td>How many different queries to generate for automatic tests</td> </tr><tr><td>--auto-generate-sql-unique-write-number</td> <td>How many different queries to generate for --auto-generate-sql-write-number</td> </tr><tr><td>--auto-generate-sql-write-number</td> <td>How many row inserts to perform on each thread</td> </tr><tr><td>--commit</td> <td>How many statements to execute before committing</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--concurrency</td> <td>Number of clients to simulate when issuing the SELECT statement</td> </tr><tr><td>--create</td> <td>File or string containing the statement to use for creating the table</td> </tr><tr><td>--create-schema</td> <td>Schema in which to run the tests</td> </tr><tr><td>--csv</td> <td>Generate output in comma-separated values format</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--delimiter</td> <td>Delimiter to use in SQL statements</td> </tr><tr><td>--detach</td> <td>Detach (close and reopen) each connection after each N statements</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--engine</td> <td>Storage engine to use for creating the table</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--iterations</td> <td>Number of times to run the tests</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-drop</td> <td>Do not drop any schema created during the test run</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--number-char-cols</td> <td>Number of VARCHAR columns to use if --auto-generate-sql is specified</td> </tr><tr><td>--number-int-cols</td> <td>Number of INT columns to use if --auto-generate-sql is specified</td> </tr><tr><td>--number-of-queries</td> <td>Limit each client to approximately this number of queries</td> </tr><tr><td>--only-print</td> <td>Do not connect to databases. mysqlslap only prints what it would have done</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--post-query</td> <td>File or string containing the statement to execute after the tests have completed</td> </tr><tr><td>--post-system</td> <td>String to execute using system() after the tests have completed</td> </tr><tr><td>--pre-query</td> <td>File or string containing the statement to execute before running the tests</td> </tr><tr><td>--pre-system</td> <td>String to execute using system() before running the tests</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--query</td> <td>File or string containing the SELECT statement to use for retrieving data</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--silent</td> <td>Silent mode</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--sql-mode</td> <td>Set SQL mode for client session</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
 * `--auto-generate-sql`, `-a`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Generate SQL statements automatically when they are not supplied in files or using command options.
 
 * `--auto-generate-sql-add-autoincrement`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Add an `AUTO_INCREMENT` column to automatically generated tables.
 
 * `--auto-generate-sql-execute-number=N`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
 
   Specify how many queries to generate automatically.
 
 * `--auto-generate-sql-guid-primary`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Add a GUID-based primary key to automatically generated tables.
 
 * `--auto-generate-sql-load-type=type`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-load-type"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-load-type=type</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">mixed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">read</code></p><p class="valid-value"><code class="literal">write</code></p><p class="valid-value"><code class="literal">key</code></p><p class="valid-value"><code class="literal">update</code></p><p class="valid-value"><code class="literal">mixed</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-load-type"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-load-type=type</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>mixed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>read</code></p><p class="valid-value"><code>write</code></p><p class="valid-value"><code>key</code></p><p class="valid-value"><code>update</code></p><p class="valid-value"><code>mixed</code></p></td> </tr></tbody></table>
 
   Specify the test load type. The permissible values are `read` (scan tables), `write` (insert into tables), `key` (read primary keys), `update` (update primary keys), or `mixed` (half inserts, half scanning selects). The default is `mixed`.
 
 * `--auto-generate-sql-secondary-indexes=N`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-secondary-indexes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-secondary-indexes=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-secondary-indexes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-secondary-indexes=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr></tbody></table>
 
   Specify how many secondary indexes to add to automatically generated tables. By default, none are added.
 
 * `--auto-generate-sql-unique-query-number=N`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-unique-query-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-unique-query-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-unique-query-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-unique-query-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>10</code></td> </tr></tbody></table>
 
   How many different queries to generate for automatic tests. For example, if you run a `key` test that performs 1000 selects, you can use this option with a value of 1000 to run 1000 unique queries, or with a value of 50 to perform 50 different selects. The default is 10.
 
 * `--auto-generate-sql-unique-write-number=N`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-unique-write-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-unique-write-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-unique-write-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-unique-write-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>10</code></td> </tr></tbody></table>
 
   How many different queries to generate for `--auto-generate-sql-write-number`. The default is 10.
 
 * `--auto-generate-sql-write-number=N`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>0
 
   How many row inserts to perform. The default is 100.
 
 * `--commit=N`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>1
 
   How many statements to execute before committing. The default is 0 (no commits are done).
 
 * `--compress`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>2
 
   Compress all information sent between the client and the server if possible. See Section 6.2.8, “Connection Compression Control”.
 
@@ -5003,7 +5003,7 @@ mysqlslap --concurrency=5
 
 * `--compression-algorithms=value`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>3
 
   The permitted compression algorithms for connections to the server. The available algorithms are the same as for the `protocol_compression_algorithms` system variable. The default value is `uncompressed`.
 
@@ -5011,19 +5011,19 @@ mysqlslap --concurrency=5
 
 * `--concurrency=N`, `-c N`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>4
 
   The number of parallel clients to simulate.
 
 * `--create=value`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>5
 
   The file or string containing the statement to use for creating the table.
 
 * `--create-schema=value`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>6
 
   The schema in which to run the tests.
 
@@ -5033,13 +5033,13 @@ mysqlslap --concurrency=5
 
 * `--csv[=file_name]`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>7
 
   Generate output in comma-separated values format. The output goes to the named file, or to the standard output if no file is given.
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>8
 
   Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o,/tmp/mysqlslap.trace`.
 
@@ -5047,7 +5047,7 @@ mysqlslap --concurrency=5
 
 * `--debug-check`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>9
 
   Print some debugging information when the program exits.
 
@@ -5055,7 +5055,7 @@ mysqlslap --concurrency=5
 
 * `--debug-info`, `-T`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>0
 
   Print debugging information and memory and CPU usage statistics when the program exits.
 
@@ -5063,13 +5063,13 @@ mysqlslap --concurrency=5
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>1
 
   A hint about which client-side authentication plugin to use. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>2
 
   Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -5077,7 +5077,7 @@ mysqlslap --concurrency=5
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>3
 
   Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -5087,7 +5087,7 @@ mysqlslap --concurrency=5
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>4
 
   Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysqlslap** normally reads the `[client]` and `[mysqlslap]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysqlslap** also reads the `[client_other]` and `[mysqlslap_other]` groups.
 
@@ -5095,31 +5095,31 @@ mysqlslap --concurrency=5
 
 * `--delimiter=str`, `-F str`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>5
 
   The delimiter to use in SQL statements supplied in files or using command options.
 
 * `--detach=N`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>6
 
   Detach (close and reopen) each connection after each *`N`* statements. The default is 0 (connections are not detached).
 
 * `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>7
 
   Enable the `mysql_clear_password` cleartext authentication plugin. (See Section 8.4.1.3, “Client-Side Cleartext Pluggable Authentication”.)
 
 * `--engine=engine_name`, `-e engine_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>8
 
   The storage engine to use for creating tables.
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>9
 
   Request from the server the RSA public key that it uses for key pair-based password exchange. This option applies to clients that connect to the server using an account that authenticates with the `caching_sha2_password` authentication plugin. For connections by such accounts, the server does not send the public key to the client unless requested. The option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not needed, as is the case when the client connects to the server using a secure connection.
 
@@ -5129,27 +5129,27 @@ mysqlslap --concurrency=5
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>0
 
   Connect to the MySQL server on the given host.
 
 * `--iterations=N`, `-i N`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>1
 
   The number of times to run the tests.
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>2
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>3
 
   Skips reading options from the login path file.
 
@@ -5159,35 +5159,35 @@ mysqlslap --concurrency=5
 
 * `--no-drop`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>4
 
   Prevent **mysqlslap** from dropping any schema it creates during the test run.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>5
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
-  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--number-char-cols=N`, `-x N`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>6
 
   The number of `VARCHAR` columns to use if `--auto-generate-sql` is specified.
 
 * `--number-int-cols=N`, `-y N`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>7
 
   The number of `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") columns to use if `--auto-generate-sql` is specified.
 
 * `--number-of-queries=N`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>8
 
   Limit each client to approximately this many queries. Query counting takes into account the statement delimiter. For example, if you invoke **mysqlslap** as follows, the `;` delimiter is recognized so that each instance of the query string counts as two queries. As a result, 5 rows (not 10) are inserted.
 
@@ -5198,13 +5198,13 @@ mysqlslap --concurrency=5
 
 * `--only-print`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>9
 
   Do not connect to databases. **mysqlslap** only prints what it would have done.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>0
 
   The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqlslap** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -5232,49 +5232,49 @@ mysqlslap --concurrency=5
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>1
 
   On Windows, connect to the server using a named pipe. This option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>2
 
   The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysqlslap** does not find it. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>3
 
   For TCP/IP connections, the port number to use.
 
 * `--post-query=value`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>4
 
   The file or string containing the statement to execute after the tests have completed. This execution is not counted for timing purposes.
 
 * `--post-system=str`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>5
 
   The string to execute using `system()` after the tests have completed. This execution is not counted for timing purposes.
 
 * `--pre-query=value`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>6
 
   The file or string containing the statement to execute before running the tests. This execution is not counted for timing purposes.
 
 * `--pre-system=str`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>7
 
   The string to execute using `system()` before running the tests. This execution is not counted for timing purposes.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>8
 
   Print the program name and all options that it gets from option files.
 
@@ -5282,19 +5282,19 @@ mysqlslap --concurrency=5
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-execute-number"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-execute-number=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>9
 
   The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 6.2.7, “Connection Transport Protocols”.
 
 * `--query=value`, `-q value`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>0
 
   The file or string containing the `SELECT` statement to use for retrieving data.
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>1
 
   The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -5306,7 +5306,7 @@ mysqlslap --concurrency=5
 
 * `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>2
 
   On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
 
@@ -5314,13 +5314,13 @@ mysqlslap --concurrency=5
 
 * `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>3
 
   Silent mode. No output.
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>4
 
   For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
 
@@ -5328,7 +5328,7 @@ mysqlslap --concurrency=5
 
 * `--sql-mode=mode`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>5
 
   Set the SQL mode for the client session.
 
@@ -5338,7 +5338,7 @@ mysqlslap --concurrency=5
 
 * `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>6
 
   Controls whether to enable FIPS mode on the client side. The `--ssl-fips-mode` option differs from other `--ssl-xxx` options in that it is not used to establish encrypted connections, but rather to affect which cryptographic operations to permit. See Section 8.8, “FIPS Support”.
 
@@ -5356,13 +5356,13 @@ mysqlslap --concurrency=5
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>7
 
   The permissible ciphersuites for encrypted connections that use TLSv1.3. The value is a list of one or more colon-separated ciphersuite names. The ciphersuites that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--tls-sni-servername=server_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>8
 
   When specified, the name is passed to the `libmysqlclient` C API library using the `MYSQL_OPT_TLS_SNI_SERVERNAME` option of `mysql_options()`. The server name is not case-sensitive. To show which server name the client specified for the current session, if any, check the `Tls_sni_server_name` status variable.
 
@@ -5370,31 +5370,31 @@ mysqlslap --concurrency=5
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-guid-primary</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>FALSE</code></td> </tr></tbody></table>9
 
   The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-load-type"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-load-type=type</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">mixed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">read</code></p><p class="valid-value"><code class="literal">write</code></p><p class="valid-value"><code class="literal">key</code></p><p class="valid-value"><code class="literal">update</code></p><p class="valid-value"><code class="literal">mixed</code></p></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-load-type"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-load-type=type</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>mixed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>read</code></p><p class="valid-value"><code>write</code></p><p class="valid-value"><code>key</code></p><p class="valid-value"><code>update</code></p><p class="valid-value"><code>mixed</code></p></td> </tr></tbody></table>0
 
   The user name of the MySQL account to use for connecting to the server.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-load-type"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-load-type=type</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">mixed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">read</code></p><p class="valid-value"><code class="literal">write</code></p><p class="valid-value"><code class="literal">key</code></p><p class="valid-value"><code class="literal">update</code></p><p class="valid-value"><code class="literal">mixed</code></p></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-load-type"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-load-type=type</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>mixed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>read</code></p><p class="valid-value"><code>write</code></p><p class="valid-value"><code>key</code></p><p class="valid-value"><code>update</code></p><p class="valid-value"><code>mixed</code></p></td> </tr></tbody></table>1
 
   Verbose mode. Print more information about what the program does. This option can be used multiple times to increase the amount of information.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-load-type"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-load-type=type</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">mixed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">read</code></p><p class="valid-value"><code class="literal">write</code></p><p class="valid-value"><code class="literal">key</code></p><p class="valid-value"><code class="literal">update</code></p><p class="valid-value"><code class="literal">mixed</code></p></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-load-type"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-load-type=type</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>mixed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>read</code></p><p class="valid-value"><code>write</code></p><p class="valid-value"><code>key</code></p><p class="valid-value"><code>update</code></p><p class="valid-value"><code>mixed</code></p></td> </tr></tbody></table>2
 
   Display version information and exit.
 
 * `--zstd-compression-level=level`
 
-  <table frame="box" rules="all" summary="Properties for auto-generate-sql-load-type"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-generate-sql-load-type=type</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">mixed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">read</code></p><p class="valid-value"><code class="literal">write</code></p><p class="valid-value"><code class="literal">key</code></p><p class="valid-value"><code class="literal">update</code></p><p class="valid-value"><code class="literal">mixed</code></p></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for auto-generate-sql-load-type"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--auto-generate-sql-load-type=type</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>mixed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>read</code></p><p class="valid-value"><code>write</code></p><p class="valid-value"><code>key</code></p><p class="valid-value"><code>update</code></p><p class="valid-value"><code>mixed</code></p></td> </tr></tbody></table>3
 
   The compression level to use for connections to the server that use the `zstd` compression algorithm. The permitted levels are from 1 to 22, with larger values indicating increasing levels of compression. The default `zstd` compression level is 3. The compression level setting has no effect on connections that do not use `zstd` compression.
 
@@ -5436,23 +5436,23 @@ The diagnostic report is generated as a zip file to either the local directory o
 
 **Table 6.17 mysqldm options**
 
-<table frame="box" rules="all" summary="Reference for mysqldm options."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_authentication-oci-client-config-profile">--authentication-oci-client-config-profile</a></td> <td>Name of the OCI profile defined in the OCI config file to use</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_authentication-openid-connect-client-id-token-file">--authentication-openid-connect-client-id-token-file</a></td> <td>Full path to the OpenID Connect Identity token file</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets are installed</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_debug">--debug</a></td> <td>Write debugging log; supported only if MySQL was built with debugging support</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_default-auth">--default-auth</a></td> <td>Authentication plugin to use</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_delay">--delay</a></td> <td>Number of seconds between iterations</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Enable cleartext authentication plugin</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_iterations">--iterations</a></td> <td>Number of iterations</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_oci-config-file">--oci-config-file</a></td> <td>Defines an alternate location for the Oracle Cloud Infrastructure CLI configuration file.</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_output-dir">--output-dir</a></td> <td>Path where output is written</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_plugin-authentication-kerberos-client-mode">--plugin-authentication-kerberos-client-mode</a></td> <td>Permit GSSAPI pluggable authentication through the MIT Kerberos library on Windows</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_plugin-authentication-webauthn-client-preserve-privacy">--plugin-authentication-webauthn-client-preserve-privacy</a></td> <td>Permit user to choose a key to be used for assertion</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_plugin-authentication-webauthn-device">--plugin-authentication-webauthn-device</a></td> <td>Specifies which libfido2 device to use. Default is 0 (first device)</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_plugin-dir">--plugin-dir</a></td> <td>Directory where plugins are installed</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_ssl">--ssl-crl</a></td> <td>File that contains certificate revocation lists</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_ssl">--ssl-crlpath</a></td> <td>Directory that contains certificate revocation-list files</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Reference for mysqldm options."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--authentication-oci-client-config-profile</td> <td>Name of the OCI profile defined in the OCI config file to use</td> </tr><tr><td>--authentication-openid-connect-client-id-token-file</td> <td>Full path to the OpenID Connect Identity token file</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets are installed</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--debug</td> <td>Write debugging log; supported only if MySQL was built with debugging support</td> </tr><tr><td>--default-auth</td> <td>Authentication plugin to use</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--delay</td> <td>Number of seconds between iterations</td> </tr><tr><td>--enable-cleartext-plugin</td> <td>Enable cleartext authentication plugin</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--iterations</td> <td>Number of iterations</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--oci-config-file</td> <td>Defines an alternate location for the Oracle Cloud Infrastructure CLI configuration file.</td> </tr><tr><td>--output-dir</td> <td>Path where output is written</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--plugin-authentication-kerberos-client-mode</td> <td>Permit GSSAPI pluggable authentication through the MIT Kerberos library on Windows</td> </tr><tr><td>--plugin-authentication-webauthn-client-preserve-privacy</td> <td>Permit user to choose a key to be used for assertion</td> </tr><tr><td>--plugin-authentication-webauthn-device</td> <td>Specifies which libfido2 device to use. Default is 0 (first device)</td> </tr><tr><td>--plugin-dir</td> <td>Directory where plugins are installed</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-crl</td> <td>File that contains certificate revocation lists</td> </tr><tr><td>--ssl-crlpath</td> <td>Directory that contains certificate revocation-list files</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
 
 * `--delay=numberOfSeconds`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>30</code></td> </tr></tbody></table>
 
   A length of delay between diagnostic iterations, in seconds.
 
 * `--iterations=numberOfIterations`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>10</code></td> </tr></tbody></table>
 
   The number of diagnostic iterations.
 
 * `--output-dir=path`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>.</code></td> </tr></tbody></table>
 
   The path where the diagnostics archive is generated. A temporary directory containing the generated files is also created at this location, then deleted when the diagnostics are complete and the archive generated.
 
@@ -5462,31 +5462,31 @@ This section lists the common server options used by **mysqldm**.
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
 * `--authentication-oci-client-config-profile`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   Specify the name of the OCI configuration profile to use. If not set, the default profile is used.
 
 * `--authentication-openid-connect-client-id-token-file`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>
 
   For OpenID Connect, this sets the required Identity token to authenticate with a mapped MySQL user. It's a full filepath to the Identity token file used when connecting to the MySQL server. For additional information, see Section 8.4.1.9, “OpenID Connect Pluggable Authentication”.
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   The directory where character sets are installed. See Section 12.15, “Character Set Configuration”.
 
 * `--compress`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Compress all information sent between the client and the server if possible. See Section 6.2.8, “Connection Compression Control”.
 
@@ -5494,7 +5494,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--compression-algorithms=value`
 
-  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code class="literal">uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>
 
   The permitted compression algorithms for connections to the server. The available algorithms are the same as for the `protocol_compression_algorithms` system variable. The default value is `uncompressed`.
 
@@ -5502,7 +5502,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>30</code></td> </tr></tbody></table>0
 
   Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o,/tmp/mysql.trace`.
 
@@ -5510,13 +5510,13 @@ This section lists the common server options used by **mysqldm**.
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>30</code></td> </tr></tbody></table>1
 
   A hint about which client-side authentication plugin to use. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>30</code></td> </tr></tbody></table>2
 
   Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -5524,7 +5524,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>30</code></td> </tr></tbody></table>3
 
   Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -5534,7 +5534,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>30</code></td> </tr></tbody></table>4
 
   Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysql** normally reads the `[client]` and `[mysql]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysql** also reads the `[client_other]` and `[mysql_other]` groups.
 
@@ -5542,13 +5542,13 @@ This section lists the common server options used by **mysqldm**.
 
 * `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>30</code></td> </tr></tbody></table>5
 
   Enable the `mysql_clear_password` cleartext authentication plugin. (See Section 8.4.1.3, “Client-Side Cleartext Pluggable Authentication”.)
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>30</code></td> </tr></tbody></table>6
 
   Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -5558,21 +5558,21 @@ This section lists the common server options used by **mysqldm**.
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>30</code></td> </tr></tbody></table>7
 
   Connect to the MySQL server on the given host.
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>30</code></td> </tr></tbody></table>8
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>30</code></td> </tr></tbody></table>9
 
   Skips reading options from the login path file.
 
@@ -5582,23 +5582,23 @@ This section lists the common server options used by **mysqldm**.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>10</code></td> </tr></tbody></table>0
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
-  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--oci-config-file=PATH`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>10</code></td> </tr></tbody></table>1
 
   Alternate path to the Oracle Cloud Infrastructure CLI configuration file. Specify the location of the configuration file. If your existing default profile is the correct one, you do not need to specify this option. However, if you have an existing configuration file, with multiple profiles or a different default from the tenancy of the user you want to connect with, specify this option.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>10</code></td> </tr></tbody></table>2
 
   The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqldm** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -5622,13 +5622,13 @@ This section lists the common server options used by **mysqldm**.
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>10</code></td> </tr></tbody></table>3
 
   On Windows, connect to the server using a named pipe. This option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
 
 * `--plugin-authentication-kerberos-client-mode=value`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>10</code></td> </tr></tbody></table>4
 
   On Windows, the `authentication_kerberos_client` authentication plugin supports this plugin option. It provides two possible values that the client user can set at runtime: `SSPI` and `GSSAPI`.
 
@@ -5638,7 +5638,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--plugin-authentication-webauthn-client-preserve-privacy={OFF|ON}`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>10</code></td> </tr></tbody></table>5
 
   Determines how assertions are sent to server in case there is more than one discoverable credential stored for a given RP ID (a unique name given to the relying-party server, which is the MySQL server). If the FIDO2 device contains multiple resident keys for a given RP ID, this option allows the user to choose a key to be used for assertion. It provides two possible values that the client user can set. The default value is `OFF`. If set to `OFF`, the challenge is signed by all credentials available for a given RP ID and all signatures are sent to server. If set to `ON`, the user is prompted to choose the credential to be used for signature.
 
@@ -5650,7 +5650,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--plugin-authentication-webauthn-device=#`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>10</code></td> </tr></tbody></table>6
 
   Determiens which device to use for `libfido` authentication. The default is the first device (`0`).
 
@@ -5662,19 +5662,19 @@ This section lists the common server options used by **mysqldm**.
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>10</code></td> </tr></tbody></table>7
 
   The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysqldm** does not find it. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>10</code></td> </tr></tbody></table>8
 
   For TCP/IP connections, the port number to use.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>10</code></td> </tr></tbody></table>9
 
   Print the program name and all options that it gets from option files.
 
@@ -5682,13 +5682,13 @@ This section lists the common server options used by **mysqldm**.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>.</code></td> </tr></tbody></table>0
 
   The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 6.2.7, “Connection Transport Protocols”.
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>.</code></td> </tr></tbody></table>1
 
   The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -5700,7 +5700,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>.</code></td> </tr></tbody></table>2
 
   On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
 
@@ -5708,7 +5708,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>.</code></td> </tr></tbody></table>3
 
   For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
 
@@ -5720,7 +5720,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>.</code></td> </tr></tbody></table>4
 
   Controls whether to enable FIPS mode on the client side. The `--ssl-fips-mode` option differs from other `--ssl-xxx` options in that it is not used to establish encrypted connections, but rather to affect which cryptographic operations to permit. See Section 8.8, “FIPS Support”.
 
@@ -5738,13 +5738,13 @@ This section lists the common server options used by **mysqldm**.
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>.</code></td> </tr></tbody></table>5
 
   The permissible ciphersuites for encrypted connections that use TLSv1.3. The value is a list of one or more colon-separated ciphersuite names. The ciphersuites that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--tls-sni-servername=server_name`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>.</code></td> </tr></tbody></table>6
 
   When specified, the name is passed to the `libmysqlclient` C API library using the `MYSQL_OPT_TLS_SNI_SERVERNAME` option of `mysql_options()`. The server name is not case-sensitive. To show which server name the client specified for the current session, if any, check the `Tls_sni_server_name` status variable.
 
@@ -5752,25 +5752,25 @@ This section lists the common server options used by **mysqldm**.
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>.</code></td> </tr></tbody></table>7
 
   The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>.</code></td> </tr></tbody></table>8
 
   The user name of the MySQL account to use for connecting to the server.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>.</code></td> </tr></tbody></table>9
 
   Display version information and exit.
 
 * `--zstd-compression-level=level`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>0
 
   The compression level to use for connections to the server that use the `zstd` compression algorithm. The permitted levels are from 1 to 22, with larger values indicating increasing levels of compression. The default `zstd` compression level is 3. The compression level setting has no effect on connections that do not use `zstd` compression.
 

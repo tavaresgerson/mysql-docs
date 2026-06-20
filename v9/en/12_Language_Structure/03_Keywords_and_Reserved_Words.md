@@ -28,7 +28,7 @@ Query OK, 0 rows affected (0.01 sec)
 
 Names of built-in functions are permitted as identifiers but may require care to be used as such. For example, `COUNT` is acceptable as a column name. However, by default, no whitespace is permitted in function invocations between the function name and the following `(` character. This requirement enables the parser to distinguish whether the name is used in a function call or in nonfunction context. For further details on recognition of function names, see Section 11.2.5, “Function Name Parsing and Resolution”.
 
-The `INFORMATION_SCHEMA.KEYWORDS` table lists the words considered keywords by MySQL and indicates whether they are reserved. See Section 28.3.17, “The INFORMATION\_SCHEMA KEYWORDS Table”.
+The `INFORMATION_SCHEMA.KEYWORDS` table lists the words considered keywords by MySQL and indicates whether they are reserved. See Section 28.3.17, “The INFORMATION_SCHEMA KEYWORDS Table”.
 
 * MySQL 9.5 Keywords and Reserved Words
 * MySQL 9.5 New Keywords and Reserved Words

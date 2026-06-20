@@ -62,7 +62,7 @@ The intention locking protocol is as follows:
 
 Table-level lock type compatibility is summarized in the following matrix.
 
-<table summary='A matrix showing table-level lock type compatibility. Each cell in the matrix is marked as either "Compatible" or "Conflict".'><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th scope="col"></th> <th scope="col"><code class="literal">X</code></th> <th scope="col"><code class="literal">IX</code></th> <th scope="col"><code class="literal">S</code></th> <th scope="col"><code class="literal">IS</code></th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">X</code></th> <td>Conflict</td> <td>Conflict</td> <td>Conflict</td> <td>Conflict</td> </tr><tr> <th scope="row"><code class="literal">IX</code></th> <td>Conflict</td> <td>Compatible</td> <td>Conflict</td> <td>Compatible</td> </tr><tr> <th scope="row"><code class="literal">S</code></th> <td>Conflict</td> <td>Conflict</td> <td>Compatible</td> <td>Compatible</td> </tr><tr> <th scope="row"><code class="literal">IS</code></th> <td>Conflict</td> <td>Compatible</td> <td>Compatible</td> <td>Compatible</td> </tr></tbody></table>
+<table summary='A matrix showing table-level lock type compatibility. Each cell in the matrix is marked as either "Compatible" or "Conflict".'><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th scope="col"></th> <th scope="col"><code>X</code></th> <th scope="col"><code>IX</code></th> <th scope="col"><code>S</code></th> <th scope="col"><code>IS</code></th> </tr></thead><tbody><tr> <th scope="row"><code>X</code></th> <td>Conflict</td> <td>Conflict</td> <td>Conflict</td> <td>Conflict</td> </tr><tr> <th scope="row"><code>IX</code></th> <td>Conflict</td> <td>Compatible</td> <td>Conflict</td> <td>Compatible</td> </tr><tr> <th scope="row"><code>S</code></th> <td>Conflict</td> <td>Conflict</td> <td>Compatible</td> <td>Compatible</td> </tr><tr> <th scope="row"><code>IS</code></th> <td>Conflict</td> <td>Compatible</td> <td>Compatible</td> <td>Compatible</td> </tr></tbody></table>
 
 A lock is granted to a requesting transaction if it is compatible with existing locks, but not if it conflicts with existing locks. A transaction waits until the conflicting existing lock is released. If a lock request conflicts with an existing lock and cannot be granted because it would cause deadlock, an error occurs.
 
@@ -195,7 +195,7 @@ An `AUTO-INC` lock is a special table-level lock taken by transactions inserting
 
 The `innodb_autoinc_lock_mode` variable controls the algorithm used for auto-increment locking. It allows you to choose how to trade off between predictable sequences of auto-increment values and maximum concurrency for insert operations.
 
-For more information, see Section 17.6.1.6, “AUTO\_INCREMENT Handling in InnoDB”.
+For more information, see Section 17.6.1.6, “AUTO_INCREMENT Handling in InnoDB”.
 
 #### Predicate Locks for Spatial Indexes
 
@@ -735,7 +735,7 @@ If you have no indexes suitable for your statement and MySQL must scan the entir
 
 * `InnoDB` sets an exclusive lock on the end of the index associated with the `AUTO_INCREMENT` column while initializing a previously specified `AUTO_INCREMENT` column on a table.
 
-  With `innodb_autoinc_lock_mode=0`, `InnoDB` uses a special `AUTO-INC` table lock mode where the lock is obtained and held to the end of the current SQL statement (not to the end of the entire transaction) while accessing the auto-increment counter. Other clients cannot insert into the table while the `AUTO-INC` table lock is held. The same behavior occurs for “bulk inserts” with `innodb_autoinc_lock_mode=1`. Table-level `AUTO-INC` locks are not used with `innodb_autoinc_lock_mode=2`. For more information, See Section 17.6.1.6, “AUTO\_INCREMENT Handling in InnoDB”.
+  With `innodb_autoinc_lock_mode=0`, `InnoDB` uses a special `AUTO-INC` table lock mode where the lock is obtained and held to the end of the current SQL statement (not to the end of the entire transaction) while accessing the auto-increment counter. Other clients cannot insert into the table while the `AUTO-INC` table lock is held. The same behavior occurs for “bulk inserts” with `innodb_autoinc_lock_mode=1`. Table-level `AUTO-INC` locks are not used with `innodb_autoinc_lock_mode=2`. For more information, See Section 17.6.1.6, “AUTO_INCREMENT Handling in InnoDB”.
 
   `InnoDB` fetches the value of a previously initialized `AUTO_INCREMENT` column without setting any locks.
 
@@ -1119,7 +1119,7 @@ The CATS algorithm prioritizes waiting transactions by assigning a scheduling we
 
 You can view transaction scheduling weights by querying the `TRX_SCHEDULE_WEIGHT` column in the Information Schema `INNODB_TRX` table. Weights are computed for waiting transactions only. Waiting transactions are those in a `LOCK WAIT` transaction execution state, as reported by the `TRX_STATE` column. A transaction that is not waiting for a lock reports a NULL `TRX_SCHEDULE_WEIGHT` value.
 
-`INNODB_METRICS` counters are provided for monitoring of code-level transaction scheduling events. For information about using `INNODB_METRICS` counters, see Section 17.15.6, “InnoDB INFORMATION\_SCHEMA Metrics Table”.
+`INNODB_METRICS` counters are provided for monitoring of code-level transaction scheduling events. For information about using `INNODB_METRICS` counters, see Section 17.15.6, “InnoDB INFORMATION_SCHEMA Metrics Table”.
 
 * `lock_rec_release_attempts`
 

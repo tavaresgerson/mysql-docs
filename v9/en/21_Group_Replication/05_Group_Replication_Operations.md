@@ -480,7 +480,7 @@ To guarantee that the group provides the same consistency level regardless of wh
 
 This ensures that the members all behave in the same way, and that the configuration is persisted after a restart of the member.
 
-A transaction cannot be on-hold forever, and if the time held exceeds `wait_timeout` it returns an ER\_GR\_HOLD\_WAIT\_TIMEOUT error.
+A transaction cannot be on-hold forever, and if the time held exceeds `wait_timeout` it returns an ER_GR_HOLD_WAIT_TIMEOUT error.
 
 ##### Permitted Queries Under Consistency Rules
 
@@ -956,7 +956,7 @@ Assume one of the members (`s3` in the following example) is irreconcilably corr
    mysql> START GROUP_REPLICATION;
    ```
 
-   Before the restored instance can become an online member of the group, it needs to apply any transactions that have happened to the group after the backup was taken; this is achieved using Group Replication's [distributed recovery](group-replication-distributed-recovery.html "20.5.4 Distributed Recovery") mechanism, and the process starts after the [START GROUP\_REPLICATION](start-group-replication.html "15.4.3.1 START GROUP_REPLICATION Statement") statement has been issued. To check the member status of the restored instance, issue:
+   Before the restored instance can become an online member of the group, it needs to apply any transactions that have happened to the group after the backup was taken; this is achieved using Group Replication's [distributed recovery](group-replication-distributed-recovery.html "20.5.4 Distributed Recovery") mechanism, and the process starts after the [START GROUP_REPLICATION](start-group-replication.html "15.4.3.1 START GROUP_REPLICATION Statement") statement has been issued. To check the member status of the restored instance, issue:
 
    ```
    mysql> SELECT member_host, member_port, member_state FROM performance_schema.replication_group_members;
@@ -1077,7 +1077,7 @@ Sometimes, the steps outlined above in Restoring a Failed Member cannot be carri
    mysql> START GROUP_REPLICATION;
    ```
 
-   Before the restored instance can become an online member of the group, it needs to apply any transactions that have happened to the group after the backup was taken; this is achieved using Group Replication's [distributed recovery](group-replication-distributed-recovery.html "20.5.4 Distributed Recovery") mechanism, and the process starts after the [START GROUP\_REPLICATION](start-group-replication.html "15.4.3.1 START GROUP_REPLICATION Statement") statement has been issued. To check the member status of the restored instance, issue:
+   Before the restored instance can become an online member of the group, it needs to apply any transactions that have happened to the group after the backup was taken; this is achieved using Group Replication's [distributed recovery](group-replication-distributed-recovery.html "20.5.4 Distributed Recovery") mechanism, and the process starts after the [START GROUP_REPLICATION](start-group-replication.html "15.4.3.1 START GROUP_REPLICATION Statement") statement has been issued. To check the member status of the restored instance, issue:
 
    ```
    mysql> SELECT member_host, member_port, member_state FROM performance_schema.replication_group_members;

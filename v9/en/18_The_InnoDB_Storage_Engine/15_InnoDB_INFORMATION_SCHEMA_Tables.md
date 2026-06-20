@@ -1,4 +1,4 @@
-## 17.15 InnoDB INFORMATION\_SCHEMA Tables
+## 17.15 InnoDB INFORMATION_SCHEMA Tables
 
 This section provides information and usage examples for `InnoDB` `INFORMATION_SCHEMA` tables.
 
@@ -8,10 +8,10 @@ This section provides information and usage examples for `InnoDB` `INFORMATION_S
 mysql> SHOW TABLES FROM INFORMATION_SCHEMA LIKE 'INNODB%';
 ```
 
-For table definitions, see Section 28.4, “INFORMATION\_SCHEMA InnoDB Tables”. For general information regarding the `MySQL` `INFORMATION_SCHEMA` database, see Chapter 28, *INFORMATION\_SCHEMA Tables*.
+For table definitions, see Section 28.4, “INFORMATION_SCHEMA InnoDB Tables”. For general information regarding the `MySQL` `INFORMATION_SCHEMA` database, see Chapter 28, *INFORMATION_SCHEMA Tables*.
 
 
-### 17.15.1 InnoDB INFORMATION\_SCHEMA Tables about Compression
+### 17.15.1 InnoDB INFORMATION_SCHEMA Tables about Compression
 
 There are two pairs of `InnoDB` `INFORMATION_SCHEMA` tables about compression that can provide insight into how well compression is working overall:
 
@@ -20,16 +20,16 @@ There are two pairs of `InnoDB` `INFORMATION_SCHEMA` tables about compression th
 * `INNODB_CMPMEM` and `INNODB_CMPMEM_RESET` provide information about the way memory is allocated for compression.
 
 
-#### 17.15.1.1 INNODB\_CMP and INNODB\_CMP\_RESET
+#### 17.15.1.1 INNODB_CMP and INNODB_CMP_RESET
 
 The `INNODB_CMP` and `INNODB_CMP_RESET` tables provide status information about operations related to compressed tables, which are described in Section 17.9, “InnoDB Table and Page Compression”. The `PAGE_SIZE` column reports the compressed page size.
 
 These two tables have identical contents, but reading from `INNODB_CMP_RESET` resets the statistics on compression and uncompression operations. For example, if you archive the output of `INNODB_CMP_RESET` every 60 minutes, you see the statistics for each hourly period. If you monitor the output of `INNODB_CMP` (making sure never to read `INNODB_CMP_RESET`), you see the cumulative statistics since InnoDB was started.
 
-For the table definition, see Section 28.4.6, “The INFORMATION\_SCHEMA INNODB\_CMP and INNODB\_CMP\_RESET Tables”.
+For the table definition, see Section 28.4.6, “The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables”.
 
 
-#### 17.15.1.2 INNODB\_CMPMEM and INNODB\_CMPMEM\_RESET
+#### 17.15.1.2 INNODB_CMPMEM and INNODB_CMPMEM_RESET
 
 The `INNODB_CMPMEM` and `INNODB_CMPMEM_RESET` tables provide status information about compressed pages that reside in the buffer pool. Please consult Section 17.9, “InnoDB Table and Page Compression” for further information on compressed tables and the use of the buffer pool. The `INNODB_CMP` and `INNODB_CMP_RESET` tables should provide more useful statistics on compression.
 
@@ -39,7 +39,7 @@ The `INNODB_CMPMEM` and `INNODB_CMPMEM_RESET` tables provide status information 
 
 The `INNODB_CMPMEM` and `INNODB_CMPMEM_RESET` tables have identical contents, but reading from `INNODB_CMPMEM_RESET` resets the statistics on relocation operations. For example, if every 60 minutes you archived the output of `INNODB_CMPMEM_RESET`, it would show the hourly statistics. If you never read `INNODB_CMPMEM_RESET` and monitored the output of `INNODB_CMPMEM` instead, it would show the cumulative statistics since `InnoDB` was started.
 
-For the table definition, see Section 28.4.7, “The INFORMATION\_SCHEMA INNODB\_CMPMEM and INNODB\_CMPMEM\_RESET Tables”.
+For the table definition, see Section 28.4.7, “The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables”.
 
 
 #### 17.15.1.3 Using the Compression Information Schema Tables
@@ -59,7 +59,7 @@ The following table shows the contents of `INFORMATION_SCHEMA.INNODB_CMPMEM` und
 <table summary="Sample data from the INFORMATION_SCHEMA.INNODB_CMPMEM table, showing buffer pool memory operations for InnoDB table compression under a light workload."><col style="width: 15%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th scope="col">page size</th> <th scope="col">pages used</th> <th scope="col">pages free</th> <th scope="col">relocation ops</th> <th scope="col">relocation time</th> </tr></thead><tbody><tr> <th scope="row">64</th> <td>5910</td> <td>0</td> <td>2436</td> <td>0</td> </tr><tr> <th scope="row">128</th> <td>0</td> <td>1</td> <td>0</td> <td>0</td> </tr><tr> <th scope="row">256</th> <td>0</td> <td>0</td> <td>0</td> <td>0</td> </tr><tr> <th scope="row">512</th> <td>0</td> <td>1</td> <td>0</td> <td>0</td> </tr><tr> <th scope="row">1024</th> <td>0</td> <td>0</td> <td>0</td> <td>0</td> </tr><tr> <th scope="row">2048</th> <td>0</td> <td>1</td> <td>0</td> <td>0</td> </tr><tr> <th scope="row">4096</th> <td>0</td> <td>1</td> <td>0</td> <td>0</td> </tr><tr> <th scope="row">8192</th> <td>6169</td> <td>0</td> <td>5</td> <td>0</td> </tr><tr> <th scope="row">16384</th> <td>0</td> <td>0</td> <td>0</td> <td>0</td> </tr></tbody></table>
 
 
-### 17.15.2 InnoDB INFORMATION\_SCHEMA Transaction and Locking Information
+### 17.15.2 InnoDB INFORMATION_SCHEMA Transaction and Locking Information
 
 One `INFORMATION_SCHEMA` table and two Performance Schema tables enable you to monitor `InnoDB` transactions and diagnose potential locking problems:
 
@@ -75,7 +75,7 @@ One `INFORMATION_SCHEMA` table and two Performance Schema tables enable you to m
 
 * `data_lock_waits`: This Performance Schema table indicates which transactions are waiting for a given lock, or for which lock a given transaction is waiting. This table contains one or more rows for each blocked transaction, indicating the lock it has requested and any locks that are blocking that request. The `REQUESTING_ENGINE_LOCK_ID` value refers to the lock requested by a transaction, and the `BLOCKING_ENGINE_LOCK_ID` value refers to the lock (held by another transaction) that prevents the first transaction from proceeding. For any given blocked transaction, all rows in `data_lock_waits` have the same value for `REQUESTING_ENGINE_LOCK_ID` and different values for `BLOCKING_ENGINE_LOCK_ID`.
 
-For more information about the preceding tables, see Section 28.4.28, “The INFORMATION\_SCHEMA INNODB\_TRX Table”, Section 29.12.13.1, “The data\_locks Table”, and Section 29.12.13.2, “The data\_lock\_waits Table”.
+For more information about the preceding tables, see Section 28.4.28, “The INFORMATION_SCHEMA INNODB_TRX Table”, Section 29.12.13.1, “The data_locks Table”, and Section 29.12.13.2, “The data_lock_waits Table”.
 
 
 #### 17.15.2.1 Using InnoDB Transaction and Locking Information
@@ -84,7 +84,7 @@ This section describes the use of locking information as exposed by the Performa
 
 ##### Identifying Blocking Transactions
 
-It is sometimes helpful to identify which transaction blocks another. The tables that contain information about `InnoDB` transactions and data locks enable you to determine which transaction is waiting for another, and which resource is being requested. (For descriptions of these tables, see Section 17.15.2, “InnoDB INFORMATION\_SCHEMA Transaction and Locking Information”.)
+It is sometimes helpful to identify which transaction blocks another. The tables that contain information about `InnoDB` transactions and data locks enable you to determine which transaction is waiting for another, and which resource is being requested. (For descriptions of these tables, see Section 17.15.2, “InnoDB INFORMATION_SCHEMA Transaction and Locking Information”.)
 
 Suppose that three sessions are running concurrently. Each session corresponds to a MySQL thread, and executes one transaction after another. Consider the state of the system when these sessions have issued the following statements, but none has yet committed its transaction:
 
@@ -140,7 +140,7 @@ FROM sys.innodb_lock_waits;
 
 If a NULL value is reported for the blocking query, see Identifying a Blocking Query After the Issuing Session Becomes Idle.
 
-<table summary="The result set of a query against the perormance_schema.data_lock_waits and INFORMATION_SCHEMA.INNODB_TRX tables, shown in the preceding text, indicating which InnoDB threads are waiting for which other threads."><col style="width: 9%"/><col style="width: 9%"/><col style="width: 33%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 33%"/><thead><tr> <th scope="col">waiting trx id</th> <th scope="col">waiting thread</th> <th scope="col">waiting query</th> <th scope="col">blocking trx id</th> <th scope="col">blocking thread</th> <th scope="col">blocking query</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">A4</code></th> <td><code class="literal">6</code></td> <td><code class="literal">SELECT b FROM t FOR UPDATE</code></td> <td><code class="literal">A3</code></td> <td><code class="literal">5</code></td> <td><code class="literal">SELECT SLEEP(100)</code></td> </tr><tr> <th scope="row"><code class="literal">A5</code></th> <td><code class="literal">7</code></td> <td><code class="literal">SELECT c FROM t FOR UPDATE</code></td> <td><code class="literal">A3</code></td> <td><code class="literal">5</code></td> <td><code class="literal">SELECT SLEEP(100)</code></td> </tr><tr> <th scope="row"><code class="literal">A5</code></th> <td><code class="literal">7</code></td> <td><code class="literal">SELECT c FROM t FOR UPDATE</code></td> <td><code class="literal">A4</code></td> <td><code class="literal">6</code></td> <td><code class="literal">SELECT b FROM t FOR UPDATE</code></td> </tr></tbody></table>
+<table summary="The result set of a query against the perormance_schema.data_lock_waits and INFORMATION_SCHEMA.INNODB_TRX tables, shown in the preceding text, indicating which InnoDB threads are waiting for which other threads."><col style="width: 9%"/><col style="width: 9%"/><col style="width: 33%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 33%"/><thead><tr> <th scope="col">waiting trx id</th> <th scope="col">waiting thread</th> <th scope="col">waiting query</th> <th scope="col">blocking trx id</th> <th scope="col">blocking thread</th> <th scope="col">blocking query</th> </tr></thead><tbody><tr> <th scope="row"><code>A4</code></th> <td><code>6</code></td> <td><code>SELECT b FROM t FOR UPDATE</code></td> <td><code>A3</code></td> <td><code>5</code></td> <td><code>SELECT SLEEP(100)</code></td> </tr><tr> <th scope="row"><code>A5</code></th> <td><code>7</code></td> <td><code>SELECT c FROM t FOR UPDATE</code></td> <td><code>A3</code></td> <td><code>5</code></td> <td><code>SELECT SLEEP(100)</code></td> </tr><tr> <th scope="row"><code>A5</code></th> <td><code>7</code></td> <td><code>SELECT c FROM t FOR UPDATE</code></td> <td><code>A4</code></td> <td><code>6</code></td> <td><code>SELECT b FROM t FOR UPDATE</code></td> </tr></tbody></table>
 
 In the preceding table, you can identify sessions by the “waiting query” or “blocking query” columns. As you can see:
 
@@ -152,15 +152,15 @@ You can see the underlying data in the `INFORMATION_SCHEMA` `INNODB_TRX` table a
 
 The following table shows some sample contents of the `INNODB_TRX` table.
 
-<table summary="Sample data from the INFORMATION_SCHEMA.INNODB_TRX table, showing the typical types of entries for each column."><col style="width: 10%"/><col style="width: 13%"/><col style="width: 36%"/><col style="width: 30%"/><col style="width: 36%"/><col style="width: 19%"/><col style="width: 23%"/><col style="width: 45%"/><thead><tr> <th scope="col">trx id</th> <th scope="col">trx state</th> <th scope="col">trx started</th> <th scope="col">trx requested lock id</th> <th scope="col">trx wait started</th> <th scope="col">trx weight</th> <th scope="col">trx mysql thread id</th> <th scope="col">trx query</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">A3</code></th> <td><code class="literal">RUN­NING</code></td> <td><code class="literal">2008-01-15 16:44:54</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">2</code></td> <td><code class="literal">5</code></td> <td><code class="literal">SELECT SLEEP(100)</code></td> </tr><tr> <th scope="row"><code class="literal">A4</code></th> <td><code class="literal">LOCK WAIT</code></td> <td><code class="literal">2008-01-15 16:45:09</code></td> <td><code class="literal">A4:1:3:2</code></td> <td><code class="literal">2008-01-15 16:45:09</code></td> <td><code class="literal">2</code></td> <td><code class="literal">6</code></td> <td><code class="literal">SELECT b FROM t FOR UPDATE</code></td> </tr><tr> <th scope="row"><code class="literal">A5</code></th> <td><code class="literal">LOCK WAIT</code></td> <td><code class="literal">2008-01-15 16:45:14</code></td> <td><code class="literal">A5:1:3:2</code></td> <td><code class="literal">2008-01-15 16:45:14</code></td> <td><code class="literal">2</code></td> <td><code class="literal">7</code></td> <td><code class="literal">SELECT c FROM t FOR UPDATE</code></td> </tr></tbody></table>
+<table summary="Sample data from the INFORMATION_SCHEMA.INNODB_TRX table, showing the typical types of entries for each column."><col style="width: 10%"/><col style="width: 13%"/><col style="width: 36%"/><col style="width: 30%"/><col style="width: 36%"/><col style="width: 19%"/><col style="width: 23%"/><col style="width: 45%"/><thead><tr> <th scope="col">trx id</th> <th scope="col">trx state</th> <th scope="col">trx started</th> <th scope="col">trx requested lock id</th> <th scope="col">trx wait started</th> <th scope="col">trx weight</th> <th scope="col">trx mysql thread id</th> <th scope="col">trx query</th> </tr></thead><tbody><tr> <th scope="row"><code>A3</code></th> <td><code>RUN­NING</code></td> <td><code>2008-01-15 16:44:54</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> <td><code>2</code></td> <td><code>5</code></td> <td><code>SELECT SLEEP(100)</code></td> </tr><tr> <th scope="row"><code>A4</code></th> <td><code>LOCK WAIT</code></td> <td><code>2008-01-15 16:45:09</code></td> <td><code>A4:1:3:2</code></td> <td><code>2008-01-15 16:45:09</code></td> <td><code>2</code></td> <td><code>6</code></td> <td><code>SELECT b FROM t FOR UPDATE</code></td> </tr><tr> <th scope="row"><code>A5</code></th> <td><code>LOCK WAIT</code></td> <td><code>2008-01-15 16:45:14</code></td> <td><code>A5:1:3:2</code></td> <td><code>2008-01-15 16:45:14</code></td> <td><code>2</code></td> <td><code>7</code></td> <td><code>SELECT c FROM t FOR UPDATE</code></td> </tr></tbody></table>
 
 The following table shows some sample contents of the `data_locks` table.
 
-<table summary="Sample data from the Performance Schema data_locks table, showing the typical types of entries for each column."><col style="width: 26%"/><col style="width: 13%"/><col style="width: 14%"/><col style="width: 21%"/><col style="width: 16%"/><col style="width: 15%"/><col style="width: 29%"/><col style="width: 20%"/><thead><tr> <th scope="col">lock id</th> <th scope="col">lock trx id</th> <th scope="col">lock mode</th> <th scope="col">lock type</th> <th scope="col">lock schema</th> <th scope="col">lock table</th> <th scope="col">lock index</th> <th scope="col">lock data</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">A3:1:3:2</code></th> <td><code class="literal">A3</code></td> <td><code class="literal">X</code></td> <td><code class="literal">RECORD</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t</code></td> <td><code class="literal">PRIMARY</code></td> <td><code class="literal">0x0200</code></td> </tr><tr> <th scope="row"><code class="literal">A4:1:3:2</code></th> <td><code class="literal">A4</code></td> <td><code class="literal">X</code></td> <td><code class="literal">RECORD</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t</code></td> <td><code class="literal">PRIMARY</code></td> <td><code class="literal">0x0200</code></td> </tr><tr> <th scope="row"><code class="literal">A5:1:3:2</code></th> <td><code class="literal">A5</code></td> <td><code class="literal">X</code></td> <td><code class="literal">RECORD</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t</code></td> <td><code class="literal">PRIMARY</code></td> <td><code class="literal">0x0200</code></td> </tr></tbody></table>
+<table summary="Sample data from the Performance Schema data_locks table, showing the typical types of entries for each column."><col style="width: 26%"/><col style="width: 13%"/><col style="width: 14%"/><col style="width: 21%"/><col style="width: 16%"/><col style="width: 15%"/><col style="width: 29%"/><col style="width: 20%"/><thead><tr> <th scope="col">lock id</th> <th scope="col">lock trx id</th> <th scope="col">lock mode</th> <th scope="col">lock type</th> <th scope="col">lock schema</th> <th scope="col">lock table</th> <th scope="col">lock index</th> <th scope="col">lock data</th> </tr></thead><tbody><tr> <th scope="row"><code>A3:1:3:2</code></th> <td><code>A3</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td><code>test</code></td> <td><code>t</code></td> <td><code>PRIMARY</code></td> <td><code>0x0200</code></td> </tr><tr> <th scope="row"><code>A4:1:3:2</code></th> <td><code>A4</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td><code>test</code></td> <td><code>t</code></td> <td><code>PRIMARY</code></td> <td><code>0x0200</code></td> </tr><tr> <th scope="row"><code>A5:1:3:2</code></th> <td><code>A5</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td><code>test</code></td> <td><code>t</code></td> <td><code>PRIMARY</code></td> <td><code>0x0200</code></td> </tr></tbody></table>
 
 The following table shows some sample contents of the `data_lock_waits` table.
 
-<table summary="Sample data from the Performance Schema data_lock_waits table, showing the typical types of entries for each column."><col style="width: 10%"/><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><thead><tr> <th scope="col">requesting trx id</th> <th scope="col">requested lock id</th> <th scope="col">blocking trx id</th> <th scope="col">blocking lock id</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">A4</code></th> <td><code class="literal">A4:1:3:2</code></td> <td><code class="literal">A3</code></td> <td><code class="literal">A3:1:3:2</code></td> </tr><tr> <th scope="row"><code class="literal">A5</code></th> <td><code class="literal">A5:1:3:2</code></td> <td><code class="literal">A3</code></td> <td><code class="literal">A3:1:3:2</code></td> </tr><tr> <th scope="row"><code class="literal">A5</code></th> <td><code class="literal">A5:1:3:2</code></td> <td><code class="literal">A4</code></td> <td><code class="literal">A4:1:3:2</code></td> </tr></tbody></table>
+<table summary="Sample data from the Performance Schema data_lock_waits table, showing the typical types of entries for each column."><col style="width: 10%"/><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><thead><tr> <th scope="col">requesting trx id</th> <th scope="col">requested lock id</th> <th scope="col">blocking trx id</th> <th scope="col">blocking lock id</th> </tr></thead><tbody><tr> <th scope="row"><code>A4</code></th> <td><code>A4:1:3:2</code></td> <td><code>A3</code></td> <td><code>A3:1:3:2</code></td> </tr><tr> <th scope="row"><code>A5</code></th> <td><code>A5:1:3:2</code></td> <td><code>A3</code></td> <td><code>A3:1:3:2</code></td> </tr><tr> <th scope="row"><code>A5</code></th> <td><code>A5:1:3:2</code></td> <td><code>A4</code></td> <td><code>A4:1:3:2</code></td> </tr></tbody></table>
 
 ##### Identifying a Blocking Query After the Issuing Session Becomes Idle
 
@@ -218,19 +218,19 @@ There may be inconsistencies between queries shown in the `INFORMATION_SCHEMA` `
 
 The following table shows the contents of the `PROCESSLIST` table for a system running a heavy workload.
 
-<table summary="Sample data from the INFORMATION_SCHEMA.PROCESSLIST table, showing the internal workings of MySQL processes under a heavy workload."><col style="width: 8%"/><col style="width: 11%"/><col style="width: 21%"/><col style="width: 10%"/><col style="width: 20%"/><col style="width: 10%"/><col style="width: 20%"/><col style="width: 25%"/><thead><tr> <th scope="col">ID</th> <th scope="col">USER</th> <th scope="col">HOST</th> <th scope="col">DB</th> <th scope="col">COMMAND</th> <th scope="col">TIME</th> <th scope="col">STATE</th> <th scope="col">INFO</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">384</code></th> <td><code class="literal">root</code></td> <td><code class="literal">localhost</code></td> <td><code class="literal">test</code></td> <td><code class="literal">Query</code></td> <td><code class="literal">10</code></td> <td><code class="literal">update</code></td> <td><code class="literal">INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code class="literal">257</code></th> <td><code class="literal">root</code></td> <td><code class="literal">localhost</code></td> <td><code class="literal">test</code></td> <td><code class="literal">Query</code></td> <td><code class="literal">3</code></td> <td><code class="literal">update</code></td> <td><code class="literal">INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code class="literal">130</code></th> <td><code class="literal">root</code></td> <td><code class="literal">localhost</code></td> <td><code class="literal">test</code></td> <td><code class="literal">Query</code></td> <td><code class="literal">0</code></td> <td><code class="literal">update</code></td> <td><code class="literal">INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code class="literal">61</code></th> <td><code class="literal">root</code></td> <td><code class="literal">localhost</code></td> <td><code class="literal">test</code></td> <td><code class="literal">Query</code></td> <td><code class="literal">1</code></td> <td><code class="literal">update</code></td> <td><code class="literal">INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code class="literal">8</code></th> <td><code class="literal">root</code></td> <td><code class="literal">localhost</code></td> <td><code class="literal">test</code></td> <td><code class="literal">Query</code></td> <td><code class="literal">1</code></td> <td><code class="literal">update</code></td> <td><code class="literal">INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code class="literal">4</code></th> <td><code class="literal">root</code></td> <td><code class="literal">localhost</code></td> <td><code class="literal">test</code></td> <td><code class="literal">Query</code></td> <td><code class="literal">0</code></td> <td><code class="literal">preparing</code></td> <td><code class="literal">SELECT * FROM PROCESSLIST</code></td> </tr><tr> <th scope="row"><code class="literal">2</code></th> <td><code class="literal">root</code></td> <td><code class="literal">localhost</code></td> <td><code class="literal">test</code></td> <td><code class="literal">Sleep</code></td> <td><code class="literal">566</code></td> <td><code class="literal"></code></td> <td><code class="literal">NULL</code></td> </tr></tbody></table>
+<table summary="Sample data from the INFORMATION_SCHEMA.PROCESSLIST table, showing the internal workings of MySQL processes under a heavy workload."><col style="width: 8%"/><col style="width: 11%"/><col style="width: 21%"/><col style="width: 10%"/><col style="width: 20%"/><col style="width: 10%"/><col style="width: 20%"/><col style="width: 25%"/><thead><tr> <th scope="col">ID</th> <th scope="col">USER</th> <th scope="col">HOST</th> <th scope="col">DB</th> <th scope="col">COMMAND</th> <th scope="col">TIME</th> <th scope="col">STATE</th> <th scope="col">INFO</th> </tr></thead><tbody><tr> <th scope="row"><code>384</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Query</code></td> <td><code>10</code></td> <td><code>update</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code>257</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Query</code></td> <td><code>3</code></td> <td><code>update</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code>130</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Query</code></td> <td><code>0</code></td> <td><code>update</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code>61</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Query</code></td> <td><code>1</code></td> <td><code>update</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code>8</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Query</code></td> <td><code>1</code></td> <td><code>update</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code>4</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Query</code></td> <td><code>0</code></td> <td><code>preparing</code></td> <td><code>SELECT * FROM PROCESSLIST</code></td> </tr><tr> <th scope="row"><code>2</code></th> <td><code>root</code></td> <td><code>localhost</code></td> <td><code>test</code></td> <td><code>Sleep</code></td> <td><code>566</code></td> <td><code></code></td> <td><code>NULL</code></td> </tr></tbody></table>
 
 The following table shows the contents of the `INNODB_TRX` table for a system running a heavy workload.
 
-<table summary="Sample data from the INFORMATION_SCHEMA.INNODB_TRX table, showing the internal workings of InnoDB transactions under a heavy workload."><col style="width: 8%"/><col style="width: 10%"/><col style="width: 19%"/><col style="width: 21%"/><col style="width: 19%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 31%"/><thead><tr> <th scope="col">trx id</th> <th scope="col">trx state</th> <th scope="col">trx started</th> <th scope="col">trx requested lock id</th> <th scope="col">trx wait started</th> <th scope="col">trx weight</th> <th scope="col">trx mysql thread id</th> <th scope="col">trx query</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">77F</code></th> <td><code class="literal">LOCK WAIT</code></td> <td><code class="literal">2008-01-15 13:10:16</code></td> <td><code class="literal">77F</code></td> <td><code class="literal">2008-01-15 13:10:16</code></td> <td><code class="literal">1</code></td> <td><code class="literal">876</code></td> <td><code class="literal">INSERT INTO t09 (D, B, C) VALUES …</code></td> </tr><tr> <th scope="row"><code class="literal">77E</code></th> <td><code class="literal">LOCK WAIT</code></td> <td><code class="literal">2008-01-15 13:10:16</code></td> <td><code class="literal">77E</code></td> <td><code class="literal">2008-01-15 13:10:16</code></td> <td><code class="literal">1</code></td> <td><code class="literal">875</code></td> <td><code class="literal">INSERT INTO t09 (D, B, C) VALUES …</code></td> </tr><tr> <th scope="row"><code class="literal">77D</code></th> <td><code class="literal">LOCK WAIT</code></td> <td><code class="literal">2008-01-15 13:10:16</code></td> <td><code class="literal">77D</code></td> <td><code class="literal">2008-01-15 13:10:16</code></td> <td><code class="literal">1</code></td> <td><code class="literal">874</code></td> <td><code class="literal">INSERT INTO t09 (D, B, C) VALUES …</code></td> </tr><tr> <th scope="row"><code class="literal">77B</code></th> <td><code class="literal">LOCK WAIT</code></td> <td><code class="literal">2008-01-15 13:10:16</code></td> <td><code class="literal">77B:733:12:1</code></td> <td><code class="literal">2008-01-15 13:10:16</code></td> <td><code class="literal">4</code></td> <td><code class="literal">873</code></td> <td><code class="literal">INSERT INTO t09 (D, B, C) VALUES …</code></td> </tr><tr> <th scope="row"><code class="literal">77A</code></th> <td><code class="literal">RUN­NING</code></td> <td><code class="literal">2008-01-15 13:10:16</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">4</code></td> <td><code class="literal">872</code></td> <td><code class="literal">SELECT b, c FROM t09 WHERE …</code></td> </tr><tr> <th scope="row"><code class="literal">E56</code></th> <td><code class="literal">LOCK WAIT</code></td> <td><code class="literal">2008-01-15 13:10:06</code></td> <td><code class="literal">E56:743:6:2</code></td> <td><code class="literal">2008-01-15 13:10:06</code></td> <td><code class="literal">5</code></td> <td><code class="literal">384</code></td> <td><code class="literal">INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code class="literal">E55</code></th> <td><code class="literal">LOCK WAIT</code></td> <td><code class="literal">2008-01-15 13:10:06</code></td> <td><code class="literal">E55:743:38:2</code></td> <td><code class="literal">2008-01-15 13:10:13</code></td> <td><code class="literal">965</code></td> <td><code class="literal">257</code></td> <td><code class="literal">INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code class="literal">19C</code></th> <td><code class="literal">RUN­NING</code></td> <td><code class="literal">2008-01-15 13:09:10</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">2900</code></td> <td><code class="literal">130</code></td> <td><code class="literal">INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code class="literal">E15</code></th> <td><code class="literal">RUN­NING</code></td> <td><code class="literal">2008-01-15 13:08:59</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">5395</code></td> <td><code class="literal">61</code></td> <td><code class="literal">INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code class="literal">51D</code></th> <td><code class="literal">RUN­NING</code></td> <td><code class="literal">2008-01-15 13:08:47</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">9807</code></td> <td><code class="literal">8</code></td> <td><code class="literal">INSERT INTO t2 VALUES …</code></td> </tr></tbody></table>
+<table summary="Sample data from the INFORMATION_SCHEMA.INNODB_TRX table, showing the internal workings of InnoDB transactions under a heavy workload."><col style="width: 8%"/><col style="width: 10%"/><col style="width: 19%"/><col style="width: 21%"/><col style="width: 19%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 31%"/><thead><tr> <th scope="col">trx id</th> <th scope="col">trx state</th> <th scope="col">trx started</th> <th scope="col">trx requested lock id</th> <th scope="col">trx wait started</th> <th scope="col">trx weight</th> <th scope="col">trx mysql thread id</th> <th scope="col">trx query</th> </tr></thead><tbody><tr> <th scope="row"><code>77F</code></th> <td><code>LOCK WAIT</code></td> <td><code>2008-01-15 13:10:16</code></td> <td><code>77F</code></td> <td><code>2008-01-15 13:10:16</code></td> <td><code>1</code></td> <td><code>876</code></td> <td><code>INSERT INTO t09 (D, B, C) VALUES …</code></td> </tr><tr> <th scope="row"><code>77E</code></th> <td><code>LOCK WAIT</code></td> <td><code>2008-01-15 13:10:16</code></td> <td><code>77E</code></td> <td><code>2008-01-15 13:10:16</code></td> <td><code>1</code></td> <td><code>875</code></td> <td><code>INSERT INTO t09 (D, B, C) VALUES …</code></td> </tr><tr> <th scope="row"><code>77D</code></th> <td><code>LOCK WAIT</code></td> <td><code>2008-01-15 13:10:16</code></td> <td><code>77D</code></td> <td><code>2008-01-15 13:10:16</code></td> <td><code>1</code></td> <td><code>874</code></td> <td><code>INSERT INTO t09 (D, B, C) VALUES …</code></td> </tr><tr> <th scope="row"><code>77B</code></th> <td><code>LOCK WAIT</code></td> <td><code>2008-01-15 13:10:16</code></td> <td><code>77B:733:12:1</code></td> <td><code>2008-01-15 13:10:16</code></td> <td><code>4</code></td> <td><code>873</code></td> <td><code>INSERT INTO t09 (D, B, C) VALUES …</code></td> </tr><tr> <th scope="row"><code>77A</code></th> <td><code>RUN­NING</code></td> <td><code>2008-01-15 13:10:16</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> <td><code>4</code></td> <td><code>872</code></td> <td><code>SELECT b, c FROM t09 WHERE …</code></td> </tr><tr> <th scope="row"><code>E56</code></th> <td><code>LOCK WAIT</code></td> <td><code>2008-01-15 13:10:06</code></td> <td><code>E56:743:6:2</code></td> <td><code>2008-01-15 13:10:06</code></td> <td><code>5</code></td> <td><code>384</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code>E55</code></th> <td><code>LOCK WAIT</code></td> <td><code>2008-01-15 13:10:06</code></td> <td><code>E55:743:38:2</code></td> <td><code>2008-01-15 13:10:13</code></td> <td><code>965</code></td> <td><code>257</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code>19C</code></th> <td><code>RUN­NING</code></td> <td><code>2008-01-15 13:09:10</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> <td><code>2900</code></td> <td><code>130</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code>E15</code></th> <td><code>RUN­NING</code></td> <td><code>2008-01-15 13:08:59</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> <td><code>5395</code></td> <td><code>61</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr><tr> <th scope="row"><code>51D</code></th> <td><code>RUN­NING</code></td> <td><code>2008-01-15 13:08:47</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> <td><code>9807</code></td> <td><code>8</code></td> <td><code>INSERT INTO t2 VALUES …</code></td> </tr></tbody></table>
 
 The following table shows the contents of the `data_lock_waits` table for a system running a heavy workload.
 
-<table summary="Sample data from the Performance Schema data_lock_waits table, showing the internal workings of InnoDB locking under a heavy workload."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th scope="col">requesting trx id</th> <th scope="col">requested lock id</th> <th scope="col">blocking trx id</th> <th scope="col">blocking lock id</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">77F</code></th> <td><code class="literal">77F:806</code></td> <td><code class="literal">77E</code></td> <td><code class="literal">77E:806</code></td> </tr><tr> <th scope="row"><code class="literal">77F</code></th> <td><code class="literal">77F:806</code></td> <td><code class="literal">77D</code></td> <td><code class="literal">77D:806</code></td> </tr><tr> <th scope="row"><code class="literal">77F</code></th> <td><code class="literal">77F:806</code></td> <td><code class="literal">77B</code></td> <td><code class="literal">77B:806</code></td> </tr><tr> <th scope="row"><code class="literal">77E</code></th> <td><code class="literal">77E:806</code></td> <td><code class="literal">77D</code></td> <td><code class="literal">77D:806</code></td> </tr><tr> <th scope="row"><code class="literal">77E</code></th> <td><code class="literal">77E:806</code></td> <td><code class="literal">77B</code></td> <td><code class="literal">77B:806</code></td> </tr><tr> <th scope="row"><code class="literal">77D</code></th> <td><code class="literal">77D:806</code></td> <td><code class="literal">77B</code></td> <td><code class="literal">77B:806</code></td> </tr><tr> <th scope="row"><code class="literal">77B</code></th> <td><code class="literal">77B:733:12:1</code></td> <td><code class="literal">77A</code></td> <td><code class="literal">77A:733:12:1</code></td> </tr><tr> <th scope="row"><code class="literal">E56</code></th> <td><code class="literal">E56:743:6:2</code></td> <td><code class="literal">E55</code></td> <td><code class="literal">E55:743:6:2</code></td> </tr><tr> <th scope="row"><code class="literal">E55</code></th> <td><code class="literal">E55:743:38:2</code></td> <td><code class="literal">19C</code></td> <td><code class="literal">19C:743:38:2</code></td> </tr></tbody></table>
+<table summary="Sample data from the Performance Schema data_lock_waits table, showing the internal workings of InnoDB locking under a heavy workload."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th scope="col">requesting trx id</th> <th scope="col">requested lock id</th> <th scope="col">blocking trx id</th> <th scope="col">blocking lock id</th> </tr></thead><tbody><tr> <th scope="row"><code>77F</code></th> <td><code>77F:806</code></td> <td><code>77E</code></td> <td><code>77E:806</code></td> </tr><tr> <th scope="row"><code>77F</code></th> <td><code>77F:806</code></td> <td><code>77D</code></td> <td><code>77D:806</code></td> </tr><tr> <th scope="row"><code>77F</code></th> <td><code>77F:806</code></td> <td><code>77B</code></td> <td><code>77B:806</code></td> </tr><tr> <th scope="row"><code>77E</code></th> <td><code>77E:806</code></td> <td><code>77D</code></td> <td><code>77D:806</code></td> </tr><tr> <th scope="row"><code>77E</code></th> <td><code>77E:806</code></td> <td><code>77B</code></td> <td><code>77B:806</code></td> </tr><tr> <th scope="row"><code>77D</code></th> <td><code>77D:806</code></td> <td><code>77B</code></td> <td><code>77B:806</code></td> </tr><tr> <th scope="row"><code>77B</code></th> <td><code>77B:733:12:1</code></td> <td><code>77A</code></td> <td><code>77A:733:12:1</code></td> </tr><tr> <th scope="row"><code>E56</code></th> <td><code>E56:743:6:2</code></td> <td><code>E55</code></td> <td><code>E55:743:6:2</code></td> </tr><tr> <th scope="row"><code>E55</code></th> <td><code>E55:743:38:2</code></td> <td><code>19C</code></td> <td><code>19C:743:38:2</code></td> </tr></tbody></table>
 
 The following table shows the contents of the `data_locks` table for a system running a heavy workload.
 
-<table summary="Sample data from the Performance Schema data_locks table, showing the internal workings of InnoDB locking under a heavy workload."><col style="width: 18%"/><col style="width: 9%"/><col style="width: 12%"/><col style="width: 12%"/><col style="width: 9%"/><col style="width: 8%"/><col style="width: 15%"/><col style="width: 17%"/><thead><tr> <th scope="col">lock id</th> <th scope="col">lock trx id</th> <th scope="col">lock mode</th> <th scope="col">lock type</th> <th scope="col">lock schema</th> <th scope="col">lock table</th> <th scope="col">lock index</th> <th scope="col">lock data</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">77F:806</code></th> <td><code class="literal">77F</code></td> <td><code class="literal">AUTO_INC</code></td> <td><code class="literal">TABLE</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t09</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">NULL</code></td> </tr><tr> <th scope="row"><code class="literal">77E:806</code></th> <td><code class="literal">77E</code></td> <td><code class="literal">AUTO_INC</code></td> <td><code class="literal">TABLE</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t09</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">NULL</code></td> </tr><tr> <th scope="row"><code class="literal">77D:806</code></th> <td><code class="literal">77D</code></td> <td><code class="literal">AUTO_INC</code></td> <td><code class="literal">TABLE</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t09</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">NULL</code></td> </tr><tr> <th scope="row"><code class="literal">77B:806</code></th> <td><code class="literal">77B</code></td> <td><code class="literal">AUTO_INC</code></td> <td><code class="literal">TABLE</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t09</code></td> <td><code class="literal">NULL</code></td> <td><code class="literal">NULL</code></td> </tr><tr> <th scope="row"><code class="literal">77B:733:12:1</code></th> <td><code class="literal">77B</code></td> <td><code class="literal">X</code></td> <td><code class="literal">RECORD</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t09</code></td> <td><code class="literal">PRIMARY</code></td> <td><code class="literal">supremum pseudo-record</code></td> </tr><tr> <th scope="row"><code class="literal">77A:733:12:1</code></th> <td><code class="literal">77A</code></td> <td><code class="literal">X</code></td> <td><code class="literal">RECORD</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t09</code></td> <td><code class="literal">PRIMARY</code></td> <td><code class="literal">supremum pseudo-record</code></td> </tr><tr> <th scope="row"><code class="literal">E56:743:6:2</code></th> <td><code class="literal">E56</code></td> <td><code class="literal">S</code></td> <td><code class="literal">RECORD</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t2</code></td> <td><code class="literal">PRIMARY</code></td> <td><code class="literal">0, 0</code></td> </tr><tr> <th scope="row"><code class="literal">E55:743:6:2</code></th> <td><code class="literal">E55</code></td> <td><code class="literal">X</code></td> <td><code class="literal">RECORD</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t2</code></td> <td><code class="literal">PRIMARY</code></td> <td><code class="literal">0, 0</code></td> </tr><tr> <th scope="row"><code class="literal">E55:743:38:2</code></th> <td><code class="literal">E55</code></td> <td><code class="literal">S</code></td> <td><code class="literal">RECORD</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t2</code></td> <td><code class="literal">PRIMARY</code></td> <td><code class="literal">1922, 1922</code></td> </tr><tr> <th scope="row"><code class="literal">19C:743:38:2</code></th> <td><code class="literal">19C</code></td> <td><code class="literal">X</code></td> <td><code class="literal">RECORD</code></td> <td><code class="literal">test</code></td> <td><code class="literal">t2</code></td> <td><code class="literal">PRIMARY</code></td> <td><code class="literal">1922, 1922</code></td> </tr></tbody></table>
+<table summary="Sample data from the Performance Schema data_locks table, showing the internal workings of InnoDB locking under a heavy workload."><col style="width: 18%"/><col style="width: 9%"/><col style="width: 12%"/><col style="width: 12%"/><col style="width: 9%"/><col style="width: 8%"/><col style="width: 15%"/><col style="width: 17%"/><thead><tr> <th scope="col">lock id</th> <th scope="col">lock trx id</th> <th scope="col">lock mode</th> <th scope="col">lock type</th> <th scope="col">lock schema</th> <th scope="col">lock table</th> <th scope="col">lock index</th> <th scope="col">lock data</th> </tr></thead><tbody><tr> <th scope="row"><code>77F:806</code></th> <td><code>77F</code></td> <td><code>AUTO_INC</code></td> <td><code>TABLE</code></td> <td><code>test</code></td> <td><code>t09</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> </tr><tr> <th scope="row"><code>77E:806</code></th> <td><code>77E</code></td> <td><code>AUTO_INC</code></td> <td><code>TABLE</code></td> <td><code>test</code></td> <td><code>t09</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> </tr><tr> <th scope="row"><code>77D:806</code></th> <td><code>77D</code></td> <td><code>AUTO_INC</code></td> <td><code>TABLE</code></td> <td><code>test</code></td> <td><code>t09</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> </tr><tr> <th scope="row"><code>77B:806</code></th> <td><code>77B</code></td> <td><code>AUTO_INC</code></td> <td><code>TABLE</code></td> <td><code>test</code></td> <td><code>t09</code></td> <td><code>NULL</code></td> <td><code>NULL</code></td> </tr><tr> <th scope="row"><code>77B:733:12:1</code></th> <td><code>77B</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td><code>test</code></td> <td><code>t09</code></td> <td><code>PRIMARY</code></td> <td><code>supremum pseudo-record</code></td> </tr><tr> <th scope="row"><code>77A:733:12:1</code></th> <td><code>77A</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td><code>test</code></td> <td><code>t09</code></td> <td><code>PRIMARY</code></td> <td><code>supremum pseudo-record</code></td> </tr><tr> <th scope="row"><code>E56:743:6:2</code></th> <td><code>E56</code></td> <td><code>S</code></td> <td><code>RECORD</code></td> <td><code>test</code></td> <td><code>t2</code></td> <td><code>PRIMARY</code></td> <td><code>0, 0</code></td> </tr><tr> <th scope="row"><code>E55:743:6:2</code></th> <td><code>E55</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td><code>test</code></td> <td><code>t2</code></td> <td><code>PRIMARY</code></td> <td><code>0, 0</code></td> </tr><tr> <th scope="row"><code>E55:743:38:2</code></th> <td><code>E55</code></td> <td><code>S</code></td> <td><code>RECORD</code></td> <td><code>test</code></td> <td><code>t2</code></td> <td><code>PRIMARY</code></td> <td><code>1922, 1922</code></td> </tr><tr> <th scope="row"><code>19C:743:38:2</code></th> <td><code>19C</code></td> <td><code>X</code></td> <td><code>RECORD</code></td> <td><code>test</code></td> <td><code>t2</code></td> <td><code>PRIMARY</code></td> <td><code>1922, 1922</code></td> </tr></tbody></table>
 
 
 #### 17.15.2.2 InnoDB Lock and Lock-Wait Information
@@ -257,7 +257,7 @@ The data exposed by the transaction and locking tables (`INFORMATION_SCHEMA` `IN
   For example, you should be careful when comparing data in the `InnoDB` transaction and locking tables with data in the `PROCESSLIST` table. Even if you issue a single `SELECT` (joining `INNODB_TRX` and `PROCESSLIST`, for example), the content of those tables is generally not consistent. It is possible for `INNODB_TRX` to reference rows that are not present in `PROCESSLIST` or for the currently executing SQL query of a transaction shown in `INNODB_TRX.TRX_QUERY` to differ from the one in `PROCESSLIST.INFO`.
 
 
-### 17.15.3 InnoDB INFORMATION\_SCHEMA Schema Object Tables
+### 17.15.3 InnoDB INFORMATION_SCHEMA Schema Object Tables
 
 You can extract metadata about schema objects managed by `InnoDB` using `InnoDB` `INFORMATION_SCHEMA` tables. This information comes from the data dictionary. Traditionally, you would get this type of information using the techniques from Section 17.17, “InnoDB Monitors”, setting up `InnoDB` monitors and parsing the output from the [`SHOW ENGINE INNODB STATUS`](show-engine.html "15.7.7.17 SHOW ENGINE Statement") statement. The `InnoDB` `INFORMATION_SCHEMA` table interface allows you to query this data using SQL.
 
@@ -298,9 +298,9 @@ The table names are indicative of the type of data provided:
 
 `InnoDB` `INFORMATION_SCHEMA` schema object tables can be joined together through fields such as `TABLE_ID`, `INDEX_ID`, and `SPACE`, allowing you to easily retrieve all available data for an object you want to study or monitor.
 
-Refer to the `InnoDB` INFORMATION\_SCHEMA documentation for information about the columns of each table.
+Refer to the `InnoDB` INFORMATION_SCHEMA documentation for information about the columns of each table.
 
-**Example 17.2 InnoDB INFORMATION\_SCHEMA Schema Object Tables**
+**Example 17.2 InnoDB INFORMATION_SCHEMA Schema Object Tables**
 
 This example uses a simple table (`t1`) with a single index (`i1`) to demonstrate the type of metadata found in the `InnoDB` `INFORMATION_SCHEMA` schema object tables.
 
@@ -468,7 +468,7 @@ This example uses a simple table (`t1`) with a single index (`i1`) to demonstrat
 
    The `STATS_INITIALIZED` field indicates whether or not statistics have been collected for the table. `NUM_ROWS` is the current estimated number of rows in the table. The `CLUST_INDEX_SIZE` and `OTHER_INDEX_SIZE` fields report the number of pages on disk that store clustered and secondary indexes for the table, respectively. The `MODIFIED_COUNTER` value shows the number of rows modified by DML operations and cascade operations from foreign keys. The `AUTOINC` value is the next number to be issued for any autoincrement-based operation. There are no autoincrement columns defined on table `t1`, so the value is 0. The `REF_COUNT` value is a counter. When the counter reaches 0, it signifies that the table metadata can be evicted from the table cache.
 
-**Example 17.3 Foreign Key INFORMATION\_SCHEMA Schema Object Tables**
+**Example 17.3 Foreign Key INFORMATION_SCHEMA Schema Object Tables**
 
 The `INNODB_FOREIGN` and `INNODB_FOREIGN_COLS` tables provide data about foreign key relationships. This example uses a parent table and child table with a foreign key relationship to demonstrate the data found in the `INNODB_FOREIGN` and `INNODB_FOREIGN_COLS` tables.
 
@@ -516,7 +516,7 @@ The `INNODB_FOREIGN` and `INNODB_FOREIGN_COLS` tables provide data about foreign
 
    `FOR_COL_NAME` is the name of the foreign key column in the child table, and `REF_COL_NAME` is the name of the referenced column in the parent table. The `POS` value is the ordinal position of the key field within the foreign key index, starting at zero.
 
-**Example 17.4 Joining InnoDB INFORMATION\_SCHEMA Schema Object Tables**
+**Example 17.4 Joining InnoDB INFORMATION_SCHEMA Schema Object Tables**
 
 This example demonstrates joining three `InnoDB` `INFORMATION_SCHEMA` schema object tables (`INNODB_TABLES`, `INNODB_TABLESPACES`, and `INNODB_TABLESTATS`) to gather file format, row format, page size, and index size information about tables in the employees sample database.
 
@@ -558,7 +558,7 @@ mysql> SELECT a.NAME, a.ROW_FORMAT,
 ```
 
 
-### 17.15.4 InnoDB INFORMATION\_SCHEMA FULLTEXT Index Tables
+### 17.15.4 InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables
 
 The following tables provide metadata for `FULLTEXT` indexes:
 
@@ -596,7 +596,7 @@ Note
 
 With the exception of the `INNODB_FT_DEFAULT_STOPWORD` table, these tables are empty initially. Before querying any of them, set the value of the `innodb_ft_aux_table` system variable to the name (including the database name) of the table that contains the `FULLTEXT` index (for example, `test/articles`).
 
-**Example 17.5 InnoDB FULLTEXT Index INFORMATION\_SCHEMA Tables**
+**Example 17.5 InnoDB FULLTEXT Index INFORMATION_SCHEMA Tables**
 
 This example uses a table with a `FULLTEXT` index to demonstrate the data contained in the `FULLTEXT` index `INFORMATION_SCHEMA` tables.
 
@@ -741,7 +741,7 @@ This example uses a table with a `FULLTEXT` index to demonstrate the data contai
     ```
 
 
-### 17.15.5 InnoDB INFORMATION\_SCHEMA Buffer Pool Tables
+### 17.15.5 InnoDB INFORMATION_SCHEMA Buffer Pool Tables
 
 The `InnoDB` `INFORMATION_SCHEMA` buffer pool tables provide buffer pool status information and metadata about the pages within the `InnoDB` buffer pool.
 
@@ -770,7 +770,7 @@ Warning
 
 Querying the `INNODB_BUFFER_PAGE` or `INNODB_BUFFER_PAGE_LRU` table can affect performance. Do not query these tables on a production system unless you are aware of the performance impact and have determined it to be acceptable. To avoid impacting performance on a production system, reproduce the issue you want to investigate and query buffer pool statistics on a test instance.
 
-**Example 17.6 Querying System Data in the INNODB\_BUFFER\_PAGE Table**
+**Example 17.6 Querying System Data in the INNODB_BUFFER_PAGE Table**
 
 This query provides an approximate count of pages that contain system data by excluding pages where the `TABLE_NAME` value is either `NULL` or includes a slash `/` or period `.` in the table name, which indicates a user-defined table.
 
@@ -823,7 +823,7 @@ mysql> SELECT DISTINCT PAGE_TYPE FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE
 +-------------------+
 ```
 
-**Example 17.7 Querying User Data in the INNODB\_BUFFER\_PAGE Table**
+**Example 17.7 Querying User Data in the INNODB_BUFFER_PAGE Table**
 
 This query provides an approximate count of pages containing user data by counting pages where the `TABLE_NAME` value is `NOT NULL` and `NOT LIKE '%INNODB_TABLES%'`.
 
@@ -872,7 +872,7 @@ mysql> SELECT DISTINCT TABLE_NAME FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE
 +-------------------------+
 ```
 
-**Example 17.8 Querying Index Data in the INNODB\_BUFFER\_PAGE Table**
+**Example 17.8 Querying Index Data in the INNODB_BUFFER_PAGE Table**
 
 For information about index pages, query the `INDEX_NAME` column using the name of the index. For example, the following query returns the number of pages and total data size of pages for the `emp_no` index that is defined on the `employees.salaries` table:
 
@@ -906,7 +906,7 @@ mysql> SELECT INDEX_NAME, COUNT(*) AS Pages,
 +------------+-------+-----------------+
 ```
 
-**Example 17.9 Querying LRU\_POSITION Data in the INNODB\_BUFFER\_PAGE\_LRU Table**
+**Example 17.9 Querying LRU_POSITION Data in the INNODB_BUFFER_PAGE_LRU Table**
 
 The `INNODB_BUFFER_PAGE_LRU` table holds information about the pages in the `InnoDB` buffer pool, in particular how they are ordered that determines which pages to evict from the buffer pool when it becomes full. The definition for this page is the same as for `INNODB_BUFFER_PAGE`, except this table has an `LRU_POSITION` column instead of a `BLOCK_ID` column.
 
@@ -922,7 +922,7 @@ mysql> SELECT COUNT(LRU_POSITION) FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE_LRU
 +---------------------+
 ```
 
-**Example 17.10 Querying the INNODB\_BUFFER\_POOL\_STATS Table**
+**Example 17.10 Querying the INNODB_BUFFER_POOL_STATS Table**
 
 The `INNODB_BUFFER_POOL_STATS` table provides information similar to [`SHOW ENGINE INNODB STATUS`](show-engine.html "15.7.7.17 SHOW ENGINE Statement") and `InnoDB` buffer pool status variables.
 
@@ -1022,11 +1022,11 @@ mysql> SHOW STATUS LIKE 'Innodb_buffer%';
 ```
 
 
-### 17.15.6 InnoDB INFORMATION\_SCHEMA Metrics Table
+### 17.15.6 InnoDB INFORMATION_SCHEMA Metrics Table
 
 The `INNODB_METRICS` table provides information about `InnoDB` performance and resource-related counters.
 
-`INNODB_METRICS` table columns are shown below. For column descriptions, see Section 28.4.21, “The INFORMATION\_SCHEMA INNODB\_METRICS Table”.
+`INNODB_METRICS` table columns are shown below. For column descriptions, see Section 28.4.21, “The INFORMATION_SCHEMA INNODB_METRICS Table”.
 
 ```
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_METRICS WHERE NAME="dml_inserts" \G
@@ -1481,7 +1481,7 @@ Module names and corresponding `SUBSYSTEM` names are listed below.
 
 * `module_undo` (subsystem = `undo`)
 
-**Example 17.11 Working with INNODB\_METRICS Table Counters**
+**Example 17.11 Working with INNODB_METRICS Table Counters**
 
 This example demonstrates enabling, disabling, and resetting a counter, and querying counter data in the `INNODB_METRICS` table.
 
@@ -1660,7 +1660,7 @@ This example demonstrates enabling, disabling, and resetting a counter, and quer
    ```
 
 
-### 17.15.7 InnoDB INFORMATION\_SCHEMA Temporary Table Info Table
+### 17.15.7 InnoDB INFORMATION_SCHEMA Temporary Table Info Table
 
 `INNODB_TEMP_TABLE_INFO` provides information about user-created `InnoDB` temporary tables that are active in the `InnoDB` instance. It does not provide information about internal `InnoDB` temporary tables used by the optimizer.
 
@@ -1673,9 +1673,9 @@ mysql> SHOW TABLES FROM INFORMATION_SCHEMA LIKE 'INNODB_TEMP%';
 +---------------------------------------------+
 ```
 
-For the table definition, see Section 28.4.27, “The INFORMATION\_SCHEMA INNODB\_TEMP\_TABLE\_INFO Table”.
+For the table definition, see Section 28.4.27, “The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table”.
 
-**Example 17.12 INNODB\_TEMP\_TABLE\_INFO**
+**Example 17.12 INNODB_TEMP_TABLE_INFO**
 
 This example demonstrates characteristics of the `INNODB_TEMP_TABLE_INFO` table.
 
@@ -1726,11 +1726,11 @@ This example demonstrates characteristics of the `INNODB_TEMP_TABLE_INFO` table.
    The `SPACE` ID may be different because it is dynamically generated when the server is started.
 
 
-### 17.15.8 Retrieving InnoDB Tablespace Metadata from INFORMATION\_SCHEMA.FILES
+### 17.15.8 Retrieving InnoDB Tablespace Metadata from INFORMATION_SCHEMA.FILES
 
 The Information Schema `FILES` table provides metadata about all `InnoDB` tablespace types including [file-per-table tablespaces](glossary.html#glos_file_per_table "file-per-table"), [general tablespaces](glossary.html#glos_general_tablespace "general tablespace"), the system tablespace, [temporary table tablespaces](/doc/refman/8.4/en/glossary.html#glos_temporary_tablespace), and [undo tablespaces](glossary.html#glos_undo_tablespace "undo tablespace") (if present).
 
-This section provides `InnoDB`-specific usage examples. For more information about data provided by the Information Schema `FILES` table, see Section 28.3.15, “The INFORMATION\_SCHEMA FILES Table”.
+This section provides `InnoDB`-specific usage examples. For more information about data provided by the Information Schema `FILES` table, see Section 28.3.15, “The INFORMATION_SCHEMA FILES Table”.
 
 Note
 

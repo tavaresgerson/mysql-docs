@@ -8,7 +8,7 @@ This section explains the concepts introduced as part of using MySQL as a docume
 
 ### JSON Document
 
-A JSON document is a data structure composed of key-value pairs and is the fundamental structure for using MySQL as document store. For example, the world\_x schema (installed later in this chapter) contains this document:
+A JSON document is a data structure composed of key-value pairs and is the fundamental structure for using MySQL as document store. For example, the world_x schema (installed later in this chapter) contains this document:
 
 ```
 {

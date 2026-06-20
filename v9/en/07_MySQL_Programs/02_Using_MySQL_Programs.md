@@ -142,9 +142,9 @@ A server started with the `persisted_globals_load` system variable disabled does
 
 Many option files are plain text files, created using any text editor. The exceptions are:
 
-* The `.mylogin.cnf` file that contains login path options. This is an encrypted file created by the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”. A “login path” is an option group that permits only certain options: `host`, `user`, `password`, `port` and `socket`. Client programs specify which login path to read from `.mylogin.cnf` using the `--login-path` option.
+* The `.mylogin.cnf` file that contains login path options. This is an encrypted file created by the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”. A “login path” is an option group that permits only certain options: `host`, `user`, `password`, `port` and `socket`. Client programs specify which login path to read from `.mylogin.cnf` using the `--login-path` option.
 
-  To specify an alternative login path file name, set the `MYSQL_TEST_LOGIN_FILE` environment variable. This variable is used by the **mysql-test-run.pl** testing utility, but also is recognized by **mysql\_config\_editor** and by MySQL clients such as **mysql**, **mysqladmin**, and so forth.
+  To specify an alternative login path file name, set the `MYSQL_TEST_LOGIN_FILE` environment variable. This variable is used by the **mysql-test-run.pl** testing utility, but also is recognized by **mysql_config_editor** and by MySQL clients such as **mysql**, **mysqladmin**, and so forth.
 
 * The `mysqld-auto.cnf` file in the data directory. This JSON-format file contains persisted system variable settings. It is created by the server upon execution of [`SET PERSIST`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment") or [`SET PERSIST_ONLY`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment") statements. See Section 7.1.9.3, “Persisted System Variables”. Management of `mysqld-auto.cnf` should be left to the server and not performed manually.
 
@@ -164,7 +164,7 @@ On Windows, MySQL programs read startup options from the files shown in the foll
 
 **Table 6.1 Option Files Read on Windows Systems**
 
-<table summary="Option files read by MySQL programs on Windows systems."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>File Name</th> <th>Purpose</th> </tr></thead><tbody><tr> <td><code class="filename"><code class="literal">%WINDIR%</code>\my.ini</code>, <code class="filename"><code class="literal">%WINDIR%</code>\my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code class="filename">C:\my.ini</code>, <code class="filename">C:\my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code class="filename"><em class="replaceable"><code>BASEDIR</code></em>\my.ini</code>, <code class="filename"><em class="replaceable"><code>BASEDIR</code></em>\my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code class="literal">defaults-extra-file</code></td> <td>The file specified with <a class="link" href="option-file-options.html#option_general_defaults-extra-file"><code class="option">--defaults-extra-file</code></a>, if any</td> </tr><tr> <td><code class="filename"><code class="literal">%APPDATA%</code>\MySQL\.mylogin.cnf</code></td> <td>Login path options (clients only)</td> </tr><tr> <td><code class="filename"><em class="replaceable"><code>DATADIR</code></em>\mysqld-auto.cnf</code></td> <td>System variables persisted with <a class="link" href="set-variable.html" title="15.7.6.1 SET Syntax for Variable Assignment"><code class="literal">SET PERSIST</code></a> or <a class="link" href="set-variable.html" title="15.7.6.1 SET Syntax for Variable Assignment"><code class="literal">SET PERSIST_ONLY</code></a> (server only)</td> </tr></tbody></table>
+<table summary="Option files read by MySQL programs on Windows systems."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>File Name</th> <th>Purpose</th> </tr></thead><tbody><tr> <td><code><code>%WINDIR%</code>\my.ini</code>, <code><code>%WINDIR%</code>\my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code>C:\my.ini</code>, <code>C:\my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code><code>BASEDIR</code>\my.ini</code>, <code><code>BASEDIR</code>\my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code>defaults-extra-file</code></td> <td>The file specified with <code>--defaults-extra-file</code>, if any</td> </tr><tr> <td><code><code>%APPDATA%</code>\MySQL\.mylogin.cnf</code></td> <td>Login path options (clients only)</td> </tr><tr> <td><code><code>DATADIR</code>\mysqld-auto.cnf</code></td> <td>System variables persisted with <code>SET PERSIST</code> or <code>SET PERSIST_ONLY</code> (server only)</td> </tr></tbody></table>
 
 In the preceding table, `%WINDIR%` represents the location of your Windows directory. This is commonly `C:\WINDOWS`. Use the following command to determine its exact location from the value of the `WINDIR` environment variable:
 
@@ -194,13 +194,13 @@ On Unix platforms, MySQL ignores configuration files that are world-writable. Th
 
 **Table 6.2 Option Files Read on Unix and Unix-Like Systems**
 
-<table summary="Option files read by MySQL programs on Unix and Unix-like systems."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>File Name</th> <th>Purpose</th> </tr></thead><tbody><tr> <td><code class="filename">/etc/my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code class="filename">/etc/mysql/my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code class="filename"><em class="replaceable"><code>SYSCONFDIR</code></em>/my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code class="filename">$MYSQL_HOME/my.cnf</code></td> <td>Server-specific options (server only)</td> </tr><tr> <td><code class="literal">defaults-extra-file</code></td> <td>The file specified with <a class="link" href="option-file-options.html#option_general_defaults-extra-file"><code class="option">--defaults-extra-file</code></a>, if any</td> </tr><tr> <td><code class="filename">~/.my.cnf</code></td> <td>User-specific options</td> </tr><tr> <td><code class="filename">~/.mylogin.cnf</code></td> <td>User-specific login path options (clients only)</td> </tr><tr> <td><code class="filename"><em class="replaceable"><code>DATADIR</code></em>/mysqld-auto.cnf</code></td> <td>System variables persisted with <a class="link" href="set-variable.html" title="15.7.6.1 SET Syntax for Variable Assignment"><code class="literal">SET PERSIST</code></a> or <a class="link" href="set-variable.html" title="15.7.6.1 SET Syntax for Variable Assignment"><code class="literal">SET PERSIST_ONLY</code></a> (server only)</td> </tr></tbody></table>
+<table summary="Option files read by MySQL programs on Unix and Unix-like systems."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>File Name</th> <th>Purpose</th> </tr></thead><tbody><tr> <td><code>/etc/my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code>/etc/mysql/my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code><code>SYSCONFDIR</code>/my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code>$MYSQL_HOME/my.cnf</code></td> <td>Server-specific options (server only)</td> </tr><tr> <td><code>defaults-extra-file</code></td> <td>The file specified with <code>--defaults-extra-file</code>, if any</td> </tr><tr> <td><code>~/.my.cnf</code></td> <td>User-specific options</td> </tr><tr> <td><code>~/.mylogin.cnf</code></td> <td>User-specific login path options (clients only)</td> </tr><tr> <td><code><code>DATADIR</code>/mysqld-auto.cnf</code></td> <td>System variables persisted with <code>SET PERSIST</code> or <code>SET PERSIST_ONLY</code> (server only)</td> </tr></tbody></table>
 
 In the preceding table, `~` represents the current user's home directory (the value of `$HOME`).
 
 *`SYSCONFDIR`* represents the directory specified with the `SYSCONFDIR` option to **CMake** when MySQL was built. By default, this is the `etc` directory located under the compiled-in installation directory.
 
-`MYSQL_HOME` is an environment variable containing the path to the directory in which the server-specific `my.cnf` file resides. If `MYSQL_HOME` is not set and you start the server using the **mysqld\_safe** program, **mysqld\_safe** sets it to *`BASEDIR`*, the MySQL base installation directory.
+`MYSQL_HOME` is an environment variable containing the path to the directory in which the server-specific `my.cnf` file resides. If `MYSQL_HOME` is not set and you start the server using the **mysqld_safe** program, **mysqld_safe** sets it to *`BASEDIR`*, the MySQL base installation directory.
 
 *`DATADIR`* represents the MySQL data directory. As used to find `mysqld-auto.cnf`, its default value is the data directory location built in when MySQL was compiled, but can be changed by `--datadir` specified as an option-file or command-line option processed before `mysqld-auto.cnf` is processed.
 
@@ -208,7 +208,7 @@ If multiple instances of a given option are found, the last instance takes prece
 
 ##### Option File Syntax
 
-The following description of option file syntax applies to files that you edit manually. This excludes `.mylogin.cnf`, which is created using **mysql\_config\_editor** and is encrypted, and `mysqld-auto.cnf`, which the server creates in JSON format.
+The following description of option file syntax applies to files that you edit manually. This excludes `.mylogin.cnf`, which is created using **mysql_config_editor** and is encrypted, and `mysqld-auto.cnf`, which the server creates in JSON format.
 
 Any long option that may be given on the command line when running a MySQL program can be given in an option file as well. To get the list of available options for a program, run it with the `--help` option. (For **mysqld**, use `--verbose` and `--help`.)
 
@@ -255,7 +255,7 @@ basedir=C:\\Program\sFiles\\MySQL\\MySQL\sServer\s9.5
 
 If an option group name is the same as a program name, options in the group apply specifically to that program. For example, the `[mysqld]` and `[mysql]` groups apply to the **mysqld** server and the **mysql** client program, respectively.
 
-The `[client]` option group is read by all client programs provided in MySQL distributions (but *not* by **mysqld**). To understand how third-party client programs that use the C API can use option files, see the C API documentation at mysql\_options().
+The `[client]` option group is read by all client programs provided in MySQL distributions (but *not* by **mysqld**). To understand how third-party client programs that use the C API can use option files, see the C API documentation at mysql_options().
 
 The `[client]` group enables you to specify options that apply to all clients. For example, `[client]` is the appropriate group to use to specify the password for connecting to the server. (But make sure that the option file is accessible only by yourself, so that other people cannot discover your password.) Be sure not to put an option in the `[client]` group unless it is recognized by *all* client programs that you use. Programs that do not understand the option quit after displaying an error message if you try to run them.
 
@@ -364,11 +364,11 @@ When specifying file names as option values, avoid the use of the `~` shell meta
 
 **Table 6.3 Option File Option Summary**
 
-<table frame="box" rules="all" summary="Command-line options available for handling option files."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="option-file-options.html#option_general_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="option-file-options.html#option_general_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="option-file-options.html#option_general_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="option-file-options.html#option_general_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="option-file-options.html#option_general_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="option-file-options.html#option_general_no-login-paths">--no-login-paths</a></td> <td>Do not read options from login path file</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for handling option files."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read options from login path file</td> </tr></tbody></table>
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--defaults-extra-file=filename</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=filename</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Read this option file after the global option file but (on Unix) before the user option file and (on all platforms) before the login path file. (For information about the order in which option files are used, see Section 6.2.2.2, “Using Option Files”.) If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -376,7 +376,7 @@ When specifying file names as option values, avoid the use of the `~` shell meta
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--defaults-file=filename</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-file=filename</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Read only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. *`file_name`* is interpreted relative to the current directory if given as a relative path name rather than a full path name.
 
@@ -386,15 +386,15 @@ When specifying file names as option values, avoid the use of the `~` shell meta
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--defaults-group-suffix=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, the **mysql** client normally reads the `[client]` and `[mysql]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysql** also reads the `[client_other]` and `[mysql_other]` groups.
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   A client program reads the option group corresponding to the named login path, in addition to option groups that the program reads by default. Consider this command:
 
@@ -412,7 +412,7 @@ When specifying file names as option values, avoid the use of the `~` shell meta
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--no-login-paths</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-login-paths</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Skips reading options from the login path file. Client programs always read the login path file without this option even when the `--no-defaults` option is used.
 
@@ -422,15 +422,15 @@ When specifying file names as option values, avoid the use of the `~` shell meta
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for no-defaults"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--no-defaults</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for no-defaults"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-defaults</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
-  The exception is that client programs read the `.mylogin.cnf` login path file, if it exists, even when `--no-defaults` is used unless `--no-login-paths` is set. This permits passwords to be specified in a safer way than on the command line even if `--no-defaults` is present. To create `.mylogin.cnf`, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  The exception is that client programs read the `.mylogin.cnf` login path file, if it exists, even when `--no-defaults` is used unless `--no-login-paths` is set. This permits passwords to be specified in a safer way than on the command line even if `--no-defaults` is present. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for print-defaults"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--print-defaults</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for print-defaults"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--print-defaults</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Print the program name and all options that it gets from option files. Password values are masked.
 
@@ -586,7 +586,7 @@ ERROR 2005 (HY000): Unknown MySQL server host '--user' (1)
 
 Because **mysql** assumes that any string following `--host` on the command line is a host name, `--host` `--user` is interpreted as `--host=--user`, and the client attempts to connect to a MySQL server running on a host named “--user”.
 
-Options having default values always require an equal sign when assigning a value; failing to do so causes an error. For example, the MySQL server `--log-error` option has the default value `host_name.err`, where *`host_name`* is the name of the host on which MySQL is running. Assume that you are running MySQL on a computer whose host name is “tonfisk”, and consider the following invocation of **mysqld\_safe**:
+Options having default values always require an equal sign when assigning a value; failing to do so causes an error. For example, the MySQL server `--log-error` option has the default value `host_name.err`, where *`host_name`* is the name of the host on which MySQL is running. Assume that you are running MySQL on a computer whose host name is “tonfisk”, and consider the following invocation of **mysqld_safe**:
 
 ```
 $> mysqld_safe &
@@ -737,23 +737,23 @@ This section describes options that control how client programs establish connec
 
 **Table 6.4 Connection-Establishment Option Summary**
 
-<table frame="box" rules="all" summary="Command-line options available for establishing connections to the server."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="connection-options.html#option_general_default-auth">--default-auth</a></td> <td>Authentication plugin to use</td> </tr><tr><td><a class="link" href="connection-options.html#option_general_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="connection-options.html#option_general_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="connection-options.html#option_general_password1">--password1</a></td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="connection-options.html#option_general_password2">--password2</a></td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="connection-options.html#option_general_password3">--password3</a></td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td><a class="link" href="connection-options.html#option_general_pipe">--pipe</a></td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td><a class="link" href="connection-options.html#option_general_plugin-dir">--plugin-dir</a></td> <td>Directory where plugins are installed</td> </tr><tr><td><a class="link" href="connection-options.html#option_general_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="connection-options.html#option_general_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="connection-options.html#option_general_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="connection-options.html#option_general_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="connection-options.html#option_general_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for establishing connections to the server."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--default-auth</td> <td>Authentication plugin to use</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--password1</td> <td>First multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password2</td> <td>Second multifactor authentication password to use when connecting to server</td> </tr><tr><td>--password3</td> <td>Third multifactor authentication password to use when connecting to server</td> </tr><tr><td>--pipe</td> <td>Connect to server using named pipe (Windows only)</td> </tr><tr><td>--plugin-dir</td> <td>Directory where plugins are installed</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr></tbody></table>
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   A hint about which client-side authentication plugin to use. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   The host on which the MySQL server is running. The value can be a host name, IPv4 address, or IPv6 address. The default value is `localhost`.
 
 * `--password[=pass_val]`, `-p[pass_val]`
 
-  <table frame="box" rules="all" summary="Properties for password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   The password of the MySQL account used for connecting to the server. The password value is optional. If not given, the client program prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -763,7 +763,7 @@ This section describes options that control how client programs establish connec
 
 * `--password1[=pass_val]`
 
-  <table frame="box" rules="all" summary="Properties for password1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--password1[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for password1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password1[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   The password for multifactor authentication factor 1 of the MySQL account used for connecting to the server. The password value is optional. If not given, the client program prompts for one. If given, there must be *no space* between `--password1=` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -775,37 +775,37 @@ This section describes options that control how client programs establish connec
 
 * `--password2[=pass_val]`
 
-  <table frame="box" rules="all" summary="Properties for password2"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--password2[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for password2"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password2[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   The password for multifactor authentication factor 2 of the MySQL account used for connecting to the server. The semantics of this option are similar to the semantics for `--password1`; see the description of that option for details.
 
 * `--password3[=pass_val]`
 
-  <table frame="box" rules="all" summary="Properties for password3"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--password3[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for password3"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password3[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   The password for multifactor authentication factor 3 of the MySQL account used for connecting to the server. The semantics of this option are similar to the semantics for `--password1`; see the description of that option for details.
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Properties for pipe"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--pipe</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for pipe"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--pipe</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   On Windows, connect to the server using a named pipe. This option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for plugin-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--plugin-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for plugin-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--plugin-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but the client program does not find it. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for port"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--port=port_num</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">3306</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for port"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--port=port_num</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>3306</code></td> </tr></tbody></table>
 
   For TCP/IP connections, the port number to use. The default port number is 3306.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>0
 
   This option explicitly specifies which transport protocol to use for connecting to the server. It is useful when other connection parameters normally result in use of a protocol other than the one you want. For example, connections on Unix to `localhost` are made using a Unix socket file by default:
 
@@ -821,13 +821,13 @@ This section describes options that control how client programs establish connec
 
   The following table shows the permissible `--protocol` option values and indicates the applicable platforms for each value. The values are not case-sensitive.
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>1
 
   See also Section 6.2.7, “Connection Transport Protocols”
 
 * `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>2
 
   On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
 
@@ -835,7 +835,7 @@ This section describes options that control how client programs establish connec
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>3
 
   On Unix, the name of the Unix socket file to use for connections made using a named pipe to a local server. The default Unix socket file name is `/tmp/mysql.sock`.
 
@@ -845,7 +845,7 @@ This section describes options that control how client programs establish connec
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>4
 
   The user name of the MySQL account to use for connecting to the server. The default user name is `ODBC` on Windows or your Unix login name on Unix.
 
@@ -861,11 +861,11 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 **Table 6.5 Connection-Encryption Option Summary**
 
-<table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>5
+<table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>5
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>6
 
   Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -875,7 +875,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>7
 
   The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` (deprecated) or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -887,7 +887,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-ca=file_name`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>8
 
   The path name of the Certificate Authority (CA) certificate file in PEM format. The file contains a list of trusted SSL Certificate Authorities.
 
@@ -897,7 +897,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-capath=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for default-auth"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>9
 
   The path name of the directory that contains trusted SSL certificate authority (CA) certificate files in PEM format.
 
@@ -907,7 +907,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-cert=file_name`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>0
 
   The path name of the client SSL public key certificate file in PEM format. Chained SSL certificates are supported.
 
@@ -915,7 +915,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-cipher=cipher_list`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>1
 
   The list of permissible encryption ciphers for connections that use TLSv1.2. If no cipher in the list is supported, encrypted connections that use these TLS protocols do not work.
 
@@ -934,7 +934,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-crl=file_name`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>2
 
   The path name of the file containing certificate revocation lists in PEM format.
 
@@ -944,7 +944,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-crlpath=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>3
 
   The path name of the directory that contains certificate revocation-list files in PEM format.
 
@@ -954,7 +954,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>4
 
   Controls whether to enable FIPS mode on the client side. The `--ssl-fips-mode` option differs from other `--ssl-xxx` options in that it is not used to establish encrypted connections, but rather to affect which cryptographic operations to permit. See Section 8.8, “FIPS Support”.
 
@@ -972,7 +972,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-key=file_name`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>5
 
   The path name of the client SSL private key file in PEM format. For better security, use a certificate with an RSA key size of at least 2048 bits.
 
@@ -982,7 +982,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-mode=mode`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>6
 
   This option specifies the desired security state of the connection to the server. These mode values are permissible, in order of increasing strictness:
 
@@ -1026,7 +1026,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--ssl-session-data=file_name`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>7
 
   The path name of the client SSL session data file in PEM format for session reuse.
 
@@ -1036,7 +1036,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `ssl-session-data-continue-on-failed-reuse`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>8
 
   Controls whether a new connection is started to replace an attempted connection that tried but failed to reuse session data specified with the `--ssl-session-data` command-line option. By default, the `--ssl-session-data-continue-on-failed-reuse` command-line option is off, which causes a client program to return a connect failure when session data are supplied and not reused.
 
@@ -1044,7 +1044,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>9
 
   This option specifies which ciphersuites the client permits for encrypted connections that use TLSv1.3. The value is a list of zero or more colon-separated ciphersuite names. For example:
 
@@ -1058,7 +1058,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>0
 
   This option specifies the TLS protocols the client permits for encrypted connections. The value is a list of one or more comma-separated protocol versions. For example:
 
@@ -1091,11 +1091,11 @@ This section describes options that enable client programs to control use of com
 
 **Table 6.6 Connection-Compression Option Summary**
 
-<table frame="box" rules="all" summary="Properties for password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Properties for password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>1
 
 * `--compress`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>2
 
   Compress all information sent between the client and the server if possible.
 
@@ -1103,13 +1103,13 @@ This section describes options that enable client programs to control use of com
 
 * `--compression-algorithms=value`
 
-  <table frame="box" rules="all" summary="Properties for password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>3
 
   The permitted compression algorithms for connections to the server. The available algorithms are the same as for the `protocol_compression_algorithms` system variable. The default value is `uncompressed`.
 
 * `--zstd-compression-level=level`
 
-  <table frame="box" rules="all" summary="Properties for password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for password"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--password[=password]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>4
 
   The compression level to use for connections to the server that use the `zstd` compression algorithm. The permitted levels are from 1 to 22, with larger values indicating increasing levels of compression. The default `zstd` compression level is 3. The compression level setting has no effect on connections that do not use `zstd` compression.
 
@@ -1572,7 +1572,7 @@ MySQL supports use of DNS SRV records to connect to servers in these contexts:
 
 * Several MySQL Connectors implement DNS SRV support; connector-specific options enable requesting DNS SRV record lookup both for X Protocol connections and for classic MySQL protocol connections. For general information, see Connections Using DNS SRV Records. For details, see the documentation for individual MySQL Connectors.
 
-* The C API provides a `mysql_real_connect_dns_srv()` function that is similar to `mysql_real_connect()`, except that the argument list does not specify the particular host of the MySQL server to connect to. Instead, it names a DNS SRV record that specifies a group of servers. See mysql\_real\_connect\_dns\_srv().
+* The C API provides a `mysql_real_connect_dns_srv()` function that is similar to `mysql_real_connect()`, except that the argument list does not specify the particular host of the MySQL server to connect to. Instead, it names a DNS SRV record that specifies a group of servers. See mysql_real_connect_dns_srv().
 
 * The **mysql** client has a `--dns-srv-name` option to indicate a DNS SRV record that specifies a group of servers. See Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 
@@ -1633,7 +1633,7 @@ For a given connection, if the transport protocol is not specified explicitly, i
 
 To specify the protocol explicitly, use the `--protocol` command option. The following table shows the permissible values for `--protocol` and indicates the applicable platforms for each value. The values are not case-sensitive.
 
-<table summary="Permissible transport protocol values, the resulting transport protocol used, and the applicable platforms for each value."><col style="width: 20%"/><col style="width: 50%"/><col style="width: 30%"/><thead><tr> <th scope="col"><a class="link" href="connection-options.html#option_general_protocol"><code class="option">--protocol</code></a> Value</th> <th scope="col">Transport Protocol Used</th> <th scope="col">Applicable Platforms</th> </tr></thead><tbody><tr> <th scope="row"><code class="literal">TCP</code></th> <td>TCP/IP</td> <td>All</td> </tr><tr> <th scope="row"><code class="literal">SOCKET</code></th> <td>Unix socket file</td> <td>Unix and Unix-like systems</td> </tr><tr> <th scope="row"><code class="literal">PIPE</code></th> <td>Named pipe</td> <td>Windows</td> </tr><tr> <th scope="row"><code class="literal">MEMORY</code></th> <td>Shared memory</td> <td>Windows</td> </tr></tbody></table>
+<table summary="Permissible transport protocol values, the resulting transport protocol used, and the applicable platforms for each value."><col style="width: 20%"/><col style="width: 50%"/><col style="width: 30%"/><thead><tr> <th scope="col"><code>--protocol</code> Value</th> <th scope="col">Transport Protocol Used</th> <th scope="col">Applicable Platforms</th> </tr></thead><tbody><tr> <th scope="row"><code>TCP</code></th> <td>TCP/IP</td> <td>All</td> </tr><tr> <th scope="row"><code>SOCKET</code></th> <td>Unix socket file</td> <td>Unix and Unix-like systems</td> </tr><tr> <th scope="row"><code>PIPE</code></th> <td>Named pipe</td> <td>Windows</td> </tr><tr> <th scope="row"><code>MEMORY</code></th> <td>Shared memory</td> <td>Windows</td> </tr></tbody></table>
 
 #### Transport Support for Local and Remote Connections
 

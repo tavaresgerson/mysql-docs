@@ -9,19 +9,19 @@ The following tables list `sys` schema objects and provide a short description o
 
 **Table 30.1 sys Schema Tables and Triggers**
 
-<table frame="box" rules="all" summary="Tables and triggers used in the sys schema implementation."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table or Trigger Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="sys-sys-config.html" title="30.4.2.1 The sys_config Table"><code class="literal">sys_config</code></a></td> <td>sys schema configuration options table</td> </tr><tr><td><a class="link" href="sys-sys-config-insert-set-user.html" title="30.4.2.2 The sys_config_insert_set_user Trigger"><code class="literal">sys_config_insert_set_user</code></a></td> <td>sys_config insert trigger</td> </tr><tr><td><a class="link" href="sys-sys-config-update-set-user.html" title="30.4.2.3 The sys_config_update_set_user Trigger"><code class="literal">sys_config_update_set_user</code></a></td> <td>sys_config update trigger</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Tables and triggers used in the sys schema implementation."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table or Trigger Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>sys_config</code></td> <td>sys schema configuration options table</td> </tr><tr><td><code>sys_config_insert_set_user</code></td> <td>sys_config insert trigger</td> </tr><tr><td><code>sys_config_update_set_user</code></td> <td>sys_config update trigger</td> </tr></tbody></table>
 
 **Table 30.2 sys Schema Views**
 
-<table frame="box" rules="all" summary="Views used in the sys schema implementation."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>View Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="sys-host-summary.html" title="30.4.3.1 The host_summary and x$host_summary Views"><code class="literal">host_summary</code>, <code class="literal">x$host_summary</code></a></th> <td>Statement activity, file I/O, and connections, grouped by host</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-host-summary-by-file-io.html" title="30.4.3.2 The host_summary_by_file_io and x$host_summary_by_file_io Views"><code class="literal">host_summary_by_file_io</code>, <code class="literal">x$host_summary_by_file_io</code></a></th> <td>File I/O, grouped by host</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-host-summary-by-file-io-type.html" title="30.4.3.3 The host_summary_by_file_io_type and x$host_summary_by_file_io_type Views"><code class="literal">host_summary_by_file_io_type</code>, <code class="literal">x$host_summary_by_file_io_type</code></a></th> <td>File I/O, grouped by host and event type</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-host-summary-by-stages.html" title="30.4.3.4 The host_summary_by_stages and x$host_summary_by_stages Views"><code class="literal">host_summary_by_stages</code>, <code class="literal">x$host_summary_by_stages</code></a></th> <td>Statement stages, grouped by host</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-host-summary-by-statement-latency.html" title="30.4.3.5 The host_summary_by_statement_latency and x$host_summary_by_statement_latency Views"><code class="literal">host_summary_by_statement_latency</code>, <code class="literal">x$host_summary_by_statement_latency</code></a></th> <td>Statement statistics, grouped by host</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-host-summary-by-statement-type.html" title="30.4.3.6 The host_summary_by_statement_type and x$host_summary_by_statement_type Views"><code class="literal">host_summary_by_statement_type</code>, <code class="literal">x$host_summary_by_statement_type</code></a></th> <td>Statements executed, grouped by host and statement</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-innodb-buffer-stats-by-schema.html" title="30.4.3.7 The innodb_buffer_stats_by_schema and x$innodb_buffer_stats_by_schema Views"><code class="literal">innodb_buffer_stats_by_schema</code>, <code class="literal">x$innodb_buffer_stats_by_schema</code></a></th> <td>InnoDB buffer information, grouped by schema</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-innodb-buffer-stats-by-table.html" title="30.4.3.8 The innodb_buffer_stats_by_table and x$innodb_buffer_stats_by_table Views"><code class="literal">innodb_buffer_stats_by_table</code>, <code class="literal">x$innodb_buffer_stats_by_table</code></a></th> <td>InnoDB buffer information, grouped by schema and table</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-innodb-lock-waits.html" title="30.4.3.9 The innodb_lock_waits and x$innodb_lock_waits Views"><code class="literal">innodb_lock_waits</code>, <code class="literal">x$innodb_lock_waits</code></a></th> <td>InnoDB lock information</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-io-by-thread-by-latency.html" title="30.4.3.10 The io_by_thread_by_latency and x$io_by_thread_by_latency Views"><code class="literal">io_by_thread_by_latency</code>, <code class="literal">x$io_by_thread_by_latency</code></a></th> <td>I/O consumers, grouped by thread</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-io-global-by-file-by-bytes.html" title="30.4.3.11 The io_global_by_file_by_bytes and x$io_global_by_file_by_bytes Views"><code class="literal">io_global_by_file_by_bytes</code>, <code class="literal">x$io_global_by_file_by_bytes</code></a></th> <td>Global I/O consumers, grouped by file and bytes</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-io-global-by-file-by-latency.html" title="30.4.3.12 The io_global_by_file_by_latency and x$io_global_by_file_by_latency Views"><code class="literal">io_global_by_file_by_latency</code>, <code class="literal">x$io_global_by_file_by_latency</code></a></th> <td>Global I/O consumers, grouped by file and latency</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-io-global-by-wait-by-bytes.html" title="30.4.3.13 The io_global_by_wait_by_bytes and x$io_global_by_wait_by_bytes Views"><code class="literal">io_global_by_wait_by_bytes</code>, <code class="literal">x$io_global_by_wait_by_bytes</code></a></th> <td>Global I/O consumers, grouped by bytes</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-io-global-by-wait-by-latency.html" title="30.4.3.14 The io_global_by_wait_by_latency and x$io_global_by_wait_by_latency Views"><code class="literal">io_global_by_wait_by_latency</code>, <code class="literal">x$io_global_by_wait_by_latency</code></a></th> <td>Global I/O consumers, grouped by latency</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-latest-file-io.html" title="30.4.3.15 The latest_file_io and x$latest_file_io Views"><code class="literal">latest_file_io</code>, <code class="literal">x$latest_file_io</code></a></th> <td>Most recent I/O, grouped by file and thread</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-memory-by-host-by-current-bytes.html" title="30.4.3.16 The memory_by_host_by_current_bytes and x$memory_by_host_by_current_bytes Views"><code class="literal">memory_by_host_by_current_bytes</code>, <code class="literal">x$memory_by_host_by_current_bytes</code></a></th> <td>Memory use, grouped by host</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-memory-by-thread-by-current-bytes.html" title="30.4.3.17 The memory_by_thread_by_current_bytes and x$memory_by_thread_by_current_bytes Views"><code class="literal">memory_by_thread_by_current_bytes</code>, <code class="literal">x$memory_by_thread_by_current_bytes</code></a></th> <td>Memory use, grouped by thread</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-memory-by-user-by-current-bytes.html" title="30.4.3.18 The memory_by_user_by_current_bytes and x$memory_by_user_by_current_bytes Views"><code class="literal">memory_by_user_by_current_bytes</code>, <code class="literal">x$memory_by_user_by_current_bytes</code></a></th> <td>Memory use, grouped by user</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-memory-global-by-current-bytes.html" title="30.4.3.19 The memory_global_by_current_bytes and x$memory_global_by_current_bytes Views"><code class="literal">memory_global_by_current_bytes</code>, <code class="literal">x$memory_global_by_current_bytes</code></a></th> <td>Memory use, grouped by allocation type</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-memory-global-total.html" title="30.4.3.20 The memory_global_total and x$memory_global_total Views"><code class="literal">memory_global_total</code>, <code class="literal">x$memory_global_total</code></a></th> <td>Total memory use</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-metrics.html" title="30.4.3.21 The metrics View"><code class="literal">metrics</code></a></th> <td>Server metrics</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-processlist.html" title="30.4.3.22 The processlist and x$processlist Views"><code class="literal">processlist</code>, <code class="literal">x$processlist</code></a></th> <td>Processlist information</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-ps-check-lost-instrumentation.html" title="30.4.3.23 The ps_check_lost_instrumentation View"><code class="literal">ps_check_lost_instrumentation</code></a></th> <td>Variables that have lost instruments</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-schema-auto-increment-columns.html" title="30.4.3.24 The schema_auto_increment_columns View"><code class="literal">schema_auto_increment_columns</code></a></th> <td>AUTO_INCREMENT column information</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-schema-index-statistics.html" title="30.4.3.25 The schema_index_statistics and x$schema_index_statistics Views"><code class="literal">schema_index_statistics</code>, <code class="literal">x$schema_index_statistics</code></a></th> <td>Index statistics</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-schema-object-overview.html" title="30.4.3.26 The schema_object_overview View"><code class="literal">schema_object_overview</code></a></th> <td>Types of objects within each schema</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-schema-redundant-indexes.html" title="30.4.3.27 The schema_redundant_indexes and x$schema_flattened_keys Views"><code class="literal">schema_redundant_indexes</code></a></th> <td>Duplicate or redundant indexes</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-schema-table-lock-waits.html" title="30.4.3.28 The schema_table_lock_waits and x$schema_table_lock_waits Views"><code class="literal">schema_table_lock_waits</code>, <code class="literal">x$schema_table_lock_waits</code></a></th> <td>Sessions waiting for metadata locks</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-schema-table-statistics.html" title="30.4.3.29 The schema_table_statistics and x$schema_table_statistics Views"><code class="literal">schema_table_statistics</code>, <code class="literal">x$schema_table_statistics</code></a></th> <td>Table statistics</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-schema-table-statistics-with-buffer.html" title="30.4.3.30 The schema_table_statistics_with_buffer and x$schema_table_statistics_with_buffer Views"><code class="literal">schema_table_statistics_with_buffer</code>, <code class="literal">x$schema_table_statistics_with_buffer</code></a></th> <td>Table statistics, including InnoDB buffer pool statistics</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-schema-tables-with-full-table-scans.html" title="30.4.3.31 The schema_tables_with_full_table_scans and x$schema_tables_with_full_table_scans Views"><code class="literal">schema_tables_with_full_table_scans</code>, <code class="literal">x$schema_tables_with_full_table_scans</code></a></th> <td>Tables being accessed with full scans</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-schema-unused-indexes.html" title="30.4.3.32 The schema_unused_indexes View"><code class="literal">schema_unused_indexes</code></a></th> <td>Indexes not in active use</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-session.html" title="30.4.3.33 The session and x$session Views"><code class="literal">session</code>, <code class="literal">x$session</code></a></th> <td>Processlist information for user sessions</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-session-ssl-status.html" title="30.4.3.34 The session_ssl_status View"><code class="literal">session_ssl_status</code></a></th> <td>Connection SSL information</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-statement-analysis.html" title="30.4.3.35 The statement_analysis and x$statement_analysis Views"><code class="literal">statement_analysis</code>, <code class="literal">x$statement_analysis</code></a></th> <td>Statement aggregate statistics</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-statements-with-errors-or-warnings.html" title="30.4.3.36 The statements_with_errors_or_warnings and x$statements_with_errors_or_warnings Views"><code class="literal">statements_with_errors_or_warnings</code>, <code class="literal">x$statements_with_errors_or_warnings</code></a></th> <td>Statements that have produced errors or warnings</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-statements-with-full-table-scans.html" title="30.4.3.37 The statements_with_full_table_scans and x$statements_with_full_table_scans Views"><code class="literal">statements_with_full_table_scans</code>, <code class="literal">x$statements_with_full_table_scans</code></a></th> <td>Statements that have done full table scans</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-statements-with-runtimes-in-95th-percentile.html" title="30.4.3.38 The statements_with_runtimes_in_95th_percentile and x$statements_with_runtimes_in_95th_percentile Views"><code class="literal">statements_with_runtimes_in_95th_percentile</code>, <code class="literal">x$statements_with_runtimes_in_95th_percentile</code></a></th> <td>Statements with highest average runtime</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-statements-with-sorting.html" title="30.4.3.39 The statements_with_sorting and x$statements_with_sorting Views"><code class="literal">statements_with_sorting</code>, <code class="literal">x$statements_with_sorting</code></a></th> <td>Statements that performed sorts</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-statements-with-temp-tables.html" title="30.4.3.40 The statements_with_temp_tables and x$statements_with_temp_tables Views"><code class="literal">statements_with_temp_tables</code>, <code class="literal">x$statements_with_temp_tables</code></a></th> <td>Statements that used temporary tables</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-user-summary.html" title="30.4.3.41 The user_summary and x$user_summary Views"><code class="literal">user_summary</code>, <code class="literal">x$user_summary</code></a></th> <td>User statement and connection activity</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-user-summary-by-file-io.html" title="30.4.3.42 The user_summary_by_file_io and x$user_summary_by_file_io Views"><code class="literal">user_summary_by_file_io</code>, <code class="literal">x$user_summary_by_file_io</code></a></th> <td>File I/O, grouped by user</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-user-summary-by-file-io-type.html" title="30.4.3.43 The user_summary_by_file_io_type and x$user_summary_by_file_io_type Views"><code class="literal">user_summary_by_file_io_type</code>, <code class="literal">x$user_summary_by_file_io_type</code></a></th> <td>File I/O, grouped by user and event</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-user-summary-by-stages.html" title="30.4.3.44 The user_summary_by_stages and x$user_summary_by_stages Views"><code class="literal">user_summary_by_stages</code>, <code class="literal">x$user_summary_by_stages</code></a></th> <td>Stage events, grouped by user</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-user-summary-by-statement-latency.html" title="30.4.3.45 The user_summary_by_statement_latency and x$user_summary_by_statement_latency Views"><code class="literal">user_summary_by_statement_latency</code>, <code class="literal">x$user_summary_by_statement_latency</code></a></th> <td>Statement statistics, grouped by user</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-user-summary-by-statement-type.html" title="30.4.3.46 The user_summary_by_statement_type and x$user_summary_by_statement_type Views"><code class="literal">user_summary_by_statement_type</code>, <code class="literal">x$user_summary_by_statement_type</code></a></th> <td>Statements executed, grouped by user and statement</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-version.html" title="30.4.3.47 The version View"><code class="literal">version</code></a></th> <td>Current sys schema and MySQL server versions</td> <td>Yes</td> </tr><tr><th scope="row"><a class="link" href="sys-wait-classes-global-by-avg-latency.html" title="30.4.3.48 The wait_classes_global_by_avg_latency and x$wait_classes_global_by_avg_latency Views"><code class="literal">wait_classes_global_by_avg_latency</code>, <code class="literal">x$wait_classes_global_by_avg_latency</code></a></th> <td>Wait class average latency, grouped by event class</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-wait-classes-global-by-latency.html" title="30.4.3.49 The wait_classes_global_by_latency and x$wait_classes_global_by_latency Views"><code class="literal">wait_classes_global_by_latency</code>, <code class="literal">x$wait_classes_global_by_latency</code></a></th> <td>Wait class total latency, grouped by event class</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-waits-by-host-by-latency.html" title="30.4.3.50 The waits_by_host_by_latency and x$waits_by_host_by_latency Views"><code class="literal">waits_by_host_by_latency</code>, <code class="literal">x$waits_by_host_by_latency</code></a></th> <td>Wait events, grouped by host and event</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-waits-by-user-by-latency.html" title="30.4.3.51 The waits_by_user_by_latency and x$waits_by_user_by_latency Views"><code class="literal">waits_by_user_by_latency</code>, <code class="literal">x$waits_by_user_by_latency</code></a></th> <td>Wait events, grouped by user and event</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-waits-global-by-latency.html" title="30.4.3.52 The waits_global_by_latency and x$waits_global_by_latency Views"><code class="literal">waits_global_by_latency</code>, <code class="literal">x$waits_global_by_latency</code></a></th> <td>Wait events, grouped by event</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-statements-with-runtimes-in-95th-percentile.html" title="30.4.3.38 The statements_with_runtimes_in_95th_percentile and x$statements_with_runtimes_in_95th_percentile Views"><code class="literal">x$ps_digest_95th_percentile_by_avg_us</code></a></th> <td>Helper view for 95th-percentile views</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-statements-with-runtimes-in-95th-percentile.html" title="30.4.3.38 The statements_with_runtimes_in_95th_percentile and x$statements_with_runtimes_in_95th_percentile Views"><code class="literal">x$ps_digest_avg_latency_distribution</code></a></th> <td>Helper view for 95th-percentile views</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-schema-table-statistics.html" title="30.4.3.29 The schema_table_statistics and x$schema_table_statistics Views"><code class="literal">x$ps_schema_table_statistics_io</code></a></th> <td>Helper view for table-statistics views</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-schema-redundant-indexes.html" title="30.4.3.27 The schema_redundant_indexes and x$schema_flattened_keys Views"><code class="literal">x$schema_flattened_keys</code></a></th> <td>Helper view for schema_redundant_indexes</td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Views used in the sys schema implementation."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>View Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th scope="row"><code>host_summary</code>, <code>x$host_summary</code></th> <td>Statement activity, file I/O, and connections, grouped by host</td> <td></td> </tr><tr><th scope="row"><code>host_summary_by_file_io</code>, <code>x$host_summary_by_file_io</code></th> <td>File I/O, grouped by host</td> <td></td> </tr><tr><th scope="row"><code>host_summary_by_file_io_type</code>, <code>x$host_summary_by_file_io_type</code></th> <td>File I/O, grouped by host and event type</td> <td></td> </tr><tr><th scope="row"><code>host_summary_by_stages</code>, <code>x$host_summary_by_stages</code></th> <td>Statement stages, grouped by host</td> <td></td> </tr><tr><th scope="row"><code>host_summary_by_statement_latency</code>, <code>x$host_summary_by_statement_latency</code></th> <td>Statement statistics, grouped by host</td> <td></td> </tr><tr><th scope="row"><code>host_summary_by_statement_type</code>, <code>x$host_summary_by_statement_type</code></th> <td>Statements executed, grouped by host and statement</td> <td></td> </tr><tr><th scope="row"><code>innodb_buffer_stats_by_schema</code>, <code>x$innodb_buffer_stats_by_schema</code></th> <td>InnoDB buffer information, grouped by schema</td> <td></td> </tr><tr><th scope="row"><code>innodb_buffer_stats_by_table</code>, <code>x$innodb_buffer_stats_by_table</code></th> <td>InnoDB buffer information, grouped by schema and table</td> <td></td> </tr><tr><th scope="row"><code>innodb_lock_waits</code>, <code>x$innodb_lock_waits</code></th> <td>InnoDB lock information</td> <td></td> </tr><tr><th scope="row"><code>io_by_thread_by_latency</code>, <code>x$io_by_thread_by_latency</code></th> <td>I/O consumers, grouped by thread</td> <td></td> </tr><tr><th scope="row"><code>io_global_by_file_by_bytes</code>, <code>x$io_global_by_file_by_bytes</code></th> <td>Global I/O consumers, grouped by file and bytes</td> <td></td> </tr><tr><th scope="row"><code>io_global_by_file_by_latency</code>, <code>x$io_global_by_file_by_latency</code></th> <td>Global I/O consumers, grouped by file and latency</td> <td></td> </tr><tr><th scope="row"><code>io_global_by_wait_by_bytes</code>, <code>x$io_global_by_wait_by_bytes</code></th> <td>Global I/O consumers, grouped by bytes</td> <td></td> </tr><tr><th scope="row"><code>io_global_by_wait_by_latency</code>, <code>x$io_global_by_wait_by_latency</code></th> <td>Global I/O consumers, grouped by latency</td> <td></td> </tr><tr><th scope="row"><code>latest_file_io</code>, <code>x$latest_file_io</code></th> <td>Most recent I/O, grouped by file and thread</td> <td></td> </tr><tr><th scope="row"><code>memory_by_host_by_current_bytes</code>, <code>x$memory_by_host_by_current_bytes</code></th> <td>Memory use, grouped by host</td> <td></td> </tr><tr><th scope="row"><code>memory_by_thread_by_current_bytes</code>, <code>x$memory_by_thread_by_current_bytes</code></th> <td>Memory use, grouped by thread</td> <td></td> </tr><tr><th scope="row"><code>memory_by_user_by_current_bytes</code>, <code>x$memory_by_user_by_current_bytes</code></th> <td>Memory use, grouped by user</td> <td></td> </tr><tr><th scope="row"><code>memory_global_by_current_bytes</code>, <code>x$memory_global_by_current_bytes</code></th> <td>Memory use, grouped by allocation type</td> <td></td> </tr><tr><th scope="row"><code>memory_global_total</code>, <code>x$memory_global_total</code></th> <td>Total memory use</td> <td></td> </tr><tr><th scope="row"><code>metrics</code></th> <td>Server metrics</td> <td></td> </tr><tr><th scope="row"><code>processlist</code>, <code>x$processlist</code></th> <td>Processlist information</td> <td></td> </tr><tr><th scope="row"><code>ps_check_lost_instrumentation</code></th> <td>Variables that have lost instruments</td> <td></td> </tr><tr><th scope="row"><code>schema_auto_increment_columns</code></th> <td>AUTO_INCREMENT column information</td> <td></td> </tr><tr><th scope="row"><code>schema_index_statistics</code>, <code>x$schema_index_statistics</code></th> <td>Index statistics</td> <td></td> </tr><tr><th scope="row"><code>schema_object_overview</code></th> <td>Types of objects within each schema</td> <td></td> </tr><tr><th scope="row"><code>schema_redundant_indexes</code></th> <td>Duplicate or redundant indexes</td> <td></td> </tr><tr><th scope="row"><code>schema_table_lock_waits</code>, <code>x$schema_table_lock_waits</code></th> <td>Sessions waiting for metadata locks</td> <td></td> </tr><tr><th scope="row"><code>schema_table_statistics</code>, <code>x$schema_table_statistics</code></th> <td>Table statistics</td> <td></td> </tr><tr><th scope="row"><code>schema_table_statistics_with_buffer</code>, <code>x$schema_table_statistics_with_buffer</code></th> <td>Table statistics, including InnoDB buffer pool statistics</td> <td></td> </tr><tr><th scope="row"><code>schema_tables_with_full_table_scans</code>, <code>x$schema_tables_with_full_table_scans</code></th> <td>Tables being accessed with full scans</td> <td></td> </tr><tr><th scope="row"><code>schema_unused_indexes</code></th> <td>Indexes not in active use</td> <td></td> </tr><tr><th scope="row"><code>session</code>, <code>x$session</code></th> <td>Processlist information for user sessions</td> <td></td> </tr><tr><th scope="row"><code>session_ssl_status</code></th> <td>Connection SSL information</td> <td></td> </tr><tr><th scope="row"><code>statement_analysis</code>, <code>x$statement_analysis</code></th> <td>Statement aggregate statistics</td> <td></td> </tr><tr><th scope="row"><code>statements_with_errors_or_warnings</code>, <code>x$statements_with_errors_or_warnings</code></th> <td>Statements that have produced errors or warnings</td> <td></td> </tr><tr><th scope="row"><code>statements_with_full_table_scans</code>, <code>x$statements_with_full_table_scans</code></th> <td>Statements that have done full table scans</td> <td></td> </tr><tr><th scope="row"><code>statements_with_runtimes_in_95th_percentile</code>, <code>x$statements_with_runtimes_in_95th_percentile</code></th> <td>Statements with highest average runtime</td> <td></td> </tr><tr><th scope="row"><code>statements_with_sorting</code>, <code>x$statements_with_sorting</code></th> <td>Statements that performed sorts</td> <td></td> </tr><tr><th scope="row"><code>statements_with_temp_tables</code>, <code>x$statements_with_temp_tables</code></th> <td>Statements that used temporary tables</td> <td></td> </tr><tr><th scope="row"><code>user_summary</code>, <code>x$user_summary</code></th> <td>User statement and connection activity</td> <td></td> </tr><tr><th scope="row"><code>user_summary_by_file_io</code>, <code>x$user_summary_by_file_io</code></th> <td>File I/O, grouped by user</td> <td></td> </tr><tr><th scope="row"><code>user_summary_by_file_io_type</code>, <code>x$user_summary_by_file_io_type</code></th> <td>File I/O, grouped by user and event</td> <td></td> </tr><tr><th scope="row"><code>user_summary_by_stages</code>, <code>x$user_summary_by_stages</code></th> <td>Stage events, grouped by user</td> <td></td> </tr><tr><th scope="row"><code>user_summary_by_statement_latency</code>, <code>x$user_summary_by_statement_latency</code></th> <td>Statement statistics, grouped by user</td> <td></td> </tr><tr><th scope="row"><code>user_summary_by_statement_type</code>, <code>x$user_summary_by_statement_type</code></th> <td>Statements executed, grouped by user and statement</td> <td></td> </tr><tr><th scope="row"><code>version</code></th> <td>Current sys schema and MySQL server versions</td> <td>Yes</td> </tr><tr><th scope="row"><code>wait_classes_global_by_avg_latency</code>, <code>x$wait_classes_global_by_avg_latency</code></th> <td>Wait class average latency, grouped by event class</td> <td></td> </tr><tr><th scope="row"><code>wait_classes_global_by_latency</code>, <code>x$wait_classes_global_by_latency</code></th> <td>Wait class total latency, grouped by event class</td> <td></td> </tr><tr><th scope="row"><code>waits_by_host_by_latency</code>, <code>x$waits_by_host_by_latency</code></th> <td>Wait events, grouped by host and event</td> <td></td> </tr><tr><th scope="row"><code>waits_by_user_by_latency</code>, <code>x$waits_by_user_by_latency</code></th> <td>Wait events, grouped by user and event</td> <td></td> </tr><tr><th scope="row"><code>waits_global_by_latency</code>, <code>x$waits_global_by_latency</code></th> <td>Wait events, grouped by event</td> <td></td> </tr><tr><th scope="row"><code>x$ps_digest_95th_percentile_by_avg_us</code></th> <td>Helper view for 95th-percentile views</td> <td></td> </tr><tr><th scope="row"><code>x$ps_digest_avg_latency_distribution</code></th> <td>Helper view for 95th-percentile views</td> <td></td> </tr><tr><th scope="row"><code>x$ps_schema_table_statistics_io</code></th> <td>Helper view for table-statistics views</td> <td></td> </tr><tr><th scope="row"><code>x$schema_flattened_keys</code></th> <td>Helper view for schema_redundant_indexes</td> <td></td> </tr></tbody></table>
 
 **Table 30.3 sys Schema Stored Procedures**
 
-<table frame="box" rules="all" summary="Stored procedures used in the sys schema implementation."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Procedure Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="sys-create-synonym-db.html" title="30.4.4.1 The create_synonym_db() Procedure"><code class="literal">create_synonym_db()</code></a></td> <td>Create synonym for schema</td> </tr><tr><td><a class="link" href="sys-diagnostics.html" title="30.4.4.2 The diagnostics() Procedure"><code class="literal">diagnostics()</code></a></td> <td>Collect system diagnostic information</td> </tr><tr><td><a class="link" href="sys-execute-prepared-stmt.html" title="30.4.4.3 The execute_prepared_stmt() Procedure"><code class="literal">execute_prepared_stmt()</code></a></td> <td>Execute prepared statement</td> </tr><tr><td><a class="link" href="sys-ps-setup-disable-background-threads.html" title="30.4.4.4 The ps_setup_disable_background_threads() Procedure"><code class="literal">ps_setup_disable_background_threads()</code></a></td> <td>Disable background thread instrumentation</td> </tr><tr><td><a class="link" href="sys-ps-setup-disable-consumer.html" title="30.4.4.5 The ps_setup_disable_consumer() Procedure"><code class="literal">ps_setup_disable_consumer()</code></a></td> <td>Disable consumers</td> </tr><tr><td><a class="link" href="sys-ps-setup-disable-instrument.html" title="30.4.4.6 The ps_setup_disable_instrument() Procedure"><code class="literal">ps_setup_disable_instrument()</code></a></td> <td>Disable instruments</td> </tr><tr><td><a class="link" href="sys-ps-setup-disable-thread.html" title="30.4.4.7 The ps_setup_disable_thread() Procedure"><code class="literal">ps_setup_disable_thread()</code></a></td> <td>Disable instrumentation for thread</td> </tr><tr><td><a class="link" href="sys-ps-setup-enable-background-threads.html" title="30.4.4.8 The ps_setup_enable_background_threads() Procedure"><code class="literal">ps_setup_enable_background_threads()</code></a></td> <td>Enable background thread instrumentation</td> </tr><tr><td><a class="link" href="sys-ps-setup-enable-consumer.html" title="30.4.4.9 The ps_setup_enable_consumer() Procedure"><code class="literal">ps_setup_enable_consumer()</code></a></td> <td>Enable consumers</td> </tr><tr><td><a class="link" href="sys-ps-setup-enable-instrument.html" title="30.4.4.10 The ps_setup_enable_instrument() Procedure"><code class="literal">ps_setup_enable_instrument()</code></a></td> <td>Enable instruments</td> </tr><tr><td><a class="link" href="sys-ps-setup-enable-thread.html" title="30.4.4.11 The ps_setup_enable_thread() Procedure"><code class="literal">ps_setup_enable_thread()</code></a></td> <td>Enable instrumentation for thread</td> </tr><tr><td><a class="link" href="sys-ps-setup-reload-saved.html" title="30.4.4.12 The ps_setup_reload_saved() Procedure"><code class="literal">ps_setup_reload_saved()</code></a></td> <td>Reload saved Performance Schema configuration</td> </tr><tr><td><a class="link" href="sys-ps-setup-reset-to-default.html" title="30.4.4.13 The ps_setup_reset_to_default() Procedure"><code class="literal">ps_setup_reset_to_default()</code></a></td> <td>Reset saved Performance Schema configuration</td> </tr><tr><td><a class="link" href="sys-ps-setup-save.html" title="30.4.4.14 The ps_setup_save() Procedure"><code class="literal">ps_setup_save()</code></a></td> <td>Save Performance Schema configuration</td> </tr><tr><td><a class="link" href="sys-ps-setup-show-disabled.html" title="30.4.4.15 The ps_setup_show_disabled() Procedure"><code class="literal">ps_setup_show_disabled()</code></a></td> <td>Display disabled Performance Schema configuration</td> </tr><tr><td><a class="link" href="sys-ps-setup-show-disabled-consumers.html" title="30.4.4.16 The ps_setup_show_disabled_consumers() Procedure"><code class="literal">ps_setup_show_disabled_consumers()</code></a></td> <td>Display disabled Performance Schema consumers</td> </tr><tr><td><a class="link" href="sys-ps-setup-show-disabled-instruments.html" title="30.4.4.17 The ps_setup_show_disabled_instruments() Procedure"><code class="literal">ps_setup_show_disabled_instruments()</code></a></td> <td>Display disabled Performance Schema instruments</td> </tr><tr><td><a class="link" href="sys-ps-setup-show-enabled.html" title="30.4.4.18 The ps_setup_show_enabled() Procedure"><code class="literal">ps_setup_show_enabled()</code></a></td> <td>Display enabled Performance Schema configuration</td> </tr><tr><td><a class="link" href="sys-ps-setup-show-enabled-consumers.html" title="30.4.4.19 The ps_setup_show_enabled_consumers() Procedure"><code class="literal">ps_setup_show_enabled_consumers()</code></a></td> <td>Display enabled Performance Schema consumers</td> </tr><tr><td><a class="link" href="sys-ps-setup-show-enabled-instruments.html" title="30.4.4.20 The ps_setup_show_enabled_instruments() Procedure"><code class="literal">ps_setup_show_enabled_instruments()</code></a></td> <td>Display enabled Performance Schema instruments</td> </tr><tr><td><a class="link" href="sys-ps-statement-avg-latency-histogram.html" title="30.4.4.21 The ps_statement_avg_latency_histogram() Procedure"><code class="literal">ps_statement_avg_latency_histogram()</code></a></td> <td>Display statement latency histogram</td> </tr><tr><td><a class="link" href="sys-ps-trace-statement-digest.html" title="30.4.4.22 The ps_trace_statement_digest() Procedure"><code class="literal">ps_trace_statement_digest()</code></a></td> <td>Trace Performance Schema instrumentation for digest</td> </tr><tr><td><a class="link" href="sys-ps-trace-thread.html" title="30.4.4.23 The ps_trace_thread() Procedure"><code class="literal">ps_trace_thread()</code></a></td> <td>Dump Performance Schema data for thread</td> </tr><tr><td><a class="link" href="sys-ps-truncate-all-tables.html" title="30.4.4.24 The ps_truncate_all_tables() Procedure"><code class="literal">ps_truncate_all_tables()</code></a></td> <td>Truncate Performance Schema summary tables</td> </tr><tr><td><a class="link" href="sys-statement-performance-analyzer.html" title="30.4.4.26 The statement_performance_analyzer() Procedure"><code class="literal">statement_performance_analyzer()</code></a></td> <td>Report of statements running on server</td> </tr><tr><td><a class="link" href="sys-table-exists.html" title="30.4.4.27 The table_exists() Procedure"><code class="literal">table_exists()</code></a></td> <td>Whether a table exists</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Stored procedures used in the sys schema implementation."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Procedure Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>create_synonym_db()</code></td> <td>Create synonym for schema</td> </tr><tr><td><code>diagnostics()</code></td> <td>Collect system diagnostic information</td> </tr><tr><td><code>execute_prepared_stmt()</code></td> <td>Execute prepared statement</td> </tr><tr><td><code>ps_setup_disable_background_threads()</code></td> <td>Disable background thread instrumentation</td> </tr><tr><td><code>ps_setup_disable_consumer()</code></td> <td>Disable consumers</td> </tr><tr><td><code>ps_setup_disable_instrument()</code></td> <td>Disable instruments</td> </tr><tr><td><code>ps_setup_disable_thread()</code></td> <td>Disable instrumentation for thread</td> </tr><tr><td><code>ps_setup_enable_background_threads()</code></td> <td>Enable background thread instrumentation</td> </tr><tr><td><code>ps_setup_enable_consumer()</code></td> <td>Enable consumers</td> </tr><tr><td><code>ps_setup_enable_instrument()</code></td> <td>Enable instruments</td> </tr><tr><td><code>ps_setup_enable_thread()</code></td> <td>Enable instrumentation for thread</td> </tr><tr><td><code>ps_setup_reload_saved()</code></td> <td>Reload saved Performance Schema configuration</td> </tr><tr><td><code>ps_setup_reset_to_default()</code></td> <td>Reset saved Performance Schema configuration</td> </tr><tr><td><code>ps_setup_save()</code></td> <td>Save Performance Schema configuration</td> </tr><tr><td><code>ps_setup_show_disabled()</code></td> <td>Display disabled Performance Schema configuration</td> </tr><tr><td><code>ps_setup_show_disabled_consumers()</code></td> <td>Display disabled Performance Schema consumers</td> </tr><tr><td><code>ps_setup_show_disabled_instruments()</code></td> <td>Display disabled Performance Schema instruments</td> </tr><tr><td><code>ps_setup_show_enabled()</code></td> <td>Display enabled Performance Schema configuration</td> </tr><tr><td><code>ps_setup_show_enabled_consumers()</code></td> <td>Display enabled Performance Schema consumers</td> </tr><tr><td><code>ps_setup_show_enabled_instruments()</code></td> <td>Display enabled Performance Schema instruments</td> </tr><tr><td><code>ps_statement_avg_latency_histogram()</code></td> <td>Display statement latency histogram</td> </tr><tr><td><code>ps_trace_statement_digest()</code></td> <td>Trace Performance Schema instrumentation for digest</td> </tr><tr><td><code>ps_trace_thread()</code></td> <td>Dump Performance Schema data for thread</td> </tr><tr><td><code>ps_truncate_all_tables()</code></td> <td>Truncate Performance Schema summary tables</td> </tr><tr><td><code>statement_performance_analyzer()</code></td> <td>Report of statements running on server</td> </tr><tr><td><code>table_exists()</code></td> <td>Whether a table exists</td> </tr></tbody></table>
 
 **Table 30.4 sys Schema Stored Functions**
 
-<table frame="box" rules="all" summary="Stored functions used in the sys schema implementation."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Function Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th scope="row"><a class="link" href="sys-extract-schema-from-file-name.html" title="30.4.5.1 The extract_schema_from_file_name() Function"><code class="literal">extract_schema_from_file_name()</code></a></th> <td>Extract schema name part of file name</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-extract-table-from-file-name.html" title="30.4.5.2 The extract_table_from_file_name() Function"><code class="literal">extract_table_from_file_name()</code></a></th> <td>Extract table name part of file name</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-format-bytes.html" title="30.4.5.3 The format_bytes() Function"><code class="literal">format_bytes()</code></a></th> <td>Convert byte count to value with units</td> <td>Yes</td> </tr><tr><th scope="row"><a class="link" href="sys-format-path.html" title="30.4.5.4 The format_path() Function"><code class="literal">format_path()</code></a></th> <td>Replace directories in path name with symbolic system variable names</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-format-statement.html" title="30.4.5.5 The format_statement() Function"><code class="literal">format_statement()</code></a></th> <td>Truncate long statement to fixed length</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-format-time.html" title="30.4.5.6 The format_time() Function"><code class="literal">format_time()</code></a></th> <td>Convert picoseconds time to value with units</td> <td>Yes</td> </tr><tr><th scope="row"><a class="link" href="sys-list-add.html" title="30.4.5.7 The list_add() Function"><code class="literal">list_add()</code></a></th> <td>Add item to list</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-list-drop.html" title="30.4.5.8 The list_drop() Function"><code class="literal">list_drop()</code></a></th> <td>Remove item from list</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-ps-is-account-enabled.html" title="30.4.5.9 The ps_is_account_enabled() Function"><code class="literal">ps_is_account_enabled()</code></a></th> <td>Whether Performance Schema instrumentation for account is enabled</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-ps-is-consumer-enabled.html" title="30.4.5.10 The ps_is_consumer_enabled() Function"><code class="literal">ps_is_consumer_enabled()</code></a></th> <td>Whether Performance Schema consumer is enabled</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-ps-is-instrument-default-enabled.html" title="30.4.5.11 The ps_is_instrument_default_enabled() Function"><code class="literal">ps_is_instrument_default_enabled()</code></a></th> <td>Whether Performance Schema instrument is enabled by default</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-ps-is-instrument-default-timed.html" title="30.4.5.12 The ps_is_instrument_default_timed() Function"><code class="literal">ps_is_instrument_default_timed()</code></a></th> <td>Whether Performance Schema instrument is timed by default</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-ps-is-thread-instrumented.html" title="30.4.5.13 The ps_is_thread_instrumented() Function"><code class="literal">ps_is_thread_instrumented()</code></a></th> <td>Whether Performance Schema instrumentation for connection ID is enabled</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-ps-thread-account.html" title="30.4.5.14 The ps_thread_account() Function"><code class="literal">ps_thread_account()</code></a></th> <td>Account associated with Performance Schema thread ID</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-ps-thread-id.html" title="30.4.5.15 The ps_thread_id() Function"><code class="literal">ps_thread_id()</code></a></th> <td>Performance Schema thread ID associated with connection ID</td> <td>Yes</td> </tr><tr><th scope="row"><a class="link" href="sys-ps-thread-stack.html" title="30.4.5.16 The ps_thread_stack() Function"><code class="literal">ps_thread_stack()</code></a></th> <td>Event information for connection ID</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-ps-thread-trx-info.html" title="30.4.5.17 The ps_thread_trx_info() Function"><code class="literal">ps_thread_trx_info()</code></a></th> <td>Transaction information for thread ID</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-quote-identifier.html" title="30.4.5.18 The quote_identifier() Function"><code class="literal">quote_identifier()</code></a></th> <td>Quote string as identifier</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-sys-get-config.html" title="30.4.5.19 The sys_get_config() Function"><code class="literal">sys_get_config()</code></a></th> <td>sys schema configuration option value</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-version-major.html" title="30.4.5.20 The version_major() Function"><code class="literal">version_major()</code></a></th> <td>MySQL server major version number</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-version-minor.html" title="30.4.5.21 The version_minor() Function"><code class="literal">version_minor()</code></a></th> <td>MySQL server minor version number</td> <td></td> </tr><tr><th scope="row"><a class="link" href="sys-version-patch.html" title="30.4.5.22 The version_patch() Function"><code class="literal">version_patch()</code></a></th> <td>MySQL server patch release version number</td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Stored functions used in the sys schema implementation."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Function Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th scope="row"><code>extract_schema_from_file_name()</code></th> <td>Extract schema name part of file name</td> <td></td> </tr><tr><th scope="row"><code>extract_table_from_file_name()</code></th> <td>Extract table name part of file name</td> <td></td> </tr><tr><th scope="row"><code>format_bytes()</code></th> <td>Convert byte count to value with units</td> <td>Yes</td> </tr><tr><th scope="row"><code>format_path()</code></th> <td>Replace directories in path name with symbolic system variable names</td> <td></td> </tr><tr><th scope="row"><code>format_statement()</code></th> <td>Truncate long statement to fixed length</td> <td></td> </tr><tr><th scope="row"><code>format_time()</code></th> <td>Convert picoseconds time to value with units</td> <td>Yes</td> </tr><tr><th scope="row"><code>list_add()</code></th> <td>Add item to list</td> <td></td> </tr><tr><th scope="row"><code>list_drop()</code></th> <td>Remove item from list</td> <td></td> </tr><tr><th scope="row"><code>ps_is_account_enabled()</code></th> <td>Whether Performance Schema instrumentation for account is enabled</td> <td></td> </tr><tr><th scope="row"><code>ps_is_consumer_enabled()</code></th> <td>Whether Performance Schema consumer is enabled</td> <td></td> </tr><tr><th scope="row"><code>ps_is_instrument_default_enabled()</code></th> <td>Whether Performance Schema instrument is enabled by default</td> <td></td> </tr><tr><th scope="row"><code>ps_is_instrument_default_timed()</code></th> <td>Whether Performance Schema instrument is timed by default</td> <td></td> </tr><tr><th scope="row"><code>ps_is_thread_instrumented()</code></th> <td>Whether Performance Schema instrumentation for connection ID is enabled</td> <td></td> </tr><tr><th scope="row"><code>ps_thread_account()</code></th> <td>Account associated with Performance Schema thread ID</td> <td></td> </tr><tr><th scope="row"><code>ps_thread_id()</code></th> <td>Performance Schema thread ID associated with connection ID</td> <td>Yes</td> </tr><tr><th scope="row"><code>ps_thread_stack()</code></th> <td>Event information for connection ID</td> <td></td> </tr><tr><th scope="row"><code>ps_thread_trx_info()</code></th> <td>Transaction information for thread ID</td> <td></td> </tr><tr><th scope="row"><code>quote_identifier()</code></th> <td>Quote string as identifier</td> <td></td> </tr><tr><th scope="row"><code>sys_get_config()</code></th> <td>sys schema configuration option value</td> <td></td> </tr><tr><th scope="row"><code>version_major()</code></th> <td>MySQL server major version number</td> <td></td> </tr><tr><th scope="row"><code>version_minor()</code></th> <td>MySQL server minor version number</td> <td></td> </tr><tr><th scope="row"><code>version_patch()</code></th> <td>MySQL server patch release version number</td> <td></td> </tr></tbody></table>
 
 
 ### 30.4.2 sys Schema Tables and Triggers
@@ -29,7 +29,7 @@ The following tables list `sys` schema objects and provide a short description o
 The following sections describe `sys` schema tables and triggers.
 
 
-#### 30.4.2.1 The sys\_config Table
+#### 30.4.2.1 The sys_config Table
 
 This table contains `sys` schema configuration options, one row per option. Configuration changes made by updating this table persist across client sessions and server restarts.
 
@@ -137,12 +137,12 @@ mysql> SET @sys.debug = NULL;
 ```
 
 
-#### 30.4.2.2 The sys\_config\_insert\_set\_user Trigger
+#### 30.4.2.2 The sys_config_insert_set_user Trigger
 
 For rows added to the `sys_config` table by `INSERT` statements, the `sys_config_insert_set_user` trigger sets the `set_by` column to the current user.
 
 
-#### 30.4.2.3 The sys\_config\_update\_set\_user Trigger
+#### 30.4.2.3 The sys_config_update_set_user Trigger
 
 The `sys_config_update_set_user` trigger for the `sys_config` table is similar to the `sys_config_insert_set_user` trigger, but for `UPDATE` statements.
 
@@ -188,7 +188,7 @@ Views without the `x$` prefix differ from the corresponding `x$` views in these 
 * Path name are shortened using `format_path()` Function").
 
 
-#### 30.4.3.1 The host\_summary and x$host\_summary Views
+#### 30.4.3.1 The host_summary and x$host_summary Views
 
 These views summarize statement activity, file I/O, and connections, grouped by host.
 
@@ -243,7 +243,7 @@ The `host_summary` and `x$host_summary` views have these columns:
   The total amount of allocated memory for the host.
 
 
-#### 30.4.3.2 The host\_summary\_by\_file\_io and x$host\_summary\_by\_file\_io Views
+#### 30.4.3.2 The host_summary_by_file_io and x$host_summary_by_file_io Views
 
 These views summarize file I/O, grouped by host. By default, rows are sorted by descending total file I/O latency.
 
@@ -262,7 +262,7 @@ The `host_summary_by_file_io` and `x$host_summary_by_file_io` views have these c
   The total wait time of timed file I/O events for the host.
 
 
-#### 30.4.3.3 The host\_summary\_by\_file\_io\_type and x$host\_summary\_by\_file\_io\_type Views
+#### 30.4.3.3 The host_summary_by_file_io_type and x$host_summary_by_file_io_type Views
 
 These views summarize file I/O, grouped by host and event type. By default, rows are sorted by host and descending total I/O latency.
 
@@ -289,7 +289,7 @@ The `host_summary_by_file_io_type` and `x$host_summary_by_file_io_type` views ha
   The maximum single wait time of timed occurrences of the file I/O event for the host.
 
 
-#### 30.4.3.4 The host\_summary\_by\_stages and x$host\_summary\_by\_stages Views
+#### 30.4.3.4 The host_summary_by_stages and x$host_summary_by_stages Views
 
 These views summarize statement stages, grouped by host. By default, rows are sorted by host and descending total latency.
 
@@ -316,7 +316,7 @@ The `host_summary_by_stages` and `x$host_summary_by_stages` views have these col
   The average wait time per timed occurrence of the stage event for the host.
 
 
-#### 30.4.3.5 The host\_summary\_by\_statement\_latency and x$host\_summary\_by\_statement\_latency Views
+#### 30.4.3.5 The host_summary_by_statement_latency and x$host_summary_by_statement_latency Views
 
 These views summarize overall statement statistics, grouped by host. By default, rows are sorted by descending total latency.
 
@@ -363,7 +363,7 @@ The `host_summary_by_statement_latency` and `x$host_summary_by_statement_latency
   The total number of full table scans by statements for the host.
 
 
-#### 30.4.3.6 The host\_summary\_by\_statement\_type and x$host\_summary\_by\_statement\_type Views
+#### 30.4.3.6 The host_summary_by_statement_type and x$host_summary_by_statement_type Views
 
 These views summarize information about statements executed, grouped by host and statement type. By default, rows are sorted by host and descending total latency.
 
@@ -414,7 +414,7 @@ The `host_summary_by_statement_type` and `x$host_summary_by_statement_type` view
   The total number of full table scans by occurrences of the statement event for the host.
 
 
-#### 30.4.3.7 The innodb\_buffer\_stats\_by\_schema and x$innodb\_buffer\_stats\_by\_schema Views
+#### 30.4.3.7 The innodb_buffer_stats_by_schema and x$innodb_buffer_stats_by_schema Views
 
 These views summarize the information in the `INFORMATION_SCHEMA` `INNODB_BUFFER_PAGE` table, grouped by schema. By default, rows are sorted by descending buffer size.
 
@@ -453,7 +453,7 @@ The `innodb_buffer_stats_by_schema` and `x$innodb_buffer_stats_by_schema` views 
   The total number of cached rows for the schema.
 
 
-#### 30.4.3.8 The innodb\_buffer\_stats\_by\_table and x$innodb\_buffer\_stats\_by\_table Views
+#### 30.4.3.8 The innodb_buffer_stats_by_table and x$innodb_buffer_stats_by_table Views
 
 These views summarize the information in the `INFORMATION_SCHEMA` `INNODB_BUFFER_PAGE` table, grouped by schema and table. By default, rows are sorted by descending buffer size.
 
@@ -496,7 +496,7 @@ The `innodb_buffer_stats_by_table` and `x$innodb_buffer_stats_by_table` views ha
   The number of cached rows for the table.
 
 
-#### 30.4.3.9 The innodb\_lock\_waits and x$innodb\_lock\_waits Views
+#### 30.4.3.9 The innodb_lock_waits and x$innodb_lock_waits Views
 
 These views summarize the `InnoDB` locks that transactions are waiting for. By default, rows are sorted by descending lock age.
 
@@ -619,7 +619,7 @@ The `innodb_lock_waits` and `x$innodb_lock_waits` views have these columns:
   The `KILL` statement to execute to kill the session running the blocking statement.
 
 
-#### 30.4.3.10 The io\_by\_thread\_by\_latency and x$io\_by\_thread\_by\_latency Views
+#### 30.4.3.10 The io_by_thread_by_latency and x$io_by_thread_by_latency Views
 
 These views summarize I/O consumers to display time waiting for I/O, grouped by thread. By default, rows are sorted by descending total I/O latency.
 
@@ -658,7 +658,7 @@ The `io_by_thread_by_latency` and `x$io_by_thread_by_latency` views have these c
   For foreground threads, the processlist ID of the thread. For background threads, `NULL`.
 
 
-#### 30.4.3.11 The io\_global\_by\_file\_by\_bytes and x$io\_global\_by\_file\_by\_bytes Views
+#### 30.4.3.11 The io_global_by_file_by_bytes and x$io_global_by_file_by_bytes Views
 
 These views summarize global I/O consumers to display amount of I/O, grouped by file. By default, rows are sorted by descending total I/O (bytes read and written).
 
@@ -701,7 +701,7 @@ The `io_global_by_file_by_bytes` and `x$io_global_by_file_by_bytes` views have t
   The percentage of total bytes of I/O that were writes.
 
 
-#### 30.4.3.12 The io\_global\_by\_file\_by\_latency and x$io\_global\_by\_file\_by\_latency Views
+#### 30.4.3.12 The io_global_by_file_by_latency and x$io_global_by_file_by_latency Views
 
 These views summarize global I/O consumers to display time waiting for I/O, grouped by file. By default, rows are sorted by descending total latency.
 
@@ -744,7 +744,7 @@ The `io_global_by_file_by_latency` and `x$io_global_by_file_by_latency` views ha
   The total wait time of timed other I/O events for the file.
 
 
-#### 30.4.3.13 The io\_global\_by\_wait\_by\_bytes and x$io\_global\_by\_wait\_by\_bytes Views
+#### 30.4.3.13 The io_global_by_wait_by_bytes and x$io_global_by_wait_by_bytes Views
 
 These views summarize global I/O consumers to display amount of I/O and time waiting for I/O, grouped by event. By default, rows are sorted by descending total I/O (bytes read and written).
 
@@ -803,7 +803,7 @@ The `io_global_by_wait_by_bytes` and `x$io_global_by_wait_by_bytes` views have t
   The total number of bytes read and written for the I/O event.
 
 
-#### 30.4.3.14 The io\_global\_by\_wait\_by\_latency and x$io\_global\_by\_wait\_by\_latency Views
+#### 30.4.3.14 The io_global_by_wait_by_latency and x$io_global_by_wait_by_latency Views
 
 These views summarize global I/O consumers to display amount of I/O and time waiting for I/O, grouped by event. By default, rows are sorted by descending total latency.
 
@@ -866,7 +866,7 @@ The `io_global_by_wait_by_latency` and `x$io_global_by_wait_by_latency` views ha
   The average number of bytes per write for the I/O event.
 
 
-#### 30.4.3.15 The latest\_file\_io and x$latest\_file\_io Views
+#### 30.4.3.15 The latest_file_io and x$latest_file_io Views
 
 These views summarize file I/O activity, grouped by file and thread. By default, rows are sorted with most recent I/O first.
 
@@ -893,7 +893,7 @@ The `latest_file_io` and `x$latest_file_io` views have these columns:
   The number of data bytes requested for the file I/O event.
 
 
-#### 30.4.3.16 The memory\_by\_host\_by\_current\_bytes and x$memory\_by\_host\_by\_current\_bytes Views
+#### 30.4.3.16 The memory_by_host_by_current_bytes and x$memory_by_host_by_current_bytes Views
 
 These views summarize memory use, grouped by host. By default, rows are sorted by descending amount of memory used.
 
@@ -924,7 +924,7 @@ The `memory_by_host_by_current_bytes` and `x$memory_by_host_by_current_bytes` vi
   The total memory allocation in bytes for the host.
 
 
-#### 30.4.3.17 The memory\_by\_thread\_by\_current\_bytes and x$memory\_by\_thread\_by\_current\_bytes Views
+#### 30.4.3.17 The memory_by_thread_by_current_bytes and x$memory_by_thread_by_current_bytes Views
 
 These views summarize memory use, grouped by thread. By default, rows are sorted by descending amount of memory used.
 
@@ -959,7 +959,7 @@ The `memory_by_thread_by_current_bytes` and `x$memory_by_thread_by_current_bytes
   The total memory allocation in bytes for the thread.
 
 
-#### 30.4.3.18 The memory\_by\_user\_by\_current\_bytes and x$memory\_by\_user\_by\_current\_bytes Views
+#### 30.4.3.18 The memory_by_user_by_current_bytes and x$memory_by_user_by_current_bytes Views
 
 These views summarize memory use, grouped by user. By default, rows are sorted by descending amount of memory used.
 
@@ -990,7 +990,7 @@ The `memory_by_user_by_current_bytes` and `x$memory_by_user_by_current_bytes` vi
   The total memory allocation in bytes for the user.
 
 
-#### 30.4.3.19 The memory\_global\_by\_current\_bytes and x$memory\_global\_by\_current\_bytes Views
+#### 30.4.3.19 The memory_global_by_current_bytes and x$memory_global_by_current_bytes Views
 
 These views summarize memory use, grouped by allocation type (that is, by event). By default, rows are sorted by descending amount of memory used.
 
@@ -1025,7 +1025,7 @@ The `memory_global_by_current_bytes` and `x$memory_global_by_current_bytes` view
   The high-water mark for average number of bytes per memory block allocated for the event.
 
 
-#### 30.4.3.20 The memory\_global\_total and x$memory\_global\_total Views
+#### 30.4.3.20 The memory_global_total and x$memory_global_total Views
 
 These views summarize total memory use within the server.
 
@@ -1227,7 +1227,7 @@ The `processlist` and `x$processlist` views have these columns:
   The client program name.
 
 
-#### 30.4.3.23 The ps\_check\_lost\_instrumentation View
+#### 30.4.3.23 The ps_check_lost_instrumentation View
 
 This view returns information about lost Performance Schema instruments, to indicate whether the Performance Schema is unable to monitor all runtime data.
 
@@ -1242,7 +1242,7 @@ The `ps_check_lost_instrumentation` view has these columns:
   The number of instruments lost.
 
 
-#### 30.4.3.24 The schema\_auto\_increment\_columns View
+#### 30.4.3.24 The schema_auto_increment_columns View
 
 This view indicates which tables have `AUTO_INCREMENT` columns and provides information about those columns, such as the current and maximum column values and the usage ratio (ratio of used to possible values). By default, rows are sorted by descending usage ratio and maximum column value.
 
@@ -1291,7 +1291,7 @@ The `schema_auto_increment_columns` view has these columns:
   The ratio of used to permitted values for the column. This indicates how much of the sequence of values is “used up.”
 
 
-#### 30.4.3.25 The schema\_index\_statistics and x$schema\_index\_statistics Views
+#### 30.4.3.25 The schema_index_statistics and x$schema_index_statistics Views
 
 These views provide index statistics. By default, rows are sorted by descending total index latency.
 
@@ -1342,7 +1342,7 @@ The `schema_index_statistics` and `x$schema_index_statistics` views have these c
   The total wait time of timed deletes from the index.
 
 
-#### 30.4.3.26 The schema\_object\_overview View
+#### 30.4.3.26 The schema_object_overview View
 
 This view summarizes the types of objects within each schema. By default, rows are sorted by schema and object type.
 
@@ -1365,7 +1365,7 @@ The `schema_object_overview` view has these columns:
   The number of objects in the schema of the given type.
 
 
-#### 30.4.3.27 The schema\_redundant\_indexes and x$schema\_flattened\_keys Views
+#### 30.4.3.27 The schema_redundant_indexes and x$schema_flattened_keys Views
 
 The `schema_redundant_indexes` view displays indexes that duplicate other indexes or are made redundant by them. The `x$schema_flattened_keys` view is a helper view for `schema_redundant_indexes`.
 
@@ -1440,11 +1440,11 @@ The `x$schema_flattened_keys` view has these columns:
   The name of the columns in the index.
 
 
-#### 30.4.3.28 The schema\_table\_lock\_waits and x$schema\_table\_lock\_waits Views
+#### 30.4.3.28 The schema_table_lock_waits and x$schema_table_lock_waits Views
 
 These views display which sessions are blocked waiting on metadata locks, and what is blocking them.
 
-The column descriptions here are brief. For additional information, see the description of the Performance Schema `metadata_locks` table at Section 29.12.13.3, “The metadata\_locks Table”.
+The column descriptions here are brief. For additional information, see the description of the Performance Schema `metadata_locks` table at Section 29.12.13.3, “The metadata_locks Table”.
 
 The `schema_table_lock_waits` and `x$schema_table_lock_waits` views have these columns:
 
@@ -1521,7 +1521,7 @@ The `schema_table_lock_waits` and `x$schema_table_lock_waits` views have these c
   The `KILL` statement to execute to kill the session running the blocking statement.
 
 
-#### 30.4.3.29 The schema\_table\_statistics and x$schema\_table\_statistics Views
+#### 30.4.3.29 The schema_table_statistics and x$schema_table_statistics Views
 
 These views summarize table statistics. By default, rows are sorted by descending total wait time (tables with most contention first).
 
@@ -1606,7 +1606,7 @@ The `schema_table_statistics` and `x$schema_table_statistics` views have these c
   The total wait time of miscellaneous I/O requests for the table.
 
 
-#### 30.4.3.30 The schema\_table\_statistics\_with\_buffer and x$schema\_table\_statistics\_with\_buffer Views
+#### 30.4.3.30 The schema_table_statistics_with_buffer and x$schema_table_statistics_with_buffer Views
 
 These views summarize table statistics, including `InnoDB` buffer pool statistics. By default, rows are sorted by descending total wait time (tables with most contention first).
 
@@ -1715,7 +1715,7 @@ The `schema_table_statistics_with_buffer` and `x$schema_table_statistics_with_bu
   The total number of `InnoDB` cached rows for the table.
 
 
-#### 30.4.3.31 The schema\_tables\_with\_full\_table\_scans and x$schema\_tables\_with\_full\_table\_scans Views
+#### 30.4.3.31 The schema_tables_with_full_table_scans and x$schema_tables_with_full_table_scans Views
 
 These views display which tables are being accessed with full table scans. By default, rows are sorted by descending rows scanned.
 
@@ -1738,7 +1738,7 @@ The `schema_tables_with_full_table_scans` and `x$schema_tables_with_full_table_s
   The total wait time of full scans of the table.
 
 
-#### 30.4.3.32 The schema\_unused\_indexes View
+#### 30.4.3.32 The schema_unused_indexes View
 
 These views display indexes for which there are no events, which indicates that they are not being used. By default, rows are sorted by schema and table.
 
@@ -1764,7 +1764,7 @@ The `schema_unused_indexes` view has these columns:
 These views are similar to `processlist` and `x$processlist`, but they filter out background processes to display only user sessions. For descriptions of the columns, see Section 30.4.3.22, “The processlist and x$processlist Views”.
 
 
-#### 30.4.3.34 The session\_ssl\_status View
+#### 30.4.3.34 The session_ssl_status View
 
 For each connection, this view displays the SSL version, cipher, and count of reused SSL sessions.
 
@@ -1787,7 +1787,7 @@ The `session_ssl_status` view has these columns:
   The number of reused SSL sessions for the connection.
 
 
-#### 30.4.3.35 The statement\_analysis and x$statement\_analysis Views
+#### 30.4.3.35 The statement_analysis and x$statement_analysis Views
 
 These views list normalized statements with aggregated statistics. The content mimics the MySQL Enterprise Monitor Query Analysis view. By default, rows are sorted by descending total latency.
 
@@ -1898,7 +1898,7 @@ The `statement_analysis` and `x$statement_analysis` views have these columns:
   The time at which the statement was most recently seen.
 
 
-#### 30.4.3.36 The statements\_with\_errors\_or\_warnings and x$statements\_with\_errors\_or\_warnings Views
+#### 30.4.3.36 The statements_with_errors_or_warnings and x$statements_with_errors_or_warnings Views
 
 These views display normalized statements that have produced errors or warnings. By default, rows are sorted by descending error and warning counts.
 
@@ -1945,7 +1945,7 @@ The `statements_with_errors_or_warnings` and `x$statements_with_errors_or_warnin
   The statement digest.
 
 
-#### 30.4.3.37 The statements\_with\_full\_table\_scans and x$statements\_with\_full\_table\_scans Views
+#### 30.4.3.37 The statements_with_full_table_scans and x$statements_with_full_table_scans Views
 
 These views display normalized statements that have done full table scans. By default, rows are sorted by descending percentage of time a full scan was done and descending total latency.
 
@@ -2008,7 +2008,7 @@ The `statements_with_full_table_scans` and `x$statements_with_full_table_scans` 
   The statement digest.
 
 
-#### 30.4.3.38 The statements\_with\_runtimes\_in\_95th\_percentile and x$statements\_with\_runtimes\_in\_95th\_percentile Views
+#### 30.4.3.38 The statements_with_runtimes_in_95th_percentile and x$statements_with_runtimes_in_95th_percentile Views
 
 These views list statements with runtimes in the 95th percentile. By default, rows are sorted by descending average latency.
 
@@ -2081,7 +2081,7 @@ The `statements_with_runtimes_in_95th_percentile` and `x$statements_with_runtime
   The statement digest.
 
 
-#### 30.4.3.39 The statements\_with\_sorting and x$statements\_with\_sorting Views
+#### 30.4.3.39 The statements_with_sorting and x$statements_with_sorting Views
 
 These views list normalized statements that have performed sorts. By default, rows are sorted by descending total latency.
 
@@ -2140,7 +2140,7 @@ The `statements_with_sorting` and `x$statements_with_sorting` views have these c
   The statement digest.
 
 
-#### 30.4.3.40 The statements\_with\_temp\_tables and x$statements\_with\_temp\_tables Views
+#### 30.4.3.40 The statements_with_temp_tables and x$statements_with_temp_tables Views
 
 These views list normalized statements that have used temporary tables. By default, rows are sorted by descending number of on-disk temporary tables used and descending number of in-memory temporary tables used.
 
@@ -2191,7 +2191,7 @@ The `statements_with_temp_tables` and `x$statements_with_temp_tables` views have
   The statement digest.
 
 
-#### 30.4.3.41 The user\_summary and x$user\_summary Views
+#### 30.4.3.41 The user_summary and x$user_summary Views
 
 These views summarize statement activity, file I/O, and connections, grouped by user. By default, rows are sorted by descending total latency.
 
@@ -2246,7 +2246,7 @@ The `user_summary` and `x$user_summary` views have these columns:
   The total amount of allocated memory for the user.
 
 
-#### 30.4.3.42 The user\_summary\_by\_file\_io and x$user\_summary\_by\_file\_io Views
+#### 30.4.3.42 The user_summary_by_file_io and x$user_summary_by_file_io Views
 
 These views summarize file I/O, grouped by user. By default, rows are sorted by descending total file I/O latency.
 
@@ -2265,7 +2265,7 @@ The `user_summary_by_file_io` and `x$user_summary_by_file_io` views have these c
   The total wait time of timed file I/O events for the user.
 
 
-#### 30.4.3.43 The user\_summary\_by\_file\_io\_type and x$user\_summary\_by\_file\_io\_type Views
+#### 30.4.3.43 The user_summary_by_file_io_type and x$user_summary_by_file_io_type Views
 
 These views summarize file I/O, grouped by user and event type. By default, rows are sorted by user and descending total latency.
 
@@ -2292,7 +2292,7 @@ The `user_summary_by_file_io_type` and `x$user_summary_by_file_io_type` views ha
   The maximum single wait time of timed occurrences of the file I/O event for the user.
 
 
-#### 30.4.3.44 The user\_summary\_by\_stages and x$user\_summary\_by\_stages Views
+#### 30.4.3.44 The user_summary_by_stages and x$user_summary_by_stages Views
 
 These views summarize stages, grouped by user. By default, rows are sorted by user and descending total stage latency.
 
@@ -2319,7 +2319,7 @@ The `user_summary_by_stages` and `x$user_summary_by_stages` views have these col
   The average wait time per timed occurrence of the stage event for the user.
 
 
-#### 30.4.3.45 The user\_summary\_by\_statement\_latency and x$user\_summary\_by\_statement\_latency Views
+#### 30.4.3.45 The user_summary_by_statement_latency and x$user_summary_by_statement_latency Views
 
 These views summarize overall statement statistics, grouped by user. By default, rows are sorted by descending total latency.
 
@@ -2366,7 +2366,7 @@ The `user_summary_by_statement_latency` and `x$user_summary_by_statement_latency
   The total number of full table scans by statements for the user.
 
 
-#### 30.4.3.46 The user\_summary\_by\_statement\_type and x$user\_summary\_by\_statement\_type Views
+#### 30.4.3.46 The user_summary_by_statement_type and x$user_summary_by_statement_type Views
 
 These views summarize information about statements executed, grouped by user and statement type. By default, rows are sorted by user and descending total latency.
 
@@ -2436,7 +2436,7 @@ The `version` view has these columns:
   The MySQL server version.
 
 
-#### 30.4.3.48 The wait\_classes\_global\_by\_avg\_latency and x$wait\_classes\_global\_by\_avg\_latency Views
+#### 30.4.3.48 The wait_classes_global_by_avg_latency and x$wait_classes_global_by_avg_latency Views
 
 These views summarize wait class average latencies, grouped by event class. By default, rows are sorted by descending average latency. Idle events are ignored.
 
@@ -2469,7 +2469,7 @@ The `wait_classes_global_by_avg_latency` and `x$wait_classes_global_by_avg_laten
   The maximum single wait time of timed occurrences of events in the class.
 
 
-#### 30.4.3.49 The wait\_classes\_global\_by\_latency and x$wait\_classes\_global\_by\_latency Views
+#### 30.4.3.49 The wait_classes_global_by_latency and x$wait_classes_global_by_latency Views
 
 These views summarize wait class total latencies, grouped by event class. By default, rows are sorted by descending total latency. Idle events are ignored.
 
@@ -2502,7 +2502,7 @@ The `wait_classes_global_by_latency` and `x$wait_classes_global_by_latency` view
   The maximum single wait time of timed occurrences of events in the class.
 
 
-#### 30.4.3.50 The waits\_by\_host\_by\_latency and x$waits\_by\_host\_by\_latency Views
+#### 30.4.3.50 The waits_by_host_by_latency and x$waits_by_host_by_latency Views
 
 These views summarize wait events, grouped by host and event. By default, rows are sorted by host and descending total latency. Idle events are ignored.
 
@@ -2533,7 +2533,7 @@ The `waits_by_host_by_latency` and `x$waits_by_host_by_latency` views have these
   The maximum single wait time of timed occurrences of the event for the host.
 
 
-#### 30.4.3.51 The waits\_by\_user\_by\_latency and x$waits\_by\_user\_by\_latency Views
+#### 30.4.3.51 The waits_by_user_by_latency and x$waits_by_user_by_latency Views
 
 These views summarize wait events, grouped by user and event. By default, rows are sorted by user and descending total latency. Idle events are ignored.
 
@@ -2564,7 +2564,7 @@ The `waits_by_user_by_latency` and `x$waits_by_user_by_latency` views have these
   The maximum single wait time of timed occurrences of the event for the user.
 
 
-#### 30.4.3.52 The waits\_global\_by\_latency and x$waits\_global\_by\_latency Views
+#### 30.4.3.52 The waits_global_by_latency and x$waits_global_by_latency Views
 
 These views summarize wait events, grouped by event. By default, rows are sorted by descending total latency. Idle events are ignored.
 
@@ -2596,7 +2596,7 @@ The `waits_global_by_latency` and `x$waits_global_by_latency` views have these c
 The following sections describe `sys` schema stored procedures.
 
 
-#### 30.4.4.1 The create\_synonym\_db() Procedure
+#### 30.4.4.1 The create_synonym_db() Procedure
 
 Given a schema name, this procedure creates a synonym schema containing views that refer to all the tables and views in the original schema. This can be used, for example, to create a shorter name by which to refer to a schema with a long name (such as `info` rather than `INFORMATION_SCHEMA`).
 
@@ -2697,7 +2697,7 @@ Some of the sys schema views are calculated as initial (optional), overall, and 
 
 ##### Configuration Options
 
-`diagnostics()` Procedure") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 30.4.2.1, “The sys\_config Table”):
+`diagnostics()` Procedure") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 30.4.2.1, “The sys_config Table”):
 
 * `debug`, `@sys.debug`
 
@@ -2732,7 +2732,7 @@ mysql> notee;
 ```
 
 
-#### 30.4.4.3 The execute\_prepared\_stmt() Procedure
+#### 30.4.4.3 The execute_prepared_stmt() Procedure
 
 Given an SQL statement as a string, executes it as a prepared statement. The prepared statement is deallocated after execution, so it is not subject to reuse. Thus, this procedure is useful primarily for executing dynamic statements on a one-time basis.
 
@@ -2744,7 +2744,7 @@ This procedure uses `sys_execute_prepared_stmt` as the prepared statement name. 
 
 ##### Configuration Options
 
-`execute_prepared_stmt()` Procedure") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 30.4.2.1, “The sys\_config Table”):
+`execute_prepared_stmt()` Procedure") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 30.4.2.1, “The sys_config Table”):
 
 * `debug`, `@sys.debug`
 
@@ -2762,7 +2762,7 @@ mysql> CALL sys.execute_prepared_stmt('SELECT COUNT(*) FROM mysql.user');
 ```
 
 
-#### 30.4.4.4 The ps\_setup\_disable\_background\_threads() Procedure
+#### 30.4.4.4 The ps_setup_disable_background_threads() Procedure
 
 Disables Performance Schema instrumentation for all background threads. Produces a result set indicating how many background threads were disabled. Already disabled threads do not count.
 
@@ -2782,7 +2782,7 @@ mysql> CALL sys.ps_setup_disable_background_threads();
 ```
 
 
-#### 30.4.4.5 The ps\_setup\_disable\_consumer() Procedure
+#### 30.4.4.5 The ps_setup_disable_consumer() Procedure
 
 Disables Performance Schema consumers with names that contain the argument. Produces a result set indicating how many consumers were disabled. Already disabled consumers do not count.
 
@@ -2806,7 +2806,7 @@ mysql> CALL sys.ps_setup_disable_consumer('statement');
 ```
 
 
-#### 30.4.4.6 The ps\_setup\_disable\_instrument() Procedure
+#### 30.4.4.6 The ps_setup_disable_instrument() Procedure
 
 Disables Performance Schema instruments with names that contain the argument. Produces a result set indicating how many instruments were disabled. Already disabled instruments do not count.
 
@@ -2841,7 +2841,7 @@ mysql> CALL sys.ps_setup_disable_instrument('mutex');
 ```
 
 
-#### 30.4.4.7 The ps\_setup\_disable\_thread() Procedure
+#### 30.4.4.7 The ps_setup_disable_thread() Procedure
 
 Given a connection ID, disables Performance Schema instrumentation for the thread. Produces a result set indicating how many threads were disabled. Already disabled threads do not count.
 
@@ -2874,7 +2874,7 @@ mysql> CALL sys.ps_setup_disable_thread(CONNECTION_ID());
 ```
 
 
-#### 30.4.4.8 The ps\_setup\_enable\_background\_threads() Procedure
+#### 30.4.4.8 The ps_setup_enable_background_threads() Procedure
 
 Enables Performance Schema instrumentation for all background threads. Produces a result set indicating how many background threads were enabled. Already enabled threads do not count.
 
@@ -2894,7 +2894,7 @@ mysql> CALL sys.ps_setup_enable_background_threads();
 ```
 
 
-#### 30.4.4.9 The ps\_setup\_enable\_consumer() Procedure
+#### 30.4.4.9 The ps_setup_enable_consumer() Procedure
 
 Enables Performance Schema consumers with names that contain the argument. Produces a result set indicating how many consumers were enabled. Already enabled consumers do not count.
 
@@ -2918,7 +2918,7 @@ mysql> CALL sys.ps_setup_enable_consumer('statement');
 ```
 
 
-#### 30.4.4.10 The ps\_setup\_enable\_instrument() Procedure
+#### 30.4.4.10 The ps_setup_enable_instrument() Procedure
 
 Enables Performance Schema instruments with names that contain the argument. Produces a result set indicating how many instruments were enabled. Already enabled instruments do not count.
 
@@ -2953,7 +2953,7 @@ mysql> CALL sys.ps_setup_enable_instrument('mutex');
 ```
 
 
-#### 30.4.4.11 The ps\_setup\_enable\_thread() Procedure
+#### 30.4.4.11 The ps_setup_enable_thread() Procedure
 
 Given a connection ID, enables Performance Schema instrumentation for the thread. Produces a result set indicating how many threads were enabled. Already enabled threads do not count.
 
@@ -2986,7 +2986,7 @@ mysql> CALL sys.ps_setup_enable_thread(CONNECTION_ID());
 ```
 
 
-#### 30.4.4.12 The ps\_setup\_reload\_saved() Procedure
+#### 30.4.4.12 The ps_setup_reload_saved() Procedure
 
 Reloads a Performance Schema configuration saved earlier within the same session using `ps_setup_save()` Procedure"). For more information, see the description of `ps_setup_save()` Procedure").
 
@@ -2997,7 +2997,7 @@ This procedure disables binary logging during its execution by manipulating the 
 None.
 
 
-#### 30.4.4.13 The ps\_setup\_reset\_to\_default() Procedure
+#### 30.4.4.13 The ps_setup_reset_to_default() Procedure
 
 Resets the Performance Schema configuration to its default settings.
 
@@ -3024,7 +3024,7 @@ VALUES ('%', '%', '%')
 ```
 
 
-#### 30.4.4.14 The ps\_setup\_save() Procedure
+#### 30.4.4.14 The ps_setup_save() Procedure
 
 Saves the current Performance Schema configuration. This enables you to alter the configuration temporarily for debugging or other purposes, then restore it to the previous state by invoking the `ps_setup_reload_saved()` Procedure") procedure.
 
@@ -3049,7 +3049,7 @@ mysql> CALL sys.ps_setup_reload_saved();
 ```
 
 
-#### 30.4.4.15 The ps\_setup\_show\_disabled() Procedure
+#### 30.4.4.15 The ps_setup_show_disabled() Procedure
 
 Displays all currently disabled Performance Schema configuration.
 
@@ -3099,7 +3099,7 @@ mysql> CALL sys.ps_setup_show_disabled(TRUE, TRUE);
 ```
 
 
-#### 30.4.4.16 The ps\_setup\_show\_disabled\_consumers() Procedure
+#### 30.4.4.16 The ps_setup_show_disabled_consumers() Procedure
 
 Displays all currently disabled Performance Schema consumers.
 
@@ -3128,7 +3128,7 @@ mysql> CALL sys.ps_setup_show_disabled_consumers();
 ```
 
 
-#### 30.4.4.17 The ps\_setup\_show\_disabled\_instruments() Procedure
+#### 30.4.4.17 The ps_setup_show_disabled_instruments() Procedure
 
 Displays all currently disabled Performance Schema instruments. This might be a long list.
 
@@ -3153,7 +3153,7 @@ disabled_instruments: wait/synch/mutex/sql/MYSQL_BIN_LOG::LOCK_commit
 ```
 
 
-#### 30.4.4.18 The ps\_setup\_show\_enabled() Procedure
+#### 30.4.4.18 The ps_setup_show_enabled() Procedure
 
 Displays all currently enabled Performance Schema configuration.
 
@@ -3206,7 +3206,7 @@ mysql> CALL sys.ps_setup_show_enabled(FALSE, FALSE);
 ```
 
 
-#### 30.4.4.19 The ps\_setup\_show\_enabled\_consumers() Procedure
+#### 30.4.4.19 The ps_setup_show_enabled_consumers() Procedure
 
 Displays all currently enabled Performance Schema consumers.
 
@@ -3232,7 +3232,7 @@ mysql> CALL sys.ps_setup_show_enabled_consumers();
 ```
 
 
-#### 30.4.4.20 The ps\_setup\_show\_enabled\_instruments() Procedure
+#### 30.4.4.20 The ps_setup_show_enabled_instruments() Procedure
 
 Displays all currently enabled Performance Schema instruments. This might be a long list.
 
@@ -3257,7 +3257,7 @@ enabled_instruments: wait/io/file/sql/binlog_cache
 ```
 
 
-#### 30.4.4.21 The ps\_statement\_avg\_latency\_histogram() Procedure
+#### 30.4.4.21 The ps_statement_avg_latency_histogram() Procedure
 
 Displays a textual histogram graph of the average latency values across all normalized statements tracked within the Performance Schema `events_statements_summary_by_digest` table.
 
@@ -3301,7 +3301,7 @@ Performance Schema Statement Digest Average Latency Histogram:
 ```
 
 
-#### 30.4.4.22 The ps\_trace\_statement\_digest() Procedure
+#### 30.4.4.22 The ps_trace_statement_digest() Procedure
 
 Traces all Performance Schema instrumentation for a specific statement digest.
 
@@ -3397,7 +3397,7 @@ Query OK, 0 rows affected (9.28 sec)
 ```
 
 
-#### 30.4.4.23 The ps\_trace\_thread() Procedure
+#### 30.4.4.23 The ps_trace_thread() Procedure
 
 Dumps all Performance Schema data for an instrumented thread to a `.dot` formatted graph file (for the DOT graph description language). Each result set returned from the procedure should be used for a complete graph.
 
@@ -3467,7 +3467,7 @@ mysql> CALL sys.ps_trace_thread(25, CONCAT('/tmp/stack-', REPLACE(NOW(), ' ', '-
 ```
 
 
-#### 30.4.4.24 The ps\_truncate\_all\_tables() Procedure
+#### 30.4.4.24 The ps_truncate_all_tables() Procedure
 
 Truncates all Performance Schema summary tables, resetting all aggregated instrumentation as a snapshot. Produces a result set indicating how many tables were truncated.
 
@@ -3487,9 +3487,9 @@ mysql> CALL sys.ps_truncate_all_tables(FALSE);
 ```
 
 
-#### 30.4.4.25 The revoke\_schema\_privileges\_from\_all\_accounts\_except() Procedure
+#### 30.4.4.25 The revoke_schema_privileges_from_all_accounts_except() Procedure
 
-Revoke specified privileges for all users except those specified with the exclude\_users argument.
+Revoke specified privileges for all users except those specified with the exclude_users argument.
 
 ##### Parameters
 
@@ -3509,7 +3509,7 @@ Revoke specified privileges for all users except those specified with the exclud
 ```
 
 
-#### 30.4.4.26 The statement\_performance\_analyzer() Procedure
+#### 30.4.4.26 The statement_performance_analyzer() Procedure
 
 Creates a report of the statements running on the server. The views are calculated based on the overall and/or delta activity.
 
@@ -3555,7 +3555,7 @@ This procedure disables binary logging during its execution by manipulating the 
 
 ##### Configuration Options
 
-`statement_performance_analyzer()` Procedure") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 30.4.2.1, “The sys\_config Table”):
+`statement_performance_analyzer()` Procedure") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 30.4.2.1, “The sys_config Table”):
 
 * `debug`, `@sys.debug`
 
@@ -3689,7 +3689,7 @@ Every 60.0s: mysql sys --table -e "        ...  Mon Dec 22 10:58:51 2014
 ```
 
 
-#### 30.4.4.27 The table\_exists() Procedure
+#### 30.4.4.27 The table_exists() Procedure
 
 Tests whether a given table exists as a regular table, a `TEMPORARY` table, or a view. The procedure returns the table type in an `OUT` parameter. If both a temporary and a permanent table exist with the given name, `TEMPORARY` is returned.
 
@@ -3777,7 +3777,7 @@ Query OK, 0 rows affected (0.00 sec)
 The following sections describe `sys` schema stored functions.
 
 
-#### 30.4.5.1 The extract\_schema\_from\_file\_name() Function
+#### 30.4.5.1 The extract_schema_from_file_name() Function
 
 Given a file path name, returns the path component that represents the schema name. This function assumes that the file name lies within the schema directory. For this reason, it does not work with partitions or tables defined using their own `DATA_DIRECTORY` table option.
 
@@ -3803,7 +3803,7 @@ mysql> SELECT sys.extract_schema_from_file_name('/usr/local/mysql/data/world/Cit
 ```
 
 
-#### 30.4.5.2 The extract\_table\_from\_file\_name() Function
+#### 30.4.5.2 The extract_table_from_file_name() Function
 
 Given a file path name, returns the path component that represents the table name.
 
@@ -3829,7 +3829,7 @@ mysql> SELECT sys.extract_table_from_file_name('/usr/local/mysql/data/world/City
 ```
 
 
-#### 30.4.5.3 The format\_bytes() Function
+#### 30.4.5.3 The format_bytes() Function
 
 Note
 
@@ -3857,7 +3857,7 @@ mysql> SELECT sys.format_bytes(512), sys.format_bytes(18446644073709551615);
 ```
 
 
-#### 30.4.5.4 The format\_path() Function
+#### 30.4.5.4 The format_path() Function
 
 Given a path name, returns the modified path name after replacing subpaths that match the values of the following system variables, in order:
 
@@ -3893,7 +3893,7 @@ mysql> SELECT sys.format_path('/usr/local/mysql/data/world/City.ibd');
 ```
 
 
-#### 30.4.5.5 The format\_statement() Function
+#### 30.4.5.5 The format_statement() Function
 
 Given a string (normally representing an SQL statement), reduces it to the length given by the `statement_truncate_len` configuration option, and returns the result. No truncation occurs if the string is shorter than `statement_truncate_len`. Otherwise, the middle part of the string is replaced by an ellipsis (`...`).
 
@@ -3905,7 +3905,7 @@ This function is useful for formatting possibly lengthy statements retrieved fro
 
 ##### Configuration Options
 
-`format_statement()` Function") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 30.4.2.1, “The sys\_config Table”):
+`format_statement()` Function") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 30.4.2.1, “The sys_config Table”):
 
 * `statement_truncate_len`, `@sys.statement_truncate_len`
 
@@ -3937,7 +3937,7 @@ mysql> SELECT sys.format_statement(@stmt);
 ```
 
 
-#### 30.4.5.6 The format\_time() Function
+#### 30.4.5.6 The format_time() Function
 
 Note
 
@@ -3965,7 +3965,7 @@ mysql> SELECT sys.format_time(3501), sys.format_time(188732396662000);
 ```
 
 
-#### 30.4.5.7 The list\_add() Function
+#### 30.4.5.7 The list_add() Function
 
 Adds a value to a comma-separated list of values and returns the result.
 
@@ -4007,7 +4007,7 @@ mysql> SELECT @@sql_mode;
 ```
 
 
-#### 30.4.5.8 The list\_drop() Function
+#### 30.4.5.8 The list_drop() Function
 
 Removes a value from a comma-separated list of values and returns the result. For more information, see the description of `list_add()` Function")
 
@@ -4022,7 +4022,7 @@ Removes a value from a comma-separated list of values and returns the result. Fo
 A `TEXT` value.
 
 
-#### 30.4.5.9 The ps\_is\_account\_enabled() Function
+#### 30.4.5.9 The ps_is_account_enabled() Function
 
 Returns `YES` or `NO` to indicate whether Performance Schema instrumentation for a given account is enabled.
 
@@ -4048,7 +4048,7 @@ mysql> SELECT sys.ps_is_account_enabled('localhost', 'root');
 ```
 
 
-#### 30.4.5.10 The ps\_is\_consumer\_enabled() Function
+#### 30.4.5.10 The ps_is_consumer_enabled() Function
 
 Returns `YES` or `NO` to indicate whether a given Performance Schema consumer is enabled, or `NULL` if the argument is `NULL`. If the argument is not a valid consumer name, an error occurs.
 
@@ -4074,7 +4074,7 @@ mysql> SELECT sys.ps_is_consumer_enabled('thread_instrumentation');
 ```
 
 
-#### 30.4.5.11 The ps\_is\_instrument\_default\_enabled() Function
+#### 30.4.5.11 The ps_is_instrument_default_enabled() Function
 
 Returns `YES` or `NO` to indicate whether a given Performance Schema instrument is enabled by default.
 
@@ -4104,7 +4104,7 @@ mysql> SELECT sys.ps_is_instrument_default_enabled('statement/sql/alter_user');
 ```
 
 
-#### 30.4.5.12 The ps\_is\_instrument\_default\_timed() Function
+#### 30.4.5.12 The ps_is_instrument_default_timed() Function
 
 Returns `YES` or `NO` to indicate whether a given Performance Schema instrument is timed by default.
 
@@ -4134,7 +4134,7 @@ mysql> SELECT sys.ps_is_instrument_default_timed('statement/sql/alter_user');
 ```
 
 
-#### 30.4.5.13 The ps\_is\_thread\_instrumented() Function
+#### 30.4.5.13 The ps_is_thread_instrumented() Function
 
 Returns `YES` or `NO` to indicate whether Performance Schema instrumentation for a given connection ID is enabled, `UNKNOWN` if the ID is unknown, or `NULL` if the ID is `NULL`.
 
@@ -4164,7 +4164,7 @@ mysql> SELECT sys.ps_is_thread_instrumented(CONNECTION_ID());
 ```
 
 
-#### 30.4.5.14 The ps\_thread\_account() Function
+#### 30.4.5.14 The ps_thread_account() Function
 
 Given a Performance Schema thread ID, returns the `user_name@host_name` account associated with the thread.
 
@@ -4188,7 +4188,7 @@ mysql> SELECT sys.ps_thread_account(sys.ps_thread_id(CONNECTION_ID()));
 ```
 
 
-#### 30.4.5.15 The ps\_thread\_id() Function
+#### 30.4.5.15 The ps_thread_id() Function
 
 Note
 
@@ -4216,7 +4216,7 @@ mysql> SELECT sys.ps_thread_id(260);
 ```
 
 
-#### 30.4.5.16 The ps\_thread\_stack() Function
+#### 30.4.5.16 The ps_thread_stack() Function
 
 Returns a JSON formatted stack of all statements, stages, and events within the Performance Schema for a given thread ID.
 
@@ -4244,7 +4244,7 @@ thread_stack: {"rankdir": "LR","nodesep": "0.10",
 ```
 
 
-#### 30.4.5.17 The ps\_thread\_trx\_info() Function
+#### 30.4.5.17 The ps_thread_trx_info() Function
 
 Returns a JSON object containing information about a given thread. The information includes the current transaction, and the statements it has already executed, derived from the Performance Schema `events_transactions_current` and `events_statements_history` tables. (The consumers for those tables must be enabled to obtain full data in the JSON object.)
 
@@ -4262,7 +4262,7 @@ Similar error objects are returned for other warnings and exceptions raised duri
 
 ##### Configuration Options
 
-`ps_thread_trx_info()` Function") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 30.4.2.1, “The sys\_config Table”):
+`ps_thread_trx_info()` Function") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 30.4.2.1, “The sys_config Table”):
 
 * `ps_thread_trx_info.max_length`, `@sys.ps_thread_trx_info.max_length`
 
@@ -4350,7 +4350,7 @@ sys.ps_thread_trx_info(48): [
 ```
 
 
-#### 30.4.5.18 The quote\_identifier() Function
+#### 30.4.5.18 The quote_identifier() Function
 
 Given a string argument, this function produces a quoted identifier suitable for inclusion in SQL statements. This is useful when a value to be used as an identifier is a reserved word or contains backtick (`` ` ``) characters.
 
@@ -4386,13 +4386,13 @@ mysql> SELECT sys.quote_identifier('integer');
 ```
 
 
-#### 30.4.5.19 The sys\_get\_config() Function
+#### 30.4.5.19 The sys_get_config() Function
 
 Given a configuration option name, returns the option value from the `sys_config` table, or the provided default value (which may be `NULL`) if the option does not exist in the table.
 
 If `sys_get_config()` Function") returns the default value and that value is `NULL`, it is expected that the caller is able to handle `NULL` for the given configuration option.
 
-By convention, routines that call `sys_get_config()` Function") first check whether the corresponding user-defined variable exists and is non-`NULL`. If so, the routine uses the variable value without reading the `sys_config` table. If the variable does not exist or is `NULL`, the routine reads the option value from the table and sets the user-defined variable to that value. For more information about the relationship between configuration options and their corresponding user-defined variables, see Section 30.4.2.1, “The sys\_config Table”.
+By convention, routines that call `sys_get_config()` Function") first check whether the corresponding user-defined variable exists and is non-`NULL`. If so, the routine uses the variable value without reading the `sys_config` table. If the variable does not exist or is `NULL`, the routine reads the option value from the table and sets the user-defined variable to that value. For more information about the relationship between configuration options and their corresponding user-defined variables, see Section 30.4.2.1, “The sys_config Table”.
 
 If you want to check whether the configuration option has already been set and, if not, use the return value of `sys_get_config()`, you can use `IFNULL(...)` (see example later). However, this should not be done inside a loop (for example, for each row in a result set) because for repeated calls where the assignment is needed only in the first iteration, using `IFNULL(...)` is expected to be significantly slower than using an `IF (...) THEN ... END IF;` block (see example later).
 
@@ -4436,7 +4436,7 @@ END IF;
 ```
 
 
-#### 30.4.5.20 The version\_major() Function
+#### 30.4.5.20 The version_major() Function
 
 This function returns the major version of the MySQL server.
 
@@ -4460,7 +4460,7 @@ mysql> SELECT VERSION(), sys.version_major();
 ```
 
 
-#### 30.4.5.21 The version\_minor() Function
+#### 30.4.5.21 The version_minor() Function
 
 This function returns the minor version of the MySQL server.
 
@@ -4484,7 +4484,7 @@ mysql> SELECT VERSION(), sys.version_minor();
 ```
 
 
-#### 30.4.5.22 The version\_patch() Function
+#### 30.4.5.22 The version_patch() Function
 
 This function returns the patch release version of the MySQL server.
 

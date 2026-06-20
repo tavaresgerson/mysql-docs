@@ -1058,7 +1058,7 @@ The syntax rules for `CREATE TABLE ... PARTITION BY KEY` are similar to those fo
 
   If you define an explicit partitioning scheme for an `NDB` table, the table must have an explicit primary key, and any columns used in the partitioning expression must be part of this key. However, if the table uses an “empty” partitioning expression—that is, `PARTITION BY KEY()` with no column references—then no explicit primary key is required.
 
-  You can observe this partitioning using the **ndb\_desc** utility (with the `-p` option).
+  You can observe this partitioning using the **ndb_desc** utility (with the `-p` option).
 
   Important
 
@@ -1223,7 +1223,7 @@ mysql> SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGT
 7 rows in set (0.00 sec)
 ```
 
-(For more information about this table, see Section 28.3.26, “The INFORMATION\_SCHEMA PARTITIONS Table”.) Now let us populate each of these tables with a single row containing a `NULL` in the column used as the partitioning key, and verify that the rows were inserted using a pair of `SELECT` statements:
+(For more information about this table, see Section 28.3.26, “The INFORMATION_SCHEMA PARTITIONS Table”.) Now let us populate each of these tables with a single row containing a `NULL` in the column used as the partitioning key, and verify that the rows were inserted using a pair of `SELECT` statements:
 
 ```
 mysql> INSERT INTO t1 VALUES (NULL, 'mothra');

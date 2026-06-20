@@ -168,7 +168,7 @@ Although automatic conversion is not in the SQL standard, the standard does say 
 
 The following table illustrates some applications of the preceding rules.
 
-<table summary="Comparisons and the collation used for each comparison."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Comparison</th> <th>Collation Used</th> </tr></thead><tbody><tr> <td><code class="literal">column1 = 'A'</code></td> <td>Use collation of <code class="literal">column1</code></td> </tr><tr> <td><code class="literal">column1 = 'A' COLLATE x</code></td> <td>Use collation of <code class="literal">'A' COLLATE x</code></td> </tr><tr> <td><code class="literal">column1 COLLATE x = 'A' COLLATE y</code></td> <td>Error</td> </tr></tbody></table>
+<table summary="Comparisons and the collation used for each comparison."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Comparison</th> <th>Collation Used</th> </tr></thead><tbody><tr> <td><code>column1 = 'A'</code></td> <td>Use collation of <code>column1</code></td> </tr><tr> <td><code>column1 = 'A' COLLATE x</code></td> <td>Use collation of <code>'A' COLLATE x</code></td> </tr><tr> <td><code>column1 COLLATE x = 'A' COLLATE y</code></td> <td>Error</td> </tr></tbody></table>
 
 To determine the coercibility of a string expression, use the `COERCIBILITY()` function (see Section 14.15, “Information Functions”):
 
@@ -188,7 +188,7 @@ mysql> SELECT COERCIBILITY(NULL);
 For implicit conversion of a numeric or temporal value to a string, such as occurs for the argument `1` in the expression `CONCAT(1, 'abc')`, the result is a character (nonbinary) string that has a character set and collation determined by the `character_set_connection` and `collation_connection` system variables. See Section 14.3, “Type Conversion in Expression Evaluation”.
 
 
-### 12.8.5 The binary Collation Compared to \_bin Collations
+### 12.8.5 The binary Collation Compared to _bin Collations
 
 This section describes how the `binary` collation for binary strings compares to `_bin` collations for nonbinary strings.
 
@@ -363,7 +363,7 @@ SELECT X FROM T ORDER BY X COLLATE collation_name;
 
 The following table shows the resulting order of the values if we use `ORDER BY` with different collations.
 
-<table summary="An example of the effect of collation, as described in the preceding text. The table shows the resulting order of values for three collations (latin1_swedish_ci, latin1_german1_ci, latin1_german2_ci) when using ORDER BY."><col style="width: 30%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th scope="col"><code class="literal">latin1_swedish_ci</code></th> <th scope="col"><code class="literal">latin1_german1_ci</code></th> <th scope="col"><code class="literal">latin1_german2_ci</code></th> </tr></thead><tbody><tr> <th scope="row">Muffler</th> <td>Muffler</td> <td>Müller</td> </tr><tr> <th scope="row">MX Systems</th> <td>Müller</td> <td>Muffler</td> </tr><tr> <th scope="row">Müller</th> <td>MX Systems</td> <td>MX Systems</td> </tr><tr> <th scope="row">MySQL</th> <td>MySQL</td> <td>MySQL</td> </tr></tbody></table>
+<table summary="An example of the effect of collation, as described in the preceding text. The table shows the resulting order of values for three collations (latin1_swedish_ci, latin1_german1_ci, latin1_german2_ci) when using ORDER BY."><col style="width: 30%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th scope="col"><code>latin1_swedish_ci</code></th> <th scope="col"><code>latin1_german1_ci</code></th> <th scope="col"><code>latin1_german2_ci</code></th> </tr></thead><tbody><tr> <th scope="row">Muffler</th> <td>Muffler</td> <td>Müller</td> </tr><tr> <th scope="row">MX Systems</th> <td>Müller</td> <td>Muffler</td> </tr><tr> <th scope="row">Müller</th> <td>MX Systems</td> <td>MX Systems</td> </tr><tr> <th scope="row">MySQL</th> <td>MySQL</td> <td>MySQL</td> </tr></tbody></table>
 
 The character that causes the different sort orders in this example is `ü` (German “U-umlaut”).
 
@@ -426,7 +426,7 @@ mysql> SELECT * FROM germanutf8 WHERE c = 'Bär';
 This is not a bug but rather a consequence of the sorting properties of `latin1_german1_ci` and `utf8mb4_unicode_ci` (the sorting shown is done according to the German DIN 5007 standard).
 
 
-### 12.8.7 Using Collation in INFORMATION\_SCHEMA Searches
+### 12.8.7 Using Collation in INFORMATION_SCHEMA Searches
 
 String columns in `INFORMATION_SCHEMA` tables have a collation of `utf8mb3_general_ci`, which is case-insensitive. However, for values that correspond to objects that are represented in the file system, such as databases and tables, searches in `INFORMATION_SCHEMA` string columns can be case-sensitive or case-insensitive, depending on the characteristics of the underlying file system and the `lower_case_table_names` system variable setting. For example, searches may be case-sensitive if the file system is case-sensitive. This section describes this behavior and how to modify it if necessary.
 

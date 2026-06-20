@@ -53,7 +53,7 @@ You need to specify the address of the MySQL server instance which you want to c
 
 * `ds1.example.com` is the hostname of the server instance running MySQL. Replace this with the hostname of the MySQL server instance you are using as a Document Store.
 
-* The default schema for this session is `world_x`. For instructions on setting up the `world_x` schema, see Section 22.4.2, “Download and Import world\_x Database”.
+* The default schema for this session is `world_x`. For instructions on setting up the `world_x` schema, see Section 22.4.2, “Download and Import world_x Database”.
 
 For more information, see Section 6.2.5, “Connecting to the Server Using URI-Like Strings or Key-Value Pairs”.
 
@@ -110,11 +110,11 @@ mysql-py> \quit
 * See Getting Started with MySQL Shell to learn about session and connection alternatives.
 
 
-### 22.4.2 Download and Import world\_x Database
+### 22.4.2 Download and Import world_x Database
 
 As part of this quick-start guide, an example schema is provided which is referred to as the `world_x` schema. Many of the examples demonstrate Document Store functionality using this schema. Start your MySQL server so that you can load the `world_x` schema, then follow these steps:
 
-1. Download world\_x-db.zip.
+1. Download world_x-db.zip.
 
 2. Extract the installation archive to a temporary location such as `/tmp/`. Unpacking the archive results in a single file named `world_x.sql`.
 
@@ -137,7 +137,7 @@ As part of this quick-start guide, an example schema is provided which is referr
 
    Replace `/tmp/` with the path to the `world_x.sql` file on your system. Enter your password if prompted. A non-root account can be used as long as the account has privileges to create new schemas.
 
-#### The world\_x Schema
+#### The world_x Schema
 
 The `world_x` example schema contains the following JSON collection and relational tables:
 
@@ -162,7 +162,7 @@ The `world_x` example schema contains the following JSON collection and relation
 
 When you are using MySQL as a Document Store, collections are containers within a schema that you can create, list, and drop. Collections contain JSON documents that you can add, find, update, and remove.
 
-The examples in this section use the `countryinfo` collection in the `world_x` schema. For instructions on setting up the `world_x` schema, see Section 22.4.2, “Download and Import world\_x Database”.
+The examples in this section use the `countryinfo` collection in the `world_x` schema. For instructions on setting up the `world_x` schema, see Section 22.4.2, “Download and Import world_x Database”.
 
 #### Documents
 
@@ -201,11 +201,11 @@ In this quick-start guide:
 
 * Basic objects include:
 
-  <table summary="Objects to use interactively in MySQL Shell"><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Object form</th> <th>Description</th> </tr></thead><tbody><tr> <td><code class="literal">db</code></td> <td><code class="literal">db</code> is a global variable assigned to the current active schema. When you want to run operations against the schema, for example to retrieve a collection, you use methods available for the <code class="literal">db</code> variable.</td> </tr><tr> <td><code class="literal">db.get_collections()</code></td> <td><a class="link" href="mysql-shell-tutorial-python-collections-operations.html#mysql-shell-tutorial-python-collections-get" title="List Collections">db.get_collections()</a> returns a list of collections in the schema. Use the list to get references to collection objects, iterate over them, and so on.</td> </tr></tbody></table>
+  <table summary="Objects to use interactively in MySQL Shell"><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Object form</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>db</code></td> <td><code>db</code> is a global variable assigned to the current active schema. When you want to run operations against the schema, for example to retrieve a collection, you use methods available for the <code>db</code> variable.</td> </tr><tr> <td><code>db.get_collections()</code></td> <td>db.get_collections() returns a list of collections in the schema. Use the list to get references to collection objects, iterate over them, and so on.</td> </tr></tbody></table>
 
 * Basic operations scoped by collections include:
 
-  <table summary="CRUD operations available in X DevAPI"><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Operation form</th> <th>Description</th> </tr></thead><tbody><tr> <td><code class="literal">db.<em class="replaceable"><code>name</code></em>.add()</code></td> <td>The <a class="link" href="mysql-shell-tutorial-python-documents-add.html" title="22.4.3.2 Working with Collections">add()</a> method inserts one document or a list of documents into the named collection.</td> </tr><tr> <td><code class="literal">db.<em class="replaceable"><code>name</code></em>.find()</code></td> <td>The <a class="link" href="mysql-shell-tutorial-python-documents-find.html" title="22.4.3.3 Find Documents">find()</a> method returns some or all documents in the named collection.</td> </tr><tr> <td><code class="literal">db.<em class="replaceable"><code>name</code></em>.modify()</code></td> <td>The <a class="link" href="mysql-shell-tutorial-python-documents-modify.html" title="22.4.3.4 Modify Documents">modify()</a> method updates documents in the named collection.</td> </tr><tr> <td><code class="literal">db.<em class="replaceable"><code>name</code></em>.remove()</code></td> <td>The <a class="link" href="mysql-shell-tutorial-python-documents-remove.html" title="22.4.3.5 Remove Documents">remove()</a> method deletes one document or a list of documents from the named collection.</td> </tr></tbody></table>
+  <table summary="CRUD operations available in X DevAPI"><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Operation form</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>db.<code>name</code>.add()</code></td> <td>The add() method inserts one document or a list of documents into the named collection.</td> </tr><tr> <td><code>db.<code>name</code>.find()</code></td> <td>The find() method returns some or all documents in the named collection.</td> </tr><tr> <td><code>db.<code>name</code>.modify()</code></td> <td>The modify() method updates documents in the named collection.</td> </tr><tr> <td><code>db.<code>name</code>.remove()</code></td> <td>The remove() method deletes one document or a list of documents from the named collection.</td> </tr></tbody></table>
 
 #### Related Information
 
@@ -768,7 +768,7 @@ Alternatively, use the `db.drop_collection('countryinfo')` operation to delete t
 
 * See CollectionRemoveFunction for the full syntax definition.
 
-* See Section 22.4.2, “Download and Import world\_x Database” for instructions to recreate the `world_x` schema.
+* See Section 22.4.2, “Download and Import world_x Database” for instructions to recreate the `world_x` schema.
 
 
 #### 22.4.3.6 Create and Drop Indexes
@@ -861,7 +861,7 @@ mysql-py> db.get_tables()
 
 Basic operations scoped by tables include:
 
-<table summary="CRUD operations to use interactively on tables within MySQL Shell"><col style="width: 32%"/><col style="width: 68%"/><thead><tr> <th>Operation form</th> <th>Description</th> </tr></thead><tbody><tr> <td><code class="literal">db.<em class="replaceable"><code>name</code></em>.insert()</code></td> <td>The <a class="link" href="mysql-shell-tutorial-python-table-insert.html" title="22.4.4.1 Insert Records into Tables">insert()</a> method inserts one or more records into the named table.</td> </tr><tr> <td><code class="literal">db.<em class="replaceable"><code>name</code></em>.select()</code></td> <td>The <a class="link" href="mysql-shell-tutorial-python-table-select.html" title="22.4.4.2 Select Tables">select()</a> method returns some or all records in the named table.</td> </tr><tr> <td><code class="literal">db.<em class="replaceable"><code>name</code></em>.update()</code></td> <td>The <a class="link" href="mysql-shell-tutorial-python-table-update.html" title="22.4.4.3 Update Tables">update()</a> method updates records in the named table.</td> </tr><tr> <td><code class="literal">db.<em class="replaceable"><code>name</code></em>.delete()</code></td> <td>The <a class="link" href="mysql-shell-tutorial-python-table-delete.html" title="22.4.4.4 Delete Tables">delete()</a> method deletes one or more records from the named table.</td> </tr></tbody></table>
+<table summary="CRUD operations to use interactively on tables within MySQL Shell"><col style="width: 32%"/><col style="width: 68%"/><thead><tr> <th>Operation form</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>db.<code>name</code>.insert()</code></td> <td>The insert() method inserts one or more records into the named table.</td> </tr><tr> <td><code>db.<code>name</code>.select()</code></td> <td>The select() method returns some or all records in the named table.</td> </tr><tr> <td><code>db.<code>name</code>.update()</code></td> <td>The update() method updates records in the named table.</td> </tr><tr> <td><code>db.<code>name</code>.delete()</code></td> <td>The delete() method deletes one or more records from the named table.</td> </tr></tbody></table>
 
 #### Related Information
 
@@ -869,7 +869,7 @@ Basic operations scoped by tables include:
 
 * CRUD EBNF Definitions provides a complete list of operations.
 
-* See Section 22.4.2, “Download and Import world\_x Database” for instructions on setting up the `world_x` schema sample.
+* See Section 22.4.2, “Download and Import world_x Database” for instructions on setting up the `world_x` schema sample.
 
 
 #### 22.4.4.1 Insert Records into Tables
@@ -1164,7 +1164,7 @@ mysql-py> db.drop_collection("citytest")
 
 * See TableDeleteFunction for the full syntax definition.
 
-* See Section 22.4.2, “Download and Import world\_x Database” for instructions to recreate the `world_x` database.
+* See Section 22.4.2, “Download and Import world_x Database” for instructions to recreate the `world_x` database.
 
 
 ### 22.4.5 Documents in Tables

@@ -213,7 +213,7 @@ The `READ ONLY` option controls whether to permit modification of the database a
 
 With NDB Cluster, making a database read only on one **mysqld** server is synchronized to other **mysqld** servers in the same cluster, so that the database becomes read only on all **mysqld** servers.
 
-The `READ ONLY` option, if enabled, is displayed in the `INFORMATION_SCHEMA` `SCHEMATA_EXTENSIONS` table. See Section 28.3.38, “The INFORMATION\_SCHEMA SCHEMATA\_EXTENSIONS Table”.
+The `READ ONLY` option, if enabled, is displayed in the `INFORMATION_SCHEMA` `SCHEMATA_EXTENSIONS` table. See Section 28.3.38, “The INFORMATION_SCHEMA SCHEMATA_EXTENSIONS Table”.
 
 The `READ ONLY` option cannot be enabled for these system schemas: `mysql`, `information_schema`, `performance_schema`.
 
@@ -550,7 +550,7 @@ instance_action: {
 
   This action reconfigures a TLS context from the current values of the system variables that define the context. It also updates the status variables that reflect the active context values. This action requires the `CONNECTION_ADMIN` privilege. For additional information about reconfiguring the TLS context, including which system and status variables are context-related, see [Server-Side Runtime Configuration and Monitoring for Encrypted Connections](using-encrypted-connections.html#using-encrypted-connections-server-side-runtime-configuration "Server-Side Runtime Configuration and Monitoring for Encrypted Connections").
 
-  By default, the statement reloads the TLS context for the main connection interface. If the `FOR CHANNEL` clause is given, the statement reloads the TLS context for the named channel: `mysql_main` for the main connection interface, `mysql_admin` for the administrative connection interface. For information about the different interfaces, see Section 7.1.12.1, “Connection Interfaces”. The updated TLS context properties are exposed in the Performance Schema `tls_channel_status` table. See Section 29.12.22.11, “The tls\_channel\_status Table”.
+  By default, the statement reloads the TLS context for the main connection interface. If the `FOR CHANNEL` clause is given, the statement reloads the TLS context for the named channel: `mysql_main` for the main connection interface, `mysql_admin` for the administrative connection interface. For information about the different interfaces, see Section 7.1.12.1, “Connection Interfaces”. The updated TLS context properties are exposed in the Performance Schema `tls_channel_status` table. See Section 29.12.22.11, “The tls_channel_status Table”.
 
   Updating the TLS context for the main interface may also affect the administrative interface because unless some nondefault TLS value is configured for that interface, it uses the same TLS context as the main interface.
 
@@ -660,7 +660,7 @@ mysql> SELECT FILE_NAME, LOGFILE_GROUP_NUMBER, EXTRA
 4 rows in set (0.01 sec)
 ```
 
-(See Section 28.3.15, “The INFORMATION\_SCHEMA FILES Table”.)
+(See Section 28.3.15, “The INFORMATION_SCHEMA FILES Table”.)
 
 Memory used for `UNDO_BUFFER_SIZE` comes from the global pool whose size is determined by the value of the `SharedGlobalMemory` data node configuration parameter. This includes any default value implied for this option by the setting of the `InitialLogFileGroup` data node configuration parameter.
 
@@ -878,7 +878,7 @@ partition_options:
 
 * `InnoDB` supports addition of multi-valued indexes on JSON columns using a *`key_part`* specification can take the form `(CAST json_path AS type ARRAY)`. See Multi-Valued Indexes, for detailed information regarding multi-valued index creation and usage of, as well as restrictions and limitations on multi-valued indexes.
 
-* With the `mysql_info()` C API function, you can find out how many rows were copied by `ALTER TABLE`. See mysql\_info().
+* With the `mysql_info()` C API function, you can find out how many rows were copied by `ALTER TABLE`. See mysql_info().
 
 There are several additional aspects to the `ALTER TABLE` statement, described under the following topics in this section:
 
@@ -988,7 +988,7 @@ Use of table options with [`ALTER TABLE`](alter-table.html "15.1.11 ALTER TABLE
       COMMENT = 'NDB_COLUMN=BLOB_INLINE_SIZE=4096,MAX_BLOB_PART_SIZE';
   ```
 
-  Bear in mind that `ALTER TABLE ... COMMENT ...` discards any existing comment for the table. See Setting NDB\_TABLE options, for additional information and examples.
+  Bear in mind that `ALTER TABLE ... COMMENT ...` discards any existing comment for the table. See Setting NDB_TABLE options, for additional information and examples.
 
 * `ENGINE_ATTRIBUTE` and `SECONDARY_ENGINE_ATTRIBUTE` options are used to specify table, column, and index attributes for primary and secondary storage engines. These options are reserved for future use. Index attributes cannot be altered. An index must be dropped and added back with the desired change, which can be performed in a single [`ALTER TABLE`](alter-table.html "15.1.11 ALTER TABLE Statement") statement.
 
@@ -1312,7 +1312,7 @@ The server prohibits changes to foreign key columns that have the potential to c
 
 * Changing a `NULL` column to `NOT NULL` in non-strict mode is prohibited to prevent converting `NULL` values to default non-`NULL` values, for which there are no corresponding values in the referenced table. The operation is permitted in strict mode, but an error is returned if any such conversion is required.
 
-`ALTER TABLE tbl_name RENAME new_tbl_name` changes internally generated foreign key constraint names and user-defined foreign key constraint names that begin with the string “*`tbl_name`*\_ibfk\_” to reflect the new table name. `InnoDB` interprets foreign key constraint names that begin with the string “*`tbl_name`*\_ibfk\_” as internally generated names.
+`ALTER TABLE tbl_name RENAME new_tbl_name` changes internally generated foreign key constraint names and user-defined foreign key constraint names that begin with the string “*`tbl_name`*_ibfk_” to reflect the new table name. `InnoDB` interprets foreign key constraint names that begin with the string “*`tbl_name`*_ibfk_” as internally generated names.
 
 `ALTER TABLE` permits `CHECK` constraints for existing tables to be added, dropped, or altered:
 
@@ -1371,7 +1371,7 @@ If a table alteration causes a violation of an enforced `CHECK` constraint, an e
 
 * Attempts to modify, rename, or drop a column that is used in a `CHECK` constraint, unless that constraint is also dropped in the same statement. Exception: If a `CHECK` constraint refers only to a single column, dropping the column automatically drops the constraint.
 
-`ALTER TABLE tbl_name RENAME new_tbl_name` changes internally generated and user-defined `CHECK` constraint names that begin with the string “*`tbl_name`*\_chk\_” to reflect the new table name. MySQL interprets `CHECK` constraint names that begin with the string “*`tbl_name`*\_chk\_” as internally generated names.
+`ALTER TABLE tbl_name RENAME new_tbl_name` changes internally generated and user-defined `CHECK` constraint names that begin with the string “*`tbl_name`*_chk_” to reflect the new table name. MySQL interprets `CHECK` constraint names that begin with the string “*`tbl_name`*_chk_” as internally generated names.
 
 #### Changing the Character Set
 
@@ -1937,7 +1937,7 @@ Exclusive metadata locks are taken on tables that reside in a general tablespace
 
 The `CREATE TABLESPACE` privilege is required to rename an `InnoDB` general tablespace.
 
-The `AUTOEXTEND_SIZE` option defines the amount by which `InnoDB` extends the size of a tablespace when it becomes full. The setting must be a multiple of 4MB. The default setting is 0, which causes the tablespace to be extended according to the implicit default behavior. For more information, see Section 17.6.3.9, “Tablespace AUTOEXTEND\_SIZE Configuration”.
+The `AUTOEXTEND_SIZE` option defines the amount by which `InnoDB` extends the size of a tablespace when it becomes full. The setting must be a multiple of 4MB. The default setting is 0, which causes the tablespace to be extended according to the implicit default behavior. For more information, see Section 17.6.3.9, “Tablespace AUTOEXTEND_SIZE Configuration”.
 
 The `ENCRYPTION` clause enables or disables page-level data encryption for an `InnoDB` general tablespace or the `mysql` system tablespace.
 
@@ -2141,7 +2141,7 @@ The `ON SCHEDULE` clause determines when, how often, and for how long the *`even
 
 The `ON SCHEDULE` clause may use expressions involving built-in MySQL functions and user variables to obtain any of the *`timestamp`* or *`interval`* values which it contains. You may not use stored functions or loadable functions in such expressions, nor may you use any table references; however, you may use `SELECT FROM DUAL`. This is true for both `CREATE EVENT` and `ALTER EVENT` statements. References to stored functions, loadable functions, and tables in such cases are specifically not permitted, and fail with an error (see Bug #22830).
 
-Times in the `ON SCHEDULE` clause are interpreted using the current session `time_zone` value. This becomes the event time zone; that is, the time zone that is used for event scheduling and is in effect within the event as it executes. These times are converted to UTC and stored along with the event time zone internally. This enables event execution to proceed as defined regardless of any subsequent changes to the server time zone or daylight saving time effects. For additional information about representation of event times, see Section 27.5.4, “Event Metadata”. See also Section 15.7.7.20, “SHOW EVENTS Statement”, and Section 28.3.14, “The INFORMATION\_SCHEMA EVENTS Table”.
+Times in the `ON SCHEDULE` clause are interpreted using the current session `time_zone` value. This becomes the event time zone; that is, the time zone that is used for event scheduling and is in effect within the event as it executes. These times are converted to UTC and stored along with the event time zone internally. This enables event execution to proceed as defined regardless of any subsequent changes to the server time zone or daylight saving time effects. For additional information about representation of event times, see Section 27.5.4, “Event Metadata”. See also Section 15.7.7.20, “SHOW EVENTS Statement”, and Section 28.3.14, “The INFORMATION_SCHEMA EVENTS Table”.
 
 Normally, once an event has expired, it is immediately dropped. You can override this behavior by specifying `ON COMPLETION PRESERVE`. Using `ON COMPLETION NOT PRESERVE` merely makes the default nonpersistent behavior explicit.
 
@@ -3118,7 +3118,7 @@ Following the key part list, index options can be given. An *`index_option`* val
 
   **Table 15.1 Index Types Per Storage Engine**
 
-  <table summary="Permissible index types by storage engine."><col style="width: 20%"/><col style="width: 50%"/><thead><tr> <th>Storage Engine</th> <th>Permissible Index Types</th> </tr></thead><tbody><tr> <td><a class="link" href="innodb-storage-engine.html" title="Chapter 17 The InnoDB Storage Engine"><code class="literal">InnoDB</code></a></td> <td><code class="literal">BTREE</code></td> </tr><tr> <td><a class="link" href="myisam-storage-engine.html" title="18.2 The MyISAM Storage Engine"><code class="literal">MyISAM</code></a></td> <td><code class="literal">BTREE</code></td> </tr><tr> <td><a class="link" href="memory-storage-engine.html" title="18.3 The MEMORY Storage Engine"><code class="literal">MEMORY</code></a>/<code class="literal">HEAP</code></td> <td><code class="literal">HASH</code>, <code class="literal">BTREE</code></td> </tr><tr> <td><a class="link" href="mysql-cluster.html" title="Chapter 25 MySQL NDB Cluster 9.5"><code class="literal">NDB</code></a></td> <td><code class="literal">HASH</code>, <code class="literal">BTREE</code> (see note in text)</td> </tr></tbody></table>
+  <table summary="Permissible index types by storage engine."><col style="width: 20%"/><col style="width: 50%"/><thead><tr> <th>Storage Engine</th> <th>Permissible Index Types</th> </tr></thead><tbody><tr> <td><code>InnoDB</code></td> <td><code>BTREE</code></td> </tr><tr> <td><code>MyISAM</code></td> <td><code>BTREE</code></td> </tr><tr> <td><code>MEMORY</code>/<code>HEAP</code></td> <td><code>HASH</code>, <code>BTREE</code></td> </tr><tr> <td><code>NDB</code></td> <td><code>HASH</code>, <code>BTREE</code> (see note in text)</td> </tr></tbody></table>
 
   The *`index_type`* clause cannot be used for `FULLTEXT INDEX` specifications. Full-text index implementation is storage-engine dependent. Spatial indexes are implemented as R-tree indexes.
 
@@ -3144,19 +3144,19 @@ Following the key part list, index options can be given. An *`index_option`* val
 
   **Table 15.2 InnoDB Storage Engine Index Characteristics**
 
-  <table summary="Index characteristics of the InnoDB storage engine."><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th scope="col">Index Class</th> <th scope="col">Index Type</th> <th scope="col">Stores NULL VALUES</th> <th scope="col">Permits Multiple NULL Values</th> <th scope="col">IS NULL Scan Type</th> <th scope="col">IS NOT NULL Scan Type</th> </tr></thead><tbody><tr> <th scope="row">Primary key</th> <td><code class="literal">BTREE</code></td> <td>No</td> <td>No</td> <td>N/A</td> <td>N/A</td> </tr><tr> <th scope="row">Unique</th> <td><code class="literal">BTREE</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row">Key</th> <td><code class="literal">BTREE</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row"><code class="literal">FULLTEXT</code></th> <td>N/A</td> <td>Yes</td> <td>Yes</td> <td>Table</td> <td>Table</td> </tr><tr> <th scope="row"><code class="literal">SPATIAL</code></th> <td>N/A</td> <td>No</td> <td>No</td> <td>N/A</td> <td>N/A</td> </tr></tbody></table>
+  <table summary="Index characteristics of the InnoDB storage engine."><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th scope="col">Index Class</th> <th scope="col">Index Type</th> <th scope="col">Stores NULL VALUES</th> <th scope="col">Permits Multiple NULL Values</th> <th scope="col">IS NULL Scan Type</th> <th scope="col">IS NOT NULL Scan Type</th> </tr></thead><tbody><tr> <th scope="row">Primary key</th> <td><code>BTREE</code></td> <td>No</td> <td>No</td> <td>N/A</td> <td>N/A</td> </tr><tr> <th scope="row">Unique</th> <td><code>BTREE</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row">Key</th> <td><code>BTREE</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row"><code>FULLTEXT</code></th> <td>N/A</td> <td>Yes</td> <td>Yes</td> <td>Table</td> <td>Table</td> </tr><tr> <th scope="row"><code>SPATIAL</code></th> <td>N/A</td> <td>No</td> <td>No</td> <td>N/A</td> <td>N/A</td> </tr></tbody></table>
 
   **Table 15.3 MyISAM Storage Engine Index Characteristics**
 
-  <table summary="Index characteristics of the MyISAM storage engine."><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th scope="col">Index Class</th> <th scope="col">Index Type</th> <th scope="col">Stores NULL VALUES</th> <th scope="col">Permits Multiple NULL Values</th> <th scope="col">IS NULL Scan Type</th> <th scope="col">IS NOT NULL Scan Type</th> </tr></thead><tbody><tr> <th scope="row">Primary key</th> <td><code class="literal">BTREE</code></td> <td>No</td> <td>No</td> <td>N/A</td> <td>N/A</td> </tr><tr> <th scope="row">Unique</th> <td><code class="literal">BTREE</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row">Key</th> <td><code class="literal">BTREE</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row"><code class="literal">FULLTEXT</code></th> <td>N/A</td> <td>Yes</td> <td>Yes</td> <td>Table</td> <td>Table</td> </tr><tr> <th scope="row"><code class="literal">SPATIAL</code></th> <td>N/A</td> <td>No</td> <td>No</td> <td>N/A</td> <td>N/A</td> </tr></tbody></table>
+  <table summary="Index characteristics of the MyISAM storage engine."><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th scope="col">Index Class</th> <th scope="col">Index Type</th> <th scope="col">Stores NULL VALUES</th> <th scope="col">Permits Multiple NULL Values</th> <th scope="col">IS NULL Scan Type</th> <th scope="col">IS NOT NULL Scan Type</th> </tr></thead><tbody><tr> <th scope="row">Primary key</th> <td><code>BTREE</code></td> <td>No</td> <td>No</td> <td>N/A</td> <td>N/A</td> </tr><tr> <th scope="row">Unique</th> <td><code>BTREE</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row">Key</th> <td><code>BTREE</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row"><code>FULLTEXT</code></th> <td>N/A</td> <td>Yes</td> <td>Yes</td> <td>Table</td> <td>Table</td> </tr><tr> <th scope="row"><code>SPATIAL</code></th> <td>N/A</td> <td>No</td> <td>No</td> <td>N/A</td> <td>N/A</td> </tr></tbody></table>
 
   **Table 15.4 MEMORY Storage Engine Index Characteristics**
 
-  <table summary="Index characteristics of the Memory storage engine."><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th scope="col">Index Class</th> <th scope="col">Index Type</th> <th scope="col">Stores NULL VALUES</th> <th scope="col">Permits Multiple NULL Values</th> <th scope="col">IS NULL Scan Type</th> <th scope="col">IS NOT NULL Scan Type</th> </tr></thead><tbody><tr> <th scope="row">Primary key</th> <td><code class="literal">BTREE</code></td> <td>No</td> <td>No</td> <td>N/A</td> <td>N/A</td> </tr><tr> <th scope="row">Unique</th> <td><code class="literal">BTREE</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row">Key</th> <td><code class="literal">BTREE</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row">Primary key</th> <td><code class="literal">HASH</code></td> <td>No</td> <td>No</td> <td>N/A</td> <td>N/A</td> </tr><tr> <th scope="row">Unique</th> <td><code class="literal">HASH</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row">Key</th> <td><code class="literal">HASH</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr></tbody></table>
+  <table summary="Index characteristics of the Memory storage engine."><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th scope="col">Index Class</th> <th scope="col">Index Type</th> <th scope="col">Stores NULL VALUES</th> <th scope="col">Permits Multiple NULL Values</th> <th scope="col">IS NULL Scan Type</th> <th scope="col">IS NOT NULL Scan Type</th> </tr></thead><tbody><tr> <th scope="row">Primary key</th> <td><code>BTREE</code></td> <td>No</td> <td>No</td> <td>N/A</td> <td>N/A</td> </tr><tr> <th scope="row">Unique</th> <td><code>BTREE</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row">Key</th> <td><code>BTREE</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row">Primary key</th> <td><code>HASH</code></td> <td>No</td> <td>No</td> <td>N/A</td> <td>N/A</td> </tr><tr> <th scope="row">Unique</th> <td><code>HASH</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row">Key</th> <td><code>HASH</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr></tbody></table>
 
   **Table 15.5 NDB Storage Engine Index Characteristics**
 
-  <table summary="Index characteristics of the NDB storage engine."><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th scope="col">Index Class</th> <th scope="col">Index Type</th> <th scope="col">Stores NULL VALUES</th> <th scope="col">Permits Multiple NULL Values</th> <th scope="col">IS NULL Scan Type</th> <th scope="col">IS NOT NULL Scan Type</th> </tr></thead><tbody><tr> <th scope="row">Primary key</th> <td><code class="literal">BTREE</code></td> <td>No</td> <td>No</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row">Unique</th> <td><code class="literal">BTREE</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row">Key</th> <td><code class="literal">BTREE</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row">Primary key</th> <td><code class="literal">HASH</code></td> <td>No</td> <td>No</td> <td>Table (see note 1)</td> <td>Table (see note 1)</td> </tr><tr> <th scope="row">Unique</th> <td><code class="literal">HASH</code></td> <td>Yes</td> <td>Yes</td> <td>Table (see note 1)</td> <td>Table (see note 1)</td> </tr><tr> <th scope="row">Key</th> <td><code class="literal">HASH</code></td> <td>Yes</td> <td>Yes</td> <td>Table (see note 1)</td> <td>Table (see note 1)</td> </tr></tbody></table>
+  <table summary="Index characteristics of the NDB storage engine."><col style="width: 15%"/><col style="width: 10%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th scope="col">Index Class</th> <th scope="col">Index Type</th> <th scope="col">Stores NULL VALUES</th> <th scope="col">Permits Multiple NULL Values</th> <th scope="col">IS NULL Scan Type</th> <th scope="col">IS NOT NULL Scan Type</th> </tr></thead><tbody><tr> <th scope="row">Primary key</th> <td><code>BTREE</code></td> <td>No</td> <td>No</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row">Unique</th> <td><code>BTREE</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row">Key</th> <td><code>BTREE</code></td> <td>Yes</td> <td>Yes</td> <td>Index</td> <td>Index</td> </tr><tr> <th scope="row">Primary key</th> <td><code>HASH</code></td> <td>No</td> <td>No</td> <td>Table (see note 1)</td> <td>Table (see note 1)</td> </tr><tr> <th scope="row">Unique</th> <td><code>HASH</code></td> <td>Yes</td> <td>Yes</td> <td>Table (see note 1)</td> <td>Table (see note 1)</td> </tr><tr> <th scope="row">Key</th> <td><code>HASH</code></td> <td>Yes</td> <td>Yes</td> <td>Table (see note 1)</td> <td>Table (see note 1)</td> </tr></tbody></table>
 
   Table note:
 
@@ -3815,7 +3815,7 @@ Attributes for the statement must satisfy these conditions:
 
   **Table 15.6 CREATE SPATIAL REFERENCE SYSTEM Attribute Lengths**
 
-  <table summary="Maximum string attribute lengths for CREATE SPATIAL REFERENCE SYSTEM"><col style="width: 25%"/><col style="width: 50%"/><thead><tr> <th>Attribute</th> <th>Maximum Length (characters)</th> </tr></thead><tbody><tr> <td><code class="literal">NAME</code></td> <td>80</td> </tr><tr> <td><code class="literal">DEFINITION</code></td> <td>4096</td> </tr><tr> <td><code class="literal">ORGANIZATION</code></td> <td>256</td> </tr><tr> <td><code class="literal">DESCRIPTION</code></td> <td>2048</td> </tr></tbody></table>
+  <table summary="Maximum string attribute lengths for CREATE SPATIAL REFERENCE SYSTEM"><col style="width: 25%"/><col style="width: 50%"/><thead><tr> <th>Attribute</th> <th>Maximum Length (characters)</th> </tr></thead><tbody><tr> <td><code>NAME</code></td> <td>80</td> </tr><tr> <td><code>DEFINITION</code></td> <td>4096</td> </tr><tr> <td><code>ORGANIZATION</code></td> <td>256</td> </tr><tr> <td><code>DESCRIPTION</code></td> <td>2048</td> </tr></tbody></table>
 
 Here is an example [`CREATE SPATIAL REFERENCE SYSTEM`](create-spatial-reference-system.html "15.1.23 CREATE SPATIAL REFERENCE SYSTEM Statement") statement. The `DEFINITION` value is reformatted across multiple lines for readability. (For the statement to be legal, the value actually must be given on a single line.)
 
@@ -4145,13 +4145,13 @@ There is a hard limit of 4096 columns per table, but the effective maximum may b
 
   An integer column can have the additional attribute `AUTO_INCREMENT`. When you insert a value of `NULL` (recommended) or `0` into an indexed `AUTO_INCREMENT` column, the column is set to the next sequence value. Typically this is `value+1`, where *`value`* is the largest value for the column currently in the table. `AUTO_INCREMENT` sequences begin with `1`.
 
-  To retrieve an `AUTO_INCREMENT` value after inserting a row, use the `LAST_INSERT_ID()` SQL function or the `mysql_insert_id()` C API function. See Section 14.15, “Information Functions”, and mysql\_insert\_id().
+  To retrieve an `AUTO_INCREMENT` value after inserting a row, use the `LAST_INSERT_ID()` SQL function or the `mysql_insert_id()` C API function. See Section 14.15, “Information Functions”, and mysql_insert_id().
 
   If the `NO_AUTO_VALUE_ON_ZERO` SQL mode is enabled, you can store `0` in `AUTO_INCREMENT` columns as `0` without generating a new sequence value. See Section 7.1.11, “Server SQL Modes”.
 
   There can be only one `AUTO_INCREMENT` column per table, it must be indexed, and it cannot have a `DEFAULT` value. An `AUTO_INCREMENT` column works properly only if it contains only positive values. Inserting a negative number is regarded as inserting a very large positive number. This is done to avoid precision problems when numbers “wrap” over from positive to negative and also to ensure that you do not accidentally get an `AUTO_INCREMENT` column that contains `0`.
 
-  For `MyISAM` tables, you can specify an `AUTO_INCREMENT` secondary column in a multiple-column key. See Section 5.6.9, “Using AUTO\_INCREMENT”.
+  For `MyISAM` tables, you can specify an `AUTO_INCREMENT` secondary column in a multiple-column key. See Section 5.6.9, “Using AUTO_INCREMENT”.
 
   To make MySQL compatible with some ODBC applications, you can find the `AUTO_INCREMENT` value for the last inserted row with the following query:
 
@@ -4161,7 +4161,7 @@ There is a hard limit of 4096 columns per table, but the effective maximum may b
 
   This method requires that `sql_auto_is_null` variable is not set to 0. See Section 7.1.8, “Server System Variables”.
 
-  For information about `InnoDB` and `AUTO_INCREMENT`, see Section 17.6.1.6, “AUTO\_INCREMENT Handling in InnoDB”. For information about `AUTO_INCREMENT` and MySQL Replication, see Section 19.5.1.1, “Replication and AUTO\_INCREMENT”.
+  For information about `InnoDB` and `AUTO_INCREMENT`, see Section 17.6.1.6, “AUTO_INCREMENT Handling in InnoDB”. For information about `AUTO_INCREMENT` and MySQL Replication, see Section 19.5.1.1, “Replication and AUTO_INCREMENT”.
 
 * `COMMENT`
 
@@ -4357,13 +4357,13 @@ Table options are used to optimize the behavior of the table. In most cases, you
 
   Specifies the storage engine for the table, using one of the names shown in the following table. The engine name can be unquoted or quoted. The quoted name `'DEFAULT'` is recognized but ignored.
 
-  <table summary="Storage engine names permitted for the ENGINE table option and a description of each engine."><col style="width: 25%"/><col style="width: 70%"/><thead><tr> <th>Storage Engine</th> <th>Description</th> </tr></thead><tbody><tr> <td><code class="literal">InnoDB</code></td> <td>Transaction-safe tables with row locking and foreign keys. The default storage engine for new tables. See <a class="xref" href="innodb-storage-engine.html" title="Chapter 17 The InnoDB Storage Engine">Chapter 17, <i>The InnoDB Storage Engine</i></a>, and in particular <a class="xref" href="innodb-introduction.html" title="17.1 Introduction to InnoDB">Section 17.1, “Introduction to InnoDB”</a> if you have MySQL experience but are new to <code class="literal">InnoDB</code>.</td> </tr><tr> <td><code class="literal">MyISAM</code></td> <td>The binary portable storage engine that is primarily used for read-only or read-mostly workloads. See <a class="xref" href="myisam-storage-engine.html" title="18.2 The MyISAM Storage Engine">Section 18.2, “The MyISAM Storage Engine”</a>.</td> </tr><tr> <td><code class="literal">MEMORY</code></td> <td>The data for this storage engine is stored only in memory. See <a class="xref" href="memory-storage-engine.html" title="18.3 The MEMORY Storage Engine">Section 18.3, “The MEMORY Storage Engine”</a>.</td> </tr><tr> <td><code class="literal">CSV</code></td> <td>Tables that store rows in comma-separated values format. See <a class="xref" href="csv-storage-engine.html" title="18.4 The CSV Storage Engine">Section 18.4, “The CSV Storage Engine”</a>.</td> </tr><tr> <td><code class="literal">ARCHIVE</code></td> <td>The archiving storage engine. See <a class="xref" href="archive-storage-engine.html" title="18.5 The ARCHIVE Storage Engine">Section 18.5, “The ARCHIVE Storage Engine”</a>.</td> </tr><tr> <td><code class="literal">EXAMPLE</code></td> <td>An example engine. See <a class="xref" href="example-storage-engine.html" title="18.9 The EXAMPLE Storage Engine">Section 18.9, “The EXAMPLE Storage Engine”</a>.</td> </tr><tr> <td><code class="literal">FEDERATED</code></td> <td>Storage engine that accesses remote tables. See <a class="xref" href="federated-storage-engine.html" title="18.8 The FEDERATED Storage Engine">Section 18.8, “The FEDERATED Storage Engine”</a>.</td> </tr><tr> <td><code class="literal">HEAP</code></td> <td>This is a synonym for <code class="literal">MEMORY</code>.</td> </tr><tr> <td><code class="literal">MERGE</code></td> <td>A collection of <code class="literal">MyISAM</code> tables used as one table. Also known as <code class="literal">MRG_MyISAM</code>. See <a class="xref" href="merge-storage-engine.html" title="18.7 The MERGE Storage Engine">Section 18.7, “The MERGE Storage Engine”</a>.</td> </tr><tr> <td><a class="link" href="mysql-cluster.html" title="Chapter 25 MySQL NDB Cluster 9.5"><code class="literal">NDB</code></a></td> <td>Clustered, fault-tolerant, memory-based tables, supporting transactions and foreign keys. Also known as <a class="link" href="mysql-cluster.html" title="Chapter 25 MySQL NDB Cluster 9.5"><code class="literal">NDBCLUSTER</code></a>. See <a class="xref" href="mysql-cluster.html" title="Chapter 25 MySQL NDB Cluster 9.5">Chapter 25, <i>MySQL NDB Cluster 9.5</i></a>.</td> </tr></tbody></table>
+  <table summary="Storage engine names permitted for the ENGINE table option and a description of each engine."><col style="width: 25%"/><col style="width: 70%"/><thead><tr> <th>Storage Engine</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>InnoDB</code></td> <td>Transaction-safe tables with row locking and foreign keys. The default storage engine for new tables. See Chapter 17, <i>The InnoDB Storage Engine</i>, and in particular Section 17.1, “Introduction to InnoDB” if you have MySQL experience but are new to <code>InnoDB</code>.</td> </tr><tr> <td><code>MyISAM</code></td> <td>The binary portable storage engine that is primarily used for read-only or read-mostly workloads. See Section 18.2, “The MyISAM Storage Engine”.</td> </tr><tr> <td><code>MEMORY</code></td> <td>The data for this storage engine is stored only in memory. See Section 18.3, “The MEMORY Storage Engine”.</td> </tr><tr> <td><code>CSV</code></td> <td>Tables that store rows in comma-separated values format. See Section 18.4, “The CSV Storage Engine”.</td> </tr><tr> <td><code>ARCHIVE</code></td> <td>The archiving storage engine. See Section 18.5, “The ARCHIVE Storage Engine”.</td> </tr><tr> <td><code>EXAMPLE</code></td> <td>An example engine. See Section 18.9, “The EXAMPLE Storage Engine”.</td> </tr><tr> <td><code>FEDERATED</code></td> <td>Storage engine that accesses remote tables. See Section 18.8, “The FEDERATED Storage Engine”.</td> </tr><tr> <td><code>HEAP</code></td> <td>This is a synonym for <code>MEMORY</code>.</td> </tr><tr> <td><code>MERGE</code></td> <td>A collection of <code>MyISAM</code> tables used as one table. Also known as <code>MRG_MyISAM</code>. See Section 18.7, “The MERGE Storage Engine”.</td> </tr><tr> <td><code>NDB</code></td> <td>Clustered, fault-tolerant, memory-based tables, supporting transactions and foreign keys. Also known as <code>NDBCLUSTER</code>. See Chapter 25, <i>MySQL NDB Cluster 9.5</i>.</td> </tr></tbody></table>
 
   By default, if a storage engine is specified that is not available, the statement fails with an error. You can override this behavior by removing `NO_ENGINE_SUBSTITUTION` from the server SQL mode (see Section 7.1.11, “Server SQL Modes”) so that MySQL allows substitution of the specified engine with the default storage engine instead. Normally in such cases, this is `InnoDB`, which is the default value for the `default_storage_engine` system variable. When `NO_ENGINE_SUBSTITUTION` is disabled, a warning occurs if the storage engine specification is not honored.
 
 * `AUTOEXTEND_SIZE`
 
-  Defines the amount by which `InnoDB` extends the size of the tablespace when it becomes full. The setting must be a multiple of 4MB. The default setting is 0, which causes the tablespace to be extended according to the implicit default behavior. For more information, see Section 17.6.3.9, “Tablespace AUTOEXTEND\_SIZE Configuration”.
+  Defines the amount by which `InnoDB` extends the size of the tablespace when it becomes full. The setting must be a multiple of 4MB. The default setting is 0, which causes the tablespace to be extended according to the implicit default behavior. For more information, see Section 17.6.3.9, “Tablespace AUTOEXTEND_SIZE Configuration”.
 
 * `AUTO_INCREMENT`
 
@@ -4395,7 +4395,7 @@ Table options are used to optimize the behavior of the table. In most cases, you
 
   You can set the `InnoDB` `MERGE_THRESHOLD` value for a table using the `table_option` `COMMENT` clause. See Section 17.8.11, “Configuring the Merge Threshold for Index Pages”.
 
-  **Setting NDB\_TABLE options.**
+  **Setting NDB_TABLE options.**
 
   The table comment in a `CREATE TABLE` that creates an `NDB` table or an `ALTER TABLE` statement which alters one can also be used to specify one to four of the `NDB_TABLE` options `NOLOGGING`, `READ_BACKUP`, `PARTITION_BALANCE`, or `FULLY_REPLICATED` as a set of name-value pairs, separated by commas if need be, immediately following the string `NDB_TABLE=` that begins the quoted comment text. An example statement using this syntax is shown here (emphasized text):
 
@@ -4410,7 +4410,7 @@ Table options are used to optimize the behavior of the table. In most cases, you
 
   Spaces are not permitted within the quoted string. The string is case-insensitive.
 
-  The comment is displayed as part of the output of `SHOW CREATE TABLE`. The text of the comment is also available as the TABLE\_COMMENT column of the MySQL Information Schema `TABLES` table.
+  The comment is displayed as part of the output of `SHOW CREATE TABLE`. The text of the comment is also available as the TABLE_COMMENT column of the MySQL Information Schema `TABLES` table.
 
   This comment syntax is also supported with `ALTER TABLE` statements for `NDB` tables. Keep in mind that a table comment used with `ALTER TABLE` replaces any existing comment which the table might have had previously.
 
@@ -4506,7 +4506,7 @@ Table options are used to optimize the behavior of the table. In most cases, you
 
   Important
 
-  The use of `MAX_ROWS` with `NDB` tables to control the number of table partitions is deprecated. It remains supported in later versions for backward compatibility, but is subject to removal in a future release. Use PARTITION\_BALANCE instead; see Setting NDB\_TABLE options.
+  The use of `MAX_ROWS` with `NDB` tables to control the number of table partitions is deprecated. It remains supported in later versions for backward compatibility, but is subject to removal in a future release. Use PARTITION_BALANCE instead; see Setting NDB_TABLE options.
 
   The `NDB` storage engine treats this value as a maximum. If you plan to create very large NDB Cluster tables (containing millions of rows), you should use this option to insure that `NDB` allocates sufficient number of index slots in the hash table used for storing hashes of the table's primary keys by setting `MAX_ROWS = 2 * rows`, where *`rows`* is the number of rows that you expect to insert into the table.
 
@@ -4590,7 +4590,7 @@ Table options are used to optimize the behavior of the table. In most cases, you
 
   The general tablespace that you specify must exist prior to using the `TABLESPACE` clause. For information about general tablespaces, see Section 17.6.3.3, “General Tablespaces”.
 
-  The `tablespace_name` is a case-sensitive identifier. It may be quoted or unquoted. The forward slash character (“/”) is not permitted. Names beginning with “innodb\_” are reserved for special use.
+  The `tablespace_name` is a case-sensitive identifier. It may be quoted or unquoted. The forward slash character (“/”) is not permitted. Names beginning with “innodb_” are reserved for special use.
 
   To create a table in the system tablespace, specify `innodb_system` as the tablespace name.
 
@@ -4921,7 +4921,7 @@ For an `InnoDB` table created in a file-per-table tablespace or general tablespa
 
 For `MyISAM` tables, the storage engine creates data and index files. Thus, for each `MyISAM` table *`tbl_name`*, there are two disk files.
 
-<table summary="The purpose of MyISAM table tbl_name disk files."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>File</th> <th>Purpose</th> </tr></thead><tbody><tr> <td><code class="filename"><em class="replaceable"><code>tbl_name</code></em>.MYD</code></td> <td>Data file</td> </tr><tr> <td><code class="filename"><em class="replaceable"><code>tbl_name</code></em>.MYI</code></td> <td>Index file</td> </tr></tbody></table>
+<table summary="The purpose of MyISAM table tbl_name disk files."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>File</th> <th>Purpose</th> </tr></thead><tbody><tr> <td><code><code>tbl_name</code>.MYD</code></td> <td>Data file</td> </tr><tr> <td><code><code>tbl_name</code>.MYI</code></td> <td>Index file</td> </tr></tbody></table>
 
 Chapter 18, *Alternative Storage Engines*, describes what files each storage engine creates to represent tables. If a table name contains special characters, the names for the table files contain encoded versions of those characters as described in Section 11.2.4, “Mapping of Identifiers to File Names”.
 
@@ -5628,7 +5628,7 @@ Note
 
 Constraint expression evaluation uses the SQL mode in effect at evaluation time. If any component of the expression depends on the SQL mode, different results may occur for different uses of the table unless the SQL mode is the same during all uses.
 
-The Information Schema `CHECK_CONSTRAINTS` table provides information about `CHECK` constraints defined on tables. See Section 28.3.5, “The INFORMATION\_SCHEMA CHECK\_CONSTRAINTS Table”.
+The Information Schema `CHECK_CONSTRAINTS` table provides information about `CHECK` constraints defined on tables. See Section 28.3.5, “The INFORMATION_SCHEMA CHECK_CONSTRAINTS Table”.
 
 
 #### 15.1.24.7 Silent Column Specification Changes
@@ -6330,8 +6330,8 @@ When creating or importing backups of installations where GIPKs are in use, it i
 
 #### 15.1.24.12 Setting NDB Comment Options
 
-* NDB\_COLUMN Options
-* NDB\_TABLE Options
+* NDB_COLUMN Options
+* NDB_TABLE Options
 
 It is possible to set a number of options specific to NDB Cluster in the table comment or column comments of an `NDB` table. Table-level options for controlling read from any replica and partition balance can be embedded in a table comment using `NDB_TABLE`.
 
@@ -6341,7 +6341,7 @@ It is possible to set a number of options specific to NDB Cluster in the table c
 
 The remainder of this section describes these options and their use.
 
-##### NDB\_COLUMN Options
+##### NDB_COLUMN Options
 
 In NDB Cluster, a column comment in a `CREATE TABLE` or `ALTER TABLE` statement can also be used to specify an `NDB_COLUMN` option. `NDB` supports two column comment options `BLOB_INLINE_SIZE` and `MAX_BLOB_PART_SIZE`. Syntax for these options is shown here:
 
@@ -6390,7 +6390,7 @@ mysql> SELECT
 2 rows in set (0.01 sec)
 ```
 
-You can also check the output from the **ndb\_desc** utility, as shown here, with the relevant lines displayed using emphasized text:
+You can also check the output from the **ndb_desc** utility, as shown here, with the relevant lines displayed using emphasized text:
 
 ```
 $> ndb_desc -d test t1
@@ -6443,7 +6443,7 @@ mysql> CREATE TABLE test.t2 (
 Query OK, 0 rows affected (0.32 sec)
 ```
 
-From the system shell, run the **ndb\_desc** utility to obtain information about the table just created, as shown in this example:
+From the system shell, run the **ndb_desc** utility to obtain information about the table just created, as shown in this example:
 
 ```
 $> ndb_desc -d test t2
@@ -6520,7 +6520,7 @@ mysql> EXIT
 Bye
 ```
 
-The output of **ndb\_desc** shows that the blob part sizes of the columns have been changed as expected:
+The output of **ndb_desc** shows that the blob part sizes of the columns have been changed as expected:
 
 ```
 $> ndb_desc -d test t2
@@ -6599,13 +6599,13 @@ mysql> SELECT
 2 rows in set (0.00 sec)
 ```
 
-You can also verify that the statement worked by checking the output of **ndb\_desc**.
+You can also verify that the statement worked by checking the output of **ndb_desc**.
 
 Changing a column's blob part size must be done using a copying `ALTER TABLE`; this operation cannot be performed online (see Section 25.6.12, “Online Operations with ALTER TABLE in NDB Cluster”).
 
 For more information about how `NDB` stores columns of blob types, see String Type Storage Requirements.
 
-##### NDB\_TABLE Options
+##### NDB_TABLE Options
 
 For an NDB Cluster table, the table comment in a `CREATE TABLE` or `ALTER TABLE` statement can also be used to specify an `NDB_TABLE` option, which consists of one or more name-value pairs, separated by commas if need be, following the string `NDB_TABLE=`. Complete syntax for names and values syntax is shown here:
 
@@ -6754,7 +6754,7 @@ mysql> SELECT TABLE_NAME, TABLE_SCHEMA, TABLE_COMMENT
 2 rows in set (0.01 sec)
 ```
 
-You can also see the value of the `PARTITION_BALANCE` option in the output of **ndb\_desc**. **ndb\_desc** also shows whether the `READ_BACKUP` and `FULLY_REPLICATED` options are set for the table. See the description of this program for more information.
+You can also see the value of the `PARTITION_BALANCE` option in the output of **ndb_desc**. **ndb_desc** also shows whether the `READ_BACKUP` and `FULLY_REPLICATED` options are set for the table. See the description of this program for more information.
 
 
 ### 15.1.25 CREATE TABLESPACE Statement
@@ -6831,7 +6831,7 @@ The rounding just described is done explicitly, and a warning is issued by the M
 
 When `CREATE TABLESPACE` is used with `ENGINE [=] NDB`, a tablespace and associated data file are created on each Cluster data node. You can verify that the data files were created and obtain information about them by querying the Information Schema `FILES` table. (See the example later in this section.)
 
-(See Section 28.3.15, “The INFORMATION\_SCHEMA FILES Table”.)
+(See Section 28.3.15, “The INFORMATION_SCHEMA FILES Table”.)
 
 #### Options
 
@@ -6885,7 +6885,7 @@ When `CREATE TABLESPACE` is used with `ENGINE [=] NDB`, a tablespace and associa
 
   An extent is a unit of disk space allocation. One extent is filled with as much data as that extent can contain before another extent is used. In theory, up to 65,535 (64K) extents may used per data file; however, the recommended maximum is 32,768 (32K). The recommended maximum size for a single data file is 32G—that is, 32K extents × 1 MB per extent. In addition, once an extent is allocated to a given partition, it cannot be used to store data from a different partition; an extent cannot store data from more than one partition. This means, for example that a tablespace having a single datafile whose `INITIAL_SIZE` (described in the following item) is 256 MB and whose `EXTENT_SIZE` is 128M has just two extents, and so can be used to store data from at most two different disk data table partitions.
 
-  You can see how many extents remain free in a given data file by querying the Information Schema `FILES` table, and so derive an estimate for how much space remains free in the file. For further discussion and examples, see Section 28.3.15, “The INFORMATION\_SCHEMA FILES Table”.
+  You can see how many extents remain free in a given data file by querying the Information Schema `FILES` table, and so derive an estimate for how much space remains free in the file. For further discussion and examples, see Section 28.3.15, “The INFORMATION_SCHEMA FILES Table”.
 
 * `INITIAL_SIZE`: This option is specific to `NDB`, and is not supported by `InnoDB`, where it fails with an error.
 
@@ -6895,7 +6895,7 @@ When `CREATE TABLESPACE` is used with `ENGINE [=] NDB`, a tablespace and associa
 
   On 32-bit systems, the maximum supported value for `INITIAL_SIZE` is 4294967296 (4 GB).
 
-* `AUTOEXTEND_SIZE`: Defines the amount by which `InnoDB` extends the size of the tablespace when it becomes full. The setting must be a multiple of 4MB. The default setting is 0, which causes the tablespace to be extended according to the implicit default behavior. For more information, see Section 17.6.3.9, “Tablespace AUTOEXTEND\_SIZE Configuration”.
+* `AUTOEXTEND_SIZE`: Defines the amount by which `InnoDB` extends the size of the tablespace when it becomes full. The setting must be a multiple of 4MB. The default setting is 0, which causes the tablespace to be extended according to the implicit default behavior. For more information, see Section 17.6.3.9, “Tablespace AUTOEXTEND_SIZE Configuration”.
 
   Has no effect in any release of MySQL NDB Cluster, regardless of the storage engine used.
 
@@ -7757,11 +7757,11 @@ To rename `TEMPORARY` tables, `RENAME TABLE` does not work. Use [`ALTER TABLE`](
 
 Any privileges granted specifically for a renamed table or view are not migrated to the new name. They must be changed manually.
 
-`RENAME TABLE tbl_name TO new_tbl_name` changes internally generated foreign key constraint names and user-defined foreign key constraint names that begin with the string “*`tbl_name`*\_ibfk\_” to reflect the new table name. `InnoDB` interprets foreign key constraint names that begin with the string “*`tbl_name`*\_ibfk\_” as internally generated names.
+`RENAME TABLE tbl_name TO new_tbl_name` changes internally generated foreign key constraint names and user-defined foreign key constraint names that begin with the string “*`tbl_name`*_ibfk_” to reflect the new table name. `InnoDB` interprets foreign key constraint names that begin with the string “*`tbl_name`*_ibfk_” as internally generated names.
 
 Foreign key constraint names that point to the renamed table are automatically updated unless there is a conflict, in which case the statement fails with an error. A conflict occurs if the renamed constraint name already exists. In such cases, you must drop and re-create the foreign keys for them to function properly.
 
-`RENAME TABLE tbl_name TO new_tbl_name` changes internally generated and user-defined `CHECK` constraint names that begin with the string “*`tbl_name`*\_chk\_” to reflect the new table name. MySQL interprets `CHECK` constraint names that begin with the string “*`tbl_name`*\_chk\_” as internally generated names. Example:
+`RENAME TABLE tbl_name TO new_tbl_name` changes internally generated and user-defined `CHECK` constraint names that begin with the string “*`tbl_name`*_chk_” to reflect the new table name. MySQL interprets `CHECK` constraint names that begin with the string “*`tbl_name`*_chk_” as internally generated names. Example:
 
 ```
 mysql> SHOW CREATE TABLE t1\G

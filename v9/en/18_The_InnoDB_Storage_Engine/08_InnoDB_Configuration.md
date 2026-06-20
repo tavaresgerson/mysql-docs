@@ -966,7 +966,7 @@ Note
 
 Access to the data present in buffer pool pages at the time the **mysqld** process died may be beneficial in some debugging scenarios. If in doubt whether to include or exclude buffer pool pages, consult MySQL Support.
 
-The `innodb_buffer_pool_in_core_file` option is only relevant if the `core_file` variable is enabled and the operating system supports the `MADV_DONTDUMP` non-POSIX extension to the madvise() system call, which is supported in Linux 3.4 and later. The `MADV_DONTDUMP` extension causes pages in a specified range to be excluded from core dumps. The `innodb_buffer_pool_in_core_file` option is disabled by default on systems that support MADV\_DONTDUMP, otherwise it defaults to ON.
+The `innodb_buffer_pool_in_core_file` option is only relevant if the `core_file` variable is enabled and the operating system supports the `MADV_DONTDUMP` non-POSIX extension to the madvise() system call, which is supported in Linux 3.4 and later. The `MADV_DONTDUMP` extension causes pages in a specified range to be excluded from core dumps. The `innodb_buffer_pool_in_core_file` option is disabled by default on systems that support MADV_DONTDUMP, otherwise it defaults to ON.
 
 To generate core files with buffer pool pages, start the server with the `--core-file` and `--innodb-buffer-pool-in-core-file=ON` options.
 
@@ -986,13 +986,13 @@ The following table shows configuration and `MADV_DONTDUMP` support scenarios th
 
 **Table 17.4 Core File Configuration Scenarios**
 
-<table summary="Core file configuration and         MADV_DONTDUMP support scenarios."><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 40%"/><thead><tr> <th scope="col"><a class="link" href="server-system-variables.html#sysvar_core_file"><code class="literal">core_file</code></a> variable</th> <th scope="col"><a class="link" href="innodb-parameters.html#sysvar_innodb_buffer_pool_in_core_file"><code class="literal">innodb_buffer_pool_in_core_file</code></a> variable</th> <th scope="col">madvise() MADV_DONTDUMP Support</th> <th scope="col">Outcome</th> </tr></thead><tbody><tr> <th scope="row">OFF (default)</th> <td>Not relevant to outcome</td> <td>Not relevant to outcome</td> <td>Core file is not generated</td> </tr><tr> <th scope="row">ON</th> <td>ON (default on systems without <code class="literal">MADV_DONTDUMP</code> support)</td> <td>Not relevant to outcome</td> <td>Core file is generated with buffer pool pages</td> </tr><tr> <th scope="row">ON</th> <td>OFF (default on systems with <code class="literal">MADV_DONTDUMP</code> support)</td> <td>Yes</td> <td>Core file is generated without buffer pool pages</td> </tr><tr> <th scope="row">ON</th> <td>OFF</td> <td>No</td> <td>Core file is not generated, <a class="link" href="server-system-variables.html#sysvar_core_file"><code class="literal">core_file</code></a> is disabled, and a warning is written to the server error log</td> </tr></tbody></table>
+<table summary="Core file configuration and         MADV_DONTDUMP support scenarios."><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 40%"/><thead><tr> <th scope="col"><code>core_file</code> variable</th> <th scope="col"><code>innodb_buffer_pool_in_core_file</code> variable</th> <th scope="col">madvise() MADV_DONTDUMP Support</th> <th scope="col">Outcome</th> </tr></thead><tbody><tr> <th scope="row">OFF (default)</th> <td>Not relevant to outcome</td> <td>Not relevant to outcome</td> <td>Core file is not generated</td> </tr><tr> <th scope="row">ON</th> <td>ON (default on systems without <code>MADV_DONTDUMP</code> support)</td> <td>Not relevant to outcome</td> <td>Core file is generated with buffer pool pages</td> </tr><tr> <th scope="row">ON</th> <td>OFF (default on systems with <code>MADV_DONTDUMP</code> support)</td> <td>Yes</td> <td>Core file is generated without buffer pool pages</td> </tr><tr> <th scope="row">ON</th> <td>OFF</td> <td>No</td> <td>Core file is not generated, <code>core_file</code> is disabled, and a warning is written to the server error log</td> </tr></tbody></table>
 
 The reduction in core file size achieved by disabling the `innodb_buffer_pool_in_core_file` variable depends on the size of the buffer pool, but it is also affected by the `InnoDB` page size. A smaller page size means more pages are required for the same amount of data, and more pages means more page metadata. The following table provides size reduction examples that you might see for a 1GB buffer pool with different pages sizes.
 
 **Table 17.5 Core File Size with Buffer Pool Pages Included and Excluded**
 
-<table summary="Core file size reduction examples for different pages sizes."><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th scope="col"><a class="link" href="innodb-parameters.html#sysvar_innodb_page_size"><code class="literal">innodb_page_size</code></a> Setting</th> <th scope="col">Buffer Pool Pages Included (<a class="link" href="innodb-parameters.html#sysvar_innodb_buffer_pool_in_core_file"><code class="literal">innodb_buffer_pool_in_core_file=ON</code></a>)</th> <th scope="col">Buffer Pool Pages Excluded (<a class="link" href="innodb-parameters.html#sysvar_innodb_buffer_pool_in_core_file"><code class="literal">innodb_buffer_pool_in_core_file=OFF</code></a>)</th> </tr></thead><tbody><tr> <th scope="row">4KB</th> <td>2.1GB</td> <td>0.9GB</td> </tr><tr> <th scope="row">64KB</th> <td>1.7GB</td> <td>0.7GB</td> </tr></tbody></table>
+<table summary="Core file size reduction examples for different pages sizes."><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th scope="col"><code>innodb_page_size</code> Setting</th> <th scope="col">Buffer Pool Pages Included (<code>innodb_buffer_pool_in_core_file=ON</code>)</th> <th scope="col">Buffer Pool Pages Excluded (<code>innodb_buffer_pool_in_core_file=OFF</code>)</th> </tr></thead><tbody><tr> <th scope="row">4KB</th> <td>2.1GB</td> <td>0.9GB</td> </tr><tr> <th scope="row">64KB</th> <td>1.7GB</td> <td>0.7GB</td> </tr></tbody></table>
 
 
 ### 17.8.4 Configuring Thread Concurrency for InnoDB
@@ -1284,13 +1284,13 @@ When `innodb_stats_include_delete_marked` is enabled, `ANALYZE TABLE` considers 
 
 The persistent statistics feature relies on the internally managed tables in the `mysql` database, named `innodb_table_stats` and `innodb_index_stats`. These tables are set up automatically in all install, upgrade, and build-from-source procedures.
 
-**Table 17.6 Columns of innodb\_table\_stats**
+**Table 17.6 Columns of innodb_table_stats**
 
-<table summary="Columns of the mysql.innodb_table_stats table."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Column name</th> <th>Description</th> </tr></thead><tbody><tr> <td><code class="literal">database_name</code></td> <td>Database name</td> </tr><tr> <td><code class="literal">table_name</code></td> <td>Table name, partition name, or subpartition name</td> </tr><tr> <td><code class="literal">last_update</code></td> <td>A timestamp indicating the last time that <code class="literal">InnoDB</code> updated this row</td> </tr><tr> <td><code class="literal">n_rows</code></td> <td>The number of rows in the table</td> </tr><tr> <td><code class="literal">clustered_index_size</code></td> <td>The size of the primary index, in pages</td> </tr><tr> <td><code class="literal">sum_of_other_index_sizes</code></td> <td>The total size of other (non-primary) indexes, in pages</td> </tr></tbody></table>
+<table summary="Columns of the mysql.innodb_table_stats table."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Column name</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>database_name</code></td> <td>Database name</td> </tr><tr> <td><code>table_name</code></td> <td>Table name, partition name, or subpartition name</td> </tr><tr> <td><code>last_update</code></td> <td>A timestamp indicating the last time that <code>InnoDB</code> updated this row</td> </tr><tr> <td><code>n_rows</code></td> <td>The number of rows in the table</td> </tr><tr> <td><code>clustered_index_size</code></td> <td>The size of the primary index, in pages</td> </tr><tr> <td><code>sum_of_other_index_sizes</code></td> <td>The total size of other (non-primary) indexes, in pages</td> </tr></tbody></table>
 
-**Table 17.7 Columns of innodb\_index\_stats**
+**Table 17.7 Columns of innodb_index_stats**
 
-<table summary="Columns of the mysql.innodb_index_stats table."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Column name</th> <th>Description</th> </tr></thead><tbody><tr> <td><code class="literal">database_name</code></td> <td>Database name</td> </tr><tr> <td><code class="literal">table_name</code></td> <td>Table name, partition name, or subpartition name</td> </tr><tr> <td><code class="literal">index_name</code></td> <td>Index name</td> </tr><tr> <td><code class="literal">last_update</code></td> <td>A timestamp indicating the last time the row was updated</td> </tr><tr> <td><code class="literal">stat_name</code></td> <td>The name of the statistic, whose value is reported in the <code class="literal">stat_value</code> column</td> </tr><tr> <td><code class="literal">stat_value</code></td> <td>The value of the statistic that is named in <code class="literal">stat_name</code> column</td> </tr><tr> <td><code class="literal">sample_size</code></td> <td>The number of pages sampled for the estimate provided in the <code class="literal">stat_value</code> column</td> </tr><tr> <td><code class="literal">stat_description</code></td> <td>Description of the statistic that is named in the <code class="literal">stat_name</code> column</td> </tr></tbody></table>
+<table summary="Columns of the mysql.innodb_index_stats table."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Column name</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>database_name</code></td> <td>Database name</td> </tr><tr> <td><code>table_name</code></td> <td>Table name, partition name, or subpartition name</td> </tr><tr> <td><code>index_name</code></td> <td>Index name</td> </tr><tr> <td><code>last_update</code></td> <td>A timestamp indicating the last time the row was updated</td> </tr><tr> <td><code>stat_name</code></td> <td>The name of the statistic, whose value is reported in the <code>stat_value</code> column</td> </tr><tr> <td><code>stat_value</code></td> <td>The value of the statistic that is named in <code>stat_name</code> column</td> </tr><tr> <td><code>sample_size</code></td> <td>The number of pages sampled for the estimate provided in the <code>stat_value</code> column</td> </tr><tr> <td><code>stat_description</code></td> <td>Description of the statistic that is named in the <code>stat_name</code> column</td> </tr></tbody></table>
 
 The `innodb_table_stats` and `innodb_index_stats` tables include a `last_update` column that shows when index statistics were last updated:
 
@@ -1478,7 +1478,7 @@ For the unique index (`i2uniq`), there are two `n_diff%` rows.
 
 * Where `index_name`=`i2uniq` and `stat_name`=`n_diff_pfx02`, the `stat_value` is `5`, which indicates that there are five distinct values in the two columns of the index (`e,f`). The number of distinct values in columns `e` and `f` is confirmed by viewing the data in columns `e` and `f` in table `t1`, in which there are five distinct values: (`100,101`), (`200,102`), (`100,103`), (`200,104`), and (`100,105`). The counted columns (`e,f`) are shown in the `stat_description` column of the result set.
 
-##### 17.8.10.1.7 Retrieving Index Size Using the innodb\_index\_stats Table
+##### 17.8.10.1.7 Retrieving Index Size Using the innodb_index_stats Table
 
 You can retrieve the index size for tables, partitions, or subpartitions can using the `innodb_index_stats` table. In the following example, index sizes are retrieved for table `t1`. For a definition of table `t1` and corresponding index statistics, see Section 17.8.10.1.6, “InnoDB Persistent Statistics Tables Example”.
 
@@ -1680,7 +1680,7 @@ When the “page-full” percentage for an index page falls below 50%, which is 
 
 The `MERGE_THRESHOLD` for index pages can be defined for a table or for individual indexes. A `MERGE_THRESHOLD` value defined for an individual index takes priority over a `MERGE_THRESHOLD` value defined for the table. If undefined, the `MERGE_THRESHOLD` value defaults to 50.
 
-#### Setting MERGE\_THRESHOLD for a Table
+#### Setting MERGE_THRESHOLD for a Table
 
 You can set the `MERGE_THRESHOLD` value for a table using the *`table_option`* `COMMENT` clause of the `CREATE TABLE` statement. For example:
 
@@ -1702,7 +1702,7 @@ CREATE TABLE t1 (
 ALTER TABLE t1 COMMENT='MERGE_THRESHOLD=40';
 ```
 
-#### Setting MERGE\_THRESHOLD for Individual Indexes
+#### Setting MERGE_THRESHOLD for Individual Indexes
 
 To set the `MERGE_THRESHOLD` value for an individual index, you can use the *`index_option`* `COMMENT` clause with `CREATE TABLE`, `ALTER TABLE`, or `CREATE INDEX`, as shown in the following examples:
 
@@ -1738,7 +1738,7 @@ Note
 
 You cannot modify the `MERGE_THRESHOLD` value at the index level for `GEN_CLUST_INDEX`, which is the clustered index created by `InnoDB` when an `InnoDB` table is created without a primary key or unique key index. You can only modify the `MERGE_THRESHOLD` value for `GEN_CLUST_INDEX` by setting `MERGE_THRESHOLD` for the table.
 
-#### Querying the MERGE\_THRESHOLD Value for an Index
+#### Querying the MERGE_THRESHOLD Value for an Index
 
 The current `MERGE_THRESHOLD` value for an index can be obtained by querying the `INNODB_INDEXES` table. For example:
 
@@ -1791,7 +1791,7 @@ mysql> SHOW INDEX FROM t2 \G
 Index_comment: MERGE_THRESHOLD=40
 ```
 
-#### Measuring the Effect of MERGE\_THRESHOLD Settings
+#### Measuring the Effect of MERGE_THRESHOLD Settings
 
 The `INNODB_METRICS` table provides two counters that can be used to measure the effect of a `MERGE_THRESHOLD` setting on index page merges.
 
@@ -1814,7 +1814,7 @@ When lowering the `MERGE_THRESHOLD` value, the objectives are:
 
 A `MERGE_THRESHOLD` setting that is too small could result in large data files due to an excessive amount of empty page space.
 
-For information about using `INNODB_METRICS` counters, see Section 17.15.6, “InnoDB INFORMATION\_SCHEMA Metrics Table”.
+For information about using `INNODB_METRICS` counters, see Section 17.15.6, “InnoDB INFORMATION_SCHEMA Metrics Table”.
 
 
 ### 17.8.12 Container Detection and Configuration
@@ -1854,7 +1854,7 @@ The value for each affected variable is determined and applied by `--innodb-dedi
 
   **Table 17.8 Automatically Configured Buffer Pool Size**
 
-  <table summary="The first column           shows the amount of server memory detected. The second column shows           the buffer pool size which is automatically determined."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Detected Server Memory</th> <th>Buffer Pool Size</th> </tr></thead><tbody><tr> <td>Less than 1GB</td> <td>128MB (the default value)</td> </tr><tr> <td>1GB to 4GB</td> <td><em class="replaceable"><code>detected server memory</code></em> * 0.5</td> </tr><tr> <td>Greater than 4GB</td> <td><em class="replaceable"><code>detected server memory</code></em> * 0.75</td> </tr></tbody></table>
+  <table summary="The first column           shows the amount of server memory detected. The second column shows           the buffer pool size which is automatically determined."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Detected Server Memory</th> <th>Buffer Pool Size</th> </tr></thead><tbody><tr> <td>Less than 1GB</td> <td>128MB (the default value)</td> </tr><tr> <td>1GB to 4GB</td> <td><code>detected server memory</code> * 0.5</td> </tr><tr> <td>Greater than 4GB</td> <td><code>detected server memory</code> * 0.75</td> </tr></tbody></table>
 
 * `innodb_redo_log_capacity`
 
@@ -1862,7 +1862,7 @@ The value for each affected variable is determined and applied by `--innodb-dedi
 
 If one of the variables listed previously is set explicitly in an option file or elsewhere, this explicit value is used, and a startup warning similar to this one is printed to `stderr`:
 
-[Warning] [000000] InnoDB: Option innodb\_dedicated\_server is ignored for innodb\_buffer\_pool\_size because innodb\_buffer\_pool\_size=134217728 is specified explicitly.
+[Warning] [000000] InnoDB: Option innodb_dedicated_server is ignored for innodb_buffer_pool_size because innodb_buffer_pool_size=134217728 is specified explicitly.
 
 Setting one variable explicitly does not prevent the automatic configuration of other options.
 

@@ -518,7 +518,7 @@ The sequence consists of the components shown in the following table.
 
 **Table 13.2 WKB Components Example**
 
-<table summary="Example showing component in WKB values."><col style="width: 30%"/><col style="width: 30%"/><col style="width: 40%"/><thead><tr> <th scope="col">Component</th> <th scope="col">Size</th> <th scope="col">Value</th> </tr></thead><tbody><tr> <th scope="row">Byte order</th> <td>1 byte</td> <td><code class="literal">01</code></td> </tr><tr> <th scope="row">WKB type</th> <td>4 bytes</td> <td><code class="literal">01000000</code></td> </tr><tr> <th scope="row">X coordinate</th> <td>8 bytes</td> <td><code class="literal">000000000000F03F</code></td> </tr><tr> <th scope="row">Y coordinate</th> <td>8 bytes</td> <td><code class="literal">000000000000F0BF</code></td> </tr></tbody></table>
+<table summary="Example showing component in WKB values."><col style="width: 30%"/><col style="width: 30%"/><col style="width: 40%"/><thead><tr> <th scope="col">Component</th> <th scope="col">Size</th> <th scope="col">Value</th> </tr></thead><tbody><tr> <th scope="row">Byte order</th> <td>1 byte</td> <td><code>01</code></td> </tr><tr> <th scope="row">WKB type</th> <td>4 bytes</td> <td><code>01000000</code></td> </tr><tr> <th scope="row">X coordinate</th> <td>8 bytes</td> <td><code>000000000000F03F</code></td> </tr><tr> <th scope="row">Y coordinate</th> <td>8 bytes</td> <td><code>000000000000F0BF</code></td> </tr></tbody></table>
 
 Component representation is as follows:
 
@@ -614,7 +614,7 @@ There are different types of spatial reference systems:
 
 * The SRS denoted in MySQL by SRID 0 represents an infinite flat Cartesian plane with no units assigned to its axes. Unlike projected SRSs, it is not georeferenced and it does not necessarily represent Earth. It is an abstract plane that can be used for anything. SRID 0 is the default SRID for spatial data in MySQL.
 
-MySQL maintains information about available spatial reference systems for spatial data in the data dictionary `mysql.st_spatial_reference_systems` table, which can store entries for projected and geographic SRSs. This data dictionary table is invisible, but SRS entry contents are available through the `INFORMATION_SCHEMA` `ST_SPATIAL_REFERENCE_SYSTEMS` table, implemented as a view on `mysql.st_spatial_reference_systems` (see Section 28.3.42, “The INFORMATION\_SCHEMA ST\_SPATIAL\_REFERENCE\_SYSTEMS Table”).
+MySQL maintains information about available spatial reference systems for spatial data in the data dictionary `mysql.st_spatial_reference_systems` table, which can store entries for projected and geographic SRSs. This data dictionary table is invisible, but SRS entry contents are available through the `INFORMATION_SCHEMA` `ST_SPATIAL_REFERENCE_SYSTEMS` table, implemented as a view on `mysql.st_spatial_reference_systems` (see Section 28.3.42, “The INFORMATION_SCHEMA ST_SPATIAL_REFERENCE_SYSTEMS Table”).
 
 The following example shows what an SRS entry looks like:
 
@@ -747,7 +747,7 @@ A client application program that wants to use WKB representations of geometry v
 
   Other programming interfaces may support a similar placeholder mechanism.
 
-* In a C program, you can escape a binary value using `mysql_real_escape_string_quote()` and include the result in a query string that is sent to the server. See mysql\_real\_escape\_string\_quote().
+* In a C program, you can escape a binary value using `mysql_real_escape_string_quote()` and include the result in a query string that is sent to the server. See mysql_real_escape_string_quote().
 
 
 ### 13.4.8 Fetching Spatial Data

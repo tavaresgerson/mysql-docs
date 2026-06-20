@@ -138,9 +138,9 @@ For more information and examples, see Section 26.5, “Partition Selection”.
 
 #### Auto-Increment Columns
 
-If you delete the row containing the maximum value for an `AUTO_INCREMENT` column, the value is not reused for a `MyISAM` or `InnoDB` table. If you delete all rows in the table with `DELETE FROM tbl_name` (without a `WHERE` clause) in `autocommit` mode, the sequence starts over for all storage engines except `InnoDB` and `MyISAM`. There are some exceptions to this behavior for `InnoDB` tables, as discussed in Section 17.6.1.6, “AUTO\_INCREMENT Handling in InnoDB”.
+If you delete the row containing the maximum value for an `AUTO_INCREMENT` column, the value is not reused for a `MyISAM` or `InnoDB` table. If you delete all rows in the table with `DELETE FROM tbl_name` (without a `WHERE` clause) in `autocommit` mode, the sequence starts over for all storage engines except `InnoDB` and `MyISAM`. There are some exceptions to this behavior for `InnoDB` tables, as discussed in Section 17.6.1.6, “AUTO_INCREMENT Handling in InnoDB”.
 
-For `MyISAM` tables, you can specify an `AUTO_INCREMENT` secondary column in a multiple-column key. In this case, reuse of values deleted from the top of the sequence occurs even for `MyISAM` tables. See Section 5.6.9, “Using AUTO\_INCREMENT”.
+For `MyISAM` tables, you can specify an `AUTO_INCREMENT` secondary column in a multiple-column key. In this case, reuse of values deleted from the top of the sequence occurs even for `MyISAM` tables. See Section 5.6.9, “Using AUTO_INCREMENT”.
 
 #### Modifiers
 
@@ -724,7 +724,7 @@ INSERT INTO tbl_name (a,b,c)
     VALUES ROW(1,2,3), ROW(4,5,6), ROW(7,8,9);
 ```
 
-The affected-rows value for an `INSERT` can be obtained using the `ROW_COUNT()` SQL function or the `mysql_affected_rows()` C API function. See Section 14.15, “Information Functions”, and mysql\_affected\_rows().
+The affected-rows value for an `INSERT` can be obtained using the `ROW_COUNT()` SQL function or the `mysql_affected_rows()` C API function. See Section 14.15, “Information Functions”, and mysql_affected_rows().
 
 If you use [`INSERT ... VALUES`](insert.html "15.2.7 INSERT Statement") or `INSERT ... VALUES ROW()` with multiple value lists, or [`INSERT ... SELECT`](insert-select.html "15.2.7.1 INSERT ... SELECT Statement") or `INSERT ... TABLE`, the statement returns an information string in this format:
 
@@ -732,7 +732,7 @@ If you use [`INSERT ... VALUES`](insert.html "15.2.7 INSERT Statement") or `INS
 Records: N1 Duplicates: N2 Warnings: N3
 ```
 
-If you are using the C API, the information string can be obtained by invoking the `mysql_info()` function. See mysql\_info().
+If you are using the C API, the information string can be obtained by invoking the `mysql_info()` function. See mysql_info().
 
 `Records` indicates the number of rows processed by the statement. (This is not necessarily the number of rows actually inserted because `Duplicates` can be nonzero.) `Duplicates` indicates the number of rows that could not be inserted because they would duplicate some existing unique index value. `Warnings` indicates the number of attempts to insert column values that were problematic in some way. Warnings can occur under any of the following conditions:
 
@@ -746,13 +746,13 @@ If you are using the C API, the information string can be obtained by invoking t
 
 * Inserting a value into a date or time column that is illegal for the data type. The column is set to the appropriate zero value for the type.
 
-* For `INSERT` examples involving `AUTO_INCREMENT` column values, see Section 5.6.9, “Using AUTO\_INCREMENT”.
+* For `INSERT` examples involving `AUTO_INCREMENT` column values, see Section 5.6.9, “Using AUTO_INCREMENT”.
 
   If `INSERT` inserts a row into a table that has an `AUTO_INCREMENT` column, you can find the value used for that column by using the `LAST_INSERT_ID()` SQL function or the `mysql_insert_id()` C API function.
 
   Note
 
-  These two functions do not always behave identically. The behavior of `INSERT` statements with respect to `AUTO_INCREMENT` columns is discussed further in Section 14.15, “Information Functions”, and mysql\_insert\_id().
+  These two functions do not always behave identically. The behavior of `INSERT` statements with respect to `AUTO_INCREMENT` columns is discussed further in Section 14.15, “Information Functions”, and mysql_insert_id().
 
 The `INSERT` statement supports the following modifiers:
 
@@ -1465,7 +1465,7 @@ The ""BIG"" boss    -> The ""BIG"" boss
 
 * For input, if the `FIELDS ESCAPED BY` character is not empty, occurrences of that character are stripped and the following character is taken literally as part of a field value. Some two-character sequences that are exceptions, where the first character is the escape character. These sequences are shown in the following table (using `\` for the escape character). The rules for `NULL` handling are described later in this section.
 
-  <table summary="Two-character sequences for which the first character (a \) is the escape character."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Character</th> <th>Escape Sequence</th> </tr></thead><tbody><tr> <td><code class="literal">\0</code><a class="indexterm" name="id257260"></a><a class="indexterm" name="id257262"></a></td> <td>An ASCII NUL (<code class="literal">X'00'</code>) character</td> </tr><tr> <td><code class="literal">\b</code><a class="indexterm" name="id257269"></a><a class="indexterm" name="id257271"></a></td> <td>A backspace character</td> </tr><tr> <td><code class="literal">\n</code><a class="indexterm" name="id257277"></a><a class="indexterm" name="id257279"></a><a class="indexterm" name="id257281"></a><a class="indexterm" name="id257283"></a></td> <td>A newline (linefeed) character</td> </tr><tr> <td><code class="literal">\r</code><a class="indexterm" name="id257289"></a><a class="indexterm" name="id257291"></a><a class="indexterm" name="id257293"></a></td> <td>A carriage return character</td> </tr><tr> <td><code class="literal">\t</code><a class="indexterm" name="id257299"></a><a class="indexterm" name="id257301"></a></td> <td>A tab character.</td> </tr><tr> <td><code class="literal">\Z</code><a class="indexterm" name="id257307"></a><a class="indexterm" name="id257309"></a></td> <td>ASCII 26 (Control+Z)</td> </tr><tr> <td><code class="literal">\N</code><a class="indexterm" name="id257315"></a></td> <td>NULL</td> </tr></tbody></table>
+  <table summary="Two-character sequences for which the first character (a \) is the escape character."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Character</th> <th>Escape Sequence</th> </tr></thead><tbody><tr> <td><code>\0</code></td> <td>An ASCII NUL (<code>X'00'</code>) character</td> </tr><tr> <td><code>\b</code></td> <td>A backspace character</td> </tr><tr> <td><code>\n</code></td> <td>A newline (linefeed) character</td> </tr><tr> <td><code>\r</code></td> <td>A carriage return character</td> </tr><tr> <td><code>\t</code></td> <td>A tab character.</td> </tr><tr> <td><code>\Z</code></td> <td>ASCII 26 (Control+Z)</td> </tr><tr> <td><code>\N</code></td> <td>NULL</td> </tr></tbody></table>
 
   For more information about `\`-escape syntax, see Section 11.1.1, “String Literals”.
 
@@ -1682,7 +1682,7 @@ Warnings occur under the same circumstances as when values are inserted using th
 
 You can use `SHOW WARNINGS` to get a list of the first `max_error_count` warnings as information about what went wrong. See Section 15.7.7.43, “SHOW WARNINGS Statement”.
 
-If you are using the C API, you can get information about the statement by calling the `mysql_info()` function. See mysql\_info().
+If you are using the C API, you can get information about the statement by calling the `mysql_info()` function. See mysql_info().
 
 #### Replication Considerations
 

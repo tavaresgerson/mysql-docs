@@ -24,7 +24,7 @@ You can trace only statements which are executed within the current session; you
 
 The following system variables affect optimizer tracing:
 
-* `optimizer_trace`: Enables or disables optimizer tracing. See Section 10.15.8, “The optimizer\_trace System Variable”.
+* `optimizer_trace`: Enables or disables optimizer tracing. See Section 10.15.8, “The optimizer_trace System Variable”.
 
 * `optimizer_trace_features`: Enables or disables selected features of the MySQL Optimizer, using the syntax shown here:
 
@@ -46,7 +46,7 @@ The following system variables affect optimizer tracing:
 
 * `optimizer_trace_offset`: Offset of the first trace shown. See Section 10.15.4, “Tuning Trace Purging”.
 
-* `end_markers_in_json`: If set to `1`, causes the trace to repeat the key (if present) near the closing bracket. This also affects the output of [`EXPLAIN FORMAT=JSON`](explain.html#explain-execution-plan "Obtaining Execution Plan Information") in those versions of MySQL which support this statement. See Section 10.15.9, “The end\_markers\_in\_json System Variable”.
+* `end_markers_in_json`: If set to `1`, causes the trace to repeat the key (if present) near the closing bracket. This also affects the output of [`EXPLAIN FORMAT=JSON`](explain.html#explain-execution-plan "Obtaining Execution Plan Information") in those versions of MySQL which support this statement. See Section 10.15.9, “The end_markers_in_json System Variable”.
 
 
 ### 10.15.3 Traceable Statements
@@ -124,7 +124,7 @@ Each stored trace is a string, which is extended (using `realloc()`) as optimiza
 
 ### 10.15.6 Privilege Checking
 
-In complex scenarios where the query uses SQL SECURITY DEFINER views or stored routines, it may be that a user is denied from seeing the trace of its query because it lacks some extra privileges on those objects. In that case, the trace will be shown as empty and the INSUFFICIENT\_PRIVILEGES column will show "1".
+In complex scenarios where the query uses SQL SECURITY DEFINER views or stored routines, it may be that a user is denied from seeing the trace of its query because it lacks some extra privileges on those objects. In that case, the trace will be shown as empty and the INSUFFICIENT_PRIVILEGES column will show "1".
 
 
 ### 10.15.7 Interaction with the --debug Option
@@ -132,16 +132,16 @@ In complex scenarios where the query uses SQL SECURITY DEFINER views or stored r
 Anything written to the trace is automatically written to the debug file.
 
 
-### 10.15.8 The optimizer\_trace System Variable
+### 10.15.8 The optimizer_trace System Variable
 
-The optimizer\_trace system variable has these on/off switches:
+The optimizer_trace system variable has these on/off switches:
 
 * `enabled`: Enables (`ON`) or disables (`OFF`) tracing
 
 * `one_line`: If set to `ON`, the trace contains no whitespace, thus conserving space. This renders the trace difficult to read for humans, still usable by JSON parsers, since they ignore whitespace.
 
 
-### 10.15.9 The end\_markers\_in\_json System Variable
+### 10.15.9 The end_markers_in_json System Variable
 
 When reading a very large JSON document, it can be difficult to pair its closing bracket and opening brackets; setting `end_markers_in_json=ON` repeats the structure's key, if it has one, near the closing bracket. This variable affects both optimizer traces and the output of `EXPLAIN FORMAT=JSON`.
 

@@ -35,7 +35,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
 
 * `--help`, `-h`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Display a help message and exit. For example:
 
@@ -77,7 +77,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
 
 * `--version`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for version"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--version</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for version"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--version</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Display version information and exit. For example:
 
@@ -87,7 +87,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--debug=options</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug=options</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Prints a debug log. For debug options, refer to Section 7.9.4, “The DBUG Package”.
 
@@ -99,7 +99,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
 
 * `--dump-file=`, `-d`
 
-  <table frame="box" rules="all" summary="Properties for dump-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--dump-file=file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for dump-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--dump-file=file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Dumps serialized dictionary information (SDI) into the specified dump file. If a dump file is not specified, the tablespace SDI is dumped to `stdout`.
 
@@ -109,7 +109,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
 
 * `--skip-data`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for skip-data"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--skip-data</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for skip-data"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--skip-data</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Skips retrieval of `data` field values from the serialized dictionary information (SDI) and only retrieves the `id` and `type` field values, which are primary keys for SDI records.
 
@@ -131,7 +131,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
 
 * `--id=#`, `-i #`
 
-  <table frame="box" rules="all" summary="Properties for id"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--id=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for id"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--id=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr></tbody></table>
 
   Retrieves serialized dictionary information (SDI) matching the specified table or tablespace object id. An object id is unique to the object type. Table and tablespace object IDs are also found in the `id` column of the `mysql.tables` and `mysql.tablespace` data dictionary tables. For information about data dictionary tables, see Section 16.1, “Data Dictionary Schema”.
 
@@ -169,7 +169,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
 
 * `--type=#`, `-t #`
 
-  <table frame="box" rules="all" summary="Properties for type"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--type=#</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">1</code></p><p class="valid-value"><code class="literal">2</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for type"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--type=#</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr></tbody></table>
 
   Retrieves serialized dictionary information (SDI) matching the specified object type. SDI is provided for table (type=1) and tablespace (type=2) objects.
 
@@ -239,7 +239,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
 
 * `--strict-check`, `-c`
 
-  <table frame="box" rules="all" summary="Properties for strict-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--strict-check=algorithm</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">crc32</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">crc32</code></p><p class="valid-value"><code class="literal">innodb</code></p><p class="valid-value"><code class="literal">none</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for strict-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--strict-check=algorithm</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>crc32</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>crc32</code></p><p class="valid-value"><code>innodb</code></p><p class="valid-value"><code>none</code></p></td> </tr></tbody></table>
 
   Specifies a strict checksum algorithm for validating the checksum of pages that are read. Options include `innodb`, `crc32`, and `none`.
 
@@ -259,7 +259,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
 
 * `--no-check`, `-n`
 
-  <table frame="box" rules="all" summary="Properties for no-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--no-check</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for no-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-check</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Skips checksum validation for pages that are read.
 
@@ -269,7 +269,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
 
 * `--pretty`, `-p`
 
-  <table frame="box" rules="all" summary="Properties for pretty"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--pretty</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for pretty"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--pretty</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Outputs SDI data in JSON pretty print format. Enabled by default. If disabled, SDI is not human readable but is smaller in size. Use `--skip-pretty` to disable.
 
@@ -298,7 +298,7 @@ innochecksum [options] file_name
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Displays command line help. Example usage:
 
@@ -308,7 +308,7 @@ innochecksum [options] file_name
 
 * `--info`, `-I`
 
-  <table frame="box" rules="all" summary="Properties for info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Synonym for `--help`. Displays command line help. Example usage:
 
@@ -318,7 +318,7 @@ innochecksum [options] file_name
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for version"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--version</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for version"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--version</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Displays version information. Example usage:
 
@@ -328,7 +328,7 @@ innochecksum [options] file_name
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--verbose</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--verbose</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Verbose mode; prints a progress indicator to the log file every five seconds. In order for the progress indicator to be printed, the log file must be specified using the `--log option`. To turn on `verbose` mode, run:
 
@@ -373,7 +373,7 @@ innochecksum [options] file_name
 
 * `--count`, `-c`
 
-  <table frame="box" rules="all" summary="Properties for count"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--count</code></td> </tr><tr><th>Type</th> <td>Base name</td> </tr><tr><th>Default Value</th> <td><code class="literal">true</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for count"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--count</code></td> </tr><tr><th>Type</th> <td>Base name</td> </tr><tr><th>Default Value</th> <td><code>true</code></td> </tr></tbody></table>
 
   Print a count of the number of pages in the file and exit. Example usage:
 
@@ -383,7 +383,7 @@ innochecksum [options] file_name
 
 * `--start-page=num`, `-s num`
 
-  <table frame="box" rules="all" summary="Properties for start-page"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--start-page=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for start-page"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--start-page=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr></tbody></table>
 
   Start at this page number. Example usage:
 
@@ -399,7 +399,7 @@ innochecksum [options] file_name
 
 * `--end-page=num`, `-e num`
 
-  <table frame="box" rules="all" summary="Properties for end-page"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--end-page=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">18446744073709551615</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for end-page"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--end-page=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709551615</code></td> </tr></tbody></table>
 
   End at this page number. Example usage:
 
@@ -415,7 +415,7 @@ innochecksum [options] file_name
 
 * `--page=num`, `-p num`
 
-  <table frame="box" rules="all" summary="Properties for page"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--page=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for page"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--page=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr></tbody></table>
 
   Check only this page number. Example usage:
 
@@ -425,7 +425,7 @@ innochecksum [options] file_name
 
 * `--strict-check`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for strict-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--strict-check=algorithm</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">crc32</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">innodb</code></p><p class="valid-value"><code class="literal">crc32</code></p><p class="valid-value"><code class="literal">none</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for strict-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--strict-check=algorithm</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>crc32</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>innodb</code></p><p class="valid-value"><code>crc32</code></p><p class="valid-value"><code>none</code></p></td> </tr></tbody></table>
 
   Specify a strict checksum algorithm. Options include `innodb`, `crc32`, and `none`.
 
@@ -453,7 +453,7 @@ innochecksum [options] file_name
 
 * `--no-check`, `-n`
 
-  <table frame="box" rules="all" summary="Properties for no-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--no-check</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for no-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-check</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>
 
   Ignore the checksum verification when rewriting a checksum. This option may only be used with the **innochecksum** `--write` option. If the `--write` option is not specified, **innochecksum** terminates.
 
@@ -465,7 +465,7 @@ innochecksum [options] file_name
 
 * `--allow-mismatches`, `-a`
 
-  <table frame="box" rules="all" summary="Properties for info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>0
 
   The maximum number of checksum mismatches allowed before **innochecksum** terminates. The default setting is 0. If `--allow-mismatches=`*`N`*, where `N>=0`, *`N`* mismatches are permitted and **innochecksum** terminates at `N+1`. When `--allow-mismatches` is set to 0, **innochecksum** terminates on the first checksum mismatch.
 
@@ -479,7 +479,7 @@ innochecksum [options] file_name
 
 * `--write=name`, `-w num`
 
-  <table frame="box" rules="all" summary="Properties for info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>1
 
   Rewrite a checksum. When rewriting an invalid checksum, the `--no-check` option must be used together with the `--write` option. The `--no-check` option tells **innochecksum** to ignore verification of the invalid checksum. You do not have to specify the `--no-check` option if the current checksum is valid.
 
@@ -509,7 +509,7 @@ innochecksum [options] file_name
 
 * `--page-type-summary`, `-S`
 
-  <table frame="box" rules="all" summary="Properties for info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>2
 
   Display a count of each page type in a tablespace. Example usage:
 
@@ -545,7 +545,7 @@ innochecksum [options] file_name
 
 * `--page-type-dump`, `-D`
 
-  <table frame="box" rules="all" summary="Properties for info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>3
 
   Dump the page type information for each page in a tablespace to `stderr` or `stdout`. Example usage:
 
@@ -555,7 +555,7 @@ innochecksum [options] file_name
 
 * `--log`, `-l`
 
-  <table frame="box" rules="all" summary="Properties for info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">false</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--info</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>false</code></td> </tr></tbody></table>4
 
   Log output for the **innochecksum** tool. A log file name must be provided. Log output contains checksum values for each tablespace page. For uncompressed tables, LSN values are also provided. Example usage:
 
@@ -642,19 +642,19 @@ innochecksum.exe ibdata3
 ```
 
 
-### 6.6.3 myisam\_ftdump — Display Full-Text Index information
+### 6.6.3 myisam_ftdump — Display Full-Text Index information
 
-**myisam\_ftdump** displays information about `FULLTEXT` indexes in `MyISAM` tables. It reads the `MyISAM` index file directly, so it must be run on the server host where the table is located. Before using **myisam\_ftdump**, be sure to issue a `FLUSH TABLES` statement first if the server is running.
+**myisam_ftdump** displays information about `FULLTEXT` indexes in `MyISAM` tables. It reads the `MyISAM` index file directly, so it must be run on the server host where the table is located. Before using **myisam_ftdump**, be sure to issue a `FLUSH TABLES` statement first if the server is running.
 
-**myisam\_ftdump** scans and dumps the entire index, which is not particularly fast. On the other hand, the distribution of words changes infrequently, so it need not be run often.
+**myisam_ftdump** scans and dumps the entire index, which is not particularly fast. On the other hand, the distribution of words changes infrequently, so it need not be run often.
 
-Invoke **myisam\_ftdump** like this:
+Invoke **myisam_ftdump** like this:
 
 ```
 myisam_ftdump [options] tbl_name index_num
 ```
 
-The *`tbl_name`* argument should be the name of a `MyISAM` table. You can also specify a table by naming its index file (the file with the `.MYI` suffix). If you do not invoke **myisam\_ftdump** in the directory where the table files are located, the table or index file name must be preceded by the path name to the table's database directory. Index numbers begin with 0.
+The *`tbl_name`* argument should be the name of a `MyISAM` table. You can also specify a table by naming its index file (the file with the `.MYI` suffix). If you do not invoke **myisam_ftdump** in the directory where the table files are located, the table or index file name must be preceded by the path name to the table's database directory. Index numbers begin with 0.
 
 Example: Suppose that the `test` database contains a table named `mytexttable` that has the following definition:
 
@@ -668,19 +668,19 @@ CREATE TABLE mytexttable
 ) ENGINE=MyISAM;
 ```
 
-The index on `id` is index 0 and the `FULLTEXT` index on `txt` is index 1. If your working directory is the `test` database directory, invoke **myisam\_ftdump** as follows:
+The index on `id` is index 0 and the `FULLTEXT` index on `txt` is index 1. If your working directory is the `test` database directory, invoke **myisam_ftdump** as follows:
 
 ```
 myisam_ftdump mytexttable 1
 ```
 
-If the path name to the `test` database directory is `/usr/local/mysql/data/test`, you can also specify the table name argument using that path name. This is useful if you do not invoke **myisam\_ftdump** in the database directory:
+If the path name to the `test` database directory is `/usr/local/mysql/data/test`, you can also specify the table name argument using that path name. This is useful if you do not invoke **myisam_ftdump** in the database directory:
 
 ```
 myisam_ftdump /usr/local/mysql/data/test/mytexttable 1
 ```
 
-You can use **myisam\_ftdump** to generate a list of index entries in order of frequency of occurrence like this on Unix-like systems:
+You can use **myisam_ftdump** to generate a list of index entries in order of frequency of occurrence like this on Unix-like systems:
 
 ```
 myisam_ftdump -c mytexttable 1 | sort -r
@@ -692,41 +692,41 @@ On Windows, use:
 myisam_ftdump -c mytexttable 1 | sort /R
 ```
 
-**myisam\_ftdump** supports the following options:
+**myisam_ftdump** supports the following options:
 
 * `--help`, `-h` `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
 * `--count`, `-c`
 
-  <table frame="box" rules="all" summary="Properties for count"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--count</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for count"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--count</code></td> </tr></tbody></table>
 
   Calculate per-word statistics (counts and global weights).
 
 * `--dump`, `-d`
 
-  <table frame="box" rules="all" summary="Properties for dump"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--dump</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for dump"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--dump</code></td> </tr></tbody></table>
 
   Dump the index, including data offsets and word weights.
 
 * `--length`, `-l`
 
-  <table frame="box" rules="all" summary="Properties for length"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--length</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for length"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--length</code></td> </tr></tbody></table>
 
   Report the length distribution.
 
 * `--stats`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for stats"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--stats</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for stats"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--stats</code></td> </tr></tbody></table>
 
   Report global index statistics. This is the default operation if no other operation is specified.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--verbose</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--verbose</code></td> </tr></tbody></table>
 
   Verbose mode. Print more output about what the program does.
 
@@ -812,7 +812,7 @@ However, the easiest way to avoid this problem is to use `CHECK TABLE` instead o
 
 **Table 6.18 myisamchk Options**
 
-<table frame="box" rules="all" summary="Command-line options available for myisamchk."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="myisamchk-other-options.html#option_myisamchk_analyze">--analyze</a></td> <td>Analyze the distribution of key values</td> </tr><tr><td><a class="link" href="myisamchk-repair-options.html#option_myisamchk_backup">--backup</a></td> <td>Make a backup of the .MYD file as file_name-time.BAK</td> </tr><tr><td><a class="link" href="myisamchk-other-options.html#option_myisamchk_block-search">--block-search</a></td> <td>Find the record that a block at the given offset belongs to</td> </tr><tr><td><a class="link" href="myisamchk-repair-options.html#option_myisamchk_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets can be found</td> </tr><tr><td><a class="link" href="myisamchk-check-options.html#option_myisamchk_check">--check</a></td> <td>Check the table for errors</td> </tr><tr><td><a class="link" href="myisamchk-check-options.html#option_myisamchk_check-only-changed">--check-only-changed</a></td> <td>Check only tables that have changed since the last check</td> </tr><tr><td><a class="link" href="myisamchk-repair-options.html#option_myisamchk_correct-checksum">--correct-checksum</a></td> <td>Correct the checksum information for the table</td> </tr><tr><td><a class="link" href="myisamchk-repair-options.html#option_myisamchk_data-file-length">--data-file-length</a></td> <td>Maximum length of the data file (when re-creating data file when it is full)</td> </tr><tr><td><a class="link" href="myisamchk-general-options.html#option_myisamchk_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td>--decode_bits</td> <td>Decode_bits</td> </tr><tr><td><a class="link" href="myisamchk-general-options.html#option_myisamchk_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="myisamchk-general-options.html#option_myisamchk_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="myisamchk-general-options.html#option_myisamchk_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="myisamchk-other-options.html#option_myisamchk_description">--description</a></td> <td>Print some descriptive information about the table</td> </tr><tr><td><a class="link" href="myisamchk-check-options.html#option_myisamchk_extend-check">--extend-check</a></td> <td>Do very thorough table check or repair that tries to recover every possible row from the data file</td> </tr><tr><td><a class="link" href="myisamchk-check-options.html#option_myisamchk_fast">--fast</a></td> <td>Check only tables that haven't been closed properly</td> </tr><tr><td><a class="link" href="myisamchk-check-options.html#option_myisamchk_force">--force</a></td> <td>Do a repair operation automatically if myisamchk finds any errors in the table</td> </tr><tr><td>--force</td> <td>Overwrite old temporary files. For use with the -r or -o option</td> </tr><tr><td>--ft_max_word_len</td> <td>Maximum word length for FULLTEXT indexes</td> </tr><tr><td>--ft_min_word_len</td> <td>Minimum word length for FULLTEXT indexes</td> </tr><tr><td>--ft_stopword_file</td> <td>Use stopwords from this file instead of built-in list</td> </tr><tr><td><a class="link" href="myisamchk-general-options.html#option_myisamchk_HELP">--HELP</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="myisamchk-general-options.html#option_myisamchk_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="myisamchk-check-options.html#option_myisamchk_information">--information</a></td> <td>Print informational statistics about the table that is checked</td> </tr><tr><td>--key_buffer_size</td> <td>Size of buffer used for index blocks for MyISAM tables</td> </tr><tr><td><a class="link" href="myisamchk-repair-options.html#option_myisamchk_keys-used">--keys-used</a></td> <td>A bit-value that indicates which indexes to update</td> </tr><tr><td><a class="link" href="myisamchk-repair-options.html#option_myisamchk_max-record-length">--max-record-length</a></td> <td>Skip rows larger than the given length if myisamchk cannot allocate memory to hold them</td> </tr><tr><td><a class="link" href="myisamchk-check-options.html#option_myisamchk_medium-check">--medium-check</a></td> <td>Do a check that is faster than an --extend-check operation</td> </tr><tr><td>--myisam_block_size</td> <td>Block size to be used for MyISAM index pages</td> </tr><tr><td>--myisam_sort_buffer_size</td> <td>The buffer that is allocated when sorting the index when doing a REPAIR or when creating indexes with CREATE INDEX or ALTER TABLE</td> </tr><tr><td><a class="link" href="myisamchk-general-options.html#option_myisamchk_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td>--parallel-recover</td> <td>Uses the same technique as -r and -n, but creates all the keys in parallel, using different threads (beta)</td> </tr><tr><td><a class="link" href="myisamchk-general-options.html#option_myisamchk_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="myisamchk-repair-options.html#option_myisamchk_quick">--quick</a></td> <td>Achieve a faster repair by not modifying the data file</td> </tr><tr><td>--read_buffer_size</td> <td>Each thread that does a sequential scan allocates a buffer of this size for each table it scans</td> </tr><tr><td><a class="link" href="myisamchk-check-options.html#option_myisamchk_read-only">--read-only</a></td> <td>Do not mark the table as checked</td> </tr><tr><td><a class="link" href="myisamchk-repair-options.html#option_myisamchk_recover">--recover</a></td> <td>Do a repair that can fix almost any problem except unique keys that aren't unique</td> </tr><tr><td><a class="link" href="myisamchk-repair-options.html#option_myisamchk_safe-recover">--safe-recover</a></td> <td>Do a repair using an old recovery method that reads through all rows in order and updates all index trees based on the rows found</td> </tr><tr><td><a class="link" href="myisamchk-other-options.html#option_myisamchk_set-auto-increment">--set-auto-increment</a></td> <td>Force AUTO_INCREMENT numbering for new records to start at the given value</td> </tr><tr><td><a class="link" href="myisamchk-repair-options.html#option_myisamchk_set-collation">--set-collation</a></td> <td>Specify the collation to use for sorting table indexes</td> </tr><tr><td><a class="link" href="myisamchk-general-options.html#option_myisamchk_silent">--silent</a></td> <td>Silent mode</td> </tr><tr><td>--sort_buffer_size</td> <td>The buffer that is allocated when sorting the index when doing a REPAIR or when creating indexes with CREATE INDEX or ALTER TABLE</td> </tr><tr><td><a class="link" href="myisamchk-other-options.html#option_myisamchk_sort-index">--sort-index</a></td> <td>Sort the index tree blocks in high-low order</td> </tr><tr><td>--sort_key_blocks</td> <td>sort_key_blocks</td> </tr><tr><td><a class="link" href="myisamchk-other-options.html#option_myisamchk_sort-records">--sort-records</a></td> <td>Sort records according to a particular index</td> </tr><tr><td><a class="link" href="myisamchk-repair-options.html#option_myisamchk_sort-recover">--sort-recover</a></td> <td>Force myisamchk to use sorting to resolve the keys even if the temporary files would be very large</td> </tr><tr><td>--stats_method</td> <td>Specifies how MyISAM index statistics collection code should treat NULLs</td> </tr><tr><td><a class="link" href="myisamchk-repair-options.html#option_myisamchk_tmpdir">--tmpdir</a></td> <td>Directory to be used for storing temporary files</td> </tr><tr><td><a class="link" href="myisamchk-repair-options.html#option_myisamchk_unpack">--unpack</a></td> <td>Unpack a table that was packed with myisampack</td> </tr><tr><td><a class="link" href="myisamchk-check-options.html#option_myisamchk_update-state">--update-state</a></td> <td>Store information in the .MYI file to indicate when the table was checked and whether the table crashed</td> </tr><tr><td><a class="link" href="myisamchk-general-options.html#option_myisamchk_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="myisamchk-general-options.html#option_myisamchk_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="myisamchk-general-options.html#option_myisamchk_wait">--wait</a></td> <td>Wait for locked table to be unlocked, instead of terminating</td> </tr><tr><td>--write_buffer_size</td> <td>Write buffer size</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for myisamchk."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--analyze</td> <td>Analyze the distribution of key values</td> </tr><tr><td>--backup</td> <td>Make a backup of the .MYD file as file_name-time.BAK</td> </tr><tr><td>--block-search</td> <td>Find the record that a block at the given offset belongs to</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets can be found</td> </tr><tr><td>--check</td> <td>Check the table for errors</td> </tr><tr><td>--check-only-changed</td> <td>Check only tables that have changed since the last check</td> </tr><tr><td>--correct-checksum</td> <td>Correct the checksum information for the table</td> </tr><tr><td>--data-file-length</td> <td>Maximum length of the data file (when re-creating data file when it is full)</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--decode_bits</td> <td>Decode_bits</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--description</td> <td>Print some descriptive information about the table</td> </tr><tr><td>--extend-check</td> <td>Do very thorough table check or repair that tries to recover every possible row from the data file</td> </tr><tr><td>--fast</td> <td>Check only tables that haven't been closed properly</td> </tr><tr><td>--force</td> <td>Do a repair operation automatically if myisamchk finds any errors in the table</td> </tr><tr><td>--force</td> <td>Overwrite old temporary files. For use with the -r or -o option</td> </tr><tr><td>--ft_max_word_len</td> <td>Maximum word length for FULLTEXT indexes</td> </tr><tr><td>--ft_min_word_len</td> <td>Minimum word length for FULLTEXT indexes</td> </tr><tr><td>--ft_stopword_file</td> <td>Use stopwords from this file instead of built-in list</td> </tr><tr><td>--HELP</td> <td>Display help message and exit</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--information</td> <td>Print informational statistics about the table that is checked</td> </tr><tr><td>--key_buffer_size</td> <td>Size of buffer used for index blocks for MyISAM tables</td> </tr><tr><td>--keys-used</td> <td>A bit-value that indicates which indexes to update</td> </tr><tr><td>--max-record-length</td> <td>Skip rows larger than the given length if myisamchk cannot allocate memory to hold them</td> </tr><tr><td>--medium-check</td> <td>Do a check that is faster than an --extend-check operation</td> </tr><tr><td>--myisam_block_size</td> <td>Block size to be used for MyISAM index pages</td> </tr><tr><td>--myisam_sort_buffer_size</td> <td>The buffer that is allocated when sorting the index when doing a REPAIR or when creating indexes with CREATE INDEX or ALTER TABLE</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--parallel-recover</td> <td>Uses the same technique as -r and -n, but creates all the keys in parallel, using different threads (beta)</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--quick</td> <td>Achieve a faster repair by not modifying the data file</td> </tr><tr><td>--read_buffer_size</td> <td>Each thread that does a sequential scan allocates a buffer of this size for each table it scans</td> </tr><tr><td>--read-only</td> <td>Do not mark the table as checked</td> </tr><tr><td>--recover</td> <td>Do a repair that can fix almost any problem except unique keys that aren't unique</td> </tr><tr><td>--safe-recover</td> <td>Do a repair using an old recovery method that reads through all rows in order and updates all index trees based on the rows found</td> </tr><tr><td>--set-auto-increment</td> <td>Force AUTO_INCREMENT numbering for new records to start at the given value</td> </tr><tr><td>--set-collation</td> <td>Specify the collation to use for sorting table indexes</td> </tr><tr><td>--silent</td> <td>Silent mode</td> </tr><tr><td>--sort_buffer_size</td> <td>The buffer that is allocated when sorting the index when doing a REPAIR or when creating indexes with CREATE INDEX or ALTER TABLE</td> </tr><tr><td>--sort-index</td> <td>Sort the index tree blocks in high-low order</td> </tr><tr><td>--sort_key_blocks</td> <td>sort_key_blocks</td> </tr><tr><td>--sort-records</td> <td>Sort records according to a particular index</td> </tr><tr><td>--sort-recover</td> <td>Force myisamchk to use sorting to resolve the keys even if the temporary files would be very large</td> </tr><tr><td>--stats_method</td> <td>Specifies how MyISAM index statistics collection code should treat NULLs</td> </tr><tr><td>--tmpdir</td> <td>Directory to be used for storing temporary files</td> </tr><tr><td>--unpack</td> <td>Unpack a table that was packed with myisampack</td> </tr><tr><td>--update-state</td> <td>Store information in the .MYI file to indicate when the table was checked and whether the table crashed</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--wait</td> <td>Wait for locked table to be unlocked, instead of terminating</td> </tr><tr><td>--write_buffer_size</td> <td>Write buffer size</td> </tr></tbody></table>
 
 
 #### 6.6.4.1 myisamchk General Options
@@ -821,19 +821,19 @@ The options described in this section can be used for any type of table maintena
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a help message and exit. Options are grouped by type of operation.
 
 * `--HELP`, `-H`
 
-  <table frame="box" rules="all" summary="Properties for HELP"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--HELP</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for HELP"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--HELP</code></td> </tr></tbody></table>
 
   Display a help message and exit. Options are presented in a single list.
 
 * `--debug=debug_options`, `-# debug_options`
 
-  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--debug[=debug_options]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">d:t:o,/tmp/myisamchk.trace</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug[=debug_options]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>d:t:o,/tmp/myisamchk.trace</code></td> </tr></tbody></table>
 
   Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o,/tmp/myisamchk.trace`.
 
@@ -841,7 +841,7 @@ The options described in this section can be used for any type of table maintena
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--defaults-extra-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
   Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -849,7 +849,7 @@ The options described in this section can be used for any type of table maintena
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--defaults-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
   Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -857,7 +857,7 @@ The options described in this section can be used for any type of table maintena
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--defaults-group-suffix=str</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=str</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **myisamchk** normally reads the `[myisamchk]` group. If this option is given as `--defaults-group-suffix=_other`, **myisamchk** also reads the `[myisamchk_other]` group.
 
@@ -865,17 +865,17 @@ The options described in this section can be used for any type of table maintena
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for no-defaults"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--no-defaults</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for no-defaults"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--no-defaults</code></td> </tr></tbody></table>
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
-  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for print-defaults"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--print-defaults</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for print-defaults"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--print-defaults</code></td> </tr></tbody></table>
 
   Print the program name and all options that it gets from option files.
 
@@ -883,31 +883,31 @@ The options described in this section can be used for any type of table maintena
 
 * `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for silent"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--silent</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for silent"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--silent</code></td> </tr></tbody></table>
 
   Silent mode. Write output only when errors occur. You can use `-s` twice (`-ss`) to make **myisamchk** very silent.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--verbose</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--verbose</code></td> </tr></tbody></table>
 
   Verbose mode. Print more information about what the program does. This can be used with `-d` and `-e`. Use `-v` multiple times (`-vv`, `-vvv`) for even more output.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for HELP"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--HELP</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for HELP"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--HELP</code></td> </tr></tbody></table>0
 
   Display version information and exit.
 
 * `--wait`, `-w`
 
-  <table frame="box" rules="all" summary="Properties for HELP"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--HELP</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for HELP"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--HELP</code></td> </tr></tbody></table>1
 
   Instead of terminating with an error if the table is locked, wait until the table is unlocked before continuing. If you are running **mysqld** with external locking disabled, the table can be locked only by another **myisamchk** command.
 
 You can also set the following variables by using `--var_name=value` syntax:
 
-<table frame="box" rules="all" summary="Properties for HELP"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--HELP</code></td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Properties for HELP"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--HELP</code></td> </tr></tbody></table>2
 
 The possible **myisamchk** variables and their default values can be examined with [**myisamchk --help**](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility"):
 
@@ -955,19 +955,19 @@ An alternative to using **myisamchk** is to use the `REPAIR TABLE`, `ANALYZE TAB
 
 * `--check`, `-c`
 
-  <table frame="box" rules="all" summary="Properties for check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--check</code></td> </tr></tbody></table>
 
   Check the table for errors. This is the default operation if you specify no option that selects an operation type explicitly.
 
 * `--check-only-changed`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for check-only-changed"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-only-changed</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for check-only-changed"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--check-only-changed</code></td> </tr></tbody></table>
 
   Check only tables that have changed since the last check.
 
 * `--extend-check`, `-e`
 
-  <table frame="box" rules="all" summary="Properties for extend-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--extend-check</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for extend-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--extend-check</code></td> </tr></tbody></table>
 
   Check the table very thoroughly. This is quite slow if the table has many indexes. This option should only be used in extreme cases. Normally, **myisamchk** or **myisamchk --medium-check** should be able to determine whether there are any errors in the table.
 
@@ -979,37 +979,37 @@ An alternative to using **myisamchk** is to use the `REPAIR TABLE`, `ANALYZE TAB
 
 * `--fast`, `-F`
 
-  <table frame="box" rules="all" summary="Properties for fast"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--fast</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for fast"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--fast</code></td> </tr></tbody></table>
 
   Check only tables that haven't been closed properly.
 
 * `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Properties for force"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--force</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for force"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--force</code></td> </tr></tbody></table>
 
   Do a repair operation automatically if **myisamchk** finds any errors in the table. The repair type is the same as that specified with the `--recover` or `-r` option.
 
 * `--information`, `-i`
 
-  <table frame="box" rules="all" summary="Properties for information"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--information</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for information"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--information</code></td> </tr></tbody></table>
 
   Print informational statistics about the table that is checked.
 
 * `--medium-check`, `-m`
 
-  <table frame="box" rules="all" summary="Properties for medium-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--medium-check</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for medium-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--medium-check</code></td> </tr></tbody></table>
 
   Do a check that is faster than an `--extend-check` operation. This finds only 99.99% of all errors, which should be good enough in most cases.
 
 * `--read-only`, `-T`
 
-  <table frame="box" rules="all" summary="Properties for read-only"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--read-only</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for read-only"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--read-only</code></td> </tr></tbody></table>
 
   Do not mark the table as checked. This is useful if you use **myisamchk** to check a table that is in use by some other application that does not use locking, such as **mysqld** when run with external locking disabled.
 
 * `--update-state`, `-U`
 
-  <table frame="box" rules="all" summary="Properties for update-state"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--update-state</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for update-state"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--update-state</code></td> </tr></tbody></table>
 
   Store information in the `.MYI` file to indicate when the table was checked and whether the table crashed. This should be used to get full benefit of the `--check-only-changed` option, but you shouldn't use this option if the **mysqld** server is using the table and you are running it with external locking disabled.
 
@@ -1020,31 +1020,31 @@ An alternative to using **myisamchk** is to use the `REPAIR TABLE`, `ANALYZE TAB
 
 * `--backup`, `-B`
 
-  <table frame="box" rules="all" summary="Properties for backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup</code></td> </tr></tbody></table>
 
   Make a backup of the `.MYD` file as `file_name-time.BAK`
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   The directory where character sets are installed. See Section 12.15, “Character Set Configuration”.
 
 * `--correct-checksum`
 
-  <table frame="box" rules="all" summary="Properties for correct-checksum"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--correct-checksum</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for correct-checksum"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--correct-checksum</code></td> </tr></tbody></table>
 
   Correct the checksum information for the table.
 
 * `--data-file-length=len`, `-D len`
 
-  <table frame="box" rules="all" summary="Properties for data-file-length"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--data-file-length=len</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for data-file-length"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--data-file-length=len</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
 
   The maximum length of the data file (when re-creating data file when it is “full”).
 
 * `--extend-check`, `-e`
 
-  <table frame="box" rules="all" summary="Properties for extend-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--extend-check</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for extend-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--extend-check</code></td> </tr></tbody></table>
 
   Do a repair that tries to recover every possible row from the data file. Normally, this also finds a lot of garbage rows. Do not use this option unless you are desperate.
 
@@ -1054,31 +1054,31 @@ An alternative to using **myisamchk** is to use the `REPAIR TABLE`, `ANALYZE TAB
 
 * `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Properties for force"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--force</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for force"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--force</code></td> </tr></tbody></table>
 
   Overwrite old intermediate files (files with names like `tbl_name.TMD`) instead of aborting.
 
 * `--keys-used=val`, `-k val`
 
-  <table frame="box" rules="all" summary="Properties for keys-used"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--keys-used=val</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for keys-used"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--keys-used=val</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
 
   For **myisamchk**, the option value is a bit value that indicates which indexes to update. Each binary bit of the option value corresponds to a table index, where the first index is bit 0. An option value of 0 disables updates to all indexes, which can be used to get faster inserts. Deactivated indexes can be reactivated by using **myisamchk -r**.
 
 * `--max-record-length=len`
 
-  <table frame="box" rules="all" summary="Properties for max-record-length"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--max-record-length=len</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for max-record-length"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--max-record-length=len</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
 
   Skip rows larger than the given length if **myisamchk** cannot allocate memory to hold them.
 
 * `--quick`, `-q`
 
-  <table frame="box" rules="all" summary="Properties for quick"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--quick</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for quick"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--quick</code></td> </tr></tbody></table>
 
   Achieve a faster repair by modifying only the index file, not the data file. You can specify this option twice to force **myisamchk** to modify the original data file in case of duplicate keys.
 
 * `--recover`, `-r`
 
-  <table frame="box" rules="all" summary="Properties for recover"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--recover</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for recover"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--recover</code></td> </tr></tbody></table>
 
   Do a repair that can fix almost any problem except unique keys that are not unique (which is an extremely unlikely error with `MyISAM` tables). If you want to recover a table, this is the option to try first. You should try `--safe-recover` only if **myisamchk** reports that the table cannot be recovered using `--recover`. (In the unlikely case that `--recover` fails, the data file remains intact.)
 
@@ -1086,7 +1086,7 @@ An alternative to using **myisamchk** is to use the `REPAIR TABLE`, `ANALYZE TAB
 
 * `--safe-recover`, `-o`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>0
 
   Do a repair using an old recovery method that reads through all rows in order and updates all index trees based on the rows found. This is an order of magnitude slower than `--recover`, but can handle a couple of very unlikely cases that `--recover` cannot. This recovery method also uses much less disk space than `--recover`. Normally, you should repair first using `--recover`, and then with `--safe-recover` only if `--recover` fails.
 
@@ -1094,25 +1094,25 @@ An alternative to using **myisamchk** is to use the `REPAIR TABLE`, `ANALYZE TAB
 
 * `--set-collation=name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>1
 
   Specify the collation to use for sorting table indexes. The character set name is implied by the first part of the collation name.
 
 * `--sort-recover`, `-n`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>2
 
   Force **myisamchk** to use sorting to resolve the keys even if the temporary files would be very large.
 
 * `--tmpdir=dir_name`, `-t dir_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>3
 
   The path of the directory to be used for storing temporary files. If this is not set, **myisamchk** uses the value of the `TMPDIR` environment variable. `--tmpdir` can be set to a list of directory paths that are used successively in round-robin fashion for creating temporary files. The separator character between directory names is the colon (`:`) on Unix and the semicolon (`;`) on Windows.
 
 * `--unpack`, `-u`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>4
 
   Unpack a table that was packed with **myisampack**.
 
@@ -1123,19 +1123,19 @@ An alternative to using **myisamchk** is to use the `REPAIR TABLE`, `ANALYZE TAB
 
 * `--analyze`, `-a`
 
-  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--analyze</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for analyze"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--analyze</code></td> </tr></tbody></table>
 
   Analyze the distribution of key values. This improves join performance by enabling the join optimizer to better choose the order in which to join the tables and which indexes it should use. To obtain information about the key distribution, use a [**myisamchk --description --verbose *`tbl_name`***](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility") command or the `SHOW INDEX FROM tbl_name` statement.
 
 * `--block-search=offset`, `-b offset`
 
-  <table frame="box" rules="all" summary="Properties for block-search"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--block-search=offset</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for block-search"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--block-search=offset</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
 
   Find the record that a block at the given offset belongs to.
 
 * `--description`, `-d`
 
-  <table frame="box" rules="all" summary="Properties for description"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--description</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for description"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--description</code></td> </tr></tbody></table>
 
   Print some descriptive information about the table. Specifying the `--verbose` option once or twice produces additional information. See Section 6.6.4.5, “Obtaining Table Information with myisamchk”.
 
@@ -1145,13 +1145,13 @@ An alternative to using **myisamchk** is to use the `REPAIR TABLE`, `ANALYZE TAB
 
 * `--sort-index`, `-S`
 
-  <table frame="box" rules="all" summary="Properties for sort-index"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--sort-index</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for sort-index"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--sort-index</code></td> </tr></tbody></table>
 
   Sort the index tree blocks in high-low order. This optimizes seeks and makes table scans that use indexes faster.
 
 * `--sort-records=N`, `-R N`
 
-  <table frame="box" rules="all" summary="Properties for sort-records"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--sort-records=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for sort-records"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--sort-records=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
 
   Sort records according to a particular index. This makes your data much more localized and may speed up range-based `SELECT` and `ORDER BY` operations that use this index. (The first time you use this option to sort a table, it may be very slow.) To determine a table's index numbers, use `SHOW INDEX`, which displays a table's indexes in the same order that **myisamchk** sees them. Indexes are numbered beginning with 1.
 
@@ -1650,25 +1650,25 @@ After you compress a table with **myisampack**, use **myisamchk -rq** to rebuild
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
 * `--backup`, `-b`
 
-  <table frame="box" rules="all" summary="Properties for backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup</code></td> </tr></tbody></table>
 
   Make a backup of each table's data file using the name `tbl_name.OLD`.
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   The directory where character sets are installed. See Section 12.15, “Character Set Configuration”.
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--debug[=debug_options]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">d:t:o</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug[=debug_options]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>d:t:o</code></td> </tr></tbody></table>
 
   Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o`.
 
@@ -1676,13 +1676,13 @@ After you compress a table with **myisampack**, use **myisamchk -rq** to rebuild
 
 * `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Properties for force"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--force</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for force"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--force</code></td> </tr></tbody></table>
 
   Produce a packed table even if it becomes larger than the original or if the intermediate file from an earlier invocation of **myisampack** exists. (**myisampack** creates an intermediate file named `tbl_name.TMD` in the database directory while it compresses the table. If you kill **myisampack**, the `.TMD` file might not be deleted.) Normally, **myisampack** exits with an error if it finds that `tbl_name.TMD` exists. With `--force`, **myisampack** packs the table anyway.
 
 * `--join=big_tbl_name`, `-j big_tbl_name`
 
-  <table frame="box" rules="all" summary="Properties for join"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--join=big_tbl_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for join"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--join=big_tbl_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   Join all tables named on the command line into a single packed table *`big_tbl_name`*. All tables that are to be combined *must* have identical structure (same column names and types, same indexes, and so forth).
 
@@ -1690,37 +1690,37 @@ After you compress a table with **myisampack**, use **myisamchk -rq** to rebuild
 
 * `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for silent"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--silent</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for silent"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--silent</code></td> </tr></tbody></table>
 
   Silent mode. Write output only when errors occur.
 
 * `--test`, `-t`
 
-  <table frame="box" rules="all" summary="Properties for test"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--test</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for test"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--test</code></td> </tr></tbody></table>
 
   Do not actually pack the table, just test packing it.
 
 * `--tmpdir=dir_name`, `-T dir_name`
 
-  <table frame="box" rules="all" summary="Properties for tmpdir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--tmpdir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for tmpdir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--tmpdir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   Use the named directory as the location where **myisampack** creates temporary files.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--verbose</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--verbose</code></td> </tr></tbody></table>
 
   Verbose mode. Write information about the progress of the packing operation and its result.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup</code></td> </tr></tbody></table>0
 
   Display version information and exit.
 
 * `--wait`, `-w`
 
-  <table frame="box" rules="all" summary="Properties for backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--backup</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--backup</code></td> </tr></tbody></table>1
 
   Wait and retry if the table is in use. If the **mysqld** server was invoked with external locking disabled, it is not a good idea to invoke **myisampack** if the table might be updated by the server during the packing process.
 
@@ -2009,9 +2009,9 @@ After you have installed the packed table into the MySQL database directory, you
 To unpack a packed table, use the `--unpack` option to **myisamchk**.
 
 
-### 6.6.7 mysql\_config\_editor — MySQL Configuration Utility
+### 6.6.7 mysql_config_editor — MySQL Configuration Utility
 
-The **mysql\_config\_editor** utility enables you to store authentication credentials in an obfuscated login path file named `.mylogin.cnf`. The file location is the `%APPDATA%\MySQL` directory on Windows and the current user's home directory on non-Windows systems. The file can be read later by MySQL client programs to obtain authentication credentials for connecting to MySQL Server.
+The **mysql_config_editor** utility enables you to store authentication credentials in an obfuscated login path file named `.mylogin.cnf`. The file location is the `%APPDATA%\MySQL` directory on Windows and the current user's home directory on non-Windows systems. The file can be read later by MySQL client programs to obtain authentication credentials for connecting to MySQL Server.
 
 The unobfuscated format of the `.mylogin.cnf` login path file consists of option groups, similar to other option files. Each option group in `.mylogin.cnf` is called a “login path,” which is a group that permits only certain options: `host`, `user`, `password`, `port` and `socket`. Think of a login path option group as a set of options that specify which MySQL server to connect to and which account to authenticate as. Here is an unobfuscated example:
 
@@ -2028,11 +2028,11 @@ host = localhost
 
 When you invoke a client program to connect to the server, the client uses `.mylogin.cnf` in conjunction with other option files. Its precedence is higher than other option files, but less than options specified explicitly on the client command line. For information about the order in which option files are used, see Section 6.2.2.2, “Using Option Files”.
 
-To specify an alternate login path file name, set the `MYSQL_TEST_LOGIN_FILE` environment variable. This variable is recognized by **mysql\_config\_editor**, by standard MySQL clients (**mysql**, **mysqladmin**, and so forth), and by the **mysql-test-run.pl** testing utility.
+To specify an alternate login path file name, set the `MYSQL_TEST_LOGIN_FILE` environment variable. This variable is recognized by **mysql_config_editor**, by standard MySQL clients (**mysql**, **mysqladmin**, and so forth), and by the **mysql-test-run.pl** testing utility.
 
 Programs use groups in the login path file as follows:
 
-* **mysql\_config\_editor** operates on the `client` login path by default if you specify no `--login-path=name` option to indicate explicitly which login path to use.
+* **mysql_config_editor** operates on the `client` login path by default if you specify no `--login-path=name` option to indicate explicitly which login path to use.
 
 * Without a `--login-path` option, client programs read the same option groups from the login path file that they read from other option files. Consider this command:
 
@@ -2052,23 +2052,23 @@ Programs use groups in the login path file as follows:
 
 * Client programs read the login path file even when the `--no-defaults` option is used, unless `--no-login-paths` is set. This permits passwords to be specified in a safer way than on the command line even if `--no-defaults` is present.
 
-**mysql\_config\_editor** obfuscates the `.mylogin.cnf` file so it cannot be read as cleartext, and its contents when unobfuscated by client programs are used only in memory. In this way, passwords can be stored in a file in non-cleartext format and used later without ever needing to be exposed on the command line or in an environment variable. **mysql\_config\_editor** provides a `print` command for displaying the login path file contents, but even in this case, password values are masked so as never to appear in a way that other users can see them.
+**mysql_config_editor** obfuscates the `.mylogin.cnf` file so it cannot be read as cleartext, and its contents when unobfuscated by client programs are used only in memory. In this way, passwords can be stored in a file in non-cleartext format and used later without ever needing to be exposed on the command line or in an environment variable. **mysql_config_editor** provides a `print` command for displaying the login path file contents, but even in this case, password values are masked so as never to appear in a way that other users can see them.
 
-The obfuscation used by **mysql\_config\_editor** prevents passwords from appearing in `.mylogin.cnf` as cleartext and provides a measure of security by preventing inadvertent password exposure. For example, if you display a regular unobfuscated `my.cnf` option file on the screen, any passwords it contains are visible for anyone to see. With `.mylogin.cnf`, that is not true, but the obfuscation used is not likely to deter a determined attacker and you should not consider it unbreakable. A user who can gain system administration privileges on your machine to access your files could unobfuscate the `.mylogin.cnf` file with some effort.
+The obfuscation used by **mysql_config_editor** prevents passwords from appearing in `.mylogin.cnf` as cleartext and provides a measure of security by preventing inadvertent password exposure. For example, if you display a regular unobfuscated `my.cnf` option file on the screen, any passwords it contains are visible for anyone to see. With `.mylogin.cnf`, that is not true, but the obfuscation used is not likely to deter a determined attacker and you should not consider it unbreakable. A user who can gain system administration privileges on your machine to access your files could unobfuscate the `.mylogin.cnf` file with some effort.
 
-The login path file must be readable and writable to the current user, and inaccessible to other users. Otherwise, **mysql\_config\_editor** ignores it, and client programs do not use it, either.
+The login path file must be readable and writable to the current user, and inaccessible to other users. Otherwise, **mysql_config_editor** ignores it, and client programs do not use it, either.
 
-Invoke **mysql\_config\_editor** like this:
+Invoke **mysql_config_editor** like this:
 
 ```
 mysql_config_editor [program_options] command [command_options]
 ```
 
-If the login path file does not exist, **mysql\_config\_editor** creates it.
+If the login path file does not exist, **mysql_config_editor** creates it.
 
 Command arguments are given as follows:
 
-* *`program_options`* consists of general **mysql\_config\_editor** options.
+* *`program_options`* consists of general **mysql_config_editor** options.
 
 * `command` indicates what action to perform on the `.mylogin.cnf` login path file. For example, `set` writes a login path to the file, `remove` removes a login path, and `print` displays login path contents.
 
@@ -2081,7 +2081,7 @@ mysql_config_editor --help set
 mysql_config_editor set --help
 ```
 
-The first command line displays a general **mysql\_config\_editor** help message, and ignores the `set` command. The second command line displays a help message specific to the `set` command.
+The first command line displays a general **mysql_config_editor** help message, and ignores the `set` command. The second command line displays a help message specific to the `set` command.
 
 Suppose that you want to establish a `client` login path that defines your default connection parameters, and an additional login path named `remote` for connecting to the MySQL server the host `remote.example.com`. You want to log in as follows:
 
@@ -2100,9 +2100,9 @@ $> mysql_config_editor set --login-path=remote
 Enter password: enter password "remotepass" here
 ```
 
-**mysql\_config\_editor** uses the `client` login path by default, so the `--login-path=client` option can be omitted from the first command without changing its effect.
+**mysql_config_editor** uses the `client` login path by default, so the `--login-path=client` option can be omitted from the first command without changing its effect.
 
-To see what **mysql\_config\_editor** writes to the `.mylogin.cnf` file, use the `print` command:
+To see what **mysql_config_editor** writes to the `.mylogin.cnf` file, use the `print` command:
 
 ```
 $> mysql_config_editor print --all
@@ -2120,7 +2120,7 @@ The `print` command displays each login path as a set of lines beginning with a 
 
 If you do not specify `--all` to display all login paths or `--login-path=name` to display a named login path, the `print` command displays the `client` login path by default, if there is one.
 
-As shown by the preceding example, the login path file can contain multiple login paths. In this way, **mysql\_config\_editor** makes it easy to set up multiple “personalities” for connecting to different MySQL servers, or for connecting to a given server using different accounts. Any of these can be selected by name later using the `--login-path` option when you invoke a client program. For example, to connect to the remote server, use this command:
+As shown by the preceding example, the login path file can contain multiple login paths. In this way, **mysql_config_editor** makes it easy to set up multiple “personalities” for connecting to different MySQL servers, or for connecting to a given server using different accounts. Any of these can be selected by name later using the `--login-path` option when you invoke a client program. For example, to connect to the remote server, use this command:
 
 ```
 mysql --login-path=remote
@@ -2142,29 +2142,29 @@ mysql
 
 Options read from the login path file take precedence over options read from other option files. Options read from login path groups appearing later in the login path file take precedence over options read from groups appearing earlier in the file.
 
-**mysql\_config\_editor** adds login paths to the login path file in the order you create them, so you should create more general login paths first and more specific paths later. If you need to move a login path within the file, you can remove it, then recreate it to add it to the end. For example, a `client` login path is more general because it is read by all client programs, whereas a `mysqldump` login path is read only by **mysqldump**. Options specified later override options specified earlier, so putting the login paths in the order `client`, `mysqldump` enables **mysqldump**-specific options to override `client` options.
+**mysql_config_editor** adds login paths to the login path file in the order you create them, so you should create more general login paths first and more specific paths later. If you need to move a login path within the file, you can remove it, then recreate it to add it to the end. For example, a `client` login path is more general because it is read by all client programs, whereas a `mysqldump` login path is read only by **mysqldump**. Options specified later override options specified earlier, so putting the login paths in the order `client`, `mysqldump` enables **mysqldump**-specific options to override `client` options.
 
-When you use the `set` command with **mysql\_config\_editor** to create a login path, you need not specify all possible option values (host name, user name, password, port, socket). Only those values given are written to the path. Any missing values required later can be specified when you invoke a client path to connect to the MySQL server, either in other option files or on the command line. Any options specified on the command line override those specified in the login path file or other option files. For example, if the credentials in the `remote` login path also apply for the host `remote2.example.com`, connect to the server on that host like this:
+When you use the `set` command with **mysql_config_editor** to create a login path, you need not specify all possible option values (host name, user name, password, port, socket). Only those values given are written to the path. Any missing values required later can be specified when you invoke a client path to connect to the MySQL server, either in other option files or on the command line. Any options specified on the command line override those specified in the login path file or other option files. For example, if the credentials in the `remote` login path also apply for the host `remote2.example.com`, connect to the server on that host like this:
 
 ```
 mysql --login-path=remote --host=remote2.example.com
 ```
 
-#### mysql\_config\_editor General Options
+#### mysql_config_editor General Options
 
-**mysql\_config\_editor** supports the following general options, which may be used preceding any command named on the command line. For descriptions of command-specific options, see mysql\_config\_editor Commands and Command-Specific Options.
+**mysql_config_editor** supports the following general options, which may be used preceding any command named on the command line. For descriptions of command-specific options, see mysql_config_editor Commands and Command-Specific Options.
 
-**Table 6.19 mysql\_config\_editor General Options**
+**Table 6.19 mysql_config_editor General Options**
 
-<table frame="box" rules="all" summary="General Command-line options available for mysql_config_editor."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysql-config-editor.html#option_mysql_config_editor_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td><a class="link" href="mysql-config-editor.html#option_mysql_config_editor_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysql-config-editor.html#option_mysql_config_editor_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysql-config-editor.html#option_mysql_config_editor_version">--version</a></td> <td>Display version information and exit</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="General Command-line options available for mysql_config_editor."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr></tbody></table>
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a general help message and exit.
 
-  To see a command-specific help message, invoke **mysql\_config\_editor** as follows, where *`command`* is a command other than `help`:
+  To see a command-specific help message, invoke **mysql_config_editor** as follows, where *`command`* is a command other than `help`:
 
   ```
   mysql_config_editor command --help
@@ -2172,7 +2172,7 @@ mysql --login-path=remote --host=remote2.example.com
 
 * `--debug[=debug_options]`, `-# debug_options`
 
-  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--debug[=debug_options]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">d:t:o</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug[=debug_options]</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>d:t:o</code></td> </tr></tbody></table>
 
   Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o,/tmp/mysql_config_editor.trace`.
 
@@ -2180,29 +2180,29 @@ mysql --login-path=remote --host=remote2.example.com
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--verbose</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--verbose</code></td> </tr></tbody></table>
 
   Verbose mode. Print more information about what the program does. This option may be helpful in diagnosing problems if an operation does not have the effect you expect.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for version"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--version</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for version"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--version</code></td> </tr></tbody></table>
 
   Display version information and exit.
 
-#### mysql\_config\_editor Commands and Command-Specific Options
+#### mysql_config_editor Commands and Command-Specific Options
 
-This section describes the permitted **mysql\_config\_editor** commands, and, for each one, the command-specific options permitted following the command name on the command line.
+This section describes the permitted **mysql_config_editor** commands, and, for each one, the command-specific options permitted following the command name on the command line.
 
-In addition, **mysql\_config\_editor** supports general options that can be used preceding any command. For descriptions of these options, see mysql\_config\_editor General Options.
+In addition, **mysql_config_editor** supports general options that can be used preceding any command. For descriptions of these options, see mysql_config_editor General Options.
 
-**mysql\_config\_editor** supports these commands:
+**mysql_config_editor** supports these commands:
 
 * `help`
 
   Display a general help message and exit. This command takes no following options.
 
-  To see a command-specific help message, invoke **mysql\_config\_editor** as follows, where *`command`* is a command other than `help`:
+  To see a command-specific help message, invoke **mysql_config_editor** as follows, where *`command`* is a command other than `help`:
 
   ```
   mysql_config_editor command --help
@@ -2220,7 +2220,7 @@ In addition, **mysql\_config\_editor** supports general options that can be used
 
     Display a help message for the `print` command and exit.
 
-    To see a general help message, use **mysql\_config\_editor --help**.
+    To see a general help message, use **mysql_config_editor --help**.
 
   + `--all`
 
@@ -2252,7 +2252,7 @@ In addition, **mysql\_config\_editor** supports general options that can be used
 
     Display a help message for the `remove` command and exit.
 
-    To see a general help message, use **mysql\_config\_editor --help**.
+    To see a general help message, use **mysql_config_editor --help**.
 
   + `--host`, `-h`
 
@@ -2292,13 +2292,13 @@ In addition, **mysql\_config\_editor** supports general options that can be used
 
     Display a help message for the `reset` command and exit.
 
-    To see a general help message, use **mysql\_config\_editor --help**.
+    To see a general help message, use **mysql_config_editor --help**.
 
 * `set [options]`
 
   Write a login path to the login path file.
 
-  This command writes to the login path only such options as are specified with the `--host`, `--password`, `--port`, `--socket`, and `--user` options. If none of those options are given, **mysql\_config\_editor** writes the login path as an empty group.
+  This command writes to the login path only such options as are specified with the `--host`, `--password`, `--port`, `--socket`, and `--user` options. If none of those options are given, **mysql_config_editor** writes the login path as an empty group.
 
   The `set` command permits these options following the command name:
 
@@ -2306,7 +2306,7 @@ In addition, **mysql\_config\_editor** supports general options that can be used
 
     Display a help message for the `set` command and exit.
 
-    To see a general help message, use **mysql\_config\_editor --help**.
+    To see a general help message, use **mysql_config_editor --help**.
 
   + `--host=host_name`, `-h host_name`
 
@@ -2318,7 +2318,7 @@ In addition, **mysql\_config\_editor** supports general options that can be used
 
   + `--password`, `-p`
 
-    Prompt for a password to write to the login path. After **mysql\_config\_editor** displays the prompt, type the password and press Enter. To prevent other users from seeing the password, **mysql\_config\_editor** does not echo it.
+    Prompt for a password to write to the login path. After **mysql_config_editor** displays the prompt, type the password and press Enter. To prevent other users from seeing the password, **mysql_config_editor** does not echo it.
 
     To specify an empty password, press Enter at the password prompt. The resulting login path written to the login path file includes a line like this:
 
@@ -2343,11 +2343,11 @@ In addition, **mysql\_config\_editor** supports general options that can be used
     Warn and prompt the user for confirmation if the command attempts to overwrite an existing login path. This option is enabled by default; use `--skip-warn` to disable it.
 
 
-### 6.6.8 mysql\_migrate\_keyring — Keyring Key Migration Utility
+### 6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility
 
-The **mysql\_migrate\_keyring** utility migrates keys between one keyring component and another. It supports offline and online migrations.
+The **mysql_migrate_keyring** utility migrates keys between one keyring component and another. It supports offline and online migrations.
 
-Invoke **mysql\_migrate\_keyring** like this (enter the command on a single line):
+Invoke **mysql_migrate_keyring** like this (enter the command on a single line):
 
 ```
 mysql_migrate_keyring
@@ -2357,33 +2357,33 @@ mysql_migrate_keyring
   [other options]
 ```
 
-For information about key migrations and instructions describing how to perform them using **mysql\_migrate\_keyring** and other methods, see Section 8.4.5.14, “Migrating Keys Between Keyring Keystores”.
+For information about key migrations and instructions describing how to perform them using **mysql_migrate_keyring** and other methods, see Section 8.4.5.14, “Migrating Keys Between Keyring Keystores”.
 
-**mysql\_migrate\_keyring** supports the following options, which can be specified on the command line or in the `[mysql_migrate_keyring]` group of an option file. For information about option files used by MySQL programs, see Section 6.2.2.2, “Using Option Files”.
+**mysql_migrate_keyring** supports the following options, which can be specified on the command line or in the `[mysql_migrate_keyring]` group of an option file. For information about option files used by MySQL programs, see Section 6.2.2.2, “Using Option Files”.
 
-**Table 6.20 mysql\_migrate\_keyring Options**
+**Table 6.20 mysql_migrate_keyring Options**
 
-<table frame="box" rules="all" summary="Command-line options available for mysql_migrate_keyring."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_component-dir">--component-dir</a></td> <td>Directory for keyring components</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_destination-keyring">--destination-keyring</a></td> <td>Destination keyring component name</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_destination-keyring-configuration-dir">--destination-keyring-configuration-dir</a></td> <td>Destination keyring component configuration directory</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_online-migration">--online-migration</a></td> <td>Migration source is an active server</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_source-keyring">--source-keyring</a></td> <td>Source keyring component name</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_source-keyring-configuration-dir">--source-keyring-configuration-dir</a></td> <td>Source keyring component configuration directory</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-crl</a></td> <td>File that contains certificate revocation lists</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-crlpath</a></td> <td>Directory that contains certificate revocation-list files</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_version">--version</a></td> <td>Display version information and exit</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for mysql_migrate_keyring."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--component-dir</td> <td>Directory for keyring components</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--destination-keyring</td> <td>Destination keyring component name</td> </tr><tr><td>--destination-keyring-configuration-dir</td> <td>Destination keyring component configuration directory</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--online-migration</td> <td>Migration source is an active server</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--source-keyring</td> <td>Source keyring component name</td> </tr><tr><td>--source-keyring-configuration-dir</td> <td>Source keyring component configuration directory</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-crl</td> <td>File that contains certificate revocation lists</td> </tr><tr><td>--ssl-crlpath</td> <td>Directory that contains certificate revocation-list files</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr></tbody></table>
 
 * `--help`, `-h`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
 * `--component-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for component-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--component-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for component-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--component-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   The directory where keyring components are located. This is typically the value of the `plugin_dir` system variable for the local MySQL server.
 
   Note
 
-  `--component-dir`, `--source-keyring`, and `--destination-keyring` are mandatory for all keyring migration operations performed by **mysql\_migrate\_keyring**. In addition, the source and destination components must differ, and both components must be properly configured so that **mysql\_migrate\_keyring** can load and use them.
+  `--component-dir`, `--source-keyring`, and `--destination-keyring` are mandatory for all keyring migration operations performed by **mysql_migrate_keyring**. In addition, the source and destination components must differ, and both components must be properly configured so that **mysql_migrate_keyring** can load and use them.
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--defaults-extra-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
   Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -2391,7 +2391,7 @@ For information about key migrations and instructions describing how to perform 
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--defaults-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
   Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -2401,31 +2401,31 @@ For information about key migrations and instructions describing how to perform 
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--defaults-group-suffix=str</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=str</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysql\_migrate\_keyring** normally reads the `[mysql_migrate_keyring]` group. If this option is given as `--defaults-group-suffix=_other`, **mysql\_migrate\_keyring** also reads the `[mysql_migrate_keyring_other]` group.
+  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysql_migrate_keyring** normally reads the `[mysql_migrate_keyring]` group. If this option is given as `--defaults-group-suffix=_other`, **mysql_migrate_keyring** also reads the `[mysql_migrate_keyring_other]` group.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--destination-keyring=name`
 
-  <table frame="box" rules="all" summary="Properties for destination-keyring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--destination-keyring=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for destination-keyring"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--destination-keyring=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   The destination keyring component for key migration. The format and interpretation of the option value is the same as described for the `--source-keyring` option.
 
   Note
 
-  `--component-dir`, `--source-keyring`, and `--destination-keyring` are mandatory for all keyring migration operations performed by **mysql\_migrate\_keyring**. In addition, the source and destination components must differ, and both components must be properly configured so that **mysql\_migrate\_keyring** can load and use them.
+  `--component-dir`, `--source-keyring`, and `--destination-keyring` are mandatory for all keyring migration operations performed by **mysql_migrate_keyring**. In addition, the source and destination components must differ, and both components must be properly configured so that **mysql_migrate_keyring** can load and use them.
 
 * `--destination-keyring-configuration-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for destination-keyring-configuration-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--destination-keyring-configuration-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for destination-keyring-configuration-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--destination-keyring-configuration-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   This option applies only if the destination keyring component global configuration file contains `"read_local_config": true`, indicating that component configuration is contained in the local configuration file. The option value specifies the directory containing that local file.
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for get-server-public-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--get-server-public-key</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr></tbody></table>
 
   Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -2435,21 +2435,21 @@ For information about key migrations and instructions describing how to perform 
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">localhost</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--host=host_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   The host location of the running server that is currently using one of the key migration keystores. Migration always occurs on the local host, so the option always specifies a value for connecting to a local server, such as `localhost`, `127.0.0.1`, `::1`, or the local host IP address or host name.
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>0
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>1
 
   Skips reading options from the login path file.
 
@@ -2459,43 +2459,43 @@ For information about key migrations and instructions describing how to perform 
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>2
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
-  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--online-migration`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>3
 
-  This option is mandatory when a running server is using the keyring. It tells **mysql\_migrate\_keyring** to perform an online key migration. The option has these effects:
+  This option is mandatory when a running server is using the keyring. It tells **mysql_migrate_keyring** to perform an online key migration. The option has these effects:
 
-  + **mysql\_migrate\_keyring** connects to the server using any connection options specified; these options are otherwise ignored.
+  + **mysql_migrate_keyring** connects to the server using any connection options specified; these options are otherwise ignored.
 
-  + After **mysql\_migrate\_keyring** connects to the server, it tells the server to pause keyring operations. When key copying is complete, **mysql\_migrate\_keyring** tells the server it can resume keyring operations before disconnecting.
+  + After **mysql_migrate_keyring** connects to the server, it tells the server to pause keyring operations. When key copying is complete, **mysql_migrate_keyring** tells the server it can resume keyring operations before disconnecting.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>4
 
-  The password of the MySQL account used for connecting to the running server that is currently using one of the key migration keystores. The password value is optional. If not given, **mysql\_migrate\_keyring** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
+  The password of the MySQL account used for connecting to the running server that is currently using one of the key migration keystores. The password value is optional. If not given, **mysql_migrate_keyring** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
   Specifying a password on the command line should be considered insecure. To avoid giving the password on the command line, use an option file. See Section 8.1.2.1, “End-User Guidelines for Password Security”.
 
-  To explicitly specify that there is no password and that **mysql\_migrate\_keyring** should not prompt for one, use the `--skip-password` option.
+  To explicitly specify that there is no password and that **mysql_migrate_keyring** should not prompt for one, use the `--skip-password` option.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>5
 
   For TCP/IP connections, the port number for connecting to the running server that is currently using one of the key migration keystores.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>6
 
   Print the program name and all options that it gets from option files.
 
@@ -2503,7 +2503,7 @@ For information about key migrations and instructions describing how to perform 
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>7
 
   The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -2515,7 +2515,7 @@ For information about key migrations and instructions describing how to perform 
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>8
 
   For Unix socket file or Windows named pipe connections, the socket file or named pipe for connecting to the running server that is currently using one of the key migration keystores.
 
@@ -2523,17 +2523,17 @@ For information about key migrations and instructions describing how to perform 
 
 * `--source-keyring=name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>9
 
   The source keyring component for key migration. This is the component library file name specified without any platform-specific extension such as `.so` or `.dll`. For example, to use the component for which the library file is `component_keyring_file.so`, specify the option as `--source-keyring=component_keyring_file`.
 
   Note
 
-  `--component-dir`, `--source-keyring`, and `--destination-keyring` are mandatory for all keyring migration operations performed by **mysql\_migrate\_keyring**. In addition, the source and destination components must differ, and both components must be properly configured so that **mysql\_migrate\_keyring** can load and use them.
+  `--component-dir`, `--source-keyring`, and `--destination-keyring` are mandatory for all keyring migration operations performed by **mysql_migrate_keyring**. In addition, the source and destination components must differ, and both components must be properly configured so that **mysql_migrate_keyring** can load and use them.
 
 * `--source-keyring-configuration-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for component-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--component-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for component-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--component-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>0
 
   This option applies only if the source keyring component global configuration file contains `"read_local_config": true`, indicating that component configuration is contained in the local configuration file. The option value specifies the directory containing that local file.
 
@@ -2543,7 +2543,7 @@ For information about key migrations and instructions describing how to perform 
 
 * `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table frame="box" rules="all" summary="Properties for component-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--component-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for component-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--component-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>1
 
   Controls whether to enable FIPS mode on the client side. The `--ssl-fips-mode` option differs from other `--ssl-xxx` options in that it is not used to establish encrypted connections, but rather to affect which cryptographic operations to permit. See Section 8.8, “FIPS Support”.
 
@@ -2561,13 +2561,13 @@ For information about key migrations and instructions describing how to perform 
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-  <table frame="box" rules="all" summary="Properties for component-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--component-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for component-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--component-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>2
 
   The permissible ciphersuites for encrypted connections that use TLSv1.3. The value is a list of one or more colon-separated ciphersuite names. The ciphersuites that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--tls-sni-servername=server_name`
 
-  <table frame="box" rules="all" summary="Properties for component-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--component-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for component-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--component-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>3
 
   When specified, the name is passed to the `libmysqlclient` C API library using the `MYSQL_OPT_TLS_SNI_SERVERNAME` option of `mysql_options()`. The server name is not case-sensitive. To show which server name the client specified for the current session, if any, check the `Tls_sni_server_name` status variable.
 
@@ -2575,25 +2575,25 @@ For information about key migrations and instructions describing how to perform 
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for component-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--component-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for component-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--component-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>4
 
   The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for component-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--component-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for component-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--component-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>5
 
   The user name of the MySQL account used for connecting to the running server that is currently using one of the key migration keystores.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for component-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--component-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for component-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--component-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>6
 
   Verbose mode. Produce more output about what the program does.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for component-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--component-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for component-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--component-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>7
 
   Display version information and exit.
 
@@ -2656,17 +2656,17 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 **Table 6.21 mysqlbinlog Options**
 
-<table frame="box" rules="all" summary="Command-line options available for mysqlbinlog."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_base64-output">--base64-output</a></td> <td>Print binary log entries using base-64 encoding</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_bind-address">--bind-address</a></td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_binlog-row-event-max-size">--binlog-row-event-max-size</a></td> <td>Binary log max event size</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_character-sets-dir">--character-sets-dir</a></td> <td>Directory where character sets are installed</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_compress">--compress</a></td> <td>Compress all information sent between client and server</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_compression-algorithms">--compression-algorithms</a></td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_connection-server-id">--connection-server-id</a></td> <td>Used for testing and debugging. See text for applicable default values and other particulars</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_database">--database</a></td> <td>List entries for just this database</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_debug">--debug</a></td> <td>Write debugging log</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_debug-check">--debug-check</a></td> <td>Print debugging information when program exits</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_debug-info">--debug-info</a></td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_disable-log-bin">--disable-log-bin</a></td> <td>Disable binary logging</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_force-if-open">--force-if-open</a></td> <td>Read binary log files even if open or not closed properly</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_force-read">--force-read</a></td> <td>If mysqlbinlog reads a binary log event that it does not recognize, it prints a warning</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_hexdump">--hexdump</a></td> <td>Display a hex dump of the log in comments</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_idempotent">--idempotent</a></td> <td>Cause the server to use idempotent mode while processing binary log updates from this session only</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_local-load">--local-load</a></td> <td>Prepare local temporary files for LOAD DATA in the specified directory</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_offset">--offset</a></td> <td>Skip the first N entries in the log</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_print-table-metadata">--print-table-metadata</a></td> <td>Print table metadata</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_protocol">--protocol</a></td> <td>Transport protocol to use</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_raw">--raw</a></td> <td>Write events in raw (binary) format to output files</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_read-from-remote-master">--read-from-remote-master</a></td> <td>Read the binary log from a MySQL replication source server rather than reading a local log file</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_read-from-remote-server">--read-from-remote-server</a></td> <td>Read binary log from MySQL server rather than local log file</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_read-from-remote-source">--read-from-remote-source</a></td> <td>Read the binary log from a MySQL replication source server rather than reading a local log file</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_require-row-format">--require-row-format</a></td> <td>Require row-based binary logging format</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_result-file">--result-file</a></td> <td>Direct output to named file</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_rewrite-db">--rewrite-db</a></td> <td>Create rewrite rules for databases when playing back from logs written in row-based format. Can be used multiple times</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_server-id">--server-id</a></td> <td>Extract only those events created by the server having the given server ID</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_server-id-bits">--server-id-bits</a></td> <td>Tell mysqlbinlog how to interpret server IDs in binary log when log was written by a mysqld having its server-id-bits set to less than the maximum; supported only by MySQL Cluster version of mysqlbinlog</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_set-charset">--set-charset</a></td> <td>Add a SET NAMES charset_name statement to the output</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_shared-memory-base-name">--shared-memory-base-name</a></td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_short-form">--short-form</a></td> <td>Display only the statements contained in the log</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_start-datetime">--start-datetime</a></td> <td>Read binary log from first event with timestamp equal to or later than datetime argument</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_start-position">--start-position</a></td> <td>Decode binary log from first event with position equal to or greater than argument</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_stop-datetime">--stop-datetime</a></td> <td>Stop reading binary log at first event with timestamp equal to or greater than datetime argument</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_stop-never">--stop-never</a></td> <td>Stay connected to server after reading last binary log file</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_stop-never-slave-server-id">--stop-never-slave-server-id</a></td> <td>Slave server ID to report when connecting to server</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_stop-position">--stop-position</a></td> <td>Stop decoding binary log at first event with position equal to or greater than argument</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_to-last-log">--to-last-log</a></td> <td>Do not stop at the end of requested binary log from a MySQL server, but rather continue printing to end of last binary log</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_verbose">--verbose</a></td> <td>Reconstruct row events as SQL statements</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_verify-binlog-checksum">--verify-binlog-checksum</a></td> <td>Verify checksums in binary log</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_version">--version</a></td> <td>Display version information and exit</td> </tr><tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_zstd-compression-level">--zstd-compression-level</a></td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for mysqlbinlog."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--base64-output</td> <td>Print binary log entries using base-64 encoding</td> </tr><tr><td>--bind-address</td> <td>Use specified network interface to connect to MySQL Server</td> </tr><tr><td>--binlog-row-event-max-size</td> <td>Binary log max event size</td> </tr><tr><td>--character-sets-dir</td> <td>Directory where character sets are installed</td> </tr><tr><td>--compress</td> <td>Compress all information sent between client and server</td> </tr><tr><td>--compression-algorithms</td> <td>Permitted compression algorithms for connections to server</td> </tr><tr><td>--connection-server-id</td> <td>Used for testing and debugging. See text for applicable default values and other particulars</td> </tr><tr><td>--database</td> <td>List entries for just this database</td> </tr><tr><td>--debug</td> <td>Write debugging log</td> </tr><tr><td>--debug-check</td> <td>Print debugging information when program exits</td> </tr><tr><td>--debug-info</td> <td>Print debugging information, memory, and CPU statistics when program exits</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--disable-log-bin</td> <td>Disable binary logging</td> </tr><tr><td>--force-if-open</td> <td>Read binary log files even if open or not closed properly</td> </tr><tr><td>--force-read</td> <td>If mysqlbinlog reads a binary log event that it does not recognize, it prints a warning</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--hexdump</td> <td>Display a hex dump of the log in comments</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--idempotent</td> <td>Cause the server to use idempotent mode while processing binary log updates from this session only</td> </tr><tr><td>--local-load</td> <td>Prepare local temporary files for LOAD DATA in the specified directory</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--offset</td> <td>Skip the first N entries in the log</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--print-table-metadata</td> <td>Print table metadata</td> </tr><tr><td>--protocol</td> <td>Transport protocol to use</td> </tr><tr><td>--raw</td> <td>Write events in raw (binary) format to output files</td> </tr><tr><td>--read-from-remote-master</td> <td>Read the binary log from a MySQL replication source server rather than reading a local log file</td> </tr><tr><td>--read-from-remote-server</td> <td>Read binary log from MySQL server rather than local log file</td> </tr><tr><td>--read-from-remote-source</td> <td>Read the binary log from a MySQL replication source server rather than reading a local log file</td> </tr><tr><td>--require-row-format</td> <td>Require row-based binary logging format</td> </tr><tr><td>--result-file</td> <td>Direct output to named file</td> </tr><tr><td>--rewrite-db</td> <td>Create rewrite rules for databases when playing back from logs written in row-based format. Can be used multiple times</td> </tr><tr><td>--server-id</td> <td>Extract only those events created by the server having the given server ID</td> </tr><tr><td>--server-id-bits</td> <td>Tell mysqlbinlog how to interpret server IDs in binary log when log was written by a mysqld having its server-id-bits set to less than the maximum; supported only by MySQL Cluster version of mysqlbinlog</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--set-charset</td> <td>Add a SET NAMES charset_name statement to the output</td> </tr><tr><td>--shared-memory-base-name</td> <td>Shared-memory name for shared-memory connections (Windows only)</td> </tr><tr><td>--short-form</td> <td>Display only the statements contained in the log</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--start-datetime</td> <td>Read binary log from first event with timestamp equal to or later than datetime argument</td> </tr><tr><td>--start-position</td> <td>Decode binary log from first event with position equal to or greater than argument</td> </tr><tr><td>--stop-datetime</td> <td>Stop reading binary log at first event with timestamp equal to or greater than datetime argument</td> </tr><tr><td>--stop-never</td> <td>Stay connected to server after reading last binary log file</td> </tr><tr><td>--stop-never-slave-server-id</td> <td>Slave server ID to report when connecting to server</td> </tr><tr><td>--stop-position</td> <td>Stop decoding binary log at first event with position equal to or greater than argument</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--to-last-log</td> <td>Do not stop at the end of requested binary log from a MySQL server, but rather continue printing to end of last binary log</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Reconstruct row events as SQL statements</td> </tr><tr><td>--verify-binlog-checksum</td> <td>Verify checksums in binary log</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr><tr><td>--zstd-compression-level</td> <td>Compression level for connections to server that use zstd compression</td> </tr></tbody></table>
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
 * `--base64-output=value`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
 
   This option determines when events should be displayed encoded as base-64 strings using `BINLOG` statements. The option has these permissible values (not case-sensitive):
 
@@ -2684,25 +2684,25 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--bind-address=ip_address`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
   On a computer having multiple network interfaces, use this option to select which interface to use for connecting to the MySQL server.
 
 * `--binlog-row-event-max-size=N`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">256</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">18446744073709547520</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>
 
   Specify the maximum size of a row-based binary log event, in bytes. Rows are grouped into events smaller than this size if possible. The value should be a multiple of 256. The default is 4GB.
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   The directory where character sets are installed. See Section 12.15, “Character Set Configuration”.
 
 * `--compress`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Compress all information sent between the client and the server if possible. See Section 6.2.8, “Connection Compression Control”.
 
@@ -2710,7 +2710,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--compression-algorithms=value`
 
-  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code class="literal">uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code>uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>
 
   The permitted compression algorithms for connections to the server. The available algorithms are the same as for the `protocol_compression_algorithms` system variable. The default value is `uncompressed`.
 
@@ -2718,7 +2718,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--connection-server-id=server_id`
 
-  <table frame="box" rules="all" summary="Properties for connection-server-id"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connection-server-id=#]</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">0 (1)</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0 (1)</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connection-server-id"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--connection-server-id=#]</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0 (1)</code></td> </tr><tr><th>Minimum Value</th> <td><code>0 (1)</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   `--connection-server-id` specifies the server ID that **mysqlbinlog** reports when it connects to the server. It can be used to avoid a conflict with the ID of a replica server or another **mysqlbinlog** process.
 
@@ -2726,7 +2726,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--database=db_name`, `-d db_name`
 
-  <table frame="box" rules="all" summary="Properties for database"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--database=db_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for database"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--database=db_name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   This option causes **mysqlbinlog** to output entries from the binary log (local log only) that occur while *`db_name`* is been selected as the default database by `USE`.
 
@@ -2769,7 +2769,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>0
 
   Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o,/tmp/mysqlbinlog.trace`.
 
@@ -2777,7 +2777,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--debug-check`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>1
 
   Print some debugging information when the program exits.
 
@@ -2785,7 +2785,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--debug-info`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>2
 
   Print debugging information and memory and CPU usage statistics when the program exits.
 
@@ -2793,13 +2793,13 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>3
 
   A hint about which client-side authentication plugin to use. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>4
 
   Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -2807,7 +2807,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>5
 
   Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -2817,7 +2817,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>6
 
   Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysqlbinlog** normally reads the `[client]` and `[mysqlbinlog]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysqlbinlog** also reads the `[client_other]` and `[mysqlbinlog_other]` groups.
 
@@ -2825,7 +2825,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--disable-log-bin`, `-D`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>7
 
   Disable binary logging. This is useful for avoiding an endless loop if you use the `--to-last-log` option and are sending the output to the same MySQL server. This option also is useful when restoring after an unexpected exit to avoid duplication of the statements you have logged.
 
@@ -2833,13 +2833,13 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--exclude-gtids=gtid_set`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>8
 
   Do not display any of the groups listed in the *`gtid_set`*.
 
 * `--force-if-open`, `-F`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>9
 
   Read binary log files even if they are open or were not closed properly (`IN_USE` flag is set); do not fail if the file ends with a truncated event.
 
@@ -2847,13 +2847,13 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--force-read`, `-f`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>0
 
   With this option, if **mysqlbinlog** reads a binary log event that it does not recognize, it prints a warning, ignores the event, and continues. Without this option, **mysqlbinlog** stops if it reads such an event.
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>1
 
   Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -2863,19 +2863,19 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--hexdump`, `-H`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>2
 
   Display a hex dump of the log in comments, as described in Section 6.6.9.1, “mysqlbinlog Hex Dump Format”. The hex output can be helpful for replication debugging.
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>3
 
   Get the binary log from the MySQL server on the given host.
 
 * `--idempotent`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>4
 
   Tell the MySQL Server to use idempotent mode while processing updates; this causes suppression of any duplicate-key or key-not-found errors that the server encounters in the current session while processing updates. This option may prove useful whenever it is desirable or necessary to replay one or more binary logs to a MySQL Server which may not contain all of the data to which the logs refer.
 
@@ -2883,13 +2883,13 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--include-gtids=gtid_set`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>5
 
   Display only the groups listed in the *`gtid_set`*.
 
 * `--local-load=dir_name`, `-l dir_name`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>6
 
   For data loading operations corresponding to `LOAD DATA` statements, **mysqlbinlog** extracts the files from the binary log events, writes them as temporary files to the local file system, and writes [`LOAD DATA LOCAL`](load-data.html "15.2.9 LOAD DATA Statement") statements to cause the files to be loaded. By default, **mysqlbinlog** writes these temporary files to an operating system-specific directory. The `--local-load` option can be used to explicitly specify the directory where **mysqlbinlog** should prepare local temporary files.
 
@@ -2906,15 +2906,15 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>7
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>8
 
   Skips reading options from the login path file.
 
@@ -2924,29 +2924,29 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">AUTO</code></p><p class="valid-value"><code class="literal">NEVER</code></p><p class="valid-value"><code class="literal">DECODE-ROWS</code></p></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for base64-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>AUTO</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>9
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
-  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
 * `--offset=N`, `-o N`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>0
 
   Skip the first *`N`* entries in the log.
 
 * `--open-files-limit=N`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>1
 
   Specify the number of open file descriptors to reserve.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>2
 
   The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqlbinlog** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -2956,19 +2956,19 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>3
 
   The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysqlbinlog** does not find it. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>4
 
   The TCP/IP port number to use for connecting to a remote server.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>5
 
   Print the program name and all options that it gets from option files.
 
@@ -2976,25 +2976,25 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--print-table-metadata`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>6
 
   Print table related metadata from the binary log. Configure the amount of table related metadata binary logged using `binlog-row-metadata`.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>7
 
   The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 6.2.7, “Connection Transport Protocols”.
 
 * `--raw`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>8
 
   By default, **mysqlbinlog** reads binary log files and writes events in text format. The `--raw` option tells **mysqlbinlog** to write them in their original binary format. Its use requires that `--read-from-remote-server` also be used because the files are requested from a server. **mysqlbinlog** writes one output file for each file read from the server. The `--raw` option can be used to make a backup of a server's binary log. With the `--stop-never` option, the backup is “live” because **mysqlbinlog** stays connected to the server. By default, output files are written in the current directory with the same names as the original log files. Output file names can be modified using the `--result-file` option. For more information, see Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”.
 
 * `--read-from-remote-source=type`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>9
 
   This option reads binary logs from a MySQL server with the `COM_BINLOG_DUMP` or `COM_BINLOG_DUMP_GTID` commands by setting the option value to either `BINLOG-DUMP-NON-GTIDS` or `BINLOG-DUMP-GTIDS`, respectively. If `--read-from-remote-source=BINLOG-DUMP-GTIDS` is combined with `--exclude-gtids`, transactions can be filtered out on the source, avoiding unnecessary network traffic.
 
@@ -3004,13 +3004,13 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--read-from-remote-master=type`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">256</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">18446744073709547520</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>0
 
   Deprecated synonym for `--read-from-remote-source`.
 
 * `--read-from-remote-server=file_name`, `-R`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">256</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">18446744073709547520</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>1
 
   Read the binary log from a MySQL server rather than reading a local log file. This option requires that the remote server be running. It works only for binary log files on the remote server and not relay log files. This accepts the binary log file name (including the numeric suffix) without the file path.
 
@@ -3022,19 +3022,19 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--result-file=name`, `-r name`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">256</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">18446744073709547520</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>2
 
   Without the `--raw` option, this option indicates the file to which **mysqlbinlog** writes text output. With `--raw`, **mysqlbinlog** writes one binary output file for each log file transferred from the server, writing them by default in the current directory using the same names as the original log file. In this case, the `--result-file` option value is treated as a prefix that modifies output file names.
 
 * `--require-row-format`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">256</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">18446744073709547520</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>3
 
   Require row-based binary logging format for events. This option enforces row-based replication events for **mysqlbinlog** output. The stream of events produced with this option would be accepted by a replication channel that is secured using the `REQUIRE_ROW_FORMAT` option of the `CHANGE REPLICATION SOURCE TO` statement. `binlog_format=ROW` must be set on the server where the binary log was written. When you specify this option, **mysqlbinlog** stops with an error message if it encounters any events that are disallowed under the `REQUIRE_ROW_FORMAT` restrictions, including `LOAD DATA INFILE` instructions, creating or dropping temporary tables, `INTVAR`, `RAND`, or `USER_VAR` events, and non-row-based events within a DML transaction. **mysqlbinlog** also prints a `SET @@session.require_row_format` statement at the start of its output to apply the restrictions when the output is executed, and does not print the `SET @@session.pseudo_thread_id` statement.
 
 * `--rewrite-db='from_name->to_name'`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">256</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">18446744073709547520</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>4
 
   When reading from a row-based or statement-based log, rewrite all occurrences of *`from_name`* to *`to_name`*. Rewriting is done on the rows, for row-based logs, as well as on the `USE` clauses, for statement-based logs.
 
@@ -3057,13 +3057,13 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--server-id=id`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">256</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">18446744073709547520</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>5
 
   Display only those events created by the server having the given server ID.
 
 * `--server-id-bits=N`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">256</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">18446744073709547520</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>6
 
   Use only the first *`N`* bits of the `server_id` to identify the server. If the binary log was written by a **mysqld** with server-id-bits set to less than 32 and user data stored in the most significant bit, running **mysqlbinlog** with `--server-id-bits` set to 32 enables this data to be seen.
 
@@ -3071,7 +3071,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">256</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">18446744073709547520</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>7
 
   The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -3083,13 +3083,13 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--set-charset=charset_name`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">256</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">18446744073709547520</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>8
 
   Add a [`SET NAMES charset_name`](set-names.html "15.7.6.3 SET NAMES Statement") statement to the output to specify the character set to be used for processing log files.
 
 * `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">256</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">18446744073709547520</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for binlog-row-event-max-size"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--binlog-row-event-max-size=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>4294967040</code></td> </tr><tr><th>Minimum Value</th> <td><code>256</code></td> </tr><tr><th>Maximum Value</th> <td><code>18446744073709547520</code></td> </tr></tbody></table>9
 
   On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
 
@@ -3097,13 +3097,13 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--short-form`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>0
 
   Display only the statements contained in the log, without any extra information or row-based events. This is for testing only, and should not be used in production systems. It is deprecated, and you should expect it to be removed in a future release.
 
 * `--skip-gtids[=(true|false)]`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>1
 
   Do not include the GTIDs from the binary log files in the output dump file. For example:
 
@@ -3116,7 +3116,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>2
 
   For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
 
@@ -3128,7 +3128,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>3
 
   Controls whether to enable FIPS mode on the client side. The `--ssl-fips-mode` option differs from other `--ssl-xxx` options in that it is not used to establish encrypted connections, but rather to affect which cryptographic operations to permit. See Section 8.8, “FIPS Support”.
 
@@ -3146,7 +3146,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--start-datetime=datetime`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>4
 
   Start reading the binary log at the first event having a timestamp equal to or later than the *`datetime`* argument. The *`datetime`* value is relative to the local time zone on the machine where you run **mysqlbinlog**. The value should be in a format accepted for the `DATETIME` or `TIMESTAMP` data types. For example:
 
@@ -3158,7 +3158,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--start-position=N`, `-j N`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>5
 
   Start decoding the binary log at the log position *`N`*, including in the output any events that begin at position *`N`* or after. The position is a byte point in the log file, not an event counter; it needs to point to the starting position of an event to generate useful output. This option applies to the first log file named on the command line.
 
@@ -3168,7 +3168,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--stop-datetime=datetime`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>6
 
   Stop reading the binary log at the first event having a timestamp equal to or later than the *`datetime`* argument. See the description of the `--start-datetime` option for information about the *`datetime`* value.
 
@@ -3176,7 +3176,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--stop-never`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>7
 
   This option is used with `--read-from-remote-server`. It tells **mysqlbinlog** to remain connected to the server. Otherwise **mysqlbinlog** exits when the last log file has been transferred from the server. `--stop-never` implies `--to-last-log`, so only the first log file to transfer need be named on the command line.
 
@@ -3186,13 +3186,13 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--stop-never-slave-server-id=id`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>8
 
   This option is deprecated; expect it to be removed in a future release. Use the `--connection-server-id` option instead to specify a server ID for **mysqlbinlog** to report.
 
 * `--stop-position=N`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>9
 
   Stop decoding the binary log at the log position *`N`*, excluding from the output any events that begin at position *`N`* or after. The position is a byte point in the log file, not an event counter; it needs to point to a spot after the starting position of the last event you want to include in the output. The event starting before position *`N`* and finishing at or after the position is the last event to be processed. This option applies to the last log file named on the command line.
 
@@ -3200,13 +3200,13 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>0
 
   The permissible ciphersuites for encrypted connections that use TLSv1.3. The value is a list of one or more colon-separated ciphersuite names. The ciphersuites that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--tls-sni-servername=server_name`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>1
 
   When specified, the name is passed to the `libmysqlclient` C API library using the `MYSQL_OPT_TLS_SNI_SERVERNAME` option of `mysql_options()`. The server name is not case-sensitive. To show which server name the client specified for the current session, if any, check the `Tls_sni_server_name` status variable.
 
@@ -3214,19 +3214,19 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>2
 
   The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--to-last-log`, `-t`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>3
 
   Do not stop at the end of the requested binary log from a MySQL server, but rather continue printing until the end of the last binary log. If you send the output to the same MySQL server, this may lead to an endless loop. This option requires `--read-from-remote-server`.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>4
 
   The user name of the MySQL account to use when connecting to a remote server.
 
@@ -3234,7 +3234,7 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>5
 
   Reconstruct row events and display them as commented SQL statements, with table partition information where applicable. If this option is given twice (by passing in either "-vv" or "--verbose --verbose"), the output includes comments to indicate column data types and some metadata, and informational log events such as row query log events if the `binlog_rows_query_log_events` system variable is set to `TRUE`.
 
@@ -3242,19 +3242,19 @@ When running **mysqlbinlog** against a large binary log, be careful that the fil
 
 * `--verify-binlog-checksum`, `-c`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>6
 
   Verify checksums in binary log files.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>7
 
   Display version information and exit.
 
 * `--zstd-compression-level=level`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--compress[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>8
 
   The compression level to use for connections to the server that use the `zstd` compression algorithm. The permitted levels are from 1 to 22, with larger values indicating increasing levels of compression. The default `zstd` compression level is 3. The compression level setting has no effect on connections that do not use `zstd` compression.
 
@@ -3662,7 +3662,7 @@ Without `--raw`, **mysqlbinlog** produces text output and the `--result-file` op
 
 Suppose that a server currently has binary log files named `binlog.000999` and up. If you use **mysqlbinlog --raw** to back up the files, the `--result-file` option produces output file names as shown in the following table. You can write the files to a specific directory by beginning the `--result-file` value with the directory path. If the `--result-file` value consists only of a directory name, the value must end with the pathname separator character. Output files are overwritten if they exist.
 
-<table summary="mysqlbinlog --result-file options and corresponding output file names, as described in the example in the preceding text."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_result-file"><code class="option">--result-file</code></a> Option</th> <th>Output File Names</th> </tr></thead><tbody><tr> <td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_result-file"><code class="option">--result-file=x</code></a></td> <td><code class="filename">xbinlog.000999</code> and up</td> </tr><tr> <td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_result-file"><code class="option">--result-file=/tmp/</code></a></td> <td><code class="filename">/tmp/binlog.000999</code> and up</td> </tr><tr> <td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_result-file"><code class="option">--result-file=/tmp/x</code></a></td> <td><code class="filename">/tmp/xbinlog.000999</code> and up</td> </tr></tbody></table>
+<table summary="mysqlbinlog --result-file options and corresponding output file names, as described in the example in the preceding text."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th><code>--result-file</code> Option</th> <th>Output File Names</th> </tr></thead><tbody><tr> <td><code>--result-file=x</code></td> <td><code>xbinlog.000999</code> and up</td> </tr><tr> <td><code>--result-file=/tmp/</code></td> <td><code>/tmp/binlog.000999</code> and up</td> </tr><tr> <td><code>--result-file=/tmp/x</code></td> <td><code>/tmp/xbinlog.000999</code> and up</td> </tr></tbody></table>
 
 ##### Example: mysqldump + mysqlbinlog for Backup and Restore
 
@@ -3760,11 +3760,11 @@ Count: 3  Time=2.13s (6s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost
 
 **Table 6.22 mysqldumpslow Options**
 
-<table frame="box" rules="all" summary="Command-line options available for mysqldumpslow."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_abstract">-a</a></td> <td>Do not abstract all numbers to N and strings to 'S'</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_abstract-numbers">-n</a></td> <td>Abstract numbers with at least the specified digits</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_debug">--debug</a></td> <td>Write debugging information</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_grep">-g</a></td> <td>Only consider statements that match the pattern</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_host">-h</a></td> <td>Host name of the server in the log file name</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_instance">-i</a></td> <td>Name of the server instance</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_lock">-l</a></td> <td>Do not subtract lock time from total time</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_reverse">-r</a></td> <td>Reverse the sort order</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_sort">-s</a></td> <td>How to sort output</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_top">-t</a></td> <td>Display only first num queries</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_verbose">--verbose</a></td> <td>Verbose mode</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for mysqldumpslow."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>-a</td> <td>Do not abstract all numbers to N and strings to 'S'</td> </tr><tr><td>-n</td> <td>Abstract numbers with at least the specified digits</td> </tr><tr><td>--debug</td> <td>Write debugging information</td> </tr><tr><td>-g</td> <td>Only consider statements that match the pattern</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>-h</td> <td>Host name of the server in the log file name</td> </tr><tr><td>-i</td> <td>Name of the server instance</td> </tr><tr><td>-l</td> <td>Do not subtract lock time from total time</td> </tr><tr><td>-r</td> <td>Reverse the sort order</td> </tr><tr><td>-s</td> <td>How to sort output</td> </tr><tr><td>-t</td> <td>Display only first num queries</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr></tbody></table>
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
@@ -3774,7 +3774,7 @@ Count: 3  Time=2.13s (6s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost
 
 * `--debug`, `-d`
 
-  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--debug</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--debug</code></td> </tr></tbody></table>
 
   Run in debug mode.
 
@@ -3788,7 +3788,7 @@ Count: 3  Time=2.13s (6s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost
 
 * `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">*</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>*</code></td> </tr></tbody></table>
 
   Host name of MySQL server for `*-slow.log` file name. The value can contain a wildcard. The default is `*` (match all).
 
@@ -3814,7 +3814,7 @@ Count: 3  Time=2.13s (6s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost
 
 * `-s sort_type`
 
-  <table frame="box" rules="all" summary="Properties for sort"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">at</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for sort"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>at</code></td> </tr></tbody></table>
 
   How to sort the output. The value of *`sort_type`* should be chosen from the following list:
 
@@ -3836,6 +3836,6 @@ Count: 3  Time=2.13s (6s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--verbose</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--verbose</code></td> </tr></tbody></table>
 
   Verbose mode. Print more information about what the program does.

@@ -231,13 +231,13 @@ mysql> GRANT REPLICATION_APPLIER ON *.* TO 'priv_repl'@'%.example.com';
 mysql> SET sql_log_bin = 1;
 ```
 
-The `SET sql_log_bin` statements are used so that the account management statements are not added to the binary log and sent to the replication channels (see Section 15.4.1.3, “SET sql\_log\_bin Statement”).
+The `SET sql_log_bin` statements are used so that the account management statements are not added to the binary log and sent to the replication channels (see Section 15.4.1.3, “SET sql_log_bin Statement”).
 
 Important
 
 The `caching_sha2_password` authentication plugin is the default for new users (for details, see Section 8.4.1.1, “Caching SHA-2 Pluggable Authentication”). To connect to a server using a user account that authenticates with this plugin, you must either set up an encrypted connection as described in Section 19.3.1, “Setting Up Replication to Use Encrypted Connections”, or enable the unencrypted connection to support password exchange using an RSA key pair.
 
-After setting up the user account, use the `GRANT` statement to grant additional privileges to enable the user account to make the database changes that you expect the applier thread to carry out, such as updating specific tables held on the server. These same privileges enable an administrator to use the account if they need to execute any of those transactions manually on the replication channel. If an unexpected operation is attempted for which you did not grant the appropriate privileges, the operation is disallowed and the replication applier thread stops with an error. Section 19.3.3.1, “Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account” explains what additional privileges the account needs. For example, to grant the `priv_repl` user account the `INSERT` privilege to add rows to the `cust` table in `db1`, issue the following statement:
+After setting up the user account, use the `GRANT` statement to grant additional privileges to enable the user account to make the database changes that you expect the applier thread to carry out, such as updating specific tables held on the server. These same privileges enable an administrator to use the account if they need to execute any of those transactions manually on the replication channel. If an unexpected operation is attempted for which you did not grant the appropriate privileges, the operation is disallowed and the replication applier thread stops with an error. Section 19.3.3.1, “Privileges For The Replication PRIVILEGE_CHECKS_USER Account” explains what additional privileges the account needs. For example, to grant the `priv_repl` user account the `INSERT` privilege to add rows to the `cust` table in `db1`, issue the following statement:
 
 ```
 mysql> GRANT INSERT ON db1.cust TO 'priv_repl'@'%.example.com';
@@ -293,7 +293,7 @@ mysql> SET sql_log_bin = 1;
 Be aware that when the replication applier thread creates the security context, it checks the privileges for the `PRIVILEGE_CHECKS_USER` account, but does not carry out password validation, and does not carry out checks relating to account management, such as checking whether the account is locked. The security context that is created remains unchanged for the lifetime of the replication applier thread.
 
 
-#### 19.3.3.1 Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account
+#### 19.3.3.1 Privileges For The Replication PRIVILEGE_CHECKS_USER Account
 
 The user account that is specified using the `CHANGE REPLICATION SOURCE TO` statement as the `PRIVILEGE_CHECKS_USER` account for a replication channel must have the `REPLICATION_APPLIER` privilege, otherwise the replication applier thread does not start. As explained in Section 19.3.3, “Replication Privilege Checks”, the account requires further privileges that are sufficient to apply all the expected transactions expected on the replication channel. These privileges are checked only when relevant transactions are executed.
 

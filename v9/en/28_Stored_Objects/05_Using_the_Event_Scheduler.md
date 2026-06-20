@@ -147,7 +147,7 @@ Starting the MySQL server with the `--skip-grant-tables` option causes `event_sc
 
 For SQL statements used to create, alter, and drop events, see Section 27.5.3, “Event Syntax”.
 
-MySQL provides an `EVENTS` table in the `INFORMATION_SCHEMA` database. This table can be queried to obtain information about scheduled events which have been defined on the server. See Section 27.5.4, “Event Metadata”, and Section 28.3.14, “The INFORMATION\_SCHEMA EVENTS Table”, for more information.
+MySQL provides an `EVENTS` table in the `INFORMATION_SCHEMA` database. This table can be queried to obtain information about scheduled events which have been defined on the server. See Section 27.5.4, “Event Metadata”, and Section 28.3.14, “The INFORMATION_SCHEMA EVENTS Table”, for more information.
 
 For information regarding event scheduling and the MySQL privilege system, see Section 27.5.6, “The Event Scheduler and MySQL Privileges”.
 
@@ -169,7 +169,7 @@ MySQL provides several SQL statements for working with scheduled events:
 
 To obtain metadata about events:
 
-* Query the `EVENTS` table of the `INFORMATION_SCHEMA` database. See Section 28.3.14, “The INFORMATION\_SCHEMA EVENTS Table”.
+* Query the `EVENTS` table of the `INFORMATION_SCHEMA` database. See Section 28.3.14, “The INFORMATION_SCHEMA EVENTS Table”.
 
 * Use the `SHOW CREATE EVENT` statement. See Section 15.7.7.8, “SHOW CREATE EVENT Statement”.
 
@@ -185,7 +185,7 @@ For representation of event information in the data dictionary, the `execute_at`
 
 Event times can be obtained by selecting from the Information Schema `EVENTS` table or from `SHOW EVENTS`, but they are reported as ETZ or STZ values. The following table summarizes representation of event times.
 
-<table summary="Summary of event time representation (as UTC, EZT, or STZ values) from INFORMATION_SCHEMA.EVENTS, and SHOW EVENTS."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th scope="col">Value</th> <th scope="col"><a class="link" href="information-schema-events-table.html" title="28.3.14 The INFORMATION_SCHEMA EVENTS Table"><code class="literal">EVENTS</code></a> Table</th> <th scope="col"><a class="link" href="show-events.html" title="15.7.7.20 SHOW EVENTS Statement"><code class="literal">SHOW EVENTS</code></a></th> </tr></thead><tbody><tr> <th scope="row">Execute at</th> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th scope="row">Starts</th> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th scope="row">Ends</th> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th scope="row">Last executed</th> <td>ETZ</td> <td>n/a</td> </tr><tr> <th scope="row">Created</th> <td>STZ</td> <td>n/a</td> </tr><tr> <th scope="row">Last altered</th> <td>STZ</td> <td>n/a</td> </tr></tbody></table>
+<table summary="Summary of event time representation (as UTC, EZT, or STZ values) from INFORMATION_SCHEMA.EVENTS, and SHOW EVENTS."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th scope="col">Value</th> <th scope="col"><code>EVENTS</code> Table</th> <th scope="col"><code>SHOW EVENTS</code></th> </tr></thead><tbody><tr> <th scope="row">Execute at</th> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th scope="row">Starts</th> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th scope="row">Ends</th> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th scope="row">Last executed</th> <td>ETZ</td> <td>n/a</td> </tr><tr> <th scope="row">Created</th> <td>STZ</td> <td>n/a</td> </tr><tr> <th scope="row">Last altered</th> <td>STZ</td> <td>n/a</td> </tr></tbody></table>
 
 
 ### 27.5.5 Event Scheduler Status

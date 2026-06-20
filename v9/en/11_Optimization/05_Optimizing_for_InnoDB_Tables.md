@@ -151,7 +151,7 @@ These performance tips supplement the general guidelines for fast inserts in Sec
 
   This tip is valid for inserts into any table, not just `InnoDB` tables.
 
-* When doing bulk inserts into tables with auto-increment columns, set `innodb_autoinc_lock_mode` to 2 (interleaved) instead of 1 (consecutive). See Section 17.6.1.6, “AUTO\_INCREMENT Handling in InnoDB” for details.
+* When doing bulk inserts into tables with auto-increment columns, set `innodb_autoinc_lock_mode` to 2 (interleaved) instead of 1 (consecutive). See Section 17.6.1.6, “AUTO_INCREMENT Handling in InnoDB” for details.
 
 * When performing bulk inserts, it is faster to insert rows in `PRIMARY KEY` order. `InnoDB` tables use a clustered index, which makes it relatively fast to use data in the order of the `PRIMARY KEY`. Performing bulk inserts in `PRIMARY KEY` order is particularly important for tables that do not fit entirely within the buffer pool.
 
@@ -240,9 +240,9 @@ If you follow best practices for database design and tuning techniques for SQL o
 
   `InnoDB` uses the asynchronous I/O subsystem (native AIO) on Linux to perform read-ahead and write requests for data file pages. This behavior is controlled by the `innodb_use_native_aio` configuration option, which is enabled by default. With native AIO, the type of I/O scheduler has greater influence on I/O performance. Generally, noop and deadline I/O schedulers are recommended. Conduct benchmarks to determine which I/O scheduler provides the best results for your workload and environment. For more information, see Section 17.8.6, “Using Asynchronous I/O on Linux”.
 
-* Use direct I/O on Solaris 10 for x86\_64 architecture
+* Use direct I/O on Solaris 10 for x86_64 architecture
 
-  When using the `InnoDB` storage engine on Solaris 10 for x86\_64 architecture (AMD Opteron), use direct I/O for `InnoDB`-related files to avoid degradation of `InnoDB` performance. To use direct I/O for an entire UFS file system used for storing `InnoDB`-related files, mount it with the `forcedirectio` option; see `mount_ufs(1M)`. (The default on Solaris 10/x86\_64 is *not* to use this option.) To apply direct I/O only to `InnoDB` file operations rather than the whole file system, set [`innodb_flush_method = O_DIRECT`](innodb-parameters.html#sysvar_innodb_flush_method). With this setting, `InnoDB` calls `directio()` instead of `fcntl()` for I/O to data files (not for I/O to log files).
+  When using the `InnoDB` storage engine on Solaris 10 for x86_64 architecture (AMD Opteron), use direct I/O for `InnoDB`-related files to avoid degradation of `InnoDB` performance. To use direct I/O for an entire UFS file system used for storing `InnoDB`-related files, mount it with the `forcedirectio` option; see `mount_ufs(1M)`. (The default on Solaris 10/x86_64 is *not* to use this option.) To apply direct I/O only to `InnoDB` file operations rather than the whole file system, set [`innodb_flush_method = O_DIRECT`](innodb-parameters.html#sysvar_innodb_flush_method). With this setting, `InnoDB` calls `directio()` instead of `fcntl()` for I/O to data files (not for I/O to log files).
 
 * Use raw storage for data and log files with Solaris 2.6 or later
 

@@ -102,7 +102,7 @@ The following descriptions list MySQL extensions, organized by category.
 
   + The `SET` statement. See Section 15.7.6.1, “SET Syntax for Variable Assignment”.
 
-  + The `SHOW` statement. See Section 15.7.7, “SHOW Statements”. The information produced by many of the MySQL-specific `SHOW` statements can be obtained in more standard fashion by using `SELECT` to query `INFORMATION_SCHEMA`. See Chapter 28, *INFORMATION\_SCHEMA Tables*.
+  + The `SHOW` statement. See Section 15.7.7, “SHOW Statements”. The information produced by many of the MySQL-specific `SHOW` statements can be obtained in more standard fashion by using `SELECT` to query `INFORMATION_SCHEMA`. See Chapter 28, *INFORMATION_SCHEMA Tables*.
 
   + Use of `LOAD DATA`. In many cases, this syntax is compatible with Oracle `LOAD DATA`. See Section 15.2.9, “LOAD DATA Statement”.
 
@@ -350,7 +350,7 @@ Normally, errors occur for data-change statements (such as `INSERT` or `UPDATE`)
 
 MySQL supports an `IGNORE` keyword for `INSERT`, `UPDATE`, and so forth. If you use it, MySQL ignores primary-key or unique-key violations and continues processing with the next row. See the section for the statement that you are using (Section 15.2.7, “INSERT Statement”, Section 15.2.17, “UPDATE Statement”, and so forth).
 
-You can get information about the number of rows actually inserted or updated with the `mysql_info()` C API function. You can also use the [`SHOW WARNINGS`](show-warnings.html "15.7.7.43 SHOW WARNINGS Statement") statement. See mysql\_info(), and Section 15.7.7.43, “SHOW WARNINGS Statement”.
+You can get information about the number of rows actually inserted or updated with the `mysql_info()` C API function. You can also use the [`SHOW WARNINGS`](show-warnings.html "15.7.7.43 SHOW WARNINGS Statement") statement. See mysql_info(), and Section 15.7.7.43, “SHOW WARNINGS Statement”.
 
 `InnoDB` and `NDB` tables support foreign keys. See Section 1.7.3.2, “FOREIGN KEY Constraints”.
 

@@ -1,4 +1,4 @@
-## 28.5 INFORMATION\_SCHEMA Thread Pool Tables
+## 28.5 INFORMATION_SCHEMA Thread Pool Tables
 
 Note
 
@@ -27,16 +27,16 @@ Rows in these tables represent snapshots in time. In the case of `TP_THREAD_STAT
 The `INFORMATION_SCHEMA` thread pool tables are implemented by individual plugins and the decision whether to load one can be made independently of the others (see Section 7.6.3.2, “Thread Pool Installation”). However, the content of all the tables depends on the thread pool plugin being enabled. If a table plugin is enabled but the thread pool plugin is not, the table becomes visible and can be accessed but is empty.
 
 
-### 28.5.1 INFORMATION\_SCHEMA Thread Pool Table Reference
+### 28.5.1 INFORMATION_SCHEMA Thread Pool Table Reference
 
 The following table summarizes `INFORMATION_SCHEMA` thread pool tables. For greater detail, see the individual table descriptions.
 
-**Table 28.7 INFORMATION\_SCHEMA Thread Pool Tables**
+**Table 28.7 INFORMATION_SCHEMA Thread Pool Tables**
 
-<table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA thread pool tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="information-schema-tp-thread-group-state-table.html" title="28.5.2 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATE Table"><code class="literal">TP_THREAD_GROUP_STATE</code></a></td> <td>Thread pool thread group states</td> </tr><tr><td><a class="link" href="information-schema-tp-thread-group-stats-table.html" title="28.5.3 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATS Table"><code class="literal">TP_THREAD_GROUP_STATS</code></a></td> <td>Thread pool thread group statistics</td> </tr><tr><td><a class="link" href="information-schema-tp-thread-state-table.html" title="28.5.4 The INFORMATION_SCHEMA TP_THREAD_STATE Table"><code class="literal">TP_THREAD_STATE</code></a></td> <td>Thread pool thread information</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA thread pool tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>TP_THREAD_GROUP_STATE</code></td> <td>Thread pool thread group states</td> </tr><tr><td><code>TP_THREAD_GROUP_STATS</code></td> <td>Thread pool thread group statistics</td> </tr><tr><td><code>TP_THREAD_STATE</code></td> <td>Thread pool thread information</td> </tr></tbody></table>
 
 
-### 28.5.2 The INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATE Table
+### 28.5.2 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATE Table
 
 Note
 
@@ -54,10 +54,10 @@ SELECT * FROM performance_schema.tp_thread_group_state;
 
 The `TP_THREAD_GROUP_STATE` table has one row per thread group in the thread pool. Each row provides information about the current state of a group.
 
-For descriptions of the columns in the `INFORMATION_SCHEMA` `TP_THREAD_GROUP_STATE` table, see Section 29.12.16.2, “The tp\_thread\_group\_state Table”. The Performance Schema `tp_thread_group_state` table has equivalent columns.
+For descriptions of the columns in the `INFORMATION_SCHEMA` `TP_THREAD_GROUP_STATE` table, see Section 29.12.16.2, “The tp_thread_group_state Table”. The Performance Schema `tp_thread_group_state` table has equivalent columns.
 
 
-### 28.5.3 The INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATS Table
+### 28.5.3 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATS Table
 
 Note
 
@@ -75,10 +75,10 @@ SELECT * FROM performance_schema.tp_thread_group_stats;
 
 The `TP_THREAD_GROUP_STATS` table reports statistics per thread group. There is one row per group.
 
-For descriptions of the columns in the `INFORMATION_SCHEMA` `TP_THREAD_GROUP_STATS` table, see Section 29.12.16.3, “The tp\_thread\_group\_stats Table”. The Performance Schema `tp_thread_group_stats` table has equivalent columns.
+For descriptions of the columns in the `INFORMATION_SCHEMA` `TP_THREAD_GROUP_STATS` table, see Section 29.12.16.3, “The tp_thread_group_stats Table”. The Performance Schema `tp_thread_group_stats` table has equivalent columns.
 
 
-### 28.5.4 The INFORMATION\_SCHEMA TP\_THREAD\_STATE Table
+### 28.5.4 The INFORMATION_SCHEMA TP_THREAD_STATE Table
 
 Note
 
@@ -96,4 +96,4 @@ SELECT * FROM performance_schema.tp_thread_state;
 
 The `TP_THREAD_STATE` table has one row per thread created by the thread pool to handle connections.
 
-For descriptions of the columns in the `INFORMATION_SCHEMA` `TP_THREAD_STATE` table, see Section 29.12.16.4, “The tp\_thread\_state Table”. The Performance Schema `tp_thread_state` table has equivalent columns.
+For descriptions of the columns in the `INFORMATION_SCHEMA` `TP_THREAD_STATE` table, see Section 29.12.16.4, “The tp_thread_state Table”. The Performance Schema `tp_thread_state` table has equivalent columns.

@@ -90,7 +90,7 @@ B.3.2.12 Commands out of sync
 
 B.3.2.13 Ignoring user
 
-B.3.2.14 Table 'tbl\_name' doesn't exist
+B.3.2.14 Table 'tbl_name' doesn't exist
 
 B.3.2.15 Can't initialize character set
 
@@ -278,7 +278,7 @@ This section also covers the related `Lost connection to server during query` er
 
 The most common reason for the `MySQL server has gone away` error is that the server timed out and closed the connection. In this case, you normally get one of the following error codes (which one you get is operating system-dependent).
 
-<table summary="MySQL server has gone away error codes and a description of each code."><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>Error Code</th> <th>Description</th> </tr></thead><tbody><tr> <td><a class="ulink" href="/doc/mysql-errors/9.5/en/client-error-reference.html#error_cr_server_gone_error" target="_top"><code class="literal">CR_SERVER_GONE_ERROR</code></a></td> <td>The client couldn't send a question to the server.</td> </tr><tr> <td><a class="ulink" href="/doc/mysql-errors/9.5/en/client-error-reference.html#error_cr_server_lost" target="_top"><code class="literal">CR_SERVER_LOST</code></a></td> <td>The client didn't get an error when writing to the server, but it didn't get a full answer (or any answer) to the question.</td> </tr></tbody></table>
+<table summary="MySQL server has gone away error codes and a description of each code."><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>Error Code</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>CR_SERVER_GONE_ERROR</code></td> <td>The client couldn't send a question to the server.</td> </tr><tr> <td><code>CR_SERVER_LOST</code></td> <td>The client didn't get an error when writing to the server, but it didn't get a full answer (or any answer) to the question.</td> </tr></tbody></table>
 
 By default, the server closes the connection after eight hours if nothing has happened. You can change the time limit by setting the `wait_timeout` variable when you start **mysqld**. See Section 7.1.8, “Server System Variables”.
 
@@ -366,7 +366,7 @@ max_allowed_packet=128M
 
 It is safe to increase the value of this variable because the extra memory is allocated only when needed. For example, **mysqld** allocates more memory only when you issue a long query or when **mysqld** must return a large result row. The small default value of the variable is a precaution to catch incorrect packets between the client and server and also to ensure that you do not run out of memory by using large packets accidentally.
 
-You can also get strange problems with large packets if you are using large `BLOB` values but have not given **mysqld** access to enough memory to handle the query. If you suspect this is the case, try adding **ulimit -d 256000** to the beginning of the **mysqld\_safe** script and restarting **mysqld**.
+You can also get strange problems with large packets if you are using large `BLOB` values but have not given **mysqld** access to enough memory to handle the query. If you suspect this is the case, try adding **ulimit -d 256000** to the beginning of the **mysqld_safe** script and restarting **mysqld**.
 
 
 #### B.3.2.9 Communication Errors and Aborted Connections
@@ -377,7 +377,7 @@ If connection problems occur such as communication errors or aborted connections
 * The general query log. See Section 7.4.3, “The General Query Log”.
 * The `Aborted_xxx` and `Connection_errors_xxx` status variables. See Section 7.1.10, “Server Status Variables”.
 
-* The host cache, which is accessible using the Performance Schema `host_cache` table. See Section 7.1.12.3, “DNS Lookups and the Host Cache”, and Section 29.12.22.4, “The host\_cache Table”.
+* The host cache, which is accessible using the Performance Schema `host_cache` table. See Section 7.1.12.3, “DNS Lookups and the Host Cache”, and Section 29.12.22.4, “The host_cache Table”.
 
 If the `log_error_verbosity` system variable is set to 3, you might find messages like this in your error log:
 
@@ -474,7 +474,7 @@ If you get the following error, it means that when **mysqld** was started or whe
 As a result, the account is simply ignored by the permission system. To fix this problem, assign a new, valid password to the account.
 
 
-#### B.3.2.14 Table 'tbl\_name' doesn't exist
+#### B.3.2.14 Table 'tbl_name' doesn't exist
 
 If you get either of the following errors, it usually means that no table exists in the default database with the given name:
 
@@ -534,13 +534,13 @@ The problem here is that **mysqld** is trying to keep open too many files simult
 
 To tell **mysqld** to keep open fewer files at a time, you can make the table cache smaller by reducing the value of the `table_open_cache` system variable (the default value is 64). This may not entirely prevent running out of file descriptors because in some circumstances the server may attempt to extend the cache size temporarily, as described in Section 10.4.3.1, “How MySQL Opens and Closes Tables”. Reducing the value of `max_connections` also reduces the number of open files (the default value is 100).
 
-To change the number of file descriptors available to **mysqld**, you can use the `--open-files-limit` option to **mysqld\_safe** or set the `open_files_limit` system variable. See Section 7.1.8, “Server System Variables”. The easiest way to set these values is to add an option to your option file. See Section 6.2.2.2, “Using Option Files”. If you have an old version of **mysqld** that does not support setting the open files limit, you can edit the **mysqld\_safe** script. There is a commented-out line **ulimit -n 256** in the script. You can remove the `#` character to uncomment this line, and change the number `256` to set the number of file descriptors to be made available to **mysqld**.
+To change the number of file descriptors available to **mysqld**, you can use the `--open-files-limit` option to **mysqld_safe** or set the `open_files_limit` system variable. See Section 7.1.8, “Server System Variables”. The easiest way to set these values is to add an option to your option file. See Section 6.2.2.2, “Using Option Files”. If you have an old version of **mysqld** that does not support setting the open files limit, you can edit the **mysqld_safe** script. There is a commented-out line **ulimit -n 256** in the script. You can remove the `#` character to uncomment this line, and change the number `256` to set the number of file descriptors to be made available to **mysqld**.
 
-`--open-files-limit` and **ulimit** can increase the number of file descriptors, but only up to the limit imposed by the operating system. There is also a “hard” limit that can be overridden only if you start **mysqld\_safe** or **mysqld** as `root` (just remember that you also need to start the server with the `--user` option in this case so that it does not continue to run as `root` after it starts up). If you need to increase the operating system limit on the number of file descriptors available to each process, consult the documentation for your system.
+`--open-files-limit` and **ulimit** can increase the number of file descriptors, but only up to the limit imposed by the operating system. There is also a “hard” limit that can be overridden only if you start **mysqld_safe** or **mysqld** as `root` (just remember that you also need to start the server with the `--user` option in this case so that it does not continue to run as `root` after it starts up). If you need to increase the operating system limit on the number of file descriptors available to each process, consult the documentation for your system.
 
 Note
 
-If you run the **tcsh** shell, **ulimit** does not work! **tcsh** also reports incorrect values when you ask for the current limits. In this case, you should start **mysqld\_safe** using **sh**.
+If you run the **tcsh** shell, **ulimit** does not work! **tcsh** also reports incorrect values when you ask for the current limits. In this case, you should start **mysqld_safe** using **sh**.
 
 
 #### B.3.2.17 Table-Corruption Issues
@@ -579,7 +579,7 @@ ERROR: Can't find file: 'path/with/file_name' (Errcode: 13)
 
 The default `UMASK` and `UMASK_DIR` values are `0640` and `0750`, respectively. **mysqld** assumes that the value for `UMASK` or `UMASK_DIR` is in octal if it starts with a zero. For example, setting `UMASK=0600` is equivalent to `UMASK=384` because 0600 octal is 384 decimal.
 
-Assuming that you start **mysqld** using **mysqld\_safe**, change the default `UMASK` value as follows:
+Assuming that you start **mysqld** using **mysqld_safe**, change the default `UMASK` value as follows:
 
 ```
 UMASK=384  # = 600 in octal
@@ -589,9 +589,9 @@ mysqld_safe &
 
 Note
 
-An exception applies for the error log file if you start **mysqld** using **mysqld\_safe**, which does not respect `UMASK`: **mysqld\_safe** may create the error log file if it does not exist prior to starting **mysqld**, and **mysqld\_safe** uses a umask set to a strict value of `0137`. If this is unsuitable, create the error file manually with the desired access mode prior to executing **mysqld\_safe**.
+An exception applies for the error log file if you start **mysqld** using **mysqld_safe**, which does not respect `UMASK`: **mysqld_safe** may create the error log file if it does not exist prior to starting **mysqld**, and **mysqld_safe** uses a umask set to a strict value of `0137`. If this is unsuitable, create the error file manually with the desired access mode prior to executing **mysqld_safe**.
 
-By default, **mysqld** creates database directories with an access permission value of `0750`. To modify this behavior, set the `UMASK_DIR` variable. If you set its value, new directories are created with the combined `UMASK` and `UMASK_DIR` values. For example, to give group access to all new directories, start **mysqld\_safe** as follows:
+By default, **mysqld** creates database directories with an access permission value of `0750`. To modify this behavior, set the `UMASK_DIR` variable. If you set its value, new directories are created with the combined `UMASK` and `UMASK_DIR` values. For example, to give group access to all new directories, start **mysqld_safe** as follows:
 
 ```
 UMASK_DIR=504  # = 770 in octal
@@ -859,7 +859,7 @@ Online DDL operations may use temporary log files for recording concurrent DML, 
 
 `InnoDB` user-created temporary tables and on-disk internal temporary tables are created in a temporary tablespace file named `ibtmp1` in the MySQL data directory. For more information, see Section 17.6.3.5, “Temporary Tablespaces”.
 
-See also Section 17.15.7, “InnoDB INFORMATION\_SCHEMA Temporary Table Info Table”.
+See also Section 17.15.7, “InnoDB INFORMATION_SCHEMA Temporary Table Info Table”.
 
 The optional `EXTENDED` modifier causes `SHOW TABLES` to list hidden tables created by failed [`ALTER TABLE`](alter-table.html "15.1.11 ALTER TABLE Statement") statements. See Section 15.7.7.40, “SHOW TABLES Statement”.
 
@@ -892,7 +892,7 @@ Another approach is to change the place where the server creates the Unix socket
 
   See Section 6.2.2.2, “Using Option Files”.
 
-* Specify a `--socket` option on the command line to **mysqld\_safe** and when you run client programs.
+* Specify a `--socket` option on the command line to **mysqld_safe** and when you run client programs.
 
 * Set the `MYSQL_UNIX_PORT` environment variable to the path of the Unix socket file.
 
@@ -907,9 +907,9 @@ $> mysqladmin --socket=/path/to/socket version
 
 #### B.3.3.7 Time Zone Problems
 
-If you have a problem with `SELECT NOW()` returning values in UTC and not your local time, you have to tell the server your current time zone. The same applies if `UNIX_TIMESTAMP()` returns the wrong value. This should be done for the environment in which the server runs (for example, in **mysqld\_safe** or **mysql.server**). See Section 6.9, “Environment Variables”.
+If you have a problem with `SELECT NOW()` returning values in UTC and not your local time, you have to tell the server your current time zone. The same applies if `UNIX_TIMESTAMP()` returns the wrong value. This should be done for the environment in which the server runs (for example, in **mysqld_safe** or **mysql.server**). See Section 6.9, “Environment Variables”.
 
-You can set the time zone for the server with the `--timezone=timezone_name` option to **mysqld\_safe**. You can also set it by setting the `TZ` environment variable before you start **mysqld**.
+You can set the time zone for the server with the `--timezone=timezone_name` option to **mysqld_safe**. You can also set it by setting the `TZ` environment variable before you start **mysqld**.
 
 The permissible values for `--timezone` or `TZ` are system dependent. Consult your operating system documentation to see what values are acceptable.
 
@@ -1213,7 +1213,7 @@ If you have a complicated query that uses many tables but that returns no rows, 
 
 5. If you are comparing `FLOAT` - FLOAT, DOUBLE") or `DOUBLE` - FLOAT, DOUBLE") columns with numbers that have decimals, you cannot use equality (`=`) comparisons. This problem is common in most computer languages because not all floating-point values can be stored with exact precision. In some cases, changing the `FLOAT` - FLOAT, DOUBLE") to a `DOUBLE` - FLOAT, DOUBLE") fixes this. See Section B.3.4.8, “Problems with Floating-Point Values”.
 
-6. If you still cannot figure out what is wrong, create a minimal test that can be run with `mysql test < query.sql` that shows your problems. You can create a test file by dumping the tables with [**mysqldump --quick db\_name *`tbl_name_1`* ... *`tbl_name_n`* > query.sql**](mysqldump.html "6.5.4 mysqldump — A Database Backup Program"). Open the file in an editor, remove some insert lines (if there are more than needed to demonstrate the problem), and add your `SELECT` statement at the end of the file.
+6. If you still cannot figure out what is wrong, create a minimal test that can be run with `mysql test < query.sql` that shows your problems. You can create a test file by dumping the tables with [**mysqldump --quick db_name *`tbl_name_1`* ... *`tbl_name_n`* > query.sql**](mysqldump.html "6.5.4 mysqldump — A Database Backup Program"). Open the file in an editor, remove some insert lines (if there are more than needed to demonstrate the problem), and add your `SELECT` statement at the end of the file.
 
    Verify that the test file demonstrates the problem by executing these commands:
 

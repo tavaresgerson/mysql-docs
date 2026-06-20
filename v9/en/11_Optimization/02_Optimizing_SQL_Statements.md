@@ -439,13 +439,13 @@ For the data set shown earlier, the algorithm operates like this:
 
 Using this strategy decreases the number of accessed rows because MySQL skips the rows that do not qualify for each constructed range. This Skip Scan access method is applicable under the following conditions:
 
-* Table T has at least one compound index with key parts of the form ([A\_1, ..., A\_*`k`*,] B\_1, ..., B\_*`m`*, C [, D\_1, ..., D\_*`n`*]). Key parts A and D may be empty, but B and C must be nonempty.
+* Table T has at least one compound index with key parts of the form ([A_1, ..., A_*`k`*,] B_1, ..., B_*`m`*, C [, D_1, ..., D_*`n`*]). Key parts A and D may be empty, but B and C must be nonempty.
 
 * The query references only one table.
 * The query does not use `GROUP BY` or `DISTINCT`.
 
 * The query references only columns in the index.
-* The predicates on A\_1, ..., A\_*`k`* must be equality predicates and they must be constants. This includes the `IN()` operator.
+* The predicates on A_1, ..., A_*`k`* must be equality predicates and they must be constants. This includes the `IN()` operator.
 
 * The query must be a conjunctive query; that is, an `AND` of `OR` conditions: `(cond1(key_part1) OR cond2(key_part1)) AND (cond1(key_part2) OR ...) AND ...`
 
@@ -678,7 +678,7 @@ In addition to using the `optimizer_switch` system variable to control optimizer
 
 #### 10.2.1.4 Hash Join Optimization
 
-By default, MySQL employs hash joins whenever possible. It is possible to control whether hash joins are employed using one of the `BNL` and `NO_BNL` optimizer hints, or by setting `block_nested_loop=on` or `block_nested_loop=off` as part of the setting for the optimizer\_switch server system variable.
+By default, MySQL employs hash joins whenever possible. It is possible to control whether hash joins are employed using one of the `BNL` and `NO_BNL` optimizer hints, or by setting `block_nested_loop=on` or `block_nested_loop=off` as part of the setting for the optimizer_switch server system variable.
 
 MySQL employs a hash join for any query for which each join has an equi-join condition, and in which there are no indexes that can be applied to any join conditions, such as this one:
 
@@ -3529,7 +3529,7 @@ Note
 The transformation cannot be applied to a query having a `SELECT` list with a quantified comparison predicate when it also employs a window function referencing the same predicate.
 
 
-### 10.2.3 Optimizing INFORMATION\_SCHEMA Queries
+### 10.2.3 Optimizing INFORMATION_SCHEMA Queries
 
 Applications that monitor databases may make frequent use of `INFORMATION_SCHEMA` tables. To write queries for these tables most efficiently, use the following general guidelines:
 
@@ -3539,7 +3539,7 @@ Applications that monitor databases may make frequent use of `INFORMATION_SCHEMA
 
 Note
 
-Comparison behavior for database and table names in `INFORMATION_SCHEMA` queries might differ from what you expect. For details, see Section 12.8.7, “Using Collation in INFORMATION\_SCHEMA Searches”.
+Comparison behavior for database and table names in `INFORMATION_SCHEMA` queries might differ from what you expect. For details, see Section 12.8.7, “Using Collation in INFORMATION_SCHEMA Searches”.
 
 These `INFORMATION_SCHEMA` tables are implemented as views on data dictionary tables, so queries on them retrieve information from the data dictionary:
 

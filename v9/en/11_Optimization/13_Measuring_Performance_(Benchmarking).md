@@ -49,6 +49,6 @@ To avoid problems like this, benchmark your whole application under the worst po
 These programs or packages can bring a system to its knees, so be sure to use them only on your development systems.
 
 
-### 10.13.3 Measuring Performance with performance\_schema
+### 10.13.3 Measuring Performance with performance_schema
 
 You can query the tables in the `performance_schema` database to see real-time information about the performance characteristics of your server and the applications it is running. See Chapter 29, *MySQL Performance Schema* for details.

@@ -4,7 +4,7 @@ Linux supports a number of different solutions for installing MySQL. We recommen
 
 **Table 2.9 Linux Installation Methods and Information**
 
-<table><col style="width: 30%"/><col style="width: 30%"/><col style="width: 40%"/><thead><tr> <th scope="col">Type</th> <th scope="col">Setup Method</th> <th scope="col">Additional Information</th> </tr></thead><tbody><tr> <th scope="row">Apt</th> <td>Enable the <a class="ulink" href="https://dev.mysql.com/downloads/repo/apt/" target="_top">MySQL Apt repository</a></td> <td><a class="link" href="linux-installation-apt-repo.html" title="2.5.2 Installing MySQL on Linux Using the MySQL APT Repository">Documentation</a></td> </tr><tr> <th scope="row">Yum</th> <td>Enable the <a class="ulink" href="https://dev.mysql.com/downloads/repo/yum/" target="_top">MySQL Yum repository</a></td> <td><a class="link" href="linux-installation-yum-repo.html" title="2.5.1 Installing MySQL on Linux Using the MySQL Yum Repository">Documentation</a></td> </tr><tr> <th scope="row">Zypper</th> <td>Enable the <a class="ulink" href="https://dev.mysql.com/downloads/repo/suse/" target="_top">MySQL SLES repository</a></td> <td><a class="link" href="linux-installation-sles-repo.html" title="2.5.3 Using the MySQL SLES Repository">Documentation</a></td> </tr><tr> <th scope="row">RPM</th> <td><a class="ulink" href="https://dev.mysql.com/downloads/mysql/" target="_top">Download</a> a specific package</td> <td><a class="link" href="linux-installation-rpm.html" title="2.5.4 Installing MySQL on Linux Using RPM Packages from Oracle">Documentation</a></td> </tr><tr> <th scope="row">DEB</th> <td><a class="ulink" href="https://dev.mysql.com/downloads/mysql/" target="_top">Download</a> a specific package</td> <td><a class="link" href="linux-installation-debian.html" title="2.5.5 Installing MySQL on Linux Using Debian Packages from Oracle">Documentation</a></td> </tr><tr> <th scope="row">Generic</th> <td><a class="ulink" href="https://dev.mysql.com/downloads/mysql/" target="_top">Download</a> a generic package</td> <td><a class="link" href="binary-installation.html" title="2.2 Installing MySQL on Unix/Linux Using Generic Binaries">Documentation</a></td> </tr><tr> <th scope="row">Source</th> <td>Compile from <a class="ulink" href="https://dev.mysql.com/downloads/mysql/" target="_top">source</a></td> <td><a class="link" href="source-installation.html" title="2.8 Installing MySQL from Source">Documentation</a></td> </tr><tr> <th scope="row">Docker</th> <td>Use the <a class="ulink" href="https://container-registry.oracle.com/" target="_blank">Oracle Container Registry</a>. You can also use <a class="ulink" href="https://support.oracle.com/" target="_blank">My Oracle Support</a> for the MySQL Enterprise Edition.</td> <td><a class="link" href="linux-installation-docker.html" title="2.5.6 Deploying MySQL on Linux with Docker Containers">Documentation</a></td> </tr><tr> <th scope="row">Oracle Unbreakable Linux Network</th> <td>Use ULN channels</td> <td><a class="link" href="uln-installation.html" title="2.6 Installing MySQL Using Unbreakable Linux Network (ULN)">Documentation</a></td> </tr></tbody></table>
+<table><col style="width: 30%"/><col style="width: 30%"/><col style="width: 40%"/><thead><tr> <th scope="col">Type</th> <th scope="col">Setup Method</th> <th scope="col">Additional Information</th> </tr></thead><tbody><tr> <th scope="row">Apt</th> <td>Enable the MySQL Apt repository</td> <td>Documentation</td> </tr><tr> <th scope="row">Yum</th> <td>Enable the MySQL Yum repository</td> <td>Documentation</td> </tr><tr> <th scope="row">Zypper</th> <td>Enable the MySQL SLES repository</td> <td>Documentation</td> </tr><tr> <th scope="row">RPM</th> <td>Download a specific package</td> <td>Documentation</td> </tr><tr> <th scope="row">DEB</th> <td>Download a specific package</td> <td>Documentation</td> </tr><tr> <th scope="row">Generic</th> <td>Download a generic package</td> <td>Documentation</td> </tr><tr> <th scope="row">Source</th> <td>Compile from source</td> <td>Documentation</td> </tr><tr> <th scope="row">Docker</th> <td>Use the Oracle Container Registry. You can also use My Oracle Support for the MySQL Enterprise Edition.</td> <td>Documentation</td> </tr><tr> <th scope="row">Oracle Unbreakable Linux Network</th> <td>Use ULN channels</td> <td>Documentation</td> </tr></tbody></table>
 
 As an alternative, you can use the package manager on your system to automatically download and install MySQL with packages from the native software repositories of your Linux distribution. These native packages are often several versions behind the currently available release. You are also normally unable to install innovation releases, since these are not usually made available in the native repositories. For more information on using the native package installers, see Section 2.5.7, “Installing MySQL on Linux from the Native Software Repositories”.
 
@@ -245,7 +245,7 @@ $> sudo yum install mysql-community-libs
 
 ARM Support
 
-ARM 64-bit (aarch64) is supported on Oracle Linux 7 and requires the Oracle Linux 7 Software Collections Repository (ol7\_software\_collections). For example, to install the server:
+ARM 64-bit (aarch64) is supported on Oracle Linux 7 and requires the Oracle Linux 7 Software Collections Repository (ol7_software_collections). For example, to install the server:
 
 ```
 $> yum-config-manager --enable ol7_software_collections
@@ -367,7 +367,7 @@ During the installation, you are asked to supply a password for the root user fo
 
 Important
 
-Make sure you remember the root password you set. Users who want to set a password later can leave the password field blank in the dialogue box and just press Ok; in that case, root access to the server will be authenticated by Section 8.4.1.10, “Socket Peer-Credential Pluggable Authentication” for connections using a Unix socket file. You can set the root password later using the program **mysql\_secure\_installation**.
+Make sure you remember the root password you set. Users who want to set a password later can leave the password field blank in the dialogue box and just press Ok; in that case, root access to the server will be authenticated by Section 8.4.1.10, “Socket Peer-Credential Pluggable Authentication” for connections using a Unix socket file. You can set the root password later using the program **mysql_secure_installation**.
 
 #### Starting and Stopping the MySQL Server
 
@@ -884,7 +884,7 @@ when the initialization process begins):
 
 * The SSL certificate and key files are generated in the data
   directory.
-* The [validate\_password
+* The [validate_password
   plugin](validate-password.html "8.4.4 The Password Validation Component") is installed and enabled.
 * A superuser account `'root'@'localhost'` is
   created. A password for the superuser is set and stored in the
@@ -909,7 +909,7 @@ when the initialization process begins):
 Note
 
 MySQL's
-[validate\_password](validate-password.html "8.4.4 The Password Validation Component")
+[validate_password](validate-password.html "8.4.4 The Password Validation Component")
 plugin is installed by default. This will require that passwords
 contain at least one uppercase letter, one lowercase letter, one
 digit, and one special character, and that the total password
@@ -1217,11 +1217,11 @@ RPM distributions of MySQL are also provided by other vendors. Be aware that the
 
 **Table 2.10 RPM Packages for MySQL Community Edition**
 
-<table frame="all"><col style="width: 35%"/><col style="width: 25%"/><thead><tr> <th>Package Name</th> <th>Summary</th> </tr></thead><tbody><tr> <td><code class="literal">mysql-community-client</code></td> <td>MySQL client applications and tools</td> </tr><tr> <td><code class="literal">mysql-community-client-plugins</code></td> <td>Shared plugins for MySQL client applications</td> </tr><tr> <td><code class="literal">mysql-community-common</code></td> <td>Common files for server and client libraries</td> </tr><tr> <td><code class="literal">mysql-community-devel</code></td> <td>Development header files and libraries for MySQL database client applications</td> </tr><tr> <td><code class="literal">mysql-community-embedded-compat</code></td> <td>MySQL server as an embedded library with compatibility for applications using version 18 of the library</td> </tr><tr> <td><code class="literal">mysql-community-icu-data-files</code></td> <td>MySQL packaging of ICU data files needed by MySQL regular expressions</td> </tr><tr> <td><code class="literal">mysql-community-libs</code></td> <td>Shared libraries for MySQL database client applications</td> </tr><tr> <td><code class="literal">mysql-community-libs-compat</code></td> <td>Shared compatibility libraries for previous MySQL installations; only present if previous MySQL versions are supported by the platform</td> </tr><tr> <td><code class="literal">mysql-community-server</code></td> <td>Database server and related tools</td> </tr><tr> <td><code class="literal">mysql-community-server-debug</code></td> <td>Debug server and plugin binaries</td> </tr><tr> <td><code class="literal">mysql-community-test</code></td> <td>Test suite for the MySQL server</td> </tr><tr> <td><code class="literal">mysql-community</code></td> <td>The source code RPM looks similar to mysql-community-9.5.0-1.el7.src.rpm, depending on selected OS</td> </tr><tr> <td>Additional *debuginfo* RPMs</td> <td>There are several <code class="literal">debuginfo</code> packages: mysql-community-client-debuginfo, mysql-community-libs-debuginfo mysql-community-server-debug-debuginfo mysql-community-server-debuginfo, and mysql-community-test-debuginfo.</td> </tr></tbody></table>
+<table frame="all"><col style="width: 35%"/><col style="width: 25%"/><thead><tr> <th>Package Name</th> <th>Summary</th> </tr></thead><tbody><tr> <td><code>mysql-community-client</code></td> <td>MySQL client applications and tools</td> </tr><tr> <td><code>mysql-community-client-plugins</code></td> <td>Shared plugins for MySQL client applications</td> </tr><tr> <td><code>mysql-community-common</code></td> <td>Common files for server and client libraries</td> </tr><tr> <td><code>mysql-community-devel</code></td> <td>Development header files and libraries for MySQL database client applications</td> </tr><tr> <td><code>mysql-community-embedded-compat</code></td> <td>MySQL server as an embedded library with compatibility for applications using version 18 of the library</td> </tr><tr> <td><code>mysql-community-icu-data-files</code></td> <td>MySQL packaging of ICU data files needed by MySQL regular expressions</td> </tr><tr> <td><code>mysql-community-libs</code></td> <td>Shared libraries for MySQL database client applications</td> </tr><tr> <td><code>mysql-community-libs-compat</code></td> <td>Shared compatibility libraries for previous MySQL installations; only present if previous MySQL versions are supported by the platform</td> </tr><tr> <td><code>mysql-community-server</code></td> <td>Database server and related tools</td> </tr><tr> <td><code>mysql-community-server-debug</code></td> <td>Debug server and plugin binaries</td> </tr><tr> <td><code>mysql-community-test</code></td> <td>Test suite for the MySQL server</td> </tr><tr> <td><code>mysql-community</code></td> <td>The source code RPM looks similar to mysql-community-9.5.0-1.el7.src.rpm, depending on selected OS</td> </tr><tr> <td>Additional *debuginfo* RPMs</td> <td>There are several <code>debuginfo</code> packages: mysql-community-client-debuginfo, mysql-community-libs-debuginfo mysql-community-server-debug-debuginfo mysql-community-server-debuginfo, and mysql-community-test-debuginfo.</td> </tr></tbody></table>
 
 **Table 2.11 RPM Packages for the MySQL Enterprise Edition**
 
-<table frame="all"><col style="width: 35%"/><col style="width: 25%"/><thead><tr> <th>Package Name</th> <th>Summary</th> </tr></thead><tbody><tr> <td><code class="literal">mysql-commercial-backup</code></td> <td>MySQL Enterprise Backup</td> </tr><tr> <td><code class="literal">mysql-commercial-client</code></td> <td>MySQL client applications and tools</td> </tr><tr> <td><code class="literal">mysql-commercial-client-plugins</code></td> <td>Shared plugins for MySQL client applications</td> </tr><tr> <td><code class="literal">mysql-commercial-common</code></td> <td>Common files for server and client libraries</td> </tr><tr> <td><code class="literal">mysql-commercial-devel</code></td> <td>Development header files and libraries for MySQL database client applications</td> </tr><tr> <td><code class="literal">mysql-commercial-embedded-compat</code></td> <td>MySQL server as an embedded library with compatibility for applications using version 18 of the library</td> </tr><tr> <td><code class="literal">mysql-commercial-icu-data-files</code></td> <td>MySQL packaging of ICU data files needed by MySQL regular expressions</td> </tr><tr> <td><code class="literal">mysql-commercial-libs</code></td> <td>Shared libraries for MySQL database client applications</td> </tr><tr> <td><code class="literal">mysql-commercial-libs-compat</code></td> <td>Shared compatibility libraries for previous MySQL installations; only present if previous MySQL versions are supported by the platform. The version of the libraries matches the version of the libraries installed by default by the distribution you are using.</td> </tr><tr> <td><code class="literal">mysql-commercial-server</code></td> <td>Database server and related tools</td> </tr><tr> <td><code class="literal">mysql-commercial-test</code></td> <td>Test suite for the MySQL server</td> </tr><tr> <td>Additional *debuginfo* RPMs</td> <td>There are several <code class="literal">debuginfo</code> packages: mysql-commercial-client-debuginfo, mysql-commercial-libs-debuginfo mysql-commercial-server-debug-debuginfo mysql-commercial-server-debuginfo, and mysql-commercial-test-debuginfo.</td> </tr></tbody></table>
+<table frame="all"><col style="width: 35%"/><col style="width: 25%"/><thead><tr> <th>Package Name</th> <th>Summary</th> </tr></thead><tbody><tr> <td><code>mysql-commercial-backup</code></td> <td>MySQL Enterprise Backup</td> </tr><tr> <td><code>mysql-commercial-client</code></td> <td>MySQL client applications and tools</td> </tr><tr> <td><code>mysql-commercial-client-plugins</code></td> <td>Shared plugins for MySQL client applications</td> </tr><tr> <td><code>mysql-commercial-common</code></td> <td>Common files for server and client libraries</td> </tr><tr> <td><code>mysql-commercial-devel</code></td> <td>Development header files and libraries for MySQL database client applications</td> </tr><tr> <td><code>mysql-commercial-embedded-compat</code></td> <td>MySQL server as an embedded library with compatibility for applications using version 18 of the library</td> </tr><tr> <td><code>mysql-commercial-icu-data-files</code></td> <td>MySQL packaging of ICU data files needed by MySQL regular expressions</td> </tr><tr> <td><code>mysql-commercial-libs</code></td> <td>Shared libraries for MySQL database client applications</td> </tr><tr> <td><code>mysql-commercial-libs-compat</code></td> <td>Shared compatibility libraries for previous MySQL installations; only present if previous MySQL versions are supported by the platform. The version of the libraries matches the version of the libraries installed by default by the distribution you are using.</td> </tr><tr> <td><code>mysql-commercial-server</code></td> <td>Database server and related tools</td> </tr><tr> <td><code>mysql-commercial-test</code></td> <td>Test suite for the MySQL server</td> </tr><tr> <td>Additional *debuginfo* RPMs</td> <td>There are several <code>debuginfo</code> packages: mysql-commercial-client-debuginfo, mysql-commercial-libs-debuginfo mysql-commercial-server-debug-debuginfo mysql-commercial-server-debuginfo, and mysql-commercial-test-debuginfo.</td> </tr></tbody></table>
 
 The full names for the RPMs have the following syntax:
 
@@ -1233,7 +1233,7 @@ The *`distribution`* and *`arch`* values indicate the Linux distribution and the
 
 **Table 2.12 MySQL Linux RPM Package Distribution Identifiers**
 
-<table><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Distribution Value</th> <th>Intended Use</th> </tr></thead><tbody><tr> <td>el<em class="replaceable"><code>{version}</code></em> where <em class="replaceable"><code>{version}</code></em> is the major Enterprise Linux version, such as <code class="literal">el8</code></td> <td>EL6 (8.0), EL7, EL8, EL9, and EL10-based platforms (for example, the corresponding versions of Oracle Linux, Red Hat Enterprise Linux, and CentOS)</td> </tr><tr> <td>fc<em class="replaceable"><code>{version}</code></em> where <em class="replaceable"><code>{version}</code></em> is the major Fedora version, such as <code class="literal">fc37</code></td> <td>Fedora 41 and 42</td> </tr><tr> <td><code class="literal">sl5</code></td> <td>SUSE Linux Enterprise Server 15</td> </tr></tbody></table>
+<table><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>Distribution Value</th> <th>Intended Use</th> </tr></thead><tbody><tr> <td>el<code>{version}</code> where <code>{version}</code> is the major Enterprise Linux version, such as <code>el8</code></td> <td>EL6 (8.0), EL7, EL8, EL9, and EL10-based platforms (for example, the corresponding versions of Oracle Linux, Red Hat Enterprise Linux, and CentOS)</td> </tr><tr> <td>fc<code>{version}</code> where <code>{version}</code> is the major Fedora version, such as <code>fc37</code></td> <td>Fedora 41 and 42</td> </tr><tr> <td><code>sl5</code></td> <td>SUSE Linux Enterprise Server 15</td> </tr></tbody></table>
 
 To see all files in an RPM package (for example, `mysql-community-server`), use the following command:
 
@@ -1267,7 +1267,7 @@ A standard installation of MySQL using the RPM packages result in files and reso
 
 **Table 2.13 MySQL Installation Layout for Linux RPM Packages from the MySQL Developer Zone**
 
-<table><col style="width: 55%"/><col style="width: 45%"/><thead><tr> <th>Files or Resources</th> <th>Location</th> </tr></thead><tbody><tr> <td>Client programs and scripts</td> <td><code class="filename">/usr/bin</code></td> </tr><tr> <td><a class="link" href="mysqld.html" title="6.3.1 mysqld — The MySQL Server"><span class="command"><strong>mysqld</strong></span></a> server</td> <td><code class="filename">/usr/sbin</code></td> </tr><tr> <td>Configuration file</td> <td><code class="filename">/etc/my.cnf</code></td> </tr><tr> <td>Data directory</td> <td><code class="filename">/var/lib/mysql</code></td> </tr><tr> <td>Error log file</td> <td><p> For RHEL, Oracle Linux, CentOS or Fedora platforms: <code class="filename">/var/log/mysqld.log</code> </p><p> For SLES: <code class="filename">/var/log/mysql/mysqld.log</code> </p></td> </tr><tr> <td>Value of <a class="link" href="server-system-variables.html#sysvar_secure_file_priv"><code class="literal">secure_file_priv</code></a></td> <td><code class="filename">/var/lib/mysql-files</code></td> </tr><tr> <td>System V init script</td> <td><p> For RHEL, Oracle Linux, CentOS or Fedora platforms: <code class="filename">/etc/init.d/mysqld</code> </p><p> For SLES: <code class="filename">/etc/init.d/mysql</code> </p></td> </tr><tr> <td>Systemd service</td> <td><p> For RHEL, Oracle Linux, CentOS or Fedora platforms: <code class="filename">mysqld</code> </p><p> For SLES: <code class="filename">mysql</code> </p></td> </tr><tr> <td>Pid file</td> <td><code class="filename"> /var/run/mysql/mysqld.pid</code></td> </tr><tr> <td>Socket</td> <td><code class="filename">/var/lib/mysql/mysql.sock</code></td> </tr><tr> <td>Keyring directory</td> <td><code class="filename">/var/lib/mysql-keyring</code></td> </tr><tr> <td>Unix manual pages</td> <td><code class="filename">/usr/share/man</code></td> </tr><tr> <td>Include (header) files</td> <td><code class="filename">/usr/include/mysql</code></td> </tr><tr> <td>Libraries</td> <td><code class="filename">/usr/lib/mysql</code></td> </tr><tr> <td>Miscellaneous support files (for example, error messages, and character set files)</td> <td><code class="filename">/usr/share/mysql</code></td> </tr></tbody></table>
+<table><col style="width: 55%"/><col style="width: 45%"/><thead><tr> <th>Files or Resources</th> <th>Location</th> </tr></thead><tbody><tr> <td>Client programs and scripts</td> <td><code>/usr/bin</code></td> </tr><tr> <td>mysqld server</td> <td><code>/usr/sbin</code></td> </tr><tr> <td>Configuration file</td> <td><code>/etc/my.cnf</code></td> </tr><tr> <td>Data directory</td> <td><code>/var/lib/mysql</code></td> </tr><tr> <td>Error log file</td> <td><p> For RHEL, Oracle Linux, CentOS or Fedora platforms: <code>/var/log/mysqld.log</code> </p><p> For SLES: <code>/var/log/mysql/mysqld.log</code> </p></td> </tr><tr> <td>Value of <code>secure_file_priv</code></td> <td><code>/var/lib/mysql-files</code></td> </tr><tr> <td>System V init script</td> <td><p> For RHEL, Oracle Linux, CentOS or Fedora platforms: <code>/etc/init.d/mysqld</code> </p><p> For SLES: <code>/etc/init.d/mysql</code> </p></td> </tr><tr> <td>Systemd service</td> <td><p> For RHEL, Oracle Linux, CentOS or Fedora platforms: <code>mysqld</code> </p><p> For SLES: <code>mysql</code> </p></td> </tr><tr> <td>Pid file</td> <td><code> /var/run/mysql/mysqld.pid</code></td> </tr><tr> <td>Socket</td> <td><code>/var/lib/mysql/mysql.sock</code></td> </tr><tr> <td>Keyring directory</td> <td><code>/var/lib/mysql-keyring</code></td> </tr><tr> <td>Unix manual pages</td> <td><code>/usr/share/man</code></td> </tr><tr> <td>Include (header) files</td> <td><code>/usr/include/mysql</code></td> </tr><tr> <td>Libraries</td> <td><code>/usr/lib/mysql</code></td> </tr><tr> <td>Miscellaneous support files (for example, error messages, and character set files)</td> <td><code>/usr/share/mysql</code></td> </tr></tbody></table>
 
 The installation also creates a user named `mysql` and a group named `mysql` on the system.
 
@@ -1361,7 +1361,7 @@ Oracle provides Debian packages for installing MySQL on Debian or Debian-like Li
 
     **Table 2.14 MySQL Debian and Ubuntu Installation Packages CPU Identifiers**
 
-    <table><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th><em class="replaceable"><code>CPU</code></em> Value</th> <th>Intended Processor Type or Family</th> </tr></thead><tbody><tr> <td><code class="literal">i386</code></td> <td>Pentium processor or better, 32 bit</td> </tr><tr> <td><code class="literal">amd64</code></td> <td>64-bit x86 processor</td> </tr></tbody></table>
+    <table><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th><code>CPU</code> Value</th> <th>Intended Processor Type or Family</th> </tr></thead><tbody><tr> <td><code>i386</code></td> <td>Pentium processor or better, 32 bit</td> </tr><tr> <td><code>amd64</code></td> <td>64-bit x86 processor</td> </tr></tbody></table>
 
   + After downloading the tarball, unpack it with the following command:
 
@@ -1385,7 +1385,7 @@ Oracle provides Debian packages for installing MySQL on Debian or Debian-like Li
 
     Important
 
-    Make sure you remember the root password you set. Users who want to set a password later can leave the password field blank in the dialogue box and just press OK; in that case, root access to the server is authenticated using the [MySQL Socket Peer-Credential Authentication Plugin](socket-pluggable-authentication.html "8.4.1.10 Socket Peer-Credential Pluggable Authentication") for connections using a Unix socket file. You can set the root password later using **mysql\_secure\_installation**.
+    Make sure you remember the root password you set. Users who want to set a password later can leave the password field blank in the dialogue box and just press OK; in that case, root access to the server is authenticated using the [MySQL Socket Peer-Credential Authentication Plugin](socket-pluggable-authentication.html "8.4.1.10 Socket Peer-Credential Pluggable Authentication") for connections using a Unix socket file. You can set the root password later using **mysql_secure_installation**.
 
   + For a basic installation of the MySQL server, install the database common files package, the client package, the client metapackage, the server package, and the server metapackage (in that order); you can do that with a single command:
 
@@ -2087,7 +2087,7 @@ Distribution specific instructions are shown below:
   $> systemctl start mysqld
   ```
 
-  The database tables are automatically created for you, if they do not already exist. You should, however, run **mysql\_secure\_installation** to set the root passwords on your server.
+  The database tables are automatically created for you, if they do not already exist. You should, however, run **mysql_secure_installation** to set the root passwords on your server.
 
 * **Debian, Ubuntu, Kubuntu**
 
@@ -2146,15 +2146,15 @@ The following discussion covers these topics:
 * Overview of systemd
 * Configuring systemd for MySQL
 * Configuring Multiple MySQL Instances Using systemd
-* Migrating from mysqld\_safe to systemd
+* Migrating from mysqld_safe to systemd
 
 Note
 
-On platforms for which systemd support for MySQL is installed, scripts such as **mysqld\_safe** and the System V initialization script are unnecessary and are not installed. For example, **mysqld\_safe** can handle server restarts, but systemd provides the same capability, and does so in a manner consistent with management of other services rather than by using an application-specific program.
+On platforms for which systemd support for MySQL is installed, scripts such as **mysqld_safe** and the System V initialization script are unnecessary and are not installed. For example, **mysqld_safe** can handle server restarts, but systemd provides the same capability, and does so in a manner consistent with management of other services rather than by using an application-specific program.
 
-One implication of the non-use of **mysqld\_safe** on platforms that use systemd for server management is that use of `[mysqld_safe]` or `[safe_mysqld]` sections in option files is not supported and might lead to unexpected behavior.
+One implication of the non-use of **mysqld_safe** on platforms that use systemd for server management is that use of `[mysqld_safe]` or `[safe_mysqld]` sections in option files is not supported and might lead to unexpected behavior.
 
-Because systemd has the capability of managing multiple MySQL instances on platforms for which systemd support for MySQL is installed, **mysqld\_multi** and **mysqld\_multi.server** are unnecessary and are not installed.
+Because systemd has the capability of managing multiple MySQL instances on platforms for which systemd support for MySQL is installed, **mysqld_multi** and **mysqld_multi.server** are unnecessary and are not installed.
 
 #### Overview of systemd
 
@@ -2223,17 +2223,17 @@ With systemd, the `override.conf` configuration method must be used for certain 
 
 * For some parameters, `override.conf` must be used because systemd itself must know their values and it cannot read MySQL option files to get them.
 
-* Parameters that specify values otherwise settable only using options known to **mysqld\_safe** must be specified using systemd because there is no corresponding **mysqld** parameter.
+* Parameters that specify values otherwise settable only using options known to **mysqld_safe** must be specified using systemd because there is no corresponding **mysqld** parameter.
 
-For additional information about using systemd rather than **mysqld\_safe**, see Migrating from mysqld\_safe to systemd.
+For additional information about using systemd rather than **mysqld_safe**, see Migrating from mysqld_safe to systemd.
 
 You can set the following parameters in `override.conf`:
 
-* To set the number of file descriptors available to the MySQL server, use `LimitNOFILE` in `override.conf` rather than the `open_files_limit` system variable for **mysqld** or `--open-files-limit` option for **mysqld\_safe**.
+* To set the number of file descriptors available to the MySQL server, use `LimitNOFILE` in `override.conf` rather than the `open_files_limit` system variable for **mysqld** or `--open-files-limit` option for **mysqld_safe**.
 
-* To set the maximum core file size, use `LimitCore` in `override.conf` rather than the `--core-file-size` option for **mysqld\_safe**.
+* To set the maximum core file size, use `LimitCore` in `override.conf` rather than the `--core-file-size` option for **mysqld_safe**.
 
-* To set the scheduling priority for the MySQL server, use `Nice` in `override.conf` rather than the `--nice` option for **mysqld\_safe**.
+* To set the scheduling priority for the MySQL server, use `Nice` in `override.conf` rather than the `--nice` option for **mysqld_safe**.
 
 Some MySQL parameters are configured using environment variables:
 
@@ -2291,7 +2291,7 @@ This section describes how to configure systemd for multiple instances of MySQL.
 
 Note
 
-Because systemd has the capability of managing multiple MySQL instances on platforms for which systemd support is installed, **mysqld\_multi** and **mysqld\_multi.server** are unnecessary and are not installed.
+Because systemd has the capability of managing multiple MySQL instances on platforms for which systemd support is installed, **mysqld_multi** and **mysqld_multi.server** are unnecessary and are not installed.
 
 To use multiple-instance capability, modify the `my.cnf` option file to include configuration of key options for each instance. These file locations are typical:
 
@@ -2383,16 +2383,16 @@ Note
 
 On Debian platforms, the packaging scripts for MySQL uninstallation cannot currently handle `mysqld@` instances. Before removing or upgrading the package, you must stop any extra instances manually first.
 
-#### Migrating from mysqld\_safe to systemd
+#### Migrating from mysqld_safe to systemd
 
-Because **mysqld\_safe** is not installed on platforms that use systemd to manage MySQL, options previously specified for that program (for example, in an `[mysqld_safe]` or `[safe_mysqld]` option group) must be specified another way:
+Because **mysqld_safe** is not installed on platforms that use systemd to manage MySQL, options previously specified for that program (for example, in an `[mysqld_safe]` or `[safe_mysqld]` option group) must be specified another way:
 
-* Some **mysqld\_safe** options are also understood by **mysqld** and can be moved from the `[mysqld_safe]` or `[safe_mysqld]` option group to the `[mysqld]` group. This does *not* include `--pid-file`, `--open-files-limit`, or `--nice`. To specify those options, use the `override.conf` systemd file, described previously.
+* Some **mysqld_safe** options are also understood by **mysqld** and can be moved from the `[mysqld_safe]` or `[safe_mysqld]` option group to the `[mysqld]` group. This does *not* include `--pid-file`, `--open-files-limit`, or `--nice`. To specify those options, use the `override.conf` systemd file, described previously.
 
   Note
 
   On systemd platforms, use of `[mysqld_safe]` and `[safe_mysqld]` option groups is not supported and may lead to unexpected behavior.
 
-* For some **mysqld\_safe** options, there are alternative **mysqld** procedures. For example, the **mysqld\_safe** option for enabling `syslog` logging is `--syslog`, which is deprecated. To write error log output to the system log, use the instructions at Section 7.4.2.8, “Error Logging to the System Log”.
+* For some **mysqld_safe** options, there are alternative **mysqld** procedures. For example, the **mysqld_safe** option for enabling `syslog` logging is `--syslog`, which is deprecated. To write error log output to the system log, use the instructions at Section 7.4.2.8, “Error Logging to the System Log”.
 
-* **mysqld\_safe** options not understood by **mysqld** can be specified in `override.conf` or environment variables. For example, with **mysqld\_safe**, if the server should use a specific memory allocation library, this is specified using the `--malloc-lib` option. For installations that manage the server with systemd, arrange to set the `LD_PRELOAD` environment variable instead, as described previously.
+* **mysqld_safe** options not understood by **mysqld** can be specified in `override.conf` or environment variables. For example, with **mysqld_safe**, if the server should use a specific memory allocation library, this is specified using the `--malloc-lib` option. For installations that manage the server with systemd, arrange to set the `LD_PRELOAD` environment variable instead, as described previously.
