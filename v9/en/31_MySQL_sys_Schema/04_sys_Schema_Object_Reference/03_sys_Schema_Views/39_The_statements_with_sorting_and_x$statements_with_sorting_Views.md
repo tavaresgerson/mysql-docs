@@ -1,12 +1,8 @@
 #### 30.4.3.39 The statements\_with\_sorting and x$statements\_with\_sorting Views
 
-These views list normalized statements that have performed
-sorts. By default, rows are sorted by descending total
-latency.
+These views list normalized statements that have performed sorts. By default, rows are sorted by descending total latency.
 
-The [`statements_with_sorting`](sys-statements-with-sorting.html "30.4.3.39 The statements_with_sorting and x$statements_with_sorting Views") and
-[`x$statements_with_sorting`](sys-statements-with-sorting.html "30.4.3.39 The statements_with_sorting and x$statements_with_sorting Views") views
-have these columns:
+The `statements_with_sorting` and `x$statements_with_sorting` views have these columns:
 
 * `query`
 
@@ -14,8 +10,7 @@ have these columns:
 
 * `db`
 
-  The default database for the statement, or
-  `NULL` if there is none.
+  The default database for the statement, or `NULL` if there is none.
 
 * `exec_count`
 
@@ -27,33 +22,27 @@ have these columns:
 
 * `sort_merge_passes`
 
-  The total number of sort merge passes by occurrences of
-  the statement.
+  The total number of sort merge passes by occurrences of the statement.
 
 * `avg_sort_merges`
 
-  The average number of sort merge passes per occurrence of
-  the statement.
+  The average number of sort merge passes per occurrence of the statement.
 
 * `sorts_using_scans`
 
-  The total number of sorts using table scans by occurrences
-  of the statement.
+  The total number of sorts using table scans by occurrences of the statement.
 
 * `sort_using_range`
 
-  The total number of sorts using range accesses by
-  occurrences of the statement.
+  The total number of sorts using range accesses by occurrences of the statement.
 
 * `rows_sorted`
 
-  The total number of rows sorted by occurrences of the
-  statement.
+  The total number of rows sorted by occurrences of the statement.
 
 * `avg_rows_sorted`
 
-  The average number of rows sorted per occurrence of the
-  statement.
+  The average number of rows sorted per occurrence of the statement.
 
 * `first_seen`
 

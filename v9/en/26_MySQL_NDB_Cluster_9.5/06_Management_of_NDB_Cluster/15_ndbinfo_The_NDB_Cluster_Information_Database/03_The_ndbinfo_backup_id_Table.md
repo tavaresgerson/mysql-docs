@@ -1,18 +1,10 @@
 #### 25.6.15.3 The ndbinfo backup\_id Table
 
-This table provides a way to find the ID of the backup started
-most recently for this cluster.
+This table provides a way to find the ID of the backup started most recently for this cluster.
 
-The `backup_id` table contains a single column
-`id`, which corresponds to a backup ID taken
-using the [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client") client
-[`START BACKUP`](mysql-cluster-backup-using-management-client.html "25.6.8.2 Using The NDB Cluster Management Client to Create a Backup") command. This
-table contains a single row.
+The `backup_id` table contains a single column `id`, which corresponds to a backup ID taken using the **ndb\_mgm** client `START BACKUP` command. This table contains a single row.
 
-*Example*: Assume the following sequence of
-`START BACKUP` commands issued in the NDB
-management client, with no other backups taken since the cluster
-was first started:
+*Example*: Assume the following sequence of `START BACKUP` commands issued in the NDB management client, with no other backups taken since the cluster was first started:
 
 ```
 ndb_mgm> START BACKUP
@@ -47,9 +39,7 @@ Node 5: Backup 3 started from node 50 completed
 ndb_mgm>
 ```
 
-After this, the `backup_id` table contains the
-single row shown here, using the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client")
-client:
+After this, the `backup_id` table contains the single row shown here, using the **mysql** client:
 
 ```
 mysql> USE ndbinfo;
@@ -64,5 +54,4 @@ mysql> SELECT * FROM backup_id;
 1 row in set (0.00 sec)
 ```
 
-If no backups can be found, the table contains a single row with
-`0` as the `id` value.
+If no backups can be found, the table contains a single row with `0` as the `id` value.

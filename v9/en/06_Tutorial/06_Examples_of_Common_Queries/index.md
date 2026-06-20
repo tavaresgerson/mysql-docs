@@ -2,14 +2,9 @@
 
 Here are examples of how to solve some common problems with MySQL.
 
-Some of the examples use the table `shop` to hold
-the price of each article (item number) for certain traders
-(dealers). Supposing that each trader has a single fixed price per
-article, then (`article`,
-`dealer`) is a primary key for the records.
+Some of the examples use the table `shop` to hold the price of each article (item number) for certain traders (dealers). Supposing that each trader has a single fixed price per article, then (`article`, `dealer`) is a primary key for the records.
 
-Start the command-line tool [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") and select a
-database:
+Start the command-line tool **mysql** and select a database:
 
 ```
 $> mysql your-database-name
@@ -28,8 +23,7 @@ INSERT INTO shop VALUES
     (3,'C',1.69),(3,'D',1.25),(4,'D',19.95);
 ```
 
-After issuing the statements, the table should have the following
-contents:
+After issuing the statements, the table should have the following contents:
 
 ```
 SELECT * FROM shop ORDER BY article;

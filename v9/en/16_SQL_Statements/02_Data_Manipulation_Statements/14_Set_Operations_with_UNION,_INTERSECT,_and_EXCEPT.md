@@ -1,58 +1,30 @@
 ### 15.2.14 Set Operations with UNION, INTERSECT, and EXCEPT
 
-* [Result Set Column Names and Data Types](set-operations.html#set-operations-result-set-columns "Result Set Column Names and Data Types")
-* [Set Operations with TABLE and VALUES Statements](set-operations.html#set-operations-table-values "Set Operations with TABLE and VALUES Statements")
-* [Set Operations using DISTINCT and ALL](set-operations.html#set-operations-distinct-all "Set Operations using DISTINCT and ALL")
-* [Set Operations with ORDER BY and LIMIT](set-operations.html#set-operations-order-by-limit "Set Operations with ORDER BY and LIMIT")
-* [Limitations of Set Operations](set-operations.html#set-operations-limitations "Limitations of Set Operations")
+* Result Set Column Names and Data Types
+* Set Operations with TABLE and VALUES Statements
+* Set Operations using DISTINCT and ALL
+* Set Operations with ORDER BY and LIMIT
+* Limitations of Set Operations
 
-SQL set operations combine the results of multiple query blocks
-into a single result. A *query block*,
-sometimes also known as a *simple table*, is
-any SQL statement that returns a result set, such as
-[`SELECT`](select.html "15.2.13 SELECT Statement"). MySQL 9.5 also
-supports [`TABLE`](table.html "15.2.16 TABLE Statement") and
-[`VALUES`](values.html "15.2.19 VALUES Statement") statements. See the
-individual descriptions of these statements elsewhere in this
-chapter for additional information.
+SQL set operations combine the results of multiple query blocks into a single result. A *query block*, sometimes also known as a *simple table*, is any SQL statement that returns a result set, such as `SELECT`. MySQL 9.5 also supports `TABLE` and `VALUES` statements. See the individual descriptions of these statements elsewhere in this chapter for additional information.
 
 The SQL standard defines the following three set operations:
 
-* [`UNION`](union.html "15.2.18 UNION Clause"): Combine all results from
-  two query blocks into a single result, omitting any
-  duplicates.
+* `UNION`: Combine all results from two query blocks into a single result, omitting any duplicates.
 
-* [`INTERSECT`](intersect.html "15.2.8 INTERSECT Clause"): Combine only those
-  rows which the results of two query blocks have in common,
-  omitting any duplicates.
+* `INTERSECT`: Combine only those rows which the results of two query blocks have in common, omitting any duplicates.
 
-* [`EXCEPT`](except.html "15.2.4 EXCEPT Clause"): For two query blocks
-  *`A`* and *`B`*,
-  return all results from *`A`* which are
-  not also present in *`B`*, omitting any
-  duplicates.
+* `EXCEPT`: For two query blocks *`A`* and *`B`*, return all results from *`A`* which are not also present in *`B`*, omitting any duplicates.
 
-  (Some database systems, such as Oracle, use
-  `MINUS` for the name of this operator. This
-  is not supported in MySQL.)
+  (Some database systems, such as Oracle, use `MINUS` for the name of this operator. This is not supported in MySQL.)
 
-MySQL supports `UNION`,
-`INTERSECT`, and `EXCEPT`.
+MySQL supports `UNION`, `INTERSECT`, and `EXCEPT`.
 
-Each of these set operators supports an `ALL`
-modifier. When the `ALL` keyword follows a set
-operator, this causes duplicates to be included in the result. See
-the following sections covering the individual operators for more
-information and examples.
+Each of these set operators supports an `ALL` modifier. When the `ALL` keyword follows a set operator, this causes duplicates to be included in the result. See the following sections covering the individual operators for more information and examples.
 
-All three set operators also support a `DISTINCT`
-keyword, which suppresses duplicates in the result. Since this is
-the default behavior for set operators, it is usually not
-necessary to specify `DISTINCT` explicitly.
+All three set operators also support a `DISTINCT` keyword, which suppresses duplicates in the result. Since this is the default behavior for set operators, it is usually not necessary to specify `DISTINCT` explicitly.
 
-In general, query blocks and set operations can be combined in any
-number and order. A greatly simplified representation is shown
-here:
+In general, query blocks and set operations can be combined in any number and order. A greatly simplified representation is shown here:
 
 ```
 query_block [set_op query_block] [set_op query_block] ...
@@ -64,8 +36,7 @@ set_op:
     UNION | INTERSECT | EXCEPT
 ```
 
-This can be represented more accurately, and in greater detail,
-like this:
+This can be represented more accurately, and in greater detail, like this:
 
 ```
 query_expression:
@@ -92,41 +63,21 @@ query_block:   /* also known as a simple table */
  |  explicit_table                          /* TABLE statement  */
 ```
 
-You should be aware that `INTERSECT` is evaluated
-before `UNION` or `EXCEPT`. This
-means that, for example, `TABLE x UNION TABLE y INTERSECT
-TABLE z` is always evaluated as `TABLE x UNION
-(TABLE y INTERSECT TABLE z)`. See
-[Section 15.2.8, “INTERSECT Clause”](intersect.html "15.2.8 INTERSECT Clause"), for more information.
+You should be aware that `INTERSECT` is evaluated before `UNION` or `EXCEPT`. This means that, for example, `TABLE x UNION TABLE y INTERSECT TABLE z` is always evaluated as `TABLE x UNION (TABLE y INTERSECT TABLE z)`. See Section 15.2.8, “INTERSECT Clause”, for more information.
 
-In addition, you should keep in mind that, while the
-`UNION` and `INTERSECT` set
-operators are commutative (ordering is not significant),
-`EXCEPT` is not (order of operands affects the
-outcome). In other words, all of the following statements are
-true:
+In addition, you should keep in mind that, while the `UNION` and `INTERSECT` set operators are commutative (ordering is not significant), `EXCEPT` is not (order of operands affects the outcome). In other words, all of the following statements are true:
 
-* `TABLE x UNION TABLE y` and `TABLE y
-  UNION TABLE x` produce the same result, although the
-  ordering of the rows may differ. You can force them to be the
-  same using `ORDER BY`; see
-  [Set Operations with ORDER BY and LIMIT](set-operations.html#set-operations-order-by-limit "Set Operations with ORDER BY and LIMIT").
+* `TABLE x UNION TABLE y` and `TABLE y UNION TABLE x` produce the same result, although the ordering of the rows may differ. You can force them to be the same using `ORDER BY`; see Set Operations with ORDER BY and LIMIT.
 
-* `TABLE x INTERSECT TABLE y` and
-  `TABLE y INTERSECT TABLE x` return the same
-  result.
+* `TABLE x INTERSECT TABLE y` and `TABLE y INTERSECT TABLE x` return the same result.
 
-* `TABLE x EXCEPT TABLE y` and `TABLE y
-  EXCEPT TABLE x` do *not* yield the
-  same result. See [Section 15.2.4, “EXCEPT Clause”](except.html "15.2.4 EXCEPT Clause"), for an example.
+* `TABLE x EXCEPT TABLE y` and `TABLE y EXCEPT TABLE x` do *not* yield the same result. See Section 15.2.4, “EXCEPT Clause”, for an example.
 
-More information and examples can be found in the sections that
-follow.
+More information and examples can be found in the sections that follow.
 
 #### Result Set Column Names and Data Types
 
-The column names for the result of a set operation are taken
-from the column names of the first query block. Example:
+The column names for the result of a set operation are taken from the column names of the first query block. Example:
 
 ```
 mysql> CREATE TABLE t1 (x INT, y INT);
@@ -166,19 +117,9 @@ mysql> TABLE t2 UNION TABLE t1;
 4 rows in set (0.00 sec)
 ```
 
-This is true for `UNION`,
-`EXCEPT`, and `INTERSECT`
-queries.
+This is true for `UNION`, `EXCEPT`, and `INTERSECT` queries.
 
-Selected columns listed in corresponding positions of each query
-block should have the same data type. For example, the first
-column selected by the first statement should have the same type
-as the first column selected by the other statements. If the
-data types of corresponding result columns do not match, the
-types and lengths of the columns in the result take into account
-the values retrieved by all of the query blocks. For example,
-the column length in the result set is not constrained to the
-length of the value from the first statement, as shown here:
+Selected columns listed in corresponding positions of each query block should have the same data type. For example, the first column selected by the first statement should have the same type as the first column selected by the other statements. If the data types of corresponding result columns do not match, the types and lengths of the columns in the result take into account the values retrieved by all of the query blocks. For example, the column length in the result set is not constrained to the length of the value from the first statement, as shown here:
 
 ```
 mysql> SELECT REPEAT('a',1) UNION SELECT REPEAT('b',20);
@@ -192,12 +133,7 @@ mysql> SELECT REPEAT('a',1) UNION SELECT REPEAT('b',20);
 
 #### Set Operations with TABLE and VALUES Statements
 
-You can also use a [`TABLE`](table.html "15.2.16 TABLE Statement")
-statement or [`VALUES`](values.html "15.2.19 VALUES Statement") statement
-wherever you can employ the equivalent
-[`SELECT`](select.html "15.2.13 SELECT Statement") statement. Assume that
-tables `t1` and `t2` are
-created and populated as shown here:
+You can also use a `TABLE` statement or `VALUES` statement wherever you can employ the equivalent `SELECT` statement. Assume that tables `t1` and `t2` are created and populated as shown here:
 
 ```
 CREATE TABLE t1 (x INT, y INT);
@@ -207,10 +143,7 @@ CREATE TABLE t2 (a INT, b INT);
 INSERT INTO t2 VALUES ROW(1,2),ROW(3,4);
 ```
 
-The preceding being the case, and disregarding the column names
-in the output of the queries beginning with
-[`VALUES`](values.html "15.2.19 VALUES Statement"), all of the following
-`UNION` queries yield the same result:
+The preceding being the case, and disregarding the column names in the output of the queries beginning with `VALUES`, all of the following `UNION` queries yield the same result:
 
 ```
 SELECT * FROM t1 UNION SELECT * FROM t2;
@@ -224,9 +157,7 @@ TABLE t1 UNION VALUES ROW(4,-2),ROW(5,9);
 VALUES ROW(4,-2), ROW(5,9) UNION VALUES ROW(4,-2),ROW(5,9);
 ```
 
-To force the column names to be the same, wrap the query block
-on the left-hand side in a `SELECT` statement,
-and use aliases, like this:
+To force the column names to be the same, wrap the query block on the left-hand side in a `SELECT` statement, and use aliases, like this:
 
 ```
 mysql> SELECT * FROM (TABLE t2) AS t(x,y) UNION TABLE t1;
@@ -243,38 +174,15 @@ mysql> SELECT * FROM (TABLE t2) AS t(x,y) UNION TABLE t1;
 
 #### Set Operations using DISTINCT and ALL
 
-By default, duplicate rows are removed from results of set
-operations. The optional `DISTINCT` keyword has
-the same effect but makes it explicit. With the optional
-`ALL` keyword, duplicate-row removal does not
-occur and the result includes all matching rows from all queries
-in the union.
+By default, duplicate rows are removed from results of set operations. The optional `DISTINCT` keyword has the same effect but makes it explicit. With the optional `ALL` keyword, duplicate-row removal does not occur and the result includes all matching rows from all queries in the union.
 
-You can mix `ALL` and
-`DISTINCT` in the same query. Mixed types are
-treated such that a set operation using
-`DISTINCT` overrides any such operation using
-`ALL` to its left. A
-`DISTINCT` set can be produced explicitly by
-using `DISTINCT` with
-[`UNION`](union.html "15.2.18 UNION Clause"),
-[`INTERSECT`](intersect.html "15.2.8 INTERSECT Clause"), or
-[`EXCEPT`](except.html "15.2.4 EXCEPT Clause"), or implicitly by using
-the set operations with no following `DISTINCT`
-or `ALL` keyword.
+You can mix `ALL` and `DISTINCT` in the same query. Mixed types are treated such that a set operation using `DISTINCT` overrides any such operation using `ALL` to its left. A `DISTINCT` set can be produced explicitly by using `DISTINCT` with `UNION`, `INTERSECT`, or `EXCEPT`, or implicitly by using the set operations with no following `DISTINCT` or `ALL` keyword.
 
-Set operations work the same way when one or more
-[`TABLE`](table.html "15.2.16 TABLE Statement") statements,
-[`VALUES`](values.html "15.2.19 VALUES Statement") statements, or both, are
-used to generate the set.
+Set operations work the same way when one or more `TABLE` statements, `VALUES` statements, or both, are used to generate the set.
 
 #### Set Operations with ORDER BY and LIMIT
 
-To apply an `ORDER BY` or
-`LIMIT` clause to an individual query block
-used as part of a union, intersection, or other set operation,
-parenthesize the query block, placing the clause inside the
-parentheses, like this:
+To apply an `ORDER BY` or `LIMIT` clause to an individual query block used as part of a union, intersection, or other set operation, parenthesize the query block, placing the clause inside the parentheses, like this:
 
 ```
 (SELECT a FROM t1 WHERE a=10 AND b=1 ORDER BY a LIMIT 10)
@@ -286,22 +194,9 @@ INTERSECT
 (TABLE t2 ORDER BY a LIMIT 10);
 ```
 
-Use of `ORDER BY` for individual query blocks
-or statements implies nothing about the order in which the rows
-appear in the final result because the rows produced by a set
-operation are by default unordered. Therefore, `ORDER
-BY` in this context typically is used in conjunction
-with `LIMIT`, to determine the subset of the
-selected rows to retrieve, even though it does not necessarily
-affect the order of those rows in the final result. If
-`ORDER BY` appears without
-`LIMIT` within a query block, it is optimized
-away because it has no effect in any case.
+Use of `ORDER BY` for individual query blocks or statements implies nothing about the order in which the rows appear in the final result because the rows produced by a set operation are by default unordered. Therefore, `ORDER BY` in this context typically is used in conjunction with `LIMIT`, to determine the subset of the selected rows to retrieve, even though it does not necessarily affect the order of those rows in the final result. If `ORDER BY` appears without `LIMIT` within a query block, it is optimized away because it has no effect in any case.
 
-To use an `ORDER BY` or
-`LIMIT` clause to sort or limit the entire
-result of a set operation, place the `ORDER BY`
-or `LIMIT` after the last statement:
+To use an `ORDER BY` or `LIMIT` clause to sort or limit the entire result of a set operation, place the `ORDER BY` or `LIMIT` after the last statement:
 
 ```
 SELECT a FROM t1
@@ -315,11 +210,7 @@ TABLE t2
 ORDER BY a LIMIT 10;
 ```
 
-If one or more individual statements make use of `ORDER
-BY`, `LIMIT`, or both, and, in
-addition, you wish to apply an ORDER BY, LIMIT, or both to the
-entire result, then each such individual statement must be
-enclosed in parentheses.
+If one or more individual statements make use of `ORDER BY`, `LIMIT`, or both, and, in addition, you wish to apply an ORDER BY, LIMIT, or both to the entire result, then each such individual statement must be enclosed in parentheses.
 
 ```
 (SELECT a FROM t1 WHERE a=10 AND b=1)
@@ -333,17 +224,9 @@ TABLE t2
 ORDER BY a LIMIT 10;
 ```
 
-A statement with no `ORDER BY` or
-`LIMIT` clause does need to be parenthesized;
-replacing `TABLE t2` with `(TABLE
-t2)` in the second statement of the two just shown does
-not alter the result of the `UNION`.
+A statement with no `ORDER BY` or `LIMIT` clause does need to be parenthesized; replacing `TABLE t2` with `(TABLE t2)` in the second statement of the two just shown does not alter the result of the `UNION`.
 
-You can also use `ORDER BY` and
-`LIMIT` with
-[`VALUES`](values.html "15.2.19 VALUES Statement") statements in set
-operations, as shown in this example using the
-[**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") client:
+You can also use `ORDER BY` and `LIMIT` with `VALUES` statements in set operations, as shown in this example using the **mysql** client:
 
 ```
 mysql> VALUES ROW(4,-2), ROW(5,9), ROW(-1,3)
@@ -360,36 +243,18 @@ mysql> VALUES ROW(4,-2), ROW(5,9), ROW(-1,3)
 3 rows in set (0.00 sec)
 ```
 
-(You should keep in mind that neither `TABLE`
-statements nor `VALUES` statements accept a
-`WHERE` clause.)
+(You should keep in mind that neither `TABLE` statements nor `VALUES` statements accept a `WHERE` clause.)
 
-This kind of `ORDER BY` cannot use column
-references that include a table name (that is, names in
-*`tbl_name`*.*`col_name`*
-format). Instead, provide a column alias in the first query
-block, and refer to the alias in the `ORDER BY`
-clause. (You can also refer to the column in the `ORDER
-BY` clause using its column position, but such use of
-column positions is deprecated, and thus subject to eventual
-removal in a future MySQL release.)
+This kind of `ORDER BY` cannot use column references that include a table name (that is, names in *`tbl_name`*.*`col_name`* format). Instead, provide a column alias in the first query block, and refer to the alias in the `ORDER BY` clause. (You can also refer to the column in the `ORDER BY` clause using its column position, but such use of column positions is deprecated, and thus subject to eventual removal in a future MySQL release.)
 
-If a column to be sorted is aliased, the `ORDER
-BY` clause *must* refer to the
-alias, not the column name. The first of the following
-statements is permitted, but the second fails with an
-`Unknown column 'a' in 'order clause'` error:
+If a column to be sorted is aliased, the `ORDER BY` clause *must* refer to the alias, not the column name. The first of the following statements is permitted, but the second fails with an `Unknown column 'a' in 'order clause'` error:
 
 ```
 (SELECT a AS b FROM t) UNION (SELECT ...) ORDER BY b;
 (SELECT a AS b FROM t) UNION (SELECT ...) ORDER BY a;
 ```
 
-To cause rows in a [`UNION`](union.html "15.2.18 UNION Clause") result
-to consist of the sets of rows retrieved by each query block one
-after the other, select an additional column in each query block
-to use as a sort column and add an `ORDER BY`
-clause that sorts on that column following the last query block:
+To cause rows in a `UNION` result to consist of the sets of rows retrieved by each query block one after the other, select an additional column in each query block to use as a sort column and add an `ORDER BY` clause that sorts on that column following the last query block:
 
 ```
 (SELECT 1 AS sort_col, col1a, col1b, ... FROM t1)
@@ -397,8 +262,7 @@ UNION
 (SELECT 2, col2a, col2b, ... FROM t2) ORDER BY sort_col;
 ```
 
-To maintain sort order within individual results, add a
-secondary column to the `ORDER BY` clause:
+To maintain sort order within individual results, add a secondary column to the `ORDER BY` clause:
 
 ```
 (SELECT 1 AS sort_col, col1a, col1b, ... FROM t1)
@@ -406,70 +270,39 @@ UNION
 (SELECT 2, col2a, col2b, ... FROM t2) ORDER BY sort_col, col1a;
 ```
 
-Use of an additional column also enables you to determine which
-query block each row comes from. Extra columns can provide other
-identifying information as well, such as a string that indicates
-a table name.
+Use of an additional column also enables you to determine which query block each row comes from. Extra columns can provide other identifying information as well, such as a string that indicates a table name.
 
 #### Limitations of Set Operations
 
-Set operations in MySQL are subject to some limitations, which
-are described in the next few paragraphs.
+Set operations in MySQL are subject to some limitations, which are described in the next few paragraphs.
 
-Set operations including [`SELECT`](select.html "15.2.13 SELECT Statement")
-statements have the following limitations:
+Set operations including `SELECT` statements have the following limitations:
 
-* `HIGH_PRIORITY` in the first
-  `SELECT` has no effect.
-  `HIGH_PRIORITY` in any subsequent
-  `SELECT` produces a syntax error.
+* `HIGH_PRIORITY` in the first `SELECT` has no effect. `HIGH_PRIORITY` in any subsequent `SELECT` produces a syntax error.
 
-* Only the last `SELECT` statement can use an
-  `INTO` clause. However, the entire
-  `UNION` result is written to the
-  `INTO` output destination.
+* Only the last `SELECT` statement can use an `INTO` clause. However, the entire `UNION` result is written to the `INTO` output destination.
 
-These two `UNION` variants containing
-`INTO` are deprecated; you should expect
-support for them to be removed in a future version of MySQL:
+These two `UNION` variants containing `INTO` are deprecated; you should expect support for them to be removed in a future version of MySQL:
 
-* In the trailing query block of a query expression, use of
-  `INTO` before `FROM`
-  produces a warning. Example:
+* In the trailing query block of a query expression, use of `INTO` before `FROM` produces a warning. Example:
 
   ```
   ... UNION SELECT * INTO OUTFILE 'file_name' FROM table_name;
   ```
 
-* In a parenthesized trailing block of a query expression, use
-  of `INTO` (regardless of its position
-  relative to `FROM`) produces a warning.
-  Example:
+* In a parenthesized trailing block of a query expression, use of `INTO` (regardless of its position relative to `FROM`) produces a warning. Example:
 
   ```
   ... UNION (SELECT * INTO OUTFILE 'file_name' FROM table_name);
   ```
 
-  Those variants are deprecated because they are confusing, as
-  if they collect information from the named table rather than
-  the entire query expression (the `UNION`).
+  Those variants are deprecated because they are confusing, as if they collect information from the named table rather than the entire query expression (the `UNION`).
 
-Set operations with an aggregate function in an `ORDER
-BY` clause are rejected with
-[`ER_AGGREGATE_ORDER_FOR_UNION`](/doc/mysql-errors/9.5/en/server-error-reference.html#error_er_aggregate_order_for_union).
-Although the error name might suggest that this is exclusive to
-`UNION` queries, the preceding is also true for
-`EXCEPT` and `INTERSECT`
-queries, as shown here:
+Set operations with an aggregate function in an `ORDER BY` clause are rejected with `ER_AGGREGATE_ORDER_FOR_UNION`. Although the error name might suggest that this is exclusive to `UNION` queries, the preceding is also true for `EXCEPT` and `INTERSECT` queries, as shown here:
 
 ```
 mysql> TABLE t1 INTERSECT TABLE t2 ORDER BY MAX(x);
 ERROR 3028 (HY000): Expression #1 of ORDER BY contains aggregate function and applies to a UNION, EXCEPT or INTERSECT
 ```
 
-A locking clause (such as `FOR UPDATE` or
-`LOCK IN SHARE MODE`) applies to the query
-block it follows. This means that, in a
-`SELECT` statement used with set operations, a
-locking clause can be used only if the query block and locking
-clause are enclosed in parentheses.
+A locking clause (such as `FOR UPDATE` or `LOCK IN SHARE MODE`) applies to the query block it follows. This means that, in a `SELECT` statement used with set operations, a locking clause can be used only if the query block and locking clause are enclosed in parentheses.

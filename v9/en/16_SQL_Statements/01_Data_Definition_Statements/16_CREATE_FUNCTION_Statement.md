@@ -1,10 +1,7 @@
 ### 15.1.16 CREATE FUNCTION Statement
 
-The [`CREATE FUNCTION`](create-function.html "15.1.16 CREATE FUNCTION Statement") statement is
-used to create stored functions and loadable functions:
+The `CREATE FUNCTION` statement is used to create stored functions and loadable functions:
 
-* For information about creating stored functions, see
-  [Section 15.1.21, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "15.1.21 CREATE PROCEDURE and CREATE FUNCTION Statements").
+* For information about creating stored functions, see Section 15.1.21, “CREATE PROCEDURE and CREATE FUNCTION Statements”.
 
-* For information about creating loadable functions, see
-  [Section 15.7.4.1, “CREATE FUNCTION Statement for Loadable Functions”](create-function-loadable.html "15.7.4.1 CREATE FUNCTION Statement for Loadable Functions").
+* For information about creating loadable functions, see Section 15.7.4.1, “CREATE FUNCTION Statement for Loadable Functions”.

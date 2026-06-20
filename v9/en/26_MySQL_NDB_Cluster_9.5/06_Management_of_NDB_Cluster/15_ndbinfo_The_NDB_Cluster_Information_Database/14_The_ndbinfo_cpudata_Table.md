@@ -1,10 +1,8 @@
 #### 25.6.15.14 The ndbinfo cpudata Table
 
-The `cpudata` table provides data about CPU
-usage during the last second.
+The `cpudata` table provides data about CPU usage during the last second.
 
-The `cpustat` table contains the following
-columns:
+The `cpustat` table contains the following columns:
 
 * `node_id`
 
@@ -40,5 +38,4 @@ columns:
 
 ##### Notes
 
-The `cpudata` table is available only on Linux
-and Solaris operating systems.
+The `cpudata` table is available only on Linux and Solaris operating systems.

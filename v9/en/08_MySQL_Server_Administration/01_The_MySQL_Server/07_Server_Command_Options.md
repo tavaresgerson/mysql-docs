@@ -1,27 +1,10 @@
 ### 7.1.7 Server Command Options
 
-When you start the [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") server, you can
-specify program options using any of the methods described in
-[Section 6.2.2, “Specifying Program Options”](program-options.html "6.2.2 Specifying Program Options"). The most common methods are to
-provide options in an option file or on the command line. However,
-in most cases it is desirable to make sure that the server uses
-the same options each time it runs. The best way to ensure this is
-to list them in an option file. See
-[Section 6.2.2.2, “Using Option Files”](option-files.html "6.2.2.2 Using Option Files"). That section also describes option
-file format and syntax.
+When you start the **mysqld** server, you can specify program options using any of the methods described in Section 6.2.2, “Specifying Program Options”. The most common methods are to provide options in an option file or on the command line. However, in most cases it is desirable to make sure that the server uses the same options each time it runs. The best way to ensure this is to list them in an option file. See Section 6.2.2.2, “Using Option Files”. That section also describes option file format and syntax.
 
-[**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") reads options from the
-`[mysqld]` and `[server]`
-groups. [**mysqld\_safe**](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script") reads options from the
-`[mysqld]`, `[server]`,
-`[mysqld_safe]`, and
-`[safe_mysqld]` groups.
-[**mysql.server**](mysql-server.html "6.3.3 mysql.server — MySQL Server Startup Script") reads options from the
-`[mysqld]` and `[mysql.server]`
-groups.
+**mysqld** reads options from the `[mysqld]` and `[server]` groups. **mysqld\_safe** reads options from the `[mysqld]`, `[server]`, `[mysqld_safe]`, and `[safe_mysqld]` groups. **mysql.server** reads options from the `[mysqld]` and `[mysql.server]` groups.
 
-[**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") accepts many command options. For a
-brief summary, execute this command:
+**mysqld** accepts many command options. For a brief summary, execute this command:
 
 ```
 mysqld --help
@@ -33,1071 +16,400 @@ To see the full list, use this command:
 mysqld --verbose --help
 ```
 
-Some of the items in the list are actually system variables that
-can be set at server startup. These can be displayed at runtime
-using the [`SHOW VARIABLES`](show-variables.html "15.7.7.42 SHOW VARIABLES Statement") statement.
-Some items displayed by the preceding [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server")
-command do not appear in [`SHOW
-VARIABLES`](show-variables.html "15.7.7.42 SHOW VARIABLES Statement") output; this is because they are options only
-and not system variables.
-
-The following list shows some of the most common server options.
-Additional options are described in other sections:
-
-* Options that affect security: See
-  [Section 8.1.4, “Security-Related mysqld Options and Variables”](security-options.html "8.1.4 Security-Related mysqld Options and Variables").
-
-* SSL-related options: See
-  [Command Options for Encrypted Connections](connection-options.html#encrypted-connection-options "Command Options for Encrypted Connections").
-
-* Binary log control options: See [Section 7.4.4, “The Binary Log”](binary-log.html "7.4.4 The Binary Log").
-* Replication-related options: See
-  [Section 19.1.6, “Replication and Binary Logging Options and Variables”](replication-options.html "19.1.6 Replication and Binary Logging Options and Variables").
-
-* Options for loading plugins such as pluggable storage engines:
-  See [Section 7.6.1, “Installing and Uninstalling Plugins”](plugin-loading.html "7.6.1 Installing and Uninstalling Plugins").
-
-* Options specific to particular storage engines: See
-  [Section 17.14, “InnoDB Startup Options and System Variables”](innodb-parameters.html "17.14 InnoDB Startup Options and System Variables") and
-  [Section 18.2.1, “MyISAM Startup Options”](myisam-start.html "18.2.1 MyISAM Startup Options").
-
-Some options control the size of buffers or caches. For a given
-buffer, the server might need to allocate internal data
-structures. These structures typically are allocated from the
-total memory allocated to the buffer, and the amount of space
-required might be platform dependent. This means that when you
-assign a value to an option that controls a buffer size, the
-amount of space actually available might differ from the value
-assigned. In some cases, the amount might be less than the value
-assigned. It is also possible that the server adjusts a value
-upward. For example, if you assign a value of 0 to an option for
-which the minimal value is 1024, the server sets the value to
-1024.
-
-Values for buffer sizes, lengths, and stack sizes are given in
-bytes unless otherwise specified.
-
-Some options take file name values. Unless otherwise specified,
-the default file location is the data directory if the value is a
-relative path name. To specify the location explicitly, use an
-absolute path name. Suppose that the data directory is
-`/var/mysql/data`. If a file-valued option is
-given as a relative path name, it is located under
-`/var/mysql/data`. If the value is an absolute
-path name, its location is as given by the path name.
-
-You can also set the values of server system variables at server
-startup by using variable names as options. To assign a value to a
-server system variable, use an option of the form
-`--var_name=value`.
-For example,
-[`--sort_buffer_size=384M`](server-system-variables.html#sysvar_sort_buffer_size) sets the
-[`sort_buffer_size`](server-system-variables.html#sysvar_sort_buffer_size) variable to a
-value of 384MB.
-
-When you assign a value to a variable, MySQL might automatically
-correct the value to stay within a given range, or adjust the
-value to the closest permissible value if only certain values are
-permitted.
-
-To restrict the maximum value to which a system variable can be
-set at runtime with the
-[`SET`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment")
-statement, specify this maximum by using an option of the form
-`--maximum-var_name=value`
-at server startup.
-
-You can change the values of most system variables at runtime with
-the [`SET`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment")
-statement. See [Section 15.7.6.1, “SET Syntax for Variable Assignment”](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment").
-
-[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables"), provides a full
-description for all variables, and additional information for
-setting them at server startup and runtime. For information on
-changing system variables, see
-[Section 7.1.1, “Configuring the Server”](server-configuration.html "7.1.1 Configuring the Server").
-
-* [`--help`](server-options.html#option_mysqld_help), `-?`
-
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--help</code></td>
-</tr></tbody></table>
-
-  Display a short help message and exit. Use both the
-  [`--verbose`](server-options.html#option_mysqld_verbose) and
-  [`--help`](server-options.html#option_mysqld_help) options to see the full
-  message.
-
-* [`--allow-suspicious-udfs`](server-options.html#option_mysqld_allow-suspicious-udfs)
-
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>
-
-  This option controls whether loadable functions that have only
-  an `xxx` symbol for the main function can be
-  loaded. By default, the option is off and only loadable
-  functions that have at least one auxiliary symbol can be
-  loaded; this prevents attempts at loading functions from
-  shared object files other than those containing legitimate
-  functions. See [Loadable Function Security Precautions](/doc/extending-mysql/9.5/en/adding-loadable-function.html#loadable-function-security).
-
-* [`--ansi`](server-options.html#option_mysqld_ansi)
-
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--ansi</code></td>
-</tr></tbody></table>
-
-  Use standard (ANSI) SQL syntax instead of MySQL syntax. For
-  more precise control over the server SQL mode, use the
-  [`--sql-mode`](server-options.html#option_mysqld_sql-mode) option instead. See
-  [Section 1.7, “MySQL Standards Compliance”](compatibility.html "1.7 MySQL Standards Compliance"), and
-  [Section 7.1.11, “Server SQL Modes”](sql-mode.html "7.1.11 Server SQL Modes").
-
-* [`--basedir=dir_name`](server-system-variables.html#sysvar_basedir),
-  [`-b
-  dir_name`](server-system-variables.html#sysvar_basedir)
-
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--basedir=dir_name</code></td>
-</tr><tr><th>System Variable</th>
-<td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
-</tr><tr><th>Scope</th>
-<td>Global</td>
-</tr><tr><th>Dynamic</th>
-<td>No</td>
-</tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th>
-<td>No</td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">parent of mysqld installation directory</code></td>
-</tr></tbody></table>
-
-  The path to the MySQL installation directory. This option sets
-  the [`basedir`](server-system-variables.html#sysvar_basedir) system variable.
-
-  The server executable determines its own full path name at
-  startup and uses the parent of the directory in which it is
-  located as the default
-  [`basedir`](server-system-variables.html#sysvar_basedir) value. This in turn
-  enables the server to use that
-  [`basedir`](server-system-variables.html#sysvar_basedir) when searching for
-  server-related information such as the
-  `share` directory containing error
-  messages.
-
-* [`--check-table-functions=value`](server-options.html#option_mysqld_check-table-functions)
-
-  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--check-table-functions=value</code></td>
-</tr><tr><th>Type</th>
-<td>Enumeration</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">ABORT</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td>
-</tr></tbody></table>
-
-  When performing an upgade of the server, we scan the data
-  dictionary for functions used in table constraints and other
-  expressions, including `DEFAULT` expressions,
-  partitioning expressions, and virtual columns. It is possible
-  that a change in the behavior of the function causes it to
-  raise an error in the new version of the server, where no such
-  error occurred before in which case the table cannot be
-  opened. This option provides a choice in how to handle such
-  problems, according to which of the two values shown here is
-  used:
-
-  + `WARN`: Log a warning for each table that
-    cannot be opened.
-
-  + `ABORT`: Also logs a warning; in
-    addition, the upgrade is stopped. This is the default. For
-    a sufficiently high value of
-    [`--log-error-verbosity`](server-system-variables.html#sysvar_log_error_verbosity), it
-    also logs a note with a streamlined table definition
-    listing only those expressions that potentially contain
-    SQL functions.
-
-  The default behaviour is to abort the upgrade, so that the
-  user can fix the issue using the older version of the server,
-  before upgrading to the newer one. Use `WARN`
-  to continue the upgrade in interactive mode while reporting
-  any issues.
-
-* [`--chroot=dir_name`](server-options.html#option_mysqld_chroot),
-  `-r dir_name`
-
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--chroot=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>
-
-  Put the [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") server in a closed
-  environment during startup by using the
-  `chroot()` system call. This is a recommended
-  security measure. Use of this option somewhat limits
-  [`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement") and
-  [`SELECT ... INTO
-  OUTFILE`](select-into.html "15.2.13.1 SELECT ... INTO Statement").
-
-* [`--console`](server-options.html#option_mysqld_console)
-
-  <table frame="box" rules="all" summary="Properties for console"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--console</code></td>
-</tr><tr><th>Platform Specific</th>
-<td>Windows</td>
-</tr></tbody></table>
-
-  (Windows only.) Cause the default error log destination to be
-  the console. This affects log sinks that base their own output
-  destination on the default destination. See
-  [Section 7.4.2, “The Error Log”](error-log.html "7.4.2 The Error Log"). [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") does
-  not close the console window if this option is used.
-
-  [`--console`](server-options.html#option_mysqld_console) takes precedence over
-  [`--log-error`](server-options.html#option_mysqld_log-error) if both are given.
-
-* [`--core-file`](server-options.html#option_mysqld_core-file)
-
-  <table frame="box" rules="all" summary="Properties for core-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--core-file</code></td>
-</tr></tbody></table>
-
-  When this option is used, write a core file if
-  [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") dies; no arguments are needed (or
-  accepted). The name and location of the core file is system
-  dependent. On Linux, a core file named
-  `core.pid` is
-  written to the current working directory of the process, which
-  for [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") is the data directory.
-  *`pid`* represents the process ID of
-  the server process. On macOS, a core file named
-  `core.pid` is
-  written to the `/cores` directory. On
-  Solaris, use the **coreadm** command to specify
-  where to write the core file and how to name it.
-
-  For some systems, to get a core file you must also specify the
-  [`--core-file-size`](mysqld-safe.html#option_mysqld_safe_core-file-size) option to
-  [**mysqld\_safe**](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script"). See
-  [Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script"). On some systems, such as
-  Solaris, you do not get a core file if you are also using the
-  [`--user`](server-options.html#option_mysqld_user) option. There might be
-  additional restrictions or limitations. For example, it might
-  be necessary to execute **ulimit -c unlimited**
-  before starting the server. Consult your system documentation.
-
-  The
-  [`innodb_buffer_pool_in_core_file`](innodb-parameters.html#sysvar_innodb_buffer_pool_in_core_file)
-  variable can be used to reduce the size of core files on
-  operating systems that support it. For more information, see
-  [Section 17.8.3.7, “Excluding or Including Buffer Pool Pages from Core Files”](innodb-buffer-pool-in-core-file.html "17.8.3.7 Excluding or Including Buffer Pool Pages from Core Files").
-
-* [`--daemonize`](server-options.html#option_mysqld_daemonize),
-  `-D`
-
-  <table frame="box" rules="all" summary="Properties for daemonize"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--daemonize[={OFF|ON}]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>
-
-  This option causes the server to run as a traditional, forking
-  daemon, permitting it to work with operating systems that use
-  systemd for process control. For more information, see
-  [Section 2.5.9, “Managing MySQL Server with systemd”](using-systemd.html "2.5.9 Managing MySQL Server with systemd").
-
-  [`--daemonize`](server-options.html#option_mysqld_daemonize) is mutually
-  exclusive with [`--initialize`](server-options.html#option_mysqld_initialize) and
-  [`--initialize-insecure`](server-options.html#option_mysqld_initialize-insecure).
-
-  If the server is started using the
-  `--daemonize` option and is not connected to a
-  tty device, a default error logging option of
-  `--log-error=""` is used in the absence of an
-  explicit logging option, to direct error output to the default
-  log file.
-
-  `-D` is a synonym for
-  [`--daemonize`](server-options.html#option_mysqld_daemonize).
-
-* [`--datadir=dir_name`](server-system-variables.html#sysvar_datadir),
-  `-h dir_name`
-
-  <table frame="box" rules="all" summary="Properties for datadir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--datadir=dir_name</code></td>
-</tr><tr><th>System Variable</th>
-<td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_datadir">datadir</a></code></td>
-</tr><tr><th>Scope</th>
-<td>Global</td>
-</tr><tr><th>Dynamic</th>
-<td>No</td>
-</tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th>
-<td>No</td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>
-
-  The path to the MySQL server data directory. This option sets
-  the [`datadir`](server-system-variables.html#sysvar_datadir) system variable.
-  See the description of that variable.
-
-* [`--debug[=debug_options]`](server-options.html#option_mysqld_debug),
-  `-# [debug_options]`
-
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>0
-
-  If MySQL is configured with the
-  [`-DWITH_DEBUG=1`](source-configuration-options.html#option_cmake_with_debug)
-  **CMake** option, you can use this option to
-  get a trace file of what [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") is doing. A
-  typical *`debug_options`* string is
-  `d:t:o,file_name`.
-  The default is `d:t:i:o,/tmp/mysqld.trace` on
-  Unix and `d:t:i:O,\mysqld.trace` on Windows.
-
-  Using [`-DWITH_DEBUG=1`](source-configuration-options.html#option_cmake_with_debug) to
-  configure MySQL with debugging support enables you to use the
-  [`--debug="d,parser_debug"`](server-options.html#option_mysqld_debug) option
-  when you start the server. This causes the Bison parser that
-  is used to process SQL statements to dump a parser trace to
-  the server's standard error output. Typically, this output is
-  written to the error log.
-
-  This option may be given multiple times. Values that begin
-  with `+` or `-` are added to
-  or subtracted from the previous value. For example,
-  [`--debug=T`](server-options.html#option_mysqld_debug)
-  [`--debug=+P`](server-options.html#option_mysqld_debug) sets the value to
-  `P:T`.
-
-  For more information, see [Section 7.9.4, “The DBUG Package”](dbug-package.html "7.9.4 The DBUG Package").
-
-* [`--debug-sync-timeout[=N]`](server-options.html#option_mysqld_debug-sync-timeout)
-
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>1
-
-  Controls whether the Debug Sync facility for testing and
-  debugging is enabled. Use of Debug Sync requires that MySQL be
-  configured with the
-  [`-DWITH_DEBUG=ON`](source-configuration-options.html#option_cmake_with_debug)
-  **CMake** option (see
-  [Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")); otherwise,
-  this option is not available. The option value is a timeout in
-  seconds. The default value is 0, which disables Debug Sync. To
-  enable it, specify a value greater than 0; this value also
-  becomes the default timeout for individual synchronization
-  points. If the option is given without a value, the timeout is
-  set to 300 seconds.
-
-  For a description of the Debug Sync facility and how to use
-  synchronization points, see
-  [MySQL
-  Internals: Test Synchronization](/doc/internals/en/test-synchronization.html).
-
-* [`--default-time-zone=timezone`](server-options.html#option_mysqld_default-time-zone)
-
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>2
-
-  Set the default server time zone. This option sets the global
-  [`time_zone`](server-system-variables.html#sysvar_time_zone) system variable. If
-  this option is not given, the default time zone is the same as
-  the system time zone (given by the value of the
-  [`system_time_zone`](server-system-variables.html#sysvar_system_time_zone) system
-  variable.
-
-  The [`system_time_zone`](server-system-variables.html#sysvar_system_time_zone) variable
-  differs from [`time_zone`](server-system-variables.html#sysvar_time_zone).
-  Although they might have the same value, the latter variable
-  is used to initialize the time zone for each client that
-  connects. See [Section 7.1.15, “MySQL Server Time Zone Support”](time-zone-support.html "7.1.15 MySQL Server Time Zone Support").
-
-* [`--defaults-extra-file=file_name`](server-options.html#option_mysqld_defaults-extra-file)
-
-  Read this option file after the global option file but (on
-  Unix) before the user option file. If the file does not exist
-  or is otherwise inaccessible, an error occurs. If
-  *`file_name`* is not an absolute path
-  name, it is interpreted relative to the current directory.
-  This must be the first option on the command line if it is
-  used.
-
-  For additional information about this and other option-file
-  options, see [Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling").
-
-* [`--defaults-file=file_name`](server-options.html#option_mysqld_defaults-file)
-
-  Read only the given option file. If the file does not exist or
-  is otherwise inaccessible, an error occurs. If
-  *`file_name`* is not an absolute path
-  name, it is interpreted relative to the current directory.
-
-  Exception: Even with
-  [`--defaults-file`](server-options.html#option_mysqld_defaults-file),
-  [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") reads
-  `mysqld-auto.cnf`.
+Some of the items in the list are actually system variables that can be set at server startup. These can be displayed at runtime using the `SHOW VARIABLES` statement. Some items displayed by the preceding **mysqld** command do not appear in [`SHOW VARIABLES`](show-variables.html "15.7.7.42 SHOW VARIABLES Statement") output; this is because they are options only and not system variables.
+
+The following list shows some of the most common server options. Additional options are described in other sections:
+
+* Options that affect security: See Section 8.1.4, “Security-Related mysqld Options and Variables”.
+
+* SSL-related options: See Command Options for Encrypted Connections.
+
+* Binary log control options: See Section 7.4.4, “The Binary Log”.
+* Replication-related options: See Section 19.1.6, “Replication and Binary Logging Options and Variables”.
+
+* Options for loading plugins such as pluggable storage engines: See Section 7.6.1, “Installing and Uninstalling Plugins”.
+
+* Options specific to particular storage engines: See Section 17.14, “InnoDB Startup Options and System Variables” and Section 18.2.1, “MyISAM Startup Options”.
+
+Some options control the size of buffers or caches. For a given buffer, the server might need to allocate internal data structures. These structures typically are allocated from the total memory allocated to the buffer, and the amount of space required might be platform dependent. This means that when you assign a value to an option that controls a buffer size, the amount of space actually available might differ from the value assigned. In some cases, the amount might be less than the value assigned. It is also possible that the server adjusts a value upward. For example, if you assign a value of 0 to an option for which the minimal value is 1024, the server sets the value to 1024.
+
+Values for buffer sizes, lengths, and stack sizes are given in bytes unless otherwise specified.
+
+Some options take file name values. Unless otherwise specified, the default file location is the data directory if the value is a relative path name. To specify the location explicitly, use an absolute path name. Suppose that the data directory is `/var/mysql/data`. If a file-valued option is given as a relative path name, it is located under `/var/mysql/data`. If the value is an absolute path name, its location is as given by the path name.
+
+You can also set the values of server system variables at server startup by using variable names as options. To assign a value to a server system variable, use an option of the form `--var_name=value`. For example, `--sort_buffer_size=384M` sets the `sort_buffer_size` variable to a value of 384MB.
+
+When you assign a value to a variable, MySQL might automatically correct the value to stay within a given range, or adjust the value to the closest permissible value if only certain values are permitted.
+
+To restrict the maximum value to which a system variable can be set at runtime with the `SET` statement, specify this maximum by using an option of the form `--maximum-var_name=value` at server startup.
+
+You can change the values of most system variables at runtime with the `SET` statement. See Section 15.7.6.1, “SET Syntax for Variable Assignment”.
+
+Section 7.1.8, “Server System Variables”, provides a full description for all variables, and additional information for setting them at server startup and runtime. For information on changing system variables, see Section 7.1.1, “Configuring the Server”.
+
+* `--help`, `-?`
+
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+
+  Display a short help message and exit. Use both the `--verbose` and `--help` options to see the full message.
+
+* `--allow-suspicious-udfs`
+
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+
+  This option controls whether loadable functions that have only an `xxx` symbol for the main function can be loaded. By default, the option is off and only loadable functions that have at least one auxiliary symbol can be loaded; this prevents attempts at loading functions from shared object files other than those containing legitimate functions. See Loadable Function Security Precautions.
+
+* `--ansi`
+
+  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>
+
+  Use standard (ANSI) SQL syntax instead of MySQL syntax. For more precise control over the server SQL mode, use the `--sql-mode` option instead. See Section 1.7, “MySQL Standards Compliance”, and Section 7.1.11, “Server SQL Modes”.
+
+* `--basedir=dir_name`, [`-b dir_name`](server-system-variables.html#sysvar_basedir)
+
+  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">parent of mysqld installation directory</code></td> </tr></tbody></table>
+
+  The path to the MySQL installation directory. This option sets the `basedir` system variable.
+
+  The server executable determines its own full path name at startup and uses the parent of the directory in which it is located as the default `basedir` value. This in turn enables the server to use that `basedir` when searching for server-related information such as the `share` directory containing error messages.
+
+* `--check-table-functions=value`
+
+  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-table-functions=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">ABORT</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td> </tr></tbody></table>
+
+  When performing an upgade of the server, we scan the data dictionary for functions used in table constraints and other expressions, including `DEFAULT` expressions, partitioning expressions, and virtual columns. It is possible that a change in the behavior of the function causes it to raise an error in the new version of the server, where no such error occurred before in which case the table cannot be opened. This option provides a choice in how to handle such problems, according to which of the two values shown here is used:
+
+  + `WARN`: Log a warning for each table that cannot be opened.
+
+  + `ABORT`: Also logs a warning; in addition, the upgrade is stopped. This is the default. For a sufficiently high value of `--log-error-verbosity`, it also logs a note with a streamlined table definition listing only those expressions that potentially contain SQL functions.
+
+  The default behaviour is to abort the upgrade, so that the user can fix the issue using the older version of the server, before upgrading to the newer one. Use `WARN` to continue the upgrade in interactive mode while reporting any issues.
+
+* `--chroot=dir_name`, `-r dir_name`
+
+  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+
+  Put the **mysqld** server in a closed environment during startup by using the `chroot()` system call. This is a recommended security measure. Use of this option somewhat limits `LOAD DATA` and [`SELECT ... INTO OUTFILE`](select-into.html "15.2.13.1 SELECT ... INTO Statement").
+
+* `--console`
+
+  <table frame="box" rules="all" summary="Properties for console"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--console</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>
+
+  (Windows only.) Cause the default error log destination to be the console. This affects log sinks that base their own output destination on the default destination. See Section 7.4.2, “The Error Log”. **mysqld** does not close the console window if this option is used.
+
+  `--console` takes precedence over `--log-error` if both are given.
+
+* `--core-file`
+
+  <table frame="box" rules="all" summary="Properties for core-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--core-file</code></td> </tr></tbody></table>
+
+  When this option is used, write a core file if **mysqld** dies; no arguments are needed (or accepted). The name and location of the core file is system dependent. On Linux, a core file named `core.pid` is written to the current working directory of the process, which for **mysqld** is the data directory. *`pid`* represents the process ID of the server process. On macOS, a core file named `core.pid` is written to the `/cores` directory. On Solaris, use the **coreadm** command to specify where to write the core file and how to name it.
+
+  For some systems, to get a core file you must also specify the `--core-file-size` option to **mysqld\_safe**. See Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”. On some systems, such as Solaris, you do not get a core file if you are also using the `--user` option. There might be additional restrictions or limitations. For example, it might be necessary to execute **ulimit -c unlimited** before starting the server. Consult your system documentation.
+
+  The `innodb_buffer_pool_in_core_file` variable can be used to reduce the size of core files on operating systems that support it. For more information, see Section 17.8.3.7, “Excluding or Including Buffer Pool Pages from Core Files”.
+
+* `--daemonize`, `-D`
+
+  <table frame="box" rules="all" summary="Properties for daemonize"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--daemonize[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+
+  This option causes the server to run as a traditional, forking daemon, permitting it to work with operating systems that use systemd for process control. For more information, see Section 2.5.9, “Managing MySQL Server with systemd”.
+
+  `--daemonize` is mutually exclusive with `--initialize` and `--initialize-insecure`.
+
+  If the server is started using the `--daemonize` option and is not connected to a tty device, a default error logging option of `--log-error=""` is used in the absence of an explicit logging option, to direct error output to the default log file.
+
+  `-D` is a synonym for `--daemonize`.
+
+* `--datadir=dir_name`, `-h dir_name`
+
+  <table frame="box" rules="all" summary="Properties for datadir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--datadir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_datadir">datadir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+
+  The path to the MySQL server data directory. This option sets the `datadir` system variable. See the description of that variable.
+
+* `--debug[=debug_options]`, `-# [debug_options]`
+
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>0
+
+  If MySQL is configured with the `-DWITH_DEBUG=1` **CMake** option, you can use this option to get a trace file of what **mysqld** is doing. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:i:o,/tmp/mysqld.trace` on Unix and `d:t:i:O,\mysqld.trace` on Windows.
+
+  Using `-DWITH_DEBUG=1` to configure MySQL with debugging support enables you to use the `--debug="d,parser_debug"` option when you start the server. This causes the Bison parser that is used to process SQL statements to dump a parser trace to the server's standard error output. Typically, this output is written to the error log.
+
+  This option may be given multiple times. Values that begin with `+` or `-` are added to or subtracted from the previous value. For example, `--debug=T` `--debug=+P` sets the value to `P:T`.
+
+  For more information, see Section 7.9.4, “The DBUG Package”.
+
+* `--debug-sync-timeout[=N]`
+
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>1
+
+  Controls whether the Debug Sync facility for testing and debugging is enabled. Use of Debug Sync requires that MySQL be configured with the `-DWITH_DEBUG=ON` **CMake** option (see Section 2.8.7, “MySQL Source-Configuration Options”); otherwise, this option is not available. The option value is a timeout in seconds. The default value is 0, which disables Debug Sync. To enable it, specify a value greater than 0; this value also becomes the default timeout for individual synchronization points. If the option is given without a value, the timeout is set to 300 seconds.
+
+  For a description of the Debug Sync facility and how to use synchronization points, see [MySQL Internals: Test Synchronization](/doc/internals/en/test-synchronization.html).
+
+* `--default-time-zone=timezone`
+
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>2
+
+  Set the default server time zone. This option sets the global `time_zone` system variable. If this option is not given, the default time zone is the same as the system time zone (given by the value of the `system_time_zone` system variable.
+
+  The `system_time_zone` variable differs from `time_zone`. Although they might have the same value, the latter variable is used to initialize the time zone for each client that connects. See Section 7.1.15, “MySQL Server Time Zone Support”.
+
+* `--defaults-extra-file=file_name`
+
+  Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory. This must be the first option on the command line if it is used.
+
+  For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
+
+* `--defaults-file=file_name`
+
+  Read only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
+
+  Exception: Even with `--defaults-file`, **mysqld** reads `mysqld-auto.cnf`.
 
   Note
 
-  This must be the first option on the command line if it is
-  used, except that if the server is started with the
-  [`--defaults-file`](server-options.html#option_mysqld_defaults-file) and
-  [`--install`](server-options.html#option_mysqld_install) (or
-  [`--install-manual`](server-options.html#option_mysqld_install-manual)) options,
-  [`--install`](server-options.html#option_mysqld_install) (or
-  [`--install-manual`](server-options.html#option_mysqld_install-manual)) must be
-  first.
+  This must be the first option on the command line if it is used, except that if the server is started with the `--defaults-file` and `--install` (or `--install-manual`) options, `--install` (or `--install-manual`) must be first.
 
-  For additional information about this and other option-file
-  options, see [Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling").
+  For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
-* [`--defaults-group-suffix=str`](server-options.html#option_mysqld_defaults-group-suffix)
+* `--defaults-group-suffix=str`
 
-  Read not only the usual option groups, but also groups with
-  the usual names and a suffix of
-  *`str`*. For example,
-  [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") normally reads the
-  `[mysqld]` group. If this option is given as
-  [`--defaults-group-suffix=_other`](server-options.html#option_mysqld_defaults-group-suffix),
-  [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") also reads the
-  `[mysqld_other]` group.
+  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysqld** normally reads the `[mysqld]` group. If this option is given as `--defaults-group-suffix=_other`, **mysqld** also reads the `[mysqld_other]` group.
 
-  For additional information about this and other option-file
-  options, see [Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling").
+  For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
-* [`--early-plugin-load=plugin_list`](server-options.html#option_mysqld_early-plugin-load)
+* `--early-plugin-load=plugin_list`
 
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>3
 
   Note
 
-  This option is deprecated, and starting the server with it
-  produces a warning. This is part of an ongoing process to
-  replace all MySQL plugins with MySQL components. If you have
-  not already done so, you should migrate from any plugins you
-  are using to the equivalent components where these are
-  available; this applies especially to keyring plugins, all
-  of which are now deprecated. For more information, see
-  [Section 8.4.5.1, “Keyring Components Versus Keyring Plugins”](keyring-component-plugin-comparison.html "8.4.5.1 Keyring Components Versus Keyring Plugins").
+  This option is deprecated, and starting the server with it produces a warning. This is part of an ongoing process to replace all MySQL plugins with MySQL components. If you have not already done so, you should migrate from any plugins you are using to the equivalent components where these are available; this applies especially to keyring plugins, all of which are now deprecated. For more information, see Section 8.4.5.1, “Keyring Components Versus Keyring Plugins”.
 
-  This option tells the server which plugins to load before
-  loading mandatory built-in plugins and before storage engine
-  initialization. Early loading is supported only for plugins
-  compiled with `PLUGIN_OPT_ALLOW_EARLY`. If
-  multiple [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load)
-  options are given, only the last one applies.
+  This option tells the server which plugins to load before loading mandatory built-in plugins and before storage engine initialization. Early loading is supported only for plugins compiled with `PLUGIN_OPT_ALLOW_EARLY`. If multiple `--early-plugin-load` options are given, only the last one applies.
 
-  The option value is a semicolon-separated list of
-  *`plugin_library`* values,
-  `name=plugin_library`
-  values, or both. Each
-  *`plugin_library`* is the name of a
-  library file that contains plugin code, and each
-  *`name`* is the name of a plugin to
-  load. If a plugin library is named without any preceding
-  plugin name, the server loads all plugins in the library. With
-  a preceding plugin name, the server loads only the named
-  plugin from the library. The server looks for plugin library
-  files in the directory named by the
-  [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable.
+  The option value is a semicolon-separated list of *`plugin_library`* values, `name=plugin_library` values, or both. Each *`plugin_library`* is the name of a library file that contains plugin code, and each *`name`* is the name of a plugin to load. If a plugin library is named without any preceding plugin name, the server loads all plugins in the library. With a preceding plugin name, the server loads only the named plugin from the library. The server looks for plugin library files in the directory named by the `plugin_dir` system variable.
 
-  For example, if plugins named `myplug1` and
-  `myplug2` are contained in the plugin library
-  files `myplug1.so` and
-  `myplug2.so`, use this option to perform an
-  early plugin load:
+  For example, if plugins named `myplug1` and `myplug2` are contained in the plugin library files `myplug1.so` and `myplug2.so`, use this option to perform an early plugin load:
 
   ```
   mysqld --early-plugin-load="myplug1=myplug1.so;myplug2=myplug2.so"
   ```
 
-  Quotes surround the argument value because otherwise some
-  command interpreters interpret semicolon
-  (`;`) as a special character. (For example,
-  Unix shells treat it as a command terminator.)
+  Quotes surround the argument value because otherwise some command interpreters interpret semicolon (`;`) as a special character. (For example, Unix shells treat it as a command terminator.)
 
-  Each named plugin is loaded early for a single invocation of
-  [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") only. After a restart, the plugin is
-  not loaded early unless
-  [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) is used
-  again.
+  Each named plugin is loaded early for a single invocation of **mysqld** only. After a restart, the plugin is not loaded early unless `--early-plugin-load` is used again.
 
-  If the server is started using
-  [`--initialize`](server-options.html#option_mysqld_initialize) or
-  [`--initialize-insecure`](server-options.html#option_mysqld_initialize-insecure), plugins
-  specified by
-  [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) are not
-  loaded.
+  If the server is started using `--initialize` or `--initialize-insecure`, plugins specified by `--early-plugin-load` are not loaded.
 
-  If the server is run with
-  [`--help`](server-options.html#option_mysqld_help), plugins specified by
-  [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) are loaded
-  but not initialized. This behavior ensures that plugin options
-  are displayed in the help message.
+  If the server is run with `--help`, plugins specified by `--early-plugin-load` are loaded but not initialized. This behavior ensures that plugin options are displayed in the help message.
 
-  `InnoDB` tablespace encryption relies on the
-  MySQL Keyring for encryption key management, and the keyring
-  plugin to be used must be loaded prior to storage engine
-  initialization to facilitate `InnoDB`
-  recovery for encrypted tables. For example, administrators who
-  want the `keyring_okv` plugin loaded at
-  startup should use
-  [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) with the
-  appropriate option value (such as
-  `keyring_okv.so` on Unix and Unix-like
-  systems or `keyring_okv.dll` on Windows).
+  `InnoDB` tablespace encryption relies on the MySQL Keyring for encryption key management, and the keyring plugin to be used must be loaded prior to storage engine initialization to facilitate `InnoDB` recovery for encrypted tables. For example, administrators who want the `keyring_okv` plugin loaded at startup should use `--early-plugin-load` with the appropriate option value (such as `keyring_okv.so` on Unix and Unix-like systems or `keyring_okv.dll` on Windows).
 
-  For information about `InnoDB` tablespace
-  encryption, see [Section 17.13, “InnoDB Data-at-Rest Encryption”](innodb-data-encryption.html "17.13 InnoDB Data-at-Rest Encryption"). For
-  general information about plugin loading, see
-  [Section 7.6.1, “Installing and Uninstalling Plugins”](plugin-loading.html "7.6.1 Installing and Uninstalling Plugins").
+  For information about `InnoDB` tablespace encryption, see Section 17.13, “InnoDB Data-at-Rest Encryption”. For general information about plugin loading, see Section 7.6.1, “Installing and Uninstalling Plugins”.
 
   Note
 
-  For MySQL Keyring, this option is used only when the
-  keystore is managed with a keyring plugin. If keystore
-  management uses a keyring component rather than a plugin,
-  specify component loading using a manifest file; see
-  [Section 8.4.5.2, “Keyring Component Installation”](keyring-component-installation.html "8.4.5.2 Keyring Component Installation").
+  For MySQL Keyring, this option is used only when the keystore is managed with a keyring plugin. If keystore management uses a keyring component rather than a plugin, specify component loading using a manifest file; see Section 8.4.5.2, “Keyring Component Installation”.
 
-* [`--exit-info[=flags]`](server-options.html#option_mysqld_exit-info),
-  `-T [flags]`
+* `--exit-info[=flags]`, `-T [flags]`
 
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>4
 
-  This is a bitmask of different flags that you can use for
-  debugging the [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") server. Do not use
-  this option unless you know *exactly* what
-  it does!
+  This is a bitmask of different flags that you can use for debugging the **mysqld** server. Do not use this option unless you know *exactly* what it does!
 
-* [`--external-locking`](server-options.html#option_mysqld_external-locking)
+* `--external-locking`
 
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>5
 
-  Enable external locking (system locking), which is disabled by
-  default. If you use this option on a system on which
-  `lockd` does not fully work (such as Linux),
-  it is easy for [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") to deadlock.
+  Enable external locking (system locking), which is disabled by default. If you use this option on a system on which `lockd` does not fully work (such as Linux), it is easy for **mysqld** to deadlock.
 
-  To disable external locking explicitly, use
-  `--skip-external-locking`.
+  To disable external locking explicitly, use `--skip-external-locking`.
 
-  External locking affects only
-  [`MyISAM`](myisam-storage-engine.html "18.2 The MyISAM Storage Engine") table access. For more
-  information, including conditions under which it can and
-  cannot be used, see [Section 10.11.5, “External Locking”](external-locking.html "10.11.5 External Locking").
+  External locking affects only `MyISAM` table access. For more information, including conditions under which it can and cannot be used, see Section 10.11.5, “External Locking”.
 
-* [`--flush`](server-options.html#option_mysqld_flush)
+* `--flush`
 
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>6
 
-  Flush (synchronize) all changes to disk after each SQL
-  statement. Normally, MySQL does a write of all changes to disk
-  only after each SQL statement and lets the operating system
-  handle the synchronizing to disk. See
-  [Section B.3.3.3, “What to Do If MySQL Keeps Crashing”](crashing.html "B.3.3.3 What to Do If MySQL Keeps Crashing").
+  Flush (synchronize) all changes to disk after each SQL statement. Normally, MySQL does a write of all changes to disk only after each SQL statement and lets the operating system handle the synchronizing to disk. See Section B.3.3.3, “What to Do If MySQL Keeps Crashing”.
 
   Note
 
-  If [`--flush`](server-options.html#option_mysqld_flush) is specified, the
-  value of [`flush_time`](server-system-variables.html#sysvar_flush_time) does
-  not matter and changes to
-  [`flush_time`](server-system-variables.html#sysvar_flush_time) have no effect
-  on flush behavior.
+  If `--flush` is specified, the value of `flush_time` does not matter and changes to `flush_time` have no effect on flush behavior.
 
-* [`--gdb`](server-options.html#option_mysqld_gdb)
+* `--gdb`
 
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>7
 
-  Install an interrupt handler for `SIGINT`
-  (needed to stop [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") with
-  `^C` to set breakpoints) and disable stack
-  tracing and core file handling. See
-  [Section 7.9.1.4, “Debugging mysqld under gdb”](using-gdb-on-mysqld.html "7.9.1.4 Debugging mysqld under gdb").
+  Install an interrupt handler for `SIGINT` (needed to stop **mysqld** with `^C` to set breakpoints) and disable stack tracing and core file handling. See Section 7.9.1.4, “Debugging mysqld under gdb”.
 
-  On Windows, this option also suppresses the forking that is
-  used to implement the [`RESTART`](restart.html "15.7.8.8 RESTART Statement")
-  statement: Forking enables one process to act as a monitor to
-  the other, which acts as the server. However, forking makes
-  determining the server process to attach to for debugging more
-  difficult, so starting the server with
-  [`--gdb`](server-options.html#option_mysqld_gdb) suppresses forking. For a
-  server started with this option,
-  [`RESTART`](restart.html "15.7.8.8 RESTART Statement") simply exits and does
-  not restart.
+  On Windows, this option also suppresses the forking that is used to implement the `RESTART` statement: Forking enables one process to act as a monitor to the other, which acts as the server. However, forking makes determining the server process to attach to for debugging more difficult, so starting the server with `--gdb` suppresses forking. For a server started with this option, `RESTART` simply exits and does not restart.
 
-  In non-debug settings,
-  [`--no-monitor`](server-options.html#option_mysqld_no-monitor) may be used to
-  suppress forking the monitor process.
+  In non-debug settings, `--no-monitor` may be used to suppress forking the monitor process.
 
-* [`--initialize`](server-options.html#option_mysqld_initialize),
-  `-I`
+* `--initialize`, `-I`
 
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>8
 
-  This option is used to initialize a MySQL installation by
-  creating the data directory and populating the tables in the
-  `mysql` system schema. For more information,
-  see [Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory").
+  This option is used to initialize a MySQL installation by creating the data directory and populating the tables in the `mysql` system schema. For more information, see Section 2.9.1, “Initializing the Data Directory”.
 
-  This option limits the effects of, or is not compatible with,
-  a number of other startup options for the MySQL server. Some
-  of the most common issues of this sort are noted here:
+  This option limits the effects of, or is not compatible with, a number of other startup options for the MySQL server. Some of the most common issues of this sort are noted here:
 
-  + We strongly recommend, when initializing the data
-    directory with `--initialize`, that you
-    specify no additional options other than
-    [`--datadir`](server-system-variables.html#sysvar_datadir), other options
-    used for setting directory locations such as
-    [`--basedir`](server-system-variables.html#sysvar_basedir), and possibly
-    [`--user`](server-options.html#option_mysqld_user), if required.
-    Options for the running MySQL server can be specified when
-    starting it once initialization has been completed and
-    [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") has shut down. This also applies
-    when using
-    [`--initialize-insecure`](server-options.html#option_mysqld_initialize-insecure)
-    instead of `--initialize`.
+  + We strongly recommend, when initializing the data directory with `--initialize`, that you specify no additional options other than `--datadir`, other options used for setting directory locations such as `--basedir`, and possibly `--user`, if required. Options for the running MySQL server can be specified when starting it once initialization has been completed and **mysqld** has shut down. This also applies when using `--initialize-insecure` instead of `--initialize`.
 
-  + When the server is started with
-    `--initialize`, some functionality is
-    unavailable that limits the statements permitted in any
-    file named by the
-    [`init_file`](server-system-variables.html#sysvar_init_file) system
-    variable. For more information, see the description of
-    that variable. In addition, the
-    [`disabled_storage_engines`](server-system-variables.html#sysvar_disabled_storage_engines)
-    system variable has no effect.
+  + When the server is started with `--initialize`, some functionality is unavailable that limits the statements permitted in any file named by the `init_file` system variable. For more information, see the description of that variable. In addition, the `disabled_storage_engines` system variable has no effect.
 
-  + The [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) option is
-    ignored when used together with
-    `--initialize`.
+  + The `--ndbcluster` option is ignored when used together with `--initialize`.
 
-  + `--initialize` is mutually exclusive with
-    [`--bootstrap`](/doc/refman/5.7/en/server-options.html#option_mysqld_bootstrap) and
-    [`--daemonize`](server-options.html#option_mysqld_daemonize).
+  + `--initialize` is mutually exclusive with `--bootstrap` and `--daemonize`.
 
-  The items in the preceding list also apply when initializing
-  the server using the
-  [`--initialize-insecure`](server-options.html#option_mysqld_initialize-insecure) option.
+  The items in the preceding list also apply when initializing the server using the `--initialize-insecure` option.
 
-* [`--initialize-insecure`](server-options.html#option_mysqld_initialize-insecure)
+* `--initialize-insecure`
 
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">OFF</code></td>
-</tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>9
 
-  This option is used to initialize a MySQL installation by
-  creating the data directory and populating the tables in the
-  `mysql` system schema. This option implies
-  [`--initialize`](server-options.html#option_mysqld_initialize), and the same
-  restrictions and limitations apply; for more information, see
-  the description of that option, and
-  [Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory").
+  This option is used to initialize a MySQL installation by creating the data directory and populating the tables in the `mysql` system schema. This option implies `--initialize`, and the same restrictions and limitations apply; for more information, see the description of that option, and Section 2.9.1, “Initializing the Data Directory”.
 
   Warning
 
-  This option creates a MySQL `root` user
-  with an empty password, which is insecure. For this reason,
-  do not use it in production without setting this password
-  manually. See
-  [Post-Initialization root Password Assignment](data-directory-initialization.html#data-directory-initialization-password-assignment "Post-Initialization root Password Assignment"),
-  for information about how to do this.
+  This option creates a MySQL `root` user with an empty password, which is insecure. For this reason, do not use it in production without setting this password manually. See Post-Initialization root Password Assignment, for information about how to do this.
 
 * `--innodb-xxx`
 
-  Set an option for the `InnoDB` storage
-  engine. The `InnoDB` options are listed in
-  [Section 17.14, “InnoDB Startup Options and System Variables”](innodb-parameters.html "17.14 InnoDB Startup Options and System Variables").
+  Set an option for the `InnoDB` storage engine. The `InnoDB` options are listed in Section 17.14, “InnoDB Startup Options and System Variables”.
 
-* [`--install
-  [service_name]`](server-options.html#option_mysqld_install)
+* [`--install [service_name]`](server-options.html#option_mysqld_install)
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--ansi</code></td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>0
 
-  (Windows only) Install the server as a Windows service that
-  starts automatically during Windows startup. The default
-  service name is `MySQL` if no
-  *`service_name`* value is given. For
-  more information, see [Section 2.3.3.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.3.8 Starting MySQL as a Windows Service").
+  (Windows only) Install the server as a Windows service that starts automatically during Windows startup. The default service name is `MySQL` if no *`service_name`* value is given. For more information, see Section 2.3.3.8, “Starting MySQL as a Windows Service”.
 
   Note
 
-  If the server is started with the
-  [`--defaults-file`](server-options.html#option_mysqld_defaults-file) and
-  [`--install`](server-options.html#option_mysqld_install) options,
-  [`--install`](server-options.html#option_mysqld_install) must be first.
+  If the server is started with the `--defaults-file` and `--install` options, `--install` must be first.
 
-* [`--install-manual
-  [service_name]`](server-options.html#option_mysqld_install-manual)
+* [`--install-manual [service_name]`](server-options.html#option_mysqld_install-manual)
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--ansi</code></td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>1
 
-  (Windows only) Install the server as a Windows service that
-  must be started manually. It does not start automatically
-  during Windows startup. The default service name is
-  `MySQL` if no
-  *`service_name`* value is given. For
-  more information, see [Section 2.3.3.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.3.8 Starting MySQL as a Windows Service").
+  (Windows only) Install the server as a Windows service that must be started manually. It does not start automatically during Windows startup. The default service name is `MySQL` if no *`service_name`* value is given. For more information, see Section 2.3.3.8, “Starting MySQL as a Windows Service”.
 
   Note
 
-  If the server is started with the
-  [`--defaults-file`](option-file-options.html#option_general_defaults-file) and
-  [`--install-manual`](server-options.html#option_mysqld_install-manual) options,
-  [`--install-manual`](server-options.html#option_mysqld_install-manual) must be
-  first.
+  If the server is started with the `--defaults-file` and `--install-manual` options, `--install-manual` must be first.
 
-* [`--large-pages`](server-options.html#option_mysqld_large-pages)
+* `--large-pages`
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--ansi</code></td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>2
 
-  Some hardware/operating system architectures support memory
-  pages greater than the default (usually 4KB). The actual
-  implementation of this support depends on the underlying
-  hardware and operating system. Applications that perform a lot
-  of memory accesses may obtain performance improvements by
-  using large pages due to reduced Translation Lookaside Buffer
-  (TLB) misses.
+  Some hardware/operating system architectures support memory pages greater than the default (usually 4KB). The actual implementation of this support depends on the underlying hardware and operating system. Applications that perform a lot of memory accesses may obtain performance improvements by using large pages due to reduced Translation Lookaside Buffer (TLB) misses.
 
-  MySQL supports the Linux implementation of large page support
-  (which is called HugeTLB in Linux). See
-  [Section 10.12.3.3, “Enabling Large Page Support”](large-page-support.html "10.12.3.3 Enabling Large Page Support"). For Solaris support of
-  large pages, see the description of the
-  [`--super-large-pages`](server-options.html#option_mysqld_super-large-pages) option.
+  MySQL supports the Linux implementation of large page support (which is called HugeTLB in Linux). See Section 10.12.3.3, “Enabling Large Page Support”. For Solaris support of large pages, see the description of the `--super-large-pages` option.
 
-  [`--large-pages`](server-options.html#option_mysqld_large-pages) is disabled by
-  default.
+  `--large-pages` is disabled by default.
 
-* [`--lc-messages=locale_name`](server-options.html#option_mysqld_lc-messages)
+* `--lc-messages=locale_name`
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--ansi</code></td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>3
 
-  The locale to use for error messages. The default is
-  `en_US`. The server converts the argument to
-  a language name and combines it with the value of
-  [`--lc-messages-dir`](server-options.html#option_mysqld_lc-messages-dir) to produce
-  the location for the error message file. See
-  [Section 12.12, “Setting the Error Message Language”](error-message-language.html "12.12 Setting the Error Message Language").
+  The locale to use for error messages. The default is `en_US`. The server converts the argument to a language name and combines it with the value of `--lc-messages-dir` to produce the location for the error message file. See Section 12.12, “Setting the Error Message Language”.
 
-* [`--lc-messages-dir=dir_name`](server-options.html#option_mysqld_lc-messages-dir)
+* `--lc-messages-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--ansi</code></td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>4
 
-  The directory where error messages are located. The server
-  uses the value together with the value of
-  [`--lc-messages`](server-options.html#option_mysqld_lc-messages) to produce the
-  location for the error message file. See
-  [Section 12.12, “Setting the Error Message Language”](error-message-language.html "12.12 Setting the Error Message Language").
+  The directory where error messages are located. The server uses the value together with the value of `--lc-messages` to produce the location for the error message file. See Section 12.12, “Setting the Error Message Language”.
 
-* [`--local-service`](server-options.html#option_mysqld_local-service)
+* `--local-service`
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--ansi</code></td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>5
 
-  (Windows only) A `--local-service` option
-  following the service name causes the server to run using the
-  `LocalService` Windows account that has
-  limited system privileges. If both
-  [`--defaults-file`](option-file-options.html#option_general_defaults-file) and
-  `--local-service` are given following the
-  service name, they can be in any order. See
-  [Section 2.3.3.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.3.8 Starting MySQL as a Windows Service").
+  (Windows only) A `--local-service` option following the service name causes the server to run using the `LocalService` Windows account that has limited system privileges. If both `--defaults-file` and `--local-service` are given following the service name, they can be in any order. See Section 2.3.3.8, “Starting MySQL as a Windows Service”.
 
-* [`--log-diagnostic[=value]`](server-options.html#option_mysqld_log-diagnostic)
+* `--log-diagnostic[=value]`
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--ansi</code></td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>6
 
-  Set the name of the diagnostic log file to this value suffixed
-  with `.diag` if the server is started with
-  [`--log-diagnostic-enable`](server-options.html#option_mysqld_log-diagnostic-enable);
-  otherwise has no effect. The default diagnostic log file name
-  is
-  `host_name.diag`.
+  Set the name of the diagnostic log file to this value suffixed with `.diag` if the server is started with `--log-diagnostic-enable`; otherwise has no effect. The default diagnostic log file name is `host_name.diag`.
 
-  For internal use only. Available only if the server was built
-  using [`-DWITH_LOG_DIAGNOSTIC`](source-configuration-options.html#option_cmake_with_log_diagnostic).
+  For internal use only. Available only if the server was built using `-DWITH_LOG_DIAGNOSTIC`.
 
-* [`--log-diagnostic-enable[=value]`](server-options.html#option_mysqld_log-diagnostic-enable)
+* `--log-diagnostic-enable[=value]`
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--ansi</code></td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>7
 
   Enable diagnostic logging.
 
-  For internal use only. Available only if the server was built
-  using [`-DWITH_LOG_DIAGNOSTIC`](source-configuration-options.html#option_cmake_with_log_diagnostic).
+  For internal use only. Available only if the server was built using `-DWITH_LOG_DIAGNOSTIC`.
 
-* [`--log-error[=file_name]`](server-options.html#option_mysqld_log-error)
+* `--log-error[=file_name]`
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--ansi</code></td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>8
 
-  Set the default error log destination to the named file. This
-  affects log sinks that base their own output destination on
-  the default destination. See [Section 7.4.2, “The Error Log”](error-log.html "7.4.2 The Error Log").
+  Set the default error log destination to the named file. This affects log sinks that base their own output destination on the default destination. See Section 7.4.2, “The Error Log”.
 
-  If the option names no file, the default error log destination
-  on Unix and Unix-like systems is a file named
-  `host_name.err`
-  in the data directory. The default destination on Windows is
-  the same, unless the [`--pid-file`](server-system-variables.html#sysvar_pid_file)
-  option is specified. In that case, the file name is the PID
-  file base name with a suffix of `.err` in
-  the data directory.
+  If the option names no file, the default error log destination on Unix and Unix-like systems is a file named `host_name.err` in the data directory. The default destination on Windows is the same, unless the `--pid-file` option is specified. In that case, the file name is the PID file base name with a suffix of `.err` in the data directory.
 
-  If the option names a file, the default destination is that
-  file (with an `.err` suffix added if the
-  name has no suffix), located under the data directory unless
-  an absolute path name is given to specify a different
-  location.
+  If the option names a file, the default destination is that file (with an `.err` suffix added if the name has no suffix), located under the data directory unless an absolute path name is given to specify a different location.
 
-  If error log output cannot be redirected to the error log
-  file, an error occurs and startup fails.
+  If error log output cannot be redirected to the error log file, an error occurs and startup fails.
 
-  On Windows, [`--console`](server-options.html#option_mysqld_console) takes
-  precedence over [`--log-error`](server-options.html#option_mysqld_log-error) if
-  both are given. In this case, the default error log
-  destination is the console rather than a file.
+  On Windows, `--console` takes precedence over `--log-error` if both are given. In this case, the default error log destination is the console rather than a file.
 
-* [`--log-isam[=file_name]`](server-options.html#option_mysqld_log-isam)
+* `--log-isam[=file_name]`
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--ansi</code></td>
-</tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--ansi</code></td> </tr></tbody></table>9
 
-  Log all `MyISAM` changes to this file (used
-  only when debugging `MyISAM`).
+  Log all `MyISAM` changes to this file (used only when debugging `MyISAM`).
 
-* [`--log-raw`](server-options.html#option_mysqld_log-raw)
+* `--log-raw`
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--basedir=dir_name</code></td>
-</tr><tr><th>System Variable</th>
-<td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
-</tr><tr><th>Scope</th>
-<td>Global</td>
-</tr><tr><th>Dynamic</th>
-<td>No</td>
-</tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th>
-<td>No</td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">parent of mysqld installation directory</code></td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">parent of mysqld installation directory</code></td> </tr></tbody></table>0
 
-  Passwords in certain statements written to the general query
-  log, slow query log, and binary log are rewritten by the
-  server not to occur literally in plain text. Password
-  rewriting can be suppressed for the general query log by
-  starting the server with the
-  [`--log-raw`](server-options.html#option_mysqld_log-raw) option. This option
-  may be useful for diagnostic purposes, to see the exact text
-  of statements as received by the server, but for security
-  reasons is not recommended for production use.
+  Passwords in certain statements written to the general query log, slow query log, and binary log are rewritten by the server not to occur literally in plain text. Password rewriting can be suppressed for the general query log by starting the server with the `--log-raw` option. This option may be useful for diagnostic purposes, to see the exact text of statements as received by the server, but for security reasons is not recommended for production use.
 
-  If a query rewrite plugin is installed, the
-  [`--log-raw`](server-options.html#option_mysqld_log-raw) option affects
-  statement logging as follows:
+  If a query rewrite plugin is installed, the `--log-raw` option affects statement logging as follows:
 
-  + Without [`--log-raw`](server-options.html#option_mysqld_log-raw), the
-    server logs the statement returned by the query rewrite
-    plugin. This may differ from the statement as received.
+  + Without `--log-raw`, the server logs the statement returned by the query rewrite plugin. This may differ from the statement as received.
 
-  + With [`--log-raw`](server-options.html#option_mysqld_log-raw), the server
-    logs the original statement as received.
+  + With `--log-raw`, the server logs the original statement as received.
 
-  For more information, see [Section 8.1.2.3, “Passwords and Logging”](password-logging.html "8.1.2.3 Passwords and Logging").
+  For more information, see Section 8.1.2.3, “Passwords and Logging”.
 
-* [`--log-short-format`](server-options.html#option_mysqld_log-short-format)
+* `--log-short-format`
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--basedir=dir_name</code></td>
-</tr><tr><th>System Variable</th>
-<td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
-</tr><tr><th>Scope</th>
-<td>Global</td>
-</tr><tr><th>Dynamic</th>
-<td>No</td>
-</tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th>
-<td>No</td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">parent of mysqld installation directory</code></td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">parent of mysqld installation directory</code></td> </tr></tbody></table>1
 
-  Log less information to the slow query log, if it has been
-  activated.
+  Log less information to the slow query log, if it has been activated.
 
-* [`--log-tc=file_name`](server-options.html#option_mysqld_log-tc)
+* `--log-tc=file_name`
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--basedir=dir_name</code></td>
-</tr><tr><th>System Variable</th>
-<td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
-</tr><tr><th>Scope</th>
-<td>Global</td>
-</tr><tr><th>Dynamic</th>
-<td>No</td>
-</tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th>
-<td>No</td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">parent of mysqld installation directory</code></td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">parent of mysqld installation directory</code></td> </tr></tbody></table>2
 
-  The name of the memory-mapped transaction coordinator log file
-  (for XA transactions that affect multiple storage engines when
-  the binary log is disabled). The default name is
-  `tc.log`. The file is created under the
-  data directory if not given as a full path name. This option
-  is unused.
+  The name of the memory-mapped transaction coordinator log file (for XA transactions that affect multiple storage engines when the binary log is disabled). The default name is `tc.log`. The file is created under the data directory if not given as a full path name. This option is unused.
 
-* [`--log-tc-size=size`](server-options.html#option_mysqld_log-tc-size)
+* `--log-tc-size=size`
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--basedir=dir_name</code></td>
-</tr><tr><th>System Variable</th>
-<td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
-</tr><tr><th>Scope</th>
-<td>Global</td>
-</tr><tr><th>Dynamic</th>
-<td>No</td>
-</tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th>
-<td>No</td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">parent of mysqld installation directory</code></td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">parent of mysqld installation directory</code></td> </tr></tbody></table>3
 
-  The size in bytes of the memory-mapped transaction coordinator
-  log. The default and minimum values are 6 times the page size,
-  and the value must be a multiple of the page size.
+  The size in bytes of the memory-mapped transaction coordinator log. The default and minimum values are 6 times the page size, and the value must be a multiple of the page size.
 
-* [`--memlock`](server-options.html#option_mysqld_memlock)
+* `--memlock`
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--basedir=dir_name</code></td>
-</tr><tr><th>System Variable</th>
-<td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
-</tr><tr><th>Scope</th>
-<td>Global</td>
-</tr><tr><th>Dynamic</th>
-<td>No</td>
-</tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th>
-<td>No</td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">parent of mysqld installation directory</code></td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">parent of mysqld installation directory</code></td> </tr></tbody></table>4
 
-  Lock the [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") process in memory. This
-  option might help if you have a problem where the operating
-  system is causing [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") to swap to disk.
+  Lock the **mysqld** process in memory. This option might help if you have a problem where the operating system is causing **mysqld** to swap to disk.
 
-  [`--memlock`](server-options.html#option_mysqld_memlock) works on systems that
-  support the `mlockall()` system call; this
-  includes Solaris, most Linux distributions that use a 2.4 or
-  higher kernel, and perhaps other Unix systems. On Linux
-  systems, you can tell whether or not
-  `mlockall()` (and thus this option) is
-  supported by checking to see whether or not it is defined in
-  the system `mman.h` file, like this:
+  `--memlock` works on systems that support the `mlockall()` system call; this includes Solaris, most Linux distributions that use a 2.4 or higher kernel, and perhaps other Unix systems. On Linux systems, you can tell whether or not `mlockall()` (and thus this option) is supported by checking to see whether or not it is defined in the system `mman.h` file, like this:
 
   ```
   $> grep mlockall /usr/include/sys/mman.h
   ```
 
-  If `mlockall()` is supported, you should see
-  in the output of the previous command something like the
-  following:
+  If `mlockall()` is supported, you should see in the output of the previous command something like the following:
 
   ```
   extern int mlockall (int __flags) __THROW;
@@ -1105,206 +417,65 @@ changing system variables, see
 
   Important
 
-  Use of this option may require you to run the server as
-  `root`, which, for reasons of security, is
-  normally not a good idea. See
-  [Section 8.1.5, “How to Run MySQL as a Normal User”](changing-mysql-user.html "8.1.5 How to Run MySQL as a Normal User").
+  Use of this option may require you to run the server as `root`, which, for reasons of security, is normally not a good idea. See Section 8.1.5, “How to Run MySQL as a Normal User”.
 
-  On Linux and perhaps other systems, you can avoid the need
-  to run the server as `root` by changing the
-  `limits.conf` file. See the notes
-  regarding the memlock limit in
-  [Section 10.12.3.3, “Enabling Large Page Support”](large-page-support.html "10.12.3.3 Enabling Large Page Support").
+  On Linux and perhaps other systems, you can avoid the need to run the server as `root` by changing the `limits.conf` file. See the notes regarding the memlock limit in Section 10.12.3.3, “Enabling Large Page Support”.
 
-  You must not use this option on a system that does not
-  support the `mlockall()` system call; if
-  you do so, [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") is very likely to exit
-  as soon as you try to start it.
+  You must not use this option on a system that does not support the `mlockall()` system call; if you do so, **mysqld** is very likely to exit as soon as you try to start it.
 
-* [`--myisam-block-size=N`](server-options.html#option_mysqld_myisam-block-size)
+* `--myisam-block-size=N`
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--basedir=dir_name</code></td>
-</tr><tr><th>System Variable</th>
-<td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
-</tr><tr><th>Scope</th>
-<td>Global</td>
-</tr><tr><th>Dynamic</th>
-<td>No</td>
-</tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th>
-<td>No</td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">parent of mysqld installation directory</code></td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">parent of mysqld installation directory</code></td> </tr></tbody></table>5
 
-  The block size to be used for `MyISAM` index
-  pages.
+  The block size to be used for `MyISAM` index pages.
 
-* [`--no-defaults`](server-options.html#option_mysqld_no-defaults)
+* `--no-defaults`
 
-  Do not read any option files. If program startup fails due to
-  reading unknown options from an option file,
-  [`--no-defaults`](server-options.html#option_mysqld_no-defaults) can be used to
-  prevent them from being read. This must be the first option on
-  the command line if it is used.
+  Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read. This must be the first option on the command line if it is used.
 
-  For additional information about this and other option-file
-  options, see [Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling").
+  For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
-* [`--no-monitor`](server-options.html#option_mysqld_no-monitor)
+* `--no-monitor`
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--basedir=dir_name</code></td>
-</tr><tr><th>System Variable</th>
-<td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
-</tr><tr><th>Scope</th>
-<td>Global</td>
-</tr><tr><th>Dynamic</th>
-<td>No</td>
-</tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th>
-<td>No</td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">parent of mysqld installation directory</code></td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">parent of mysqld installation directory</code></td> </tr></tbody></table>6
 
-  (Windows only). This option suppresses the forking that is
-  used to implement the [`RESTART`](restart.html "15.7.8.8 RESTART Statement")
-  statement: Forking enables one process to act as a monitor to
-  the other, which acts as the server. For a server started with
-  this option, [`RESTART`](restart.html "15.7.8.8 RESTART Statement") simply
-  exits and does not restart.
+  (Windows only). This option suppresses the forking that is used to implement the `RESTART` statement: Forking enables one process to act as a monitor to the other, which acts as the server. For a server started with this option, `RESTART` simply exits and does not restart.
 
 * `--performance-schema-xxx`
 
-  Configure a Performance Schema option. For details, see
-  [Section 29.14, “Performance Schema Command Options”](performance-schema-options.html "29.14 Performance Schema Command Options").
+  Configure a Performance Schema option. For details, see Section 29.14, “Performance Schema Command Options”.
 
-* [`--plugin-load=plugin_list`](server-options.html#option_mysqld_plugin-load)
+* `--plugin-load=plugin_list`
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--basedir=dir_name</code></td>
-</tr><tr><th>System Variable</th>
-<td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
-</tr><tr><th>Scope</th>
-<td>Global</td>
-</tr><tr><th>Dynamic</th>
-<td>No</td>
-</tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th>
-<td>No</td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">parent of mysqld installation directory</code></td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">parent of mysqld installation directory</code></td> </tr></tbody></table>7
 
-  This option tells the server to load the named plugins at
-  startup. If multiple
-  [`--plugin-load`](server-options.html#option_mysqld_plugin-load) options are
-  given, only the last one applies. Additional plugins to load
-  may be specified using
-  [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) options.
+  This option tells the server to load the named plugins at startup. If multiple `--plugin-load` options are given, only the last one applies. Additional plugins to load may be specified using `--plugin-load-add` options.
 
-  The option value is a semicolon-separated list of
-  *`plugin_library`* and
-  *`name`*`=`*`plugin_library`*
-  values. Each *`plugin_library`* is the
-  name of a library file that contains plugin code, and each
-  *`name`* is the name of a plugin to
-  load. If a plugin library is named without any preceding
-  plugin name, the server loads all plugins in the library. With
-  a preceding plugin name, the server loads only the named
-  plugin from the library. The server looks for plugin library
-  files in the directory named by the
-  [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable.
+  The option value is a semicolon-separated list of *`plugin_library`* and *`name`*`=`*`plugin_library`* values. Each *`plugin_library`* is the name of a library file that contains plugin code, and each *`name`* is the name of a plugin to load. If a plugin library is named without any preceding plugin name, the server loads all plugins in the library. With a preceding plugin name, the server loads only the named plugin from the library. The server looks for plugin library files in the directory named by the `plugin_dir` system variable.
 
-  For example, if plugins named `myplug1` and
-  `myplug2` are contained in the plugin library
-  files `myplug1.so` and
-  `myplug2.so`, use this option to perform an
-  early plugin load:
+  For example, if plugins named `myplug1` and `myplug2` are contained in the plugin library files `myplug1.so` and `myplug2.so`, use this option to perform an early plugin load:
 
   ```
   mysqld --plugin-load="myplug1=myplug1.so;myplug2=myplug2.so"
   ```
 
-  Quotes surround the argument value because otherwise some
-  command interpreters interpret semicolon
-  (`;`) as a special character. (For example,
-  Unix shells treat it as a command terminator.)
+  Quotes surround the argument value because otherwise some command interpreters interpret semicolon (`;`) as a special character. (For example, Unix shells treat it as a command terminator.)
 
-  Each named plugin is loaded for a single invocation of
-  [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") only. After a restart, the plugin is
-  not loaded unless [`--plugin-load`](server-options.html#option_mysqld_plugin-load)
-  is used again. This is in contrast to
-  [`INSTALL PLUGIN`](install-plugin.html "15.7.4.4 INSTALL PLUGIN Statement"), which adds an
-  entry to the `mysql.plugins` table to cause
-  the plugin to be loaded for every normal server startup.
+  Each named plugin is loaded for a single invocation of **mysqld** only. After a restart, the plugin is not loaded unless `--plugin-load` is used again. This is in contrast to `INSTALL PLUGIN`, which adds an entry to the `mysql.plugins` table to cause the plugin to be loaded for every normal server startup.
 
-  During the normal startup sequence, the server determines
-  which plugins to load by reading the
-  `mysql.plugins` system table. If the server
-  is started with the
-  [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) option,
-  plugins registered in the `mysql.plugins`
-  table are not loaded and are unavailable.
-  [`--plugin-load`](server-options.html#option_mysqld_plugin-load) enables plugins
-  to be loaded even when
-  [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) is given.
-  [`--plugin-load`](server-options.html#option_mysqld_plugin-load) also enables
-  plugins to be loaded at startup that cannot be loaded at
-  runtime.
+  During the normal startup sequence, the server determines which plugins to load by reading the `mysql.plugins` system table. If the server is started with the `--skip-grant-tables` option, plugins registered in the `mysql.plugins` table are not loaded and are unavailable. `--plugin-load` enables plugins to be loaded even when `--skip-grant-tables` is given. `--plugin-load` also enables plugins to be loaded at startup that cannot be loaded at runtime.
 
-  This option does not set a corresponding system variable. The
-  output of [`SHOW PLUGINS`](show-plugins.html "15.7.7.28 SHOW PLUGINS Statement") provides
-  information about loaded plugins. More detailed information
-  can be found in the Information Schema
-  [`PLUGINS`](information-schema-plugins-table.html "28.3.27 The INFORMATION_SCHEMA PLUGINS Table") table. See
-  [Section 7.6.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "7.6.2 Obtaining Server Plugin Information").
+  This option does not set a corresponding system variable. The output of `SHOW PLUGINS` provides information about loaded plugins. More detailed information can be found in the Information Schema `PLUGINS` table. See Section 7.6.2, “Obtaining Server Plugin Information”.
 
-  For additional information about plugin loading, see
-  [Section 7.6.1, “Installing and Uninstalling Plugins”](plugin-loading.html "7.6.1 Installing and Uninstalling Plugins").
+  For additional information about plugin loading, see Section 7.6.1, “Installing and Uninstalling Plugins”.
 
-* [`--plugin-load-add=plugin_list`](server-options.html#option_mysqld_plugin-load-add)
+* `--plugin-load-add=plugin_list`
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--basedir=dir_name</code></td>
-</tr><tr><th>System Variable</th>
-<td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
-</tr><tr><th>Scope</th>
-<td>Global</td>
-</tr><tr><th>Dynamic</th>
-<td>No</td>
-</tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th>
-<td>No</td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">parent of mysqld installation directory</code></td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">parent of mysqld installation directory</code></td> </tr></tbody></table>8
 
-  This option complements the
-  [`--plugin-load`](server-options.html#option_mysqld_plugin-load) option.
-  [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) adds a plugin
-  or plugins to the set of plugins to be loaded at startup. The
-  argument format is the same as for
-  [`--plugin-load`](server-options.html#option_mysqld_plugin-load).
-  [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) can be used
-  to avoid specifying a large set of plugins as a single long
-  unwieldy [`--plugin-load`](server-options.html#option_mysqld_plugin-load)
-  argument.
+  This option complements the `--plugin-load` option. `--plugin-load-add` adds a plugin or plugins to the set of plugins to be loaded at startup. The argument format is the same as for `--plugin-load`. `--plugin-load-add` can be used to avoid specifying a large set of plugins as a single long unwieldy `--plugin-load` argument.
 
-  [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) can be given
-  in the absence of
-  [`--plugin-load`](server-options.html#option_mysqld_plugin-load), but any instance
-  of [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) that
-  appears before [`--plugin-load`](server-options.html#option_mysqld_plugin-load)
-  has no effect because
-  [`--plugin-load`](server-options.html#option_mysqld_plugin-load) resets the set of
-  plugins to load. In other words, these options:
+  `--plugin-load-add` can be given in the absence of `--plugin-load`, but any instance of `--plugin-load-add` that appears before `--plugin-load` has no effect because `--plugin-load` resets the set of plugins to load. In other words, these options:
 
   ```
   --plugin-load=x --plugin-load-add=y
@@ -1328,461 +499,171 @@ changing system variables, see
   --plugin-load=x
   ```
 
-  This option does not set a corresponding system variable. The
-  output of [`SHOW PLUGINS`](show-plugins.html "15.7.7.28 SHOW PLUGINS Statement") provides
-  information about loaded plugins. More detailed information
-  can be found in the Information Schema
-  [`PLUGINS`](information-schema-plugins-table.html "28.3.27 The INFORMATION_SCHEMA PLUGINS Table") table. See
-  [Section 7.6.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "7.6.2 Obtaining Server Plugin Information").
+  This option does not set a corresponding system variable. The output of `SHOW PLUGINS` provides information about loaded plugins. More detailed information can be found in the Information Schema `PLUGINS` table. See Section 7.6.2, “Obtaining Server Plugin Information”.
 
-  For additional information about plugin loading, see
-  [Section 7.6.1, “Installing and Uninstalling Plugins”](plugin-loading.html "7.6.1 Installing and Uninstalling Plugins").
+  For additional information about plugin loading, see Section 7.6.1, “Installing and Uninstalling Plugins”.
 
-* [`--plugin-xxx`](server-options.html#option_mysqld_plugin-xxx)
+* `--plugin-xxx`
 
-  Specifies an option that pertains to a server plugin. For
-  example, many storage engines can be built as plugins, and for
-  such engines, options for them can be specified with a
-  `--plugin` prefix. Thus, the
-  [`--innodb-file-per-table`](innodb-parameters.html#sysvar_innodb_file_per_table) option
-  for `InnoDB` can be specified as
-  [`--plugin-innodb-file-per-table`](innodb-parameters.html#sysvar_innodb_file_per_table).
+  Specifies an option that pertains to a server plugin. For example, many storage engines can be built as plugins, and for such engines, options for them can be specified with a `--plugin` prefix. Thus, the `--innodb-file-per-table` option for `InnoDB` can be specified as `--plugin-innodb-file-per-table`.
 
-  For boolean options that can be enabled or disabled, the
-  `--skip` prefix and other alternative formats
-  are supported as well (see
-  [Section 6.2.2.4, “Program Option Modifiers”](option-modifiers.html "6.2.2.4 Program Option Modifiers")). For example,
-  [`--skip-plugin-innodb-file-per-table`](innodb-parameters.html#sysvar_innodb_file_per_table)
-  disables [`innodb-file-per-table`](innodb-parameters.html#sysvar_innodb_file_per_table).
+  For boolean options that can be enabled or disabled, the `--skip` prefix and other alternative formats are supported as well (see Section 6.2.2.4, “Program Option Modifiers”). For example, `--skip-plugin-innodb-file-per-table` disables `innodb-file-per-table`.
 
-  The rationale for the `--plugin` prefix is that
-  it enables plugin options to be specified unambiguously if
-  there is a name conflict with a built-in server option. For
-  example, were a plugin writer to name a plugin
-  “sql” and implement a “mode” option,
-  the option name might be
-  [`--sql-mode`](server-options.html#option_mysqld_sql-mode), which would
-  conflict with the built-in option of the same name. In such
-  cases, references to the conflicting name are resolved in
-  favor of the built-in option. To avoid the ambiguity, users
-  can specify the plugin option as
-  `--plugin-sql-mode`. Use of the
-  `--plugin` prefix for plugin options is
-  recommended to avoid any question of ambiguity.
+  The rationale for the `--plugin` prefix is that it enables plugin options to be specified unambiguously if there is a name conflict with a built-in server option. For example, were a plugin writer to name a plugin “sql” and implement a “mode” option, the option name might be `--sql-mode`, which would conflict with the built-in option of the same name. In such cases, references to the conflicting name are resolved in favor of the built-in option. To avoid the ambiguity, users can specify the plugin option as `--plugin-sql-mode`. Use of the `--plugin` prefix for plugin options is recommended to avoid any question of ambiguity.
 
-* [`--port=port_num`](server-options.html#option_mysqld_port),
-  `-P port_num`
+* `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--basedir=dir_name</code></td>
-</tr><tr><th>System Variable</th>
-<td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
-</tr><tr><th>Scope</th>
-<td>Global</td>
-</tr><tr><th>Dynamic</th>
-<td>No</td>
-</tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th>
-<td>No</td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">parent of mysqld installation directory</code></td>
-</tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code class="literal">parent of mysqld installation directory</code></td> </tr></tbody></table>9
 
-  The port number to use when listening for TCP/IP connections.
-  On Unix and Unix-like systems, the port number must be 1024 or
-  higher unless the server is started by the
-  `root` operating system user. Setting this
-  option to 0 causes the default value to be used.
+  The port number to use when listening for TCP/IP connections. On Unix and Unix-like systems, the port number must be 1024 or higher unless the server is started by the `root` operating system user. Setting this option to 0 causes the default value to be used.
 
-* [`--port-open-timeout=num`](server-options.html#option_mysqld_port-open-timeout)
+* `--port-open-timeout=num`
 
-  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--check-table-functions=value</code></td>
-</tr><tr><th>Type</th>
-<td>Enumeration</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">ABORT</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-table-functions=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">ABORT</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td> </tr></tbody></table>0
 
-  On some systems, when the server is stopped, the TCP/IP port
-  might not become available immediately. If the server is
-  restarted quickly afterward, its attempt to reopen the port
-  can fail. This option indicates how many seconds the server
-  should wait for the TCP/IP port to become free if it cannot be
-  opened. The default is not to wait.
+  On some systems, when the server is stopped, the TCP/IP port might not become available immediately. If the server is restarted quickly afterward, its attempt to reopen the port can fail. This option indicates how many seconds the server should wait for the TCP/IP port to become free if it cannot be opened. The default is not to wait.
 
-* [`--print-defaults`](server-options.html#option_mysqld_print-defaults)
+* `--print-defaults`
 
-  Print the program name and all options that it gets from
-  option files. Password values are masked. This must be the
-  first option on the command line if it is used, except that it
-  may be used immediately after
-  [`--defaults-file`](server-options.html#option_mysqld_defaults-file) or
-  [`--defaults-extra-file`](server-options.html#option_mysqld_defaults-extra-file).
+  Print the program name and all options that it gets from option files. Password values are masked. This must be the first option on the command line if it is used, except that it may be used immediately after `--defaults-file` or `--defaults-extra-file`.
 
-  For additional information about this and other option-file
-  options, see [Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”](option-file-options.html "6.2.2.3 Command-Line Options that Affect Option-File Handling").
+  For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
-* [`--remove
-  [service_name]`](server-options.html#option_mysqld_remove)
+* [`--remove [service_name]`](server-options.html#option_mysqld_remove)
 
-  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--check-table-functions=value</code></td>
-</tr><tr><th>Type</th>
-<td>Enumeration</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">ABORT</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-table-functions=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">ABORT</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td> </tr></tbody></table>1
 
-  (Windows only) Remove a MySQL Windows service. The default
-  service name is `MySQL` if no
-  *`service_name`* value is given. For
-  more information, see [Section 2.3.3.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.3.8 Starting MySQL as a Windows Service").
+  (Windows only) Remove a MySQL Windows service. The default service name is `MySQL` if no *`service_name`* value is given. For more information, see Section 2.3.3.8, “Starting MySQL as a Windows Service”.
 
-* [`--safe-user-create`](server-options.html#option_mysqld_safe-user-create)
+* `--safe-user-create`
 
-  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--check-table-functions=value</code></td>
-</tr><tr><th>Type</th>
-<td>Enumeration</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">ABORT</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-table-functions=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">ABORT</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td> </tr></tbody></table>2
 
-  If this option is enabled, a user cannot create new MySQL
-  users by using the [`GRANT`](grant.html "15.7.1.6 GRANT Statement")
-  statement unless the user has the
-  [`INSERT`](privileges-provided.html#priv_insert) privilege for the
-  `mysql.user` system table or any column in
-  the table. If you want a user to have the ability to create
-  new users that have those privileges that the user has the
-  right to grant, you should grant the user the following
-  privilege:
+  If this option is enabled, a user cannot create new MySQL users by using the `GRANT` statement unless the user has the `INSERT` privilege for the `mysql.user` system table or any column in the table. If you want a user to have the ability to create new users that have those privileges that the user has the right to grant, you should grant the user the following privilege:
 
   ```
   GRANT INSERT(user) ON mysql.user TO 'user_name'@'host_name';
   ```
 
-  This ensures that the user cannot change any privilege columns
-  directly, but has to use the
-  [`GRANT`](grant.html "15.7.1.6 GRANT Statement") statement to give
-  privileges to other users.
+  This ensures that the user cannot change any privilege columns directly, but has to use the `GRANT` statement to give privileges to other users.
 
-* [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables)
+* `--skip-grant-tables`
 
-  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--check-table-functions=value</code></td>
-</tr><tr><th>Type</th>
-<td>Enumeration</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">ABORT</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-table-functions=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">ABORT</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td> </tr></tbody></table>3
 
   This option affects the server startup sequence:
 
-  + [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) causes
-    the server not to read the grant tables in the
-    `mysql` system schema, and thus to start
-    without using the privilege system at all. This gives
-    anyone with access to the server *unrestricted
-    access to all databases*.
+  + `--skip-grant-tables` causes the server not to read the grant tables in the `mysql` system schema, and thus to start without using the privilege system at all. This gives anyone with access to the server *unrestricted access to all databases*.
 
-    Because starting the server with
-    [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables)
-    disables authentication checks, the server also disables
-    remote connections in that case by enabling
-    [`skip_networking`](server-system-variables.html#sysvar_skip_networking).
+    Because starting the server with `--skip-grant-tables` disables authentication checks, the server also disables remote connections in that case by enabling `skip_networking`.
 
-    To cause a server started with
-    [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) to load
-    the grant tables at runtime, perform a privilege-flushing
-    operation, which can be done in these ways:
+    To cause a server started with `--skip-grant-tables` to load the grant tables at runtime, perform a privilege-flushing operation, which can be done in these ways:
 
-    - Issue a MySQL [`FLUSH
-      PRIVILEGES`](flush.html#flush-privileges) statement after connecting to the
-      server.
+    - Issue a MySQL [`FLUSH PRIVILEGES`](flush.html#flush-privileges) statement after connecting to the server.
 
-    - Execute a [**mysqladmin
-      flush-privileges**](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program") or [**mysqladmin
-      reload**](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program") command from the command line.
+    - Execute a [**mysqladmin flush-privileges**](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program") or [**mysqladmin reload**](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program") command from the command line.
 
-    Privilege flushing might also occur implicitly as a result
-    of other actions performed after startup, thus causing the
-    server to start using the grant tables. For example, the
-    server flushes the privileges if it performs an upgrade
-    during the startup sequence.
+    Privilege flushing might also occur implicitly as a result of other actions performed after startup, thus causing the server to start using the grant tables. For example, the server flushes the privileges if it performs an upgrade during the startup sequence.
 
-  + [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables)
-    disables failed-login tracking and temporary account
-    locking because those capabilities depend on the grant
-    tables. See [Section 8.2.15, “Password Management”](password-management.html "8.2.15 Password Management").
+  + `--skip-grant-tables` disables failed-login tracking and temporary account locking because those capabilities depend on the grant tables. See Section 8.2.15, “Password Management”.
 
-  + [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) causes
-    the server not to load certain other objects registered in
-    the data dictionary or the `mysql` system
-    schema:
+  + `--skip-grant-tables` causes the server not to load certain other objects registered in the data dictionary or the `mysql` system schema:
 
-    - Scheduled events installed using
-      [`CREATE EVENT`](create-event.html "15.1.15 CREATE EVENT Statement") and
-      registered in the `events` data
-      dictionary table.
+    - Scheduled events installed using `CREATE EVENT` and registered in the `events` data dictionary table.
 
-    - Plugins installed using [`INSTALL
-      PLUGIN`](install-plugin.html "15.7.4.4 INSTALL PLUGIN Statement") and registered in the
-      `mysql.plugin` system table.
+    - Plugins installed using [`INSTALL PLUGIN`](install-plugin.html "15.7.4.4 INSTALL PLUGIN Statement") and registered in the `mysql.plugin` system table.
 
-      To cause plugins to be loaded even when using
-      [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables),
-      use the [`--plugin-load`](server-options.html#option_mysqld_plugin-load)
-      or [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add)
-      option.
+      To cause plugins to be loaded even when using `--skip-grant-tables`, use the `--plugin-load` or `--plugin-load-add` option.
 
-    - Loadable functions installed using
-      [`CREATE
-      FUNCTION`](create-function-loadable.html "15.7.4.1 CREATE FUNCTION Statement for Loadable Functions") and registered in the
-      `mysql.func` system table.
+    - Loadable functions installed using [`CREATE FUNCTION`](create-function-loadable.html "15.7.4.1 CREATE FUNCTION Statement for Loadable Functions") and registered in the `mysql.func` system table.
 
-    [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) does
-    *not* suppress loading during startup
-    of components.
+    `--skip-grant-tables` does *not* suppress loading during startup of components.
 
-  + [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) causes
-    the
-    [`disabled_storage_engines`](server-system-variables.html#sysvar_disabled_storage_engines)
-    system variable to have no effect.
+  + `--skip-grant-tables` causes the `disabled_storage_engines` system variable to have no effect.
 
-* [`--skip-new`](server-options.html#option_mysqld_skip-new)
+* `--skip-new`
 
-  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--check-table-functions=value</code></td>
-</tr><tr><th>Type</th>
-<td>Enumeration</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">ABORT</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-table-functions=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">ABORT</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td> </tr></tbody></table>4
 
-  This option disables (what used to be considered) new,
-  possibly unsafe behaviors. It results in these settings:
-  [`delay_key_write=OFF`](server-system-variables.html#sysvar_delay_key_write),
-  [`concurrent_insert=NEVER`](server-system-variables.html#sysvar_concurrent_insert),
-  [`automatic_sp_privileges=OFF`](server-system-variables.html#sysvar_automatic_sp_privileges).
-  It also causes [`OPTIMIZE TABLE`](optimize-table.html "15.7.3.4 OPTIMIZE TABLE Statement")
-  to be mapped to [`ALTER TABLE`](alter-table.html "15.1.11 ALTER TABLE Statement") for
-  storage engines for which [`OPTIMIZE
-  TABLE`](optimize-table.html "15.7.3.4 OPTIMIZE TABLE Statement") is not supported.
+  This option disables (what used to be considered) new, possibly unsafe behaviors. It results in these settings: `delay_key_write=OFF`, `concurrent_insert=NEVER`, `automatic_sp_privileges=OFF`. It also causes `OPTIMIZE TABLE` to be mapped to `ALTER TABLE` for storage engines for which [`OPTIMIZE TABLE`](optimize-table.html "15.7.3.4 OPTIMIZE TABLE Statement") is not supported.
 
-  This option is deprecated, and subject to removal in a future
-  release.
+  This option is deprecated, and subject to removal in a future release.
 
-* [`--skip-show-database`](server-options.html#option_mysqld_skip-show-database)
+* `--skip-show-database`
 
-  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--check-table-functions=value</code></td>
-</tr><tr><th>Type</th>
-<td>Enumeration</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">ABORT</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-table-functions=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">ABORT</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td> </tr></tbody></table>5
 
-  This option sets the
-  [`skip_show_database`](server-system-variables.html#sysvar_skip_show_database) system
-  variable that controls who is permitted to use the
-  [`SHOW DATABASES`](show-databases.html "15.7.7.16 SHOW DATABASES Statement") statement. See
-  [Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables").
+  This option sets the `skip_show_database` system variable that controls who is permitted to use the `SHOW DATABASES` statement. See Section 7.1.8, “Server System Variables”.
 
-* [`--skip-stack-trace`](server-options.html#option_mysqld_skip-stack-trace)
+* `--skip-stack-trace`
 
-  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--check-table-functions=value</code></td>
-</tr><tr><th>Type</th>
-<td>Enumeration</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">ABORT</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-table-functions=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">ABORT</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td> </tr></tbody></table>6
 
-  Do not write stack traces. This option is useful when you are
-  running [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") under a debugger. On some
-  systems, you also must use this option to get a core file. See
-  [Section 7.9, “Debugging MySQL”](debugging-mysql.html "7.9 Debugging MySQL").
+  Do not write stack traces. This option is useful when you are running **mysqld** under a debugger. On some systems, you also must use this option to get a core file. See Section 7.9, “Debugging MySQL”.
 
-* [`--slow-start-timeout=timeout`](server-options.html#option_mysqld_slow-start-timeout)
+* `--slow-start-timeout=timeout`
 
-  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--check-table-functions=value</code></td>
-</tr><tr><th>Type</th>
-<td>Enumeration</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">ABORT</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-table-functions=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">ABORT</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td> </tr></tbody></table>7
 
-  This option controls the Windows service control manager's
-  service start timeout. The value is the maximum number of
-  milliseconds that the service control manager waits before
-  trying to kill the windows service during startup. The default
-  value is 15000 (15 seconds). If the MySQL service takes too
-  long to start, you may need to increase this value. A value of
-  0 means there is no timeout.
+  This option controls the Windows service control manager's service start timeout. The value is the maximum number of milliseconds that the service control manager waits before trying to kill the windows service during startup. The default value is 15000 (15 seconds). If the MySQL service takes too long to start, you may need to increase this value. A value of 0 means there is no timeout.
 
-* [`--socket=path`](server-options.html#option_mysqld_socket)
+* `--socket=path`
 
-  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--check-table-functions=value</code></td>
-</tr><tr><th>Type</th>
-<td>Enumeration</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">ABORT</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-table-functions=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">ABORT</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td> </tr></tbody></table>8
 
-  On Unix, this option specifies the Unix socket file to use
-  when listening for local connections. The default value is
-  `/tmp/mysql.sock`. If this option is given,
-  the server creates the file in the data directory unless an
-  absolute path name is given to specify a different directory.
-  On Windows, the option specifies the pipe name to use when
-  listening for local connections that use a named pipe. The
-  default value is `MySQL` (not
-  case-sensitive).
+  On Unix, this option specifies the Unix socket file to use when listening for local connections. The default value is `/tmp/mysql.sock`. If this option is given, the server creates the file in the data directory unless an absolute path name is given to specify a different directory. On Windows, the option specifies the pipe name to use when listening for local connections that use a named pipe. The default value is `MySQL` (not case-sensitive).
 
 * [`--sql-mode=value[,value[,value...]]`](server-options.html#option_mysqld_sql-mode)
 
-  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--check-table-functions=value</code></td>
-</tr><tr><th>Type</th>
-<td>Enumeration</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">ABORT</code></td>
-</tr><tr><th>Valid Values</th>
-<td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td>
-</tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for check-table-functions"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--check-table-functions=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">ABORT</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">WARN</code></p><p class="valid-value"><code class="literal">ABORT</code></p></td> </tr></tbody></table>9
 
-  Set the SQL mode. See [Section 7.1.11, “Server SQL Modes”](sql-mode.html "7.1.11 Server SQL Modes").
+  Set the SQL mode. See Section 7.1.11, “Server SQL Modes”.
 
   Note
 
-  MySQL installation programs may configure the SQL mode
-  during the installation process.
+  MySQL installation programs may configure the SQL mode during the installation process.
 
-  If the SQL mode differs from the default or from what you
-  expect, check for a setting in an option file that the
-  server reads at startup.
+  If the SQL mode differs from the default or from what you expect, check for a setting in an option file that the server reads at startup.
 
-* [`--standalone`](server-options.html#option_mysqld_standalone)
+* `--standalone`
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--chroot=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>0
 
-  Available on Windows only; instructs the MySQL server not to
-  run as a service.
+  Available on Windows only; instructs the MySQL server not to run as a service.
 
-* [`--super-large-pages`](server-options.html#option_mysqld_super-large-pages)
+* `--super-large-pages`
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--chroot=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>1
 
-  Standard use of large pages in MySQL attempts to use the
-  largest size supported, up to 4MB. Under Solaris, a
-  “super large pages” feature enables uses of pages
-  up to 256MB. This feature is available for recent SPARC
-  platforms. It can be enabled or disabled by using the
-  [`--super-large-pages`](server-options.html#option_mysqld_super-large-pages) or
-  [`--skip-super-large-pages`](server-options.html#option_mysqld_super-large-pages)
-  option.
+  Standard use of large pages in MySQL attempts to use the largest size supported, up to 4MB. Under Solaris, a “super large pages” feature enables uses of pages up to 256MB. This feature is available for recent SPARC platforms. It can be enabled or disabled by using the `--super-large-pages` or `--skip-super-large-pages` option.
 
-* [`--symbolic-links`](server-options.html#option_mysqld_symbolic-links),
-  [`--skip-symbolic-links`](server-options.html#option_mysqld_symbolic-links)
+* `--symbolic-links`, `--skip-symbolic-links`
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--chroot=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>2
 
-  Enable or disable symbolic link support. On Unix, enabling
-  symbolic links means that you can link a
-  `MyISAM` index file or data file to another
-  directory with the `INDEX DIRECTORY` or
-  `DATA DIRECTORY` option of the
-  [`CREATE TABLE`](create-table.html "15.1.24 CREATE TABLE Statement") statement. If you
-  delete or rename the table, the files that its symbolic links
-  point to also are deleted or renamed. See
-  [Section 10.12.2.2, “Using Symbolic Links for MyISAM Tables on Unix”](symbolic-links-to-tables.html "10.12.2.2 Using Symbolic Links for MyISAM Tables on Unix").
+  Enable or disable symbolic link support. On Unix, enabling symbolic links means that you can link a `MyISAM` index file or data file to another directory with the `INDEX DIRECTORY` or `DATA DIRECTORY` option of the `CREATE TABLE` statement. If you delete or rename the table, the files that its symbolic links point to also are deleted or renamed. See Section 10.12.2.2, “Using Symbolic Links for MyISAM Tables on Unix”.
 
   Note
 
-  Symbolic link support, along with the
-  [`--symbolic-links`](server-options.html#option_mysqld_symbolic-links) option that
-  controls it, is deprecated; you should expect it to be
-  removed in a future version of MySQL. In addition, the
-  option is disabled by default. The related
-  [`have_symlink`](server-system-variables.html#sysvar_have_symlink) system
-  variable also is deprecated; expect it to be removed in a
-  future version of MySQL.
+  Symbolic link support, along with the `--symbolic-links` option that controls it, is deprecated; you should expect it to be removed in a future version of MySQL. In addition, the option is disabled by default. The related `have_symlink` system variable also is deprecated; expect it to be removed in a future version of MySQL.
 
   This option has no meaning on Windows.
 
-* [`--sysdate-is-now`](server-options.html#option_mysqld_sysdate-is-now)
+* `--sysdate-is-now`
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--chroot=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>3
 
-  [`SYSDATE()`](date-and-time-functions.html#function_sysdate) by default returns
-  the time at which it executes, not the time at which the
-  statement in which it occurs begins executing. This differs
-  from the behavior of [`NOW()`](date-and-time-functions.html#function_now).
-  This option causes [`SYSDATE()`](date-and-time-functions.html#function_sysdate) to
-  be a synonym for [`NOW()`](date-and-time-functions.html#function_now). For
-  information about the implications for binary logging and
-  replication, see the description for
-  [`SYSDATE()`](date-and-time-functions.html#function_sysdate) in
-  [Section 14.7, “Date and Time Functions”](date-and-time-functions.html "14.7 Date and Time Functions") and for `SET
-  TIMESTAMP` in
-  [Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables").
+  `SYSDATE()` by default returns the time at which it executes, not the time at which the statement in which it occurs begins executing. This differs from the behavior of `NOW()`. This option causes `SYSDATE()` to be a synonym for `NOW()`. For information about the implications for binary logging and replication, see the description for `SYSDATE()` in Section 14.7, “Date and Time Functions” and for `SET TIMESTAMP` in Section 7.1.8, “Server System Variables”.
 
-* [`--tc-heuristic-recover={COMMIT|ROLLBACK}`](server-options.html#option_mysqld_tc-heuristic-recover)
+* `--tc-heuristic-recover={COMMIT|ROLLBACK}`
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--chroot=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>4
 
   The decision to use in a manual heuristic recovery.
 
-  If a `--tc-heuristic-recover` option is
-  specified, the server exits regardless of whether manual
-  heuristic recovery is successful.
+  If a `--tc-heuristic-recover` option is specified, the server exits regardless of whether manual heuristic recovery is successful.
 
-  On systems with more than one storage engine capable of
-  two-phase commit, the `ROLLBACK` option is
-  not safe and causes recovery to halt with the following error:
+  On systems with more than one storage engine capable of two-phase commit, the `ROLLBACK` option is not safe and causes recovery to halt with the following error:
 
   ```
   [ERROR] --tc-heuristic-recover rollback
@@ -1790,137 +671,66 @@ changing system variables, see
   storage engine. Aborting crash recovery.
   ```
 
-* [`--transaction-isolation=level`](server-options.html#option_mysqld_transaction-isolation)
+* `--transaction-isolation=level`
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--chroot=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>5
 
-  Sets the default transaction isolation level. The
-  `level` value can be
-  [`READ-UNCOMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-uncommitted),
-  [`READ-COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed),
-  [`REPEATABLE-READ`](innodb-transaction-isolation-levels.html#isolevel_repeatable-read), or
-  [`SERIALIZABLE`](innodb-transaction-isolation-levels.html#isolevel_serializable). See
-  [Section 15.3.7, “SET TRANSACTION Statement”](set-transaction.html "15.3.7 SET TRANSACTION Statement").
+  Sets the default transaction isolation level. The `level` value can be `READ-UNCOMMITTED`, `READ-COMMITTED`, `REPEATABLE-READ`, or `SERIALIZABLE`. See Section 15.3.7, “SET TRANSACTION Statement”.
 
-  The default transaction isolation level can also be set at
-  runtime using the [`SET
-  TRANSACTION`](set-transaction.html "15.3.7 SET TRANSACTION Statement") statement or by setting the
-  [`transaction_isolation`](server-system-variables.html#sysvar_transaction_isolation) system
-  variable.
+  The default transaction isolation level can also be set at runtime using the [`SET TRANSACTION`](set-transaction.html "15.3.7 SET TRANSACTION Statement") statement or by setting the `transaction_isolation` system variable.
 
-* [`--transaction-read-only`](server-options.html#option_mysqld_transaction-read-only)
+* `--transaction-read-only`
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--chroot=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>6
 
-  Sets the default transaction access mode. By default,
-  read-only mode is disabled, so the mode is read/write.
+  Sets the default transaction access mode. By default, read-only mode is disabled, so the mode is read/write.
 
-  To set the default transaction access mode at runtime, use the
-  [`SET TRANSACTION`](set-transaction.html "15.3.7 SET TRANSACTION Statement") statement or
-  set the [`transaction_read_only`](server-system-variables.html#sysvar_transaction_read_only)
-  system variable. See [Section 15.3.7, “SET TRANSACTION Statement”](set-transaction.html "15.3.7 SET TRANSACTION Statement").
+  To set the default transaction access mode at runtime, use the `SET TRANSACTION` statement or set the `transaction_read_only` system variable. See Section 15.3.7, “SET TRANSACTION Statement”.
 
-* [`--tmpdir=dir_name`](server-options.html#option_mysqld_tmpdir),
-  `-t dir_name`
+* `--tmpdir=dir_name`, `-t dir_name`
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--chroot=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>7
 
-  The path of the directory to use for creating temporary files.
-  It might be useful if your default `/tmp`
-  directory resides on a partition that is too small to hold
-  temporary tables. This option accepts several paths that are
-  used in round-robin fashion. Paths should be separated by
-  colon characters (`:`) on Unix and semicolon
-  characters (`;`) on Windows.
+  The path of the directory to use for creating temporary files. It might be useful if your default `/tmp` directory resides on a partition that is too small to hold temporary tables. This option accepts several paths that are used in round-robin fashion. Paths should be separated by colon characters (`:`) on Unix and semicolon characters (`;`) on Windows.
 
-  [`--tmpdir`](server-options.html#option_mysqld_tmpdir) can be a non-permanent
-  location, such as a directory on a memory-based file system or
-  a directory that is cleared when the server host restarts. If
-  the MySQL server is acting as a replica, and you are using a
-  non-permanent location for
-  [`--tmpdir`](server-options.html#option_mysqld_tmpdir), consider setting a
-  different temporary directory for the replica using the
-  [`replica_load_tmpdir`](replication-options-replica.html#sysvar_replica_load_tmpdir) system
-  variable. For a replica, the temporary files used to replicate
-  [`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement") statements are stored
-  in this directory, so with a permanent location they can
-  survive machine restarts, although replication can now
-  continue after a restart if the temporary files have been
-  removed.
+  `--tmpdir` can be a non-permanent location, such as a directory on a memory-based file system or a directory that is cleared when the server host restarts. If the MySQL server is acting as a replica, and you are using a non-permanent location for `--tmpdir`, consider setting a different temporary directory for the replica using the `replica_load_tmpdir` system variable. For a replica, the temporary files used to replicate `LOAD DATA` statements are stored in this directory, so with a permanent location they can survive machine restarts, although replication can now continue after a restart if the temporary files have been removed.
 
-  For more information about the storage location of temporary
-  files, see [Section B.3.3.5, “Where MySQL Stores Temporary Files”](temporary-files.html "B.3.3.5 Where MySQL Stores Temporary Files").
+  For more information about the storage location of temporary files, see Section B.3.3.5, “Where MySQL Stores Temporary Files”.
 
-* [`--upgrade=value`](server-options.html#option_mysqld_upgrade)
+* `--upgrade=value`
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--chroot=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>8
 
-  This option controls whether and how the server performs an
-  automatic upgrade at startup. Automatic upgrade involves two
-  steps:
+  This option controls whether and how the server performs an automatic upgrade at startup. Automatic upgrade involves two steps:
 
   + Step 1: Data dictionary upgrade.
 
     This step upgrades:
 
-    - The data dictionary tables in the
-      `mysql` schema. If the actual data
-      dictionary version is lower than the current expected
-      version, the server upgrades the data dictionary. If
-      it cannot, or is prevented from doing so, the server
-      cannot run.
+    - The data dictionary tables in the `mysql` schema. If the actual data dictionary version is lower than the current expected version, the server upgrades the data dictionary. If it cannot, or is prevented from doing so, the server cannot run.
 
-    - The Performance Schema and
-      `INFORMATION_SCHEMA`.
+    - The Performance Schema and `INFORMATION_SCHEMA`.
 
   + Step 2: Server upgrade.
 
-    This step comprises all other upgrade tasks. If the
-    existing installation data has a lower MySQL version than
-    the server expects, it must be upgraded:
+    This step comprises all other upgrade tasks. If the existing installation data has a lower MySQL version than the server expects, it must be upgraded:
 
-    - The system tables in the `mysql`
-      schema (the remaining non-data dictionary tables).
+    - The system tables in the `mysql` schema (the remaining non-data dictionary tables).
 
     - The `sys` schema.
     - User schemas.
 
-  For details about upgrade steps 1 and 2, see
-  [Section 3.4, “What the MySQL Upgrade Process Upgrades”](upgrading-what-is-upgraded.html "3.4 What the MySQL Upgrade Process Upgrades").
+  For details about upgrade steps 1 and 2, see Section 3.4, “What the MySQL Upgrade Process Upgrades”.
 
-  These [`--upgrade`](server-options.html#option_mysqld_upgrade) option values
-  are permitted:
+  These `--upgrade` option values are permitted:
 
   + `AUTO`
 
-    The server performs an automatic upgrade of anything it
-    finds to be out of date (steps 1 and 2). This is the
-    default action if [`--upgrade`](server-options.html#option_mysqld_upgrade)
-    is not specified explicitly.
+    The server performs an automatic upgrade of anything it finds to be out of date (steps 1 and 2). This is the default action if `--upgrade` is not specified explicitly.
 
   + `NONE`
 
-    The server performs no automatic upgrade steps during the
-    startup process (skips steps 1 and 2). Because this option
-    value prevents a data dictionary upgrade, the server exits
-    with an error if the data dictionary is found to be out of
-    date:
+    The server performs no automatic upgrade steps during the startup process (skips steps 1 and 2). Because this option value prevents a data dictionary upgrade, the server exits with an error if the data dictionary is found to be out of date:
 
     ```
     [ERROR] [MY-013381] [Server] Server shutting down because upgrade is
@@ -1931,132 +741,50 @@ changing system variables, see
 
   + `MINIMAL`
 
-    The server upgrades the data dictionary, the Performance
-    Schema, and the `INFORMATION_SCHEMA`, if
-    necessary (step 1). Note that following an upgrade with
-    this option, Group Replication cannot be started, because
-    system tables on which the replication internals depend
-    are not updated, and reduced functionality might also be
-    apparent in other areas.
+    The server upgrades the data dictionary, the Performance Schema, and the `INFORMATION_SCHEMA`, if necessary (step 1). Note that following an upgrade with this option, Group Replication cannot be started, because system tables on which the replication internals depend are not updated, and reduced functionality might also be apparent in other areas.
 
   + `FORCE`
 
-    The server upgrades the data dictionary, the Performance
-    Schema, and the `INFORMATION_SCHEMA`, if
-    necessary (step 1). In addition, the server forces an
-    upgrade of everything else (step 2). Expect server startup
-    to take longer with this option because the server checks
-    all objects in all schemas.
+    The server upgrades the data dictionary, the Performance Schema, and the `INFORMATION_SCHEMA`, if necessary (step 1). In addition, the server forces an upgrade of everything else (step 2). Expect server startup to take longer with this option because the server checks all objects in all schemas.
 
-    `FORCE` is useful to force step 2 actions
-    to be performed if the server thinks they are not
-    necessary. For example, you may believe that a system
-    table is missing or has become damaged and want to force a
-    repair.
+    `FORCE` is useful to force step 2 actions to be performed if the server thinks they are not necessary. For example, you may believe that a system table is missing or has become damaged and want to force a repair.
 
-  The following table summarizes the actions taken by the server
-  for each option value.
+  The following table summarizes the actions taken by the server for each option value.
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--chroot=dir_name</code></td>
-</tr><tr><th>Type</th>
-<td>Directory name</td>
-</tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>9
 
-* [`--user={user_name|user_id}`](server-options.html#option_mysqld_user),
-  `-u
-  {user_name|user_id}`
+* `--user={user_name|user_id}`, `-u {user_name|user_id}`
 
-  <table frame="box" rules="all" summary="Properties for console"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--console</code></td>
-</tr><tr><th>Platform Specific</th>
-<td>Windows</td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for console"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--console</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>0
 
-  Run the [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") server as the user having
-  the name *`user_name`* or the numeric
-  user ID *`user_id`*.
-  (“User” in this context refers to a system login
-  account, not a MySQL user listed in the grant tables.)
+  Run the **mysqld** server as the user having the name *`user_name`* or the numeric user ID *`user_id`*. (“User” in this context refers to a system login account, not a MySQL user listed in the grant tables.)
 
-  This option is *mandatory* when starting
-  [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") as `root`. The
-  server changes its user ID during its startup sequence,
-  causing it to run as that particular user rather than as
-  `root`. See
-  [Section 8.1.1, “Security Guidelines”](security-guidelines.html "8.1.1 Security Guidelines").
+  This option is *mandatory* when starting **mysqld** as `root`. The server changes its user ID during its startup sequence, causing it to run as that particular user rather than as `root`. See Section 8.1.1, “Security Guidelines”.
 
-  To avoid a possible security hole where a user adds a
-  [`--user=root`](server-options.html#option_mysqld_user) option to a
-  `my.cnf` file (thus causing the server to
-  run as `root`), [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server")
-  uses only the first [`--user`](server-options.html#option_mysqld_user)
-  option specified and produces a warning if there are multiple
-  [`--user`](server-options.html#option_mysqld_user) options. Options in
-  `/etc/my.cnf` and
-  `$MYSQL_HOME/my.cnf` are processed before
-  command-line options, so it is recommended that you put a
-  [`--user`](server-options.html#option_mysqld_user) option in
-  `/etc/my.cnf` and specify a value other
-  than `root`. The option in
-  `/etc/my.cnf` is found before any other
-  [`--user`](server-options.html#option_mysqld_user) options, which ensures
-  that the server runs as a user other than
-  `root`, and that a warning results if any
-  other [`--user`](server-options.html#option_mysqld_user) option is found.
+  To avoid a possible security hole where a user adds a `--user=root` option to a `my.cnf` file (thus causing the server to run as `root`), **mysqld** uses only the first `--user` option specified and produces a warning if there are multiple `--user` options. Options in `/etc/my.cnf` and `$MYSQL_HOME/my.cnf` are processed before command-line options, so it is recommended that you put a `--user` option in `/etc/my.cnf` and specify a value other than `root`. The option in `/etc/my.cnf` is found before any other `--user` options, which ensures that the server runs as a user other than `root`, and that a warning results if any other `--user` option is found.
 
-* [`--validate-config`](server-options.html#option_mysqld_validate-config)
+* `--validate-config`
 
-  <table frame="box" rules="all" summary="Properties for console"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--console</code></td>
-</tr><tr><th>Platform Specific</th>
-<td>Windows</td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for console"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--console</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>1
 
-  Validate the server startup configuration. If no errors are
-  found, the server terminates with an exit code of 0. If an
-  error is found, the server displays a diagnostic message and
-  terminates with an exit code of 1. Warning and information
-  messages may also be displayed, depending on the
-  [`log_error_verbosity`](server-system-variables.html#sysvar_log_error_verbosity) value,
-  but do not produce immediate validation termination or an exit
-  code of 1. For more information, see
-  [Section 7.1.3, “Server Configuration Validation”](server-configuration-validation.html "7.1.3 Server Configuration Validation").
+  Validate the server startup configuration. If no errors are found, the server terminates with an exit code of 0. If an error is found, the server displays a diagnostic message and terminates with an exit code of 1. Warning and information messages may also be displayed, depending on the `log_error_verbosity` value, but do not produce immediate validation termination or an exit code of 1. For more information, see Section 7.1.3, “Server Configuration Validation”.
 
-* [`--validate-user-plugins[={OFF|ON}]`](server-options.html#option_mysqld_validate-user-plugins)
+* `--validate-user-plugins[={OFF|ON}]`
 
-  <table frame="box" rules="all" summary="Properties for console"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--console</code></td>
-</tr><tr><th>Platform Specific</th>
-<td>Windows</td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for console"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--console</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>2
 
-  If this option is enabled (the default), the server checks
-  each user account and produces a warning if conditions are
-  found that would make the account unusable:
+  If this option is enabled (the default), the server checks each user account and produces a warning if conditions are found that would make the account unusable:
 
-  + The account requires an authentication plugin that is not
-    loaded.
+  + The account requires an authentication plugin that is not loaded.
 
-  + The account requires the
-    `sha256_password` (deprecated) or
-    `caching_sha2_password` authentication
-    plugin but the server was started with neither SSL nor RSA
-    enabled as required by the plugin.
+  + The account requires the `sha256_password` (deprecated) or `caching_sha2_password` authentication plugin but the server was started with neither SSL nor RSA enabled as required by the plugin.
 
-  Enabling
-  [`--validate-user-plugins`](server-options.html#option_mysqld_validate-user-plugins) slows
-  down server initialization and [`FLUSH
-  PRIVILEGES`](flush.html#flush-privileges). If you do not require the additional
-  checking, you can disable this option at startup to avoid the
-  performance decrement.
+  Enabling `--validate-user-plugins` slows down server initialization and [`FLUSH PRIVILEGES`](flush.html#flush-privileges). If you do not require the additional checking, you can disable this option at startup to avoid the performance decrement.
 
-* [`--verbose`](server-options.html#option_mysqld_verbose),
-  [`-v`](server-options.html#option_mysqld_verbose)
+* `--verbose`, `-v`
 
-  Use this option with the [`--help`](server-options.html#option_mysqld_help)
-  option for detailed help.
+  Use this option with the `--help` option for detailed help.
 
-* [`--version`](server-options.html#option_mysqld_version), `-V`
+* `--version`, `-V`
 
   Display version information and exit.

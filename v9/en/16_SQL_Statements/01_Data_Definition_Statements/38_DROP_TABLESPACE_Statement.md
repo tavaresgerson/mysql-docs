@@ -4,63 +4,27 @@
 DROP [UNDO] TABLESPACE tablespace_name
 ```
 
-This statement drops a tablespace that was previously created
-using [`CREATE TABLESPACE`](create-tablespace.html "15.1.25 CREATE TABLESPACE Statement"). It is
-supported by the `NDB` and
-`InnoDB` storage engines.
+This statement drops a tablespace that was previously created using `CREATE TABLESPACE`. It is supported by the `NDB` and `InnoDB` storage engines.
 
-The `UNDO` keyword must be specified to drop an
-undo tablespace. Only undo tablespaces created using
-[`CREATE UNDO
-TABLESPACE`](create-tablespace.html "15.1.25 CREATE TABLESPACE Statement") syntax can be dropped. An undo tablespace
-must be in an `empty` state before it can be
-dropped. For more information, see
-[Section 17.6.3.4, “Undo Tablespaces”](innodb-undo-tablespaces.html "17.6.3.4 Undo Tablespaces").
+The `UNDO` keyword must be specified to drop an undo tablespace. Only undo tablespaces created using [`CREATE UNDO TABLESPACE`](create-tablespace.html "15.1.25 CREATE TABLESPACE Statement") syntax can be dropped. An undo tablespace must be in an `empty` state before it can be dropped. For more information, see Section 17.6.3.4, “Undo Tablespaces”.
 
-`tablespace_name` is a
-case-sensitive identifier in MySQL.
+`tablespace_name` is a case-sensitive identifier in MySQL.
 
-For an `InnoDB` general tablespace, all tables
-must be dropped from the tablespace prior to a `DROP
-TABLESPACE` operation. If the tablespace is not empty,
-`DROP TABLESPACE` returns an error.
+For an `InnoDB` general tablespace, all tables must be dropped from the tablespace prior to a `DROP TABLESPACE` operation. If the tablespace is not empty, `DROP TABLESPACE` returns an error.
 
-An `NDB` tablespace to be dropped must not
-contain any data files; in other words, before you can drop an
-`NDB` tablespace, you must first drop each of its
-data files using
-[`ALTER TABLESPACE
-... DROP DATAFILE`](alter-tablespace.html "15.1.12 ALTER TABLESPACE Statement").
+An `NDB` tablespace to be dropped must not contain any data files; in other words, before you can drop an `NDB` tablespace, you must first drop each of its data files using [`ALTER TABLESPACE ... DROP DATAFILE`](alter-tablespace.html "15.1.12 ALTER TABLESPACE Statement").
 
 #### Notes
 
-* A general `InnoDB` tablespace is not deleted
-  automatically when the last table in the tablespace is
-  dropped. The tablespace must be dropped explicitly using
-  `DROP TABLESPACE
-  tablespace_name`.
+* A general `InnoDB` tablespace is not deleted automatically when the last table in the tablespace is dropped. The tablespace must be dropped explicitly using `DROP TABLESPACE tablespace_name`.
 
-* A [`DROP DATABASE`](drop-database.html "15.1.28 DROP DATABASE Statement") operation can
-  drop tables that belong to a general tablespace but it cannot
-  drop the tablespace, even if the operation drops all tables
-  that belong to the tablespace. The tablespace must be dropped
-  explicitly using `DROP TABLESPACE
-  tablespace_name`.
+* A `DROP DATABASE` operation can drop tables that belong to a general tablespace but it cannot drop the tablespace, even if the operation drops all tables that belong to the tablespace. The tablespace must be dropped explicitly using `DROP TABLESPACE tablespace_name`.
 
-* Similar to the system tablespace, truncating or dropping
-  tables stored in a general tablespace creates free space
-  internally in the general tablespace
-  [.ibd data file](/doc/refman/8.4/en/glossary.html#glos_ibd_file) which can
-  only be used for new `InnoDB` data. Space is
-  not released back to the operating system as it is for
-  file-per-table tablespaces.
+* Similar to the system tablespace, truncating or dropping tables stored in a general tablespace creates free space internally in the general tablespace .ibd data file which can only be used for new `InnoDB` data. Space is not released back to the operating system as it is for file-per-table tablespaces.
 
 #### InnoDB Examples
 
-This example demonstrates how to drop an `InnoDB`
-general tablespace. The general tablespace `ts1`
-is created with a single table. Before dropping the tablespace,
-the table must be dropped.
+This example demonstrates how to drop an `InnoDB` general tablespace. The general tablespace `ts1` is created with a single table. Before dropping the tablespace, the table must be dropped.
 
 ```
 mysql> CREATE TABLESPACE `ts1` ADD DATAFILE 'ts1.ibd' Engine=InnoDB;
@@ -72,10 +36,7 @@ mysql> DROP TABLE t1;
 mysql> DROP TABLESPACE ts1;
 ```
 
-This example demonstrates dropping an undo tablespace. An undo
-tablespace must be in an `empty` state before it
-can be dropped. For more information, see
-[Section 17.6.3.4, “Undo Tablespaces”](innodb-undo-tablespaces.html "17.6.3.4 Undo Tablespaces").
+This example demonstrates dropping an undo tablespace. An undo tablespace must be in an `empty` state before it can be dropped. For more information, see Section 17.6.3.4, “Undo Tablespaces”.
 
 ```
 mysql> DROP UNDO TABLESPACE undo_003;
@@ -83,12 +44,7 @@ mysql> DROP UNDO TABLESPACE undo_003;
 
 #### NDB Example
 
-This example shows how to drop an `NDB`
-tablespace `myts` having a data file named
-`mydata-1.dat` after first creating the
-tablespace, and assumes the existence of a log file group named
-`mylg` (see
-[Section 15.1.20, “CREATE LOGFILE GROUP Statement”](create-logfile-group.html "15.1.20 CREATE LOGFILE GROUP Statement")).
+This example shows how to drop an `NDB` tablespace `myts` having a data file named `mydata-1.dat` after first creating the tablespace, and assumes the existence of a log file group named `mylg` (see Section 15.1.20, “CREATE LOGFILE GROUP Statement”).
 
 ```
 mysql> CREATE TABLESPACE myts
@@ -97,9 +53,7 @@ mysql> CREATE TABLESPACE myts
     ->     ENGINE=NDB;
 ```
 
-You must remove all data files from the tablespace using
-[`ALTER TABLESPACE`](alter-tablespace.html "15.1.12 ALTER TABLESPACE Statement"), as shown here,
-before it can be dropped:
+You must remove all data files from the tablespace using `ALTER TABLESPACE`, as shown here, before it can be dropped:
 
 ```
 mysql> ALTER TABLESPACE myts

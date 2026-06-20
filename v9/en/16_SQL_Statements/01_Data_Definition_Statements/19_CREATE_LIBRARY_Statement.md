@@ -7,37 +7,17 @@ CREATE LIBRARY [IF NOT EXISTS] [database.]library
     AS code
 ```
 
-This statement creates a library in the named database, if any. If
-no database is specified, the library is created in the current
-database. The library name may be any valid SQL identifier.
-`LANGUAGE` must be `JavaScript`
-or `Wasm` (case-insensitive).
+This statement creates a library in the named database, if any. If no database is specified, the library is created in the current database. The library name may be any valid SQL identifier. `LANGUAGE` must be `JavaScript` or `Wasm` (case-insensitive).
 
-`COMMENT` is optional. The text of the comment
-must be quoted.
+`COMMENT` is optional. The text of the comment must be quoted.
 
-*`code`* is a string consisting of
-JavaScript code, or Base64 or hexadecimal encoding of the compiled
-WebAssembly code, which is checked for validity at creation time.
-Invalid code causes the statement to be rejected with an error.
-The *`code`* string can be dollar-quoted or
-single-quoted; it can also be double-quoted as long as
-[`ANSI_QUOTES`](sql-mode.html#sqlmode_ansi_quotes) SQL mode is not set.
+*`code`* is a string consisting of JavaScript code, or Base64 or hexadecimal encoding of the compiled WebAssembly code, which is checked for validity at creation time. Invalid code causes the statement to be rejected with an error. The *`code`* string can be dollar-quoted or single-quoted; it can also be double-quoted as long as `ANSI_QUOTES` SQL mode is not set.
 
-To execute `CREATE LIBRARY`, the user must have
-the [`CREATE ROUTINE`](privileges-provided.html#priv_create-routine) privilege.
+To execute `CREATE LIBRARY`, the user must have the `CREATE ROUTINE` privilege.
 
-To use a library created within a stored program using this
-statement, the user must have the
-[`EXECUTE`](privileges-provided.html#priv_execute) privilege. This is checked
-whenever a function or procedure using the library is created.
+To use a library created within a stored program using this statement, the user must have the `EXECUTE` privilege. This is checked whenever a function or procedure using the library is created.
 
-In the following example, the first statement creates a JavaScript
-library named `lib1` in the
-`jslib` database. The SELECT statement that
-follows it displays the row in the Information Schema
-[`LIBRARIES`](information-schema-libraries-table.html "28.3.22 The INFORMATION_SCHEMA LIBRARIES Table") table corresponding to the
-library just created.
+In the following example, the first statement creates a JavaScript library named `lib1` in the `jslib` database. The SELECT statement that follows it displays the row in the Information Schema `LIBRARIES` table corresponding to the library just created.
 
 ```
 mysql> CREATE LIBRARY IF NOT EXISTS jslib.lib1 LANGUAGE JAVASCRIPT
@@ -68,14 +48,7 @@ NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
 1 row in set (0.00 sec)
 ```
 
-In the following example, the first statement creates a
-WebAssembly library named `lib1` in the
-`wasmlib` database. This example uses the Base64
-encoding of the compiled WebAssembly code. The
-`SELECT` statement that follows it displays the
-row in the Information Schema
-[`LIBRARIES`](information-schema-libraries-table.html "28.3.22 The INFORMATION_SCHEMA LIBRARIES Table") table corresponding to the
-library just created.
+In the following example, the first statement creates a WebAssembly library named `lib1` in the `wasmlib` database. This example uses the Base64 encoding of the compiled WebAssembly code. The `SELECT` statement that follows it displays the row in the Information Schema `LIBRARIES` table corresponding to the library just created.
 
 ```
 mysql> CREATE LIBRARY IF NOT EXISTS wasmlib.lib1 LANGUAGE WASM
@@ -96,14 +69,7 @@ NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
            CREATOR: me@localhost
 ```
 
-In the following example, the first statement creates a
-WebAssembly library named `lib2` in the
-`wasmlib` database. This example uses the
-hexadecimal encoding of the compiled WebAssembly code. The
-`SELECT` statement that follows it displays the
-row in the Information Schema
-[`LIBRARIES`](information-schema-libraries-table.html "28.3.22 The INFORMATION_SCHEMA LIBRARIES Table") table corresponding to the
-library just created.
+In the following example, the first statement creates a WebAssembly library named `lib2` in the `wasmlib` database. This example uses the hexadecimal encoding of the compiled WebAssembly code. The `SELECT` statement that follows it displays the row in the Information Schema `LIBRARIES` table corresponding to the library just created.
 
 ```
 mysql> CREATE LIBRARY IF NOT EXISTS wasmlib.lib2 LANGUAGE WASM
@@ -125,6 +91,4 @@ NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
 2 rows in set (0.000 sec)
 ```
 
-See [Section 27.3.8, “Using JavaScript Libraries”](srjs-libraries.html "27.3.8 Using JavaScript Libraries"), as well as
-[Section 27.3.9, “Using WebAssembly Libraries”](srjs-webassembly.html "27.3.9 Using WebAssembly Libraries"), for more information and
-examples.
+See Section 27.3.8, “Using JavaScript Libraries”, as well as Section 27.3.9, “Using WebAssembly Libraries”, for more information and examples.

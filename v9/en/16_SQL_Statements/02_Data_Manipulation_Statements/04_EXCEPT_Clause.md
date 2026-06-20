@@ -9,16 +9,7 @@ query_expression_body:
     See Section 15.2.14, “Set Operations with UNION, INTERSECT, and EXCEPT”
 ```
 
-[`EXCEPT`](except.html "15.2.4 EXCEPT Clause") limits the result from the
-first query block to those rows which are (also) not found in the
-second. As with [`UNION`](union.html "15.2.18 UNION Clause") and
-[`INTERSECT`](intersect.html "15.2.8 INTERSECT Clause"), either query block can
-make use of any of [`SELECT`](select.html "15.2.13 SELECT Statement"),
-[`TABLE`](table.html "15.2.16 TABLE Statement"), or
-[`VALUES`](values.html "15.2.19 VALUES Statement"). An example using the tables
-`a`, `b`, and
-`c` defined in [Section 15.2.8, “INTERSECT Clause”](intersect.html "15.2.8 INTERSECT Clause"), is
-shown here:
+`EXCEPT` limits the result from the first query block to those rows which are (also) not found in the second. As with `UNION` and `INTERSECT`, either query block can make use of any of `SELECT`, `TABLE`, or `VALUES`. An example using the tables `a`, `b`, and `c` defined in Section 15.2.8, “INTERSECT Clause”, is shown here:
 
 ```
 mysql> TABLE a EXCEPT TABLE b;
@@ -47,13 +38,9 @@ mysql> TABLE b EXCEPT TABLE c;
 1 row in set (0.00 sec)
 ```
 
-As with [`UNION`](union.html "15.2.18 UNION Clause") and
-[`INTERSECT`](intersect.html "15.2.8 INTERSECT Clause"), if neither
-`DISTINCT` nor `ALL` is
-specified, the default is `DISTINCT`.
+As with `UNION` and `INTERSECT`, if neither `DISTINCT` nor `ALL` is specified, the default is `DISTINCT`.
 
-`DISTINCT` removes duplicates found on either
-side of the relation, as shown here:
+`DISTINCT` removes duplicates found on either side of the relation, as shown here:
 
 ```
 mysql> TABLE c EXCEPT DISTINCT TABLE a;
@@ -74,13 +61,9 @@ mysql> TABLE c EXCEPT ALL TABLE a;
 2 rows in set (0.00 sec)
 ```
 
-(The first statement has the same effect as `TABLE c
-EXCEPT TABLE a`.)
+(The first statement has the same effect as `TABLE c EXCEPT TABLE a`.)
 
-Unlike `UNION` or `INTERSECT`,
-`EXCEPT` is *not*
-commutative—that is, the result depends on the order of the
-operands, as shown here:
+Unlike `UNION` or `INTERSECT`, `EXCEPT` is *not* commutative—that is, the result depends on the order of the operands, as shown here:
 
 ```
 mysql> TABLE a EXCEPT TABLE c;
@@ -101,6 +84,4 @@ mysql> TABLE c EXCEPT TABLE a;
 1 row in set (0.00 sec)
 ```
 
-As with `UNION`, the result sets to be compared
-must have the same number of columns. Result set column types are
-also determined as for `UNION`.
+As with `UNION`, the result sets to be compared must have the same number of columns. Result set column types are also determined as for `UNION`.

@@ -1,37 +1,14 @@
 #### 2.1.4.2 Signature Checking Using GnuPG
 
-Another method of verifying the integrity and authenticity of a
-package is to use cryptographic signatures. This is more
-reliable than using [MD5
-checksums](verifying-md5-checksum.html "2.1.4.1 Verifying the MD5 Checksum"), but requires more work.
+Another method of verifying the integrity and authenticity of a package is to use cryptographic signatures. This is more reliable than using [MD5 checksums](verifying-md5-checksum.html "2.1.4.1 Verifying the MD5 Checksum"), but requires more work.
 
-We sign MySQL downloadable packages with
-**GnuPG** (GNU Privacy Guard).
-**GnuPG** is an Open Source alternative to the
-well-known Pretty Good Privacy (**PGP**) by Phil
-Zimmermann. Most Linux distributions ship with
-**GnuPG** installed by default. Otherwise, see
-<http://www.gnupg.org/> for more information about
-**GnuPG** and how to obtain and install it.
+We sign MySQL downloadable packages with **GnuPG** (GNU Privacy Guard). **GnuPG** is an Open Source alternative to the well-known Pretty Good Privacy (**PGP**) by Phil Zimmermann. Most Linux distributions ship with **GnuPG** installed by default. Otherwise, see <http://www.gnupg.org/> for more information about **GnuPG** and how to obtain and install it.
 
-To verify the signature for a specific package, you first need
-to obtain a copy of our public GPG build key, which you can
-download from <http://pgp.mit.edu/>. The key that
-you want to obtain is named
-`mysql-build@oss.oracle.com`. The keyID for
-MySQL 8.0.44 packages and higher, MySQL 8.4.7 and higher, and
-MySQL 9.5.0 and higher is `B7B3B788A8D3785C`.
-After obtaining this key, you should compare it with the key
-following value before using it verify MySQL packages.
-Alternatively, you can copy and paste the key directly from the
-text below.
+To verify the signature for a specific package, you first need to obtain a copy of our public GPG build key, which you can download from <http://pgp.mit.edu/>. The key that you want to obtain is named `mysql-build@oss.oracle.com`. The keyID for MySQL 8.0.44 packages and higher, MySQL 8.4.7 and higher, and MySQL 9.5.0 and higher is `B7B3B788A8D3785C`. After obtaining this key, you should compare it with the key following value before using it verify MySQL packages. Alternatively, you can copy and paste the key directly from the text below.
 
 Note
 
-The public GPG build key for earlier MySQL release packages
-(keyID `A8D3785C`,
-`5072E1F5` or `3A79BD29`),
-see [Section 2.1.4.5, “GPG Public Build Key for Archived Packages”](gpg-key-archived-packages.html "2.1.4.5 GPG Public Build Key for Archived Packages").
+The public GPG build key for earlier MySQL release packages (keyID `A8D3785C`, `5072E1F5` or `3A79BD29`), see Section 2.1.4.5, “GPG Public Build Key for Archived Packages”.
 
 ```
 -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -87,11 +64,7 @@ udMv77etKsN/mPdhJotVLMUpzeespcu5G2qqc5zt
 -----END PGP PUBLIC KEY BLOCK-----
 ```
 
-To import the build key into your personal public GPG keyring,
-use **gpg --import**. For example, if you have
-saved the key in a file named
-`mysql_pubkey.asc`, the import command looks
-like this:
+To import the build key into your personal public GPG keyring, use **gpg --import**. For example, if you have saved the key in a file named `mysql_pubkey.asc`, the import command looks like this:
 
 ```
 $> gpg --import mysql_pubkey.asc
@@ -101,8 +74,7 @@ gpg: Total number processed: 1
 gpg:               imported: 1
 ```
 
-You can also download the key from the public keyserver using
-the public key id, `A8D3785C`:
+You can also download the key from the public keyserver using the public key id, `A8D3785C`:
 
 ```
 $> gpg --recv-keys B7B3B788A8D3785C
@@ -117,47 +89,27 @@ gpg:           new user IDs: 1
 gpg:         new signatures: 53
 ```
 
-If you want to import the key into your RPM configuration to
-validate RPM install packages, you should be able to import the
-key directly:
+If you want to import the key into your RPM configuration to validate RPM install packages, you should be able to import the key directly:
 
 ```
 $> rpm --import mysql_pubkey.asc
 ```
 
-If you experience problems or require RPM specific information,
-see [Section 2.1.4.4, “Signature Checking Using RPM”](checking-rpm-signature.html "2.1.4.4 Signature Checking Using RPM").
+If you experience problems or require RPM specific information, see Section 2.1.4.4, “Signature Checking Using RPM”.
 
-After you have downloaded and imported the public build key,
-download your desired MySQL package and the corresponding
-signature, which also is available from the download page. The
-signature file has the same name as the distribution file with
-an `.asc` extension, as shown by the examples
-in the following table.
+After you have downloaded and imported the public build key, download your desired MySQL package and the corresponding signature, which also is available from the download page. The signature file has the same name as the distribution file with an `.asc` extension, as shown by the examples in the following table.
 
 **Table 2.1 MySQL Package and Signature Files for Source files**
 
-<table><col style="width: 25%"/><col style="width: 75%"/><thead><tr>
-<th>File Type</th>
-<th>File Name</th>
-</tr></thead><tbody><tr>
-<td>Distribution file</td>
-<td><code class="literal">mysql-9.5.0-linux-glibc2.28-x86_64.tar.xz</code></td>
-</tr><tr>
-<td>Signature file</td>
-<td><code class="literal">mysql-9.5.0-linux-glibc2.28-x86_64.tar.xz.asc</code></td>
-</tr></tbody></table>
+<table><col style="width: 25%"/><col style="width: 75%"/><thead><tr> <th>File Type</th> <th>File Name</th> </tr></thead><tbody><tr> <td>Distribution file</td> <td><code class="literal">mysql-9.5.0-linux-glibc2.28-x86_64.tar.xz</code></td> </tr><tr> <td>Signature file</td> <td><code class="literal">mysql-9.5.0-linux-glibc2.28-x86_64.tar.xz.asc</code></td> </tr></tbody></table>
 
-Make sure that both files are stored in the same directory and
-then run the following command to verify the signature for the
-distribution file:
+Make sure that both files are stored in the same directory and then run the following command to verify the signature for the distribution file:
 
 ```
 $> gpg --verify package_name.asc
 ```
 
-If the downloaded package is valid, you should see a
-`Good signature` message similar to this:
+If the downloaded package is valid, you should see a `Good signature` message similar to this:
 
 ```
 $> gpg --verify mysql-9.5.0-linux-glibc2.28-x86_64.tar.xz.asc
@@ -166,9 +118,7 @@ gpg:                using RSA key BCA43417C3B485DD128EC6D4B7B3B788A8D3785C
 gpg: Good signature from "MySQL Release Engineering <mysql-build@oss.oracle.com>"
 ```
 
-The `Good signature` message indicates that the
-file signature is valid, when compared to the signature listed
-on our site. But you might also see warnings, like so:
+The `Good signature` message indicates that the file signature is valid, when compared to the signature listed on our site. But you might also see warnings, like so:
 
 ```
 $> gpg --verify mysql-9.5.0-linux-glibc2.28-x86_64.tar.xz.asc
@@ -180,23 +130,10 @@ gpg:          There is no indication that the signature belongs to the owner.
 Primary key fingerprint: BCA4 3417 C3B4 85DD 128E  C6D4 B7B3 B788 A8D3 785C
 ```
 
-That is normal, as they depend on your setup and configuration.
-Here are explanations for these warnings:
+That is normal, as they depend on your setup and configuration. Here are explanations for these warnings:
 
-* *gpg: no ultimately trusted keys found*:
-  This means that the specific key is not "ultimately trusted"
-  by you or your web of trust, which is okay for the purposes
-  of verifying file signatures.
+* *gpg: no ultimately trusted keys found*: This means that the specific key is not "ultimately trusted" by you or your web of trust, which is okay for the purposes of verifying file signatures.
 
-* *WARNING: This key is not certified with a trusted
-  signature! There is no indication that the signature belongs
-  to the owner.*: This refers to your level of trust
-  in your belief that you possess our real public key. This is
-  a personal decision. Ideally, a MySQL developer would hand
-  you the key in person, but more commonly, you downloaded it.
-  Was the download tampered with? Probably not, but this
-  decision is up to you. Setting up a web of trust is one
-  method for trusting them.
+* *WARNING: This key is not certified with a trusted signature! There is no indication that the signature belongs to the owner.*: This refers to your level of trust in your belief that you possess our real public key. This is a personal decision. Ideally, a MySQL developer would hand you the key in person, but more commonly, you downloaded it. Was the download tampered with? Probably not, but this decision is up to you. Setting up a web of trust is one method for trusting them.
 
-See the GPG documentation for more information on how to work
-with public keys.
+See the GPG documentation for more information on how to work with public keys.

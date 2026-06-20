@@ -1,18 +1,10 @@
 #### 30.4.3.30 The schema\_table\_statistics\_with\_buffer and x$schema\_table\_statistics\_with\_buffer Views
 
-These views summarize table statistics, including
-`InnoDB` buffer pool statistics. By default,
-rows are sorted by descending total wait time (tables with
-most contention first).
+These views summarize table statistics, including `InnoDB` buffer pool statistics. By default, rows are sorted by descending total wait time (tables with most contention first).
 
-These views user a helper view,
-`x$ps_schema_table_statistics_io`.
+These views user a helper view, `x$ps_schema_table_statistics_io`.
 
-The
-[`schema_table_statistics_with_buffer`](sys-schema-table-statistics-with-buffer.html "30.4.3.30 The schema_table_statistics_with_buffer and x$schema_table_statistics_with_buffer Views")
-and
-[`x$schema_table_statistics_with_buffer`](sys-schema-table-statistics-with-buffer.html "30.4.3.30 The schema_table_statistics_with_buffer and x$schema_table_statistics_with_buffer Views")
-views have these columns:
+The `schema_table_statistics_with_buffer` and `x$schema_table_statistics_with_buffer` views have these columns:
 
 * `table_schema`
 
@@ -28,8 +20,7 @@ views have these columns:
 
 * `fetch_latency`
 
-  The total wait time of timed read I/O events for the
-  table.
+  The total wait time of timed read I/O events for the table.
 
 * `rows_inserted`
 
@@ -37,8 +28,7 @@ views have these columns:
 
 * `insert_latency`
 
-  The total wait time of timed insert I/O events for the
-  table.
+  The total wait time of timed insert I/O events for the table.
 
 * `rows_updated`
 
@@ -46,8 +36,7 @@ views have these columns:
 
 * `update_latency`
 
-  The total wait time of timed update I/O events for the
-  table.
+  The total wait time of timed update I/O events for the table.
 
 * `rows_deleted`
 
@@ -55,8 +44,7 @@ views have these columns:
 
 * `delete_latency`
 
-  The total wait time of timed delete I/O events for the
-  table.
+  The total wait time of timed delete I/O events for the table.
 
 * `io_read_requests`
 
@@ -84,47 +72,36 @@ views have these columns:
 
 * `io_misc_requests`
 
-  The total number of miscellaneous I/O requests for the
-  table.
+  The total number of miscellaneous I/O requests for the table.
 
 * `io_misc_latency`
 
-  The total wait time of miscellaneous I/O requests for the
-  table.
+  The total wait time of miscellaneous I/O requests for the table.
 
 * `innodb_buffer_allocated`
 
-  The total number of `InnoDB` buffer bytes
-  allocated for the table.
+  The total number of `InnoDB` buffer bytes allocated for the table.
 
 * `innodb_buffer_data`
 
-  The total number of `InnoDB` data bytes
-  allocated for the table.
+  The total number of `InnoDB` data bytes allocated for the table.
 
 * `innodb_buffer_free`
 
-  The total number of `InnoDB` nondata
-  bytes allocated for the table
-  (`innodb_buffer_allocated` −
-  `innodb_buffer_data`).
+  The total number of `InnoDB` nondata bytes allocated for the table (`innodb_buffer_allocated` − `innodb_buffer_data`).
 
 * `innodb_buffer_pages`
 
-  The total number of `InnoDB` pages
-  allocated for the table.
+  The total number of `InnoDB` pages allocated for the table.
 
 * `innodb_buffer_pages_hashed`
 
-  The total number of `InnoDB` hashed pages
-  allocated for the table.
+  The total number of `InnoDB` hashed pages allocated for the table.
 
 * `innodb_buffer_pages_old`
 
-  The total number of `InnoDB` old pages
-  allocated for the table.
+  The total number of `InnoDB` old pages allocated for the table.
 
 * `innodb_buffer_rows_cached`
 
-  The total number of `InnoDB` cached rows
-  for the table.
+  The total number of `InnoDB` cached rows for the table.

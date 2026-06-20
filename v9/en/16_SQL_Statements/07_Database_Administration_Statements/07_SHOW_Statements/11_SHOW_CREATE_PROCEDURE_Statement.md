@@ -4,25 +4,9 @@
 SHOW CREATE PROCEDURE proc_name
 ```
 
-This statement is a MySQL extension. It returns the exact string
-that can be used to re-create the named stored procedure. A
-similar statement, [`SHOW CREATE
-FUNCTION`](show-create-function.html "15.7.7.9 SHOW CREATE FUNCTION Statement"), displays information about stored functions
-(see [Section 15.7.7.9, “SHOW CREATE FUNCTION Statement”](show-create-function.html "15.7.7.9 SHOW CREATE FUNCTION Statement")).
+This statement is a MySQL extension. It returns the exact string that can be used to re-create the named stored procedure. A similar statement, [`SHOW CREATE FUNCTION`](show-create-function.html "15.7.7.9 SHOW CREATE FUNCTION Statement"), displays information about stored functions (see Section 15.7.7.9, “SHOW CREATE FUNCTION Statement”).
 
-To use either statement, you must be the user named as the
-routine `DEFINER`, have the
-[`SHOW_ROUTINE`](privileges-provided.html#priv_show-routine) privilege, have the
-[`SELECT`](privileges-provided.html#priv_select) privilege at the global
-level, or have the [`CREATE
-ROUTINE`](privileges-provided.html#priv_create-routine), [`ALTER ROUTINE`](privileges-provided.html#priv_alter-routine),
-or [`EXECUTE`](privileges-provided.html#priv_execute) privilege granted at a
-scope that includes the routine. The value displayed for the
-`Create Procedure` or `Create
-Function` field is `NULL` if you have
-only [`CREATE ROUTINE`](privileges-provided.html#priv_create-routine),
-[`ALTER ROUTINE`](privileges-provided.html#priv_alter-routine), or
-[`EXECUTE`](privileges-provided.html#priv_execute).
+To use either statement, you must be the user named as the routine `DEFINER`, have the `SHOW_ROUTINE` privilege, have the `SELECT` privilege at the global level, or have the [`CREATE ROUTINE`](privileges-provided.html#priv_create-routine), `ALTER ROUTINE`, or `EXECUTE` privilege granted at a scope that includes the routine. The value displayed for the `Create Procedure` or `Create Function` field is `NULL` if you have only `CREATE ROUTINE`, `ALTER ROUTINE`, or `EXECUTE`.
 
 ```
 mysql> SHOW CREATE PROCEDURE test.citycount\G
@@ -59,18 +43,6 @@ collation_connection: utf8mb4_0900_ai_ci
   Database Collation: utf8mb4_0900_ai_ci
 ```
 
-`character_set_client` is the session value of
-the [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system
-variable when the routine was created.
-`collation_connection` is the session value of
-the [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system
-variable when the routine was created. `Database
-Collation` is the collation of the database with which
-the routine is associated.
+`character_set_client` is the session value of the `character_set_client` system variable when the routine was created. `collation_connection` is the session value of the `collation_connection` system variable when the routine was created. `Database Collation` is the collation of the database with which the routine is associated.
 
-For a JavaScript stored routine that was created with
-`USING` to import one or more libraries, the
-full list of libraries is included in the output of
-`SHOW CREATE PROCEDURE`, even for libraries
-listed which do not actually exist. This is true also for
-`SHOW CREATE FUNCTION`.
+For a JavaScript stored routine that was created with `USING` to import one or more libraries, the full list of libraries is included in the output of `SHOW CREATE PROCEDURE`, even for libraries listed which do not actually exist. This is true also for `SHOW CREATE FUNCTION`.

@@ -1,16 +1,12 @@
 #### 25.6.15.60 The ndbinfo table\_replicas Table
 
-The `table_replicas` table provides information
-about the copying, distribution, and checkpointing of
-`NDB` table fragments and fragment replicas.
+The `table_replicas` table provides information about the copying, distribution, and checkpointing of `NDB` table fragments and fragment replicas.
 
-The `table_replicas` table contains the
-following columns:
+The `table_replicas` table contains the following columns:
 
 * `node_id`
 
-  ID of the node from which data is fetched
-  ([`DIH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdih.html) master)
+  ID of the node from which data is fetched (`DIH` master)
 
 * `table_id`
 

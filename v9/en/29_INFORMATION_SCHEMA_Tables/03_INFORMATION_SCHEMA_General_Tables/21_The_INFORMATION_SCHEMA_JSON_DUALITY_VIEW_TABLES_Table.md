@@ -1,12 +1,8 @@
 ### 28.3.21 The INFORMATION SCHEMA JSON\_DUALITY\_VIEW\_TABLES Table
 
-The [`JSON_DUALITY_VIEW_TABLES`](information-schema-json-duality-view-tables-table.html "28.3.21 The INFORMATION SCHEMA JSON_DUALITY_VIEW_TABLES Table") table
-shows information about all tables referenced by any JSON duality
-view which is accessible by the current user. This table contains
-one row per table reference.
+The `JSON_DUALITY_VIEW_TABLES` table shows information about all tables referenced by any JSON duality view which is accessible by the current user. This table contains one row per table reference.
 
-The [`JSON_DUALITY_VIEW_TABLES`](information-schema-json-duality-view-tables-table.html "28.3.21 The INFORMATION SCHEMA JSON_DUALITY_VIEW_TABLES Table") table
-has the columns listed here:
+The `JSON_DUALITY_VIEW_TABLES` table has the columns listed here:
 
 * `TABLE_CATALOG`
 
@@ -38,32 +34,23 @@ has the columns listed here:
 
 * `ALLOW_INSERT`
 
-  `1` if inserts are allowed, otherwise
-  `0`.
+  `1` if inserts are allowed, otherwise `0`.
 
 * `ALLOW_UPDATE`
 
-  `1` if updates are allowed, otherwise
-  `0`.
+  `1` if updates are allowed, otherwise `0`.
 
 * `ALLOW_DELETE`
 
-  `1` if deletes are allowed, otherwise
-  `0`.
+  `1` if deletes are allowed, otherwise `0`.
 
 * `READ_ONLY`
 
-  `1` if insert, update, or delete are not
-  allowed, otherwise `0`. (In other words, this
-  is `1` only when
-  `ALLOW_INSERT`,
-  `ALLOW_UPDATE`, and
-  `ALLOW_DELETE` are all `0`.)
+  `1` if insert, update, or delete are not allowed, otherwise `0`. (In other words, this is `1` only when `ALLOW_INSERT`, `ALLOW_UPDATE`, and `ALLOW_DELETE` are all `0`.)
 
 * `IS_ROOT_TABLE`
 
-  `1` if this is the root table, otherwise
-  `0`.
+  `1` if this is the root table, otherwise `0`.
 
 * `REFERENCED_TABLE_ID`
 
@@ -75,5 +62,4 @@ has the columns listed here:
 
 * `REFERENCED_TABLE_PARENT_RELATIONSHIP`
 
-  One of `nested` (arrays) or
-  `singleton` (otherwise).
+  One of `nested` (arrays) or `singleton` (otherwise).

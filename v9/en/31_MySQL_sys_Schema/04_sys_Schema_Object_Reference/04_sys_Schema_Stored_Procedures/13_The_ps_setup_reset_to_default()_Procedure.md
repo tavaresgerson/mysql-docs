@@ -1,14 +1,10 @@
 #### 30.4.4.13 The ps\_setup\_reset\_to\_default() Procedure
 
-Resets the Performance Schema configuration to its default
-settings.
+Resets the Performance Schema configuration to its default settings.
 
 ##### Parameters
 
-* `in_verbose BOOLEAN`: Whether to
-  display information about each setup stage during
-  procedure execution. This includes the SQL statements
-  executed.
+* `in_verbose BOOLEAN`: Whether to display information about each setup stage during procedure execution. This includes the SQL statements executed.
 
 ##### Example
 

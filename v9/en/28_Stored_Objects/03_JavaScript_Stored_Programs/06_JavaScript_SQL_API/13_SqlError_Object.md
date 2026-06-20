@@ -1,9 +1,6 @@
 #### 27.3.6.13 SqlError Object
 
-When an [`SqlError`](srjsapi-sqlerror.html "27.3.6.13 SqlError Object") is thrown, an
-error is raised in MySQL similar to how one is raised by a
-[`SIGNAL`](signal.html "15.6.7.5 SIGNAL Statement") statement. You can create
-an `SqlError` using the constructor shown here:
+When an `SqlError` is thrown, an error is raised in MySQL similar to how one is raised by a `SIGNAL` statement. You can create an `SqlError` using the constructor shown here:
 
 ```
 new SqlError(
@@ -13,10 +10,7 @@ new SqlError(
 )
 ```
 
-The JavaScript stored procedure in the following example tries
-and throws an `SqlError` created using this
-constructor. Invoking the procedure raises the error, as can be
-seen here:
+The JavaScript stored procedure in the following example tries and throws an `SqlError` created using this constructor. Invoking the procedure raises the error, as can be seen here:
 
 ```
 mysql> CREATE PROCEDURE test_catch_throw_signal() LANGUAGE JAVASCRIPT
@@ -41,15 +35,9 @@ Error code: 1001 Error state: 45000 Error message: `Some error`
 1 row in set (0.00 sec)
 ```
 
-*`sql_state`* and
-*`error_number`* must be of type
-`Number`. MLE throws an exception if either of
-these values is `Infinity` or
-`NaN`.
+*`sql_state`* and *`error_number`* must be of type `Number`. MLE throws an exception if either of these values is `Infinity` or `NaN`.
 
-You can also invoke [`SIGNAL`](signal.html "15.6.7.5 SIGNAL Statement") from
-JavaScript routine code to throw an exception, similar to what
-is shown here:
+You can also invoke `SIGNAL` from JavaScript routine code to throw an exception, similar to what is shown here:
 
 ```
 mysql> CREATE PROCEDURE test_signal_no_catch() LANGUAGE JAVASCRIPT

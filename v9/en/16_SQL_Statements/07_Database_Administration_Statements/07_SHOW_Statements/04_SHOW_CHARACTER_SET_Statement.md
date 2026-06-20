@@ -5,13 +5,7 @@ SHOW {CHARACTER SET | CHARSET}
     [LIKE 'pattern' | WHERE expr]
 ```
 
-The [`SHOW CHARACTER SET`](show-character-set.html "15.7.7.4 SHOW CHARACTER SET Statement") statement
-shows all available character sets. The
-[`LIKE`](string-comparison-functions.html#operator_like) clause, if present, indicates
-which character set names to match. The `WHERE`
-clause can be given to select rows using more general
-conditions, as discussed in [Section 28.8, “Extensions to SHOW Statements”](extended-show.html "28.8 Extensions to SHOW Statements"). For
-example:
+The `SHOW CHARACTER SET` statement shows all available character sets. The `LIKE` clause, if present, indicates which character set names to match. The `WHERE` clause can be given to select rows using more general conditions, as discussed in Section 28.8, “Extensions to SHOW Statements”. For example:
 
 ```
 mysql> SHOW CHARACTER SET LIKE 'latin%';
@@ -25,8 +19,7 @@ mysql> SHOW CHARACTER SET LIKE 'latin%';
 +---------+-----------------------------+-------------------+--------+
 ```
 
-[`SHOW CHARACTER SET`](show-character-set.html "15.7.7.4 SHOW CHARACTER SET Statement") output has
-these columns:
+`SHOW CHARACTER SET` output has these columns:
 
 * `Charset`
 
@@ -44,10 +37,6 @@ these columns:
 
   The maximum number of bytes required to store one character.
 
-The `filename` character set is for internal
-use only; consequently, [`SHOW CHARACTER
-SET`](show-character-set.html "15.7.7.4 SHOW CHARACTER SET Statement") does not display it.
+The `filename` character set is for internal use only; consequently, [`SHOW CHARACTER SET`](show-character-set.html "15.7.7.4 SHOW CHARACTER SET Statement") does not display it.
 
-Character set information is also available from the
-`INFORMATION_SCHEMA`
-[`CHARACTER_SETS`](information-schema-character-sets-table.html "28.3.4 The INFORMATION_SCHEMA CHARACTER_SETS Table") table.
+Character set information is also available from the `INFORMATION_SCHEMA` `CHARACTER_SETS` table.

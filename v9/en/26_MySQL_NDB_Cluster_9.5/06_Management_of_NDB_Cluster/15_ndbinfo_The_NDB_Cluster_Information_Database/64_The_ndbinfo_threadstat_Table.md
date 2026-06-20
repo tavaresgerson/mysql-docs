@@ -1,11 +1,8 @@
 #### 25.6.15.64 The ndbinfo threadstat Table
 
-The `threadstat` table provides a rough
-snapshot of statistics for threads running in the
-`NDB` kernel.
+The `threadstat` table provides a rough snapshot of statistics for threads running in the `NDB` kernel.
 
-The `threadstat` table contains the following
-columns:
+The `threadstat` table contains the following columns:
 
 * `node_id`
 
@@ -81,19 +78,8 @@ columns:
 
 ##### Notes
 
-`os_time` uses the system
-`gettimeofday()` call.
+`os_time` uses the system `gettimeofday()` call.
 
-The values of the `os_ru_utime`,
-`os_ru_stime`, `os_ru_minflt`,
-`os_ru_majflt`, `os_ru_nvcsw`,
-and `os_ru_nivcsw` columns are obtained using
-the system `getrusage()` call, or the
-equivalent.
+The values of the `os_ru_utime`, `os_ru_stime`, `os_ru_minflt`, `os_ru_majflt`, `os_ru_nvcsw`, and `os_ru_nivcsw` columns are obtained using the system `getrusage()` call, or the equivalent.
 
-Since this table contains counts taken at a given point in time,
-for best results it is necessary to query this table
-periodically and store the results in an intermediate table or
-tables. The MySQL Server's Event Scheduler can be employed
-to automate such monitoring. For more information, see
-[Section 27.5, “Using the Event Scheduler”](event-scheduler.html "27.5 Using the Event Scheduler").
+Since this table contains counts taken at a given point in time, for best results it is necessary to query this table periodically and store the results in an intermediate table or tables. The MySQL Server's Event Scheduler can be employed to automate such monitoring. For more information, see Section 27.5, “Using the Event Scheduler”.

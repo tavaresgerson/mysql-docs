@@ -1,116 +1,48 @@
 # Chapter 29 MySQL Performance Schema
 
-The MySQL Performance Schema is a feature for monitoring MySQL
-Server execution at a low level. The Performance Schema has these
-characteristics:
+The MySQL Performance Schema is a feature for monitoring MySQL Server execution at a low level. The Performance Schema has these characteristics:
 
-* The Performance Schema provides a way to inspect internal
-  execution of the server at runtime. It is implemented using the
-  [`PERFORMANCE_SCHEMA`](performance-schema.html "Chapter 29 MySQL Performance Schema") storage engine
-  and the `performance_schema` database. The
-  Performance Schema focuses primarily on performance data. This
-  differs from `INFORMATION_SCHEMA`, which serves
-  for inspection of metadata.
+* The Performance Schema provides a way to inspect internal execution of the server at runtime. It is implemented using the `PERFORMANCE_SCHEMA` storage engine and the `performance_schema` database. The Performance Schema focuses primarily on performance data. This differs from `INFORMATION_SCHEMA`, which serves for inspection of metadata.
 
-* The Performance Schema monitors server events. An
-  “event” is anything the server does that takes time
-  and has been instrumented so that timing information can be
-  collected. In general, an event could be a function call, a wait
-  for the operating system, a stage of an SQL statement execution
-  such as parsing or sorting, or an entire statement or group of
-  statements. Event collection provides access to information
-  about synchronization calls (such as for mutexes) file and table
-  I/O, table locks, and so forth for the server and for several
-  storage engines.
+* The Performance Schema monitors server events. An “event” is anything the server does that takes time and has been instrumented so that timing information can be collected. In general, an event could be a function call, a wait for the operating system, a stage of an SQL statement execution such as parsing or sorting, or an entire statement or group of statements. Event collection provides access to information about synchronization calls (such as for mutexes) file and table I/O, table locks, and so forth for the server and for several storage engines.
 
-* Performance Schema events are distinct from events written to
-  the server's binary log (which describe data modifications) and
-  Event Scheduler events (which are a type of stored program).
+* Performance Schema events are distinct from events written to the server's binary log (which describe data modifications) and Event Scheduler events (which are a type of stored program).
 
-* Performance Schema events are specific to a given instance of
-  the MySQL Server. Performance Schema tables are considered local
-  to the server, and changes to them are not replicated or written
-  to the binary log.
+* Performance Schema events are specific to a given instance of the MySQL Server. Performance Schema tables are considered local to the server, and changes to them are not replicated or written to the binary log.
 
-* Current events are available, as well as event histories and
-  summaries. This enables you to determine how many times
-  instrumented activities were performed and how much time they
-  took. Event information is available to show the activities of
-  specific threads, or activity associated with particular objects
-  such as a mutex or file.
+* Current events are available, as well as event histories and summaries. This enables you to determine how many times instrumented activities were performed and how much time they took. Event information is available to show the activities of specific threads, or activity associated with particular objects such as a mutex or file.
 
-* The [`PERFORMANCE_SCHEMA`](performance-schema.html "Chapter 29 MySQL Performance Schema") storage
-  engine collects event data using “instrumentation
-  points” in server source code.
+* The `PERFORMANCE_SCHEMA` storage engine collects event data using “instrumentation points” in server source code.
 
-* Collected events are stored in tables in the
-  `performance_schema` database. These tables can
-  be queried using [`SELECT`](select.html "15.2.13 SELECT Statement")
-  statements like other tables.
+* Collected events are stored in tables in the `performance_schema` database. These tables can be queried using `SELECT` statements like other tables.
 
-* Performance Schema configuration can be modified dynamically by
-  updating tables in the `performance_schema`
-  database through SQL statements. Configuration changes affect
-  data collection immediately.
+* Performance Schema configuration can be modified dynamically by updating tables in the `performance_schema` database through SQL statements. Configuration changes affect data collection immediately.
 
-* Tables in the Performance Schema are in-memory tables that use
-  no persistent on-disk storage. The contents are repopulated
-  beginning at server startup and discarded at server shutdown.
+* Tables in the Performance Schema are in-memory tables that use no persistent on-disk storage. The contents are repopulated beginning at server startup and discarded at server shutdown.
 
 * Monitoring is available on all platforms supported by MySQL.
 
-  Some limitations might apply: The types of timers might vary per
-  platform. Instruments that apply to storage engines might not be
-  implemented for all storage engines. Instrumentation of each
-  third-party engine is the responsibility of the engine
-  maintainer. See also
-  [Section 29.20, “Restrictions on Performance Schema”](performance-schema-restrictions.html "29.20 Restrictions on Performance Schema").
+  Some limitations might apply: The types of timers might vary per platform. Instruments that apply to storage engines might not be implemented for all storage engines. Instrumentation of each third-party engine is the responsibility of the engine maintainer. See also Section 29.20, “Restrictions on Performance Schema”.
 
-* Data collection is implemented by modifying the server source
-  code to add instrumentation. There are no separate threads
-  associated with the Performance Schema, unlike other features
-  such as replication or the Event Scheduler.
+* Data collection is implemented by modifying the server source code to add instrumentation. There are no separate threads associated with the Performance Schema, unlike other features such as replication or the Event Scheduler.
 
-The Performance Schema is intended to provide access to useful
-information about server execution while having minimal impact on
-server performance. The implementation follows these design goals:
+The Performance Schema is intended to provide access to useful information about server execution while having minimal impact on server performance. The implementation follows these design goals:
 
-* Activating the Performance Schema causes no changes in server
-  behavior. For example, it does not cause thread scheduling to
-  change, and it does not cause query execution plans (as shown by
-  [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement")) to change.
+* Activating the Performance Schema causes no changes in server behavior. For example, it does not cause thread scheduling to change, and it does not cause query execution plans (as shown by `EXPLAIN`) to change.
 
-* Server monitoring occurs continuously and unobtrusively with
-  very little overhead. Activating the Performance Schema does not
-  make the server unusable.
+* Server monitoring occurs continuously and unobtrusively with very little overhead. Activating the Performance Schema does not make the server unusable.
 
-* The parser is unchanged. There are no new keywords or
-  statements.
+* The parser is unchanged. There are no new keywords or statements.
 
-* Execution of server code proceeds normally even if the
-  Performance Schema fails internally.
+* Execution of server code proceeds normally even if the Performance Schema fails internally.
 
-* When there is a choice between performing processing during
-  event collection initially or during event retrieval later,
-  priority is given to making collection faster. This is because
-  collection is ongoing whereas retrieval is on demand and might
-  never happen at all.
+* When there is a choice between performing processing during event collection initially or during event retrieval later, priority is given to making collection faster. This is because collection is ongoing whereas retrieval is on demand and might never happen at all.
 
-* Most Performance Schema tables have indexes, which gives the
-  optimizer access to execution plans other than full table scans.
-  For more information, see
-  [Section 10.2.4, “Optimizing Performance Schema Queries”](performance-schema-optimization.html "10.2.4 Optimizing Performance Schema Queries").
+* Most Performance Schema tables have indexes, which gives the optimizer access to execution plans other than full table scans. For more information, see Section 10.2.4, “Optimizing Performance Schema Queries”.
 
 * It is easy to add new instrumentation points.
-* Instrumentation is versioned. If the instrumentation
-  implementation changes, previously instrumented code continues
-  to work. This benefits developers of third-party plugins because
-  it is not necessary to upgrade each plugin to stay synchronized
-  with the latest Performance Schema changes.
+* Instrumentation is versioned. If the instrumentation implementation changes, previously instrumented code continues to work. This benefits developers of third-party plugins because it is not necessary to upgrade each plugin to stay synchronized with the latest Performance Schema changes.
 
 Note
 
-The MySQL `sys` schema is a set of objects that
-provides convenient access to data collected by the Performance
-Schema. The `sys` schema is installed by default.
-For usage instructions, see [Chapter 30, *MySQL sys Schema*](sys-schema.html "Chapter 30 MySQL sys Schema").
+The MySQL `sys` schema is a set of objects that provides convenient access to data collected by the Performance Schema. The `sys` schema is installed by default. For usage instructions, see Chapter 30, *MySQL sys Schema*.

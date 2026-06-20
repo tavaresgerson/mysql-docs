@@ -1,8 +1,6 @@
 #### 25.6.15.37 The ndbinfo foreign\_keys Table
 
-The `foreign_keys` table provides information
-about foreign keys on `NDB` tables. This table
-has the following columns:
+The `foreign_keys` table provides information about foreign keys on `NDB` tables. This table has the following columns:
 
 * `object_id`
 
@@ -38,16 +36,8 @@ has the following columns:
 
 * `on_update_action`
 
-  The `ON UPDATE` action specified for the
-  foreign key; one of `No Action`,
-  `Restrict`, `Cascade`,
-  `Set Null`, or `Set
-  Default`
+  The `ON UPDATE` action specified for the foreign key; one of `No Action`, `Restrict`, `Cascade`, `Set Null`, or `Set Default`
 
 * `on_delete_action`
 
-  The `ON DELETE` action specified for the
-  foreign key; one of `No Action`,
-  `Restrict`, `Cascade`,
-  `Set Null`, or `Set
-  Default`
+  The `ON DELETE` action specified for the foreign key; one of `No Action`, `Restrict`, `Cascade`, `Set Null`, or `Set Default`

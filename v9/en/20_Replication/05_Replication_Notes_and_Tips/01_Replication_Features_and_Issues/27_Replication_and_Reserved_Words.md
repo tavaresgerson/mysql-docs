@@ -1,43 +1,13 @@
 #### 19.5.1.27 Replication and Reserved Words
 
-You can encounter problems when you attempt to replicate from an
-older source to a newer replica and you make use of identifiers
-on the source that are reserved words in the newer MySQL version
-running on the replica. For example, a table column named
-`rank` on a MySQL 5.7 source that is
-replicating to a MySQL 9.5 replica could cause a
-problem because `RANK` became a reserved word
-in MySQL 8.0.
+You can encounter problems when you attempt to replicate from an older source to a newer replica and you make use of identifiers on the source that are reserved words in the newer MySQL version running on the replica. For example, a table column named `rank` on a MySQL 5.7 source that is replicating to a MySQL 9.5 replica could cause a problem because `RANK` became a reserved word in MySQL 8.0.
 
-Replication can fail in such cases with Error 1064
-You have an error in your SQL syntax...,
-*even if a database or table named using the reserved
-word or a table having a column named using the reserved word is
-excluded from replication*. This is due to the fact
-that each SQL event must be parsed by the replica prior to
-execution, so that the replica knows which database object or
-objects would be affected. Only after the event is parsed can
-the replica apply any filtering rules defined by
-[`--replicate-do-db`](replication-options-replica.html#option_mysqld_replicate-do-db),
-[`--replicate-do-table`](replication-options-replica.html#option_mysqld_replicate-do-table),
-[`--replicate-ignore-db`](replication-options-replica.html#option_mysqld_replicate-ignore-db), and
-[`--replicate-ignore-table`](replication-options-replica.html#option_mysqld_replicate-ignore-table).
+Replication can fail in such cases with Error 1064 You have an error in your SQL syntax..., *even if a database or table named using the reserved word or a table having a column named using the reserved word is excluded from replication*. This is due to the fact that each SQL event must be parsed by the replica prior to execution, so that the replica knows which database object or objects would be affected. Only after the event is parsed can the replica apply any filtering rules defined by `--replicate-do-db`, `--replicate-do-table`, `--replicate-ignore-db`, and `--replicate-ignore-table`.
 
-To work around the problem of database, table, or column names
-on the source which would be regarded as reserved words by the
-replica, do one of the following:
+To work around the problem of database, table, or column names on the source which would be regarded as reserved words by the replica, do one of the following:
 
-* Use one or more [`ALTER TABLE`](alter-table.html "15.1.11 ALTER TABLE Statement")
-  statements on the source to change the names of any database
-  objects where these names would be considered reserved words
-  on the replica, and change any SQL statements that use the
-  old names to use the new names instead.
+* Use one or more `ALTER TABLE` statements on the source to change the names of any database objects where these names would be considered reserved words on the replica, and change any SQL statements that use the old names to use the new names instead.
 
-* In any SQL statements using these database object names,
-  write the names as quoted identifiers using backtick
-  characters (`` ` ``).
+* In any SQL statements using these database object names, write the names as quoted identifiers using backtick characters (`` ` ``).
 
-For listings of reserved words by MySQL version, see
-[Keywords and Reserved Words in MySQL 8.0](/doc/mysqld-version-reference/en/keywords-8-0.html), in the *MySQL Server
-Version Reference*. For identifier quoting rules, see
-[Section 11.2, “Schema Object Names”](identifiers.html "11.2 Schema Object Names").
+For listings of reserved words by MySQL version, see Keywords and Reserved Words in MySQL 8.0, in the *MySQL Server Version Reference*. For identifier quoting rules, see Section 11.2, “Schema Object Names”.

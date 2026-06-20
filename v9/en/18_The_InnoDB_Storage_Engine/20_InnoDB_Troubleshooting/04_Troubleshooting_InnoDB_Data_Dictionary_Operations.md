@@ -1,22 +1,12 @@
 ### 17.20.4 Troubleshooting InnoDB Data Dictionary Operations
 
-Information about table definitions is stored in the InnoDB
-[data dictionary](/doc/refman/8.4/en/glossary.html#glos_data_dictionary). If
-you move data files around, dictionary data can become
-inconsistent.
+Information about table definitions is stored in the InnoDB data dictionary. If you move data files around, dictionary data can become inconsistent.
 
-If a data dictionary corruption or consistency issue prevents you
-from starting `InnoDB`, see
-[Section 17.20.3, “Forcing InnoDB Recovery”](forcing-innodb-recovery.html "17.20.3 Forcing InnoDB Recovery") for information about
-manual recovery.
+If a data dictionary corruption or consistency issue prevents you from starting `InnoDB`, see Section 17.20.3, “Forcing InnoDB Recovery” for information about manual recovery.
 
 #### Cannot Open Datafile
 
-With [`innodb_file_per_table`](innodb-parameters.html#sysvar_innodb_file_per_table)
-enabled (the default), the following messages may appear at
-startup if a
-[file-per-table](glossary.html#glos_file_per_table "file-per-table")
-tablespace file (`.ibd` file) is missing:
+With `innodb_file_per_table` enabled (the default), the following messages may appear at startup if a file-per-table tablespace file (`.ibd` file) is missing:
 
 ```
 [ERROR] InnoDB: Operating system error number 2 in a file operation.
@@ -25,37 +15,19 @@ tablespace file (`.ibd` file) is missing:
 [Warning] InnoDB: Ignoring tablespace `test/t1` because it could not be opened.
 ```
 
-To address these messages, issue [`DROP
-TABLE`](drop-table.html "15.1.37 DROP TABLE Statement") statement to remove data about the missing table
-from the data dictionary.
+To address these messages, issue [`DROP TABLE`](drop-table.html "15.1.37 DROP TABLE Statement") statement to remove data about the missing table from the data dictionary.
 
 #### Restoring Orphan File-Per-Table ibd Files
 
-This procedure describes how to restore orphan
-[file-per-table](glossary.html#glos_file_per_table "file-per-table")
-`.ibd` files to another MySQL instance. You
-might use this procedure if the system tablespace is lost or
-unrecoverable and you want to restore `.ibd`
-file backups on a new MySQL instance.
+This procedure describes how to restore orphan file-per-table `.ibd` files to another MySQL instance. You might use this procedure if the system tablespace is lost or unrecoverable and you want to restore `.ibd` file backups on a new MySQL instance.
 
-The procedure is not supported for
-[general
-tablespace](glossary.html#glos_general_tablespace "general tablespace") `.ibd` files.
+The procedure is not supported for [general tablespace](glossary.html#glos_general_tablespace "general tablespace") `.ibd` files.
 
-The procedure assumes that you only have
-`.ibd` file backups, you are recovering to
-the same version of MySQL that initially created the orphan
-`.ibd` files, and that
-`.ibd` file backups are clean. See
-[Section 17.6.1.4, “Moving or Copying InnoDB Tables”](innodb-migration.html "17.6.1.4 Moving or Copying InnoDB Tables") for information about
-creating clean backups.
+The procedure assumes that you only have `.ibd` file backups, you are recovering to the same version of MySQL that initially created the orphan `.ibd` files, and that `.ibd` file backups are clean. See Section 17.6.1.4, “Moving or Copying InnoDB Tables” for information about creating clean backups.
 
-Table import limitations outlined in
-[Section 17.6.1.3, “Importing InnoDB Tables”](innodb-table-import.html "17.6.1.3 Importing InnoDB Tables") are applicable to this
-procedure.
+Table import limitations outlined in Section 17.6.1.3, “Importing InnoDB Tables” are applicable to this procedure.
 
-1. On the new MySQL instance, recreate the table in a database
-   of the same name.
+1. On the new MySQL instance, recreate the table in a database of the same name.
 
    ```
    mysql> CREATE DATABASE sakila;
@@ -78,19 +50,15 @@ procedure.
    mysql> ALTER TABLE sakila.actor DISCARD TABLESPACE;
    ```
 
-3. Copy the orphan `.ibd` file from your
-   backup directory to the new database directory.
+3. Copy the orphan `.ibd` file from your backup directory to the new database directory.
 
    ```
    $> cp /backup_directory/actor.ibd path/to/mysql-5.7/data/sakila/
    ```
 
-4. Ensure that the `.ibd` file has the
-   necessary file permissions.
+4. Ensure that the `.ibd` file has the necessary file permissions.
 
-5. Import the orphan `.ibd` file. A warning is
-   issued indicating that `InnoDB` is
-   attempting to import the file without schema verification.
+5. Import the orphan `.ibd` file. A warning is issued indicating that `InnoDB` is attempting to import the file without schema verification.
 
    ```
    mysql> ALTER TABLE sakila.actor IMPORT TABLESPACE; SHOW WARNINGS;
@@ -101,8 +69,7 @@ procedure.
    without schema verification
    ```
 
-6. Query the table to verify that the `.ibd`
-   file was successfully restored.
+6. Query the table to verify that the `.ibd` file was successfully restored.
 
    ```
    mysql> SELECT COUNT(*) FROM sakila.actor;

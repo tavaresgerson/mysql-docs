@@ -1,61 +1,33 @@
 ### 29.12.6 Performance Schema Statement Event Tables
 
-The Performance Schema instruments statement execution.
-Statement events occur at a high level of the event hierarchy.
-Within the event hierarchy, wait events nest within stage
-events, which nest within statement events, which nest within
-transaction events.
+The Performance Schema instruments statement execution. Statement events occur at a high level of the event hierarchy. Within the event hierarchy, wait events nest within stage events, which nest within statement events, which nest within transaction events.
 
 These tables store statement events:
 
-* [`events_statements_current`](performance-schema-events-statements-current-table.html "29.12.6.1 The events_statements_current Table"): The
-  current statement event for each thread.
+* `events_statements_current`: The current statement event for each thread.
 
-* [`events_statements_history`](performance-schema-events-statements-history-table.html "29.12.6.2 The events_statements_history Table"): The
-  most recent statement events that have ended per thread.
+* `events_statements_history`: The most recent statement events that have ended per thread.
 
-* [`events_statements_history_long`](performance-schema-events-statements-history-long-table.html "29.12.6.3 The events_statements_history_long Table"):
-  The most recent statement events that have ended globally
-  (across all threads).
+* `events_statements_history_long`: The most recent statement events that have ended globally (across all threads).
 
-* [`prepared_statements_instances`](performance-schema-prepared-statements-instances-table.html "29.12.6.4 The prepared_statements_instances Table"):
-  Prepared statement instances and statistics
+* `prepared_statements_instances`: Prepared statement instances and statistics
 
-The following sections describe the statement event tables.
-There are also summary tables that aggregate information about
-statement events; see
-[Section 29.12.20.3, “Statement Summary Tables”](performance-schema-statement-summary-tables.html "29.12.20.3 Statement Summary Tables").
+The following sections describe the statement event tables. There are also summary tables that aggregate information about statement events; see Section 29.12.20.3, “Statement Summary Tables”.
 
-For more information about the relationship between the three
-`events_statements_xxx`
-event tables, see
-[Section 29.9, “Performance Schema Tables for Current and Historical Events”](performance-schema-event-tables.html "29.9 Performance Schema Tables for Current and Historical Events").
+For more information about the relationship between the three `events_statements_xxx` event tables, see Section 29.9, “Performance Schema Tables for Current and Historical Events”.
 
-* [Configuring Statement Event Collection](performance-schema-statement-tables.html#performance-schema-statement-tables-configuration "Configuring Statement Event Collection")
-* [Statement Monitoring](performance-schema-statement-tables.html#performance-schema-statement-tables-monitoring "Statement Monitoring")
+* Configuring Statement Event Collection
+* Statement Monitoring
 
 #### Configuring Statement Event Collection
 
-To control whether to collect statement events, set the state of
-the relevant instruments and consumers:
+To control whether to collect statement events, set the state of the relevant instruments and consumers:
 
-* The [`setup_instruments`](performance-schema-setup-instruments-table.html "29.12.2.3 The setup_instruments Table") table
-  contains instruments with names that begin with
-  `statement`. Use these instruments to
-  enable or disable collection of individual statement event
-  classes.
+* The `setup_instruments` table contains instruments with names that begin with `statement`. Use these instruments to enable or disable collection of individual statement event classes.
 
-* The [`setup_consumers`](performance-schema-setup-consumers-table.html "29.12.2.2 The setup_consumers Table") table
-  contains consumer values with names corresponding to the
-  current and historical statement event table names, and the
-  statement digest consumer. Use these consumers to filter
-  collection of statement events and statement digesting.
+* The `setup_consumers` table contains consumer values with names corresponding to the current and historical statement event table names, and the statement digest consumer. Use these consumers to filter collection of statement events and statement digesting.
 
-The statement instruments are enabled by default, and the
-`events_statements_current`,
-`events_statements_history`, and
-`statements_digest` statement consumers are
-enabled by default:
+The statement instruments are enabled by default, and the `events_statements_current`, `events_statements_history`, and `statements_digest` statement consumers are enabled by default:
 
 ```
 mysql> SELECT NAME, ENABLED, TIMED
@@ -96,8 +68,7 @@ mysql> SELECT *
 +--------------------------------+---------+
 ```
 
-To control statement event collection at server startup, use
-lines like these in your `my.cnf` file:
+To control statement event collection at server startup, use lines like these in your `my.cnf` file:
 
 * Enable:
 
@@ -121,9 +92,7 @@ lines like these in your `my.cnf` file:
   performance-schema-consumer-statements-digest=OFF
   ```
 
-To control statement event collection at runtime, update the
-[`setup_instruments`](performance-schema-setup-instruments-table.html "29.12.2.3 The setup_instruments Table") and
-[`setup_consumers`](performance-schema-setup-consumers-table.html "29.12.2.2 The setup_consumers Table") tables:
+To control statement event collection at runtime, update the `setup_instruments` and `setup_consumers` tables:
 
 * Enable:
 
@@ -149,179 +118,61 @@ To control statement event collection at runtime, update the
   WHERE NAME LIKE '%statements%';
   ```
 
-To collect only specific statement events, enable only the
-corresponding statement instruments. To collect statement events
-only for specific statement event tables, enable the statement
-instruments but only the statement consumers corresponding to
-the desired tables.
+To collect only specific statement events, enable only the corresponding statement instruments. To collect statement events only for specific statement event tables, enable the statement instruments but only the statement consumers corresponding to the desired tables.
 
-For additional information about configuring event collection,
-see [Section 29.3, “Performance Schema Startup Configuration”](performance-schema-startup-configuration.html "29.3 Performance Schema Startup Configuration"),
-and [Section 29.4, “Performance Schema Runtime Configuration”](performance-schema-runtime-configuration.html "29.4 Performance Schema Runtime Configuration").
+For additional information about configuring event collection, see Section 29.3, “Performance Schema Startup Configuration”, and Section 29.4, “Performance Schema Runtime Configuration”.
 
 #### Statement Monitoring
 
-Statement monitoring begins from the moment the server sees that
-activity is requested on a thread, to the moment when all
-activity has ceased. Typically, this means from the time the
-server gets the first packet from the client to the time the
-server has finished sending the response. Statements within
-stored programs are monitored like other statements.
+Statement monitoring begins from the moment the server sees that activity is requested on a thread, to the moment when all activity has ceased. Typically, this means from the time the server gets the first packet from the client to the time the server has finished sending the response. Statements within stored programs are monitored like other statements.
 
-When the Performance Schema instruments a request (server
-command or SQL statement), it uses instrument names that proceed
-in stages from more general (or “abstract”) to more
-specific until it arrives at a final instrument name.
+When the Performance Schema instruments a request (server command or SQL statement), it uses instrument names that proceed in stages from more general (or “abstract”) to more specific until it arrives at a final instrument name.
 
-Final instrument names correspond to server commands and SQL
-statements:
+Final instrument names correspond to server commands and SQL statements:
 
-* Server commands correspond to the
-  `COM_xxx codes`
-  defined in the `mysql_com.h` header file
-  and processed in `sql/sql_parse.cc`.
-  Examples are `COM_PING` and
-  `COM_QUIT`. Instruments for commands have
-  names that begin with `statement/com`, such
-  as `statement/com/Ping` and
-  `statement/com/Quit`.
+* Server commands correspond to the `COM_xxx codes` defined in the `mysql_com.h` header file and processed in `sql/sql_parse.cc`. Examples are `COM_PING` and `COM_QUIT`. Instruments for commands have names that begin with `statement/com`, such as `statement/com/Ping` and `statement/com/Quit`.
 
-* SQL statements are expressed as text, such as
-  `DELETE FROM t1` or `SELECT * FROM
-  t2`. Instruments for SQL statements have names that
-  begin with `statement/sql`, such as
-  `statement/sql/delete` and
-  `statement/sql/select`.
+* SQL statements are expressed as text, such as `DELETE FROM t1` or `SELECT * FROM t2`. Instruments for SQL statements have names that begin with `statement/sql`, such as `statement/sql/delete` and `statement/sql/select`.
 
 Some final instrument names are specific to error handling:
 
-* `statement/com/Error` accounts for messages
-  received by the server that are out of band. It can be used
-  to detect commands sent by clients that the server does not
-  understand. This may be helpful for purposes such as
-  identifying clients that are misconfigured or using a
-  version of MySQL more recent than that of the server, or
-  clients that are attempting to attack the server.
+* `statement/com/Error` accounts for messages received by the server that are out of band. It can be used to detect commands sent by clients that the server does not understand. This may be helpful for purposes such as identifying clients that are misconfigured or using a version of MySQL more recent than that of the server, or clients that are attempting to attack the server.
 
-* `statement/sql/error` accounts for SQL
-  statements that fail to parse. It can be used to detect
-  malformed queries sent by clients. A query that fails to
-  parse differs from a query that parses but fails due to an
-  error during execution. For example, `SELECT *
-  FROM` is malformed, and the
-  `statement/sql/error` instrument is used.
-  By contrast, `SELECT *` parses but fails
-  with a `No tables used` error. In this
-  case, `statement/sql/select` is used and
-  the statement event contains information to indicate the
-  nature of the error.
+* `statement/sql/error` accounts for SQL statements that fail to parse. It can be used to detect malformed queries sent by clients. A query that fails to parse differs from a query that parses but fails due to an error during execution. For example, `SELECT * FROM` is malformed, and the `statement/sql/error` instrument is used. By contrast, `SELECT *` parses but fails with a `No tables used` error. In this case, `statement/sql/select` is used and the statement event contains information to indicate the nature of the error.
 
 A request can be obtained from any of these sources:
 
-* As a command or statement request from a client, which sends
-  the request as packets
+* As a command or statement request from a client, which sends the request as packets
 
 * As a statement string read from the relay log on a replica
 * As an event from the Event Scheduler
 
-The details for a request are not initially known and the
-Performance Schema proceeds from abstract to specific instrument
-names in a sequence that depends on the source of the request.
+The details for a request are not initially known and the Performance Schema proceeds from abstract to specific instrument names in a sequence that depends on the source of the request.
 
 For a request received from a client:
 
-1. When the server detects a new packet at the socket level, a
-   new statement is started with an abstract instrument name of
-   `statement/abstract/new_packet`.
+1. When the server detects a new packet at the socket level, a new statement is started with an abstract instrument name of `statement/abstract/new_packet`.
 
-2. When the server reads the packet number, it knows more about
-   the type of request received, and the Performance Schema
-   refines the instrument name. For example, if the request is
-   a `COM_PING` packet, the instrument name
-   becomes `statement/com/Ping` and that is
-   the final name. If the request is a
-   `COM_QUERY` packet, it is known to
-   correspond to an SQL statement but not the particular type
-   of statement. In this case, the instrument changes from one
-   abstract name to a more specific but still abstract name,
-   `statement/abstract/Query`, and the request
-   requires further classification.
+2. When the server reads the packet number, it knows more about the type of request received, and the Performance Schema refines the instrument name. For example, if the request is a `COM_PING` packet, the instrument name becomes `statement/com/Ping` and that is the final name. If the request is a `COM_QUERY` packet, it is known to correspond to an SQL statement but not the particular type of statement. In this case, the instrument changes from one abstract name to a more specific but still abstract name, `statement/abstract/Query`, and the request requires further classification.
 
-3. If the request is a statement, the statement text is read
-   and given to the parser. After parsing, the exact statement
-   type is known. If the request is, for example, an
-   [`INSERT`](insert.html "15.2.7 INSERT Statement") statement, the
-   Performance Schema refines the instrument name from
-   `statement/abstract/Query` to
-   `statement/sql/insert`, which is the final
-   name.
+3. If the request is a statement, the statement text is read and given to the parser. After parsing, the exact statement type is known. If the request is, for example, an `INSERT` statement, the Performance Schema refines the instrument name from `statement/abstract/Query` to `statement/sql/insert`, which is the final name.
 
-For a request read as a statement from the relay log on a
-replica:
+For a request read as a statement from the relay log on a replica:
 
-1. Statements in the relay log are stored as text and are read
-   as such. There is no network protocol, so the
-   `statement/abstract/new_packet` instrument
-   is not used. Instead, the initial instrument is
-   `statement/abstract/relay_log`.
+1. Statements in the relay log are stored as text and are read as such. There is no network protocol, so the `statement/abstract/new_packet` instrument is not used. Instead, the initial instrument is `statement/abstract/relay_log`.
 
-2. When the statement is parsed, the exact statement type is
-   known. If the request is, for example, an
-   [`INSERT`](insert.html "15.2.7 INSERT Statement") statement, the
-   Performance Schema refines the instrument name from
-   `statement/abstract/Query` to
-   `statement/sql/insert`, which is the final
-   name.
+2. When the statement is parsed, the exact statement type is known. If the request is, for example, an `INSERT` statement, the Performance Schema refines the instrument name from `statement/abstract/Query` to `statement/sql/insert`, which is the final name.
 
-The preceding description applies only for statement-based
-replication. For row-based replication, table I/O done on the
-replica as it processes row changes can be instrumented, but row
-events in the relay log do not appear as discrete statements.
+The preceding description applies only for statement-based replication. For row-based replication, table I/O done on the replica as it processes row changes can be instrumented, but row events in the relay log do not appear as discrete statements.
 
 For a request received from the Event Scheduler:
 
-The event execution is instrumented using the name
-`statement/scheduler/event`. This is the final
-name.
+The event execution is instrumented using the name `statement/scheduler/event`. This is the final name.
 
-Statements executed within the event body are instrumented using
-`statement/sql/*` names, without use of any
-preceding abstract instrument. An event is a stored program, and
-stored programs are precompiled in memory before execution.
-Consequently, there is no parsing at runtime and the type of
-each statement is known by the time it executes.
+Statements executed within the event body are instrumented using `statement/sql/*` names, without use of any preceding abstract instrument. An event is a stored program, and stored programs are precompiled in memory before execution. Consequently, there is no parsing at runtime and the type of each statement is known by the time it executes.
 
-Statements executed within the event body are child statements.
-For example, if an event executes an
-[`INSERT`](insert.html "15.2.7 INSERT Statement") statement, execution of
-the event itself is the parent, instrumented using
-`statement/scheduler/event`, and the
-[`INSERT`](insert.html "15.2.7 INSERT Statement") is the child, instrumented
-using `statement/sql/insert`. The parent/child
-relationship holds *between* separate
-instrumented operations. This differs from the sequence of
-refinement that occurs *within* a single
-instrumented operation, from abstract to final instrument names.
+Statements executed within the event body are child statements. For example, if an event executes an `INSERT` statement, execution of the event itself is the parent, instrumented using `statement/scheduler/event`, and the `INSERT` is the child, instrumented using `statement/sql/insert`. The parent/child relationship holds *between* separate instrumented operations. This differs from the sequence of refinement that occurs *within* a single instrumented operation, from abstract to final instrument names.
 
-For statistics to be collected for statements, it is not
-sufficient to enable only the final
-`statement/sql/*` instruments used for
-individual statement types. The abstract
-`statement/abstract/*` instruments must be
-enabled as well. This should not normally be an issue because
-all statement instruments are enabled by default. However, an
-application that enables or disables statement instruments
-selectively must take into account that disabling abstract
-instruments also disables statistics collection for the
-individual statement instruments. For example, to collect
-statistics for [`INSERT`](insert.html "15.2.7 INSERT Statement") statements,
-`statement/sql/insert` must be enabled, but
-also `statement/abstract/new_packet` and
-`statement/abstract/Query`. Similarly, for
-replicated statements to be instrumented,
-`statement/abstract/relay_log` must be enabled.
+For statistics to be collected for statements, it is not sufficient to enable only the final `statement/sql/*` instruments used for individual statement types. The abstract `statement/abstract/*` instruments must be enabled as well. This should not normally be an issue because all statement instruments are enabled by default. However, an application that enables or disables statement instruments selectively must take into account that disabling abstract instruments also disables statistics collection for the individual statement instruments. For example, to collect statistics for `INSERT` statements, `statement/sql/insert` must be enabled, but also `statement/abstract/new_packet` and `statement/abstract/Query`. Similarly, for replicated statements to be instrumented, `statement/abstract/relay_log` must be enabled.
 
-No statistics are aggregated for abstract instruments such as
-`statement/abstract/Query` because no statement
-is ever classified with an abstract instrument as the final
-statement name.
+No statistics are aggregated for abstract instruments such as `statement/abstract/Query` because no statement is ever classified with an abstract instrument as the final statement name.

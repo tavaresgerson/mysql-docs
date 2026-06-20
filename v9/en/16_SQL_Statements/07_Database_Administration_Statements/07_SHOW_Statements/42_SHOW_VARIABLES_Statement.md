@@ -5,72 +5,35 @@ SHOW [GLOBAL | SESSION] VARIABLES
     [LIKE 'pattern' | WHERE expr]
 ```
 
-[`SHOW VARIABLES`](show-variables.html "15.7.7.42 SHOW VARIABLES Statement") shows the values
-of MySQL system variables (see
-[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")). This statement does
-not require any privilege. It requires only the ability to
-connect to the server.
+`SHOW VARIABLES` shows the values of MySQL system variables (see Section 7.1.8, “Server System Variables”). This statement does not require any privilege. It requires only the ability to connect to the server.
 
-System variable information is also available from these
-sources:
+System variable information is also available from these sources:
 
-* Performance Schema tables. See
-  [Section 29.12.14, “Performance Schema System Variable Tables”](performance-schema-system-variable-tables.html "29.12.14 Performance Schema System Variable Tables").
+* Performance Schema tables. See Section 29.12.14, “Performance Schema System Variable Tables”.
 
-* The [**mysqladmin variables**](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program") command. See
-  [Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "6.5.2 mysqladmin — A MySQL Server Administration Program").
+* The **mysqladmin variables** command. See Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”.
 
-For [`SHOW VARIABLES`](show-variables.html "15.7.7.42 SHOW VARIABLES Statement"), a
-[`LIKE`](string-comparison-functions.html#operator_like) clause, if present, indicates
-which variable names to match. A `WHERE` clause
-can be given to select rows using more general conditions, as
-discussed in [Section 28.8, “Extensions to SHOW Statements”](extended-show.html "28.8 Extensions to SHOW Statements").
+For `SHOW VARIABLES`, a `LIKE` clause, if present, indicates which variable names to match. A `WHERE` clause can be given to select rows using more general conditions, as discussed in Section 28.8, “Extensions to SHOW Statements”.
 
-[`SHOW VARIABLES`](show-variables.html "15.7.7.42 SHOW VARIABLES Statement") accepts an
-optional `GLOBAL` or `SESSION`
-variable scope modifier:
+`SHOW VARIABLES` accepts an optional `GLOBAL` or `SESSION` variable scope modifier:
 
-* With a `GLOBAL` modifier, the statement
-  displays global system variable values. These are the values
-  used to initialize the corresponding session variables for
-  new connections to MySQL. If a variable has no global value,
-  no value is displayed.
+* With a `GLOBAL` modifier, the statement displays global system variable values. These are the values used to initialize the corresponding session variables for new connections to MySQL. If a variable has no global value, no value is displayed.
 
-* With a `SESSION` modifier, the statement
-  displays the system variable values that are in effect for
-  the current connection. If a variable has no session value,
-  the global value is displayed. `LOCAL` is a
-  synonym for `SESSION`.
+* With a `SESSION` modifier, the statement displays the system variable values that are in effect for the current connection. If a variable has no session value, the global value is displayed. `LOCAL` is a synonym for `SESSION`.
 
-* If no modifier is present, the default is
-  `SESSION`.
+* If no modifier is present, the default is `SESSION`.
 
-The scope for each system variable is listed at
-[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables").
+The scope for each system variable is listed at Section 7.1.8, “Server System Variables”.
 
-[`SHOW VARIABLES`](show-variables.html "15.7.7.42 SHOW VARIABLES Statement") is subject to a
-version-dependent display-width limit. For variables with very
-long values that are not completely displayed, use
-[`SELECT`](select.html "15.2.13 SELECT Statement") as a workaround. For
-example:
+`SHOW VARIABLES` is subject to a version-dependent display-width limit. For variables with very long values that are not completely displayed, use `SELECT` as a workaround. For example:
 
 ```
 SELECT @@GLOBAL.innodb_data_file_path;
 ```
 
-Most system variables can be set at server startup (read-only
-variables such as
-[`version_comment`](server-system-variables.html#sysvar_version_comment) are
-exceptions). Many can be changed at runtime with the
-[`SET`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment")
-statement. See [Section 7.1.9, “Using System Variables”](using-system-variables.html "7.1.9 Using System Variables"), and
-[Section 15.7.6.1, “SET Syntax for Variable Assignment”](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment").
+Most system variables can be set at server startup (read-only variables such as `version_comment` are exceptions). Many can be changed at runtime with the `SET` statement. See Section 7.1.9, “Using System Variables”, and Section 15.7.6.1, “SET Syntax for Variable Assignment”.
 
-Partial output is shown here. The list of names and values may
-differ for your server.
-[Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables"), describes the meaning
-of each variable, and [Section 7.1.1, “Configuring the Server”](server-configuration.html "7.1.1 Configuring the Server"),
-provides information about tuning them.
+Partial output is shown here. The list of names and values may differ for your server. Section 7.1.8, “Server System Variables”, describes the meaning of each variable, and Section 7.1.1, “Configuring the Server”, provides information about tuning them.
 
 ```
 mysql> SHOW VARIABLES;
@@ -154,27 +117,18 @@ mysql> SHOW VARIABLES;
 +-------------------------------------------------------+-----------------------+
 ```
 
-With a [`LIKE`](string-comparison-functions.html#operator_like) clause, the statement
-displays only rows for those variables with names that match the
-pattern. To obtain the row for a specific variable, use a
-[`LIKE`](string-comparison-functions.html#operator_like) clause as shown:
+With a `LIKE` clause, the statement displays only rows for those variables with names that match the pattern. To obtain the row for a specific variable, use a `LIKE` clause as shown:
 
 ```
 SHOW VARIABLES LIKE 'max_join_size';
 SHOW SESSION VARIABLES LIKE 'max_join_size';
 ```
 
-To get a list of variables whose name match a pattern, use the
-`%` wildcard character in a
-[`LIKE`](string-comparison-functions.html#operator_like) clause:
+To get a list of variables whose name match a pattern, use the `%` wildcard character in a `LIKE` clause:
 
 ```
 SHOW VARIABLES LIKE '%size%';
 SHOW GLOBAL VARIABLES LIKE '%size%';
 ```
 
-Wildcard characters can be used in any position within the
-pattern to be matched. Strictly speaking, because
-`_` is a wildcard that matches any single
-character, you should escape it as `\_` to
-match it literally. In practice, this is rarely necessary.
+Wildcard characters can be used in any position within the pattern to be matched. Strictly speaking, because `_` is a wildcard that matches any single character, you should escape it as `\_` to match it literally. In practice, this is rarely necessary.

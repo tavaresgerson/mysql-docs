@@ -1,11 +1,8 @@
 ### 28.3.3 The INFORMATION\_SCHEMA APPLICABLE\_ROLES Table
 
-The [`APPLICABLE_ROLES`](information-schema-applicable-roles-table.html "28.3.3 The INFORMATION_SCHEMA APPLICABLE_ROLES Table") table provides
-information about the roles that are applicable for the current
-user.
+The `APPLICABLE_ROLES` table provides information about the roles that are applicable for the current user.
 
-The [`APPLICABLE_ROLES`](information-schema-applicable-roles-table.html "28.3.3 The INFORMATION_SCHEMA APPLICABLE_ROLES Table") table has these
-columns:
+The `APPLICABLE_ROLES` table has these columns:
 
 * `USER`
 
@@ -17,13 +14,11 @@ columns:
 
 * `GRANTEE`
 
-  The user name part of the account to which the role is
-  granted.
+  The user name part of the account to which the role is granted.
 
 * `GRANTEE_HOST`
 
-  The host name part of the account to which the role is
-  granted.
+  The host name part of the account to which the role is granted.
 
 * `ROLE_NAME`
 
@@ -35,15 +30,12 @@ columns:
 
 * `IS_GRANTABLE`
 
-  `YES` or `NO`, depending on
-  whether the role is grantable to other accounts.
+  `YES` or `NO`, depending on whether the role is grantable to other accounts.
 
 * `IS_DEFAULT`
 
-  `YES` or `NO`, depending on
-  whether the role is a default role.
+  `YES` or `NO`, depending on whether the role is a default role.
 
 * `IS_MANDATORY`
 
-  `YES` or `NO`, depending on
-  whether the role is mandatory.
+  `YES` or `NO`, depending on whether the role is mandatory.

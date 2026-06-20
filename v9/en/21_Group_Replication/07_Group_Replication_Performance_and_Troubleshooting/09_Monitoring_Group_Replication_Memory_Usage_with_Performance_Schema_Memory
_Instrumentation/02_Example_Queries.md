@@ -1,13 +1,8 @@
 #### 20.7.9.2 Example Queries
 
-This section describes sample queries using the instruments and
-events for monitoring Group Replication memory usage. The
-queries retrieve data from the
-[`memory_summary_global_by_event_name`](performance-schema-memory-summary-tables.html "29.12.20.10 Memory Summary Tables")
-table.
+This section describes sample queries using the instruments and events for monitoring Group Replication memory usage. The queries retrieve data from the `memory_summary_global_by_event_name` table.
 
-The memory data can be queried for individual events, for
-example:
+The memory data can be queried for individual events, for example:
 
 ```
 SELECT * FROM performance_schema.memory_summary_global_by_event_name
@@ -27,30 +22,25 @@ CURRENT_NUMBER_OF_BYTES_USED: 45
    HIGH_NUMBER_OF_BYTES_USED: 45
 ```
 
-See [Section 29.12.20.10, “Memory Summary Tables”](performance-schema-memory-summary-tables.html "29.12.20.10 Memory Summary Tables")
-for more information on the columns.
+See Section 29.12.20.10, “Memory Summary Tables” for more information on the columns.
 
-You can also define queries which sum various events to provide
-overviews of specific areas of memory usage.
+You can also define queries which sum various events to provide overviews of specific areas of memory usage.
 
 The following examples are described:
 
-* [Memory Used to Capture Transactions](mysql-gr-memory-monitoring-ps-sample-queries.html#mysql-gr-memory-monitoring-ps-sample-queries-transaction-capture "Memory Used to Capture Transactions")
-* [Memory Used to Broadcast Transactions](mysql-gr-memory-monitoring-ps-sample-queries.html#mysql-gr-memory-monitoring-ps-sample-queries-transaction-broadcast "Memory Used to Broadcast Transactions")
-* [Total Memory Used in Group Replication](mysql-gr-memory-monitoring-ps-sample-queries.html#mysql-gr-memory-monitoring-ps-sample-queries-total-memory "Total Memory Used in Group Replication")
-* [Memory Used in Certification](mysql-gr-memory-monitoring-ps-sample-queries.html#mysql-gr-memory-monitoring-ps-sample-queries-certification-memory "Memory Used in Certification")
-* [Memory Used in Certification](mysql-gr-memory-monitoring-ps-sample-queries.html#mysql-gr-memory-monitoring-ps-sample-queries-certification-memory "Memory Used in Certification")
-* [Memory Used in Replication Pipeline](mysql-gr-memory-monitoring-ps-sample-queries.html#mysql-gr-memory-monitoring-ps-sample-queries-pipeline-memory "Memory Used in Replication Pipeline")
-* [Memory Used in Consistency](mysql-gr-memory-monitoring-ps-sample-queries.html#mysql-gr-memory-monitoring-ps-sample-queries-consistency-memory "Memory Used in Consistency")
-* [Memory Used in Delivery Message Service](mysql-gr-memory-monitoring-ps-sample-queries.html#mysql-gr-memory-monitoring-ps-sample-queries-message-memory "Memory Used in Delivery Message Service")
-* [Memory Used to Broadcast and Receive Transactions](mysql-gr-memory-monitoring-ps-sample-queries.html#mysql-gr-memory-monitoring-ps-sample-queries-send-receive-transaction "Memory Used to Broadcast and Receive Transactions")
+* Memory Used to Capture Transactions
+* Memory Used to Broadcast Transactions
+* Total Memory Used in Group Replication
+* Memory Used in Certification
+* Memory Used in Certification
+* Memory Used in Replication Pipeline
+* Memory Used in Consistency
+* Memory Used in Delivery Message Service
+* Memory Used to Broadcast and Receive Transactions
 
 ##### Memory Used to Capture Transactions
 
-The memory allocated to capture user transactions is a sum of
-the `write_set_encoded`,
-`write_set_extraction`, and
-`Log_event` event's values. For example:
+The memory allocated to capture user transactions is a sum of the `write_set_encoded`, `write_set_extraction`, and `Log_event` event's values. For example:
 
 ```
 SELECT * FROM (SELECT
@@ -98,11 +88,7 @@ SUM(CURRENT_NUMBER_OF_BYTES_USED): 2757
 
 ##### Memory Used to Broadcast Transactions
 
-The memory allocated to broadcast transactions is a sum of the
-`Gcs_message_data::m_buffer`,
-`transaction_data`, and
-`GCS_XCom::xcom_cache` event values. For
-example:
+The memory allocated to broadcast transactions is a sum of the `Gcs_message_data::m_buffer`, `transaction_data`, and `GCS_XCom::xcom_cache` event values. For example:
 
 ```
 SELECT * FROM (
@@ -151,10 +137,7 @@ SUM(CURRENT_NUMBER_OF_BYTES_USED): 1065175
 
 ##### Total Memory Used in Group Replication
 
-The memory allocation to sending and receiving transactions,
-certification, and all other major processes. It is calculated
-by querying all the events of the
-`memory/group_rpl/` group. For example:
+The memory allocation to sending and receiving transactions, certification, and all other major processes. It is calculated by querying all the events of the `memory/group_rpl/` group. For example:
 
 ```
 SELECT * FROM (
@@ -195,11 +178,7 @@ SUM(CURRENT_NUMBER_OF_BYTES_USED): 1067695
 
 ##### Memory Used in Certification
 
-The memory allocation in the certification process is a sum of
-the `certification_data`,
-`certification_data_gc`, and
-`certification_info` event values. For
-example:
+The memory allocation in the certification process is a sum of the `certification_data`, `certification_data_gc`, and `certification_info` event values. For example:
 
 ```
 SELECT * FROM (
@@ -247,9 +226,7 @@ SUM(CURRENT_NUMBER_OF_BYTES_USED): 0
 
 ##### Memory Used in Replication Pipeline
 
-The memory allocation of the replication pipeline is the sum
-of the `certification_data` and
-`transaction_data` event values. For example:
+The memory allocation of the replication pipeline is the sum of the `certification_data` and `transaction_data` event values. For example:
 
 ```
 SELECT * FROM (
@@ -293,14 +270,7 @@ CURRENT_NUMBER_OF_BYTES_USED: 815
 
 ##### Memory Used in Consistency
 
-The memory allocation for transaction consistency guarantees
-is the sum of the
-`consistent_members_that_must_prepare_transaction`,
-`consistent_transactions`,
-`consistent_transactions_prepared`,
-`consistent_transactions_waiting`, and
-`consistent_transactions_delayed_view_change`
-event values. For example:
+The memory allocation for transaction consistency guarantees is the sum of the `consistent_members_that_must_prepare_transaction`, `consistent_transactions`, `consistent_transactions_prepared`, `consistent_transactions_waiting`, and `consistent_transactions_delayed_view_change` event values. For example:
 
 ```
 SELECT * FROM (
@@ -358,14 +328,9 @@ CURRENT_NUMBER_OF_BYTES_USED: 936
 
 Note
 
-This instrumentation applies only to data received, not data
-sent.
+This instrumentation applies only to data received, not data sent.
 
-The memory allocation for the Group Replication delivery
-message service is the sum of the
-`message_service_received_message` and
-`message_service_queue` event values. For
-example:
+The memory allocation for the Group Replication delivery message service is the sum of the `message_service_received_message` and `message_service_queue` event values. For example:
 
 ```
 SELECT * FROM (
@@ -410,11 +375,7 @@ CURRENT_NUMBER_OF_BYTES_USED: 1048664
 
 ##### Memory Used to Broadcast and Receive Transactions
 
-The memory allocation for the broadcasting and receiving
-transactions to and from the network is the sum of the
-`wGcs_message_data::m_buffer` and
-`GCS_XCom::xcom_cache` event values. For
-example:
+The memory allocation for the broadcasting and receiving transactions to and from the network is the sum of the `wGcs_message_data::m_buffer` and `GCS_XCom::xcom_cache` event values. For example:
 
 ```
 SELECT * FROM (

@@ -1,60 +1,26 @@
 #### 7.1.9.4 Nonpersistible and Persist-Restricted System Variables
 
-[`SET
-PERSIST`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment") and
-[`SET
-PERSIST_ONLY`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment") enable global system variables to be
-persisted to the `mysqld-auto.cnf` option
-file in the data directory (see [Section 15.7.6.1, “SET Syntax for Variable Assignment”](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment")).
-However, not all system variables can be persisted, or can be
-persisted only under certain restrictive conditions. Here are
-some reasons why a system variable might be nonpersistible or
-persist-restricted:
+[`SET PERSIST`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment") and [`SET PERSIST_ONLY`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment") enable global system variables to be persisted to the `mysqld-auto.cnf` option file in the data directory (see Section 15.7.6.1, “SET Syntax for Variable Assignment”). However, not all system variables can be persisted, or can be persisted only under certain restrictive conditions. Here are some reasons why a system variable might be nonpersistible or persist-restricted:
 
-* Session system variables cannot be persisted. Session
-  variables cannot be set at server startup, so there is no
-  reason to persist them.
+* Session system variables cannot be persisted. Session variables cannot be set at server startup, so there is no reason to persist them.
 
-* A global system variable might involve sensitive data such
-  that it should be settable only by a user with direct access
-  to the server host.
+* A global system variable might involve sensitive data such that it should be settable only by a user with direct access to the server host.
 
-* A global system variable might be read only (that is, set
-  only by the server). In this case, it cannot be set by users
-  at all, whether at server startup or at runtime.
+* A global system variable might be read only (that is, set only by the server). In this case, it cannot be set by users at all, whether at server startup or at runtime.
 
-* A global system variable might be intended only for internal
-  use.
+* A global system variable might be intended only for internal use.
 
-Nonpersistible system variables cannot be persisted under any
-circumstances. Persist-restricted system variables can be
-persisted with [`SET
-PERSIST_ONLY`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment"), but only by users for which the
-following conditions are satisfied:
+Nonpersistible system variables cannot be persisted under any circumstances. Persist-restricted system variables can be persisted with [`SET PERSIST_ONLY`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment"), but only by users for which the following conditions are satisfied:
 
-* The
-  [`persist_only_admin_x509_subject`](server-system-variables.html#sysvar_persist_only_admin_x509_subject)
-  system variable is set to an SSL certificate X.509 Subject
-  value.
+* The `persist_only_admin_x509_subject` system variable is set to an SSL certificate X.509 Subject value.
 
-* The user connects to the server using an encrypted
-  connection and supplies an SSL certificate with the
-  designated Subject value.
+* The user connects to the server using an encrypted connection and supplies an SSL certificate with the designated Subject value.
 
-* The user has sufficient privileges to use
-  [`SET
-  PERSIST_ONLY`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment") (see
-  [Section 7.1.9.1, “System Variable Privileges”](system-variable-privileges.html "7.1.9.1 System Variable Privileges")).
+* The user has sufficient privileges to use [`SET PERSIST_ONLY`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment") (see Section 7.1.9.1, “System Variable Privileges”).
 
-For example, [`protocol_version`](server-system-variables.html#sysvar_protocol_version)
-is read only and set only by the server, so it cannot be
-persisted under any circumstances. On the other hand,
-[`bind_address`](server-system-variables.html#sysvar_bind_address) is
-persist-restricted, so it can be set by users who satisfy the
-preceding conditions.
+For example, `protocol_version` is read only and set only by the server, so it cannot be persisted under any circumstances. On the other hand, `bind_address` is persist-restricted, so it can be set by users who satisfy the preceding conditions.
 
-The following system variables are nonpersistible. This list may
-change with ongoing development.
+The following system variables are nonpersistible. This list may change with ongoing development.
 
 ```
 audit_log_current_session
@@ -103,12 +69,7 @@ version_compile_os
 version_compile_zlib
 ```
 
-Persist-restricted system variables are those that are read only
-and can be set on the command line or in an option file, other
-than
-[`persist_only_admin_x509_subject`](server-system-variables.html#sysvar_persist_only_admin_x509_subject)
-and [`persisted_globals_load`](server-system-variables.html#sysvar_persisted_globals_load).
-This list may change with ongoing development.
+Persist-restricted system variables are those that are read only and can be set on the command line or in an option file, other than `persist_only_admin_x509_subject` and `persisted_globals_load`. This list may change with ongoing development.
 
 ```
 audit_log_file
@@ -163,47 +124,27 @@ tmpdir
 version_tokens_session_number
 ```
 
-To configure the server to enable persisting persist-restricted
-system variables, use this procedure:
+To configure the server to enable persisting persist-restricted system variables, use this procedure:
 
-1. Ensure that MySQL is configured to support encrypted
-   connections. See
-   [Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "8.3.1 Configuring MySQL to Use Encrypted Connections").
+1. Ensure that MySQL is configured to support encrypted connections. See Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”.
 
-2. Designate an SSL certificate X.509 Subject value that
-   signifies the ability to persist persist-restricted system
-   variables, and generate a certificate that has that Subject.
-   See [Section 8.3.3, “Creating SSL and RSA Certificates and Keys”](creating-ssl-rsa-files.html "8.3.3 Creating SSL and RSA Certificates and Keys").
+2. Designate an SSL certificate X.509 Subject value that signifies the ability to persist persist-restricted system variables, and generate a certificate that has that Subject. See Section 8.3.3, “Creating SSL and RSA Certificates and Keys”.
 
-3. Start the server with
-   [`persist_only_admin_x509_subject`](server-system-variables.html#sysvar_persist_only_admin_x509_subject)
-   set to the designated Subject value. For example, put these
-   lines in your server `my.cnf` file:
+3. Start the server with `persist_only_admin_x509_subject` set to the designated Subject value. For example, put these lines in your server `my.cnf` file:
 
    ```
    [mysqld]
    persist_only_admin_x509_subject="subject-value"
    ```
 
-   The format of the Subject value is the same as used for
-   [`CREATE USER ...
-   REQUIRE SUBJECT`](create-user.html "15.7.1.3 CREATE USER Statement"). See
-   [Section 15.7.1.3, “CREATE USER Statement”](create-user.html "15.7.1.3 CREATE USER Statement").
+   The format of the Subject value is the same as used for [`CREATE USER ... REQUIRE SUBJECT`](create-user.html "15.7.1.3 CREATE USER Statement"). See Section 15.7.1.3, “CREATE USER Statement”.
 
-   You must perform this step directly on the MySQL server host
-   because
-   [`persist_only_admin_x509_subject`](server-system-variables.html#sysvar_persist_only_admin_x509_subject)
-   itself cannot be persisted at runtime.
+   You must perform this step directly on the MySQL server host because `persist_only_admin_x509_subject` itself cannot be persisted at runtime.
 
 4. Restart the server.
-5. Distribute the SSL certificate that has the designated
-   Subject value to users who are to be permitted to persist
-   persist-restricted system variables.
+5. Distribute the SSL certificate that has the designated Subject value to users who are to be permitted to persist persist-restricted system variables.
 
-Suppose that `myclient-cert.pem` is the SSL
-certificate to be used by clients who can persist
-persist-restricted system variables. Display the certificate
-contents using the **openssl** command:
+Suppose that `myclient-cert.pem` is the SSL certificate to be used by clients who can persist persist-restricted system variables. Display the certificate contents using the **openssl** command:
 
 ```
 $> openssl x509 -text -in myclient-cert.pem
@@ -220,8 +161,7 @@ Certificate:
 ...
 ```
 
-The **openssl** output shows that the certificate
-Subject value is:
+The **openssl** output shows that the certificate Subject value is:
 
 ```
 C=US, ST=IL, L=Chicago, O=MyOrg, OU=client, CN=MyCN
@@ -233,8 +173,7 @@ To specify the Subject for MySQL, use this format:
 /C=US/ST=IL/L=Chicago/O=MyOrg/OU=client/CN=MyCN
 ```
 
-Configure the server `my.cnf` file with the
-Subject value:
+Configure the server `my.cnf` file with the Subject value:
 
 ```
 [mysqld]
@@ -243,37 +182,22 @@ persist_only_admin_x509_subject="/C=US/ST=IL/L=Chicago/O=MyOrg/OU=client/CN=MyCN
 
 Restart the server so that the new configuration takes effect.
 
-Distribute the SSL certificate (and any other associated SSL
-files) to the appropriate users. Such a user then connects to
-the server with the certificate and any other SSL options
-required to establish an encrypted connection.
+Distribute the SSL certificate (and any other associated SSL files) to the appropriate users. Such a user then connects to the server with the certificate and any other SSL options required to establish an encrypted connection.
 
-To use X.509, clients must specify the
-[`--ssl-key`](connection-options.html#option_general_ssl-key) and
-[`--ssl-cert`](connection-options.html#option_general_ssl-cert) options to connect.
-It is recommended but not required that
-[`--ssl-ca`](connection-options.html#option_general_ssl-ca) also be specified so
-that the public certificate provided by the server can be
-verified. For example:
+To use X.509, clients must specify the `--ssl-key` and `--ssl-cert` options to connect. It is recommended but not required that `--ssl-ca` also be specified so that the public certificate provided by the server can be verified. For example:
 
 ```
 $> mysql --ssl-key=myclient-key.pem --ssl-cert=myclient-cert.pem --ssl-ca=mycacert.pem
 ```
 
-Assuming that the user has sufficient privileges to use
-[`SET
-PERSIST_ONLY`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment"), persist-restricted system variables can
-be persisted like this:
+Assuming that the user has sufficient privileges to use [`SET PERSIST_ONLY`](set-variable.html "15.7.6.1 SET Syntax for Variable Assignment"), persist-restricted system variables can be persisted like this:
 
 ```
 mysql> SET PERSIST_ONLY socket = '/tmp/mysql.sock';
 Query OK, 0 rows affected (0.00 sec)
 ```
 
-If the server is not configured to enable persisting
-persist-restricted system variables, or the user does not
-satisfy the required conditions for that capability, an error
-occurs:
+If the server is not configured to enable persisting persist-restricted system variables, or the user does not satisfy the required conditions for that capability, an error occurs:
 
 ```
 mysql> SET PERSIST_ONLY socket = '/tmp/mysql.sock';

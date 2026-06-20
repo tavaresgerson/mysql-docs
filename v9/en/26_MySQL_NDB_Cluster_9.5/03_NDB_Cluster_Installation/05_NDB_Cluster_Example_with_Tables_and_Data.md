@@ -2,56 +2,31 @@
 
 Note
 
-The information in this section applies to NDB Cluster running
-on both Unix and Windows platforms.
+The information in this section applies to NDB Cluster running on both Unix and Windows platforms.
 
-Working with database tables and data in NDB Cluster is not much
-different from doing so in standard MySQL. There are two key
-points to keep in mind:
+Working with database tables and data in NDB Cluster is not much different from doing so in standard MySQL. There are two key points to keep in mind:
 
-* For a table to be replicated in the cluster, it must use the
-  [`NDBCLUSTER`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 9.5") storage engine. To
-  specify this, use the `ENGINE=NDBCLUSTER` or
-  `ENGINE=NDB` option when creating the table:
+* For a table to be replicated in the cluster, it must use the `NDBCLUSTER` storage engine. To specify this, use the `ENGINE=NDBCLUSTER` or `ENGINE=NDB` option when creating the table:
 
   ```
   CREATE TABLE tbl_name (col_name column_definitions) ENGINE=NDBCLUSTER;
   ```
 
-  Alternatively, for an existing table that uses a different
-  storage engine, use [`ALTER TABLE`](alter-table.html "15.1.11 ALTER TABLE Statement")
-  to change the table to use
-  [`NDBCLUSTER`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 9.5"):
+  Alternatively, for an existing table that uses a different storage engine, use `ALTER TABLE` to change the table to use `NDBCLUSTER`:
 
   ```
   ALTER TABLE tbl_name ENGINE=NDBCLUSTER;
   ```
 
-* Every [`NDBCLUSTER`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 9.5") table has a
-  primary key. If no primary key is defined by the user when a
-  table is created, the [`NDBCLUSTER`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 9.5")
-  storage engine automatically generates a hidden one. Such a
-  key takes up space just as does any other table index. (It is
-  not uncommon to encounter problems due to insufficient memory
-  for accommodating these automatically created indexes.)
+* Every `NDBCLUSTER` table has a primary key. If no primary key is defined by the user when a table is created, the `NDBCLUSTER` storage engine automatically generates a hidden one. Such a key takes up space just as does any other table index. (It is not uncommon to encounter problems due to insufficient memory for accommodating these automatically created indexes.)
 
-If you are importing tables from an existing database using the
-output of [**mysqldump**](mysqldump.html "6.5.4 mysqldump — A Database Backup Program"), you can open the SQL
-script in a text editor and add the `ENGINE`
-option to any table creation statements, or replace any existing
-`ENGINE` options. Suppose that you have the
-`world` sample database on another MySQL server
-that does not support NDB Cluster, and you want to export the
-`City` table:
+If you are importing tables from an existing database using the output of **mysqldump**, you can open the SQL script in a text editor and add the `ENGINE` option to any table creation statements, or replace any existing `ENGINE` options. Suppose that you have the `world` sample database on another MySQL server that does not support NDB Cluster, and you want to export the `City` table:
 
 ```
 $> mysqldump --add-drop-table world City > city_table.sql
 ```
 
-The resulting `city_table.sql` file contains
-this table creation statement (and the
-[`INSERT`](insert.html "15.2.7 INSERT Statement") statements necessary to
-import the table data):
+The resulting `city_table.sql` file contains this table creation statement (and the `INSERT` statements necessary to import the table data):
 
 ```
 DROP TABLE IF EXISTS `City`;
@@ -70,14 +45,7 @@ INSERT INTO `City` VALUES (3,'Herat','AFG','Herat',186800);
 (remaining INSERT statements omitted)
 ```
 
-You need to make sure that MySQL uses the
-[`NDBCLUSTER`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 9.5") storage engine for this
-table. There are two ways that this can be accomplished. One of
-these is to modify the table definition
-*before* importing it into the Cluster
-database. Using the `City` table as an example,
-modify the `ENGINE` option of the definition as
-follows:
+You need to make sure that MySQL uses the `NDBCLUSTER` storage engine for this table. There are two ways that this can be accomplished. One of these is to modify the table definition *before* importing it into the Cluster database. Using the `City` table as an example, modify the `ENGINE` option of the definition as follows:
 
 ```
 DROP TABLE IF EXISTS `City`;
@@ -96,53 +64,25 @@ INSERT INTO `City` VALUES (3,'Herat','AFG','Herat',186800);
 (remaining INSERT statements omitted)
 ```
 
-This must be done for the definition of each table that is to be
-part of the clustered database. The easiest way to accomplish this
-is to do a search-and-replace on the file that contains the
-definitions and replace all instances of
-`ENGINE=engine_name`
-with `ENGINE=NDBCLUSTER`. If you do not want to
-modify the file, you can use the unmodified file to create the
-tables, and then use [`ALTER TABLE`](alter-table.html "15.1.11 ALTER TABLE Statement") to
-change their storage engine. The particulars are given later in
-this section.
+This must be done for the definition of each table that is to be part of the clustered database. The easiest way to accomplish this is to do a search-and-replace on the file that contains the definitions and replace all instances of `ENGINE=engine_name` with `ENGINE=NDBCLUSTER`. If you do not want to modify the file, you can use the unmodified file to create the tables, and then use `ALTER TABLE` to change their storage engine. The particulars are given later in this section.
 
-Assuming that you have already created a database named
-`world` on the SQL node of the cluster, you can
-then use the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") command-line client to read
-`city_table.sql`, and create and populate the
-corresponding table in the usual manner:
+Assuming that you have already created a database named `world` on the SQL node of the cluster, you can then use the **mysql** command-line client to read `city_table.sql`, and create and populate the corresponding table in the usual manner:
 
 ```
 $> mysql world < city_table.sql
 ```
 
-It is very important to keep in mind that the preceding command
-must be executed on the host where the SQL node is running (in
-this case, on the machine with the IP address
-`198.51.100.20`).
+It is very important to keep in mind that the preceding command must be executed on the host where the SQL node is running (in this case, on the machine with the IP address `198.51.100.20`).
 
-To create a copy of the entire `world` database
-on the SQL node, use [**mysqldump**](mysqldump.html "6.5.4 mysqldump — A Database Backup Program") on the
-noncluster server to export the database to a file named
-`world.sql` (for example, in the
-`/tmp` directory). Then modify the table
-definitions as just described and import the file into the SQL
-node of the cluster like this:
+To create a copy of the entire `world` database on the SQL node, use **mysqldump** on the noncluster server to export the database to a file named `world.sql` (for example, in the `/tmp` directory). Then modify the table definitions as just described and import the file into the SQL node of the cluster like this:
 
 ```
 $> mysql world < /tmp/world.sql
 ```
 
-If you save the file to a different location, adjust the preceding
-instructions accordingly.
+If you save the file to a different location, adjust the preceding instructions accordingly.
 
-Running [`SELECT`](select.html "15.2.13 SELECT Statement") queries on the SQL
-node is no different from running them on any other instance of a
-MySQL server. To run queries from the command line, you first need
-to log in to the MySQL Monitor in the usual way (specify the
-`root` password at the `Enter
-password:` prompt):
+Running `SELECT` queries on the SQL node is no different from running them on any other instance of a MySQL server. To run queries from the command line, you first need to log in to the MySQL Monitor in the usual way (specify the `root` password at the `Enter password:` prompt):
 
 ```
 $> mysql -u root -p
@@ -155,24 +95,11 @@ Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
 mysql>
 ```
 
-We simply use the MySQL server's `root`
-account and assume that you have followed the standard security
-precautions for installing a MySQL server, including setting a
-strong `root` password. For more information, see
-[Section 2.9.4, “Securing the Initial MySQL Account”](default-privileges.html "2.9.4 Securing the Initial MySQL Account").
+We simply use the MySQL server's `root` account and assume that you have followed the standard security precautions for installing a MySQL server, including setting a strong `root` password. For more information, see Section 2.9.4, “Securing the Initial MySQL Account”.
 
-It is worth taking into account that NDB Cluster nodes do
-*not* make use of the MySQL privilege system
-when accessing one another. Setting or changing MySQL user
-accounts (including the `root` account) effects
-only applications that access the SQL node, not interaction
-between nodes. See
-[Section 25.6.19.2, “NDB Cluster and MySQL Privileges”](mysql-cluster-security-mysql-privileges.html "25.6.19.2 NDB Cluster and MySQL Privileges"), for
-more information.
+It is worth taking into account that NDB Cluster nodes do *not* make use of the MySQL privilege system when accessing one another. Setting or changing MySQL user accounts (including the `root` account) effects only applications that access the SQL node, not interaction between nodes. See Section 25.6.19.2, “NDB Cluster and MySQL Privileges”, for more information.
 
-If you did not modify the `ENGINE` clauses in the
-table definitions prior to importing the SQL script, you should
-run the following statements at this point:
+If you did not modify the `ENGINE` clauses in the table definitions prior to importing the SQL script, you should run the following statements at this point:
 
 ```
 mysql> USE world;
@@ -181,9 +108,7 @@ mysql> ALTER TABLE Country ENGINE=NDBCLUSTER;
 mysql> ALTER TABLE CountryLanguage ENGINE=NDBCLUSTER;
 ```
 
-Selecting a database and running a **SELECT** query
-against a table in that database is also accomplished in the usual
-manner, as is exiting the MySQL Monitor:
+Selecting a database and running a **SELECT** query against a table in that database is also accomplished in the usual manner, as is exiting the MySQL Monitor:
 
 ```
 mysql> USE world;
@@ -205,13 +130,7 @@ Bye
 $>
 ```
 
-Applications that use MySQL can employ standard APIs to access
-[`NDB`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 9.5") tables. It is important to
-remember that your application must access the SQL node, and not
-the management or data nodes. This brief example shows how we
-might execute the [`SELECT`](select.html "15.2.13 SELECT Statement") statement
-just shown by using the PHP 5.X `mysqli`
-extension running on a Web server elsewhere on the network:
+Applications that use MySQL can employ standard APIs to access `NDB` tables. It is important to remember that your application must access the SQL node, and not the management or data nodes. This brief example shows how we might execute the `SELECT` statement just shown by using the PHP 5.X `mysqli` extension running on a Web server elsewhere on the network:
 
 ```
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -271,9 +190,6 @@ extension running on a Web server elsewhere on the network:
 </html>
 ```
 
-We assume that the process running on the Web server can reach the
-IP address of the SQL node.
+We assume that the process running on the Web server can reach the IP address of the SQL node.
 
-In a similar fashion, you can use the MySQL C API, Perl-DBI,
-Python-mysql, or MySQL Connectors to perform the tasks of data
-definition and manipulation just as you would normally with MySQL.
+In a similar fashion, you can use the MySQL C API, Perl-DBI, Python-mysql, or MySQL Connectors to perform the tasks of data definition and manipulation just as you would normally with MySQL.

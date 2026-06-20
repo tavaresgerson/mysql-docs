@@ -1,13 +1,8 @@
 ### 17.15.5 InnoDB INFORMATION\_SCHEMA Buffer Pool Tables
 
-The `InnoDB`
-`INFORMATION_SCHEMA` buffer pool tables provide
-buffer pool status information and metadata about the pages within
-the `InnoDB` buffer pool.
+The `InnoDB` `INFORMATION_SCHEMA` buffer pool tables provide buffer pool status information and metadata about the pages within the `InnoDB` buffer pool.
 
-The `InnoDB`
-`INFORMATION_SCHEMA` buffer pool tables include
-those listed below:
+The `InnoDB` `INFORMATION_SCHEMA` buffer pool tables include those listed below:
 
 ```
 mysql> SHOW TABLES FROM INFORMATION_SCHEMA LIKE 'INNODB_BUFFER%';
@@ -22,47 +17,19 @@ mysql> SHOW TABLES FROM INFORMATION_SCHEMA LIKE 'INNODB_BUFFER%';
 
 #### Table Overview
 
-* [`INNODB_BUFFER_PAGE`](information-schema-innodb-buffer-page-table.html "28.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table"): Holds
-  information about each page in the `InnoDB`
-  buffer pool.
+* `INNODB_BUFFER_PAGE`: Holds information about each page in the `InnoDB` buffer pool.
 
-* [`INNODB_BUFFER_PAGE_LRU`](information-schema-innodb-buffer-page-lru-table.html "28.4.3 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU Table"): Holds
-  information about the pages in the `InnoDB`
-  buffer pool, in particular how they are ordered in the LRU
-  list that determines which pages to evict from the buffer pool
-  when it becomes full. The
-  [`INNODB_BUFFER_PAGE_LRU`](information-schema-innodb-buffer-page-lru-table.html "28.4.3 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU Table") table has
-  the same columns as the
-  [`INNODB_BUFFER_PAGE`](information-schema-innodb-buffer-page-table.html "28.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table") table, except
-  that the [`INNODB_BUFFER_PAGE_LRU`](information-schema-innodb-buffer-page-lru-table.html "28.4.3 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU Table")
-  table has an `LRU_POSITION` column instead of
-  a `BLOCK_ID` column.
+* `INNODB_BUFFER_PAGE_LRU`: Holds information about the pages in the `InnoDB` buffer pool, in particular how they are ordered in the LRU list that determines which pages to evict from the buffer pool when it becomes full. The `INNODB_BUFFER_PAGE_LRU` table has the same columns as the `INNODB_BUFFER_PAGE` table, except that the `INNODB_BUFFER_PAGE_LRU` table has an `LRU_POSITION` column instead of a `BLOCK_ID` column.
 
-* [`INNODB_BUFFER_POOL_STATS`](information-schema-innodb-buffer-pool-stats-table.html "28.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table"):
-  Provides buffer pool status information. Much of the same
-  information is provided by
-  [`SHOW ENGINE
-  INNODB STATUS`](show-engine.html "15.7.7.17 SHOW ENGINE Statement") output, or may be obtained using
-  `InnoDB` buffer pool server status variables.
+* `INNODB_BUFFER_POOL_STATS`: Provides buffer pool status information. Much of the same information is provided by [`SHOW ENGINE INNODB STATUS`](show-engine.html "15.7.7.17 SHOW ENGINE Statement") output, or may be obtained using `InnoDB` buffer pool server status variables.
 
 Warning
 
-Querying the [`INNODB_BUFFER_PAGE`](information-schema-innodb-buffer-page-table.html "28.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table") or
-[`INNODB_BUFFER_PAGE_LRU`](information-schema-innodb-buffer-page-lru-table.html "28.4.3 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU Table") table can
-affect performance. Do not query these tables on a production
-system unless you are aware of the performance impact and have
-determined it to be acceptable. To avoid impacting performance
-on a production system, reproduce the issue you want to
-investigate and query buffer pool statistics on a test instance.
+Querying the `INNODB_BUFFER_PAGE` or `INNODB_BUFFER_PAGE_LRU` table can affect performance. Do not query these tables on a production system unless you are aware of the performance impact and have determined it to be acceptable. To avoid impacting performance on a production system, reproduce the issue you want to investigate and query buffer pool statistics on a test instance.
 
 **Example 17.6 Querying System Data in the INNODB\_BUFFER\_PAGE Table**
 
-This query provides an approximate count of pages that contain
-system data by excluding pages where the
-`TABLE_NAME` value is either
-`NULL` or includes a slash `/`
-or period `.` in the table name, which
-indicates a user-defined table.
+This query provides an approximate count of pages that contain system data by excluding pages where the `TABLE_NAME` value is either `NULL` or includes a slash `/` or period `.` in the table name, which indicates a user-defined table.
 
 ```
 mysql> SELECT COUNT(*) FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE
@@ -74,9 +41,7 @@ mysql> SELECT COUNT(*) FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE
 +----------+
 ```
 
-This query returns the approximate number of pages that contain
-system data, the total number of buffer pool pages, and an
-approximate percentage of pages that contain system data.
+This query returns the approximate number of pages that contain system data, the total number of buffer pool pages, and an approximate percentage of pages that contain system data.
 
 ```
 mysql> SELECT
@@ -97,11 +62,7 @@ mysql> SELECT
 +--------------+-------------+------------------------+
 ```
 
-The type of system data in the buffer pool can be determined by
-querying the `PAGE_TYPE` value. For example,
-the following query returns eight distinct
-`PAGE_TYPE` values among the pages that contain
-system data:
+The type of system data in the buffer pool can be determined by querying the `PAGE_TYPE` value. For example, the following query returns eight distinct `PAGE_TYPE` values among the pages that contain system data:
 
 ```
 mysql> SELECT DISTINCT PAGE_TYPE FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE
@@ -121,11 +82,7 @@ mysql> SELECT DISTINCT PAGE_TYPE FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE
 
 **Example 17.7 Querying User Data in the INNODB\_BUFFER\_PAGE Table**
 
-This query provides an approximate count of pages containing
-user data by counting pages where the
-`TABLE_NAME` value is `NOT
-NULL` and `NOT LIKE
-'%INNODB_TABLES%'`.
+This query provides an approximate count of pages containing user data by counting pages where the `TABLE_NAME` value is `NOT NULL` and `NOT LIKE '%INNODB_TABLES%'`.
 
 ```
 mysql> SELECT COUNT(*) FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE
@@ -137,9 +94,7 @@ mysql> SELECT COUNT(*) FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE
 +----------+
 ```
 
-This query returns the approximate number of pages that contain
-user data, the total number of buffer pool pages, and an
-approximate percentage of pages that contain user data.
+This query returns the approximate number of pages that contain user data, the total number of buffer pool pages, and an approximate percentage of pages that contain user data.
 
 ```
 mysql> SELECT
@@ -160,8 +115,7 @@ mysql> SELECT
 +------------+-------------+----------------------+
 ```
 
-This query identifies user-defined tables with pages in the
-buffer pool:
+This query identifies user-defined tables with pages in the buffer pool:
 
 ```
 mysql> SELECT DISTINCT TABLE_NAME FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE
@@ -177,12 +131,7 @@ mysql> SELECT DISTINCT TABLE_NAME FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE
 
 **Example 17.8 Querying Index Data in the INNODB\_BUFFER\_PAGE Table**
 
-For information about index pages, query the
-`INDEX_NAME` column using the name of the
-index. For example, the following query returns the number of
-pages and total data size of pages for the
-`emp_no` index that is defined on the
-`employees.salaries` table:
+For information about index pages, query the `INDEX_NAME` column using the name of the index. For example, the following query returns the number of pages and total data size of pages for the `emp_no` index that is defined on the `employees.salaries` table:
 
 ```
 mysql> SELECT INDEX_NAME, COUNT(*) AS Pages,
@@ -197,9 +146,7 @@ WHERE INDEX_NAME='emp_no' AND TABLE_NAME = '`employees`.`salaries`';
 +------------+-------+-----------------+
 ```
 
-This query returns the number of pages and total data size of
-pages for all indexes defined on the
-`employees.salaries` table:
+This query returns the number of pages and total data size of pages for all indexes defined on the `employees.salaries` table:
 
 ```
 mysql> SELECT INDEX_NAME, COUNT(*) AS Pages,
@@ -218,18 +165,9 @@ mysql> SELECT INDEX_NAME, COUNT(*) AS Pages,
 
 **Example 17.9 Querying LRU\_POSITION Data in the INNODB\_BUFFER\_PAGE\_LRU Table**
 
-The [`INNODB_BUFFER_PAGE_LRU`](information-schema-innodb-buffer-page-lru-table.html "28.4.3 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU Table") table
-holds information about the pages in the
-`InnoDB` buffer pool, in particular how they
-are ordered that determines which pages to evict from the buffer
-pool when it becomes full. The definition for this page is the
-same as for [`INNODB_BUFFER_PAGE`](information-schema-innodb-buffer-page-table.html "28.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table"),
-except this table has an `LRU_POSITION` column
-instead of a `BLOCK_ID` column.
+The `INNODB_BUFFER_PAGE_LRU` table holds information about the pages in the `InnoDB` buffer pool, in particular how they are ordered that determines which pages to evict from the buffer pool when it becomes full. The definition for this page is the same as for `INNODB_BUFFER_PAGE`, except this table has an `LRU_POSITION` column instead of a `BLOCK_ID` column.
 
-This query counts the number of positions at a specific location
-in the LRU list occupied by pages of the
-`employees.employees` table.
+This query counts the number of positions at a specific location in the LRU list occupied by pages of the `employees.employees` table.
 
 ```
 mysql> SELECT COUNT(LRU_POSITION) FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE_LRU
@@ -243,11 +181,7 @@ mysql> SELECT COUNT(LRU_POSITION) FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE_LRU
 
 **Example 17.10 Querying the INNODB\_BUFFER\_POOL\_STATS Table**
 
-The [`INNODB_BUFFER_POOL_STATS`](information-schema-innodb-buffer-pool-stats-table.html "28.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table") table
-provides information similar to
-[`SHOW ENGINE INNODB
-STATUS`](show-engine.html "15.7.7.17 SHOW ENGINE Statement") and `InnoDB` buffer pool
-status variables.
+The `INNODB_BUFFER_POOL_STATS` table provides information similar to [`SHOW ENGINE INNODB STATUS`](show-engine.html "15.7.7.17 SHOW ENGINE Statement") and `InnoDB` buffer pool status variables.
 
 ```
 mysql> SELECT * FROM information_schema.INNODB_BUFFER_POOL_STATS \G
@@ -286,16 +220,9 @@ NOT_YOUNG_MAKE_PER_THOUSAND_GETS: 0
               UNCOMPRESS_CURRENT: 0
 ```
 
-For comparison,
-[`SHOW ENGINE INNODB
-STATUS`](show-engine.html "15.7.7.17 SHOW ENGINE Statement") output and `InnoDB` buffer
-pool status variable output is shown below, based on the same
-data set.
+For comparison, [`SHOW ENGINE INNODB STATUS`](show-engine.html "15.7.7.17 SHOW ENGINE Statement") output and `InnoDB` buffer pool status variable output is shown below, based on the same data set.
 
-For more information about
-[`SHOW ENGINE INNODB
-STATUS`](show-engine.html "15.7.7.17 SHOW ENGINE Statement") output, see
-[Section 17.17.3, “InnoDB Standard Monitor and Lock Monitor Output”](innodb-standard-monitor.html "17.17.3 InnoDB Standard Monitor and Lock Monitor Output").
+For more information about [`SHOW ENGINE INNODB STATUS`](show-engine.html "15.7.7.17 SHOW ENGINE Statement") output, see Section 17.17.3, “InnoDB Standard Monitor and Lock Monitor Output”.
 
 ```
 mysql> SHOW ENGINE INNODB STATUS\G
@@ -323,8 +250,7 @@ I/O sum[0]:cur[0], unzip sum[0]:cur[0]
 ...
 ```
 
-For status variable descriptions, see
-[Section 7.1.10, “Server Status Variables”](server-status-variables.html "7.1.10 Server Status Variables").
+For status variable descriptions, see Section 7.1.10, “Server Status Variables”.
 
 ```
 mysql> SHOW STATUS LIKE 'Innodb_buffer%';

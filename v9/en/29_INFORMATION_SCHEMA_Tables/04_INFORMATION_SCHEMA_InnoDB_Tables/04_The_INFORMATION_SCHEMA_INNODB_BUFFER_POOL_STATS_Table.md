@@ -1,31 +1,16 @@
 ### 28.4.4 The INFORMATION\_SCHEMA INNODB\_BUFFER\_POOL\_STATS Table
 
-The [`INNODB_BUFFER_POOL_STATS`](information-schema-innodb-buffer-pool-stats-table.html "28.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table") table
-provides much of the same buffer pool information provided in
-[`SHOW ENGINE INNODB
-STATUS`](show-engine.html "15.7.7.17 SHOW ENGINE Statement") output. Much of the same information may also be
-obtained using `InnoDB` buffer pool
-[server status
-variables](server-status-variables.html "7.1.10 Server Status Variables").
+The `INNODB_BUFFER_POOL_STATS` table provides much of the same buffer pool information provided in [`SHOW ENGINE INNODB STATUS`](show-engine.html "15.7.7.17 SHOW ENGINE Statement") output. Much of the same information may also be obtained using `InnoDB` buffer pool [server status variables](server-status-variables.html "7.1.10 Server Status Variables").
 
-The idea of making pages in the buffer pool “young”
-or “not young” refers to transferring them between
-the [sublists](glossary.html#glos_sublist "sublist") at the head and
-tail of the buffer pool data structure. Pages made
-“young” take longer to age out of the buffer pool,
-while pages made “not young” are moved much closer to
-the point of [eviction](glossary.html#glos_eviction "eviction").
+The idea of making pages in the buffer pool “young” or “not young” refers to transferring them between the sublists at the head and tail of the buffer pool data structure. Pages made “young” take longer to age out of the buffer pool, while pages made “not young” are moved much closer to the point of eviction.
 
-For related usage information and examples, see
-[Section 17.15.5, “InnoDB INFORMATION\_SCHEMA Buffer Pool Tables”](innodb-information-schema-buffer-pool-tables.html "17.15.5 InnoDB INFORMATION_SCHEMA Buffer Pool Tables").
+For related usage information and examples, see Section 17.15.5, “InnoDB INFORMATION\_SCHEMA Buffer Pool Tables”.
 
-The [`INNODB_BUFFER_POOL_STATS`](information-schema-innodb-buffer-pool-stats-table.html "28.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table") table
-has these columns:
+The `INNODB_BUFFER_POOL_STATS` table has these columns:
 
 * `POOL_ID`
 
-  The buffer pool ID. This is an identifier to distinguish
-  between multiple buffer pool instances.
+  The buffer pool ID. This is an identifier to distinguish between multiple buffer pool instances.
 
 * `POOL_SIZE`
 
@@ -33,19 +18,15 @@ has these columns:
 
 * `FREE_BUFFERS`
 
-  The number of free pages in the `InnoDB`
-  buffer pool.
+  The number of free pages in the `InnoDB` buffer pool.
 
 * `DATABASE_PAGES`
 
-  The number of pages in the `InnoDB` buffer
-  pool containing data. This number includes both dirty and
-  clean pages.
+  The number of pages in the `InnoDB` buffer pool containing data. This number includes both dirty and clean pages.
 
 * `OLD_DATABASE_PAGES`
 
-  The number of pages in the `old` buffer pool
-  sublist.
+  The number of pages in the `old` buffer pool sublist.
 
 * `MODIFIED_DATABASE_PAGES`
 
@@ -77,13 +58,11 @@ has these columns:
 
 * `PAGES_MADE_YOUNG_RATE`
 
-  The number of pages made young per second (pages made young
-  since the last printout / time elapsed).
+  The number of pages made young per second (pages made young since the last printout / time elapsed).
 
 * `PAGES_MADE_NOT_YOUNG_RATE`
 
-  The number of pages not made per second (pages not made young
-  since the last printout / time elapsed).
+  The number of pages not made per second (pages not made young since the last printout / time elapsed).
 
 * `NUMBER_PAGES_READ`
 
@@ -99,18 +78,15 @@ has these columns:
 
 * `PAGES_READ_RATE`
 
-  The number of pages read per second (pages read since the last
-  printout / time elapsed).
+  The number of pages read per second (pages read since the last printout / time elapsed).
 
 * `PAGES_CREATE_RATE`
 
-  The number of pages created per second (pages created since
-  the last printout / time elapsed).
+  The number of pages created per second (pages created since the last printout / time elapsed).
 
 * `PAGES_WRITTEN_RATE`
 
-  The number of pages written per second (pages written since
-  the last printout / time elapsed).
+  The number of pages written per second (pages written since the last printout / time elapsed).
 
 * `NUMBER_PAGES_GET`
 
@@ -134,20 +110,15 @@ has these columns:
 
 * `NUMBER_READ_AHEAD_EVICTED`
 
-  The number of pages read into the `InnoDB`
-  buffer pool by the read-ahead background thread that were
-  subsequently evicted without having been accessed by queries.
+  The number of pages read into the `InnoDB` buffer pool by the read-ahead background thread that were subsequently evicted without having been accessed by queries.
 
 * `READ_AHEAD_RATE`
 
-  The read-ahead rate per second (pages read ahead since the
-  last printout / time elapsed).
+  The read-ahead rate per second (pages read ahead since the last printout / time elapsed).
 
 * `READ_AHEAD_EVICTED_RATE`
 
-  The number of read-ahead pages evicted without access per
-  second (read-ahead pages not accessed since the last printout
-  / time elapsed).
+  The number of read-ahead pages evicted without access per second (read-ahead pages not accessed since the last printout / time elapsed).
 
 * `LRU_IO_TOTAL`
 
@@ -206,15 +177,8 @@ NOT_YOUNG_MAKE_PER_THOUSAND_GETS: 0
 
 #### Notes
 
-* This table is useful primarily for expert-level performance
-  monitoring, or when developing performance-related extensions
-  for MySQL.
+* This table is useful primarily for expert-level performance monitoring, or when developing performance-related extensions for MySQL.
 
-* You must have the [`PROCESS`](privileges-provided.html#priv_process)
-  privilege to query this table.
+* You must have the `PROCESS` privilege to query this table.
 
-* Use the `INFORMATION_SCHEMA`
-  [`COLUMNS`](information-schema-columns-table.html "28.3.8 The INFORMATION_SCHEMA COLUMNS Table") table or the
-  [`SHOW COLUMNS`](show-columns.html "15.7.7.6 SHOW COLUMNS Statement") statement to view
-  additional information about the columns of this table,
-  including data types and default values.
+* Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.

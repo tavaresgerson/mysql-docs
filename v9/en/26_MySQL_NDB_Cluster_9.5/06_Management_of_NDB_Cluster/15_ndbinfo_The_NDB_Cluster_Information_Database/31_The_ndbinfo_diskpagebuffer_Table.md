@@ -1,10 +1,8 @@
 #### 25.6.15.31 The ndbinfo diskpagebuffer Table
 
-The `diskpagebuffer` table provides statistics
-about disk page buffer usage by NDB Cluster Disk Data tables.
+The `diskpagebuffer` table provides statistics about disk page buffer usage by NDB Cluster Disk Data tables.
 
-The `diskpagebuffer` table contains the
-following columns:
+The `diskpagebuffer` table contains the following columns:
 
 * `node_id`
 
@@ -36,27 +34,17 @@ following columns:
 
 * `page_requests_wait_queue`
 
-  Number of requests that had to wait for pages to become
-  available in buffer
+  Number of requests that had to wait for pages to become available in buffer
 
 * `page_requests_wait_io`
 
-  Number of requests that had to be read from pages on disk
-  (pages were unavailable in buffer)
+  Number of requests that had to be read from pages on disk (pages were unavailable in buffer)
 
 ##### Notes
 
-You can use this table with NDB Cluster Disk Data tables to
-determine whether
-[`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory) is
-sufficiently large to allow data to be read from the buffer
-rather from disk; minimizing disk seeks can help improve
-performance of such tables.
+You can use this table with NDB Cluster Disk Data tables to determine whether `DiskPageBufferMemory` is sufficiently large to allow data to be read from the buffer rather from disk; minimizing disk seeks can help improve performance of such tables.
 
-You can determine the proportion of reads from
-[`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory) to
-the total number of reads using a query such as this one, which
-obtains this ratio as a percentage:
+You can determine the proportion of reads from `DiskPageBufferMemory` to the total number of reads using a query such as this one, which obtains this ratio as a percentage:
 
 ```
 SELECT
@@ -67,9 +55,7 @@ SELECT
 FROM ndbinfo.diskpagebuffer;
 ```
 
-The result from this query should be similar to what is shown
-here, with one row for each data node in the cluster (in this
-example, the cluster has 4 data nodes):
+The result from this query should be similar to what is shown here, with one row for each data node in the cluster (in this example, the cluster has 4 data nodes):
 
 ```
 +---------+-----------+
@@ -83,31 +69,13 @@ example, the cluster has 4 data nodes):
 4 rows in set (0.00 sec)
 ```
 
-`hit_ratio` values approaching 100% indicate
-that only a very small number of reads are being made from disk
-rather than from the buffer, which means that Disk Data read
-performance is approaching an optimum level. If any of these
-values are less than 95%, this is a strong indicator that the
-setting for
-[`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory)
-needs to be increased in the `config.ini`
-file.
+`hit_ratio` values approaching 100% indicate that only a very small number of reads are being made from disk rather than from the buffer, which means that Disk Data read performance is approaching an optimum level. If any of these values are less than 95%, this is a strong indicator that the setting for `DiskPageBufferMemory` needs to be increased in the `config.ini` file.
 
 Note
 
-A change in
-[`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory)
-requires a rolling restart of all of the cluster's data
-nodes before it takes effect.
+A change in `DiskPageBufferMemory` requires a rolling restart of all of the cluster's data nodes before it takes effect.
 
-`block_instance` refers to an instance of a
-kernel block. Together with the block name, this number can be
-used to look up a given instance in the
-[`threadblocks`](mysql-cluster-ndbinfo-threadblocks.html "25.6.15.62 The ndbinfo threadblocks Table") table. Using this
-information, you can obtain information about disk page buffer
-metrics relating to individual threads; an example query using
-`LIMIT 1` to limit the output to a single
-thread is shown here:
+`block_instance` refers to an instance of a kernel block. Together with the block name, this number can be used to look up a given instance in the `threadblocks` table. Using this information, you can obtain information about disk page buffer metrics relating to individual threads; an example query using `LIMIT 1` to limit the output to a single thread is shown here:
 
 ```
 mysql> SELECT

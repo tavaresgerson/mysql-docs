@@ -1,23 +1,10 @@
 ### 10.2.4 Optimizing Performance Schema Queries
 
-Applications that monitor databases may make frequent use of
-Performance Schema tables. To write queries for these tables
-most efficiently, take advantage of their indexes. For example,
-include a `WHERE` clause that restricts
-retrieved rows based on comparison to specific values in an
-indexed column.
+Applications that monitor databases may make frequent use of Performance Schema tables. To write queries for these tables most efficiently, take advantage of their indexes. For example, include a `WHERE` clause that restricts retrieved rows based on comparison to specific values in an indexed column.
 
-Most Performance Schema tables have indexes. Tables that do not
-are those that normally contain few rows or are unlikely to be
-queried frequently. Performance Schema indexes give the
-optimizer access to execution plans other than full table scans.
-These indexes also improve performance for related objects, such
-as [`sys`](sys-schema.html "Chapter 30 MySQL sys Schema") schema views that use those
-tables.
+Most Performance Schema tables have indexes. Tables that do not are those that normally contain few rows or are unlikely to be queried frequently. Performance Schema indexes give the optimizer access to execution plans other than full table scans. These indexes also improve performance for related objects, such as `sys` schema views that use those tables.
 
-To see whether a given Performance Schema table has indexes and
-what they are, use [`SHOW INDEX`](show-index.html "15.7.7.24 SHOW INDEX Statement") or
-[`SHOW CREATE TABLE`](show-create-table.html "15.7.7.12 SHOW CREATE TABLE Statement"):
+To see whether a given Performance Schema table has indexes and what they are, use `SHOW INDEX` or `SHOW CREATE TABLE`:
 
 ```
 mysql> SHOW INDEX FROM performance_schema.accounts\G
@@ -66,9 +53,7 @@ Create Table: CREATE TABLE `rwlock_instances` (
 ) ENGINE=PERFORMANCE_SCHEMA DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 ```
 
-To see the execution plan for a Performance Schema query and
-whether it uses any indexes, use
-[`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement"):
+To see the execution plan for a Performance Schema query and whether it uses any indexes, use `EXPLAIN`:
 
 ```
 mysql> EXPLAIN SELECT * FROM performance_schema.accounts
@@ -88,44 +73,20 @@ possible_keys: ACCOUNT
         Extra: NULL
 ```
 
-The [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") output indicates that
-the optimizer uses the [`accounts`](performance-schema-accounts-table.html "29.12.8.1 The accounts Table")
-table `ACCOUNT` index that comprises the
-`USER` and `HOST` columns.
+The `EXPLAIN` output indicates that the optimizer uses the `accounts` table `ACCOUNT` index that comprises the `USER` and `HOST` columns.
 
-Performance Schema indexes are virtual: They are a construct of
-the Performance Schema storage engine and use no memory or disk
-storage. The Performance Schema reports index information to the
-optimizer so that it can construct efficient execution plans.
-The Performance Schema in turn uses optimizer information about
-what to look for (for example, a particular key value), so that
-it can perform efficient lookups without building actual index
-structures. This implementation provides two important benefits:
+Performance Schema indexes are virtual: They are a construct of the Performance Schema storage engine and use no memory or disk storage. The Performance Schema reports index information to the optimizer so that it can construct efficient execution plans. The Performance Schema in turn uses optimizer information about what to look for (for example, a particular key value), so that it can perform efficient lookups without building actual index structures. This implementation provides two important benefits:
 
-* It entirely avoids the maintenance cost normally incurred
-  for tables that undergo frequent updates.
+* It entirely avoids the maintenance cost normally incurred for tables that undergo frequent updates.
 
-* It reduces at an early stage of query execution the amount
-  of data retrieved. For conditions on the indexed columns,
-  the Performance Schema efficiently returns only table rows
-  that satisfy the query conditions. Without an index, the
-  Performance Schema would return all rows in the table,
-  requiring that the optimizer later evaluate the conditions
-  against each row to produce the final result.
+* It reduces at an early stage of query execution the amount of data retrieved. For conditions on the indexed columns, the Performance Schema efficiently returns only table rows that satisfy the query conditions. Without an index, the Performance Schema would return all rows in the table, requiring that the optimizer later evaluate the conditions against each row to produce the final result.
 
-Performance Schema indexes are predefined and cannot be dropped,
-added, or altered.
+Performance Schema indexes are predefined and cannot be dropped, added, or altered.
 
-Performance Schema indexes are similar to hash indexes. For
-example:
+Performance Schema indexes are similar to hash indexes. For example:
 
-* They are used only for equality comparisons that use the
-  `=` or `<=>`
-  operators.
+* They are used only for equality comparisons that use the `=` or `<=>` operators.
 
-* They are unordered. If a query result must have specific row
-  ordering characteristics, include an `ORDER
-  BY` clause.
+* They are unordered. If a query result must have specific row ordering characteristics, include an `ORDER BY` clause.
 
-For additional information about hash indexes, see
-[Section 10.3.9, “Comparison of B-Tree and Hash Indexes”](index-btree-hash.html "10.3.9 Comparison of B-Tree and Hash Indexes").
+For additional information about hash indexes, see Section 10.3.9, “Comparison of B-Tree and Hash Indexes”.

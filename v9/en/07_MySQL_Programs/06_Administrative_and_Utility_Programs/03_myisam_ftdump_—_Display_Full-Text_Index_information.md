@@ -1,36 +1,18 @@
 ### 6.6.3 myisam\_ftdump — Display Full-Text Index information
 
-[**myisam\_ftdump**](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information") displays information about
-`FULLTEXT` indexes in `MyISAM`
-tables. It reads the `MyISAM` index file
-directly, so it must be run on the server host where the table
-is located. Before using [**myisam\_ftdump**](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information"), be
-sure to issue a `FLUSH TABLES` statement first
-if the server is running.
+**myisam\_ftdump** displays information about `FULLTEXT` indexes in `MyISAM` tables. It reads the `MyISAM` index file directly, so it must be run on the server host where the table is located. Before using **myisam\_ftdump**, be sure to issue a `FLUSH TABLES` statement first if the server is running.
 
-[**myisam\_ftdump**](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information") scans and dumps the entire
-index, which is not particularly fast. On the other hand, the
-distribution of words changes infrequently, so it need not be
-run often.
+**myisam\_ftdump** scans and dumps the entire index, which is not particularly fast. On the other hand, the distribution of words changes infrequently, so it need not be run often.
 
-Invoke [**myisam\_ftdump**](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information") like this:
+Invoke **myisam\_ftdump** like this:
 
 ```
 myisam_ftdump [options] tbl_name index_num
 ```
 
-The *`tbl_name`* argument should be the
-name of a `MyISAM` table. You can also specify
-a table by naming its index file (the file with the
-`.MYI` suffix). If you do not invoke
-[**myisam\_ftdump**](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information") in the directory where the
-table files are located, the table or index file name must be
-preceded by the path name to the table's database directory.
-Index numbers begin with 0.
+The *`tbl_name`* argument should be the name of a `MyISAM` table. You can also specify a table by naming its index file (the file with the `.MYI` suffix). If you do not invoke **myisam\_ftdump** in the directory where the table files are located, the table or index file name must be preceded by the path name to the table's database directory. Index numbers begin with 0.
 
-Example: Suppose that the `test` database
-contains a table named `mytexttable` that has
-the following definition:
+Example: Suppose that the `test` database contains a table named `mytexttable` that has the following definition:
 
 ```
 CREATE TABLE mytexttable
@@ -42,29 +24,19 @@ CREATE TABLE mytexttable
 ) ENGINE=MyISAM;
 ```
 
-The index on `id` is index 0 and the
-`FULLTEXT` index on `txt` is
-index 1. If your working directory is the
-`test` database directory, invoke
-[**myisam\_ftdump**](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information") as follows:
+The index on `id` is index 0 and the `FULLTEXT` index on `txt` is index 1. If your working directory is the `test` database directory, invoke **myisam\_ftdump** as follows:
 
 ```
 myisam_ftdump mytexttable 1
 ```
 
-If the path name to the `test` database
-directory is `/usr/local/mysql/data/test`,
-you can also specify the table name argument using that path
-name. This is useful if you do not invoke
-[**myisam\_ftdump**](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information") in the database directory:
+If the path name to the `test` database directory is `/usr/local/mysql/data/test`, you can also specify the table name argument using that path name. This is useful if you do not invoke **myisam\_ftdump** in the database directory:
 
 ```
 myisam_ftdump /usr/local/mysql/data/test/mytexttable 1
 ```
 
-You can use [**myisam\_ftdump**](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information") to generate a list
-of index entries in order of frequency of occurrence like this
-on Unix-like systems:
+You can use **myisam\_ftdump** to generate a list of index entries in order of frequency of occurrence like this on Unix-like systems:
 
 ```
 myisam_ftdump -c mytexttable 1 | sort -r
@@ -76,59 +48,40 @@ On Windows, use:
 myisam_ftdump -c mytexttable 1 | sort /R
 ```
 
-[**myisam\_ftdump**](myisam-ftdump.html "6.6.3 myisam_ftdump — Display Full-Text Index information") supports the following options:
+**myisam\_ftdump** supports the following options:
 
-* [`--help`](myisam-ftdump.html#option_myisam_ftdump_help),
-  `-h` `-?`
+* `--help`, `-h` `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--help</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
-* [`--count`](myisam-ftdump.html#option_myisam_ftdump_count),
-  `-c`
+* `--count`, `-c`
 
-  <table frame="box" rules="all" summary="Properties for count"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--count</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for count"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--count</code></td> </tr></tbody></table>
 
   Calculate per-word statistics (counts and global weights).
 
-* [`--dump`](myisam-ftdump.html#option_myisam_ftdump_dump),
-  `-d`
+* `--dump`, `-d`
 
-  <table frame="box" rules="all" summary="Properties for dump"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--dump</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for dump"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--dump</code></td> </tr></tbody></table>
 
   Dump the index, including data offsets and word weights.
 
-* [`--length`](myisam-ftdump.html#option_myisam_ftdump_length),
-  `-l`
+* `--length`, `-l`
 
-  <table frame="box" rules="all" summary="Properties for length"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--length</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for length"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--length</code></td> </tr></tbody></table>
 
   Report the length distribution.
 
-* [`--stats`](myisam-ftdump.html#option_myisam_ftdump_stats),
-  `-s`
+* `--stats`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for stats"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--stats</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for stats"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--stats</code></td> </tr></tbody></table>
 
-  Report global index statistics. This is the default
-  operation if no other operation is specified.
+  Report global index statistics. This is the default operation if no other operation is specified.
 
-* [`--verbose`](myisam-ftdump.html#option_myisam_ftdump_verbose),
-  `-v`
+* `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--verbose</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--verbose</code></td> </tr></tbody></table>
 
   Verbose mode. Print more output about what the program does.

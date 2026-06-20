@@ -4,43 +4,15 @@
 SHOW CREATE LIBRARY [database_name.]library_name
 ```
 
-Returns the text that can be used to re-create the named
-JavaScript or WebAssembly library in the named database; the
-database defaults to the current database if one is not
-specified. See [Section 15.1.19, “CREATE LIBRARY Statement”](create-library.html "15.1.19 CREATE LIBRARY Statement"), for more
-information.
+Returns the text that can be used to re-create the named JavaScript or WebAssembly library in the named database; the database defaults to the current database if one is not specified. See Section 15.1.19, “CREATE LIBRARY Statement”, for more information.
 
-For an account other than the account which created the library,
-access to routine properties depends on the privileges granted
-to the account, as described here:
+For an account other than the account which created the library, access to routine properties depends on the privileges granted to the account, as described here:
 
-* With the [`SHOW_ROUTINE`](privileges-provided.html#priv_show-routine)
-  privilege or the global
-  [`SELECT`](privileges-provided.html#priv_select) privilege, the account
-  can see all library properties, including its definition.
-  This means that `SHOW CREATE LIBRARY`
-  prints the source code of the library, and all libraries in
-  the Information Schema
-  [`libraries`](information-schema-libraries-table.html "28.3.22 The INFORMATION_SCHEMA LIBRARIES Table") table are visible to
-  this account.
+* With the `SHOW_ROUTINE` privilege or the global `SELECT` privilege, the account can see all library properties, including its definition. This means that `SHOW CREATE LIBRARY` prints the source code of the library, and all libraries in the Information Schema `libraries` table are visible to this account.
 
-* With the [`CREATE ROUTINE`](privileges-provided.html#priv_create-routine),
-  [`ALTER ROUTINE`](privileges-provided.html#priv_alter-routine), or
-  [`EXECUTE`](privileges-provided.html#priv_execute) privilege granted at
-  a scope that includes the library, the account can see all
-  routine properties except its definition. This means that
-  the associated row in
-  [`INFORMATION_SCHEMA.LIBRARIES`](information-schema-libraries-table.html "28.3.22 The INFORMATION_SCHEMA LIBRARIES Table") is
-  visible but, `SHOW CREATE LIBRARY` does not
-  print the library's source code.
+* With the `CREATE ROUTINE`, `ALTER ROUTINE`, or `EXECUTE` privilege granted at a scope that includes the library, the account can see all routine properties except its definition. This means that the associated row in `INFORMATION_SCHEMA.LIBRARIES` is visible but, `SHOW CREATE LIBRARY` does not print the library's source code.
 
-Library code may contain SQL statements (known as a JavaScript
-SQL callout). The statements are restricted, based on the
-`INVOKER` and `DEFINER`
-security contexts of the stored program using that library. Such
-SQL statements follow the usual restrictions applying to stored
-functions and stored procedures (see
-[Section 27.10, “Restrictions on Stored Programs”](stored-program-restrictions.html "27.10 Restrictions on Stored Programs")).
+Library code may contain SQL statements (known as a JavaScript SQL callout). The statements are restricted, based on the `INVOKER` and `DEFINER` security contexts of the stored program using that library. Such SQL statements follow the usual restrictions applying to stored functions and stored procedures (see Section 27.10, “Restrictions on Stored Programs”).
 
 ```
 mysql> SHOW CREATE LIBRARY jslib.lib1\G
@@ -92,5 +64,4 @@ AS 0x
 1 row in set (0.000 sec)
 ```
 
-For further information and examples, see
-[Section 27.3.8, “Using JavaScript Libraries”](srjs-libraries.html "27.3.8 Using JavaScript Libraries").
+For further information and examples, see Section 27.3.8, “Using JavaScript Libraries”.

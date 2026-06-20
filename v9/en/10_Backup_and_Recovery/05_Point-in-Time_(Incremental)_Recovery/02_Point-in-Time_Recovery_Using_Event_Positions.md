@@ -1,52 +1,16 @@
 ### 9.5.2 Point-in-Time Recovery Using Event Positions
 
-The last section,
-[Section 9.5.1, “Point-in-Time Recovery Using Binary Log”](point-in-time-recovery-binlog.html "9.5.1 Point-in-Time Recovery Using Binary Log"), explains the
-general idea of using the binary log to perform a
-point-in-time-recovery. The section explains the operation in
-details with an example.
+The last section, Section 9.5.1, “Point-in-Time Recovery Using Binary Log”, explains the general idea of using the binary log to perform a point-in-time-recovery. The section explains the operation in details with an example.
 
-As an example, suppose that around 20:06:00 on March 11, 2020,
-an SQL statement was executed that deleted a table. You can
-perform a point-in-time recovery to restore the server up to its
-state right before the table deletion. These are some sample
-steps to achieve that:
+As an example, suppose that around 20:06:00 on March 11, 2020, an SQL statement was executed that deleted a table. You can perform a point-in-time recovery to restore the server up to its state right before the table deletion. These are some sample steps to achieve that:
 
-1. Restore the last full backup created before the
-   point-in-time of interest (call it
-   `tp`, which is
-   20:06:00 on March 11, 2020 in our example). When finished,
-   note the binary log position up to which you have restored
-   the server for later use, and restart the server.
+1. Restore the last full backup created before the point-in-time of interest (call it `tp`, which is 20:06:00 on March 11, 2020 in our example). When finished, note the binary log position up to which you have restored the server for later use, and restart the server.
 
    Note
 
-   While the last binary log position recovered is also
-   displayed by InnoDB after the restore and server restart,
-   that is *not* a reliable means for
-   obtaining the ending log position of your restore, as
-   there could be DDL events and non-InnoDB changes that have
-   taken place after the time reflected by the displayed
-   position. Your backup and restore tool should provide you
-   with the last binary log position for your recovery: for
-   example, if you are using [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files")
-   for the task, check the stop position of the binary log
-   replay; if you are using MySQL Enterprise Backup, the last binary log
-   position has been saved in your backup. See
-   [Point-in-Time Recovery](/doc/mysql-enterprise-backup/9.5/en/advanced.point.html).
+   While the last binary log position recovered is also displayed by InnoDB after the restore and server restart, that is *not* a reliable means for obtaining the ending log position of your restore, as there could be DDL events and non-InnoDB changes that have taken place after the time reflected by the displayed position. Your backup and restore tool should provide you with the last binary log position for your recovery: for example, if you are using **mysqlbinlog** for the task, check the stop position of the binary log replay; if you are using MySQL Enterprise Backup, the last binary log position has been saved in your backup. See Point-in-Time Recovery.
 
-2. Find the precise binary log event position corresponding to
-   the point in time up to which you want to restore your
-   database. In our example, given that we know the rough time
-   where the table deletion took place
-   (`tp`), we can find
-   the log position by checking the log contents around that
-   time using the [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") utility. Use
-   the [`--start-datetime`](mysqlbinlog.html#option_mysqlbinlog_start-datetime) and
-   [`--stop-datetime`](mysqlbinlog.html#option_mysqlbinlog_stop-datetime) options
-   to specify a short time period around
-   `tp`, and then look
-   for the event in the output. For example:
+2. Find the precise binary log event position corresponding to the point in time up to which you want to restore your database. In our example, given that we know the rough time where the table deletion took place (`tp`), we can find the log position by checking the log contents around that time using the **mysqlbinlog** utility. Use the `--start-datetime` and `--stop-datetime` options to specify a short time period around `tp`, and then look for the event in the output. For example:
 
    ```
    $> mysqlbinlog --start-datetime="2020-03-11 20:05:00" \
@@ -86,69 +50,29 @@ steps to achieve that:
    CREATE TABLE dogs
    ```
 
-   From the output of [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files"), the
-   `` DROP TABLE `pets`.`cats` `` statement can be
-   found in the segment of the binary log between the line
-   `# at 232` and `# at 355`,
-   which means the statement takes place
-   *after* the log position 232, and the log
-   is at position 355 after the `DROP TABLE`
-   statement.
+   From the output of **mysqlbinlog**, the `` DROP TABLE `pets`.`cats` `` statement can be found in the segment of the binary log between the line `# at 232` and `# at 355`, which means the statement takes place *after* the log position 232, and the log is at position 355 after the `DROP TABLE` statement.
 
    Note
 
-   Only use the
-   [`--start-datetime`](mysqlbinlog.html#option_mysqlbinlog_start-datetime) and
-   [`--stop-datetime`](mysqlbinlog.html#option_mysqlbinlog_stop-datetime)
-   options to help you find the actual event positions of
-   interest. Using the two options to specify the range of
-   binary log segment to apply is not recommended: there is a
-   higher risk of missing binary log events when using the
-   options. Use
-   [`--start-position`](mysqlbinlog.html#option_mysqlbinlog_start-position) and
-   [`--stop-position`](mysqlbinlog.html#option_mysqlbinlog_stop-position)
-   instead.
+   Only use the `--start-datetime` and `--stop-datetime` options to help you find the actual event positions of interest. Using the two options to specify the range of binary log segment to apply is not recommended: there is a higher risk of missing binary log events when using the options. Use `--start-position` and `--stop-position` instead.
 
-3. Apply the events in binary log file to the server, starting
-   with the log position your found in step 1 (assume it is
-   155) and ending at the position you have found in step 2
-   that is *before* your point-in-time of
-   interest (which is 232):
+3. Apply the events in binary log file to the server, starting with the log position your found in step 1 (assume it is
+   155) and ending at the position you have found in step 2 that is *before* your point-in-time of interest (which is 232):
 
    ```
    $> mysqlbinlog --start-position=155 --stop-position=232 /var/lib/mysql/bin.123456 \
             | mysql -u root -p
    ```
 
-   The command recovers all the transactions from the starting
-   position until just before the stop position. Because the
-   output of [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") includes
-   `SET TIMESTAMP` statements before each SQL
-   statement recorded, the recovered data and related MySQL
-   logs reflect the original times at which the transactions
-   were executed.
+   The command recovers all the transactions from the starting position until just before the stop position. Because the output of **mysqlbinlog** includes `SET TIMESTAMP` statements before each SQL statement recorded, the recovered data and related MySQL logs reflect the original times at which the transactions were executed.
 
-   Your database has now been restored to the point-in-time of
-   interest, `tp`,
-   right before the table `pets.cats` was
-   dropped.
+   Your database has now been restored to the point-in-time of interest, `tp`, right before the table `pets.cats` was dropped.
 
-4. Beyond the point-in-time recovery that has been finished, if
-   you also want to reexecute all the statements
-   *after* your point-in-time of interest,
-   use [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") again to apply all the
-   events after `tp` to
-   the server. We noted in step 2 that after the statement we
-   wanted to skip, the log is at position 355; we can use it
-   for the [`--start-position`](mysqlbinlog.html#option_mysqlbinlog_start-position)
-   option, so that any statements after the position are
-   included:
+4. Beyond the point-in-time recovery that has been finished, if you also want to reexecute all the statements *after* your point-in-time of interest, use **mysqlbinlog** again to apply all the events after `tp` to the server. We noted in step 2 that after the statement we wanted to skip, the log is at position 355; we can use it for the `--start-position` option, so that any statements after the position are included:
 
    ```
    $> mysqlbinlog --start-position=355 /var/lib/mysql/bin.123456 \
             | mysql -u root -p
    ```
 
-   Your database has been restored the latest statement
-   recorded in the binary log file, but with the selected event
-   skipped.
+   Your database has been restored the latest statement recorded in the binary log file, but with the selected event skipped.

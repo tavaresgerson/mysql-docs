@@ -1,13 +1,10 @@
 #### 14.18.1.3 Functions to Inspect and Configure the Maximum Consensus Instances of a Group
 
-The following functions enable you to inspect and configure
-the maximum number of consensus instances that a group can
-execute in parallel.
+The following functions enable you to inspect and configure the maximum number of consensus instances that a group can execute in parallel.
 
-* [`group_replication_get_write_concurrency()`](group-replication-functions-for-maximum-consensus.html#function_group-replication-get-write-concurrency)
+* `group_replication_get_write_concurrency()`
 
-  Check the maximum number of consensus instances that a
-  group can execute in parallel.
+  Check the maximum number of consensus instances that a group can execute in parallel.
 
   Syntax:
 
@@ -19,8 +16,7 @@ execute in parallel.
 
   Return value:
 
-  The maximum number of consensus instances currently set
-  for the group.
+  The maximum number of consensus instances currently set for the group.
 
   Example:
 
@@ -28,15 +24,11 @@ execute in parallel.
   SELECT group_replication_get_write_concurrency()
   ```
 
-  For more information, see
-  [Section 20.5.1.3, “Using Group Replication Group Write Consensus”](group-replication-group-write-consensus.html "20.5.1.3 Using Group Replication Group Write Consensus").
+  For more information, see Section 20.5.1.3, “Using Group Replication Group Write Consensus”.
 
-* [`group_replication_set_write_concurrency()`](group-replication-functions-for-maximum-consensus.html#function_group-replication-set-write-concurrency)
+* `group_replication_set_write_concurrency()`
 
-  Configures the maximum number of consensus instances that
-  a group can execute in parallel. The
-  [`GROUP_REPLICATION_ADMIN`](privileges-provided.html#priv_group-replication-admin)
-  privilege is required to use this function.
+  Configures the maximum number of consensus instances that a group can execute in parallel. The `GROUP_REPLICATION_ADMIN` privilege is required to use this function.
 
   Syntax:
 
@@ -46,10 +38,7 @@ execute in parallel.
 
   Arguments:
 
-  + *`members`*: Sets the maximum
-    number of consensus instances that a group can execute
-    in parallel. Default value is 10, valid values are
-    integers in the range of 10 to 200.
+  + *`members`*: Sets the maximum number of consensus instances that a group can execute in parallel. Default value is 10, valid values are integers in the range of 10 to 200.
 
   Return value:
 
@@ -61,5 +50,4 @@ execute in parallel.
   SELECT group_replication_set_write_concurrency(instances);
   ```
 
-  For more information, see
-  [Section 20.5.1.3, “Using Group Replication Group Write Consensus”](group-replication-group-write-consensus.html "20.5.1.3 Using Group Replication Group Write Consensus").
+  For more information, see Section 20.5.1.3, “Using Group Replication Group Write Consensus”.

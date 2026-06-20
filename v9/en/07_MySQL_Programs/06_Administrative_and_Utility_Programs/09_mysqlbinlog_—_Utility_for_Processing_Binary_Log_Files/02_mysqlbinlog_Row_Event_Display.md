@@ -1,17 +1,8 @@
 #### 6.6.9.2 mysqlbinlog Row Event Display
 
-The following examples illustrate how
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") displays row events that specify
-data modifications. These correspond to events with the
-`WRITE_ROWS_EVENT`,
-`UPDATE_ROWS_EVENT`, and
-`DELETE_ROWS_EVENT` type codes. The
-[`--base64-output=DECODE-ROWS`](mysqlbinlog.html#option_mysqlbinlog_base64-output)
-and [`--verbose`](mysqlbinlog.html#option_mysqlbinlog_verbose) options may be
-used to affect row event output.
+The following examples illustrate how **mysqlbinlog** displays row events that specify data modifications. These correspond to events with the `WRITE_ROWS_EVENT`, `UPDATE_ROWS_EVENT`, and `DELETE_ROWS_EVENT` type codes. The `--base64-output=DECODE-ROWS` and `--verbose` options may be used to affect row event output.
 
-Suppose that the server is using row-based binary logging and
-that you execute the following sequence of statements:
+Suppose that the server is using row-based binary logging and that you execute the following sequence of statements:
 
 ```
 CREATE TABLE t
@@ -28,11 +19,7 @@ DELETE FROM t WHERE id = 1;
 COMMIT;
 ```
 
-By default, [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") displays row events
-encoded as base-64 strings using
-[`BINLOG`](binlog.html "15.7.8.1 BINLOG Statement") statements. Omitting
-extraneous lines, the output for the row events produced by the
-preceding statement sequence looks like this:
+By default, **mysqlbinlog** displays row events encoded as base-64 strings using `BINLOG` statements. Omitting extraneous lines, the output for the row events produced by the preceding statement sequence looks like this:
 
 ```
 $> mysqlbinlog log_file
@@ -62,13 +49,7 @@ fAS3SBkBAAAAKgAAALoBAAAQABEAAAAAAAEAA//4AQAAAARwZWFyIbIP
 '/*!*/;
 ```
 
-To see the row events as comments in the form of
-“pseudo-SQL” statements, run
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") with the
-[`--verbose`](mysqlbinlog.html#option_mysqlbinlog_verbose) or
-`-v` option. This output level also shows table
-partition information where applicable. The output contains
-lines beginning with `###`:
+To see the row events as comments in the form of “pseudo-SQL” statements, run **mysqlbinlog** with the `--verbose` or `-v` option. This output level also shows table partition information where applicable. The output contains lines beginning with `###`:
 
 ```
 $> mysqlbinlog -v log_file
@@ -117,13 +98,7 @@ fAS3SBkBAAAAKgAAALoBAAAQABEAAAAAAAEAA//4AQAAAARwZWFyIbIP
 ###   @3='2009:01:01'
 ```
 
-Specify [`--verbose`](mysqlbinlog.html#option_mysqlbinlog_verbose) or
-`-v` twice to also display data types and some
-metadata for each column, and informational log events such as
-row query log events if the
-[`binlog_rows_query_log_events`](replication-options-binary-log.html#sysvar_binlog_rows_query_log_events)
-system variable is set to `TRUE`. The output
-contains an additional comment following each column change:
+Specify `--verbose` or `-v` twice to also display data types and some metadata for each column, and informational log events such as row query log events if the `binlog_rows_query_log_events` system variable is set to `TRUE`. The output contains an additional comment following each column change:
 
 ```
 $> mysqlbinlog -vv log_file
@@ -172,17 +147,7 @@ fAS3SBkBAAAAKgAAALoBAAAQABEAAAAAAAEAA//4AQAAAARwZWFyIbIP
 ###   @3='2009:01:01' /* DATE meta=0 nullable=1 is_null=0 */
 ```
 
-You can tell [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") to suppress the
-[`BINLOG`](binlog.html "15.7.8.1 BINLOG Statement") statements for row events
-by using the
-[`--base64-output=DECODE-ROWS`](mysqlbinlog.html#option_mysqlbinlog_base64-output)
-option. This is similar to
-[`--base64-output=NEVER`](mysqlbinlog.html#option_mysqlbinlog_base64-output) but
-does not exit with an error if a row event is found. The
-combination of
-[`--base64-output=DECODE-ROWS`](mysqlbinlog.html#option_mysqlbinlog_base64-output)
-and [`--verbose`](mysqlbinlog.html#option_mysqlbinlog_verbose) provides a
-convenient way to see row events only as SQL statements:
+You can tell **mysqlbinlog** to suppress the `BINLOG` statements for row events by using the `--base64-output=DECODE-ROWS` option. This is similar to `--base64-output=NEVER` but does not exit with an error if a row event is found. The combination of `--base64-output=DECODE-ROWS` and `--verbose` provides a convenient way to see row events only as SQL statements:
 
 ```
 $> mysqlbinlog -v --base64-output=DECODE-ROWS log_file
@@ -218,64 +183,25 @@ $> mysqlbinlog -v --base64-output=DECODE-ROWS log_file
 
 Note
 
-You should not suppress [`BINLOG`](binlog.html "15.7.8.1 BINLOG Statement")
-statements if you intend to re-execute
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") output.
+You should not suppress `BINLOG` statements if you intend to re-execute **mysqlbinlog** output.
 
-The SQL statements produced by
-[`--verbose`](mysqlbinlog.html#option_mysqlbinlog_verbose) for row events are
-much more readable than the corresponding
-[`BINLOG`](binlog.html "15.7.8.1 BINLOG Statement") statements. However, they
-do not correspond exactly to the original SQL statements that
-generated the events. The following limitations apply:
+The SQL statements produced by `--verbose` for row events are much more readable than the corresponding `BINLOG` statements. However, they do not correspond exactly to the original SQL statements that generated the events. The following limitations apply:
 
-* The original column names are lost and replaced by
-  `@N`, where
-  *`N`* is a column number.
+* The original column names are lost and replaced by `@N`, where *`N`* is a column number.
 
-* Character set information is not available in the binary
-  log, which affects string column display:
+* Character set information is not available in the binary log, which affects string column display:
 
-  + There is no distinction made between corresponding
-    binary and nonbinary string types
-    ([`BINARY`](binary-varbinary.html "13.3.3 The BINARY and VARBINARY Types") and
-    [`CHAR`](char.html "13.3.2 The CHAR and VARCHAR Types"),
-    [`VARBINARY`](binary-varbinary.html "13.3.3 The BINARY and VARBINARY Types") and
-    [`VARCHAR`](char.html "13.3.2 The CHAR and VARCHAR Types"),
-    [`BLOB`](blob.html "13.3.4 The BLOB and TEXT Types") and
-    [`TEXT`](blob.html "13.3.4 The BLOB and TEXT Types")). The output uses a
-    data type of `STRING` for fixed-length
-    strings and `VARSTRING` for
-    variable-length strings.
+  + There is no distinction made between corresponding binary and nonbinary string types (`BINARY` and `CHAR`, `VARBINARY` and `VARCHAR`, `BLOB` and `TEXT`). The output uses a data type of `STRING` for fixed-length strings and `VARSTRING` for variable-length strings.
 
-  + For multibyte character sets, the maximum number of
-    bytes per character is not present in the binary log, so
-    the length for string types is displayed in bytes rather
-    than in characters. For example,
-    `STRING(4)` is used as the data type
-    for values from either of these column types:
+  + For multibyte character sets, the maximum number of bytes per character is not present in the binary log, so the length for string types is displayed in bytes rather than in characters. For example, `STRING(4)` is used as the data type for values from either of these column types:
 
     ```
     CHAR(4) CHARACTER SET latin1
     CHAR(2) CHARACTER SET ucs2
     ```
 
-  + Due to the storage format for events of type
-    `UPDATE_ROWS_EVENT`,
-    [`UPDATE`](update.html "15.2.17 UPDATE Statement") statements are
-    displayed with the `WHERE` clause
-    preceding the `SET` clause.
+  + Due to the storage format for events of type `UPDATE_ROWS_EVENT`, `UPDATE` statements are displayed with the `WHERE` clause preceding the `SET` clause.
 
-Proper interpretation of row events requires the information
-from the format description event at the beginning of the binary
-log. Because [**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") does not know in
-advance whether the rest of the log contains row events, by
-default it displays the format description event using a
-[`BINLOG`](binlog.html "15.7.8.1 BINLOG Statement") statement in the initial
-part of the output.
+Proper interpretation of row events requires the information from the format description event at the beginning of the binary log. Because **mysqlbinlog** does not know in advance whether the rest of the log contains row events, by default it displays the format description event using a `BINLOG` statement in the initial part of the output.
 
-If the binary log is known not to contain any events requiring a
-[`BINLOG`](binlog.html "15.7.8.1 BINLOG Statement") statement (that is, no row
-events), the
-[`--base64-output=NEVER`](mysqlbinlog.html#option_mysqlbinlog_base64-output) option
-can be used to prevent this header from being written.
+If the binary log is known not to contain any events requiring a `BINLOG` statement (that is, no row events), the `--base64-output=NEVER` option can be used to prevent this header from being written.

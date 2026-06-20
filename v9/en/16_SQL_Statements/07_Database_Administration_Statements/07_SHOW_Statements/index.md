@@ -1,9 +1,6 @@
 ### 15.7.7 SHOW Statements
 
-[`SHOW`](show.html "15.7.7 SHOW Statements") has many forms that provide
-information about databases, tables, columns, or status
-information about the server. This section describes those
-following:
+`SHOW` has many forms that provide information about databases, tables, columns, or status information about the server. This section describes those following:
 
 ```
 SHOW BINARY LOG STATUS
@@ -52,29 +49,10 @@ like_or_where: {
 }
 ```
 
-If the syntax for a given [`SHOW`](show.html "15.7.7 SHOW Statements")
-statement includes a [`LIKE
-'pattern'`](string-comparison-functions.html#operator_like) part,
-`'pattern'` is a
-string that can contain the SQL `%` and
-`_` wildcard characters. The pattern is useful
-for restricting statement output to matching values.
+If the syntax for a given `SHOW` statement includes a [`LIKE 'pattern'`](string-comparison-functions.html#operator_like) part, `'pattern'` is a string that can contain the SQL `%` and `_` wildcard characters. The pattern is useful for restricting statement output to matching values.
 
-Several [`SHOW`](show.html "15.7.7 SHOW Statements") statements also accept
-a `WHERE` clause that provides more flexibility
-in specifying which rows to display. See
-[Section 28.8, “Extensions to SHOW Statements”](extended-show.html "28.8 Extensions to SHOW Statements").
+Several `SHOW` statements also accept a `WHERE` clause that provides more flexibility in specifying which rows to display. See Section 28.8, “Extensions to SHOW Statements”.
 
-In [`SHOW`](show.html "15.7.7 SHOW Statements") statement results, user
-names and host names are quoted using backticks (`).
+In `SHOW` statement results, user names and host names are quoted using backticks (`).
 
-Many MySQL APIs (such as PHP) enable you to treat the result
-returned from a [`SHOW`](show.html "15.7.7 SHOW Statements") statement as
-you would a result set from a
-[`SELECT`](select.html "15.2.13 SELECT Statement"); see
-[Chapter 31, *Connectors and APIs*](connectors-apis.html "Chapter 31 Connectors and APIs"), or your API documentation for
-more information. In addition, you can work in SQL with results
-from queries on tables in the
-`INFORMATION_SCHEMA` database, which you cannot
-easily do with results from [`SHOW`](show.html "15.7.7 SHOW Statements")
-statements. See [Chapter 28, *INFORMATION\_SCHEMA Tables*](information-schema.html "Chapter 28 INFORMATION_SCHEMA Tables").
+Many MySQL APIs (such as PHP) enable you to treat the result returned from a `SHOW` statement as you would a result set from a `SELECT`; see Chapter 31, *Connectors and APIs*, or your API documentation for more information. In addition, you can work in SQL with results from queries on tables in the `INFORMATION_SCHEMA` database, which you cannot easily do with results from `SHOW` statements. See Chapter 28, *INFORMATION\_SCHEMA Tables*.

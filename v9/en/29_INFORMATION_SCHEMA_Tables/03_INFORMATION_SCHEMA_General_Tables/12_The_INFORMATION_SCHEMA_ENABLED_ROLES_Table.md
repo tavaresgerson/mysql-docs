@@ -1,11 +1,8 @@
 ### 28.3.12 The INFORMATION\_SCHEMA ENABLED\_ROLES Table
 
-The [`ENABLED_ROLES`](information-schema-enabled-roles-table.html "28.3.12 The INFORMATION_SCHEMA ENABLED_ROLES Table") table provides
-information about the roles that are enabled within the current
-session.
+The `ENABLED_ROLES` table provides information about the roles that are enabled within the current session.
 
-The [`ENABLED_ROLES`](information-schema-enabled-roles-table.html "28.3.12 The INFORMATION_SCHEMA ENABLED_ROLES Table") table has these
-columns:
+The `ENABLED_ROLES` table has these columns:
 
 * `ROLE_NAME`
 
@@ -17,10 +14,8 @@ columns:
 
 * `IS_DEFAULT`
 
-  `YES` or `NO`, depending on
-  whether the role is a default role.
+  `YES` or `NO`, depending on whether the role is a default role.
 
 * `IS_MANDATORY`
 
-  `YES` or `NO`, depending on
-  whether the role is mandatory.
+  `YES` or `NO`, depending on whether the role is mandatory.

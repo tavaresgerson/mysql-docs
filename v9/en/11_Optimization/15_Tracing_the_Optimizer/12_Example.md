@@ -74,12 +74,9 @@ SELECT SUM(alias2.col_varchar_nokey) AS c1, alias2.pk AS c2
 
 Note
 
-For reference, the complete trace is shown uninterrupted at the
-end of this section.
+For reference, the complete trace is shown uninterrupted at the end of this section.
 
-Now we can examine the trace, whose first column
-(`QUERY`), containing the original statement to
-be traced, is shown here:
+Now we can examine the trace, whose first column (`QUERY`), containing the original statement to be traced, is shown here:
 
 ```
 SELECT * FROM INFORMATION_SCHEMA.OPTIMIZER_TRACE\G
@@ -95,18 +92,14 @@ QUERY: SELECT SUM(alias2.col_varchar_nokey) AS c1, alias2.pk AS c2
 
 This can be useful mark when several traces are stored.
 
-The `TRACE` column begins by showing that
-execution of the statement is made up of discrete steps, like
-this:
+The `TRACE` column begins by showing that execution of the statement is made up of discrete steps, like this:
 
 ```
 "steps": [
   {
 ```
 
-This is followed by the preparation of the join for the first (and
-only) `SELECT` in the statement being traced, as
-shown here:
+This is followed by the preparation of the join for the first (and only) `SELECT` in the statement being traced, as shown here:
 
 ```
 "steps": [
@@ -125,14 +118,9 @@ shown here:
      },
 ```
 
-The output just shown displays the query as it is used for
-preparing the join; all columns (fields) have been resolved to
-their databases and tables, and each `SELECT` is
-annotated with a sequence number, which can be useful when
-studying subqueries.
+The output just shown displays the query as it is used for preparing the join; all columns (fields) have been resolved to their databases and tables, and each `SELECT` is annotated with a sequence number, which can be useful when studying subqueries.
 
-The next portion of the trace shows how the join is optimized,
-starting with condition processing:
+The next portion of the trace shows how the join is optimized, starting with condition processing:
 
 ```
      {
@@ -168,8 +156,7 @@ starting with condition processing:
            },
 ```
 
-Next, the optimizer checks for possible `ref`
-accesses, and identifies one:
+Next, the optimizer checks for possible `ref` accesses, and identifies one:
 
 ```
            {
@@ -185,22 +172,11 @@ accesses, and identifies one:
          },
 ```
 
-A `ref` access which rejects
-`NULL` has been identified: no
-`NULL` in
-`test.alias1.col_int_key` can have a match.
-(Observe that it could have a match, were the operator a null-safe
-equals
-[`<=>`](comparison-operators.html#operator_equal-to)).
+A `ref` access which rejects `NULL` has been identified: no `NULL` in `test.alias1.col_int_key` can have a match. (Observe that it could have a match, were the operator a null-safe equals `<=>`).
 
-Next, for every table in the query, we estimate the cost of, and
-number of records returned by, a table scan or a range access.
+Next, for every table in the query, we estimate the cost of, and number of records returned by, a table scan or a range access.
 
-We need to find an optimal order for the tables. Normally, greedy
-search is used, but since the statement uses a straight join, only
-the requested order is explored, and one or more access methods
-are selected. As shown in this portion of the trace, we can choose
-a table scan:
+We need to find an optimal order for the tables. Normally, greedy search is used, but since the statement uses a straight join, only the requested order is explored, and one or more access methods are selected. As shown in this portion of the trace, we can choose a table scan:
 
 ```
            {
@@ -255,13 +231,9 @@ a table scan:
            },
 ```
 
-As just shown in the second portion of the range analysis, it is
-not possible to use `GROUP_MIN_MAX` because it
-accepts only one table, and we have two in the join. This means
-that no range access is possible.
+As just shown in the second portion of the range analysis, it is not possible to use `GROUP_MIN_MAX` because it accepts only one table, and we have two in the join. This means that no range access is possible.
 
-The optimizer estimates that reading the first table, and applying
-any required conditions to it, yields 20 rows:
+The optimizer estimates that reading the first table, and applying any required conditions to it, yields 20 rows:
 
 ```
            {
@@ -283,10 +255,7 @@ any required conditions to it, yields 20 rows:
                  "records_for_plan": 20,
 ```
 
-For `alias2`, we choose `ref`
-access on the primary key rather than a table scan, because the
-number of records returned by the latter (75) is far greater than
-that returned by `ref` access (1), as shown here:
+For `alias2`, we choose `ref` access on the primary key rather than a table scan, because the number of records returned by the latter (75) is far greater than that returned by `ref` access (1), as shown here:
 
 ```
                  "rest_of_plan": [
@@ -321,9 +290,7 @@ that returned by `ref` access (1), as shown here:
            },
 ```
 
-Now that the order of tables is fixed, we can split the
-`WHERE` condition into chunks which can be tested
-early (pushdown of conditions down the join tree):
+Now that the order of tables is fixed, we can split the `WHERE` condition into chunks which can be tested early (pushdown of conditions down the join tree):
 
 ```
            {
@@ -341,8 +308,7 @@ early (pushdown of conditions down the join tree):
            },
 ```
 
-This condition can be tested on rows of `alias1`
-without reading rows from `alias2`.
+This condition can be tested on rows of `alias1` without reading rows from `alias2`.
 
 ```
                  {
@@ -373,10 +339,7 @@ Now we try to simplify the `ORDER BY`:
                ] /* items */,
 ```
 
-Because the `WHERE` clause contains
-`alias2.pk=alias1.col_int_key`, ordering by both
-columns is unnecessary; we can order by the first column alone,
-since the second column is always equal to it.
+Because the `WHERE` clause contains `alias2.pk=alias1.col_int_key`, ordering by both columns is unnecessary; we can order by the first column alone, since the second column is always equal to it.
 
 ```
                "resulting_clause_is_simple": true,
@@ -385,10 +348,7 @@ since the second column is always equal to it.
            },
 ```
 
-The shorter `ORDER BY` clause (which is not
-visible in in the output of
-[`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement")) can be implemented as an
-index scan, since it uses only a single column of one table.
+The shorter `ORDER BY` clause (which is not visible in in the output of `EXPLAIN`) can be implemented as an index scan, since it uses only a single column of one table.
 
 ```
            {
@@ -436,9 +396,7 @@ Now the join is executed:
  }	0	0
 ```
 
-All traces have the same basic structure. If a statement uses
-subqueries, there can be mutliple preparations, optimizations, and
-executions, as well as subquery-specific transformations.
+All traces have the same basic structure. If a statement uses subqueries, there can be mutliple preparations, optimizations, and executions, as well as subquery-specific transformations.
 
 The complete trace is shown here:
 

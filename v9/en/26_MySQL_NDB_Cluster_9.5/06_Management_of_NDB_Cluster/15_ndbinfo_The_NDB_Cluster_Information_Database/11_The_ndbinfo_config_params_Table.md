@@ -1,15 +1,8 @@
 #### 25.6.15.11 The ndbinfo config\_params Table
 
-The `config_params` table is a static table
-which provides the names and internal ID numbers of and other
-information about NDB Cluster configuration parameters. This
-table can also be used in conjunction with the
-[`config_values`](mysql-cluster-ndbinfo-config-values.html "25.6.15.12 The ndbinfo config_values Table") table for
-obtaining realtime information about node configuration
-parameters.
+The `config_params` table is a static table which provides the names and internal ID numbers of and other information about NDB Cluster configuration parameters. This table can also be used in conjunction with the `config_values` table for obtaining realtime information about node configuration parameters.
 
-The `config_params` table contains the
-following columns:
+The `config_params` table contains the following columns:
 
 * `param_number`
 
@@ -51,7 +44,4 @@ following columns:
 
 This table is read-only.
 
-Although this is a static table, its content can vary between
-NDB Cluster installations, since supported parameters can vary
-due to differences between software releases, cluster hardware
-configurations, and other factors.
+Although this is a static table, its content can vary between NDB Cluster installations, since supported parameters can vary due to differences between software releases, cluster hardware configurations, and other factors.

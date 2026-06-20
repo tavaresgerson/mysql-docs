@@ -4,29 +4,14 @@
 DECLARE var_name [, var_name] ... type [DEFAULT value]
 ```
 
-This statement declares local variables within stored programs.
-To provide a default value for a variable, include a
-`DEFAULT` clause. The value can be specified as
-an expression; it need not be a constant. If the
-`DEFAULT` clause is missing, the initial value
-is `NULL`.
+This statement declares local variables within stored programs. To provide a default value for a variable, include a `DEFAULT` clause. The value can be specified as an expression; it need not be a constant. If the `DEFAULT` clause is missing, the initial value is `NULL`.
 
-Local variables are treated like stored routine parameters with
-respect to data type and overflow checking. See
-[Section 15.1.21, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "15.1.21 CREATE PROCEDURE and CREATE FUNCTION Statements").
+Local variables are treated like stored routine parameters with respect to data type and overflow checking. See Section 15.1.21, “CREATE PROCEDURE and CREATE FUNCTION Statements”.
 
-Variable declarations must appear before cursor or handler
-declarations.
+Variable declarations must appear before cursor or handler declarations.
 
-Local variable names are not case-sensitive. Permissible
-characters and quoting rules are the same as for other
-identifiers, as described in [Section 11.2, “Schema Object Names”](identifiers.html "11.2 Schema Object Names").
+Local variable names are not case-sensitive. Permissible characters and quoting rules are the same as for other identifiers, as described in Section 11.2, “Schema Object Names”.
 
-The scope of a local variable is the
-[`BEGIN ...
-END`](begin-end.html "15.6.1 BEGIN ... END Compound Statement") block within which it is declared. The variable
-can be referred to in blocks nested within the declaring block,
-except those blocks that declare a variable with the same name.
+The scope of a local variable is the [`BEGIN ... END`](begin-end.html "15.6.1 BEGIN ... END Compound Statement") block within which it is declared. The variable can be referred to in blocks nested within the declaring block, except those blocks that declare a variable with the same name.
 
-For examples of variable declarations, see
-[Section 15.6.4.2, “Local Variable Scope and Resolution”](local-variable-scope.html "15.6.4.2 Local Variable Scope and Resolution").
+For examples of variable declarations, see Section 15.6.4.2, “Local Variable Scope and Resolution”.

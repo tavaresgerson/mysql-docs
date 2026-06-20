@@ -1,7 +1,6 @@
 ### 25.5.9 ndb\_desc — Describe NDB Tables
 
-[**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables") provides a detailed description of
-one or more [`NDB`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 9.5") tables.
+**ndb\_desc** provides a detailed description of one or more `NDB` tables.
 
 #### Usage
 
@@ -11,8 +10,7 @@ ndb_desc -c connection_string tbl_name -d db_name [options]
 ndb_desc -c connection_string index_name -d db_name -t tbl_name
 ```
 
-Additional options that can be used with
-[**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables") are listed later in this section.
+Additional options that can be used with **ndb\_desc** are listed later in this section.
 
 #### Sample Output
 
@@ -37,7 +35,7 @@ INSERT INTO fish VALUES
     (NULL, 'grouper', 900, 125000), (NULL ,'puffer', 250, 2500);
 ```
 
-Output from [**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables"):
+Output from **ndb\_desc**:
 
 ```
 $> ./ndb_desc -c localhost fish -d test -p
@@ -80,16 +78,9 @@ Partition       Row count       Commit count    Frag fixed memory       Frag var
 1               4               4               32768                   32768                   0               0
 ```
 
-Information about multiple tables can be obtained in a single
-invocation of [**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables") by using their names,
-separated by spaces. All of the tables must be in the same
-database.
+Information about multiple tables can be obtained in a single invocation of **ndb\_desc** by using their names, separated by spaces. All of the tables must be in the same database.
 
-You can obtain additional information about a specific index
-using the `--table` (short form:
-`-t`) option and supplying the name of the index
-as the first argument to [**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables"), as shown
-here:
+You can obtain additional information about a specific index using the `--table` (short form: `-t`) option and supplying the name of the index as the first argument to **ndb\_desc**, as shown here:
 
 ```
 $> ./ndb_desc uk -d test -t fish
@@ -131,29 +122,11 @@ NDB$TNODE Unsigned [64] PRIMARY KEY DISTRIBUTION KEY AT=FIXED ST=MEMORY
 PRIMARY KEY(NDB$TNODE) - UniqueHashIndex
 ```
 
-When an index is specified in this way, the
-[`--extra-partition-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-partition-info) and
-[`--extra-node-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-node-info) options have
-no effect.
+When an index is specified in this way, the `--extra-partition-info` and `--extra-node-info` options have no effect.
 
-The `Version` column in the output contains the
-table's schema object version. For information about
-interpreting this value, see
-[NDB Schema Object Versions](/doc/ndb-internals/en/ndb-internals-schema-object-versions.html).
+The `Version` column in the output contains the table's schema object version. For information about interpreting this value, see NDB Schema Object Versions.
 
-Three of the table properties that can be set using
-`NDB_TABLE` comments embedded in
-[`CREATE TABLE`](create-table.html "15.1.24 CREATE TABLE Statement") and
-[`ALTER TABLE`](alter-table.html "15.1.11 ALTER TABLE Statement") statements are also
-visible in [**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables") output. The table's
-`FRAGMENT_COUNT_TYPE` is always shown in the
-`FragmentCountType` column.
-`READ_ONLY` and
-`FULLY_REPLICATED`, if set to 1, are shown in
-the `Table options` column. You can see this
-after executing the following [`ALTER
-TABLE`](alter-table.html "15.1.11 ALTER TABLE Statement") statement in the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client")
-client:
+Three of the table properties that can be set using `NDB_TABLE` comments embedded in `CREATE TABLE` and `ALTER TABLE` statements are also visible in **ndb\_desc** output. The table's `FRAGMENT_COUNT_TYPE` is always shown in the `FragmentCountType` column. `READ_ONLY` and `FULLY_REPLICATED`, if set to 1, are shown in the `Table options` column. You can see this after executing the following [`ALTER TABLE`](alter-table.html "15.1.11 ALTER TABLE Statement") statement in the **mysql** client:
 
 ```
 mysql> ALTER TABLE fish COMMENT='NDB_TABLE=READ_ONLY=1,FULLY_REPLICATED=1';
@@ -168,13 +141,7 @@ mysql> SHOW WARNINGS\G
 1 row in set (0.00 sec)
 ```
 
-The warning is issued because `READ_ONLY=1`
-requires that the table's fragment count type is (or be set
-to) `ONE_PER_LDM_PER_NODE_GROUP`;
-`NDB` sets this automatically in such cases.
-You can check that the `ALTER TABLE` statement
-has the desired effect using [`SHOW CREATE
-TABLE`](show-create-table.html "15.7.7.12 SHOW CREATE TABLE Statement"):
+The warning is issued because `READ_ONLY=1` requires that the table's fragment count type is (or be set to) `ONE_PER_LDM_PER_NODE_GROUP`; `NDB` sets this automatically in such cases. You can check that the `ALTER TABLE` statement has the desired effect using [`SHOW CREATE TABLE`](show-create-table.html "15.7.7.12 SHOW CREATE TABLE Statement"):
 
 ```
 mysql> SHOW CREATE TABLE fish\G
@@ -192,13 +159,7 @@ COMMENT='NDB_TABLE=READ_BACKUP=1,FULLY_REPLICATED=1'
 1 row in set (0.01 sec)
 ```
 
-Because `FRAGMENT_COUNT_TYPE` was not set
-explicitly, its value is not shown in the comment text printed
-by `SHOW CREATE TABLE`.
-[**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables"), however, displays the updated value
-for this attribute. The `Table options` column
-shows the binary properties just enabled. You can see this in
-the output shown here (emphasized text):
+Because `FRAGMENT_COUNT_TYPE` was not set explicitly, its value is not shown in the comment text printed by `SHOW CREATE TABLE`. **ndb\_desc**, however, displays the updated value for this attribute. The `Table options` column shows the binary properties just enabled. You can see this in the output shown here (emphasized text):
 
 ```
 $> ./ndb_desc -c localhost fish -d test -p
@@ -239,17 +200,11 @@ uk$unique(name) - UniqueHashIndex
 Partition       Row count       Commit count    Frag fixed memory       Frag varsized memory    Extent_space    Free extent_space
 ```
 
-For more information about these table properties, see
-[Section 15.1.24.12, “Setting NDB Comment Options”](create-table-ndb-comment-options.html "15.1.24.12 Setting NDB Comment Options").
+For more information about these table properties, see Section 15.1.24.12, “Setting NDB Comment Options”.
 
-The `Extent_space` and `Free
-extent_space` columns are applicable only to
-`NDB` tables having columns on disk; for tables
-having only in-memory columns, these columns always contain the
-value `0`.
+The `Extent_space` and `Free extent_space` columns are applicable only to `NDB` tables having columns on disk; for tables having only in-memory columns, these columns always contain the value `0`.
 
-To illustrate their use, we modify the previous example. First,
-we must create the necessary Disk Data objects, as shown here:
+To illustrate their use, we modify the previous example. First, we must create the necessary Disk Data objects, as shown here:
 
 ```
 CREATE LOGFILE GROUP lg_1
@@ -275,16 +230,9 @@ ALTER TABLESPACE ts_1
     ENGINE NDB;
 ```
 
-(For more information on the statements just shown and the
-objects created by them, see
-[Section 25.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "25.6.11.1 NDB Cluster Disk Data Objects"), as well as
-[Section 15.1.20, “CREATE LOGFILE GROUP Statement”](create-logfile-group.html "15.1.20 CREATE LOGFILE GROUP Statement"), and
-[Section 15.1.25, “CREATE TABLESPACE Statement”](create-tablespace.html "15.1.25 CREATE TABLESPACE Statement").)
+(For more information on the statements just shown and the objects created by them, see Section 25.6.11.1, “NDB Cluster Disk Data Objects”, as well as Section 15.1.20, “CREATE LOGFILE GROUP Statement”, and Section 15.1.25, “CREATE TABLESPACE Statement”.)
 
-Now we can create and populate a version of the
-`fish` table that stores 2 of its columns on
-disk (deleting the previous version of the table first, if it
-already exists):
+Now we can create and populate a version of the `fish` table that stores 2 of its columns on disk (deleting the previous version of the table first, if it already exists):
 
 ```
 DROP TABLE IF EXISTS fish;
@@ -306,8 +254,7 @@ INSERT INTO fish VALUES
     (NULL, 'grouper', 900, 125000), (NULL ,'puffer', 250, 2500);
 ```
 
-When run against this version of the table,
-[**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables") displays the following output:
+When run against this version of the table, **ndb\_desc** displays the following output:
 
 ```
 $> ./ndb_desc -c localhost fish -d test -p
@@ -352,429 +299,181 @@ Partition       Row count       Commit count    Frag fixed memory       Frag var
 1               4               4               32768                   32768                   1048576         1044400
 ```
 
-This means that 1048576 bytes are allocated from the tablespace
-for this table on each partition, of which 1044440 bytes remain
-free for additional storage. In other words, 1048576 - 1044440 =
-4136 bytes per partition is currently being used to store the
-data from this table's disk-based columns. The number of
-bytes shown as `Free extent_space` is available
-for storing on-disk column data from the `fish`
-table only; for this reason, it is not visible when selecting
-from the Information Schema [`FILES`](information-schema-files-table.html "28.3.15 The INFORMATION_SCHEMA FILES Table")
-table.
+This means that 1048576 bytes are allocated from the tablespace for this table on each partition, of which 1044440 bytes remain free for additional storage. In other words, 1048576 - 1044440 = 4136 bytes per partition is currently being used to store the data from this table's disk-based columns. The number of bytes shown as `Free extent_space` is available for storing on-disk column data from the `fish` table only; for this reason, it is not visible when selecting from the Information Schema `FILES` table.
 
-`Tablespace id` and
-`Tablespace` are also displayed for Disk Data
-tables.
+`Tablespace id` and `Tablespace` are also displayed for Disk Data tables.
 
-For fully replicated tables, [**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables") shows
-only the nodes holding primary partition fragment replicas;
-nodes with copy fragment replicas (only) are ignored. You can
-obtain such information, using the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client")
-client, from the
-[`table_distribution_status`](mysql-cluster-ndbinfo-table-distribution-status.html "25.6.15.57 The ndbinfo table_distribution_status Table"),
-[`table_fragments`](mysql-cluster-ndbinfo-table-fragments.html "25.6.15.58 The ndbinfo table_fragments Table"),
-[`table_info`](mysql-cluster-ndbinfo-table-info.html "25.6.15.59 The ndbinfo table_info Table"), and
-[`table_replicas`](mysql-cluster-ndbinfo-table-replicas.html "25.6.15.60 The ndbinfo table_replicas Table") tables in the
-[`ndbinfo`](mysql-cluster-ndbinfo.html "25.6.15 ndbinfo: The NDB Cluster Information Database") database.
+For fully replicated tables, **ndb\_desc** shows only the nodes holding primary partition fragment replicas; nodes with copy fragment replicas (only) are ignored. You can obtain such information, using the **mysql** client, from the `table_distribution_status`, `table_fragments`, `table_info`, and `table_replicas` tables in the `ndbinfo` database.
 
-All options that can be used with [**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables")
-are shown in the following table. Additional descriptions follow
-the table.
+All options that can be used with **ndb\_desc** are shown in the following table. Additional descriptions follow the table.
 
-* [`--auto-inc`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_auto-inc),
-  `-a`
+* `--auto-inc`, `-a`
 
-  Show the next value for a table's
-  `AUTO_INCREMENT` column, if it has one.
+  Show the next value for a table's `AUTO_INCREMENT` column, if it has one.
 
-* [`--blob-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_blob-info),
-  `-b`
+* `--blob-info`, `-b`
 
-  Include information about subordinate
-  [`BLOB`](blob.html "13.3.4 The BLOB and TEXT Types") and
-  [`TEXT`](blob.html "13.3.4 The BLOB and TEXT Types") columns.
+  Include information about subordinate `BLOB` and `TEXT` columns.
 
-  Use of this option also requires the use of the
-  [`--extra-partition-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-partition-info)
-  (`-p`) option.
+  Use of this option also requires the use of the `--extra-partition-info` (`-p`) option.
 
-* [`--character-sets-dir`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_character-sets-dir)
+* `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Directory containing character sets.
 
-* [`--connect-retries`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_connect-retries)
+* `--connect-retries`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>
 
   Number of times to retry connection before giving up.
 
-* [`--connect-retry-delay`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_connect-retry-delay)
+* `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retry-delay=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">5</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">5</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">5</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">5</code></td> </tr></tbody></table>
 
-  Number of seconds to wait between attempts to contact
-  management server.
+  Number of seconds to wait between attempts to contact management server.
 
-* [`--connect-string`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_connect-string)
+* `--connect-string`
 
-  <table frame="box" rules="all" summary="Properties for connect-string"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-string=connection_string</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-string"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-string=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
 
-  Same as
-  [`--ndb-connectstring`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-connectstring).
+  Same as `--ndb-connectstring`.
 
-* [`--context`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_context),
-  `-x`
+* `--context`, `-x`
 
-  Show additional contextual information for the table such as
-  schema, database name, table name, and the table's
-  internal ID.
+  Show additional contextual information for the table such as schema, database name, table name, and the table's internal ID.
 
-* [`--core-file`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_core-file)
+* `--core-file`
 
-  <table frame="box" rules="all" summary="Properties for core-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--core-file</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for core-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--core-file</code></td> </tr></tbody></table>
 
   Write core file on error; used in debugging.
 
-* [`--database=db_name`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_database),
-  `-d`
+* `--database=db_name`, `-d`
 
   Specify the database in which the table should be found.
 
-* [`--defaults-extra-file`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_defaults-extra-file)
+* `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--defaults-extra-file=path</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--defaults-extra-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
 
   Read given file after global files are read.
 
-* [`--defaults-file`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_defaults-file)
+* `--defaults-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--defaults-file=path</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--defaults-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
 
   Read default options from given file only.
 
-* [`--defaults-group-suffix`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_defaults-group-suffix)
+* `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--defaults-group-suffix=string</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--defaults-group-suffix=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
 
   Also read groups with concat(group, suffix).
 
-* [`--extra-node-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-node-info),
-  `-n`
+* `--extra-node-info`, `-n`
 
-  Include information about the mappings between table
-  partitions and the data nodes upon which they reside. This
-  information can be useful for verifying distribution
-  awareness mechanisms and supporting more efficient
-  application access to the data stored in NDB Cluster.
+  Include information about the mappings between table partitions and the data nodes upon which they reside. This information can be useful for verifying distribution awareness mechanisms and supporting more efficient application access to the data stored in NDB Cluster.
 
-  Use of this option also requires the use of the
-  [`--extra-partition-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-partition-info)
-  (`-p`) option.
+  Use of this option also requires the use of the `--extra-partition-info` (`-p`) option.
 
-* [`--extra-partition-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-partition-info),
-  `-p`
+* `--extra-partition-info`, `-p`
 
-  Print additional information about the table's
-  partitions.
+  Print additional information about the table's partitions.
 
-* [`--help`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_help)
+* `--help`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--help</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
 
   Display help text and exit.
 
-* [`--login-path`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_login-path)
+* `--login-path`
 
-  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--login-path=path</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--login-path=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
 
   Read given path from login file.
 
-* [`--no-login-paths`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_no-login-paths)
+* `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>0
 
   Skips reading options from the login path file.
 
-* [`--ndb-connectstring`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-connectstring)
+* `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>1
 
-  Set connect string for connecting to
-  [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"). Syntax:
-  `[nodeid=id;][host=]hostname[:port]`.
-  Overrides entries in `NDB_CONNECTSTRING`
-  and `my.cnf`.
+  Set connect string for connecting to **ndb\_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
-* [`--ndb-mgm-tls`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-mgm-tls)
+* `--ndb-mgm-tls`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>2
 
-  Sets the level of TLS support required to connect to the
-  management server; one of `relaxed` or
-  `strict`. `relaxed` (the
-  default) means that a TLS connection is attempted, but
-  success is not required; `strict` means
-  that TLS is required to connect.
+  Sets the level of TLS support required to connect to the management server; one of `relaxed` or `strict`. `relaxed` (the default) means that a TLS connection is attempted, but success is not required; `strict` means that TLS is required to connect.
 
-* [`--ndb-mgmd-host`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-mgmd-host)
+* `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>3
 
-  Same as
-  [`--ndb-connectstring`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-connectstring).
+  Same as `--ndb-connectstring`.
 
-* [`--ndb-nodeid`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-nodeid)
+* `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>4
 
-  Set node ID for this node, overriding any ID set by
-  [`--ndb-connectstring`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-connectstring).
+  Set node ID for this node, overriding any ID set by `--ndb-connectstring`.
 
-* [`--ndb-optimized-node-selection`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-optimized-node-selection)
+* `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>5
 
-  Enable optimizations for selection of nodes for
-  transactions. Enabled by default; use
-  `--skip-ndb-optimized-node-selection` to
-  disable.
+  Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
 
-* [`--ndb-tls-search-path`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_ndb-tls-search-path)
+* `--ndb-tls-search-path`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>6
 
-  Specify a list of directories to search for a CA file. On
-  Unix platforms, the directory names are separated by colons
-  (`:`); on Windows systems, the semicolon
-  character (`;`) is used as the separator. A
-  directory reference may be relative or absolute; it may
-  contain one or more environment variables, each denoted by a
-  prefixed dollar sign (`$`), and expanded
-  prior to use.
+  Specify a list of directories to search for a CA file. On Unix platforms, the directory names are separated by colons (`:`); on Windows systems, the semicolon character (`;`) is used as the separator. A directory reference may be relative or absolute; it may contain one or more environment variables, each denoted by a prefixed dollar sign (`$`), and expanded prior to use.
 
-  Searching begins with the leftmost named directory and
-  proceeds from left to right until a file is found. An empty
-  string denotes an empty search path, which causes all
-  searches to fail. A string consisting of a single dot
-  (`.`) indicates that the search path
-  limited to the current working directory.
+  Searching begins with the leftmost named directory and proceeds from left to right until a file is found. An empty string denotes an empty search path, which causes all searches to fail. A string consisting of a single dot (`.`) indicates that the search path limited to the current working directory.
 
-  If no search path is supplied, the compiled-in default value
-  is used. This value depends on the platform used: On
-  Windows, this is `\ndb-tls`; on other
-  platforms (including Linux), it is
-  `$HOME/ndb-tls`. This can be overridden by
-  compiling NDB Cluster using
-  [`-DWITH_NDB_TLS_SEARCH_PATH`](source-configuration-options.html#option_cmake_with_ndb_tls_search_path).
+  If no search path is supplied, the compiled-in default value is used. This value depends on the platform used: On Windows, this is `\ndb-tls`; on other platforms (including Linux), it is `$HOME/ndb-tls`. This can be overridden by compiling NDB Cluster using `-DWITH_NDB_TLS_SEARCH_PATH`.
 
-* [`--no-defaults`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_no-defaults)
+* `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>7
 
-  Do not read default options from any option file other than
-  login file.
+  Do not read default options from any option file other than login file.
 
-* [`--print-defaults`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_print-defaults)
+* `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>8
 
   Print program argument list and exit.
 
-* [`--retries=#`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_retries),
-  `-r`
+* `--retries=#`, `-r`
 
-  Try to connect this many times before giving up. One connect
-  attempt is made per second.
+  Try to connect this many times before giving up. One connect attempt is made per second.
 
-* [`--table=tbl_name`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_table),
-  `-t`
+* `--table=tbl_name`, `-t`
 
   Specify the table in which to look for an index.
 
-* [`--unqualified`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_unqualified),
-  `-u`
+* `--unqualified`, `-u`
 
   Use unqualified table names.
 
-* [`--usage`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_usage)
+* `--usage`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>9
 
-  Display help text and exit; same as
-  [`--help`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_help).
+  Display help text and exit; same as `--help`.
 
-* [`--version`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_version)
+* `--version`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retry-delay=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">5</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">5</code></td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">5</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">5</code></td> </tr></tbody></table>0
 
   Display version information and exit.
 

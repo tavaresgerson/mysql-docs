@@ -1,11 +1,8 @@
 #### 25.6.15.30 The ndbinfo disk\_write\_speed\_aggregate\_node Table
 
-The `disk_write_speed_aggregate_node` table
-provides aggregated information per node about the speed of disk
-writes during LCP, backup, and restore operations.
+The `disk_write_speed_aggregate_node` table provides aggregated information per node about the speed of disk writes during LCP, backup, and restore operations.
 
-The `disk_write_speed_aggregate_node` table
-contains the following columns:
+The `disk_write_speed_aggregate_node` table contains the following columns:
 
 * `node_id`
 
@@ -13,8 +10,7 @@ contains the following columns:
 
 * `backup_lcp_speed_last_sec`
 
-  Number of bytes written to disk by backup and LCP processes
-  in the last second
+  Number of bytes written to disk by backup and LCP processes in the last second
 
 * `redo_speed_last_sec`
 
@@ -22,20 +18,16 @@ contains the following columns:
 
 * `backup_lcp_speed_last_10sec`
 
-  Number of bytes written to disk by backup and LCP processes
-  per second, averaged over the last 10 seconds
+  Number of bytes written to disk by backup and LCP processes per second, averaged over the last 10 seconds
 
 * `redo_speed_last_10sec`
 
-  Number of bytes written to the redo log each second,
-  averaged over the last 10 seconds
+  Number of bytes written to the redo log each second, averaged over the last 10 seconds
 
 * `backup_lcp_speed_last_60sec`
 
-  Number of bytes written to disk by backup and LCP processes
-  per second, averaged over the last 60 seconds
+  Number of bytes written to disk by backup and LCP processes per second, averaged over the last 60 seconds
 
 * `redo_speed_last_60sec`
 
-  Number of bytes written to the redo log each second,
-  averaged over the last 60 seconds
+  Number of bytes written to the redo log each second, averaged over the last 60 seconds

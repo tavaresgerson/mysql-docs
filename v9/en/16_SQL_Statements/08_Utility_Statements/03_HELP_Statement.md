@@ -4,56 +4,36 @@
 HELP 'search_string'
 ```
 
-The [`HELP`](help.html "15.8.3 HELP Statement") statement returns online
-information from the MySQL Reference Manual. Its proper operation
-requires that the help tables in the `mysql`
-database be initialized with help topic information (see
-[Section 7.1.17, “Server-Side Help Support”](server-side-help-support.html "7.1.17 Server-Side Help Support")).
+The `HELP` statement returns online information from the MySQL Reference Manual. Its proper operation requires that the help tables in the `mysql` database be initialized with help topic information (see Section 7.1.17, “Server-Side Help Support”).
 
-The [`HELP`](help.html "15.8.3 HELP Statement") statement searches the
-help tables for the given search string and displays the result of
-the search. The search string is not case-sensitive.
+The `HELP` statement searches the help tables for the given search string and displays the result of the search. The search string is not case-sensitive.
 
-The search string can contain the wildcard characters
-`%` and `_`. These have the same
-meaning as for pattern-matching operations performed with the
-[`LIKE`](string-comparison-functions.html#operator_like) operator. For example,
-`HELP 'rep%'` returns a list of topics that begin
-with `rep`.
+The search string can contain the wildcard characters `%` and `_`. These have the same meaning as for pattern-matching operations performed with the `LIKE` operator. For example, `HELP 'rep%'` returns a list of topics that begin with `rep`.
 
-The `HELP` statement does not require a
-terminator such as `;` or `\G`.
+The `HELP` statement does not require a terminator such as `;` or `\G`.
 
-The `HELP` statement understands several types of
-search strings:
+The `HELP` statement understands several types of search strings:
 
-* At the most general level, use `contents` to
-  retrieve a list of the top-level help categories:
+* At the most general level, use `contents` to retrieve a list of the top-level help categories:
 
   ```
   HELP 'contents'
   ```
 
-* For a list of topics in a given help category, such as
-  `Data Types`, use the category name:
+* For a list of topics in a given help category, such as `Data Types`, use the category name:
 
   ```
   HELP 'data types'
   ```
 
-* For help on a specific help topic, such as the
-  [`ASCII()`](string-functions.html#function_ascii) function or the
-  [`CREATE TABLE`](create-table.html "15.1.24 CREATE TABLE Statement") statement, use the
-  associated keyword or keywords:
+* For help on a specific help topic, such as the `ASCII()` function or the `CREATE TABLE` statement, use the associated keyword or keywords:
 
   ```
   HELP 'ascii'
   HELP 'create table'
   ```
 
-In other words, the search string matches a category, many topics,
-or a single topic. The following descriptions indicate the forms
-that the result set can take.
+In other words, the search string matches a category, many topics, or a single topic. The following descriptions indicate the forms that the result set can take.
 
 * Empty result
 
@@ -70,15 +50,12 @@ that the result set can take.
 
 * Result set containing a single row
 
-  This means that the search string yielded a hit for the help
-  topic. The result includes the following items:
+  This means that the search string yielded a hit for the help topic. The result includes the following items:
 
   + `name`: The topic name.
-  + `description`: Descriptive help text for
-    the topic.
+  + `description`: Descriptive help text for the topic.
 
-  + `example`: One or more usage examples.
-    (May be empty.)
+  + `example`: One or more usage examples. (May be empty.)
 
   Example: `HELP 'log'`
 
@@ -109,8 +86,7 @@ that the result set can take.
 
 * List of topics.
 
-  This means that the search string matched multiple help
-  topics.
+  This means that the search string matched multiple help topics.
 
   Example: `HELP 'status'`
 
@@ -133,8 +109,7 @@ that the result set can take.
 
 * List of topics.
 
-  A list is also displayed if the search string matches a
-  category.
+  A list is also displayed if the search string matches a category.
 
   Example: `HELP 'functions'`
 

@@ -1,64 +1,26 @@
 #### 7.5.6.2 Group Replication Flow Control Statistics Component
 
-The Group Replication Flow Control Statistics component
-(`component_group_replication_flow_control_stats`)
-enables a number of global status variables which provide
-information on Group Replication flow control execution. This
-component is available in MySQL 9.5 and later as
-part of MySQL Enterprise Edition.
+The Group Replication Flow Control Statistics component (`component_group_replication_flow_control_stats`) enables a number of global status variables which provide information on Group Replication flow control execution. This component is available in MySQL 9.5 and later as part of MySQL Enterprise Edition.
 
-* Purpose: Support Group Replication global variables in
-  addition to those normally present for measuring statistics
-  relating to flow control execution.
+* Purpose: Support Group Replication global variables in addition to those normally present for measuring statistics relating to flow control execution.
 
-* URN:
-  `file://component_group_replication_flow_control_stats`
+* URN: `file://component_group_replication_flow_control_stats`
 
-Prior to installing the Group Replication Flow Control
-Statistics component, the Group Replication plugin must be
-installed using [`INSTALL PLUGIN`](install-plugin.html "15.7.4.4 INSTALL PLUGIN Statement") or
-[`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) (see
-[Section 20.2.1.2, “Configuring an Instance for Group Replication”](group-replication-configuring-instances.html "20.2.1.2 Configuring an Instance for Group Replication"));
-otherwise, the `INSTALL COMPONENT` statement is
-rejected with the error Cannot satisfy dependency for
-service 'group\_replication\_flow\_control\_metrics\_service'
-required by component
-'mysql:group\_replication\_flow\_control\_stats'. If you
-attempt to uninstall the Group Replication plugin when the Group
-Replication Flow Control Statistics component is installed,
-[`UNINSTALL PLUGIN`](uninstall-plugin.html "15.7.4.6 UNINSTALL PLUGIN Statement") fails with the
-error Plugin 'group\_replication' cannot be
-uninstalled now. Please uninstall the component
-'component\_group\_replication\_flow\_control\_stats' and then
-UNINSTALL PLUGIN group\_replication.
+Prior to installing the Group Replication Flow Control Statistics component, the Group Replication plugin must be installed using `INSTALL PLUGIN` or `--plugin-load-add` (see Section 20.2.1.2, “Configuring an Instance for Group Replication”); otherwise, the `INSTALL COMPONENT` statement is rejected with the error Cannot satisfy dependency for service 'group\_replication\_flow\_control\_metrics\_service' required by component 'mysql:group\_replication\_flow\_control\_stats'. If you attempt to uninstall the Group Replication plugin when the Group Replication Flow Control Statistics component is installed, `UNINSTALL PLUGIN` fails with the error Plugin 'group\_replication' cannot be uninstalled now. Please uninstall the component 'component\_group\_replication\_flow\_control\_stats' and then UNINSTALL PLUGIN group\_replication.
 
-Provided that these conditions are met, The Group Replication
-Flow Control Statistics component can be installed and
-uninstalled using [`INSTALL
-COMPONENT`](install-component.html "15.7.4.3 INSTALL COMPONENT Statement") and [`UNINSTALL
-COMPONENT`](uninstall-component.html "15.7.4.5 UNINSTALL COMPONENT Statement"), respectively. See the descriptions of these
-statements, as well as [Section 7.5.1, “Installing and Uninstalling Components”](component-loading.html "7.5.1 Installing and Uninstalling Components"), for
-more information.
+Provided that these conditions are met, The Group Replication Flow Control Statistics component can be installed and uninstalled using [`INSTALL COMPONENT`](install-component.html "15.7.4.3 INSTALL COMPONENT Statement") and [`UNINSTALL COMPONENT`](uninstall-component.html "15.7.4.5 UNINSTALL COMPONENT Statement"), respectively. See the descriptions of these statements, as well as Section 7.5.1, “Installing and Uninstalling Components”, for more information.
 
-The Group Replication Flow Control Statistics component provides
-the global status variables listed here with their meanings:
+The Group Replication Flow Control Statistics component provides the global status variables listed here with their meanings:
 
-* [`Gr_flow_control_throttle_active_count`](group-replication-status-variables.html#statvar_Gr_flow_control_throttle_active_count):
-  The number of transactions currently being throttled.
+* `Gr_flow_control_throttle_active_count`: The number of transactions currently being throttled.
 
-* [`Gr_flow_control_throttle_count`](group-replication-status-variables.html#statvar_Gr_flow_control_throttle_count):
-  The number of transactions which have been throttled.
+* `Gr_flow_control_throttle_count`: The number of transactions which have been throttled.
 
-* [`Gr_flow_control_throttle_last_throttle_timestamp`](group-replication-status-variables.html#statvar_Gr_flow_control_throttle_last_throttle_timestamp):
-  The most recent date and time that a transaction was
-  throttled.
+* `Gr_flow_control_throttle_last_throttle_timestamp`: The most recent date and time that a transaction was throttled.
 
-* [`Gr_flow_control_throttle_time_sum`](group-replication-status-variables.html#statvar_Gr_flow_control_throttle_time_sum):
-  Time in microseconds that transactions have been throttled.
+* `Gr_flow_control_throttle_time_sum`: Time in microseconds that transactions have been throttled.
 
-The values of these variables can be obtained by querying the
-Performance Schema [`global_status`](performance-schema-status-variable-tables.html "29.12.15 Performance Schema Status Variable Tables")
-table, as shown here:
+The values of these variables can be obtained by querying the Performance Schema `global_status` table, as shown here:
 
 ```
 mysql> SELECT * FROM performance_schema.global_status
@@ -76,9 +38,7 @@ mysql> SELECT * FROM performance_schema.global_status
 +--------------------------------------------------+---------------------+
 ```
 
-You can also observe these values in the output of
-[`SHOW GLOBAL
-STATUS`](show-status.html "15.7.7.38 SHOW STATUS Statement"), like this:
+You can also observe these values in the output of [`SHOW GLOBAL STATUS`](show-status.html "15.7.7.38 SHOW STATUS Statement"), like this:
 
 ```
 mysql> SHOW GLOBAL STATUS LIKE 'Gr\_flow\_control%';
@@ -95,12 +55,10 @@ mysql> SHOW GLOBAL STATUS LIKE 'Gr\_flow\_control%';
 +--------------------------------------------------+---------------------+
 ```
 
-All of the status variables listed previously are reset whenever
-any of the following events occurs:
+All of the status variables listed previously are reset whenever any of the following events occurs:
 
 * The server is restarted.
 * The group is bootstrapped.
 * A new member joins, or a member automatically rejoins.
 
-Since they reflect what what the local member observes, all of
-these status variables have member scope.
+Since they reflect what what the local member observes, all of these status variables have member scope.

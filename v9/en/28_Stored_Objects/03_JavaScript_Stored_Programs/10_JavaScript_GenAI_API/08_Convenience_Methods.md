@@ -1,39 +1,19 @@
 #### 27.3.10.8 Convenience Methods
 
-The GenAI API provides the convenience methods described in this
-section under the `ml` namespace. These methods
-act as wrappers for the [`LLM`](srjsapi-llm.html "27.3.10.5 LLM Class")
-methods; rather than being invoked as `LLM`
-instance methods, they take the model ID as one of the options
-passed to them. [`ml.generate()`](srjsapi-convenience-methods.html#srjsapi-ml-generate "ml.generate()")
-and [`ml.rag()`](srjsapi-convenience-methods.html#srjsapi-ml-rag "ml.rag()") return only the
-text portions of the values returned by their LLM counterparts.
+The GenAI API provides the convenience methods described in this section under the `ml` namespace. These methods act as wrappers for the `LLM` methods; rather than being invoked as `LLM` instance methods, they take the model ID as one of the options passed to them. `ml.generate()`") and `ml.rag()`") return only the text portions of the values returned by their LLM counterparts.
 
-* [ml.generate()](srjsapi-convenience-methods.html#srjsapi-ml-generate "ml.generate()")
-* [ml.embed()](srjsapi-convenience-methods.html#srjsapi-ml-embed "ml.embed()")
-* [ml.load()](srjsapi-convenience-methods.html#srjsapi-ml-load "ml.load()")
-* [ml.rag()](srjsapi-convenience-methods.html#srjsapi-ml-rag "ml.rag()")
+* ml.generate()")
+* ml.embed()")
+* ml.load()")
+* ml.rag()")
 
 ##### ml.generate()
 
-This method is a wrapper for
-[`LLM.generate()`](srjsapi-llm.html#srjsapi-llm-generate "LLM.generate()"). It loads the
-model specified by the *`model_id`*
-specified as one of the *`options`*,
-generates a response based on the prompt using this model, and
-returns the response. The default `model_id`
-(`"llama3.2-3b-instruct-v1"`) is used if one
-is not specified. Like the `LLM` method,
-`ml.generate()` supports two variants, one
-for a single invocation, and one for batch processing.
+This method is a wrapper for `LLM.generate()`"). It loads the model specified by the *`model_id`* specified as one of the *`options`*, generates a response based on the prompt using this model, and returns the response. The default `model_id` (`"llama3.2-3b-instruct-v1"`) is used if one is not specified. Like the `LLM` method, `ml.generate()` supports two variants, one for a single invocation, and one for batch processing.
 
 **Signature (single job)**
 
-* ```
-  String ml.generate(
-    String prompt,
-    Object options
-  )
+* ``` String ml.generate( String prompt, Object options )
   ```
 
 **Arguments**
@@ -62,13 +42,7 @@ for a single invocation, and one for batch processing.
 
 **Signature (batch processing)**
 
-* ```
-  undefined ml.generate(
-    Table inputTable,
-    String inputColumn,
-    String outputColumn,
-    Object options
-  )
+* ``` undefined ml.generate( Table inputTable, String inputColumn, String outputColumn, Object options )
   ```
 
 **Arguments**
@@ -106,18 +80,11 @@ for a single invocation, and one for batch processing.
 
 ##### ml.embed()
 
-This method is a wrapper for
-[`LLM.embed()`](srjsapi-llm.html#srjsapi-llm-embed "LLM.embed()"). Like the
-`LLM` method, it supports two variants, one
-for a single invocation, and one for batch processing.
+This method is a wrapper for `LLM.embed()`"). Like the `LLM` method, it supports two variants, one for a single invocation, and one for batch processing.
 
 **Signature (single job)**
 
-* ```
-  Float32Array ml.embed(
-    String query,
-    Object options
-  )
+* ``` Float32Array ml.embed( String query, Object options )
   ```
 
 **Arguments**
@@ -150,13 +117,7 @@ for a single invocation, and one for batch processing.
 
 **Signature (batch processing)**
 
-* ```
-  undefined ml.embed(
-    Table inputTable,
-    String inputColumn,
-    String outputColumn,
-    Object options
-  )
+* ``` undefined ml.embed( Table inputTable, String inputColumn, String outputColumn, Object options )
   ```
 
 **Arguments**
@@ -195,16 +156,11 @@ for a single invocation, and one for batch processing.
 
 ##### ml.load()
 
-This static method loads an existing (and already trained)
-MySQL HeatWave AutoML model having the name specified. An error is thrown
-if model with the given name does not exist.
+This static method loads an existing (and already trained) MySQL HeatWave AutoML model having the name specified. An error is thrown if model with the given name does not exist.
 
 **Signature**
 
-* ```
-  Object ml.load(
-    String name
-  )
+* ``` Object ml.load( String name )
   ```
 
 **Arguments**
@@ -243,17 +199,9 @@ for a single invocation, and one for batch processing.
 
 **Arguments**
 
-* *`query`*
-  (`String`): Text of a natural-language
-  query
+* *`query`* (`String`): Text of a natural-language query
 
-* *`options`*
-  (`Object`) (default
-  `{}`): The options employed for
-  generation; these follow the same rules as the options
-  used with [`LLM.rag()`](srjsapi-llm.html#srjsapi-llm-rag "LLM.rag()"); the
-  default `model_id` is
-  `"llama3.2-3b-instruct-v1"`
+* *`options`* (`Object`) (default `{}`): The options employed for generation; these follow the same rules as the options used with `LLM.rag()`"); the default `model_id` is `"llama3.2-3b-instruct-v1"`
 
 **Return type**
 
@@ -261,8 +209,7 @@ for a single invocation, and one for batch processing.
 
 **Usage**
 
-* ```
-  //  These produce the same result
+* ``` //  These produce the same result
 
   let result = ml.rag("What is MySql?", {schema: ["vector_store"], n_citations: 1, model_options: {model_id: "llama3.2-3b-instruct-v1"}})
 
@@ -282,26 +229,13 @@ for a single invocation, and one for batch processing.
 
 **Arguments**
 
-* *`inputTable`*
-  (`Table`): Table to use for operations
+* *`inputTable`* (`Table`): Table to use for operations
 
-* *`inputColumn`*
-  (`String`): Name of column from
-  *`inputTable`* to be embedded
+* *`inputColumn`* (`String`): Name of column from *`inputTable`* to be embedded
 
-* *`outputColumn`*
-  (`String`): Name of column in which to
-  store embeddings; this can be either a fully-qualified
-  name of a column or the name of the column only; in the
-  latter case, the input table and its schema are used to
-  construct the fully-qualified name
+* *`outputColumn`* (`String`): Name of column in which to store embeddings; this can be either a fully-qualified name of a column or the name of the column only; in the latter case, the input table and its schema are used to construct the fully-qualified name
 
-* *`options`*
-  (`Object`) (optional; default
-  `{}`): An object containing the options
-  used for embedding; see the description of
-  [`ML_EMBED_ROW`](/doc/heatwave/en/mys-hwgenai-ml-embed-row.html) for available
-  options
+* *`options`* (`Object`) (optional; default `{}`): An object containing the options used for embedding; see the description of `ML_EMBED_ROW` for available options
 
 **Return type**
 
@@ -309,11 +243,7 @@ for a single invocation, and one for batch processing.
 
 **Usage**
 
-* ```
-  let schema = session.getSchema("mlcorpus")
-  let table = schema.getTable("genai_table")
+* ``` let schema = session.getSchema("mlcorpus") let table = schema.getTable("genai_table")
 
-  ml.rag(table, "input", "mlcorpus.predictions.response",
-        {schema: ["vector_store"], n_citations: 1, model_options:
-        {model_id: "llama3.2-3b-instruct-v1"}});
+  ml.rag(table, "input", "mlcorpus.predictions.response", {schema: ["vector_store"], n_citations: 1, model_options: {model_id: "llama3.2-3b-instruct-v1"}});
   ```

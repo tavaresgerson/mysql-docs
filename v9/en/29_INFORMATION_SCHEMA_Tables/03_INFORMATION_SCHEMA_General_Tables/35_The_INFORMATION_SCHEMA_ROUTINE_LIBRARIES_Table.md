@@ -1,17 +1,12 @@
 ### 28.3.35 The INFORMATION\_SCHEMA ROUTINE\_LIBRARIES Table
 
-The [`ROUTINE_LIBRARIES`](information-schema-routine-libraries-table.html "28.3.35 The INFORMATION_SCHEMA ROUTINE_LIBRARIES Table") table lists
-different JavaScript routines and the libraries supported by MLE
-Component (see [Section 7.5.7, “Multilingual Engine Component (MLE)”](mle-component.html "7.5.7 Multilingual Engine Component (MLE)")) that are imported
-by these JavaScript routines.
+The `ROUTINE_LIBRARIES` table lists different JavaScript routines and the libraries supported by MLE Component (see Section 7.5.7, “Multilingual Engine Component (MLE)”")) that are imported by these JavaScript routines.
 
-The [`ROUTINE_LIBRARIES`](information-schema-routine-libraries-table.html "28.3.35 The INFORMATION_SCHEMA ROUTINE_LIBRARIES Table") table has the
-columns listed here:
+The `ROUTINE_LIBRARIES` table has the columns listed here:
 
 * `ROUTINE_CATALOG`
 
-  Routine catalog name. Currently, this is always
-  `def`.
+  Routine catalog name. Currently, this is always `def`.
 
 * `ROUTINE_SCHEMA`
 
@@ -23,13 +18,11 @@ columns listed here:
 
 * `ROUTINE_TYPE`
 
-  Type of routine. One of `FUNCTION`,
-  `PROCEDURE`, or `LIBRARY`.
+  Type of routine. One of `FUNCTION`, `PROCEDURE`, or `LIBRARY`.
 
 * `LIBRARY_CATALOG`
 
-  Library catalog name. Currently, this is always
-  `def`.
+  Library catalog name. Currently, this is always `def`.
 
 * `LIBRARY_SCHEMA`
 
@@ -68,6 +61,4 @@ LIBRARY_VERSION: NULL
 2 rows in set (0.00 sec)
 ```
 
-All stored routines importing libraries are listed in the
-[`ROUTINE_LIBRARIES`](information-schema-routine-libraries-table.html "28.3.35 The INFORMATION_SCHEMA ROUTINE_LIBRARIES Table") table even if the
-referenced Library does not exist.
+All stored routines importing libraries are listed in the `ROUTINE_LIBRARIES` table even if the referenced Library does not exist.

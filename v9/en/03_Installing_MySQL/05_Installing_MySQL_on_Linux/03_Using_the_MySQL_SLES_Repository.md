@@ -1,45 +1,29 @@
 ### 2.5.3 Using the MySQL SLES Repository
 
-The MySQL SLES repository provides RPM packages for installing and
-managing the MySQL server, client, and other components on SUSE
-Enterprise Linux Server. This section contains information on
-obtaining and installing these packages.
+The MySQL SLES repository provides RPM packages for installing and managing the MySQL server, client, and other components on SUSE Enterprise Linux Server. This section contains information on obtaining and installing these packages.
 
 #### Adding the MySQL SLES Repository
 
-Add or update the official MySQL SLES repository for your system's
-repository list:
+Add or update the official MySQL SLES repository for your system's repository list:
 
 Note
 
-The beginning part of the configuration file name, such as
-`mysql84`, describes
-the default MySQL series that is enabled for installation. In
-this case, the subrepository for MySQL 8.4 LTS
-is enabled by default. It also contains other subrepository
-versions, such as MySQL 8.0 and the MySQL
-innovation series. MySQL 9.5 is the
-current innovation release.
+The beginning part of the configuration file name, such as `mysql84`, describes the default MySQL series that is enabled for installation. In this case, the subrepository for MySQL 8.4 LTS is enabled by default. It also contains other subrepository versions, such as MySQL 8.0 and the MySQL innovation series. MySQL 9.5 is the current innovation release.
 
 ##### New MySQL Repository Installation
 
 If the MySQL repository is not yet present on the system then:
 
-1. Go to the download page for MySQL SLES repository at
-   <https://dev.mysql.com/downloads/repo/suse/>.
+1. Go to the download page for MySQL SLES repository at <https://dev.mysql.com/downloads/repo/suse/>.
 
 2. Select and download the release package for your SLES version.
-3. Install the downloaded release package with the following
-   command, replacing *`package-name`*
-   with the name of the downloaded package:
+3. Install the downloaded release package with the following command, replacing *`package-name`* with the name of the downloaded package:
 
    ```
    $> sudo rpm -Uvh package-name.rpm
    ```
 
-   For example, to install the SLES 15 package where
-   *`#`* indicates the release number
-   within a version such as `15-1`:
+   For example, to install the SLES 15 package where *`#`* indicates the release number within a version such as `15-1`:
 
    ```
    $> sudo rpm -Uvh mysql84-community-release-sl15-#.noarch.rpm
@@ -49,8 +33,7 @@ If the MySQL repository is not yet present on the system then:
 
 If an older version is already present then update it:
 
-* ```
-  $> sudo zypper update mysql84-community-release
+* ``` $> sudo zypper update mysql84-community-release
   ```
 * Although this is not required for each MySQL release, it does
   update MySQL repository information to include the current
@@ -85,8 +68,7 @@ subrepositories for MySQL 8.4 server and tools,
 which are enabled by default, use the following:
 
 ```
-$> sudo zypper modifyrepo -d mysql-8.4-lts-community
-$> sudo zypper modifyrepo -d mysql-tools-community
+$> sudo zypper modifyrepo -d mysql-8.4-lts-community $> sudo zypper modifyrepo -d mysql-tools-community
 ```
 
 Then, enable the subrepositories for the release series you want.
@@ -94,8 +76,7 @@ For example, to enable the Innovation track on SLES 15 which
 installs MySQL 9.5:
 
 ```
-$> sudo zypper modifyrepo -e mysql-innovation-community
-$> sudo zypper modifyrepo -e mysql-tools-innovation-community
+$> sudo zypper modifyrepo -e mysql-innovation-community $> sudo zypper modifyrepo -e mysql-tools-innovation-community
 ```
 
 You should only enable a subrepository for one release series at
@@ -107,9 +88,7 @@ running the following command and checking its output:
 ```
 $> zypper repos -E | grep mysql.*community
 
- 7 | mysql-connectors-community       | MySQL Connectors Community                  | Yes     | (r ) Yes  | No
-10 | mysql-innovation-community       | MySQL Innovation Release Community Server   | Yes     | (r ) Yes  | No
-16 | mysql-tools-innovation-community | MySQL Tools Innovation Community            | Yes     | ( p) Yes  | No
+ 7 | mysql-connectors-community       | MySQL Connectors Community                  | Yes     | (r ) Yes  | No 10 | mysql-innovation-community       | MySQL Innovation Release Community Server   | Yes     | (r ) Yes  | No 16 | mysql-tools-innovation-community | MySQL Tools Innovation Community            | Yes     | ( p) Yes  | No
 ```
 
 After that, use the following command to refresh the repository
@@ -344,12 +323,7 @@ follow these steps:
    with the new ones; for example:
 
    ```
-   Problem: mysql-community-server-5.6.22-2.sles11.x86_64 requires mysql-community-client = 5.6.22-2.sles11,
-     but this requirement cannot be provided uninstallable providers:
-     mysql-community-client-5.6.22-2.sles11.x86_64[mysql56-community]
-    Solution 1: replacement of mysql-client-5.5.31-0.7.10.x86_64 with mysql-community-client-5.6.22-2.sles11.x86_64
-    Solution 2: do not install mysql-community-server-5.6.22-2.sles11.x86_64
-    Solution 3: break mysql-community-server-5.6.22-2.sles11.x86_64 by ignoring some of its dependencies
+   Problem: mysql-community-server-5.6.22-2.sles11.x86_64 requires mysql-community-client = 5.6.22-2.sles11, but this requirement cannot be provided uninstallable providers: mysql-community-client-5.6.22-2.sles11.x86_64[mysql56-community] Solution 1: replacement of mysql-client-5.5.31-0.7.10.x86_64 with mysql-community-client-5.6.22-2.sles11.x86_64 Solution 2: do not install mysql-community-server-5.6.22-2.sles11.x86_64 Solution 3: break mysql-community-server-5.6.22-2.sles11.x86_64 by ignoring some of its dependencies
 
    Choose from above solutions by number or cancel [1/2/3/c] (c)
    ```
@@ -400,8 +374,7 @@ Verify that the correct subrepositories have been enabled by
 running the following command and checking its output:
 
 ```
-$> zypper repos -E | grep mysql.*community
-10 | mysql-cluster-8.4-community | MySQL Cluster 8.4 Community | Yes     | No
+$> zypper repos -E | grep mysql.*community 10 | mysql-cluster-8.4-community | MySQL Cluster 8.4 Community | Yes     | No
 ```
 
 After that, use the following command to refresh the repository

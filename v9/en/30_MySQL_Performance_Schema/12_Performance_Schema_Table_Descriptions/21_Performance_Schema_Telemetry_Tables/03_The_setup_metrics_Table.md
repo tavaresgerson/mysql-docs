@@ -1,7 +1,6 @@
 #### 29.12.21.3 The setup\_metrics Table
 
-The [`setup_metrics`](performance-schema-setup-metrics-table.html "29.12.21.3 The setup_metrics Table") table lists the
-available metrics:
+The `setup_metrics` table lists the available metrics:
 
 ```
 mysql> select * from performance_schema.setup_metrics\G
@@ -110,18 +109,13 @@ METRIC_TYPE: ASYNC COUNTER
 DESCRIPTION: The number of times a row could not be added to the users table because it was full (Performance_schema_users_lost)
 ```
 
-The [`setup_metrics`](performance-schema-setup-metrics-table.html "29.12.21.3 The setup_metrics Table") table has the
-following columns:
+The `setup_metrics` table has the following columns:
 
 * `NAME`: Name of the metric.
-* `METER`: Name of the meter group of the
-  metric.
+* `METER`: Name of the meter group of the metric.
 
-* `METRIC_TYPE`: The OpenTelemetry metric
-  type.
+* `METRIC_TYPE`: The OpenTelemetry metric type.
 
-* `NUM_TYPE`: The numeric type.
-  `INTEGER` or `DOUBLE`.
+* `NUM_TYPE`: The numeric type. `INTEGER` or `DOUBLE`.
 
-* `DESCRIPTION`: A string describing the
-  metric's purpose.
+* `DESCRIPTION`: A string describing the metric's purpose.

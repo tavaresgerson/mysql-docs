@@ -1,44 +1,18 @@
 ### 26.3.5 Obtaining Information About Partitions
 
-This section discusses obtaining information about existing
-partitions, which can be done in a number of ways. Methods of
-obtaining such information include the following:
+This section discusses obtaining information about existing partitions, which can be done in a number of ways. Methods of obtaining such information include the following:
 
-* Using the [`SHOW CREATE TABLE`](show-create-table.html "15.7.7.12 SHOW CREATE TABLE Statement")
-  statement to view the partitioning clauses used in creating
-  a partitioned table.
+* Using the `SHOW CREATE TABLE` statement to view the partitioning clauses used in creating a partitioned table.
 
-* Using the [`SHOW TABLE STATUS`](show-table-status.html "15.7.7.39 SHOW TABLE STATUS Statement")
-  statement to determine whether a table is partitioned.
+* Using the `SHOW TABLE STATUS` statement to determine whether a table is partitioned.
 
-* Querying the Information Schema
-  [`PARTITIONS`](information-schema-partitions-table.html "28.3.26 The INFORMATION_SCHEMA PARTITIONS Table") table.
+* Querying the Information Schema `PARTITIONS` table.
 
-* Using the statement
-  [`EXPLAIN
-  SELECT`](explain.html "15.8.2 EXPLAIN Statement") to see which partitions are used by a given
-  [`SELECT`](select.html "15.2.13 SELECT Statement").
+* Using the statement [`EXPLAIN SELECT`](explain.html "15.8.2 EXPLAIN Statement") to see which partitions are used by a given `SELECT`.
 
-When insertions, deletions, or updates are made to partitioned
-tables, the binary log records information about the partition
-and (if any) the subpartition in which the row event took place.
-A new row event is created for a modification that takes place
-in a different partition or subpartition, even if the table
-involved is the same. So if a transaction involves three
-partitions or subpartitions, three row events are generated. For
-an update event, the partition information is recorded for both
-the “before” image and the “after”
-image. The partition information is displayed if you specify the
-`-v` or `--verbose` option
-when viewing the binary log using
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files"). Partition information is only
-recorded when row-based logging is in use
-([`binlog_format=ROW`](replication-options-binary-log.html#sysvar_binlog_format)).
+When insertions, deletions, or updates are made to partitioned tables, the binary log records information about the partition and (if any) the subpartition in which the row event took place. A new row event is created for a modification that takes place in a different partition or subpartition, even if the table involved is the same. So if a transaction involves three partitions or subpartitions, three row events are generated. For an update event, the partition information is recorded for both the “before” image and the “after” image. The partition information is displayed if you specify the `-v` or `--verbose` option when viewing the binary log using **mysqlbinlog**. Partition information is only recorded when row-based logging is in use (`binlog_format=ROW`).
 
-As discussed elsewhere in this chapter,
-[`SHOW CREATE TABLE`](show-create-table.html "15.7.7.12 SHOW CREATE TABLE Statement") includes in its
-output the `PARTITION BY` clause used to create
-a partitioned table. For example:
+As discussed elsewhere in this chapter, `SHOW CREATE TABLE` includes in its output the `PARTITION BY` clause used to create a partitioned table. For example:
 
 ```
 mysql> SHOW CREATE TABLE trb3\G
@@ -57,30 +31,13 @@ Create Table: CREATE TABLE `trb3` (
 0 row in set (0.00 sec)
 ```
 
-The output from [`SHOW TABLE STATUS`](show-table-status.html "15.7.7.39 SHOW TABLE STATUS Statement")
-for partitioned tables is the same as that for nonpartitioned
-tables, except that the `Create_options` column
-contains the string `partitioned`. The
-`Engine` column contains the name of the
-storage engine used by all partitions of the table. (See
-[Section 15.7.7.39, “SHOW TABLE STATUS Statement”](show-table-status.html "15.7.7.39 SHOW TABLE STATUS Statement"), for more information about
-this statement.)
+The output from `SHOW TABLE STATUS` for partitioned tables is the same as that for nonpartitioned tables, except that the `Create_options` column contains the string `partitioned`. The `Engine` column contains the name of the storage engine used by all partitions of the table. (See Section 15.7.7.39, “SHOW TABLE STATUS Statement”, for more information about this statement.)
 
-You can also obtain information about partitions from
-`INFORMATION_SCHEMA`, which contains a
-[`PARTITIONS`](information-schema-partitions-table.html "28.3.26 The INFORMATION_SCHEMA PARTITIONS Table") table. See
-[Section 28.3.26, “The INFORMATION\_SCHEMA PARTITIONS Table”](information-schema-partitions-table.html "28.3.26 The INFORMATION_SCHEMA PARTITIONS Table").
+You can also obtain information about partitions from `INFORMATION_SCHEMA`, which contains a `PARTITIONS` table. See Section 28.3.26, “The INFORMATION\_SCHEMA PARTITIONS Table”.
 
-It is possible to determine which partitions of a partitioned
-table are involved in a given
-[`SELECT`](select.html "15.2.13 SELECT Statement") query using
-[`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement"). The
-`partitions` column in the
-[`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") output lists the
-partitions from which records would be matched by the query.
+It is possible to determine which partitions of a partitioned table are involved in a given `SELECT` query using `EXPLAIN`. The `partitions` column in the `EXPLAIN` output lists the partitions from which records would be matched by the query.
 
-Suppose that a table `trb1` is created and
-populated as follows:
+Suppose that a table `trb1` is created and populated as follows:
 
 ```
 CREATE TABLE trb1 (id INT, name VARCHAR(50), purchased DATE)
@@ -105,8 +62,7 @@ INSERT INTO trb1 VALUES
     (10, 'lava lamp', '1998-12-25');
 ```
 
-You can see which partitions are used in a query such as
-`SELECT * FROM trb1;`, as shown here:
+You can see which partitions are used in a query such as `SELECT * FROM trb1;`, as shown here:
 
 ```
 mysql> EXPLAIN SELECT * FROM trb1\G
@@ -124,10 +80,7 @@ possible_keys: NULL
         Extra: Using filesort
 ```
 
-In this case, all four partitions are searched. However, when a
-limiting condition making use of the partitioning key is added
-to the query, you can see that only those partitions containing
-matching values are scanned, as shown here:
+In this case, all four partitions are searched. However, when a limiting condition making use of the partitioning key is added to the query, you can see that only those partitions containing matching values are scanned, as shown here:
 
 ```
 mysql> EXPLAIN SELECT * FROM trb1 WHERE id < 5\G
@@ -145,8 +98,7 @@ possible_keys: NULL
         Extra: Using where
 ```
 
-[`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement")  also provides
-information about keys used and possible keys:
+`EXPLAIN`  also provides information about keys used and possible keys:
 
 ```
 mysql> ALTER TABLE trb1 ADD PRIMARY KEY (id);
@@ -168,13 +120,8 @@ possible_keys: PRIMARY
         Extra: Using where
 ```
 
-If [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") is used to examine a
-query against a nonpartitioned table, no error is produced, but
-the value of the `partitions` column is always
-`NULL`.
+If `EXPLAIN` is used to examine a query against a nonpartitioned table, no error is produced, but the value of the `partitions` column is always `NULL`.
 
-The `rows` column of
-[`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") output displays the total
-number of rows in the table.
+The `rows` column of `EXPLAIN` output displays the total number of rows in the table.
 
-See also [Section 15.8.2, “EXPLAIN Statement”](explain.html "15.8.2 EXPLAIN Statement").
+See also Section 15.8.2, “EXPLAIN Statement”.

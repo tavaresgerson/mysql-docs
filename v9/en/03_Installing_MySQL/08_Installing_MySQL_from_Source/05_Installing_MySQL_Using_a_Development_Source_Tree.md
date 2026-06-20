@@ -1,35 +1,21 @@
 ### 2.8.5 Installing MySQL Using a Development Source Tree
 
-This section describes how to install MySQL from the latest
-development source code, which is hosted on
-[GitHub](https://github.com/). To obtain the
-MySQL Server source code from this repository hosting service, you
-can set up a local MySQL Git repository.
+This section describes how to install MySQL from the latest development source code, which is hosted on [GitHub](https://github.com/). To obtain the MySQL Server source code from this repository hosting service, you can set up a local MySQL Git repository.
 
-On [GitHub](https://github.com/), MySQL Server
-and other MySQL projects are found on the
-[MySQL](https://github.com/mysql) page. The
-MySQL Server project is a single repository that contains branches
-for several MySQL series.
+On [GitHub](https://github.com/), MySQL Server and other MySQL projects are found on the [MySQL](https://github.com/mysql) page. The MySQL Server project is a single repository that contains branches for several MySQL series.
 
-* [Prerequisites for Installing from Development Source](installing-development-tree.html#installing-development-tree-prerequisites "Prerequisites for Installing from Development Source")
-* [Setting Up a MySQL Git Repository](installing-development-tree.html#installing-development-tree-git "Setting Up a MySQL Git Repository")
+* Prerequisites for Installing from Development Source
+* Setting Up a MySQL Git Repository
 
 #### Prerequisites for Installing from Development Source
 
-To install MySQL from a development source tree, your system
-must satisfy the tool requirements listed at
-[Section 2.8.2, “Source Installation Prerequisites”](source-installation-prerequisites.html "2.8.2 Source Installation Prerequisites").
+To install MySQL from a development source tree, your system must satisfy the tool requirements listed at Section 2.8.2, “Source Installation Prerequisites”.
 
 #### Setting Up a MySQL Git Repository
 
 To set up a MySQL Git repository on your machine:
 
-1. Clone the MySQL Git repository to your machine. The
-   following command clones the MySQL Git repository to a
-   directory named `mysql-server`. The
-   initial download may take some time to complete, depending
-   on the speed of your connection.
+1. Clone the MySQL Git repository to your machine. The following command clones the MySQL Git repository to a directory named `mysql-server`. The initial download may take some time to complete, depending on the speed of your connection.
 
    ```
    $> git clone https://github.com/mysql/mysql-server.git
@@ -42,8 +28,7 @@ To set up a MySQL Git repository on your machine:
    Checking out files: 100% (25510/25510), done.
    ```
 
-2. When the clone operation completes, the contents of your
-   local MySQL Git repository appear similar to the following:
+2. When the clone operation completes, the contents of your local MySQL Git repository appear similar to the following:
 
    ```
    ~> cd mysql-server
@@ -60,8 +45,7 @@ To set up a MySQL Git repository on your machine:
    doxygen_resources  mysql-test           sql-common
    ```
 
-3. Use the **git branch -r** command to view the
-   remote tracking branches for the MySQL repository.
+3. Use the **git branch -r** command to view the remote tracking branches for the MySQL repository.
 
    ```
    ~/mysql-server> git branch -r
@@ -74,20 +58,14 @@ To set up a MySQL Git repository on your machine:
      origin/trunk
    ```
 
-4. To view the branch that is checked out in your local
-   repository, issue the **git branch** command.
-   When you clone the MySQL Git repository, the latest MySQL
-   branch is checked out automatically. The asterisk identifies
-   the active branch.
+4. To view the branch that is checked out in your local repository, issue the **git branch** command. When you clone the MySQL Git repository, the latest MySQL branch is checked out automatically. The asterisk identifies the active branch.
 
    ```
    ~/mysql-server$ git branch
    * trunk
    ```
 
-5. To check out an earlier MySQL branch, run the **git
-   checkout** command, specifying the branch name. For
-   example, to check out the MySQL 8.0 branch:
+5. To check out an earlier MySQL branch, run the **git checkout** command, specifying the branch name. For example, to check out the MySQL 8.0 branch:
 
    ```
    ~/mysql-server$ git checkout 8.0
@@ -96,50 +74,25 @@ To set up a MySQL Git repository on your machine:
    Switched to a new branch '8.0'
    ```
 
-6. To obtain changes made after your initial setup of the MySQL
-   Git repository, switch to the branch you want to update and
-   issue the **git pull** command:
+6. To obtain changes made after your initial setup of the MySQL Git repository, switch to the branch you want to update and issue the **git pull** command:
 
    ```
    ~/mysql-server$ git checkout trunk
    ~/mysql-server$ git pull
    ```
 
-   To examine the commit history, use the **git
-   log** command:
+   To examine the commit history, use the **git log** command:
 
    ```
    ~/mysql-server$ git log
    ```
 
-   You can also browse commit history and source code on the
-   GitHub [MySQL](https://github.com/mysql)
-   site.
+   You can also browse commit history and source code on the GitHub [MySQL](https://github.com/mysql) site.
 
-   If you see changes or code that you have a question about,
-   ask on [MySQL
-   Community Slack](https://mysqlcommunity.slack.com/).
+   If you see changes or code that you have a question about, ask on [MySQL Community Slack](https://mysqlcommunity.slack.com/).
 
-7. After you have cloned the MySQL Git repository and have
-   checked out the branch you want to build, you can build
-   MySQL Server from the source code. Instructions are provided
-   in [Section 2.8.4, “Installing MySQL Using a Standard Source Distribution”](installing-source-distribution.html "2.8.4 Installing MySQL Using a Standard Source Distribution"), except
-   that you skip the part about obtaining and unpacking the
-   distribution.
+7. After you have cloned the MySQL Git repository and have checked out the branch you want to build, you can build MySQL Server from the source code. Instructions are provided in Section 2.8.4, “Installing MySQL Using a Standard Source Distribution”, except that you skip the part about obtaining and unpacking the distribution.
 
-   Be careful about installing a build from a distribution
-   source tree on a production machine. The installation
-   command may overwrite your live release installation. If you
-   already have MySQL installed and do not want to overwrite
-   it, run **CMake** with values for the
-   [`CMAKE_INSTALL_PREFIX`](source-configuration-options.html#option_cmake_cmake_install_prefix),
-   [`MYSQL_TCP_PORT`](source-configuration-options.html#option_cmake_mysql_tcp_port), and
-   [`MYSQL_UNIX_ADDR`](source-configuration-options.html#option_cmake_mysql_unix_addr) options
-   different from those used by your production server. For
-   additional information about preventing multiple servers
-   from interfering with each other, see
-   [Section 7.8, “Running Multiple MySQL Instances on One Machine”](multiple-servers.html "7.8 Running Multiple MySQL Instances on One Machine").
+   Be careful about installing a build from a distribution source tree on a production machine. The installation command may overwrite your live release installation. If you already have MySQL installed and do not want to overwrite it, run **CMake** with values for the `CMAKE_INSTALL_PREFIX`, `MYSQL_TCP_PORT`, and `MYSQL_UNIX_ADDR` options different from those used by your production server. For additional information about preventing multiple servers from interfering with each other, see Section 7.8, “Running Multiple MySQL Instances on One Machine”.
 
-   Play hard with your new installation. For example, try to
-   make new features crash. Start by running **make
-   test**. See [The MySQL Test Suite](/doc/extending-mysql/9.5/en/mysql-test-suite.html).
+   Play hard with your new installation. For example, try to make new features crash. Start by running **make test**. See The MySQL Test Suite.

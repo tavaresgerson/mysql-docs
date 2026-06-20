@@ -1,10 +1,6 @@
 ### 22.5.1 Checking X Plugin Installation
 
-X Plugin is enabled by default in MySQL 8, therefore installing
-or upgrading to MySQL 8 makes the plugin available. You can verify
-X Plugin is installed on an instance of MySQL server by using the
-[`SHOW plugins`](show-plugins.html "15.7.7.28 SHOW PLUGINS Statement") statement to view the
-plugins list.
+X Plugin is enabled by default in MySQL 8, therefore installing or upgrading to MySQL 8 makes the plugin available. You can verify X Plugin is installed on an instance of MySQL server by using the `SHOW plugins` statement to view the plugins list.
 
 To use MySQL Shell to verify X Plugin is installed, issue:
 

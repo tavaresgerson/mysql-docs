@@ -1,13 +1,8 @@
 ## 12.10 Supported Character Sets and Collations
 
-This section indicates which character sets MySQL supports. There
-is one subsection for each group of related character sets. For
-each character set, the permissible collations are listed.
+This section indicates which character sets MySQL supports. There is one subsection for each group of related character sets. For each character set, the permissible collations are listed.
 
-To list the available character sets and their default collations,
-use the [`SHOW CHARACTER SET`](show-character-set.html "15.7.7.4 SHOW CHARACTER SET Statement")
-statement or query the `INFORMATION_SCHEMA`
-[`CHARACTER_SETS`](information-schema-character-sets-table.html "28.3.4 The INFORMATION_SCHEMA CHARACTER_SETS Table") table. For example:
+To list the available character sets and their default collations, use the `SHOW CHARACTER SET` statement or query the `INFORMATION_SCHEMA` `CHARACTER_SETS` table. For example:
 
 ```
 mysql> SHOW CHARACTER SET;
@@ -58,9 +53,4 @@ mysql> SHOW CHARACTER SET;
 +----------+---------------------------------+---------------------+--------+
 ```
 
-In cases where a character set has multiple collations, it might
-not be clear which collation is most suitable for a given
-application. To avoid choosing the wrong collation, it can be
-helpful to perform some comparisons with representative data
-values to make sure that a given collation sorts values the way
-you expect.
+In cases where a character set has multiple collations, it might not be clear which collation is most suitable for a given application. To avoid choosing the wrong collation, it can be helpful to perform some comparisons with representative data values to make sure that a given collation sorts values the way you expect.

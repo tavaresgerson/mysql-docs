@@ -1,16 +1,12 @@
 #### 30.4.4.18 The ps\_setup\_show\_enabled() Procedure
 
-Displays all currently enabled Performance Schema
-configuration.
+Displays all currently enabled Performance Schema configuration.
 
 ##### Parameters
 
-* `in_show_instruments BOOLEAN`: Whether
-  to display enabled instruments. This might be a long
-  list.
+* `in_show_instruments BOOLEAN`: Whether to display enabled instruments. This might be a long list.
 
-* `in_show_threads BOOLEAN`: Whether to
-  display enabled threads.
+* `in_show_threads BOOLEAN`: Whether to display enabled threads.
 
 ##### Example
 

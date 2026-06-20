@@ -19,32 +19,18 @@ END REPEAT [end_label]
 END WHILE [end_label]
 ```
 
-Labels are permitted for
-[`BEGIN ... END`](begin-end.html "15.6.1 BEGIN ... END Compound Statement")
-blocks and for the [`LOOP`](loop.html "15.6.5.5 LOOP Statement"),
-[`REPEAT`](repeat.html "15.6.5.6 REPEAT Statement"), and
-[`WHILE`](while.html "15.6.5.8 WHILE Statement") statements. Label use for
-those statements follows these rules:
+Labels are permitted for `BEGIN ... END` blocks and for the `LOOP`, `REPEAT`, and `WHILE` statements. Label use for those statements follows these rules:
 
-* *`begin_label`* must be followed by a
-  colon.
+* *`begin_label`* must be followed by a colon.
 
-* *`begin_label`* can be given without
-  *`end_label`*. If
-  *`end_label`* is present, it must be
-  the same as *`begin_label`*.
+* *`begin_label`* can be given without *`end_label`*. If *`end_label`* is present, it must be the same as *`begin_label`*.
 
-* *`end_label`* cannot be given without
-  *`begin_label`*.
+* *`end_label`* cannot be given without *`begin_label`*.
 
 * Labels at the same nesting level must be distinct.
 * Labels can be up to 16 characters long.
 
-To refer to a label within the labeled construct, use an
-[`ITERATE`](iterate.html "15.6.5.3 ITERATE Statement") or
-[`LEAVE`](leave.html "15.6.5.4 LEAVE Statement") statement. The following
-example uses those statements to continue iterating or terminate
-the loop:
+To refer to a label within the labeled construct, use an `ITERATE` or `LEAVE` statement. The following example uses those statements to continue iterating or terminate the loop:
 
 ```
 CREATE PROCEDURE doiterate(p1 INT)
@@ -57,6 +43,4 @@ BEGIN
 END;
 ```
 
-The scope of a block label does not include the code for handlers
-declared within the block. For details, see
-[Section 15.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "15.6.7.2 DECLARE ... HANDLER Statement").
+The scope of a block label does not include the code for handlers declared within the block. For details, see Section 15.6.7.2, “DECLARE ... HANDLER Statement”.

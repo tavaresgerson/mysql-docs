@@ -1,27 +1,14 @@
 #### 27.3.6.10 Stored Routine API
 
-Two functions, listed here, provide JavaScript
-[`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)
-objects reflecting MySQL stored routines:
+Two functions, listed here, provide JavaScript [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) objects reflecting MySQL stored routines:
 
-* `getFunction()`: Get a
-  `Function` instance given the name of a
-  stored function.
+* `getFunction()`: Get a `Function` instance given the name of a stored function.
 
-* `getProcedure()`: Get a
-  `Function` instance given the name of a
-  stored procedure.
+* `getProcedure()`: Get a `Function` instance given the name of a stored procedure.
 
-Use the `close()` method to close the resource
-associated with the stored routine. An error is thrown if the
-routine, after it is closed, is called again, or if its
-`close()` method is called again.
+Use the `close()` method to close the resource associated with the stored routine. An error is thrown if the routine, after it is closed, is called again, or if its `close()` method is called again.
 
-The following example creates two stored functions
-`getArea()` and `getDiag()`,
-then creates and runs a JavaScript stored procedure procRect
-which uses these functions by instantiating them and executing
-them by means of `Function` objects.
+The following example creates two stored functions `getArea()` and `getDiag()`, then creates and runs a JavaScript stored procedure procRect which uses these functions by instantiating them and executing them by means of `Function` objects.
 
 ```
 mysql> CREATE FUNCTION getArea(w INT, h INT)
@@ -74,33 +61,13 @@ mle_session_state("stdout"): Width: 2, Height: 25; Area: 50; Diagonal: 25.079872
 1 row in set (0.00 sec)
 ```
 
-For stored functions, arguments are simply passed by value, as
-shown in the examples just shown with
-`getDiag()` and `getArea()`.
-For stored procedures, argument handling is as follows:
+For stored functions, arguments are simply passed by value, as shown in the examples just shown with `getDiag()` and `getArea()`. For stored procedures, argument handling is as follows:
 
-* `IN` parameter: Parameter values are passed
-  directly.
+* `IN` parameter: Parameter values are passed directly.
 
-* `OUT` or `INOUT`
-  parameter: It is necessary to create a placeholder, using
-  the [`mysql.arg()`](srjsapi-routines.html#srjsapi-mysql-arg "mysql.arg()") function,
-  in which to store the output value for the parameter.
-  `my.arg()` is discussed in the next few
-  paragraphs of this section.
+* `OUT` or `INOUT` parameter: It is necessary to create a placeholder, using the `mysql.arg()`") function, in which to store the output value for the parameter. `my.arg()` is discussed in the next few paragraphs of this section.
 
-**mysql.arg().**
-This function is always called as a method of the global
-`mysql` object. It creates an
-`Argument` object, which can be assigned a
-value on creation, or by a procedure call. Afterwards, the
-value can be retrieved as
-`argument.val`.
-This is shown in the following example, where argument
-instances `a` and `b` are
-created in `use_my_proc()` to act as
-placeholders for `y` and `z`
-in `my_proc()`:
+**mysql.arg().** This function is always called as a method of the global `mysql` object. It creates an `Argument` object, which can be assigned a value on creation, or by a procedure call. Afterwards, the value can be retrieved as `argument.val`. This is shown in the following example, where argument instances `a` and `b` are created in `use_my_proc()` to act as placeholders for `y` and `z` in `my_proc()`:
 
 ```
 mysql> CREATE PROCEDURE my_proc(
@@ -147,19 +114,8 @@ World Hello again JS
 
 Note
 
-An `Argument` can be instantiated only by
-calling `mysql.arg()`, and accessed only
-through its `val` property. It is otherwise
-inaccessible.
+An `Argument` can be instantiated only by calling `mysql.arg()`, and accessed only through its `val` property. It is otherwise inaccessible.
 
-Equivalents between the MySQL types of `OUT` or
-`INOUT` parameters and JavaScript types are
-shown in the following table:
+Equivalents between the MySQL types of `OUT` or `INOUT` parameters and JavaScript types are shown in the following table:
 
-<table border="1" class="informaltable" summary="Descriptive text"><colgroup><col/><col/><col/></colgroup><thead><tr><th scope="col">MySQL Type</th><th scope="col">Javascript Type</th><th scope="col">Notes</th></tr></thead><tbody><tr><td scope="row"><code class="literal">NULL</code></td><td><code class="literal">null</code></td><td>-</td></tr><tr><td scope="row"><a class="link" href="integer-types.html" title="13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"><code class="literal">BIGINT</code></a></td><td><code class="literal">Number</code>, <code class="literal">String</code>,
-                <code class="literal">BigInt</code></td><td>Depends on <a class="link" href="srjsapi-session.html#srjsapi-session-sql"><code class="literal">session.sql()</code></a> method
-                <code class="literal">integerType</code> option value</td></tr><tr><td scope="row"><a class="link" href="fixed-point-types.html" title="13.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC"><code class="literal">DECIMAL</code></a></td><td>-</td><td>Error: Unsupported type</td></tr><tr><td scope="row"><a class="link" href="floating-point-types.html" title="13.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE"><code class="literal">DOUBLE</code></a></td><td><code class="literal">Number</code></td><td>-</td></tr><tr><td scope="row">Binary string (<a class="link" href="binary-varbinary.html" title="13.3.3 The BINARY and VARBINARY Types"><code class="literal">BINARY</code></a>,
-                <a class="link" href="blob.html" title="13.3.4 The BLOB and TEXT Types"><code class="literal">BLOB</code></a>)</td><td><code class="literal">Uint8Array</code></td><td>-</td></tr><tr><td scope="row">Non-binary string (<a class="link" href="blob.html" title="13.3.4 The BLOB and TEXT Types"><code class="literal">TEXT</code></a>)</td><td><code class="literal">String</code></td><td>-</td></tr><tr><td scope="row"><a class="link" href="vector.html" title="13.3.5 The VECTOR Type"><code class="literal">VECTOR</code></a></td><td><code class="literal">Float32Array</code></td><td>-</td></tr><tr><td scope="row"><a class="link" href="json.html" title="13.5 The JSON Data Type"><code class="literal">JSON</code></a></td><td><code class="literal">Object</code></td><td>-</td></tr><tr><td scope="row"><a class="link" href="datetime.html" title="13.2.2 The DATE, DATETIME, and TIMESTAMP Types"><code class="literal">DATE</code></a>,
-                <a class="link" href="datetime.html" title="13.2.2 The DATE, DATETIME, and TIMESTAMP Types"><code class="literal">DATETIME</code></a>,
-                <a class="link" href="datetime.html" title="13.2.2 The DATE, DATETIME, and TIMESTAMP Types"><code class="literal">TIMESTAMP</code></a></td><td><code class="literal">Date</code></td><td>-</td></tr><tr><td scope="row"><a class="link" href="enum.html" title="13.3.6 The ENUM Type"><code class="literal">ENUM</code></a></td><td><code class="literal">String</code></td><td>-</td></tr><tr><td scope="row"><a class="link" href="set.html" title="13.3.7 The SET Type"><code class="literal">SET</code></a></td><td><code class="literal">Set</code> (<code class="literal">String</code>)</td><td>JavaScript <code class="literal">Set</code> can be converted to a comma-delimited
-string</td></tr></tbody></table>
+<table border="1" class="informaltable" summary="Descriptive text"><colgroup><col/><col/><col/></colgroup><thead><tr><th scope="col">MySQL Type</th><th scope="col">Javascript Type</th><th scope="col">Notes</th></tr></thead><tbody><tr><td scope="row"><code class="literal">NULL</code></td><td><code class="literal">null</code></td><td>-</td></tr><tr><td scope="row"><a class="link" href="integer-types.html" title="13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"><code class="literal">BIGINT</code></a></td><td><code class="literal">Number</code>, <code class="literal">String</code>, <code class="literal">BigInt</code></td><td>Depends on <a class="link" href="srjsapi-session.html#srjsapi-session-sql"><code class="literal">session.sql()</code></a> method <code class="literal">integerType</code> option value</td></tr><tr><td scope="row"><a class="link" href="fixed-point-types.html" title="13.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC"><code class="literal">DECIMAL</code></a></td><td>-</td><td>Error: Unsupported type</td></tr><tr><td scope="row"><a class="link" href="floating-point-types.html" title="13.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE"><code class="literal">DOUBLE</code></a></td><td><code class="literal">Number</code></td><td>-</td></tr><tr><td scope="row">Binary string (<a class="link" href="binary-varbinary.html" title="13.3.3 The BINARY and VARBINARY Types"><code class="literal">BINARY</code></a>, <a class="link" href="blob.html" title="13.3.4 The BLOB and TEXT Types"><code class="literal">BLOB</code></a>)</td><td><code class="literal">Uint8Array</code></td><td>-</td></tr><tr><td scope="row">Non-binary string (<a class="link" href="blob.html" title="13.3.4 The BLOB and TEXT Types"><code class="literal">TEXT</code></a>)</td><td><code class="literal">String</code></td><td>-</td></tr><tr><td scope="row"><a class="link" href="vector.html" title="13.3.5 The VECTOR Type"><code class="literal">VECTOR</code></a></td><td><code class="literal">Float32Array</code></td><td>-</td></tr><tr><td scope="row"><a class="link" href="json.html" title="13.5 The JSON Data Type"><code class="literal">JSON</code></a></td><td><code class="literal">Object</code></td><td>-</td></tr><tr><td scope="row"><a class="link" href="datetime.html" title="13.2.2 The DATE, DATETIME, and TIMESTAMP Types"><code class="literal">DATE</code></a>, <a class="link" href="datetime.html" title="13.2.2 The DATE, DATETIME, and TIMESTAMP Types"><code class="literal">DATETIME</code></a>, <a class="link" href="datetime.html" title="13.2.2 The DATE, DATETIME, and TIMESTAMP Types"><code class="literal">TIMESTAMP</code></a></td><td><code class="literal">Date</code></td><td>-</td></tr><tr><td scope="row"><a class="link" href="enum.html" title="13.3.6 The ENUM Type"><code class="literal">ENUM</code></a></td><td><code class="literal">String</code></td><td>-</td></tr><tr><td scope="row"><a class="link" href="set.html" title="13.3.7 The SET Type"><code class="literal">SET</code></a></td><td><code class="literal">Set</code> (<code class="literal">String</code>)</td><td>JavaScript <code class="literal">Set</code> can be converted to a comma-delimited string</td></tr></tbody></table>

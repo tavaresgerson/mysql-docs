@@ -1,44 +1,29 @@
 #### 27.3.10.4 Forecaster Class
 
-* [Forecaster Constructor](srjsapi-forecaster.html#srjsapi-forecaster-constructor "Forecaster Constructor")
-* [Forecaster.train()](srjsapi-forecaster.html#srjsapi-forecaster-train "Forecaster.train()")
-* [Forecaster.fit()](srjsapi-forecaster.html#srjsapi-forecaster-fit "Forecaster.fit()")
-* [Forecaster.predict()](srjsapi-forecaster.html#srjsapi-forecaster-predict "Forecaster.predict()")
-* [Forecaster.score()](srjsapi-forecaster.html#srjsapi-forecaster-score "Forecaster.score()")
-* [Forecaster.unload()](srjsapi-forecaster.html#srjsapi-forecaster-unload "Forecaster.unload()")
+* Forecaster Constructor
+* Forecaster.train()")
+* Forecaster.fit()")
+* Forecaster.predict()")
+* Forecaster.score()")
+* Forecaster.unload()")
 
-This class encapsulates the forecasting task as described in
-[Generate Forecasts](/doc/heatwave/en/mys-hwaml-forecasts.html).
-`Forecaster` supports methods for loading,
-training, and unloading models, predicting labels, and related
-tasks.
+This class encapsulates the forecasting task as described in Generate Forecasts. `Forecaster` supports methods for loading, training, and unloading models, predicting labels, and related tasks.
 
-Each instance of `Forecaster` has three
-accessible properties, listed here:
+Each instance of `Forecaster` has three accessible properties, listed here:
 
-* `name` (`String`): The
-  model name.
+* `name` (`String`): The model name.
 
-* `metadata` (`Object`):
-  Model metadata stored in the model catalog. See
-  [Model Metadata](/doc/heatwave/en/mys-hwaml-ml-model-metadata.html).
+* `metadata` (`Object`): Model metadata stored in the model catalog. See Model Metadata.
 
-* `trainOptions` (`Object`):
-  The training options that were specified in the constructor
-  when creating this instance.
+* `trainOptions` (`Object`): The training options that were specified in the constructor when creating this instance.
 
 ##### Forecaster Constructor
 
-You can obtain an instance of `Forecaster` by
-invoking its constructor, shown here:
+You can obtain an instance of `Forecaster` by invoking its constructor, shown here:
 
 **Signature**
 
-* ```
-  new ml.Forecaster(
-    String name[,
-    Object trainOptions]
-  )
+* ``` new ml.Forecaster( String name[, Object trainOptions] )
   ```
 
 **Arguments**
@@ -76,70 +61,33 @@ specific to MySQL HeatWave AutoML forecasting.
 
 **Arguments**
 
-* *`trainData`*
-  (`Table`): A
-  [`Table`](srjsapi-table.html "27.3.6.5 Table Object") containing a
-  training dataset. The table must not take up more than 10
-  GB space, or hold more than 100 million rows or more than
-  1017 columns.
+* *`trainData`* (`Table`): A `Table` containing a training dataset. The table must not take up more than 10 GB space, or hold more than 100 million rows or more than 1017 columns.
 
-* *`index`*
-  (`String`): Name of the target column
-  containing ground truth values. This must not be a
-  [`TEXT`](blob.html "13.3.4 The BLOB and TEXT Types") column.
+* *`index`* (`String`): Name of the target column containing ground truth values. This must not be a `TEXT` column.
 
-* *`endogenousVariables`*
-  (`Array[String]`): The name or names of
-  the column or columns to be forecast.
+* *`endogenousVariables`* (`Array[String]`): The name or names of the column or columns to be forecast.
 
-* *`exogenousVariables`*
-  (`Array[String]`): The name or names of
-  the column or columns of independent, predictive
-  variables, and have not been forecast.
+* *`exogenousVariables`* (`Array[String]`): The name or names of the column or columns of independent, predictive variables, and have not been forecast.
 
 **Return type**
 
-* Does not return a value. After invoking this method, you
-  can observe its effects by selecting from the
-  `MODEL_CATALOG` and
-  `model_object_catalog` tables, as
-  described in
-  [the examples
-  provided in the MySQL HeatWave documentation](/doc/heatwave/en/mys-hwaml-ml-train.html#mys-hwaml-ml-train-examples).
+* Does not return a value. After invoking this method, you can observe its effects by selecting from the `MODEL_CATALOG` and `model_object_catalog` tables, as described in [the examples provided in the MySQL HeatWave documentation](/doc/heatwave/en/mys-hwaml-ml-train.html#mys-hwaml-ml-train-examples).
 
 ##### Forecaster.fit()
 
-An alias for
-[`train()`](srjsapi-forecaster.html#srjsapi-forecaster-train "Forecaster.train()"), and
-identical to it in all respects save the method name. See
-[Forecaster.train()](srjsapi-forecaster.html#srjsapi-forecaster-train "Forecaster.train()"), for more
-information.
+An alias for `train()`"), and identical to it in all respects save the method name. See Forecaster.train()"), for more information.
 
 ##### Forecaster.predict()
 
-This method predicts labels, and has two variants, one of
-which predicts labels from data found in the indicated table
-and stores them in an output table; this variant of
-`predict()` acts as a JavaScript wrapper for
-[`sys.ML_PREDICT_TABLE`](/doc/heatwave/en/mys-hwaml-ml-predict-table.html). The other
-variant of this method is a wrapper for
-[`sys.ML_PREDICT_ROW`](/doc/heatwave/en/mys-hwaml-ml-predict-row.html), and
-predicts a label for a single set of sample data and returns
-it to the caller. Both versions are shown here.
+This method predicts labels, and has two variants, one of which predicts labels from data found in the indicated table and stores them in an output table; this variant of `predict()` acts as a JavaScript wrapper for `sys.ML_PREDICT_TABLE`. The other variant of this method is a wrapper for `sys.ML_PREDICT_ROW`, and predicts a label for a single set of sample data and returns it to the caller. Both versions are shown here.
 
 ###### Version 1
 
-Predicts labels, saving them in the output table specified by
-the user.
+Predicts labels, saving them in the output table specified by the user.
 
 **Signature**
 
-* ```
-  Forecaster.predict(
-    Table testData,
-    Table outputTable[,
-    Object options]
-  )
+* ``` Forecaster.predict( Table testData, Table outputTable[, Object options] )
   ```
 
 **Arguments**
@@ -178,34 +126,21 @@ information about type and format of the value returned.
 
 **Arguments**
 
-* *`sample`*
-  (`Object`): Sample data containing
-  members that were used for training; extra members may be
-  included but are ignored during prediction.
+* *`sample`* (`Object`): Sample data containing members that were used for training; extra members may be included but are ignored during prediction.
 
 **Return type**
 
-* `String`. See the documentation for
-  [`ML_PREDICT_ROW`](/doc/heatwave/en/mys-hwaml-ml-predict-row.html) for details.
+* `String`. See the documentation for `ML_PREDICT_ROW` for details.
 
 ##### Forecaster.score()
 
-Returns the score for the test data in the indicated table and
-column, using the specified metric. For possible metric values
-and their effects, see [Optimization and Scoring Metrics](/doc/heatwave/en/mys-hwaml-ml-metrics.html).
+Returns the score for the test data in the indicated table and column, using the specified metric. For possible metric values and their effects, see Optimization and Scoring Metrics.
 
-`score()` is a JavaScript wrapper for
-[`sys.ML_SCORE`](/doc/heatwave/en/mys-hwaml-ml-score.html).
+`score()` is a JavaScript wrapper for `sys.ML_SCORE`.
 
 **Signature**
 
-* ```
-  score(
-    Table testData,
-    String targetColumnName,
-    String metric[,
-    Object options]
-  )
+* ``` score( Table testData, String targetColumnName, String metric[, Object options] )
   ```
 
 **Arguments**

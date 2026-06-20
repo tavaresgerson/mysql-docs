@@ -1,49 +1,31 @@
 #### 27.3.10.7 Regressor Class
 
-* [Regressor Constructor](srjsapi-regressor.html#srjsapi-regressor-constructor "Regressor Constructor")
-* [Regressor.train()](srjsapi-regressor.html#srjsapi-regressor-train "Regressor.train()")
-* [Regressor.fit()](srjsapi-regressor.html#srjsapi-regressor-fit "Regressor.fit()")
-* [Regressor.predict()](srjsapi-regressor.html#srjsapi-regressor-predict "Regressor.predict()")
-* [Regressor.score()](srjsapi-regressor.html#srjsapi-regressor-score "Regressor.score()")
-* [Regressor.explain()](srjsapi-regressor.html#srjsapi-regressor-explain "Regressor.explain()")
-* [Regressor.getExplainer()](srjsapi-regressor.html#srjsapi-regressor-getexplainer "Regressor.getExplainer()")
-* [Regressor.unload()](srjsapi-regressor.html#srjsapi-regressor-unload "Regressor.unload()")
+* Regressor Constructor
+* Regressor.train()")
+* Regressor.fit()")
+* Regressor.predict()")
+* Regressor.score()")
+* Regressor.explain()")
+* Regressor.getExplainer()")
+* Regressor.unload()")
 
-This class is similar to
-[`Classifier`](srjsapi-classifier.html "27.3.10.2 Classifier Class") and
-[`Forecaster`](srjsapi-forecaster.html "27.3.10.4 Forecaster Class") in that it
-represents an AutoML training model, but encapsulates the
-regression task as described in the MySQL HeatWave documentation (see
-[Train a Model](/doc/heatwave/en/mys-hwaml-training.html)).
+This class is similar to `Classifier` and `Forecaster` in that it represents an AutoML training model, but encapsulates the regression task as described in the MySQL HeatWave documentation (see Train a Model).
 
-`Regressor` supports methods for loading,
-training, and unloading models, predicting labels, calculating
-probabilities, producing explainers, and related tasks; it also
-has three accessible instance properties, listed here:
+`Regressor` supports methods for loading, training, and unloading models, predicting labels, calculating probabilities, producing explainers, and related tasks; it also has three accessible instance properties, listed here:
 
-* `name` (`String`): The
-  model name.
+* `name` (`String`): The model name.
 
-* `metadata` (`Object`):
-  Model metadata stored in the model catalog. See
-  [Model Metadata](/doc/heatwave/en/mys-hwaml-ml-model-metadata.html).
+* `metadata` (`Object`): Model metadata stored in the model catalog. See Model Metadata.
 
-* `trainOptions` (`Object`):
-  The training options specified in the constructor (shown
-  following).
+* `trainOptions` (`Object`): The training options specified in the constructor (shown following).
 
 ##### Regressor Constructor
 
-To obtain an instance of `Regressor`, simply
-invoke its constructor, shown here:
+To obtain an instance of `Regressor`, simply invoke its constructor, shown here:
 
 **Signature**
 
-* ```
-  new ml.Regressor(
-    String name[,
-    Object trainOptions]
-  )
+* ``` new ml.Regressor( String name[, Object trainOptions] )
   ```
 
 **Arguments**
@@ -79,18 +61,9 @@ the AutoML regression task.
 
 **Arguments**
 
-* *`trainData`*
-  (`Table`): A
-  [`Table`](srjsapi-table.html "27.3.6.5 Table Object") which contains a
-  training dataset. The table must not exceed 10 GB in size,
-  or contain more than 100 million rows or more than 1017
-  columns.
+* *`trainData`* (`Table`): A `Table` which contains a training dataset. The table must not exceed 10 GB in size, or contain more than 100 million rows or more than 1017 columns.
 
-* *`targetColumnName`*
-  (`String`): Name of the target column
-  containing ground truth values;
-  [`TEXT`](blob.html "13.3.4 The BLOB and TEXT Types") columns are not
-  supported for this purpose.
+* *`targetColumnName`* (`String`): Name of the target column containing ground truth values; `TEXT` columns are not supported for this purpose.
 
 **Return type**
 
@@ -98,43 +71,25 @@ the AutoML regression task.
 
 ##### Regressor.fit()
 
-This is merely an alias for
-[`train()`](srjsapi-regressor.html#srjsapi-regressor-train "Regressor.train()"). In all
-respects except for their names, the two methods are
-identical. See [Regressor.train()](srjsapi-regressor.html#srjsapi-regressor-train "Regressor.train()"), for
-more information.
+This is merely an alias for `train()`"). In all respects except for their names, the two methods are identical. See Regressor.train()"), for more information.
 
 ##### Regressor.predict()
 
-This method predicts labels. `predict()` has
-two variants, listed here:
+This method predicts labels. `predict()` has two variants, listed here:
 
-* Stores labels predicted from data found in the indicated
-  table and stores them in an output table; a wrapper for
-  [`sys.ML_PREDICT_TABLE`](/doc/heatwave/en/mys-hwaml-ml-predict-table.html).
+* Stores labels predicted from data found in the indicated table and stores them in an output table; a wrapper for `sys.ML_PREDICT_TABLE`.
 
-* A wrapper for
-  [`sys.ML_PREDICT_ROW`](/doc/heatwave/en/mys-hwaml-ml-predict-row.html);
-  predicts a label for a single set of sample data and
-  returns it to the caller.
+* A wrapper for `sys.ML_PREDICT_ROW`; predicts a label for a single set of sample data and returns it to the caller.
 
-Both versions of `predict()` are shown in
-this section.
+Both versions of `predict()` are shown in this section.
 
 ###### Version 1
 
-This version of `predict()` predicts labels,
-then saves them in an output table specified when invoking the
-method.
+This version of `predict()` predicts labels, then saves them in an output table specified when invoking the method.
 
 **Signature**
 
-* ```
-  Regressor.predict(
-    Table testData,
-    Table outputTable[,
-    Object options]
-  )
+* ``` Regressor.predict( Table testData, Table outputTable[, Object options] )
   ```
 
 **Arguments**
@@ -173,32 +128,19 @@ for more information.
 
 **Arguments**
 
-* *`sample`*
-  (`Object`): Sample data. This argument
-  *must* contain members that were used
-  for training; while extra members may be included, these
-  are ignored for purposes of prediction.
+* *`sample`* (`Object`): Sample data. This argument *must* contain members that were used for training; while extra members may be included, these are ignored for purposes of prediction.
 
 **Return type**
 
-* `String`. See
-  [ML\_PREDICT\_ROW](/doc/heatwave/en/mys-hwaml-ml-predict-row.html).
+* `String`. See ML\_PREDICT\_ROW.
 
 ##### Regressor.score()
 
-Returns the score for the test data in the table and column
-indicated by the user, using a specified metric; a JavaScript
-wrapper for [`sys.ML_SCORE`](/doc/heatwave/en/mys-hwaml-ml-score.html).
+Returns the score for the test data in the table and column indicated by the user, using a specified metric; a JavaScript wrapper for `sys.ML_SCORE`.
 
 **Signature**
 
-* ```
-  score(
-    Table testData,
-    String targetColumnName,
-    String metric[,
-    Object options]
-  )
+* ``` score( Table testData, String targetColumnName, String metric[, Object options] )
   ```
 
 **Arguments**
@@ -246,25 +188,15 @@ trained explainer; a wrapper for the MySQL HeatWave
 
 **Arguments**
 
-* *`data`*
-  ([`Table`](srjsapi-table.html "27.3.6.5 Table Object")): Table
-  containing trained data.
+* *`data`* (`Table`): Table containing trained data.
 
-* *`targetColumnName`*
-  (`String`): Name of column containing
-  ground truth values.
+* *`targetColumnName`* (`String`): Name of column containing ground truth values.
 
-* *`options`*
-  (`Object`)
-  (*optional*): Set of optional
-  parameters, in JSON format.
+* *`options`* (`Object`) (*optional*): Set of optional parameters, in JSON format.
 
 **Return type**
 
-* Adds a model explainer to the model catalog; does not
-  return a value. See
-  [ML\_EXPLAIN](/doc/heatwave/en/mys-hwaml-ml-explain.html), for more
-  information.
+* Adds a model explainer to the model catalog; does not return a value. See ML\_EXPLAIN, for more information.
 
 ##### Regressor.getExplainer()
 
@@ -272,8 +204,7 @@ Returns an explainer for this `Regressor`.
 
 **Signature**
 
-* ```
-  Object Regressor.getExplainer()
+* ``` Object Regressor.getExplainer()
   ```
 
 **Arguments**

@@ -1,25 +1,14 @@
 ### 13.1.7 Out-of-Range and Overflow Handling
 
-When MySQL stores a value in a numeric column that is outside
-the permissible range of the column data type, the result
-depends on the SQL mode in effect at the time:
+When MySQL stores a value in a numeric column that is outside the permissible range of the column data type, the result depends on the SQL mode in effect at the time:
 
-* If strict SQL mode is enabled, MySQL rejects the
-  out-of-range value with an error, and the insert fails, in
-  accordance with the SQL standard.
+* If strict SQL mode is enabled, MySQL rejects the out-of-range value with an error, and the insert fails, in accordance with the SQL standard.
 
-* If no restrictive modes are enabled, MySQL clips the value
-  to the appropriate endpoint of the column data type range
-  and stores the resulting value instead.
+* If no restrictive modes are enabled, MySQL clips the value to the appropriate endpoint of the column data type range and stores the resulting value instead.
 
-  When an out-of-range value is assigned to an integer column,
-  MySQL stores the value representing the corresponding
-  endpoint of the column data type range.
+  When an out-of-range value is assigned to an integer column, MySQL stores the value representing the corresponding endpoint of the column data type range.
 
-  When a floating-point or fixed-point column is assigned a
-  value that exceeds the range implied by the specified (or
-  default) precision and scale, MySQL stores the value
-  representing the corresponding endpoint of that range.
+  When a floating-point or fixed-point column is assigned a value that exceeds the range implied by the specified (or default) precision and scale, MySQL stores the value representing the corresponding endpoint of that range.
 
 Suppose that a table `t1` has this definition:
 
@@ -57,30 +46,16 @@ mysql> SELECT * FROM t1;
 +------+------+
 ```
 
-When strict SQL mode is not enabled, column-assignment
-conversions that occur due to clipping are reported as warnings
-for [`ALTER TABLE`](alter-table.html "15.1.11 ALTER TABLE Statement"),
-[`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement"),
-[`UPDATE`](update.html "15.2.17 UPDATE Statement"), and multiple-row
-[`INSERT`](insert.html "15.2.7 INSERT Statement") statements. In strict
-mode, these statements fail, and some or all the values are not
-inserted or changed, depending on whether the table is a
-transactional table and other factors. For details, see
-[Section 7.1.11, “Server SQL Modes”](sql-mode.html "7.1.11 Server SQL Modes").
+When strict SQL mode is not enabled, column-assignment conversions that occur due to clipping are reported as warnings for `ALTER TABLE`, `LOAD DATA`, `UPDATE`, and multiple-row `INSERT` statements. In strict mode, these statements fail, and some or all the values are not inserted or changed, depending on whether the table is a transactional table and other factors. For details, see Section 7.1.11, “Server SQL Modes”.
 
-Overflow during numeric expression evaluation results in an
-error. For example, the largest signed
-[`BIGINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") value is
-9223372036854775807, so the following expression produces an
-error:
+Overflow during numeric expression evaluation results in an error. For example, the largest signed `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") value is 9223372036854775807, so the following expression produces an error:
 
 ```
 mysql> SELECT 9223372036854775807 + 1;
 ERROR 1690 (22003): BIGINT value is out of range in '(9223372036854775807 + 1)'
 ```
 
-To enable the operation to succeed in this case, convert the
-value to unsigned;
+To enable the operation to succeed in this case, convert the value to unsigned;
 
 ```
 mysql> SELECT CAST(9223372036854775807 AS UNSIGNED) + 1;
@@ -91,11 +66,7 @@ mysql> SELECT CAST(9223372036854775807 AS UNSIGNED) + 1;
 +-------------------------------------------+
 ```
 
-Whether overflow occurs depends on the range of the operands, so
-another way to handle the preceding expression is to use
-exact-value arithmetic because
-[`DECIMAL`](fixed-point-types.html "13.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC") values have a larger
-range than integers:
+Whether overflow occurs depends on the range of the operands, so another way to handle the preceding expression is to use exact-value arithmetic because `DECIMAL` - DECIMAL, NUMERIC") values have a larger range than integers:
 
 ```
 mysql> SELECT 9223372036854775807.0 + 1;
@@ -106,10 +77,7 @@ mysql> SELECT 9223372036854775807.0 + 1;
 +---------------------------+
 ```
 
-Subtraction between integer values, where one is of type
-`UNSIGNED`, produces an unsigned result by
-default. If the result would otherwise have been negative, an
-error results:
+Subtraction between integer values, where one is of type `UNSIGNED`, produces an unsigned result by default. If the result would otherwise have been negative, an error results:
 
 ```
 mysql> SET sql_mode = '';
@@ -119,8 +87,7 @@ mysql> SELECT CAST(0 AS UNSIGNED) - 1;
 ERROR 1690 (22003): BIGINT UNSIGNED value is out of range in '(cast(0 as unsigned) - 1)'
 ```
 
-If the [`NO_UNSIGNED_SUBTRACTION`](sql-mode.html#sqlmode_no_unsigned_subtraction)
-SQL mode is enabled, the result is negative:
+If the `NO_UNSIGNED_SUBTRACTION` SQL mode is enabled, the result is negative:
 
 ```
 mysql> SET sql_mode = 'NO_UNSIGNED_SUBTRACTION';
@@ -132,9 +99,4 @@ mysql> SELECT CAST(0 AS UNSIGNED) - 1;
 +-------------------------+
 ```
 
-If the result of such an operation is used to update an
-`UNSIGNED` integer column, the result is
-clipped to the maximum value for the column type, or clipped to
-0 if [`NO_UNSIGNED_SUBTRACTION`](sql-mode.html#sqlmode_no_unsigned_subtraction)
-is enabled. If strict SQL mode is enabled, an error occurs and
-the column remains unchanged.
+If the result of such an operation is used to update an `UNSIGNED` integer column, the result is clipped to the maximum value for the column type, or clipped to 0 if `NO_UNSIGNED_SUBTRACTION` is enabled. If strict SQL mode is enabled, an error occurs and the column remains unchanged.

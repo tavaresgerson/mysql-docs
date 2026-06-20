@@ -1,15 +1,10 @@
 #### 20.2.1.6 Adding Instances to the Group
 
-At this point, the group has one member in it, server s1, which
-has some data in it. It is now time to expand the group by
-adding the other two servers configured previously.
+At this point, the group has one member in it, server s1, which has some data in it. It is now time to expand the group by adding the other two servers configured previously.
 
 ##### 20.2.1.6.1 Adding a Second Instance
 
-In order to add a second instance, server s2, first create the
-configuration file for it. The configuration is similar to the
-one used for server s1, except for things such as the
-[`server_id`](replication-options.html#sysvar_server_id).
+In order to add a second instance, server s2, first create the configuration file for it. The configuration is similar to the one used for server s1, except for things such as the `server_id`.
 
 ```
 [mysqld]
@@ -37,20 +32,7 @@ group_replication_group_seeds= "s1:33061,s2:33061,s3:33061"
 group_replication_bootstrap_group= off
 ```
 
-Similar to the procedure for server s1, with the option file
-in place you launch the server. Then configure the distributed
-recovery credentials as follows. The commands are the same as
-used when setting up server s1 as the user is shared within
-the group. This member needs to have the same replication user
-configured in
-[Section 20.2.1.3, “User Credentials For Distributed Recovery”](group-replication-user-credentials.html "20.2.1.3 User Credentials For Distributed Recovery"). If you
-are relying on distributed recovery to configure the user on
-all members, when s2 connects to the seed s1 the replication
-user is replicated or cloned to s1. If you did not have binary
-logging enabled when you configured the user credentials on
-s1, and a remote cloning operation is not used for state
-transfer, you must create the replication user on s2. In this
-case, connect to s2 and issue:
+Similar to the procedure for server s1, with the option file in place you launch the server. Then configure the distributed recovery credentials as follows. The commands are the same as used when setting up server s1 as the user is shared within the group. This member needs to have the same replication user configured in Section 20.2.1.3, “User Credentials For Distributed Recovery”. If you are relying on distributed recovery to configure the user on all members, when s2 connects to the seed s1 the replication user is replicated or cloned to s1. If you did not have binary logging enabled when you configured the user credentials on s1, and a remote cloning operation is not used for state transfer, you must create the replication user on s2. In this case, connect to s2 and issue:
 
 ```
 SET SQL_LOG_BIN=0;
@@ -63,9 +45,7 @@ FLUSH PRIVILEGES;
 SET SQL_LOG_BIN=1;
 ```
 
-If you are providing user credentials using a
-[`CHANGE REPLICATION SOURCE TO`](change-replication-source-to.html "15.4.2.2 CHANGE REPLICATION SOURCE TO Statement"),
-issue the following statement after that:
+If you are providing user credentials using a `CHANGE REPLICATION SOURCE TO`, issue the following statement after that:
 
 ```
 CHANGE REPLICATION SOURCE TO SOURCE_USER='rpl_user', SOURCE_PASSWORD='password' \
@@ -74,60 +54,29 @@ CHANGE REPLICATION SOURCE TO SOURCE_USER='rpl_user', SOURCE_PASSWORD='password' 
 
 Tip
 
-If you are using the caching SHA-2 authentication plugin
-(the default), see
-[Section 20.6.3.1.1, “Replication User With The Caching SHA-2 Authentication Plugin”](group-replication-secure-user.html#group-replication-caching-sha2-user-credentials "20.6.3.1.1 Replication User With The Caching SHA-2 Authentication Plugin").
+If you are using the caching SHA-2 authentication plugin (the default), see Section 20.6.3.1.1, “Replication User With The Caching SHA-2 Authentication Plugin”.
 
-If necessary, install the Group Replication plugin, see
-[Section 20.2.1.4, “Launching Group Replication”](group-replication-launching.html "20.2.1.4 Launching Group Replication").
+If necessary, install the Group Replication plugin, see Section 20.2.1.4, “Launching Group Replication”.
 
-Start Group Replication and s2 starts the process of joining
-the group.
+Start Group Replication and s2 starts the process of joining the group.
 
 ```
 mysql> START GROUP_REPLICATION;
 ```
 
-If you are providing user credentials for distributed recovery
-as part of [`START
-GROUP_REPLICATION`](start-group-replication.html "15.4.3.1 START GROUP_REPLICATION Statement"), you can do so like this:
+If you are providing user credentials for distributed recovery as part of [`START GROUP_REPLICATION`](start-group-replication.html "15.4.3.1 START GROUP_REPLICATION Statement"), you can do so like this:
 
 ```
 mysql> START GROUP_REPLICATION USER='rpl_user', PASSWORD='password';
 ```
 
-Unlike the previous steps that were the same as those executed
-on s1, here there is a difference in that you do
-*not* need to bootstrap the group because
-the group already exists. In other words on s2
-[`group_replication_bootstrap_group`](group-replication-system-variables.html#sysvar_group_replication_bootstrap_group)
-is set to `OFF`, and you do not issue
-`SET GLOBAL
-group_replication_bootstrap_group=ON;` before
-starting Group Replication, because the group has already been
-created and bootstrapped by server s1. At this point server s2
-only needs to be added to the already existing group.
+Unlike the previous steps that were the same as those executed on s1, here there is a difference in that you do *not* need to bootstrap the group because the group already exists. In other words on s2 `group_replication_bootstrap_group` is set to `OFF`, and you do not issue `SET GLOBAL group_replication_bootstrap_group=ON;` before starting Group Replication, because the group has already been created and bootstrapped by server s1. At this point server s2 only needs to be added to the already existing group.
 
 Tip
 
-When Group Replication starts successfully and the server
-joins the group it checks the
-[`super_read_only`](server-system-variables.html#sysvar_super_read_only) variable.
-By setting [`super_read_only`](server-system-variables.html#sysvar_super_read_only)
-to ON in the member's configuration file, you can
-ensure that servers which fail when starting Group
-Replication for any reason do not accept transactions. If
-the server should join the group as a read/write instance,
-for example as the primary in a single-primary group or as a
-member of a multi-primary group, when
-[`super_read_only`](server-system-variables.html#sysvar_super_read_only) is set to
-`ON` then it is set to
-`OFF` upon joining the group.
+When Group Replication starts successfully and the server joins the group it checks the `super_read_only` variable. By setting `super_read_only` to ON in the member's configuration file, you can ensure that servers which fail when starting Group Replication for any reason do not accept transactions. If the server should join the group as a read/write instance, for example as the primary in a single-primary group or as a member of a multi-primary group, when `super_read_only` is set to `ON` then it is set to `OFF` upon joining the group.
 
-Checking the
-[`performance_schema.replication_group_members`](performance-schema-replication-group-members-table.html "29.12.11.18 The replication_group_members Table")
-table again shows that there are now two
-`ONLINE` servers in the group.
+Checking the `performance_schema.replication_group_members` table again shows that there are now two `ONLINE` servers in the group.
 
 ```
 mysql> SELECT * FROM performance_schema.replication_group_members;
@@ -139,16 +88,7 @@ mysql> SELECT * FROM performance_schema.replication_group_members;
 +---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+----------------------------+
 ```
 
-When s2 attempted to join the group,
-[Section 20.5.4, “Distributed Recovery”](group-replication-distributed-recovery.html "20.5.4 Distributed Recovery")
-ensured that s2 applied the same transactions which s1 had
-applied. Once this process completed, s2 could join the group
-as a member, and at this point it is marked as
-`ONLINE`. In other words it must have already
-caught up with server s1 automatically. Once s2 is
-`ONLINE`, it then begins to process
-transactions with the group. Verify that s2 has indeed
-synchronized with server s1 as follows.
+When s2 attempted to join the group, Section 20.5.4, “Distributed Recovery” ensured that s2 applied the same transactions which s1 had applied. Once this process completed, s2 could join the group as a member, and at this point it is marked as `ONLINE`. In other words it must have already caught up with server s1 automatically. Once s2 is `ONLINE`, it then begins to process transactions with the group. Verify that s2 has indeed synchronized with server s1 as follows.
 
 ```
 mysql> SHOW DATABASES LIKE 'test';
@@ -191,18 +131,11 @@ mysql> SHOW BINLOG EVENTS;
 +---------------+------+----------------+-----------+-------------+--------------------------------------------------------------------+
 ```
 
-As seen above, the second server has been added to the group
-and it has replicated the changes from server s1
-automatically. In other words, the transactions applied on s1
-up to the point in time that s2 joined the group have been
-replicated to s2.
+As seen above, the second server has been added to the group and it has replicated the changes from server s1 automatically. In other words, the transactions applied on s1 up to the point in time that s2 joined the group have been replicated to s2.
 
 ##### 20.2.1.6.2 Adding Additional Instances
 
-Adding additional instances to the group is essentially the
-same sequence of steps as adding the second server, except
-that the configuration has to be changed as it had to be for
-server s2. To summarise the required commands:
+Adding additional instances to the group is essentially the same sequence of steps as adding the second server, except that the configuration has to be changed as it had to be for server s2. To summarise the required commands:
 
 1. Create the configuration file.
 
@@ -232,8 +165,7 @@ server s2. To summarise the required commands:
    group_replication_bootstrap_group= off
    ```
 
-2. Start the server and connect to it. Create the replication
-   user for distributed recovery.
+2. Start the server and connect to it. Create the replication user for distributed recovery.
 
    ```
    SET SQL_LOG_BIN=0;
@@ -246,10 +178,7 @@ server s2. To summarise the required commands:
    SET SQL_LOG_BIN=1;
    ```
 
-   If you are providing user credentials using a
-   [`CHANGE REPLICATION SOURCE
-   TO`](change-replication-source-to.html "15.4.2.2 CHANGE REPLICATION SOURCE TO Statement") statement, issue the following statement
-   after that:
+   If you are providing user credentials using a [`CHANGE REPLICATION SOURCE TO`](change-replication-source-to.html "15.4.2.2 CHANGE REPLICATION SOURCE TO Statement") statement, issue the following statement after that:
 
    ```
    mysql> CHANGE REPLICATION SOURCE TO SOURCE_USER='rpl_user',
@@ -257,8 +186,7 @@ server s2. To summarise the required commands:
        ->   FOR CHANNEL 'group_replication_recovery';
    ```
 
-3. Install the Group Replication plugin if necessary, like
-   this:
+3. Install the Group Replication plugin if necessary, like this:
 
    ```
    mysql> INSTALL PLUGIN group_replication SONAME 'group_replication.so';
@@ -270,20 +198,13 @@ server s2. To summarise the required commands:
    mysql> START GROUP_REPLICATION;
    ```
 
-   If you are providing user credentials for distributed
-   recovery in the [`START
-   GROUP_REPLICATION`](start-group-replication.html "15.4.3.1 START GROUP_REPLICATION Statement") statement, you can do so like
-   this:
+   If you are providing user credentials for distributed recovery in the [`START GROUP_REPLICATION`](start-group-replication.html "15.4.3.1 START GROUP_REPLICATION Statement") statement, you can do so like this:
 
    ```
    mysql> START GROUP_REPLICATION USER='rpl_user', PASSWORD='password';
    ```
 
-At this point server s3 is booted and running, has joined the
-group and caught up with the other servers in the group.
-Consulting the
-[`performance_schema.replication_group_members`](performance-schema-replication-group-members-table.html "29.12.11.18 The replication_group_members Table")
-table again confirms this is the case.
+At this point server s3 is booted and running, has joined the group and caught up with the other servers in the group. Consulting the `performance_schema.replication_group_members` table again confirms this is the case.
 
 ```
 mysql> SELECT * FROM performance_schema.replication_group_members;
@@ -296,9 +217,7 @@ mysql> SELECT * FROM performance_schema.replication_group_members;
 +---------------------------+--------------------------------------+-------------+-------------+--------------+-------------+----------------+----------------------------+
 ```
 
-Issuing this same query on server s2 or server s1 yields the
-same result. Also, you can verify that server s3 has caught
-up:
+Issuing this same query on server s2 or server s1 yields the same result. Also, you can verify that server s3 has caught up:
 
 ```
 mysql> SHOW DATABASES LIKE 'test';

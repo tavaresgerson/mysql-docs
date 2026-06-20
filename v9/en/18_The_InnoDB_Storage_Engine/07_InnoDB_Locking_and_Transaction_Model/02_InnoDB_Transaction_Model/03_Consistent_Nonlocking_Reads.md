@@ -1,69 +1,18 @@
 #### 17.7.2.3 Consistent Nonlocking Reads
 
-A [consistent read](glossary.html#glos_consistent_read "consistent read")
-means that `InnoDB` uses multi-versioning to
-present to a query a snapshot of the database at a point in
-time. The query sees the changes made by transactions that
-committed before that point in time, and no changes made by
-later or uncommitted transactions. The exception to this rule is
-that the query sees the changes made by earlier statements
-within the same transaction. This exception causes the following
-anomaly: If you update some rows in a table, a
-[`SELECT`](select.html "15.2.13 SELECT Statement") sees the latest version of
-the updated rows, but it might also see older versions of any
-rows. If other sessions simultaneously update the same table,
-the anomaly means that you might see the table in a state that
-never existed in the database.
+A consistent read means that `InnoDB` uses multi-versioning to present to a query a snapshot of the database at a point in time. The query sees the changes made by transactions that committed before that point in time, and no changes made by later or uncommitted transactions. The exception to this rule is that the query sees the changes made by earlier statements within the same transaction. This exception causes the following anomaly: If you update some rows in a table, a `SELECT` sees the latest version of the updated rows, but it might also see older versions of any rows. If other sessions simultaneously update the same table, the anomaly means that you might see the table in a state that never existed in the database.
 
-If the transaction
-[isolation level](glossary.html#glos_isolation_level "isolation level") is
-[`REPEATABLE READ`](innodb-transaction-isolation-levels.html#isolevel_repeatable-read) (the default
-level), all consistent reads within the same transaction read
-the snapshot established by the first such read in that
-transaction. You can get a fresher snapshot for your queries by
-committing the current transaction and after that issuing new
-queries.
+If the transaction isolation level is `REPEATABLE READ` (the default level), all consistent reads within the same transaction read the snapshot established by the first such read in that transaction. You can get a fresher snapshot for your queries by committing the current transaction and after that issuing new queries.
 
-With [`READ COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed) isolation
-level, each consistent read within a transaction sets and reads
-its own fresh snapshot.
+With `READ COMMITTED` isolation level, each consistent read within a transaction sets and reads its own fresh snapshot.
 
-Consistent read is the default mode in which
-`InnoDB` processes
-[`SELECT`](select.html "15.2.13 SELECT Statement") statements in
-[`READ COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed) and
-[`REPEATABLE READ`](innodb-transaction-isolation-levels.html#isolevel_repeatable-read) isolation
-levels. A consistent read does not set any locks on the tables
-it accesses, and therefore other sessions are free to modify
-those tables at the same time a consistent read is being
-performed on the table.
+Consistent read is the default mode in which `InnoDB` processes `SELECT` statements in `READ COMMITTED` and `REPEATABLE READ` isolation levels. A consistent read does not set any locks on the tables it accesses, and therefore other sessions are free to modify those tables at the same time a consistent read is being performed on the table.
 
-Suppose that you are running in the default
-[`REPEATABLE READ`](innodb-transaction-isolation-levels.html#isolevel_repeatable-read) isolation
-level. When you issue a consistent read (that is, an ordinary
-[`SELECT`](select.html "15.2.13 SELECT Statement") statement),
-`InnoDB` gives your transaction a timepoint
-according to which your query sees the database. If another
-transaction deletes a row and commits after your timepoint was
-assigned, you do not see the row as having been deleted. Inserts
-and updates are treated similarly.
+Suppose that you are running in the default `REPEATABLE READ` isolation level. When you issue a consistent read (that is, an ordinary `SELECT` statement), `InnoDB` gives your transaction a timepoint according to which your query sees the database. If another transaction deletes a row and commits after your timepoint was assigned, you do not see the row as having been deleted. Inserts and updates are treated similarly.
 
 Note
 
-The snapshot of the database state applies to
-[`SELECT`](select.html "15.2.13 SELECT Statement") statements within a
-transaction, not necessarily to
-[DML](glossary.html#glos_dml "DML") statements. If you insert
-or modify some rows and then commit that transaction, a
-[`DELETE`](delete.html "15.2.2 DELETE Statement") or
-[`UPDATE`](update.html "15.2.17 UPDATE Statement") statement issued from
-another concurrent `REPEATABLE READ`
-transaction could affect those just-committed rows, even
-though the session could not query them. If a transaction does
-update or delete rows committed by a different transaction,
-those changes do become visible to the current transaction.
-For example, you might encounter a situation like the
-following:
+The snapshot of the database state applies to `SELECT` statements within a transaction, not necessarily to DML statements. If you insert or modify some rows and then commit that transaction, a `DELETE` or `UPDATE` statement issued from another concurrent `REPEATABLE READ` transaction could affect those just-committed rows, even though the session could not query them. If a transaction does update or delete rows committed by a different transaction, those changes do become visible to the current transaction. For example, you might encounter a situation like the following:
 
 ```
 SELECT COUNT(c1) FROM t1 WHERE c1 = 'xyz';
@@ -79,17 +28,11 @@ SELECT COUNT(c2) FROM t1 WHERE c2 = 'cba';
 -- Returns 10: this txn can now see the rows it just updated.
 ```
 
-You can advance your timepoint by committing your transaction
-and then doing another [`SELECT`](select.html "15.2.13 SELECT Statement") or
-[`START TRANSACTION WITH
-CONSISTENT SNAPSHOT`](commit.html "15.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements").
+You can advance your timepoint by committing your transaction and then doing another `SELECT` or [`START TRANSACTION WITH CONSISTENT SNAPSHOT`](commit.html "15.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements").
 
-This is called multi-versioned
-concurrency control.
+This is called multi-versioned concurrency control.
 
-In the following example, session A sees the row inserted by B
-only when B has committed the insert and A has committed as
-well, so that the timepoint is advanced past the commit of B.
+In the following example, session A sees the row inserted by B only when B has committed the insert and A has committed as well, so that the timepoint is advanced past the commit of B.
 
 ```
              Session A              Session B
@@ -115,58 +58,22 @@ v          SELECT * FROM t;
            ---------------------
 ```
 
-If you want to see the “freshest” state of the
-database, use either the [`READ
-COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed) isolation level or a
-[locking read](glossary.html#glos_locking_read "locking read"):
+If you want to see the “freshest” state of the database, use either the [`READ COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed) isolation level or a locking read:
 
 ```
 SELECT * FROM t FOR SHARE;
 ```
 
-With [`READ COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed) isolation
-level, each consistent read within a transaction sets and reads
-its own fresh snapshot. With `FOR SHARE`, a
-locking read occurs instead: A `SELECT` blocks
-until the transaction containing the freshest rows ends (see
-[Section 17.7.2.4, “Locking Reads”](innodb-locking-reads.html "17.7.2.4 Locking Reads")).
+With `READ COMMITTED` isolation level, each consistent read within a transaction sets and reads its own fresh snapshot. With `FOR SHARE`, a locking read occurs instead: A `SELECT` blocks until the transaction containing the freshest rows ends (see Section 17.7.2.4, “Locking Reads”).
 
 Consistent read does not work over certain DDL statements:
 
-* Consistent read does not work over [`DROP
-  TABLE`](drop-table.html "15.1.37 DROP TABLE Statement"), because MySQL cannot use a table that has
-  been dropped and `InnoDB` destroys the
-  table.
+* Consistent read does not work over [`DROP TABLE`](drop-table.html "15.1.37 DROP TABLE Statement"), because MySQL cannot use a table that has been dropped and `InnoDB` destroys the table.
 
-* Consistent read does not work over
-  [`ALTER TABLE`](alter-table.html "15.1.11 ALTER TABLE Statement") operations that
-  make a temporary copy of the original table and delete the
-  original table when the temporary copy is built. When you
-  reissue a consistent read within a transaction, rows in the
-  new table are not visible because those rows did not exist
-  when the transaction's snapshot was taken. In this case, the
-  transaction returns an error:
-  [`ER_TABLE_DEF_CHANGED`](/doc/mysql-errors/9.5/en/server-error-reference.html#error_er_table_def_changed),
-  “Table definition has changed, please retry
-  transaction”.
+* Consistent read does not work over `ALTER TABLE` operations that make a temporary copy of the original table and delete the original table when the temporary copy is built. When you reissue a consistent read within a transaction, rows in the new table are not visible because those rows did not exist when the transaction's snapshot was taken. In this case, the transaction returns an error: `ER_TABLE_DEF_CHANGED`, “Table definition has changed, please retry transaction”.
 
-The type of read varies for selects in clauses like
-[`INSERT INTO ...
-SELECT`](insert.html "15.2.7 INSERT Statement"), [`UPDATE
-... (SELECT)`](update.html "15.2.17 UPDATE Statement"), and
-[`CREATE TABLE ...
-SELECT`](create-table.html "15.1.24 CREATE TABLE Statement") that do not specify `FOR
-UPDATE` or `FOR SHARE`:
+The type of read varies for selects in clauses like [`INSERT INTO ... SELECT`](insert.html "15.2.7 INSERT Statement"), [`UPDATE ... (SELECT)`](update.html "15.2.17 UPDATE Statement"), and [`CREATE TABLE ... SELECT`](create-table.html "15.1.24 CREATE TABLE Statement") that do not specify `FOR UPDATE` or `FOR SHARE`:
 
-* By default, `InnoDB` uses stronger locks
-  for those statements and the
-  [`SELECT`](select.html "15.2.13 SELECT Statement") part acts like
-  [`READ COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed), where
-  each consistent read, even within the same transaction, sets
-  and reads its own fresh snapshot.
+* By default, `InnoDB` uses stronger locks for those statements and the `SELECT` part acts like `READ COMMITTED`, where each consistent read, even within the same transaction, sets and reads its own fresh snapshot.
 
-* To perform a nonlocking read in such cases, set the
-  isolation level of the transaction to
-  [`READ UNCOMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-uncommitted) or
-  [`READ COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed) to avoid
-  setting locks on rows read from the selected table.
+* To perform a nonlocking read in such cases, set the isolation level of the transaction to `READ UNCOMMITTED` or `READ COMMITTED` to avoid setting locks on rows read from the selected table.

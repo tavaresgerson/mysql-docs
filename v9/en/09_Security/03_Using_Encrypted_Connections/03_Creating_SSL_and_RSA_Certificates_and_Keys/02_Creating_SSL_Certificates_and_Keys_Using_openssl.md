@@ -1,29 +1,14 @@
 #### 8.3.3.2 Creating SSL Certificates and Keys Using openssl
 
-This section describes how to use the **openssl**
-command to set up SSL certificate and key files for use by MySQL
-servers and clients. The first example shows a simplified
-procedure such as you might use from the command line. The
-second shows a script that contains more detail. The first two
-examples are intended for use on Unix and both use the
-**openssl** command that is part of OpenSSL. The
-third example describes how to set up SSL files on Windows.
+This section describes how to use the **openssl** command to set up SSL certificate and key files for use by MySQL servers and clients. The first example shows a simplified procedure such as you might use from the command line. The second shows a script that contains more detail. The first two examples are intended for use on Unix and both use the **openssl** command that is part of OpenSSL. The third example describes how to set up SSL files on Windows.
 
 Note
 
-An easier alternative to generating the files required for SSL
-than the procedure described here is to let the server
-autogenerate them; see
-[Section 8.3.3.1, “Creating SSL and RSA Certificates and Keys using MySQL”](creating-ssl-rsa-files-using-mysql.html "8.3.3.1 Creating SSL and RSA Certificates and Keys using MySQL").
+An easier alternative to generating the files required for SSL than the procedure described here is to let the server autogenerate them; see Section 8.3.3.1, “Creating SSL and RSA Certificates and Keys using MySQL”.
 
 Important
 
-Whatever method you use to generate the certificate and key
-files, the Common Name value used for the server and client
-certificates/keys must each differ from the Common Name value
-used for the CA certificate. Otherwise, the certificate and
-key files do not work for servers compiled using OpenSSL. A
-typical error in this case is:
+Whatever method you use to generate the certificate and key files, the Common Name value used for the server and client certificates/keys must each differ from the Common Name value used for the CA certificate. Otherwise, the certificate and key files do not work for servers compiled using OpenSSL. A typical error in this case is:
 
 ```
 ERROR 2026 (HY000): SSL connection error:
@@ -32,33 +17,15 @@ error:00000001:lib(0):func(0):reason(1)
 
 Important
 
-If a client connecting to a MySQL server instance uses an SSL
-certificate with the `extendedKeyUsage`
-extension (an X.509 v3 extension), the extended key usage must
-include client authentication (`clientAuth`).
-If the SSL certificate is only specified for server
-authentication (`serverAuth`) and other
-non-client certificate purposes, certificate verification
-fails and the client connection to the MySQL server instance
-fails. There is no `extendedKeyUsage`
-extension in SSL certificates created using the
-**openssl** command following the instructions
-in this topic. If you use your own client certificate created
-in another way, ensure any `extendedKeyUsage`
-extension includes client authentication.
+If a client connecting to a MySQL server instance uses an SSL certificate with the `extendedKeyUsage` extension (an X.509 v3 extension), the extended key usage must include client authentication (`clientAuth`). If the SSL certificate is only specified for server authentication (`serverAuth`) and other non-client certificate purposes, certificate verification fails and the client connection to the MySQL server instance fails. There is no `extendedKeyUsage` extension in SSL certificates created using the **openssl** command following the instructions in this topic. If you use your own client certificate created in another way, ensure any `extendedKeyUsage` extension includes client authentication.
 
-* [Example 1: Creating SSL Files from the Command Line on Unix](creating-ssl-files-using-openssl.html#creating-ssl-files-using-openssl-unix-command-line "Example 1: Creating SSL Files from the Command Line on Unix")
-* [Example 2: Creating SSL Files Using a Script on Unix](creating-ssl-files-using-openssl.html#creating-ssl-files-using-openssl-unix-script "Example 2: Creating SSL Files Using a Script on Unix")
-* [Example 3: Creating SSL Files on Windows](creating-ssl-files-using-openssl.html#creating-ssl-files-using-openssl-windows "Example 3: Creating SSL Files on Windows")
+* Example 1: Creating SSL Files from the Command Line on Unix
+* Example 2: Creating SSL Files Using a Script on Unix
+* Example 3: Creating SSL Files on Windows
 
 ##### Example 1: Creating SSL Files from the Command Line on Unix
 
-The following example shows a set of commands to create MySQL
-server and client certificate and key files. You must respond
-to several prompts by the **openssl** commands.
-To generate test files, you can press Enter to all prompts. To
-generate files for production use, you should provide nonempty
-responses.
+The following example shows a set of commands to create MySQL server and client certificate and key files. You must respond to several prompts by the **openssl** commands. To generate test files, you can press Enter to all prompts. To generate files for production use, you should provide nonempty responses.
 
 ```
 # Create clean environment
@@ -100,9 +67,7 @@ server-cert.pem: OK
 client-cert.pem: OK
 ```
 
-To see the contents of a certificate (for example, to check
-the range of dates over which a certificate is valid), invoke
-**openssl** like this:
+To see the contents of a certificate (for example, to check the range of dates over which a certificate is valid), invoke **openssl** like this:
 
 ```
 openssl x509 -text -in ca.pem
@@ -112,35 +77,17 @@ openssl x509 -text -in client-cert.pem
 
 Now you have a set of files that can be used as follows:
 
-* `ca.pem`: Use this to set the
-  [`ssl_ca`](server-system-variables.html#sysvar_ssl_ca) system variable on
-  the server side and the
-  [`--ssl-ca`](connection-options.html#option_general_ssl-ca) option on the
-  client side. (The CA certificate, if used, must be the
-  same on both sides.)
+* `ca.pem`: Use this to set the `ssl_ca` system variable on the server side and the `--ssl-ca` option on the client side. (The CA certificate, if used, must be the same on both sides.)
 
-* `server-cert.pem`,
-  `server-key.pem`: Use these to set the
-  [`ssl_cert`](server-system-variables.html#sysvar_ssl_cert) and
-  [`ssl_key`](server-system-variables.html#sysvar_ssl_key) system variables
-  on the server side.
+* `server-cert.pem`, `server-key.pem`: Use these to set the `ssl_cert` and `ssl_key` system variables on the server side.
 
-* `client-cert.pem`,
-  `client-key.pem`: Use these as the
-  arguments to the
-  [`--ssl-cert`](connection-options.html#option_general_ssl-cert) and
-  [`--ssl-key`](connection-options.html#option_general_ssl-key) options on the
-  client side.
+* `client-cert.pem`, `client-key.pem`: Use these as the arguments to the `--ssl-cert` and `--ssl-key` options on the client side.
 
-For additional usage instructions, see
-[Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "8.3.1 Configuring MySQL to Use Encrypted Connections").
+For additional usage instructions, see Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”.
 
 ##### Example 2: Creating SSL Files Using a Script on Unix
 
-Here is an example script that shows how to set up SSL
-certificate and key files for MySQL. After executing the
-script, use the files for SSL connections as described in
-[Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "8.3.1 Configuring MySQL to Use Encrypted Connections").
+Here is an example script that shows how to set up SSL certificate and key files for MySQL. After executing the script, use the files for SSL connections as described in Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”.
 
 ```
 DIR=`pwd`/openssl
@@ -339,26 +286,15 @@ EOF
 
 ##### Example 3: Creating SSL Files on Windows
 
-Download OpenSSL for Windows if it is not installed on your
-system. An overview of available packages can be seen here:
+Download OpenSSL for Windows if it is not installed on your system. An overview of available packages can be seen here:
 
 ```
 http://www.slproweb.com/products/Win32OpenSSL.html
 ```
 
-Choose the Win32 OpenSSL Light or Win64 OpenSSL Light package,
-depending on your architecture (32-bit or 64-bit). The default
-installation location is `C:\OpenSSL-Win32`
-or `C:\OpenSSL-Win64`, depending on which
-package you downloaded. The following instructions assume a
-default location of `C:\OpenSSL-Win32`.
-Modify this as necessary if you are using the 64-bit package.
+Choose the Win32 OpenSSL Light or Win64 OpenSSL Light package, depending on your architecture (32-bit or 64-bit). The default installation location is `C:\OpenSSL-Win32` or `C:\OpenSSL-Win64`, depending on which package you downloaded. The following instructions assume a default location of `C:\OpenSSL-Win32`. Modify this as necessary if you are using the 64-bit package.
 
-If a message occurs during setup indicating
-`'...critical component is missing: Microsoft Visual
-C++ 2019 Redistributables'`, cancel the setup and
-download one of the following packages as well, again
-depending on your architecture (32-bit or 64-bit):
+If a message occurs during setup indicating `'...critical component is missing: Microsoft Visual C++ 2019 Redistributables'`, cancel the setup and download one of the following packages as well, again depending on your architecture (32-bit or 64-bit):
 
 * Visual C++ 2008 Redistributables (x86), available at:
 
@@ -372,42 +308,22 @@ depending on your architecture (32-bit or 64-bit):
   http://www.microsoft.com/downloads/details.aspx?familyid=bd2a6171-e2d6-4230-b809-9a8d7548c1b6
   ```
 
-After installing the additional package, restart the OpenSSL
-setup procedure.
+After installing the additional package, restart the OpenSSL setup procedure.
 
-During installation, leave the default
-`C:\OpenSSL-Win32` as the install path, and
-also leave the default option `'Copy OpenSSL DLL files
-to the Windows system directory'` selected.
+During installation, leave the default `C:\OpenSSL-Win32` as the install path, and also leave the default option `'Copy OpenSSL DLL files to the Windows system directory'` selected.
 
-When the installation has finished, add
-`C:\OpenSSL-Win32\bin` to the Windows
-System Path variable of your server (depending on your version
-of Windows, the following path-setting instructions might
-differ slightly):
+When the installation has finished, add `C:\OpenSSL-Win32\bin` to the Windows System Path variable of your server (depending on your version of Windows, the following path-setting instructions might differ slightly):
 
-1. On the Windows desktop, right-click the My
-   Computer icon, and select
-   Properties.
+1. On the Windows desktop, right-click the My Computer icon, and select Properties.
 
-2. Select the Advanced tab from
-   the System Properties menu that
-   appears, and click the Environment
-   Variables button.
+2. Select the Advanced tab from the System Properties menu that appears, and click the Environment Variables button.
 
-3. Under System Variables, select
-   Path, then click the
-   Edit button. The Edit
-   System Variable dialogue should appear.
+3. Under System Variables, select Path, then click the Edit button. The Edit System Variable dialogue should appear.
 
-4. Add `';C:\OpenSSL-Win32\bin'` to the end
-   (notice the semicolon).
+4. Add `';C:\OpenSSL-Win32\bin'` to the end (notice the semicolon).
 
 5. Press OK 3 times.
-6. Check that OpenSSL was correctly integrated into the Path
-   variable by opening a new command console
-   (**Start>Run>cmd.exe**) and verifying
-   that OpenSSL is available:
+6. Check that OpenSSL was correctly integrated into the Path variable by opening a new command console (**Start>Run>cmd.exe**) and verifying that OpenSSL is available:
 
    ```
    Microsoft Windows [Version ...]
@@ -421,9 +337,7 @@ differ slightly):
    C:\>
    ```
 
-After OpenSSL has been installed, use instructions similar to
-those from Example 1 (shown earlier in this section), with the
-following changes:
+After OpenSSL has been installed, use instructions similar to those from Example 1 (shown earlier in this section), with the following changes:
 
 * Change the following Unix commands:
 
@@ -441,11 +355,6 @@ following changes:
   cd c:\newcerts
   ```
 
-* When a `'\'` character is shown at the
-  end of a command line, this `'\'`
-  character must be removed and the command lines entered
-  all on a single line.
+* When a `'\'` character is shown at the end of a command line, this `'\'` character must be removed and the command lines entered all on a single line.
 
-After generating the certificate and key files, to use them
-for SSL connections, see
-[Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "8.3.1 Configuring MySQL to Use Encrypted Connections").
+After generating the certificate and key files, to use them for SSL connections, see Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”.

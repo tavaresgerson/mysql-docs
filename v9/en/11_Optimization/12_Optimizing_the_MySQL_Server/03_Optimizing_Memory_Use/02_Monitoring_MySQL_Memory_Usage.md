@@ -1,36 +1,17 @@
 #### 10.12.3.2 Monitoring MySQL Memory Usage
 
-The following example demonstrates how to use
-[Performance Schema](performance-schema.html "Chapter 29 MySQL Performance Schema")
-and [sys schema](sys-schema.html "Chapter 30 MySQL sys Schema") to monitor
-MySQL memory usage.
+The following example demonstrates how to use Performance Schema and sys schema to monitor MySQL memory usage.
 
-Most Performance Schema memory instrumentation is disabled by
-default. Instruments can be enabled by updating the
-`ENABLED` column of the Performance Schema
-[`setup_instruments`](performance-schema-setup-instruments-table.html "29.12.2.3 The setup_instruments Table") table. Memory
-instruments have names in the form of
-`memory/code_area/instrument_name`,
-where *`code_area`* is a value such as
-`sql` or `innodb`, and
-*`instrument_name`* is the instrument
-detail.
+Most Performance Schema memory instrumentation is disabled by default. Instruments can be enabled by updating the `ENABLED` column of the Performance Schema `setup_instruments` table. Memory instruments have names in the form of `memory/code_area/instrument_name`, where *`code_area`* is a value such as `sql` or `innodb`, and *`instrument_name`* is the instrument detail.
 
-1. To view available MySQL memory instruments, query the
-   Performance Schema
-   [`setup_instruments`](performance-schema-setup-instruments-table.html "29.12.2.3 The setup_instruments Table") table. The
-   following query returns hundreds of memory instruments for
-   all code areas.
+1. To view available MySQL memory instruments, query the Performance Schema `setup_instruments` table. The following query returns hundreds of memory instruments for all code areas.
 
    ```
    mysql> SELECT * FROM performance_schema.setup_instruments
           WHERE NAME LIKE '%memory%';
    ```
 
-   You can narrow results by specifying a code area. For
-   example, you can limit results to
-   `InnoDB` memory instruments by specifying
-   `innodb` as the code area.
+   You can narrow results by specifying a code area. For example, you can limit results to `InnoDB` memory instruments by specifying `innodb` as the code area.
 
    ```
    mysql> SELECT * FROM performance_schema.setup_instruments
@@ -51,19 +32,9 @@ detail.
    ...
    ```
 
-   Depending on your MySQL installation, code areas may
-   include `performance_schema`,
-   `sql`, `client`,
-   `innodb`, `myisam`,
-   `csv`, `memory`,
-   `blackhole`, `archive`,
-   `partition`, and others.
+   Depending on your MySQL installation, code areas may include `performance_schema`, `sql`, `client`, `innodb`, `myisam`, `csv`, `memory`, `blackhole`, `archive`, `partition`, and others.
 
-2. To enable memory instruments, add a
-   `performance-schema-instrument` rule to
-   your MySQL configuration file. For example, to enable all
-   memory instruments, add this rule to your configuration
-   file and restart the server:
+2. To enable memory instruments, add a `performance-schema-instrument` rule to your MySQL configuration file. For example, to enable all memory instruments, add this rule to your configuration file and restart the server:
 
    ```
    performance-schema-instrument='memory/%=COUNTED'
@@ -71,18 +42,9 @@ detail.
 
    Note
 
-   Enabling memory instruments at startup ensures that
-   memory allocations that occur at startup are counted.
+   Enabling memory instruments at startup ensures that memory allocations that occur at startup are counted.
 
-   After restarting the server, the
-   `ENABLED` column of the Performance
-   Schema [`setup_instruments`](performance-schema-setup-instruments-table.html "29.12.2.3 The setup_instruments Table")
-   table should report `YES` for memory
-   instruments that you enabled. The `TIMED`
-   column in the
-   [`setup_instruments`](performance-schema-setup-instruments-table.html "29.12.2.3 The setup_instruments Table") table is
-   ignored for memory instruments because memory operations
-   are not timed.
+   After restarting the server, the `ENABLED` column of the Performance Schema `setup_instruments` table should report `YES` for memory instruments that you enabled. The `TIMED` column in the `setup_instruments` table is ignored for memory instruments because memory operations are not timed.
 
    ```
    mysql> SELECT * FROM performance_schema.setup_instruments
@@ -103,18 +65,9 @@ detail.
    ...
    ```
 
-3. Query memory instrument data. In this example, memory
-   instrument data is queried in the Performance Schema
-   [`memory_summary_global_by_event_name`](performance-schema-memory-summary-tables.html "29.12.20.10 Memory Summary Tables")
-   table, which summarizes data by
-   `EVENT_NAME`. The
-   `EVENT_NAME` is the name of the
-   instrument.
+3. Query memory instrument data. In this example, memory instrument data is queried in the Performance Schema `memory_summary_global_by_event_name` table, which summarizes data by `EVENT_NAME`. The `EVENT_NAME` is the name of the instrument.
 
-   The following query returns memory data for the
-   `InnoDB` buffer pool. For column
-   descriptions, see
-   [Section 29.12.20.10, “Memory Summary Tables”](performance-schema-memory-summary-tables.html "29.12.20.10 Memory Summary Tables").
+   The following query returns memory data for the `InnoDB` buffer pool. For column descriptions, see Section 29.12.20.10, “Memory Summary Tables”.
 
    ```
    mysql> SELECT * FROM performance_schema.memory_summary_global_by_event_name
@@ -132,11 +85,7 @@ detail.
       HIGH_NUMBER_OF_BYTES_USED: 137428992
    ```
 
-   The same underlying data can be queried using the
-   [`sys`](sys-schema.html "Chapter 30 MySQL sys Schema") schema
-   [`memory_global_by_current_bytes`](sys-memory-global-by-current-bytes.html "30.4.3.19 The memory_global_by_current_bytes and x$memory_global_by_current_bytes Views")
-   table, which shows current memory usage within the server
-   globally, broken down by allocation type.
+   The same underlying data can be queried using the `sys` schema `memory_global_by_current_bytes` table, which shows current memory usage within the server globally, broken down by allocation type.
 
    ```
    mysql> SELECT * FROM sys.memory_global_by_current_bytes
@@ -151,9 +100,7 @@ detail.
       high_avg_alloc: 131.06 MiB
    ```
 
-   This [`sys`](sys-schema.html "Chapter 30 MySQL sys Schema") schema query
-   aggregates currently allocated memory
-   (`current_alloc`) by code area:
+   This `sys` schema query aggregates currently allocated memory (`current_alloc`) by code area:
 
    ```
    mysql> SELECT SUBSTRING_INDEX(event_name,'/',2) AS
@@ -178,6 +125,4 @@ detail.
    +---------------------------+---------------+
    ```
 
-   For more information about
-   [`sys`](sys-schema.html "Chapter 30 MySQL sys Schema") schema, see
-   [Chapter 30, *MySQL sys Schema*](sys-schema.html "Chapter 30 MySQL sys Schema").
+   For more information about `sys` schema, see Chapter 30, *MySQL sys Schema*.

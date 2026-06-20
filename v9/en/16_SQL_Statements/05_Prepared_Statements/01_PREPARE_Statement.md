@@ -4,220 +4,78 @@
 PREPARE stmt_name FROM preparable_stmt
 ```
 
-The [`PREPARE`](prepare.html "15.5.1 PREPARE Statement") statement prepares a
-SQL statement and assigns it a name,
-*`stmt_name`*, by which to refer to the
-statement later. The prepared statement is executed with
-[`EXECUTE`](execute.html "15.5.2 EXECUTE Statement") and released with
-[`DEALLOCATE PREPARE`](deallocate-prepare.html "15.5.3 DEALLOCATE PREPARE Statement"). For examples,
-see [Section 15.5, “Prepared Statements”](sql-prepared-statements.html "15.5 Prepared Statements").
+The `PREPARE` statement prepares a SQL statement and assigns it a name, *`stmt_name`*, by which to refer to the statement later. The prepared statement is executed with `EXECUTE` and released with `DEALLOCATE PREPARE`. For examples, see Section 15.5, “Prepared Statements”.
 
-Statement names are not case-sensitive.
-*`preparable_stmt`* is either a string
-literal or a user variable that contains the text of the SQL
-statement. The text must represent a single statement, not
-multiple statements. Within the statement, `?`
-characters can be used as parameter markers to indicate where data
-values are to be bound to the query later when you execute it. The
-`?` characters should not be enclosed within
-quotation marks, even if you intend to bind them to string values.
-Parameter markers can be used only where data values should
-appear, not for SQL keywords, identifiers, and so forth.
+Statement names are not case-sensitive. *`preparable_stmt`* is either a string literal or a user variable that contains the text of the SQL statement. The text must represent a single statement, not multiple statements. Within the statement, `?` characters can be used as parameter markers to indicate where data values are to be bound to the query later when you execute it. The `?` characters should not be enclosed within quotation marks, even if you intend to bind them to string values. Parameter markers can be used only where data values should appear, not for SQL keywords, identifiers, and so forth.
 
-If a prepared statement with the given name already exists, it is
-deallocated implicitly before the new statement is prepared. This
-means that if the new statement contains an error and cannot be
-prepared, an error is returned and no statement with the given
-name exists.
+If a prepared statement with the given name already exists, it is deallocated implicitly before the new statement is prepared. This means that if the new statement contains an error and cannot be prepared, an error is returned and no statement with the given name exists.
 
-The scope of a prepared statement is the session within which it
-is created, which as several implications:
+The scope of a prepared statement is the session within which it is created, which as several implications:
 
-* A prepared statement created in one session is not available
-  to other sessions.
+* A prepared statement created in one session is not available to other sessions.
 
-* When a session ends, whether normally or abnormally, its
-  prepared statements no longer exist. If auto-reconnect is
-  enabled, the client is not notified that the connection was
-  lost. For this reason, clients may wish to disable
-  auto-reconnect. See [Automatic Reconnection Control](/doc/c-api/9.5/en/c-api-auto-reconnect.html).
+* When a session ends, whether normally or abnormally, its prepared statements no longer exist. If auto-reconnect is enabled, the client is not notified that the connection was lost. For this reason, clients may wish to disable auto-reconnect. See Automatic Reconnection Control.
 
-* A prepared statement created within a stored program continues
-  to exist after the program finishes executing and can be
-  executed outside the program later.
+* A prepared statement created within a stored program continues to exist after the program finishes executing and can be executed outside the program later.
 
-* A statement prepared in stored program context cannot refer to
-  stored procedure or function parameters or local variables
-  because they go out of scope when the program ends and would
-  be unavailable were the statement to be executed later outside
-  the program. As a workaround, refer instead to user-defined
-  variables, which also have session scope; see
-  [Section 11.4, “User-Defined Variables”](user-variables.html "11.4 User-Defined Variables").
+* A statement prepared in stored program context cannot refer to stored procedure or function parameters or local variables because they go out of scope when the program ends and would be unavailable were the statement to be executed later outside the program. As a workaround, refer instead to user-defined variables, which also have session scope; see Section 11.4, “User-Defined Variables”.
 
-The type of a parameter used in a prepared statement is determined
-when the statement is first prepared; it retains this type
-whenever [`EXECUTE`](execute.html "15.5.2 EXECUTE Statement") is invoked for
-this prepared statement (unless the statement is reprepared, as
-explained later in this section). Rules for determining a
-parameter's type are listed here:
+The type of a parameter used in a prepared statement is determined when the statement is first prepared; it retains this type whenever `EXECUTE` is invoked for this prepared statement (unless the statement is reprepared, as explained later in this section). Rules for determining a parameter's type are listed here:
 
-* A parameter which is an operand of a binary arithmetic
-  operator has the same data type as the other operand.
+* A parameter which is an operand of a binary arithmetic operator has the same data type as the other operand.
 
-* If both operands of a binary arithmetic operator are
-  parameters, the type of the parameters is decided by the
-  context of the operator.
+* If both operands of a binary arithmetic operator are parameters, the type of the parameters is decided by the context of the operator.
 
-* If a parameter is the operand of a unary arithmetic operator,
-  the parameter's type is decided by the context of the
-  operator.
+* If a parameter is the operand of a unary arithmetic operator, the parameter's type is decided by the context of the operator.
 
-* If an arithmetic operator has no type-determining context, the
-  derived type for any parameters involved is
-  [`DOUBLE PRECISION`](floating-point-types.html "13.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE"). This can
-  happen, for example, when the parameter is a top-level node in
-  a [`SELECT`](select.html "15.2.13 SELECT Statement") list, or when it is
-  part of a comparison operator.
+* If an arithmetic operator has no type-determining context, the derived type for any parameters involved is `DOUBLE PRECISION` - FLOAT, DOUBLE"). This can happen, for example, when the parameter is a top-level node in a `SELECT` list, or when it is part of a comparison operator.
 
-* A parameter which is an operand of a character string operator
-  has the same derived type as the aggregated type of the other
-  operands. If all operands of the operator are parameters, the
-  derived type is [`VARCHAR`](char.html "13.3.2 The CHAR and VARCHAR Types"); its
-  collation is determined by the value of
-  [`collation_connection`](server-system-variables.html#sysvar_collation_connection).
+* A parameter which is an operand of a character string operator has the same derived type as the aggregated type of the other operands. If all operands of the operator are parameters, the derived type is `VARCHAR`; its collation is determined by the value of `collation_connection`.
 
-* A parameter which is an operand of a temporal operator has
-  type [`DATETIME`](datetime.html "13.2.2 The DATE, DATETIME, and TIMESTAMP Types") if the operator
-  returns a `DATETIME`,
-  [`TIME`](time.html "13.2.3 The TIME Type") if the operator returns a
-  `TIME`, and
-  [`DATE`](datetime.html "13.2.2 The DATE, DATETIME, and TIMESTAMP Types") if the operator returns a
-  `DATE`.
+* A parameter which is an operand of a temporal operator has type `DATETIME` if the operator returns a `DATETIME`, `TIME` if the operator returns a `TIME`, and `DATE` if the operator returns a `DATE`.
 
-* A parameter which is an operand of a binary comparison
-  operator has the same derived type as the other operand of the
-  comparison.
+* A parameter which is an operand of a binary comparison operator has the same derived type as the other operand of the comparison.
 
-* A parameter that is an operand of a ternary comparison
-  operator such as [`BETWEEN`](comparison-operators.html#operator_between) has the
-  same derived type as the aggregated type of the other
-  operands.
+* A parameter that is an operand of a ternary comparison operator such as `BETWEEN` has the same derived type as the aggregated type of the other operands.
 
-* If all operands of a comparison operator are parameters, the
-  derived type for each of them is
-  [`VARCHAR`](char.html "13.3.2 The CHAR and VARCHAR Types"), with collation
-  determined by the value of
-  [`collation_connection`](server-system-variables.html#sysvar_collation_connection).
+* If all operands of a comparison operator are parameters, the derived type for each of them is `VARCHAR`, with collation determined by the value of `collation_connection`.
 
-* A parameter that is an output operand of any of
-  [`CASE`](flow-control-functions.html#operator_case),
-  [`COALESCE`](comparison-operators.html#function_coalesce),
-  [`IF`](flow-control-functions.html#function_if),
-  [`IFNULL`](flow-control-functions.html#function_ifnull), or
-  [`NULLIF`](flow-control-functions.html#function_nullif) has the same derived
-  type as the aggregated type of the operator's other
-  output operands.
+* A parameter that is an output operand of any of `CASE`, `COALESCE`, `IF`, `IFNULL`, or `NULLIF` has the same derived type as the aggregated type of the operator's other output operands.
 
-* If all output operands of any of
-  [`CASE`](flow-control-functions.html#operator_case),
-  [`COALESCE`](comparison-operators.html#function_coalesce),
-  [`IF`](flow-control-functions.html#function_if),
-  [`IFNULL`](flow-control-functions.html#function_ifnull), or
-  [`NULLIF`](flow-control-functions.html#function_nullif) are parameters, or they
-  are all `NULL`, the type of the parameter is
-  decided by the context of the operator.
+* If all output operands of any of `CASE`, `COALESCE`, `IF`, `IFNULL`, or `NULLIF` are parameters, or they are all `NULL`, the type of the parameter is decided by the context of the operator.
 
-* If the parameter is an operand of any of
-  [`CASE`](flow-control-functions.html#operator_case),
-  [`COALESCE()`](comparison-operators.html#function_coalesce),
-  [`IF`](flow-control-functions.html#function_if), or
-  [`IFNULL`](flow-control-functions.html#function_ifnull), and has no
-  type-determining context, the derived type for each of the
-  parameters involved is [`VARCHAR`](char.html "13.3.2 The CHAR and VARCHAR Types"),
-  and its collation is determined by the value of
-  [`collation_connection`](server-system-variables.html#sysvar_collation_connection).
+* If the parameter is an operand of any of `CASE`, `COALESCE()`, `IF`, or `IFNULL`, and has no type-determining context, the derived type for each of the parameters involved is `VARCHAR`, and its collation is determined by the value of `collation_connection`.
 
-* A parameter which is the operand of a
-  [`CAST()`](cast-functions.html#function_cast) has the same type as
-  specified by the `CAST()`.
+* A parameter which is the operand of a `CAST()` has the same type as specified by the `CAST()`.
 
-* If a parameter is an immediate member of a
-  [`SELECT`](select.html "15.2.13 SELECT Statement") list that is not part of
-  an [`INSERT`](insert.html "15.2.7 INSERT Statement") statement, the
-  derived type of the parameter is
-  [`VARCHAR`](char.html "13.3.2 The CHAR and VARCHAR Types"), and its collation is
-  determined by the value of
-  [`collation_connection`](server-system-variables.html#sysvar_collation_connection).
+* If a parameter is an immediate member of a `SELECT` list that is not part of an `INSERT` statement, the derived type of the parameter is `VARCHAR`, and its collation is determined by the value of `collation_connection`.
 
-* If a parameter is an immediate member of a
-  `SELECT` list that is part of an
-  [`INSERT`](insert.html "15.2.7 INSERT Statement") statement, the derived
-  type of the parameter is the type of the corresponding column
-  into which the parameter is inserted.
+* If a parameter is an immediate member of a `SELECT` list that is part of an `INSERT` statement, the derived type of the parameter is the type of the corresponding column into which the parameter is inserted.
 
-* If a parameter is used as source for an assignment in a
-  `SET` clause of an
-  [`UPDATE`](update.html "15.2.17 UPDATE Statement") statement or in the
-  `ON DUPLICATE KEY UPDATE` clause of an
-  [`INSERT`](insert.html "15.2.7 INSERT Statement") statement, the derived
-  type of the parameter is the type of the corresponding column
-  which is updated by the `SET` or `ON
-  DUPLICATE KEY UPDATE` clause.
+* If a parameter is used as source for an assignment in a `SET` clause of an `UPDATE` statement or in the `ON DUPLICATE KEY UPDATE` clause of an `INSERT` statement, the derived type of the parameter is the type of the corresponding column which is updated by the `SET` or `ON DUPLICATE KEY UPDATE` clause.
 
-* If a parameter is an argument of a function, the derived type
-  depends on the function's return type.
+* If a parameter is an argument of a function, the derived type depends on the function's return type.
 
-For some combinations of actual type and derived type, an
-automatic repreparation of the statement is triggered, to ensure
-closer compatibility with previous versions of MySQL.
-Repreparation does not occur if any of the following conditions
-are true:
+For some combinations of actual type and derived type, an automatic repreparation of the statement is triggered, to ensure closer compatibility with previous versions of MySQL. Repreparation does not occur if any of the following conditions are true:
 
 * `NULL` is used as the actual parameter value.
-* A parameter is an operand of a
-  [`CAST()`](cast-functions.html#function_cast). (Instead, a cast to the
-  derived type is attempted, and an exception raised if the cast
-  fails.)
+* A parameter is an operand of a `CAST()`. (Instead, a cast to the derived type is attempted, and an exception raised if the cast fails.)
 
-* A parameter is a string. (In this case, an implicit
-  `CAST(? AS
-  derived_type)` is
-  performed.)
+* A parameter is a string. (In this case, an implicit `CAST(? AS derived_type)` is performed.)
 
-* The derived type and actual type of the parameter are both
-  [`INTEGER`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") and have the same sign.
+* The derived type and actual type of the parameter are both `INTEGER` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") and have the same sign.
 
-* The parameter's derived type is
-  [`DECIMAL`](fixed-point-types.html "13.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC") and its actual type is
-  either `DECIMAL` or
-  [`INTEGER`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT").
+* The parameter's derived type is `DECIMAL` - DECIMAL, NUMERIC") and its actual type is either `DECIMAL` or `INTEGER` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT").
 
-* The derived type is [`DOUBLE`](floating-point-types.html "13.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") and
-  the actual type is any numeric type.
+* The derived type is `DOUBLE` - FLOAT, DOUBLE") and the actual type is any numeric type.
 
 * Both the derived type and the actual type are string types.
-* If the derived type is temporal and the actual type is
-  temporal. *Exceptions*: The derived type is
-  [`TIME`](time.html "13.2.3 The TIME Type") and the actual type is not
-  `TIME`; the derived type is
-  [`DATE`](datetime.html "13.2.2 The DATE, DATETIME, and TIMESTAMP Types") and the actual type is not
-  `DATE`.
+* If the derived type is temporal and the actual type is temporal. *Exceptions*: The derived type is `TIME` and the actual type is not `TIME`; the derived type is `DATE` and the actual type is not `DATE`.
 
 * The derived type is temporal and the actual type is numeric.
 
-For cases other than those just listed, the statement is
-reprepared and the actual parameter types are used instead of the
-derived parameter types.
+For cases other than those just listed, the statement is reprepared and the actual parameter types are used instead of the derived parameter types.
 
-These rules also apply to a user variable referenced in a prepared
-statement.
+These rules also apply to a user variable referenced in a prepared statement.
 
-Using a different data type for a given parameter or user variable
-within a prepared statement for executions of the statement
-subsequent to the first execution causes the statement to be
-reprepared. This is less efficient; it may also lead to the
-parameter's (or variable's) actual type to vary, and
-thus for results to be inconsistent, with subsequent executions of
-the prepared statement. For these reasons, it is advisable to use
-the same data type for a given parameter when re-executing a
-prepared statement.
+Using a different data type for a given parameter or user variable within a prepared statement for executions of the statement subsequent to the first execution causes the statement to be reprepared. This is less efficient; it may also lead to the parameter's (or variable's) actual type to vary, and thus for results to be inconsistent, with subsequent executions of the prepared statement. For these reasons, it is advisable to use the same data type for a given parameter when re-executing a prepared statement.

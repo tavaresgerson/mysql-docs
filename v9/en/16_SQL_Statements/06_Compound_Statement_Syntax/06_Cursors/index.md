@@ -1,17 +1,13 @@
 ### 15.6.6 Cursors
 
-MySQL supports cursors inside stored programs. The syntax is as in
-embedded SQL. Cursors have these properties:
+MySQL supports cursors inside stored programs. The syntax is as in embedded SQL. Cursors have these properties:
 
-* Asensitive: The server may or may not make a copy of its
-  result table
+* Asensitive: The server may or may not make a copy of its result table
 
 * Read only: Not updatable
-* Nonscrollable: Can be traversed only in one direction and
-  cannot skip rows
+* Nonscrollable: Can be traversed only in one direction and cannot skip rows
 
-Cursor declarations must appear before handler declarations and
-after variable and condition declarations.
+Cursor declarations must appear before handler declarations and after variable and condition declarations.
 
 Example:
 

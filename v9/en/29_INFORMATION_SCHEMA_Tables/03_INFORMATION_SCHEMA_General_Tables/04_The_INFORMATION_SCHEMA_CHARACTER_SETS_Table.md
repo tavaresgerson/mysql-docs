@@ -1,10 +1,8 @@
 ### 28.3.4 The INFORMATION\_SCHEMA CHARACTER\_SETS Table
 
-The [`CHARACTER_SETS`](information-schema-character-sets-table.html "28.3.4 The INFORMATION_SCHEMA CHARACTER_SETS Table") table provides
-information about available character sets.
+The `CHARACTER_SETS` table provides information about available character sets.
 
-The [`CHARACTER_SETS`](information-schema-character-sets-table.html "28.3.4 The INFORMATION_SCHEMA CHARACTER_SETS Table") table has these
-columns:
+The `CHARACTER_SETS` table has these columns:
 
 * `CHARACTER_SET_NAME`
 
@@ -24,10 +22,7 @@ columns:
 
 #### Notes
 
-Character set information is also available from the
-[`SHOW CHARACTER SET`](show-character-set.html "15.7.7.4 SHOW CHARACTER SET Statement") statement. See
-[Section 15.7.7.4, “SHOW CHARACTER SET Statement”](show-character-set.html "15.7.7.4 SHOW CHARACTER SET Statement"). The following statements are
-equivalent:
+Character set information is also available from the `SHOW CHARACTER SET` statement. See Section 15.7.7.4, “SHOW CHARACTER SET Statement”. The following statements are equivalent:
 
 ```
 SELECT * FROM INFORMATION_SCHEMA.CHARACTER_SETS

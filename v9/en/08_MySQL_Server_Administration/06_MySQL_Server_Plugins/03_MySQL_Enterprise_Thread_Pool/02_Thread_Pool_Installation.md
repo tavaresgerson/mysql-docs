@@ -1,40 +1,21 @@
 #### 7.6.3.2 Thread Pool Installation
 
-This section describes how to install MySQL Enterprise Thread Pool. For general
-information about installing plugins, see
-[Section 7.6.1, “Installing and Uninstalling Plugins”](plugin-loading.html "7.6.1 Installing and Uninstalling Plugins").
+This section describes how to install MySQL Enterprise Thread Pool. For general information about installing plugins, see Section 7.6.1, “Installing and Uninstalling Plugins”.
 
-To be usable by the server, the plugin library file must be
-located in the MySQL plugin directory (the directory named by
-the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system
-variable). If necessary, configure the plugin directory location
-by setting the value of
-[`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) at server startup.
+To be usable by the server, the plugin library file must be located in the MySQL plugin directory (the directory named by the `plugin_dir` system variable). If necessary, configure the plugin directory location by setting the value of `plugin_dir` at server startup.
 
-The plugin library file base name is
-`thread_pool`. The file name suffix differs per
-platform (for example, `.so` for Unix and
-Unix-like systems, `.dll` for Windows).
+The plugin library file base name is `thread_pool`. The file name suffix differs per platform (for example, `.so` for Unix and Unix-like systems, `.dll` for Windows).
 
-The thread pool monitoring tables are Performance Schema tables
-that are loaded and unloaded along with the thread pool plugin.
+The thread pool monitoring tables are Performance Schema tables that are loaded and unloaded along with the thread pool plugin.
 
-To enable thread pool capability, load the plugin by starting
-the server with the
-[`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) option. To do
-this, put these lines in the server `my.cnf`
-file, adjusting the `.so` suffix for your
-platform as necessary:
+To enable thread pool capability, load the plugin by starting the server with the `--plugin-load-add` option. To do this, put these lines in the server `my.cnf` file, adjusting the `.so` suffix for your platform as necessary:
 
 ```
 [mysqld]
 plugin-load-add=thread_pool.so
 ```
 
-To verify plugin installation, examine the Information Schema
-[`PLUGINS`](information-schema-plugins-table.html "28.3.27 The INFORMATION_SCHEMA PLUGINS Table") table or use the
-[`SHOW PLUGINS`](show-plugins.html "15.7.7.28 SHOW PLUGINS Statement") statement (see
-[Section 7.6.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "7.6.2 Obtaining Server Plugin Information")). For example:
+To verify plugin installation, examine the Information Schema `PLUGINS` table or use the `SHOW PLUGINS` statement (see Section 7.6.2, “Obtaining Server Plugin Information”). For example:
 
 ```
 mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
@@ -47,11 +28,7 @@ mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
 +-----------------------+---------------+
 ```
 
-To verify that the Performance Schema monitoring tables are
-available, examine the Information Schema
-[`TABLES`](information-schema-tables-table.html "28.3.44 The INFORMATION_SCHEMA TABLES Table") table or use the
-[`SHOW TABLES`](show-tables.html "15.7.7.40 SHOW TABLES Statement") statement. For
-example:
+To verify that the Performance Schema monitoring tables are available, examine the Information Schema `TABLES` table or use the `SHOW TABLES` statement. For example:
 
 ```
 mysql> SELECT TABLE_NAME
@@ -67,9 +44,6 @@ mysql> SELECT TABLE_NAME
 +-----------------------+
 ```
 
-If the server loads the thread pool plugin successfully, it sets
-the `thread_handling` system variable to
-`loaded-dynamically`.
+If the server loads the thread pool plugin successfully, it sets the `thread_handling` system variable to `loaded-dynamically`.
 
-If the plugin fails to initialize, check the server error log
-for diagnostic messages.
+If the plugin fails to initialize, check the server error log for diagnostic messages.

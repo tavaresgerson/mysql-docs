@@ -1,20 +1,12 @@
 #### 30.4.3.41 The user\_summary and x$user\_summary Views
 
-These views summarize statement activity, file I/O, and
-connections, grouped by user. By default, rows are sorted by
-descending total latency.
+These views summarize statement activity, file I/O, and connections, grouped by user. By default, rows are sorted by descending total latency.
 
-The [`user_summary`](sys-user-summary.html "30.4.3.41 The user_summary and x$user_summary Views") and
-[`x$user_summary`](sys-user-summary.html "30.4.3.41 The user_summary and x$user_summary Views") views have these
-columns:
+The `user_summary` and `x$user_summary` views have these columns:
 
 * `user`
 
-  The client user name. Rows for which the
-  `USER` column in the underlying
-  Performance Schema table is `NULL` are
-  assumed to be for background threads and are reported with
-  a host name of `background`.
+  The client user name. Rows for which the `USER` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
 
 * `statements`
 
@@ -50,8 +42,7 @@ columns:
 
 * `unique_hosts`
 
-  The number of distinct hosts from which connections for
-  the user have originated.
+  The number of distinct hosts from which connections for the user have originated.
 
 * `current_memory`
 

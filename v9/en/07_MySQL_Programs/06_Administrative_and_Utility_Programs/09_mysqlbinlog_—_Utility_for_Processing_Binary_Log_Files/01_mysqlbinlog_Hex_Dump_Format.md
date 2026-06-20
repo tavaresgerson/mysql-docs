@@ -1,16 +1,12 @@
 #### 6.6.9.1 mysqlbinlog Hex Dump Format
 
-The [`--hexdump`](mysqlbinlog.html#option_mysqlbinlog_hexdump) option causes
-[**mysqlbinlog**](mysqlbinlog.html "6.6.9 mysqlbinlog — Utility for Processing Binary Log Files") to produce a hex dump of the
-binary log contents:
+The `--hexdump` option causes **mysqlbinlog** to produce a hex dump of the binary log contents:
 
 ```
 mysqlbinlog --hexdump source-bin.000001
 ```
 
-The hex output consists of comment lines beginning with
-`#`, so the output might look like this for the
-preceding command:
+The hex output consists of comment lines beginning with `#`, so the output might look like this for the preceding command:
 
 ```
 /*!40019 SET @@SESSION.max_insert_delayed_threads=0*/;
@@ -29,26 +25,16 @@ preceding command:
 ROLLBACK;
 ```
 
-Hex dump output currently contains the elements in the following
-list. This format is subject to change. For more information
-about binary log format, see
-[MySQL
-Internals: The Binary Log](/doc/internals/en/binary-log.html).
+Hex dump output currently contains the elements in the following list. This format is subject to change. For more information about binary log format, see [MySQL Internals: The Binary Log](/doc/internals/en/binary-log.html).
 
-* `Position`: The byte position within the
-  log file.
+* `Position`: The byte position within the log file.
 
-* `Timestamp`: The event timestamp. In the
-  example shown, `'9d fc 5c 43'` is the
-  representation of `'051024 17:24:13'` in
-  hexadecimal.
+* `Timestamp`: The event timestamp. In the example shown, `'9d fc 5c 43'` is the representation of `'051024 17:24:13'` in hexadecimal.
 
 * `Type`: The event type code.
-* `Master ID`: The server ID of the
-  replication source server that created the event.
+* `Master ID`: The server ID of the replication source server that created the event.
 
 * `Size`: The size in bytes of the event.
-* `Master Pos`: The position of the next
-  event in the original source's binary log file.
+* `Master Pos`: The position of the next event in the original source's binary log file.
 
 * `Flags`: Event flag values.

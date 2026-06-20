@@ -1,20 +1,8 @@
 #### 25.6.19.3 NDB Cluster and MySQL Security Procedures
 
-In this section, we discuss MySQL standard security procedures
-as they apply to running NDB Cluster.
+In this section, we discuss MySQL standard security procedures as they apply to running NDB Cluster.
 
-In general, any standard procedure for running MySQL securely
-also applies to running a MySQL Server as part of an NDB
-Cluster. First and foremost, you should always run a MySQL
-Server as the `mysql` operating system user;
-this is no different from running MySQL in a standard
-environment (that is, not using `NDB`). The
-`mysql` system account should be uniquely and
-clearly defined. Fortunately, this is the default behavior for a
-new MySQL installation. You can verify that the
-[**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") process is running as the
-`mysql` operating system user by using the
-system command such as the one shown here:
+In general, any standard procedure for running MySQL securely also applies to running a MySQL Server as part of an NDB Cluster. First and foremost, you should always run a MySQL Server as the `mysql` operating system user; this is no different from running MySQL in a standard environment (that is, not using `NDB`). The `mysql` system account should be uniquely and clearly defined. Fortunately, this is the default behavior for a new MySQL installation. You can verify that the **mysqld** process is running as the `mysql` operating system user by using the system command such as the one shown here:
 
 ```
 $> ps aux | grep mysql
@@ -28,41 +16,13 @@ mysql    10512  0.2  2.5  58528 26636 pts/3    Sl   11:53   0:00 \
 jon      10579  0.0  0.0   2736   688 pts/0    S+   11:54   0:00 grep mysql
 ```
 
-If the [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") process is running as any other
-user than `mysql`, you should immediately shut
-it down and restart it as the `mysql` user. If
-this user does not exist on the system, the
-`mysql` user account should be created, and
-this user should be part of the `mysql` user
-group; in this case, you should also make sure that the MySQL
-data directory on this system (as set using the
-[`--datadir`](server-system-variables.html#sysvar_datadir) option for
-[**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server")) is owned by the
-`mysql` user, and that the SQL node's
-`my.cnf` file includes
-`user=mysql` in the `[mysqld]`
-section. Alternatively, you can start the MySQL server process
-with [`--user=mysql`](server-options.html#option_mysqld_user) on the command
-line, but it is preferable to use the
-`my.cnf` option, since you might forget to
-use the command-line option and so have
-[**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") running as another user
-unintentionally. The [**mysqld\_safe**](mysqld-safe.html "6.3.2 mysqld_safe — MySQL Server Startup Script") startup
-script forces MySQL to run as the `mysql` user.
+If the **mysqld** process is running as any other user than `mysql`, you should immediately shut it down and restart it as the `mysql` user. If this user does not exist on the system, the `mysql` user account should be created, and this user should be part of the `mysql` user group; in this case, you should also make sure that the MySQL data directory on this system (as set using the `--datadir` option for **mysqld**) is owned by the `mysql` user, and that the SQL node's `my.cnf` file includes `user=mysql` in the `[mysqld]` section. Alternatively, you can start the MySQL server process with `--user=mysql` on the command line, but it is preferable to use the `my.cnf` option, since you might forget to use the command-line option and so have **mysqld** running as another user unintentionally. The **mysqld\_safe** startup script forces MySQL to run as the `mysql` user.
 
 Important
 
-Never run [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") as the system root user.
-Doing so means that potentially any file on the system can be
-read by MySQL, and thus—should MySQL be
-compromised—by an attacker.
+Never run **mysqld** as the system root user. Doing so means that potentially any file on the system can be read by MySQL, and thus—should MySQL be compromised—by an attacker.
 
-As mentioned in the previous section (see
-[Section 25.6.19.2, “NDB Cluster and MySQL Privileges”](mysql-cluster-security-mysql-privileges.html "25.6.19.2 NDB Cluster and MySQL Privileges")), you
-should always set a root password for the MySQL Server as soon
-as you have it running. You should also delete the anonymous
-user account that is installed by default. You can accomplish
-these tasks using the following statements:
+As mentioned in the previous section (see Section 25.6.19.2, “NDB Cluster and MySQL Privileges”), you should always set a root password for the MySQL Server as soon as you have it running. You should also delete the anonymous user account that is installed by default. You can accomplish these tasks using the following statements:
 
 ```
 $> mysql -u root
@@ -77,28 +37,10 @@ mysql> DELETE FROM mysql.user
 mysql> FLUSH PRIVILEGES;
 ```
 
-Be very careful when executing the
-[`DELETE`](delete.html "15.2.2 DELETE Statement") statement not to omit the
-`WHERE` clause, or you risk deleting
-*all* MySQL users. Be sure to run the
-[`FLUSH PRIVILEGES`](flush.html#flush-privileges) statement as
-soon as you have modified the `mysql.user`
-table, so that the changes take immediate effect. Without
-[`FLUSH PRIVILEGES`](flush.html#flush-privileges), the changes do
-not take effect until the next time that the server is
-restarted.
+Be very careful when executing the `DELETE` statement not to omit the `WHERE` clause, or you risk deleting *all* MySQL users. Be sure to run the `FLUSH PRIVILEGES` statement as soon as you have modified the `mysql.user` table, so that the changes take immediate effect. Without `FLUSH PRIVILEGES`, the changes do not take effect until the next time that the server is restarted.
 
 Note
 
-Many of the NDB Cluster utilities such as
-[**ndb\_show\_tables**](mysql-cluster-programs-ndb-show-tables.html "25.5.27 ndb_show_tables — Display List of NDB Tables"),
-[**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "25.5.9 ndb_desc — Describe NDB Tables"), and
-[**ndb\_select\_all**](mysql-cluster-programs-ndb-select-all.html "25.5.25 ndb_select_all — Print Rows from an NDB Table") also work without
-authentication and can reveal table names, schemas, and data.
-By default these are installed on Unix-style systems with the
-permissions `wxr-xr-x` (755), which means
-they can be executed by any user that can access the
-`mysql/bin` directory.
+Many of the NDB Cluster utilities such as **ndb\_show\_tables**, **ndb\_desc**, and **ndb\_select\_all** also work without authentication and can reveal table names, schemas, and data. By default these are installed on Unix-style systems with the permissions `wxr-xr-x` (755), which means they can be executed by any user that can access the `mysql/bin` directory.
 
-See [Section 25.5, “NDB Cluster Programs”](mysql-cluster-programs.html "25.5 NDB Cluster Programs"), for more
-information about these utilities.
+See Section 25.5, “NDB Cluster Programs”, for more information about these utilities.

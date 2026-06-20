@@ -1,55 +1,26 @@
 ### 25.6.18 Quick Reference: NDB Cluster SQL Statements
 
-This section discusses several SQL statements that can prove
-useful in managing and monitoring a MySQL server that is connected
-to an NDB Cluster, and in some cases provide information about the
-cluster itself.
+This section discusses several SQL statements that can prove useful in managing and monitoring a MySQL server that is connected to an NDB Cluster, and in some cases provide information about the cluster itself.
 
-* [`SHOW ENGINE NDB
-  STATUS`](show-engine.html "15.7.7.17 SHOW ENGINE Statement"),
-  [`SHOW ENGINE
-  NDBCLUSTER STATUS`](show-engine.html "15.7.7.17 SHOW ENGINE Statement")
+* [`SHOW ENGINE NDB STATUS`](show-engine.html "15.7.7.17 SHOW ENGINE Statement"), [`SHOW ENGINE NDBCLUSTER STATUS`](show-engine.html "15.7.7.17 SHOW ENGINE Statement")
 
-  The output of this statement contains information about the
-  server's connection to the cluster, creation and usage of
-  NDB Cluster objects, and binary logging for NDB Cluster
-  replication.
+  The output of this statement contains information about the server's connection to the cluster, creation and usage of NDB Cluster objects, and binary logging for NDB Cluster replication.
 
-  See [Section 15.7.7.17, “SHOW ENGINE Statement”](show-engine.html "15.7.7.17 SHOW ENGINE Statement"), for a usage example and
-  more detailed information.
+  See Section 15.7.7.17, “SHOW ENGINE Statement”, for a usage example and more detailed information.
 
-* [`SHOW ENGINES`](show-engines.html "15.7.7.18 SHOW ENGINES Statement")
+* `SHOW ENGINES`
 
-  This statement can be used to determine whether or not
-  clustering support is enabled in the MySQL server, and if so,
-  whether it is active.
+  This statement can be used to determine whether or not clustering support is enabled in the MySQL server, and if so, whether it is active.
 
-  See [Section 15.7.7.18, “SHOW ENGINES Statement”](show-engines.html "15.7.7.18 SHOW ENGINES Statement"), for more detailed
-  information.
+  See Section 15.7.7.18, “SHOW ENGINES Statement”, for more detailed information.
 
   Note
 
-  This statement does not support a
-  [`LIKE`](string-comparison-functions.html#operator_like) clause. However, you can
-  use [`LIKE`](string-comparison-functions.html#operator_like) to filter queries
-  against the Information Schema
-  [`ENGINES`](information-schema-engines-table.html "28.3.13 The INFORMATION_SCHEMA ENGINES Table") table, as discussed in
-  the next item.
+  This statement does not support a `LIKE` clause. However, you can use `LIKE` to filter queries against the Information Schema `ENGINES` table, as discussed in the next item.
 
-* `SELECT * FROM INFORMATION_SCHEMA.ENGINES [WHERE
-  ENGINE LIKE 'NDB%']`
+* `SELECT * FROM INFORMATION_SCHEMA.ENGINES [WHERE ENGINE LIKE 'NDB%']`
 
-  This is the equivalent of [`SHOW
-  ENGINES`](show-engines.html "15.7.7.18 SHOW ENGINES Statement"), but uses the
-  [`ENGINES`](information-schema-engines-table.html "28.3.13 The INFORMATION_SCHEMA ENGINES Table") table of the
-  `INFORMATION_SCHEMA` database. Unlike the
-  case with the [`SHOW ENGINES`](show-engines.html "15.7.7.18 SHOW ENGINES Statement")
-  statement, it is possible to filter the results using a
-  [`LIKE`](string-comparison-functions.html#operator_like) clause, and to select
-  specific columns to obtain information that may be of use in
-  scripts. For example, the following query shows whether the
-  server was built with [`NDB`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 9.5") support
-  and, if so, whether it is enabled:
+  This is the equivalent of [`SHOW ENGINES`](show-engines.html "15.7.7.18 SHOW ENGINES Statement"), but uses the `ENGINES` table of the `INFORMATION_SCHEMA` database. Unlike the case with the `SHOW ENGINES` statement, it is possible to filter the results using a `LIKE` clause, and to select specific columns to obtain information that may be of use in scripts. For example, the following query shows whether the server was built with `NDB` support and, if so, whether it is enabled:
 
   ```
   mysql> SELECT ENGINE, SUPPORT FROM INFORMATION_SCHEMA.ENGINES
@@ -62,16 +33,11 @@ cluster itself.
   +------------+---------+
   ```
 
-  If `NDB` support is not enabled, the
-  preceding query returns an empty set. See
-  [Section 28.3.13, “The INFORMATION\_SCHEMA ENGINES Table”](information-schema-engines-table.html "28.3.13 The INFORMATION_SCHEMA ENGINES Table"), for more
-  information.
+  If `NDB` support is not enabled, the preceding query returns an empty set. See Section 28.3.13, “The INFORMATION\_SCHEMA ENGINES Table”, for more information.
 
 * `SHOW VARIABLES LIKE 'NDB%'`
 
-  This statement provides a list of most server system variables
-  relating to the [`NDB`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 9.5") storage
-  engine, and their values, as shown here:
+  This statement provides a list of most server system variables relating to the `NDB` storage engine, and their values, as shown here:
 
   ```
   mysql> SHOW VARIABLES LIKE 'NDB%';
@@ -162,16 +128,11 @@ cluster itself.
   74 rows in set (0.01 sec)
   ```
 
-  See [Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables"), for more
-  information.
+  See Section 7.1.8, “Server System Variables”, for more information.
 
-* `SELECT * FROM performance_schema.global_variables
-  WHERE VARIABLE_NAME LIKE 'NDB%'`
+* `SELECT * FROM performance_schema.global_variables WHERE VARIABLE_NAME LIKE 'NDB%'`
 
-  This statement is the equivalent of the
-  [`SHOW VARIABLES`](show-variables.html "15.7.7.42 SHOW VARIABLES Statement") statement
-  described in the previous item, and provides almost identical
-  output, as shown here:
+  This statement is the equivalent of the `SHOW VARIABLES` statement described in the previous item, and provides almost identical output, as shown here:
 
   ```
   mysql> SELECT * FROM performance_schema.global_variables
@@ -251,9 +212,7 @@ cluster itself.
   +--------------------------------------+---------------------------------------+
   ```
 
-  Unlike the case with the [`SHOW
-  VARIABLES`](show-variables.html "15.7.7.42 SHOW VARIABLES Statement") statement, it is possible to select
-  individual columns. For example:
+  Unlike the case with the [`SHOW VARIABLES`](show-variables.html "15.7.7.42 SHOW VARIABLES Statement") statement, it is possible to select individual columns. For example:
 
   ```
   mysql> SELECT VARIABLE_VALUE
@@ -285,18 +244,11 @@ cluster itself.
   4 rows in set (0.00 sec)
   ```
 
-  For more information, see
-  [Section 29.12.15, “Performance Schema Status Variable Tables”](performance-schema-status-variable-tables.html "29.12.15 Performance Schema Status Variable Tables"),
-  and [Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables").
+  For more information, see Section 29.12.15, “Performance Schema Status Variable Tables”, and Section 7.1.8, “Server System Variables”.
 
 * `SHOW STATUS LIKE 'NDB%'`
 
-  This statement shows at a glance whether or not the MySQL
-  server is acting as a cluster SQL node, and if so, it provides
-  the MySQL server's cluster node ID, the host name and
-  port for the cluster management server to which it is
-  connected, and the number of data nodes in the cluster, as
-  shown here:
+  This statement shows at a glance whether or not the MySQL server is acting as a cluster SQL node, and if so, it provides the MySQL server's cluster node ID, the host name and port for the cluster management server to which it is connected, and the number of data nodes in the cluster, as shown here:
 
   ```
   mysql> SHOW STATUS LIKE 'NDB%';
@@ -424,34 +376,19 @@ cluster itself.
   +----------------------------------------------+-------------------------------+
   ```
 
-  If the MySQL server was built with `NDB`
-  support, but it is not currently connected to a cluster, every
-  row in the output of this statement contains a zero or an
-  empty string for the `Value` column.
+  If the MySQL server was built with `NDB` support, but it is not currently connected to a cluster, every row in the output of this statement contains a zero or an empty string for the `Value` column.
 
-  See also [Section 15.7.7.38, “SHOW STATUS Statement”](show-status.html "15.7.7.38 SHOW STATUS Statement").
+  See also Section 15.7.7.38, “SHOW STATUS Statement”.
 
-* `SELECT * FROM performance_schema.global_status WHERE
-  VARIABLE_NAME LIKE 'NDB%'`
+* `SELECT * FROM performance_schema.global_status WHERE VARIABLE_NAME LIKE 'NDB%'`
 
-  This statement provides similar output to the
-  [`SHOW STATUS`](show-status.html "15.7.7.38 SHOW STATUS Statement") statement discussed
-  in the previous item. Unlike the case with
-  [`SHOW STATUS`](show-status.html "15.7.7.38 SHOW STATUS Statement"), it is possible
-  using [`SELECT`](select.html "15.2.13 SELECT Statement") statements to
-  extract values in SQL for use in scripts for monitoring and
-  automation purposes.
+  This statement provides similar output to the `SHOW STATUS` statement discussed in the previous item. Unlike the case with `SHOW STATUS`, it is possible using `SELECT` statements to extract values in SQL for use in scripts for monitoring and automation purposes.
 
-  For more information, see
-  [Section 29.12.15, “Performance Schema Status Variable Tables”](performance-schema-status-variable-tables.html "29.12.15 Performance Schema Status Variable Tables").
+  For more information, see Section 29.12.15, “Performance Schema Status Variable Tables”.
 
-* `SELECT * FROM INFORMATION_SCHEMA.PLUGINS WHERE
-  PLUGIN_NAME LIKE 'NDB%'`
+* `SELECT * FROM INFORMATION_SCHEMA.PLUGINS WHERE PLUGIN_NAME LIKE 'NDB%'`
 
-  This statement displays information from the Information
-  Schema [`PLUGINS`](information-schema-plugins-table.html "28.3.27 The INFORMATION_SCHEMA PLUGINS Table") table about
-  plugins associated with NDB Cluster, such as version, author,
-  and license, as shown here:
+  This statement displays information from the Information Schema `PLUGINS` table about plugins associated with NDB Cluster, such as version, author, and license, as shown here:
 
   ```
   mysql> SELECT * FROM INFORMATION_SCHEMA.PLUGINS
@@ -494,14 +431,6 @@ cluster itself.
              LOAD_OPTION: ON
   ```
 
-  You can also use the [`SHOW
-  PLUGINS`](show-plugins.html "15.7.7.28 SHOW PLUGINS Statement") statement to display this information, but
-  the output from that statement cannot easily be filtered. See
-  also [The MySQL Plugin API](/doc/extending-mysql/9.5/en/plugin-api.html), which describes where and
-  how the information in the
-  [`PLUGINS`](information-schema-plugins-table.html "28.3.27 The INFORMATION_SCHEMA PLUGINS Table") table is obtained.
+  You can also use the [`SHOW PLUGINS`](show-plugins.html "15.7.7.28 SHOW PLUGINS Statement") statement to display this information, but the output from that statement cannot easily be filtered. See also The MySQL Plugin API, which describes where and how the information in the `PLUGINS` table is obtained.
 
-You can also query the tables in the
-[`ndbinfo`](mysql-cluster-ndbinfo.html "25.6.15 ndbinfo: The NDB Cluster Information Database") information database for
-real-time data about many NDB Cluster operations. See
-[Section 25.6.15, “ndbinfo: The NDB Cluster Information Database”](mysql-cluster-ndbinfo.html "25.6.15 ndbinfo: The NDB Cluster Information Database").
+You can also query the tables in the `ndbinfo` information database for real-time data about many NDB Cluster operations. See Section 25.6.15, “ndbinfo: The NDB Cluster Information Database”.

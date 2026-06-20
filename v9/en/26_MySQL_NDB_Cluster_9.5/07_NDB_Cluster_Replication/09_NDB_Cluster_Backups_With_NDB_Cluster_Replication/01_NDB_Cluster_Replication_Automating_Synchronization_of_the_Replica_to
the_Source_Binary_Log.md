@@ -1,10 +1,6 @@
 #### 25.7.9.1 NDB Cluster Replication: Automating Synchronization of the Replica to the Source Binary Log
 
-It is possible to automate much of the process described in the
-previous section (see
-[Section 25.7.9, “NDB Cluster Backups With NDB Cluster Replication”](mysql-cluster-replication-backups.html "25.7.9 NDB Cluster Backups With NDB Cluster Replication")). The
-following Perl script `reset-replica.pl`
-serves as an example of how you can do this.
+It is possible to automate much of the process described in the previous section (see Section 25.7.9, “NDB Cluster Backups With NDB Cluster Replication”). The following Perl script `reset-replica.pl` serves as an example of how you can do this.
 
 ```
 #!/user/bin/perl -w

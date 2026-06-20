@@ -1,16 +1,12 @@
 ### 28.3.53 The INFORMATION\_SCHEMA VIEWS Table
 
-The [`VIEWS`](information-schema-views-table.html "28.3.53 The INFORMATION_SCHEMA VIEWS Table") table provides information
-about views in databases. You must have the
-[`SHOW VIEW`](privileges-provided.html#priv_show-view) privilege to access this
-table.
+The `VIEWS` table provides information about views in databases. You must have the `SHOW VIEW` privilege to access this table.
 
-The [`VIEWS`](information-schema-views-table.html "28.3.53 The INFORMATION_SCHEMA VIEWS Table") table has these columns:
+The `VIEWS` table has these columns:
 
 * `TABLE_CATALOG`
 
-  The name of the catalog to which the view belongs. This value
-  is always `def`.
+  The name of the catalog to which the view belongs. This value is always `def`.
 
 * `TABLE_SCHEMA`
 
@@ -22,13 +18,7 @@ The [`VIEWS`](information-schema-views-table.html "28.3.53 The INFORMATION_SCHE
 
 * `VIEW_DEFINITION`
 
-  The [`SELECT`](select.html "15.2.13 SELECT Statement") statement that
-  provides the definition of the view. This column has most of
-  what you see in the `Create Table` column
-  that [`SHOW CREATE VIEW`](show-create-view.html "15.7.7.15 SHOW CREATE VIEW Statement") produces.
-  Skip the words before [`SELECT`](select.html "15.2.13 SELECT Statement")
-  and skip the words `WITH CHECK OPTION`.
-  Suppose that the original statement was:
+  The `SELECT` statement that provides the definition of the view. This column has most of what you see in the `Create Table` column that `SHOW CREATE VIEW` produces. Skip the words before `SELECT` and skip the words `WITH CHECK OPTION`. Suppose that the original statement was:
 
   ```
   CREATE VIEW v AS
@@ -46,72 +36,33 @@ The [`VIEWS`](information-schema-views-table.html "28.3.53 The INFORMATION_SCHE
 
 * `CHECK_OPTION`
 
-  The value of the `CHECK_OPTION` attribute.
-  The value is one of `NONE`,
-  `CASCADE`, or `LOCAL`.
+  The value of the `CHECK_OPTION` attribute. The value is one of `NONE`, `CASCADE`, or `LOCAL`.
 
 * `IS_UPDATABLE`
 
-  MySQL sets a flag, called the view updatability flag, at
-  [`CREATE VIEW`](create-view.html "15.1.27 CREATE VIEW Statement") time. The flag is
-  set to `YES` (true) if
-  [`UPDATE`](update.html "15.2.17 UPDATE Statement") and
-  [`DELETE`](delete.html "15.2.2 DELETE Statement") (and similar operations)
-  are legal for the view. Otherwise, the flag is set to
-  `NO` (false). The
-  `IS_UPDATABLE` column in the
-  [`VIEWS`](information-schema-views-table.html "28.3.53 The INFORMATION_SCHEMA VIEWS Table") table displays the status
-  of this flag. It means that the server always knows whether a
-  view is updatable.
+  MySQL sets a flag, called the view updatability flag, at `CREATE VIEW` time. The flag is set to `YES` (true) if `UPDATE` and `DELETE` (and similar operations) are legal for the view. Otherwise, the flag is set to `NO` (false). The `IS_UPDATABLE` column in the `VIEWS` table displays the status of this flag. It means that the server always knows whether a view is updatable.
 
-  If a view is not updatable, statements such
-  [`UPDATE`](update.html "15.2.17 UPDATE Statement"),
-  [`DELETE`](delete.html "15.2.2 DELETE Statement"), and
-  [`INSERT`](insert.html "15.2.7 INSERT Statement") are illegal and are
-  rejected. (Even if a view is updatable, it might not be
-  possible to insert into it; for details, refer to
-  [Section 27.6.3, “Updatable and Insertable Views”](view-updatability.html "27.6.3 Updatable and Insertable Views").)
+  If a view is not updatable, statements such `UPDATE`, `DELETE`, and `INSERT` are illegal and are rejected. (Even if a view is updatable, it might not be possible to insert into it; for details, refer to Section 27.6.3, “Updatable and Insertable Views”.)
 
 * `DEFINER`
 
-  The account of the user who created the view, in
-  `'user_name'@'host_name'`
-  format.
+  The account of the user who created the view, in `'user_name'@'host_name'` format.
 
 * `SECURITY_TYPE`
 
-  The view `SQL SECURITY` characteristic. The
-  value is one of `DEFINER` or
-  `INVOKER`.
+  The view `SQL SECURITY` characteristic. The value is one of `DEFINER` or `INVOKER`.
 
 * `CHARACTER_SET_CLIENT`
 
-  The session value of the
-  [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system
-  variable when the view was created.
+  The session value of the `character_set_client` system variable when the view was created.
 
 * `COLLATION_CONNECTION`
 
-  The session value of the
-  [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system
-  variable when the view was created.
+  The session value of the `collation_connection` system variable when the view was created.
 
 #### Notes
 
-MySQL permits different [`sql_mode`](server-system-variables.html#sysvar_sql_mode)
-settings to tell the server the type of SQL syntax to support. For
-example, you might use the [`ANSI`](sql-mode.html#sqlmode_ansi)
-SQL mode to ensure MySQL correctly interprets the standard SQL
-concatenation operator, the double bar (`||`), in
-your queries. If you then create a view that concatenates items,
-you might worry that changing the
-[`sql_mode`](server-system-variables.html#sysvar_sql_mode) setting to a value
-different from [`ANSI`](sql-mode.html#sqlmode_ansi) could cause
-the view to become invalid. But this is not the case. No matter
-how you write out a view definition, MySQL always stores it the
-same way, in a canonical form. Here is an example that shows how
-the server changes a double bar concatenation operator to a
-[`CONCAT()`](string-functions.html#function_concat) function:
+MySQL permits different `sql_mode` settings to tell the server the type of SQL syntax to support. For example, you might use the `ANSI` SQL mode to ensure MySQL correctly interprets the standard SQL concatenation operator, the double bar (`||`), in your queries. If you then create a view that concatenates items, you might worry that changing the `sql_mode` setting to a value different from `ANSI` could cause the view to become invalid. But this is not the case. No matter how you write out a view definition, MySQL always stores it the same way, in a canonical form. Here is an example that shows how the server changes a double bar concatenation operator to a `CONCAT()` function:
 
 ```
 mysql> SET sql_mode = 'ANSI';
@@ -130,9 +81,4 @@ mysql> SELECT VIEW_DEFINITION FROM INFORMATION_SCHEMA.VIEWS
 1 row in set (0.00 sec)
 ```
 
-The advantage of storing a view definition in canonical form is
-that changes made later to the value of
-[`sql_mode`](server-system-variables.html#sysvar_sql_mode) do not affect the
-results from the view. However, an additional consequence is that
-comments prior to [`SELECT`](select.html "15.2.13 SELECT Statement") are
-stripped from the definition by the server.
+The advantage of storing a view definition in canonical form is that changes made later to the value of `sql_mode` do not affect the results from the view. However, an additional consequence is that comments prior to `SELECT` are stripped from the definition by the server.

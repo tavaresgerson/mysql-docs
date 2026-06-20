@@ -1,8 +1,6 @@
 ### 10.3.10 Use of Index Extensions
 
-[`InnoDB`](innodb-storage-engine.html "Chapter 17 The InnoDB Storage Engine") automatically extends each
-secondary index by appending the primary key columns to it.
-Consider this table definition:
+`InnoDB` automatically extends each secondary index by appending the primary key columns to it. Consider this table definition:
 
 ```
 CREATE TABLE t1 (
@@ -14,28 +12,13 @@ CREATE TABLE t1 (
 ) ENGINE = InnoDB;
 ```
 
-This table defines the primary key on columns `(i1,
-i2)`. It also defines a secondary index
-`k_d` on column `(d)`, but
-internally `InnoDB` extends this index and
-treats it as columns `(d, i1, i2)`.
+This table defines the primary key on columns `(i1, i2)`. It also defines a secondary index `k_d` on column `(d)`, but internally `InnoDB` extends this index and treats it as columns `(d, i1, i2)`.
 
-The optimizer takes into account the primary key columns of the
-extended secondary index when determining how and whether to use
-that index. This can result in more efficient query execution
-plans and better performance.
+The optimizer takes into account the primary key columns of the extended secondary index when determining how and whether to use that index. This can result in more efficient query execution plans and better performance.
 
-The optimizer can use extended secondary indexes for
-`ref`, `range`, and
-[`index_merge`](switchable-optimizations.html#optflag_index-merge) index access, for
-Loose Index Scan access, for join and sorting optimization, and
-for
-[`MIN()`](aggregate-functions.html#function_min)/[`MAX()`](aggregate-functions.html#function_max)
-optimization.
+The optimizer can use extended secondary indexes for `ref`, `range`, and `index_merge` index access, for Loose Index Scan access, for join and sorting optimization, and for `MIN()`/`MAX()` optimization.
 
-The following example shows how execution plans are affected by
-whether the optimizer uses extended secondary indexes. Suppose
-that `t1` is populated with these rows:
+The following example shows how execution plans are affected by whether the optimizer uses extended secondary indexes. Suppose that `t1` is populated with these rows:
 
 ```
 INSERT INTO t1 VALUES
@@ -60,13 +43,9 @@ Now consider this query:
 EXPLAIN SELECT COUNT(*) FROM t1 WHERE i1 = 3 AND d = '2000-01-01'
 ```
 
-The execution plan depends on whether the extended index is
-used.
+The execution plan depends on whether the extended index is used.
 
-When the optimizer does not consider index extensions, it treats
-the index `k_d` as only `(d)`.
-[`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") for the query produces
-this result:
+When the optimizer does not consider index extensions, it treats the index `k_d` as only `(d)`. `EXPLAIN` for the query produces this result:
 
 ```
 mysql> EXPLAIN SELECT COUNT(*) FROM t1 WHERE i1 = 3 AND d = '2000-01-01'\G
@@ -83,10 +62,7 @@ possible_keys: PRIMARY,k_d
         Extra: Using where; Using index
 ```
 
-When the optimizer takes index extensions into account, it
-treats `k_d` as `(d, i1, i2)`.
-In this case, it can use the leftmost index prefix `(d,
-i1)` to produce a better execution plan:
+When the optimizer takes index extensions into account, it treats `k_d` as `(d, i1, i2)`. In this case, it can use the leftmost index prefix `(d, i1)` to produce a better execution plan:
 
 ```
 mysql> EXPLAIN SELECT COUNT(*) FROM t1 WHERE i1 = 3 AND d = '2000-01-01'\G
@@ -103,32 +79,17 @@ possible_keys: PRIMARY,k_d
         Extra: Using index
 ```
 
-In both cases, `key` indicates that the
-optimizer uses secondary index `k_d` but the
-[`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") output shows these
-improvements from using the extended index:
+In both cases, `key` indicates that the optimizer uses secondary index `k_d` but the `EXPLAIN` output shows these improvements from using the extended index:
 
-* `key_len` goes from 4 bytes to 8 bytes,
-  indicating that key lookups use columns `d`
-  and `i1`, not just `d`.
+* `key_len` goes from 4 bytes to 8 bytes, indicating that key lookups use columns `d` and `i1`, not just `d`.
 
-* The `ref` value changes from
-  `const` to `const,const`
-  because the key lookup uses two key parts, not one.
+* The `ref` value changes from `const` to `const,const` because the key lookup uses two key parts, not one.
 
-* The `rows` count decreases from 5 to 1,
-  indicating that `InnoDB` should need to
-  examine fewer rows to produce the result.
+* The `rows` count decreases from 5 to 1, indicating that `InnoDB` should need to examine fewer rows to produce the result.
 
-* The `Extra` value changes from
-  `Using where; Using index` to
-  `Using index`. This means that rows can be
-  read using only the index, without consulting columns in the
-  data row.
+* The `Extra` value changes from `Using where; Using index` to `Using index`. This means that rows can be read using only the index, without consulting columns in the data row.
 
-Differences in optimizer behavior for use of extended indexes
-can also be seen with [`SHOW
-STATUS`](show-status.html "15.7.7.38 SHOW STATUS Statement"):
+Differences in optimizer behavior for use of extended indexes can also be seen with [`SHOW STATUS`](show-status.html "15.7.7.38 SHOW STATUS Statement"):
 
 ```
 FLUSH TABLE t1;
@@ -137,12 +98,9 @@ SELECT COUNT(*) FROM t1 WHERE i1 = 3 AND d = '2000-01-01';
 SHOW STATUS LIKE 'handler_read%'
 ```
 
-The preceding statements include [`FLUSH
-TABLES`](flush.html#flush-tables) and [`FLUSH STATUS`](flush.html#flush-status)
-to flush the table cache and clear the status counters.
+The preceding statements include [`FLUSH TABLES`](flush.html#flush-tables) and `FLUSH STATUS` to flush the table cache and clear the status counters.
 
-Without index extensions, [`SHOW
-STATUS`](show-status.html "15.7.7.38 SHOW STATUS Statement") produces this result:
+Without index extensions, [`SHOW STATUS`](show-status.html "15.7.7.38 SHOW STATUS Statement") produces this result:
 
 ```
 +-----------------------+-------+
@@ -158,11 +116,7 @@ STATUS`](show-status.html "15.7.7.38 SHOW STATUS Statement") produces this resu
 +-----------------------+-------+
 ```
 
-With index extensions, [`SHOW
-STATUS`](show-status.html "15.7.7.38 SHOW STATUS Statement") produces this result. The
-[`Handler_read_next`](server-status-variables.html#statvar_Handler_read_next) value
-decreases from 5 to 1, indicating more efficient use of the
-index:
+With index extensions, [`SHOW STATUS`](show-status.html "15.7.7.38 SHOW STATUS Statement") produces this result. The `Handler_read_next` value decreases from 5 to 1, indicating more efficient use of the index:
 
 ```
 +-----------------------+-------+
@@ -178,19 +132,10 @@ index:
 +-----------------------+-------+
 ```
 
-The [`use_index_extensions`](switchable-optimizations.html#optflag_use-index-extensions) flag
-of the [`optimizer_switch`](server-system-variables.html#sysvar_optimizer_switch) system
-variable permits control over whether the optimizer takes the
-primary key columns into account when determining how to use an
-`InnoDB` table's secondary indexes. By
-default, [`use_index_extensions`](switchable-optimizations.html#optflag_use-index-extensions)
-is enabled. To check whether disabling use of index extensions
-can improve performance, use this statement:
+The `use_index_extensions` flag of the `optimizer_switch` system variable permits control over whether the optimizer takes the primary key columns into account when determining how to use an `InnoDB` table's secondary indexes. By default, `use_index_extensions` is enabled. To check whether disabling use of index extensions can improve performance, use this statement:
 
 ```
 SET optimizer_switch = 'use_index_extensions=off';
 ```
 
-Use of index extensions by the optimizer is subject to the usual
-limits on the number of key parts in an index (16) and the
-maximum key length (3072 bytes).
+Use of index extensions by the optimizer is subject to the usual limits on the number of key parts in an index (16) and the maximum key length (3072 bytes).

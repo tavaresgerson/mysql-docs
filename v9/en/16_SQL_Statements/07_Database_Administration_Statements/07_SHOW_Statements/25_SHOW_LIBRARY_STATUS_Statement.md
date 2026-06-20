@@ -5,16 +5,9 @@ SHOW LIBRARY STATUS
     [LIKE 'pattern' | WHERE expr]
 ```
 
-This statement provides information about one or more JavaScript
-libraries. Like [`SHOW FUNCTION
-STATUS`](show-function-status.html "15.7.7.22 SHOW FUNCTION STATUS Statement") and [`SHOW PROCEDURE
-STATUS`](show-procedure-status.html "15.7.7.31 SHOW PROCEDURE STATUS Statement"), it supports `LIKE` and
-`WHERE` clauses for filtering the output. See
-[Section 15.7.7.31, “SHOW PROCEDURE STATUS Statement”](show-procedure-status.html "15.7.7.31 SHOW PROCEDURE STATUS Statement"), for information about
-how these clauses work.
+This statement provides information about one or more JavaScript libraries. Like [`SHOW FUNCTION STATUS`](show-function-status.html "15.7.7.22 SHOW FUNCTION STATUS Statement") and [`SHOW PROCEDURE STATUS`](show-procedure-status.html "15.7.7.31 SHOW PROCEDURE STATUS Statement"), it supports `LIKE` and `WHERE` clauses for filtering the output. See Section 15.7.7.31, “SHOW PROCEDURE STATUS Statement”, for information about how these clauses work.
 
-`SHOW LIBRARY STATUS` contains the following
-columns:
+`SHOW LIBRARY STATUS` contains the following columns:
 
 * `Db`
 
@@ -26,8 +19,7 @@ columns:
 
 * `Type`
 
-  The library's type. This is always
-  `LIBRARY`.
+  The library's type. This is always `LIBRARY`.
 
 * `Creator`
 
@@ -61,4 +53,4 @@ mysql> SHOW LIBRARY STATUS LIKE 'my_lib'\G
 1 row in set (0.00 sec)
 ```
 
-See [Section 27.3.8, “Using JavaScript Libraries”](srjs-libraries.html "27.3.8 Using JavaScript Libraries"), for more information.
+See Section 27.3.8, “Using JavaScript Libraries”, for more information.

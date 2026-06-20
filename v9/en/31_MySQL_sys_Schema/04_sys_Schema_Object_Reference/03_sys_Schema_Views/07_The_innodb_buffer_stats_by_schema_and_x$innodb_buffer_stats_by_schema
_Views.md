@@ -1,33 +1,16 @@
 #### 30.4.3.7 The innodb\_buffer\_stats\_by\_schema and x$innodb\_buffer\_stats\_by\_schema Views
 
-These views summarize the information in the
-`INFORMATION_SCHEMA`
-[`INNODB_BUFFER_PAGE`](information-schema-innodb-buffer-page-table.html "28.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table") table, grouped
-by schema. By default, rows are sorted by descending buffer
-size.
+These views summarize the information in the `INFORMATION_SCHEMA` `INNODB_BUFFER_PAGE` table, grouped by schema. By default, rows are sorted by descending buffer size.
 
 Warning
 
-Querying views that access the
-[`INNODB_BUFFER_PAGE`](information-schema-innodb-buffer-page-table.html "28.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table") table can
-affect performance. Do not query these views on a production
-system unless you are aware of the performance impact and
-have determined it to be acceptable. To avoid impacting
-performance on a production system, reproduce the issue you
-want to investigate and query buffer pool statistics on a
-test instance.
+Querying views that access the `INNODB_BUFFER_PAGE` table can affect performance. Do not query these views on a production system unless you are aware of the performance impact and have determined it to be acceptable. To avoid impacting performance on a production system, reproduce the issue you want to investigate and query buffer pool statistics on a test instance.
 
-The
-[`innodb_buffer_stats_by_schema`](sys-innodb-buffer-stats-by-schema.html "30.4.3.7 The innodb_buffer_stats_by_schema and x$innodb_buffer_stats_by_schema Views")
-and
-[`x$innodb_buffer_stats_by_schema`](sys-innodb-buffer-stats-by-schema.html "30.4.3.7 The innodb_buffer_stats_by_schema and x$innodb_buffer_stats_by_schema Views")
-views have these columns:
+The `innodb_buffer_stats_by_schema` and `x$innodb_buffer_stats_by_schema` views have these columns:
 
 * `object_schema`
 
-  The schema name for the object, or `InnoDB
-  System` if the table belongs to the
-  `InnoDB` storage engine.
+  The schema name for the object, or `InnoDB System` if the table belongs to the `InnoDB` storage engine.
 
 * `allocated`
 

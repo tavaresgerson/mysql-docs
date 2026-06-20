@@ -1,12 +1,8 @@
 ### 27.3.12 JavaScript Stored Program Examples
 
-This section contains examples illustrating a number of different
-aspects of using JavaScript programs under various circumstances.
+This section contains examples illustrating a number of different aspects of using JavaScript programs under various circumstances.
 
-The following example demonstrates the use of a JavaScript stored
-function with table column values. First we define a stored
-function `gcd()` which finds the greatest common
-denominator of two integers, shown here:
+The following example demonstrates the use of a JavaScript stored function with table column values. First we define a stored function `gcd()` which finds the greatest common denominator of two integers, shown here:
 
 ```
 mysql> CREATE FUNCTION gcd(a INT, b INT)
@@ -37,8 +33,7 @@ mysql> SELECT gcd(75, 220), gcd(75, 225);
 1 row in set (0.00 sec)
 ```
 
-Next we create a table `t1` with two integer
-columns and populate it with a few rows, like this:
+Next we create a table `t1` with two integer columns and populate it with a few rows, like this:
 
 ```
 mysql> CREATE TABLE t1 (c1 INT, c2 INT);
@@ -59,9 +54,7 @@ mysql> TABLE t1;
 3 rows in set (0.00 sec)
 ```
 
-Now we can select from `t1`, using the
-`gcd()` function with the column values serving
-as argument values in the function call, as shown here:
+Now we can select from `t1`, using the `gcd()` function with the column values serving as argument values in the function call, as shown here:
 
 ```
 mysql> SELECT c1, c2, gcd(c1, c2) AS G
@@ -77,8 +70,7 @@ mysql> SELECT c1, c2, gcd(c1, c2) AS G
 8 rows in set (0.01 sec)
 ```
 
-An argument value that is not of the specified type is coerced to
-the correct type when possible, as shown here:
+An argument value that is not of the specified type is coerced to the correct type when possible, as shown here:
 
 ```
 mysql> SELECT gcd(500.3, 600), gcd(500.5, 600);
@@ -90,18 +82,9 @@ mysql> SELECT gcd(500.3, 600), gcd(500.5, 600);
 1 row in set (0.01 sec)
 ```
 
-Rounding of floating point values to integers is accomplished
-using
-`Math.round()`;
-in this case, 500.3 is rounded down to 500, but 500.5 is rounded
-up to 501.
+Rounding of floating point values to integers is accomplished using `Math.round()`; in this case, 500.3 is rounded down to 500, but 500.5 is rounded up to 501.
 
-Next, we create a simple JavaScript stored procedure using a
-[`CREATE PROCEDURE`](create-procedure.html "15.1.21 CREATE PROCEDURE and CREATE FUNCTION Statements") statement that
-includes an `OUT` parameter for passing the
-current date and time in a human-readable format to a user
-variable. Since we are not certain how long this representation
-is, we use VARCHAR(25) for the parameter's type.
+Next, we create a simple JavaScript stored procedure using a `CREATE PROCEDURE` statement that includes an `OUT` parameter for passing the current date and time in a human-readable format to a user variable. Since we are not certain how long this representation is, we use VARCHAR(25) for the parameter's type.
 
 ```
 mysql> CREATE PROCEDURE d1 (OUT res VARCHAR(25))
@@ -115,8 +98,7 @@ mysql> CREATE PROCEDURE d1 (OUT res VARCHAR(25))
 Query OK, 0 rows affected (0.01 sec)
 ```
 
-We can now test the stored procedure, first verifying that the
-user variable @today has not yet been set to any value, like this:
+We can now test the stored procedure, first verifying that the user variable @today has not yet been set to any value, like this:
 
 ```
 mysql> SELECT @today;
@@ -131,13 +113,7 @@ mysql> CALL d1(@today);
 ERROR 1406 (22001): Data too long for column 'res' at row 1
 ```
 
-The procedure is syntactically valid, but the data type of the
-`INOUT` parameter (`res`) does
-not allow for a sufficient number of characters; rather than
-truncating the value, the stored program rejects it. Since it is
-not possible to alter procedure code in place, we must drop the
-procedure and re-create it; this time we try doubling the length
-specified for the `INOUT` parameter:
+The procedure is syntactically valid, but the data type of the `INOUT` parameter (`res`) does not allow for a sufficient number of characters; rather than truncating the value, the stored program rejects it. Since it is not possible to alter procedure code in place, we must drop the procedure and re-create it; this time we try doubling the length specified for the `INOUT` parameter:
 
 ```
 mysql> DROP PROCEDURE d1;
@@ -166,12 +142,7 @@ mysql> SELECT @today;
 1 row in set (0.01 sec)
 ```
 
-Prior to invoking the updated procedure with
-[`CALL`](call.html "15.2.1 CALL Statement"), the value of
-`@today` remains unset, since the original
-version of `d1()` did not execute successfully.
-The updated version runs successfully, and we see afterwards that,
-this time, the value of the user variable is set as expected:
+Prior to invoking the updated procedure with `CALL`, the value of `@today` remains unset, since the original version of `d1()` did not execute successfully. The updated version runs successfully, and we see afterwards that, this time, the value of the user variable is set as expected:
 
 ```
 mysql> CALL d1(@today);
@@ -188,31 +159,18 @@ mysql> SELECT @today;
 
 Note
 
-The value that you obtain from running this example is likely to
-differ to some extent from what is shown here, since the exact
-representation of dates is dependent upon your system locale,
-and possibly other settings. See the documentation for the
-JavaScript
-`Date`
-object for more information.
+The value that you obtain from running this example is likely to differ to some extent from what is shown here, since the exact representation of dates is dependent upon your system locale, and possibly other settings. See the documentation for the JavaScript `Date` object for more information.
 
-The next example demonstrates the use of a JavaScript stored
-function in a trigger.
+The next example demonstrates the use of a JavaScript stored function in a trigger.
 
-First we create a table `t2` containing three
-integer columns, like this:
+First we create a table `t2` containing three integer columns, like this:
 
 ```
 mysql> CREATE TABLE t2 (c1 INT, c2 INT, c3 INT);
 Query OK, 0 rows affected (0.04 sec)
 ```
 
-Now we can create a trigger on this table. This must be done using
-a [`CREATE TRIGGER`](create-trigger.html "15.1.26 CREATE TRIGGER Statement") statement written
-in the usual way using SQL (see [Section 27.4, “Using Triggers”](triggers.html "27.4 Using Triggers")), but
-it can make use of stored routines written in JavaScript, such as
-the `js_pow()` function shown earlier in this
-section.
+Now we can create a trigger on this table. This must be done using a `CREATE TRIGGER` statement written in the usual way using SQL (see Section 27.4, “Using Triggers”), but it can make use of stored routines written in JavaScript, such as the `js_pow()` function shown earlier in this section.
 
 ```
 mysql> delimiter //
@@ -229,14 +187,7 @@ mysql> delimiter ;
 mysql>
 ```
 
-This trigger acts when a row is inserted into
-`t2`, taking the value inserted into the first
-column and inserting the square of this value into the second
-column, and its cube into the third. We test the trigger by
-inserting a few rows into the table; since the only value that is
-not thrown away is that which we supply for column
-`c1`, we can simply use `NULL`
-for each of the remaining two columns, as shown here:
+This trigger acts when a row is inserted into `t2`, taking the value inserted into the first column and inserting the square of this value into the second column, and its cube into the third. We test the trigger by inserting a few rows into the table; since the only value that is not thrown away is that which we supply for column `c1`, we can simply use `NULL` for each of the remaining two columns, as shown here:
 
 ```
 mysql> INSERT INTO t2
@@ -249,11 +200,7 @@ Query OK, 4 rows affected (0.01 sec)
 Records: 4  Duplicates: 0  Warnings: 0
 ```
 
-Since the function invoked by the trigger was written in
-JavaScript, JavaScript rounding rules apply, so that 2.49 is
-rounded down to 2, and 4.75 is rounded up to 5. We can see that
-this is the case when we check the result using a
-[`TABLE`](table.html "15.2.16 TABLE Statement") statement:
+Since the function invoked by the trigger was written in JavaScript, JavaScript rounding rules apply, so that 2.49 is rounded down to 2, and 4.75 is rounded up to 5. We can see that this is the case when we check the result using a `TABLE` statement:
 
 ```
 mysql> TABLE t2;
@@ -268,11 +215,7 @@ mysql> TABLE t2;
 4 rows in set (0.00 sec)
 ```
 
-The following examples demonstrate some of the basics of working
-with [`VECTOR`](vector.html "13.3.5 The VECTOR Type") values in MySQL
-JavaScript stored programs. We start by creating a table
-`v1` which contains a `VECTOR`
-column `c1`, like this:
+The following examples demonstrate some of the basics of working with `VECTOR` values in MySQL JavaScript stored programs. We start by creating a table `v1` which contains a `VECTOR` column `c1`, like this:
 
 ```
 mysql> CREATE TABLE v1 (
@@ -281,11 +224,7 @@ mysql> CREATE TABLE v1 (
 Query OK, 0 rows affected (0.02 sec)
 ```
 
-To insert some values into this table, we create a JavaScript
-stored procedure `vxin` that takes as its
-argument a string representation of a vector, converts it to a
-`VECTOR` value, and inserts it. We then call this
-procedure a number of times, as shown here:
+To insert some values into this table, we create a JavaScript stored procedure `vxin` that takes as its argument a string representation of a vector, converts it to a `VECTOR` value, and inserts it. We then call this procedure a number of times, as shown here:
 
 ```
 mysql> CREATE PROCEDURE vxin (IN val VARCHAR(100))
@@ -311,9 +250,7 @@ mysql> CALL vxin("[250, 350, 450]");
 Query OK, 1 row affected (0.01 sec)
 ```
 
-After `v1` has been populated, the output from
-[`TABLE v1`](table.html "15.2.16 TABLE Statement") looks
-like this:
+After `v1` has been populated, the output from `TABLE v1` looks like this:
 
 ```
 mysql> TABLE v1;
@@ -327,12 +264,7 @@ mysql> TABLE v1;
 3 rows in set (0.00 sec)
 ```
 
-Next, we create a JavaScript stored procedure
-**`vxout1`**, which selects all of the rows in
-**`v1`**, retrieving the column values and
-writing them to `stdout`. The
-[`CREATE PROCEDURE`](create-procedure.html "15.1.21 CREATE PROCEDURE and CREATE FUNCTION Statements") statement used to
-create this procedure is shown here:
+Next, we create a JavaScript stored procedure **`vxout1`**, which selects all of the rows in **`v1`**, retrieving the column values and writing them to `stdout`. The `CREATE PROCEDURE` statement used to create this procedure is shown here:
 
 ```
 mysql> CREATE PROCEDURE vxout1 ()
@@ -378,15 +310,7 @@ mle_session_state("stdout"): c1
 1 row in set (0.00 sec)
 ```
 
-You might be expecting to see the same binary representations
-shown in the output of the [`TABLE`](table.html "15.2.16 TABLE Statement")
-statement. Because JavaScript treats a
-[`VECTOR`](vector.html "13.3.5 The VECTOR Type") value as an array (an
-instance of
-`Float32Array`),
-it is displayed using array format. You can use the SQL
-[`HEX()`](string-functions.html#function_hex) function to force such values
-to be displayed using binary notation, if desired, like this:
+You might be expecting to see the same binary representations shown in the output of the `TABLE` statement. Because JavaScript treats a `VECTOR` value as an array (an instance of `Float32Array`), it is displayed using array format. You can use the SQL `HEX()` function to force such values to be displayed using binary notation, if desired, like this:
 
 ```
 mysql> CREATE PROCEDURE vxout2 ()
@@ -428,13 +352,7 @@ mle_session_state("stdout"): HEX(c1)
 1 row in set (0.00 sec)
 ```
 
-The display format notwithstanding, `VECTOR`
-values are handled as vectors, and not as strings or arrays, as we
-can see from the following example which employs the
-(MySQL HeatWave-only) [`DISTANCE()`](vector-functions.html#function_distance) function.
-First we create and populate a table `v2`
-containing two `VECTOR` columns, using the SQL
-statements shown here:
+The display format notwithstanding, `VECTOR` values are handled as vectors, and not as strings or arrays, as we can see from the following example which employs the (MySQL HeatWave-only) `DISTANCE()` function. First we create and populate a table `v2` containing two `VECTOR` columns, using the SQL statements shown here:
 
 ```
 CREATE TABLE v2 (
@@ -449,8 +367,7 @@ INSERT INTO v2 VALUES
 ;
 ```
 
-The following query shows the dot product of the two vectors in
-each row:
+The following query shows the dot product of the two vectors in each row:
 
 ```
 mysql> SELECT VECTOR_DISTANCE(c1, c2, "DOT") AS d FROM v2;
@@ -466,15 +383,9 @@ mysql> SELECT VECTOR_DISTANCE(c1, c2, "DOT") AS d FROM v2;
 
 Note
 
-The dot product of two vectors is defined as the sum of the
-products of their components, in order. For example, for the
-vectors in the second row in table `v5`
-(`[100, 0, -50]` and `[5, 10,
-5]`), the dot product is `(100)(5) + (0)(10) +
-(-50)(5) = 500 + 0 - 250 = 250`.
+The dot product of two vectors is defined as the sum of the products of their components, in order. For example, for the vectors in the second row in table `v5` (`[100, 0, -50]` and `[5, 10, 5]`), the dot product is `(100)(5) + (0)(10) + (-50)(5) = 500 + 0 - 250 = 250`.
 
-You can write your own JavaScript function for obtaining the dot
-product of two vectors, similar to this one:
+You can write your own JavaScript function for obtaining the dot product of two vectors, similar to this one:
 
 ```
 mysql> CREATE FUNCTION dot_product (v1 VECTOR, v2 VECTOR)
@@ -501,8 +412,7 @@ dot: 250
 dot: 335000
 ```
 
-Next, we create a JavaScript stored procedure
-`vxout5` that executes the same query, like this:
+Next, we create a JavaScript stored procedure `vxout5` that executes the same query, like this:
 
 ```
 mysql> CREATE PROCEDURE vxout5 ()
@@ -524,12 +434,7 @@ mysql> CREATE PROCEDURE vxout5 ()
 Query OK, 0 rows affected (0.01 sec)
 ```
 
-When we run `vxout5` (first clearing the session
-state using [`mle_session_reset()`](srjs-session-info.html#function_mle-session-reset) as
-before), we can see that the column values from
-`v5` are handled as vectors, with the same result
-as from running the query directly in the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client")
-client:
+When we run `vxout5` (first clearing the session state using `mle_session_reset()` as before), we can see that the column values from `v5` are handled as vectors, with the same result as from running the query directly in the **mysql** client:
 
 ```
 mysql> SELECT mle_session_reset();

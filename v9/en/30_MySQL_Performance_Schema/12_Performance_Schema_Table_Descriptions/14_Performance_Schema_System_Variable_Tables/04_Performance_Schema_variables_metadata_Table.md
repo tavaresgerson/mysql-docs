@@ -1,11 +1,8 @@
 #### 29.12.14.4 Performance Schema variables\_metadata Table
 
-The [`variables_metadata`](performance-schema-variables-metadata-table.html "29.12.14.4 Performance Schema variables_metadata Table") table
-shows, for each server system variable, its name, scope, type,
-range of values (where applicable), and description.
+The `variables_metadata` table shows, for each server system variable, its name, scope, type, range of values (where applicable), and description.
 
-The [`variables_metadata`](performance-schema-variables-metadata-table.html "29.12.14.4 Performance Schema variables_metadata Table") table
-contains these columns:
+The `variables_metadata` table contains these columns:
 
 * `VARIABLE_NAME`
 
@@ -13,8 +10,7 @@ contains these columns:
 
 * `VARIABLE_SCOPE`
 
-  The variable's scope; this is one of the values
-  listed here:
+  The variable's scope; this is one of the values listed here:
 
   + `GLOBAL`
 
@@ -30,8 +26,7 @@ contains these columns:
 
 * `DATA_TYPE`
 
-  The variable's type; this is one of the following
-  values:
+  The variable's type; this is one of the following values:
 
   + `Integer`
 
@@ -57,56 +52,29 @@ contains these columns:
 
     A set of values.
 
-  Possible values for variables of non-numeric types are
-  often shown in the text of the
-  `DOCUMENTATION` column; otherwise, see
-  the variable's description in the Manual.
+  Possible values for variables of non-numeric types are often shown in the text of the `DOCUMENTATION` column; otherwise, see the variable's description in the Manual.
 
 * `MIN_VALUE`
 
-  The minimum permitted value for the variable. For a
-  variable that is not numeric, this is always an empty
-  string.
+  The minimum permitted value for the variable. For a variable that is not numeric, this is always an empty string.
 
-  This column is intended to replace the
-  [`variables_info`](performance-schema-variables-info-table.html "29.12.14.3 Performance Schema variables_info Table") table'
-  `MAX_VALUE` column, which has been
-  deprecated.
+  This column is intended to replace the `variables_info` table' `MAX_VALUE` column, which has been deprecated.
 
 * `MAX_VALUE`
 
-  The maximum permitted value for the variable. For a
-  variable that is not numeric, this is always an empty
-  string.
+  The maximum permitted value for the variable. For a variable that is not numeric, this is always an empty string.
 
-  This column is intended to replace the
-  [`variables_info`](performance-schema-variables-info-table.html "29.12.14.3 Performance Schema variables_info Table") table'
-  `MAX_VALUE` column, which has been
-  deprecated.
+  This column is intended to replace the `variables_info` table' `MAX_VALUE` column, which has been deprecated.
 
 * `DOCUMENTATION`
 
-  A description of the variable; this is the same text as
-  found in the output of [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server")
-  `--help`
-  [`--verbose`](server-options.html#option_mysqld_verbose).
+  A description of the variable; this is the same text as found in the output of **mysqld** `--help` `--verbose`.
 
-The [`variables_metadata`](performance-schema-variables-metadata-table.html "29.12.14.4 Performance Schema variables_metadata Table") table has
-no indexes.
+The `variables_metadata` table has no indexes.
 
-This table is read-only. The only DML statements allowed are
-[`SELECT`](select.html "15.2.13 SELECT Statement") and
-[`TABLE`](table.html "15.2.16 TABLE Statement"); DDL statements including
-[`TRUNCATE TABLE`](truncate-table.html "15.1.42 TRUNCATE TABLE Statement") are not
-permitted.
+This table is read-only. The only DML statements allowed are `SELECT` and `TABLE`; DDL statements including `TRUNCATE TABLE` are not permitted.
 
-The three queries using the
-[`variables_metadata`](performance-schema-variables-metadata-table.html "29.12.14.4 Performance Schema variables_metadata Table") table shown in
-the following example provide information about the
-[`binlog_row_image`](replication-options-binary-log.html#sysvar_binlog_row_image),
-[`innodb_doublewrite_batch_size`](innodb-parameters.html#sysvar_innodb_doublewrite_batch_size),
-and [`secure_file_priv`](server-system-variables.html#sysvar_secure_file_priv) system
-variables:
+The three queries using the `variables_metadata` table shown in the following example provide information about the `binlog_row_image`, `innodb_doublewrite_batch_size`, and `secure_file_priv` system variables:
 
 ```
 mysql> SELECT * FROM variables_metadata WHERE VARIABLE_NAME='binlog_row_image'\G
@@ -146,7 +114,4 @@ VARIABLE_SCOPE: GLOBAL
 1 row in set (0.01 sec)
 ```
 
-This table does not show the current values of system
-variables; this information is provided by the Performance
-Schema [`global_variables`](performance-schema-system-variable-tables.html "29.12.14 Performance Schema System Variable Tables") and
-[`session_variables`](performance-schema-system-variable-tables.html "29.12.14 Performance Schema System Variable Tables") tables.
+This table does not show the current values of system variables; this information is provided by the Performance Schema `global_variables` and `session_variables` tables.

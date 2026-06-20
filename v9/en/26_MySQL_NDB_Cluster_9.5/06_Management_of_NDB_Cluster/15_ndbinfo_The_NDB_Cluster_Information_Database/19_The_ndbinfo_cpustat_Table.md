@@ -1,11 +1,8 @@
 #### 25.6.15.19 The ndbinfo cpustat Table
 
-The `cpustat` table provides per-thread CPU
-statistics gathered each second, for each thread running in the
-`NDB` kernel.
+The `cpustat` table provides per-thread CPU statistics gathered each second, for each thread running in the `NDB` kernel.
 
-The `cpustat` table contains the following
-columns:
+The `cpustat` table contains the following columns:
 
 * `node_id`
 

@@ -2,38 +2,11 @@
 
 **Table 14.5 Logical Operators**
 
-<table frame="box" rules="all" summary="A reference that lists logical operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th>
-<th>Description</th>
-</tr></thead><tbody><tr><td><a class="link" href="logical-operators.html#operator_and"><code class="literal">AND</code>, <code class="literal">&amp;&amp;</code></a></td>
-<td>
-      Logical AND
-    </td>
-</tr><tr><td><a class="link" href="logical-operators.html#operator_not"><code class="literal">NOT</code>, <code class="literal">!</code></a></td>
-<td>
-      Negates value
-    </td>
-</tr><tr><td><a class="link" href="logical-operators.html#operator_or"><code class="literal">OR</code>, <code class="literal">||</code></a></td>
-<td>
-      Logical OR
-    </td>
-</tr><tr><td><a class="link" href="logical-operators.html#operator_xor"><code class="literal">XOR</code></a></td>
-<td>
-      Logical XOR
-    </td>
-</tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists logical operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="logical-operators.html#operator_and"><code class="literal">AND</code>, <code class="literal">&amp;&amp;</code></a></td> <td> Logical AND </td> </tr><tr><td><a class="link" href="logical-operators.html#operator_not"><code class="literal">NOT</code>, <code class="literal">!</code></a></td> <td> Negates value </td> </tr><tr><td><a class="link" href="logical-operators.html#operator_or"><code class="literal">OR</code>, <code class="literal">||</code></a></td> <td> Logical OR </td> </tr><tr><td><a class="link" href="logical-operators.html#operator_xor"><code class="literal">XOR</code></a></td> <td> Logical XOR </td> </tr></tbody></table>
 
-In SQL, all logical operators evaluate to
-`TRUE`, `FALSE`, or
-`NULL` (`UNKNOWN`). In MySQL,
-these are implemented as 1 (`TRUE`), 0
-(`FALSE`), and `NULL`. Most of
-this is common to different SQL database servers, although some
-servers may return any nonzero value for
-`TRUE`.
+In SQL, all logical operators evaluate to `TRUE`, `FALSE`, or `NULL` (`UNKNOWN`). In MySQL, these are implemented as 1 (`TRUE`), 0 (`FALSE`), and `NULL`. Most of this is common to different SQL database servers, although some servers may return any nonzero value for `TRUE`.
 
-MySQL evaluates any nonzero, non-`NULL` value
-to `TRUE`. For example, the following
-statements all assess to `TRUE`:
+MySQL evaluates any nonzero, non-`NULL` value to `TRUE`. For example, the following statements all assess to `TRUE`:
 
 ```
 mysql> SELECT 10 IS TRUE;
@@ -44,13 +17,9 @@ mysql> SELECT 'string' IS NOT NULL;
 -> 1
 ```
 
-* [`NOT`](logical-operators.html#operator_not),
-  [`!`](logical-operators.html#operator_not)
+* `NOT`, `!`
 
-  Logical NOT. Evaluates to `1` if the
-  operand is `0`, to `0` if
-  the operand is nonzero, and `NOT NULL`
-  returns `NULL`.
+  Logical NOT. Evaluates to `1` if the operand is `0`, to `0` if the operand is nonzero, and `NOT NULL` returns `NULL`.
 
   ```
   mysql> SELECT NOT 10;
@@ -65,24 +34,13 @@ mysql> SELECT 'string' IS NOT NULL;
           -> 1
   ```
 
-  The last example produces `1` because the
-  expression evaluates the same way as
-  `(!1)+1`.
+  The last example produces `1` because the expression evaluates the same way as `(!1)+1`.
 
-  The [`!`](logical-operators.html#operator_not) operator
-  is a nonstandard extension, and is deprecated; expect it to
-  be removed in a future version of MySQL. Applications, where
-  necessary, should be adjusted to use the standard SQL
-  [`NOT`](logical-operators.html#operator_not) operator instead.
+  The `!` operator is a nonstandard extension, and is deprecated; expect it to be removed in a future version of MySQL. Applications, where necessary, should be adjusted to use the standard SQL `NOT` operator instead.
 
-* [`AND`](logical-operators.html#operator_and),
-  [`&&`](logical-operators.html#operator_and)
+* `AND`, `&&`
 
-  Logical AND. Evaluates to `1` if all
-  operands are nonzero and not `NULL`, to
-  `0` if one or more operands are
-  `0`, otherwise `NULL` is
-  returned.
+  Logical AND. Evaluates to `1` if all operands are nonzero and not `NULL`, to `0` if one or more operands are `0`, otherwise `NULL` is returned.
 
   ```
   mysql> SELECT 1 AND 1;
@@ -97,25 +55,11 @@ mysql> SELECT 'string' IS NOT NULL;
           -> 0
   ```
 
-  The [`&&`](logical-operators.html#operator_and),
-  operator is a nonstandard extension and is deprecated;
-  expect support for it to be removed in a future version of
-  MySQL. Applications, where necessary, should be adjusted to
-  use the standard SQL [`AND`](logical-operators.html#operator_and)
-  operator instead.
+  The `&&`, operator is a nonstandard extension and is deprecated; expect support for it to be removed in a future version of MySQL. Applications, where necessary, should be adjusted to use the standard SQL `AND` operator instead.
 
-* [`OR`](logical-operators.html#operator_or),
-  [`||`](logical-operators.html#operator_or)
+* `OR`, `||`
 
-  Logical OR. When both operands are
-  non-`NULL`, the result is
-  `1` if any operand is nonzero, and
-  `0` otherwise. With a
-  `NULL` operand, the result is
-  `1` if the other operand is nonzero, and
-  `NULL` otherwise. If both operands are
-  `NULL`, the result is
-  `NULL`.
+  Logical OR. When both operands are non-`NULL`, the result is `1` if any operand is nonzero, and `0` otherwise. With a `NULL` operand, the result is `1` if the other operand is nonzero, and `NULL` otherwise. If both operands are `NULL`, the result is `NULL`.
 
   ```
   mysql> SELECT 1 OR 1;
@@ -132,30 +76,13 @@ mysql> SELECT 'string' IS NOT NULL;
 
   Note
 
-  If the [`PIPES_AS_CONCAT`](sql-mode.html#sqlmode_pipes_as_concat)
-  SQL mode is enabled,
-  [`||`](logical-operators.html#operator_or) signifies
-  the SQL-standard string concatenation operator (like
-  [`CONCAT()`](string-functions.html#function_concat)).
+  If the `PIPES_AS_CONCAT` SQL mode is enabled, `||` signifies the SQL-standard string concatenation operator (like `CONCAT()`).
 
-  The [`||`](logical-operators.html#operator_or), operator
-  is a nonstandard extension, and is deprecated; expect
-  support for it to be removed in a future version of MySQL.
-  Applications, where necessary, should be adjusted to use the
-  standard SQL [`OR`](logical-operators.html#operator_or) operator
-  instead. Exception: Deprecation does not apply if
-  [`PIPES_AS_CONCAT`](sql-mode.html#sqlmode_pipes_as_concat) is enabled
-  because, in that case,
-  [`||`](logical-operators.html#operator_or) signifies
-  string concatenation.
+  The `||`, operator is a nonstandard extension, and is deprecated; expect support for it to be removed in a future version of MySQL. Applications, where necessary, should be adjusted to use the standard SQL `OR` operator instead. Exception: Deprecation does not apply if `PIPES_AS_CONCAT` is enabled because, in that case, `||` signifies string concatenation.
 
-* [`XOR`](logical-operators.html#operator_xor)
+* `XOR`
 
-  Logical XOR. Returns `NULL` if either
-  operand is `NULL`. For
-  non-`NULL` operands, evaluates to
-  `1` if an odd number of operands is
-  nonzero, otherwise `0` is returned.
+  Logical XOR. Returns `NULL` if either operand is `NULL`. For non-`NULL` operands, evaluates to `1` if an odd number of operands is nonzero, otherwise `0` is returned.
 
   ```
   mysql> SELECT 1 XOR 1;
@@ -168,5 +95,4 @@ mysql> SELECT 'string' IS NOT NULL;
           -> 1
   ```
 
-  `a XOR b` is mathematically equal to
-  `(a AND (NOT b)) OR ((NOT a) and b)`.
+  `a XOR b` is mathematically equal to `(a AND (NOT b)) OR ((NOT a) and b)`.

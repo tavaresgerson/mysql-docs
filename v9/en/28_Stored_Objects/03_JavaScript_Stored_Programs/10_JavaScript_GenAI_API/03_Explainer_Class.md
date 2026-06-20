@@ -1,32 +1,18 @@
 #### 27.3.10.3 Explainer Class
 
-This class is an abstraction of the AutoML explainer model as
-described in [Generate Model Explanations](/doc/heatwave/en/mys-hwaml-explainers.html). It has no
-explicit constructor, but rather is obtained by invoking
-[`Classifier.getExplainer()`](srjsapi-classifier.html#srjsapi-classifier-getexplainer "Classifier.getExplainer()") or
-[`Regressor.getExplainer()`](srjsapi-regressor.html#srjsapi-regressor-getexplainer "Regressor.getExplainer()").
+This class is an abstraction of the AutoML explainer model as described in Generate Model Explanations. It has no explicit constructor, but rather is obtained by invoking `Classifier.getExplainer()`") or `Regressor.getExplainer()`").
 
-`Explainer` exposes a single method,
-`explain()`, in two variants, both of which are
-described in this section.
+`Explainer` exposes a single method, `explain()`, in two variants, both of which are described in this section.
 
 ##### Explainer.explain()
 
 ###### Version 1
 
-This form of `explain()` is a JavaScript
-wrapper for [`ML_EXPLAIN_TABLE`](/doc/heatwave/en/mys-hwaml-ml-explain-table.html),
-and explains the training data from a given table using any
-supplied options, and placing the results in an output table.
+This form of `explain()` is a JavaScript wrapper for `ML_EXPLAIN_TABLE`, and explains the training data from a given table using any supplied options, and placing the results in an output table.
 
 **Signature**
 
-* ```
-  Explainer.explain(
-    Table testData,
-    Table outputTable[,
-    Object options]
-  )
+* ``` Explainer.explain( Table testData, Table outputTable[, Object options] )
   ```
 
 **Arguments**
@@ -65,15 +51,9 @@ of `explain()` is a wrapper for
 
 **Arguments**
 
-* *`sample`*
-  (`Object`): A sample containing training
-  data.
+* *`sample`* (`Object`): A sample containing training data.
 
-* *`options`*
-  (`Object`)
-  (*optional*): Options to be used; see
-  [Generate Prediction Explanations for a Row of Data](/doc/heatwave/en/mys-hwaml-explanations-ml-explain-row.html),
-  for more information.
+* *`options`* (`Object`) (*optional*): Options to be used; see Generate Prediction Explanations for a Row of Data, for more information.
 
 **Return type**
 

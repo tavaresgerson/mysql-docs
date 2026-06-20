@@ -1,9 +1,6 @@
 ## 10.14 Examining Server Thread (Process) Information
 
-To ascertain what your MySQL server is doing, it can be helpful to
-examine the process list, which indicates the operations currently
-being performed by the set of threads executing within the server.
-For example:
+To ascertain what your MySQL server is doing, it can be helpful to examine the process list, which indicates the operations currently being performed by the set of threads executing within the server. For example:
 
 ```
 mysql> SHOW PROCESSLIST\G
@@ -27,5 +24,4 @@ Command: Query
    Info: SHOW PROCESSLIST
 ```
 
-Threads can be killed with the [`KILL`](kill.html "15.7.8.4 KILL Statement")
-statement. See [Section 15.7.8.4, “KILL Statement”](kill.html "15.7.8.4 KILL Statement").
+Threads can be killed with the `KILL` statement. See Section 15.7.8.4, “KILL Statement”.

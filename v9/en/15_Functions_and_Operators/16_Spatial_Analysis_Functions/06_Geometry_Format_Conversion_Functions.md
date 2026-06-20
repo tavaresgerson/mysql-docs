@@ -1,25 +1,10 @@
 ### 14.16.6 Geometry Format Conversion Functions
 
-MySQL supports the functions listed in this section for converting
-geometry values from internal geometry format to WKT or WKB
-format, or for swapping the order of X and Y coordinates.
+MySQL supports the functions listed in this section for converting geometry values from internal geometry format to WKT or WKB format, or for swapping the order of X and Y coordinates.
 
-There are also functions to convert a string from WKT or WKB
-format to internal geometry format. See
-[Section 14.16.3, “Functions That Create Geometry Values from WKT Values”](gis-wkt-functions.html "14.16.3 Functions That Create Geometry Values from WKT Values"), and
-[Section 14.16.4, “Functions That Create Geometry Values from WKB Values”](gis-wkb-functions.html "14.16.4 Functions That Create Geometry Values from WKB Values").
+There are also functions to convert a string from WKT or WKB format to internal geometry format. See Section 14.16.3, “Functions That Create Geometry Values from WKT Values”, and Section 14.16.4, “Functions That Create Geometry Values from WKB Values”.
 
-Functions such as [`ST_GeomFromText()`](gis-wkt-functions.html#function_st-geomfromtext)
-that accept WKT geometry collection arguments understand both
-OpenGIS `'GEOMETRYCOLLECTION EMPTY'` standard
-syntax and MySQL `'GEOMETRYCOLLECTION()'`
-nonstandard syntax. Another way to produce an empty geometry
-collection is by calling
-[`GeometryCollection()`](gis-mysql-specific-functions.html#function_geometrycollection) with no
-arguments. Functions such as
-[`ST_AsWKT()`](gis-format-conversion-functions.html#function_st-astext)
-that produce WKT values produce `'GEOMETRYCOLLECTION
-EMPTY'` standard syntax:
+Functions such as `ST_GeomFromText()` that accept WKT geometry collection arguments understand both OpenGIS `'GEOMETRYCOLLECTION EMPTY'` standard syntax and MySQL `'GEOMETRYCOLLECTION()'` nonstandard syntax. Another way to produce an empty geometry collection is by calling `GeometryCollection()` with no arguments. Functions such as `ST_AsWKT()` that produce WKT values produce `'GEOMETRYCOLLECTION EMPTY'` standard syntax:
 
 ```
 mysql> SET @s1 = ST_GeomFromText('GEOMETRYCOLLECTION()');
@@ -38,64 +23,29 @@ mysql> SELECT ST_AsWKT(GeomCollection());
 +----------------------------+
 ```
 
-Unless otherwise specified, functions in this section handle their
-geometry arguments as follows:
+Unless otherwise specified, functions in this section handle their geometry arguments as follows:
 
-* If any argument is `NULL`, the return value
-  is `NULL`.
+* If any argument is `NULL`, the return value is `NULL`.
 
-* If any geometry argument is not a syntactically well-formed
-  geometry, an
-  [`ER_GIS_INVALID_DATA`](/doc/mysql-errors/9.5/en/server-error-reference.html#error_er_gis_invalid_data) error
-  occurs.
+* If any geometry argument is not a syntactically well-formed geometry, an `ER_GIS_INVALID_DATA` error occurs.
 
-* If any geometry argument is in an undefined spatial reference
-  system, the axes are output in the order they appear in the
-  geometry and an
-  [`ER_WARN_SRS_NOT_FOUND_AXIS_ORDER`](/doc/mysql-errors/9.5/en/server-error-reference.html#error_er_warn_srs_not_found_axis_order)
-  warning occurs.
+* If any geometry argument is in an undefined spatial reference system, the axes are output in the order they appear in the geometry and an `ER_WARN_SRS_NOT_FOUND_AXIS_ORDER` warning occurs.
 
-* By default, geographic coordinates (latitude, longitude) are
-  interpreted as in the order specified by the spatial reference
-  system of geometry arguments. An optional
-  *`options`* argument may be given to
-  override the default axis order. `options`
-  consists of a list of comma-separated
-  `key=value`.
-  The only permitted *`key`* value is
-  `axis-order`, with permitted values of
-  `lat-long`, `long-lat` and
-  `srid-defined` (the default).
+* By default, geographic coordinates (latitude, longitude) are interpreted as in the order specified by the spatial reference system of geometry arguments. An optional *`options`* argument may be given to override the default axis order. `options` consists of a list of comma-separated `key=value`. The only permitted *`key`* value is `axis-order`, with permitted values of `lat-long`, `long-lat` and `srid-defined` (the default).
 
-  If the *`options`* argument is
-  `NULL`, the return value is
-  `NULL`. If the
-  *`options`* argument is invalid, an
-  error occurs to indicate why.
+  If the *`options`* argument is `NULL`, the return value is `NULL`. If the *`options`* argument is invalid, an error occurs to indicate why.
 
 * Otherwise, the return value is non-`NULL`.
 
-These functions are available for format conversions or coordinate
-swapping:
+These functions are available for format conversions or coordinate swapping:
 
-* [`ST_AsBinary(g
-  [, options])`](gis-format-conversion-functions.html#function_st-asbinary),
-  [`ST_AsWKB(g
-  [, options])`](gis-format-conversion-functions.html#function_st-asbinary)
+* [`ST_AsBinary(g [, options])`](gis-format-conversion-functions.html#function_st-asbinary), [`ST_AsWKB(g [, options])`](gis-format-conversion-functions.html#function_st-asbinary)
 
-  Converts a value in internal geometry format to its WKB
-  representation and returns the binary result.
+  Converts a value in internal geometry format to its WKB representation and returns the binary result.
 
-  The function return value has geographic coordinates
-  (latitude, longitude) in the order specified by the spatial
-  reference system that applies to the geometry argument. An
-  optional *`options`* argument may be
-  given to override the default axis order.
+  The function return value has geographic coordinates (latitude, longitude) in the order specified by the spatial reference system that applies to the geometry argument. An optional *`options`* argument may be given to override the default axis order.
 
-  [`ST_AsBinary()`](gis-format-conversion-functions.html#function_st-asbinary) and
-  [`ST_AsWKB()`](gis-format-conversion-functions.html#function_st-asbinary)
-  handle their arguments as described in the introduction to
-  this section.
+  `ST_AsBinary()` and `ST_AsWKB()` handle their arguments as described in the introduction to this section.
 
   ```
   mysql> SET @g = ST_LineFromText('LINESTRING(0 5,5 10,10 15)', 4326);
@@ -119,24 +69,13 @@ swapping:
   +----------------------------------------------------------------+
   ```
 
-* [`ST_AsText(g [,
-  options])`](gis-format-conversion-functions.html#function_st-astext),
-  [`ST_AsWKT(g
-  [, options])`](gis-format-conversion-functions.html#function_st-astext)
+* [`ST_AsText(g [, options])`](gis-format-conversion-functions.html#function_st-astext), [`ST_AsWKT(g [, options])`](gis-format-conversion-functions.html#function_st-astext)
 
-  Converts a value in internal geometry format to its WKT
-  representation and returns the string result.
+  Converts a value in internal geometry format to its WKT representation and returns the string result.
 
-  The function return value has geographic coordinates
-  (latitude, longitude) in the order specified by the spatial
-  reference system that applies to the geometry argument. An
-  optional *`options`* argument may be
-  given to override the default axis order.
+  The function return value has geographic coordinates (latitude, longitude) in the order specified by the spatial reference system that applies to the geometry argument. An optional *`options`* argument may be given to override the default axis order.
 
-  [`ST_AsText()`](gis-format-conversion-functions.html#function_st-astext) and
-  [`ST_AsWKT()`](gis-format-conversion-functions.html#function_st-astext)
-  handle their arguments as described in the introduction to
-  this section.
+  `ST_AsText()` and `ST_AsWKT()` handle their arguments as described in the introduction to this section.
 
   ```
   mysql> SET @g = 'LineString(1 1,2 2,3 3)';
@@ -148,8 +87,7 @@ swapping:
   +--------------------------------+
   ```
 
-  Output for `MultiPoint` values includes
-  parentheses around each point. For example:
+  Output for `MultiPoint` values includes parentheses around each point. For example:
 
   ```
   mysql> SELECT ST_AsText(ST_GeomFromText(@mp));
@@ -160,14 +98,11 @@ swapping:
   +---------------------------------+
   ```
 
-* [`ST_SwapXY(g)`](gis-format-conversion-functions.html#function_st-swapxy)
+* `ST_SwapXY(g)`
 
-  Accepts an argument in internal geometry format, swaps the X
-  and Y values of each coordinate pair within the geometry, and
-  returns the result.
+  Accepts an argument in internal geometry format, swaps the X and Y values of each coordinate pair within the geometry, and returns the result.
 
-  [`ST_SwapXY()`](gis-format-conversion-functions.html#function_st-swapxy) handles its
-  arguments as described in the introduction to this section.
+  `ST_SwapXY()` handles its arguments as described in the introduction to this section.
 
   ```
   mysql> SET @g = ST_LineFromText('LINESTRING(0 5,5 10,10 15)');

@@ -1,16 +1,12 @@
 #### 30.4.4.15 The ps\_setup\_show\_disabled() Procedure
 
-Displays all currently disabled Performance Schema
-configuration.
+Displays all currently disabled Performance Schema configuration.
 
 ##### Parameters
 
-* `in_show_instruments BOOLEAN`: Whether
-  to display disabled instruments. This might be a long
-  list.
+* `in_show_instruments BOOLEAN`: Whether to display disabled instruments. This might be a long list.
 
-* `in_show_threads BOOLEAN`: Whether to
-  display disabled threads.
+* `in_show_threads BOOLEAN`: Whether to display disabled threads.
 
 ##### Example
 

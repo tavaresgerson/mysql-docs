@@ -1,7 +1,6 @@
 ## 27.3 JavaScript Stored Programs
 
-MySQL 9.5 supports stored routines written in
-JavaScript, as in the simple example shown here:
+MySQL 9.5 supports stored routines written in JavaScript, as in the simple example shown here:
 
 ```
 mysql> CREATE FUNCTION add_nos(arg1 INT, arg2 INT)
@@ -23,17 +22,9 @@ mysql> SELECT add_nos(12,52);
 
 Note
 
-Support for JavaScript stored routines requires installation of
-the Multilingual Engine (MLE) component. For information about installing and
-configuring the MLE component, see
-[Section 7.5.7, “Multilingual Engine Component (MLE)”](mle-component.html "7.5.7 Multilingual Engine Component (MLE)").
+Support for JavaScript stored routines requires installation of the Multilingual Engine (MLE) component. For information about installing and configuring the MLE component, see Section 7.5.7, “Multilingual Engine Component (MLE)”").
 
-JavaScript stored programs can be used together with other
-user-created and MySQL-native stored programs (subject to
-limitations described elsewhere in this section), as well as with
-MySQL system and user variables. We can see some of this here, using
-the `add_nos()` function created in the previous
-example:
+JavaScript stored programs can be used together with other user-created and MySQL-native stored programs (subject to limitations described elsewhere in this section), as well as with MySQL system and user variables. We can see some of this here, using the `add_nos()` function created in the previous example:
 
 ```
 mysql> SET @x = 2;
@@ -72,15 +63,6 @@ mysql> SELECT POW(add_nos(@x, @@server_id), add_nos(@x, 1));
 1 row in set (0.01 sec)
 ```
 
-JavaScript stored procedures can be invoked using
-[`CALL`](call.html "15.2.1 CALL Statement"), as with SQL stored procedures.
+JavaScript stored procedures can be invoked using `CALL`, as with SQL stored procedures.
 
-JavaScript stored programs can also take column values as arguments.
-JavaScript stored functions can be invoked anywhere in an SQL
-expression that it is legal to use any other function, such as in
-`WHERE`, `HAVING`, `ORDER
-BY`, and `JOIN` clauses. They can also be
-invoked within the body of a trigger or event definition, although
-the definitions themselves must be written in SQL. Examples of some
-of these features can be found later in this section (see
-[Section 27.3.12, “JavaScript Stored Program Examples”](srjs-examples.html "27.3.12 JavaScript Stored Program Examples")).
+JavaScript stored programs can also take column values as arguments. JavaScript stored functions can be invoked anywhere in an SQL expression that it is legal to use any other function, such as in `WHERE`, `HAVING`, `ORDER BY`, and `JOIN` clauses. They can also be invoked within the body of a trigger or event definition, although the definitions themselves must be written in SQL. Examples of some of these features can be found later in this section (see Section 27.3.12, “JavaScript Stored Program Examples”).

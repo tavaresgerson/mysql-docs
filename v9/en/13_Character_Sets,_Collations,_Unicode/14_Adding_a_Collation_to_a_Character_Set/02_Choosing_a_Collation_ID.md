@@ -1,29 +1,18 @@
 ### 12.14.2 Choosing a Collation ID
 
-Each collation must have a unique ID. To add a collation, you
-must choose an ID value that is not currently used. MySQL
-supports two-byte collation IDs. The range of IDs from 1024 to
-2047 is reserved for user-defined collations.
+Each collation must have a unique ID. To add a collation, you must choose an ID value that is not currently used. MySQL supports two-byte collation IDs. The range of IDs from 1024 to 2047 is reserved for user-defined collations.
 
 The collation ID that you choose appears in these contexts:
 
-* The `ID` column of the Information Schema
-  [`COLLATIONS`](information-schema-collations-table.html "28.3.6 The INFORMATION_SCHEMA COLLATIONS Table") table.
+* The `ID` column of the Information Schema `COLLATIONS` table.
 
-* The `Id` column of
-  [`SHOW COLLATION`](show-collation.html "15.7.7.5 SHOW COLLATION Statement") output.
+* The `Id` column of `SHOW COLLATION` output.
 
-* The `charsetnr` member of the
-  `MYSQL_FIELD` C API data structure.
+* The `charsetnr` member of the `MYSQL_FIELD` C API data structure.
 
-* The `number` member of the
-  `MY_CHARSET_INFO` data structure returned
-  by the
-  [`mysql_get_character_set_info()`](/doc/c-api/9.5/en/mysql-get-character-set-info.html)
-  C API function.
+* The `number` member of the `MY_CHARSET_INFO` data structure returned by the `mysql_get_character_set_info()` C API function.
 
-To determine the largest currently used ID, issue the following
-statement:
+To determine the largest currently used ID, issue the following statement:
 
 ```
 mysql> SELECT MAX(ID) FROM INFORMATION_SCHEMA.COLLATIONS;
@@ -34,8 +23,7 @@ mysql> SELECT MAX(ID) FROM INFORMATION_SCHEMA.COLLATIONS;
 +---------+
 ```
 
-To display a list of all currently used IDs, issue this
-statement:
+To display a list of all currently used IDs, issue this statement:
 
 ```
 mysql> SELECT ID FROM INFORMATION_SCHEMA.COLLATIONS ORDER BY ID;
@@ -61,6 +49,4 @@ mysql> SELECT ID FROM INFORMATION_SCHEMA.COLLATIONS ORDER BY ID;
 
 Warning
 
-Before upgrading, you should save the configuration files that
-you change. If you upgrade in place, the process replaces the
-modified files.
+Before upgrading, you should save the configuration files that you change. If you upgrade in place, the process replaces the modified files.

@@ -1,84 +1,51 @@
 #### 30.4.3.21 The metrics View
 
-This view summarizes MySQL server metrics to show variable
-names, values, types, and whether they are enabled. By
-default, rows are sorted by variable type and name.
+This view summarizes MySQL server metrics to show variable names, values, types, and whether they are enabled. By default, rows are sorted by variable type and name.
 
-The [`metrics`](sys-metrics.html "30.4.3.21 The metrics View") view includes this
-information:
+The `metrics` view includes this information:
 
-* Global status variables from the Performance Schema
-  [`global_status`](performance-schema-status-variable-tables.html "29.12.15 Performance Schema Status Variable Tables") table
+* Global status variables from the Performance Schema `global_status` table
 
-* `InnoDB` metrics from the
-  `INFORMATION_SCHEMA`
-  [`INNODB_METRICS`](information-schema-innodb-metrics-table.html "28.4.21 The INFORMATION_SCHEMA INNODB_METRICS Table") table
+* `InnoDB` metrics from the `INFORMATION_SCHEMA` `INNODB_METRICS` table
 
-* Current and total memory allocation, based on the
-  Performance Schema memory instrumentation
+* Current and total memory allocation, based on the Performance Schema memory instrumentation
 
-* The current time (human readable and Unix timestamp
-  formats)
+* The current time (human readable and Unix timestamp formats)
 
-There is some duplication of information between the
-[`global_status`](performance-schema-status-variable-tables.html "29.12.15 Performance Schema Status Variable Tables") and
-[`INNODB_METRICS`](information-schema-innodb-metrics-table.html "28.4.21 The INFORMATION_SCHEMA INNODB_METRICS Table") tables, which the
-[`metrics`](sys-metrics.html "30.4.3.21 The metrics View") view eliminates.
+There is some duplication of information between the `global_status` and `INNODB_METRICS` tables, which the `metrics` view eliminates.
 
-The [`metrics`](sys-metrics.html "30.4.3.21 The metrics View") view has these
-columns:
+The `metrics` view has these columns:
 
 * `Variable_name`
 
-  The metric name. The metric type determines the source
-  from which the name is taken:
+  The metric name. The metric type determines the source from which the name is taken:
 
-  + For global status variables: The
-    `VARIABLE_NAME` column of the
-    [`global_status`](performance-schema-status-variable-tables.html "29.12.15 Performance Schema Status Variable Tables") table
+  + For global status variables: The `VARIABLE_NAME` column of the `global_status` table
 
-  + For `InnoDB` metrics: The
-    `NAME` column of the
-    [`INNODB_METRICS`](information-schema-innodb-metrics-table.html "28.4.21 The INFORMATION_SCHEMA INNODB_METRICS Table") table
+  + For `InnoDB` metrics: The `NAME` column of the `INNODB_METRICS` table
 
   + For other metrics: A view-provided descriptive string
 * `Variable_value`
 
-  The metric value. The metric type determines the source
-  from which the value is taken:
+  The metric value. The metric type determines the source from which the value is taken:
 
-  + For global status variables: The
-    `VARIABLE_VALUE` column of the
-    [`global_status`](performance-schema-status-variable-tables.html "29.12.15 Performance Schema Status Variable Tables") table
+  + For global status variables: The `VARIABLE_VALUE` column of the `global_status` table
 
-  + For `InnoDB` metrics: The
-    `COUNT` column of the
-    [`INNODB_METRICS`](information-schema-innodb-metrics-table.html "28.4.21 The INFORMATION_SCHEMA INNODB_METRICS Table") table
+  + For `InnoDB` metrics: The `COUNT` column of the `INNODB_METRICS` table
 
-  + For memory metrics: The relevant column from the
-    Performance Schema
-    [`memory_summary_global_by_event_name`](performance-schema-memory-summary-tables.html "29.12.20.10 Memory Summary Tables")
-    table
+  + For memory metrics: The relevant column from the Performance Schema `memory_summary_global_by_event_name` table
 
-  + For the current time: The value of
-    [`NOW(3)`](date-and-time-functions.html#function_now) or
-    [`UNIX_TIMESTAMP(NOW(3))`](date-and-time-functions.html#function_unix-timestamp)
+  + For the current time: The value of `NOW(3)` or `UNIX_TIMESTAMP(NOW(3))`
 
 * `Type`
 
   The metric type:
 
-  + For global status variables: `Global
-    Status`
+  + For global status variables: `Global Status`
 
-  + For `InnoDB` metrics: `InnoDB
-    Metrics - %`, where `%` is
-    replaced by the value of the
-    `SUBSYSTEM` column of the
-    [`INNODB_METRICS`](information-schema-innodb-metrics-table.html "28.4.21 The INFORMATION_SCHEMA INNODB_METRICS Table") table
+  + For `InnoDB` metrics: `InnoDB Metrics - %`, where `%` is replaced by the value of the `SUBSYSTEM` column of the `INNODB_METRICS` table
 
-  + For memory metrics: `Performance
-    Schema`
+  + For memory metrics: `Performance Schema`
 
   + For the current time: `System Time`
 * `Enabled`
@@ -86,19 +53,8 @@ columns:
   Whether the metric is enabled:
 
   + For global status variables: `YES`
-  + For `InnoDB` metrics:
-    `YES` if the
-    `STATUS` column of the
-    [`INNODB_METRICS`](information-schema-innodb-metrics-table.html "28.4.21 The INFORMATION_SCHEMA INNODB_METRICS Table") table is
-    `enabled`, `NO`
-    otherwise
+  + For `InnoDB` metrics: `YES` if the `STATUS` column of the `INNODB_METRICS` table is `enabled`, `NO` otherwise
 
-  + For memory metrics: `NO`,
-    `YES`, or `PARTIAL`
-    (currently, `PARTIAL` occurs only for
-    memory metrics and indicates that not all
-    `memory/%` instruments are enabled;
-    Performance Schema memory instruments are always
-    enabled)
+  + For memory metrics: `NO`, `YES`, or `PARTIAL` (currently, `PARTIAL` occurs only for memory metrics and indicates that not all `memory/%` instruments are enabled; Performance Schema memory instruments are always enabled)
 
   + For the current time: `YES`

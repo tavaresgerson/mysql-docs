@@ -1,31 +1,12 @@
 ### 29.19.1 Query Profiling Using Performance Schema
 
-The following example demonstrates how to use Performance Schema
-statement events and stage events to retrieve data comparable to
-profiling information provided by [`SHOW
-PROFILES`](show-profiles.html "15.7.7.34 SHOW PROFILES Statement") and [`SHOW
-PROFILE`](show-profile.html "15.7.7.33 SHOW PROFILE Statement") statements.
+The following example demonstrates how to use Performance Schema statement events and stage events to retrieve data comparable to profiling information provided by [`SHOW PROFILES`](show-profiles.html "15.7.7.34 SHOW PROFILES Statement") and [`SHOW PROFILE`](show-profile.html "15.7.7.33 SHOW PROFILE Statement") statements.
 
-The [`setup_actors`](performance-schema-setup-actors-table.html "29.12.2.1 The setup_actors Table") table can be used
-to limit the collection of historical events by host, user, or
-account to reduce runtime overhead and the amount of data
-collected in history tables. The first step of the example shows
-how to limit collection of historical events to a specific user.
+The `setup_actors` table can be used to limit the collection of historical events by host, user, or account to reduce runtime overhead and the amount of data collected in history tables. The first step of the example shows how to limit collection of historical events to a specific user.
 
-Performance Schema displays event timer information in
-picoseconds (trillionths of a second) to normalize timing data
-to a standard unit. In the following example,
-`TIMER_WAIT` values are divided by
-1000000000000 to show data in units of seconds. Values are also
-truncated to 6 decimal places to display data in the same format
-as [`SHOW PROFILES`](show-profiles.html "15.7.7.34 SHOW PROFILES Statement") and
-[`SHOW PROFILE`](show-profile.html "15.7.7.33 SHOW PROFILE Statement") statements.
+Performance Schema displays event timer information in picoseconds (trillionths of a second) to normalize timing data to a standard unit. In the following example, `TIMER_WAIT` values are divided by 1000000000000 to show data in units of seconds. Values are also truncated to 6 decimal places to display data in the same format as `SHOW PROFILES` and `SHOW PROFILE` statements.
 
-1. Limit the collection of historical events to the user that
-   runs the query. By default,
-   [`setup_actors`](performance-schema-setup-actors-table.html "29.12.2.1 The setup_actors Table") is configured to
-   allow monitoring and historical event collection for all
-   foreground threads:
+1. Limit the collection of historical events to the user that runs the query. By default, `setup_actors` is configured to allow monitoring and historical event collection for all foreground threads:
 
    ```
    mysql> SELECT * FROM performance_schema.setup_actors;
@@ -36,12 +17,7 @@ as [`SHOW PROFILES`](show-profiles.html "15.7.7.34 SHOW PROFILES Statement") an
    +------+------+------+---------+---------+
    ```
 
-   Update the default row in the
-   [`setup_actors`](performance-schema-setup-actors-table.html "29.12.2.1 The setup_actors Table") table to disable
-   historical event collection and monitoring for all
-   foreground threads, and insert a new row that enables
-   monitoring and historical event collection for the user that
-   runs the query:
+   Update the default row in the `setup_actors` table to disable historical event collection and monitoring for all foreground threads, and insert a new row that enables monitoring and historical event collection for the user that runs the query:
 
    ```
    mysql> UPDATE performance_schema.setup_actors
@@ -53,8 +29,7 @@ as [`SHOW PROFILES`](show-profiles.html "15.7.7.34 SHOW PROFILES Statement") an
           VALUES('localhost','test_user','%','YES','YES');
    ```
 
-   Data in the [`setup_actors`](performance-schema-setup-actors-table.html "29.12.2.1 The setup_actors Table") table
-   should now appear similar to the following:
+   Data in the `setup_actors` table should now appear similar to the following:
 
    ```
    mysql> SELECT * FROM performance_schema.setup_actors;
@@ -66,10 +41,7 @@ as [`SHOW PROFILES`](show-profiles.html "15.7.7.34 SHOW PROFILES Statement") an
    +-----------+-----------+------+---------+---------+
    ```
 
-2. Ensure that statement and stage instrumentation is enabled
-   by updating the
-   [`setup_instruments`](performance-schema-setup-instruments-table.html "29.12.2.3 The setup_instruments Table") table. Some
-   instruments may already be enabled by default.
+2. Ensure that statement and stage instrumentation is enabled by updating the `setup_instruments` table. Some instruments may already be enabled by default.
 
    ```
    mysql> UPDATE performance_schema.setup_instruments
@@ -81,9 +53,7 @@ as [`SHOW PROFILES`](show-profiles.html "15.7.7.34 SHOW PROFILES Statement") an
           WHERE NAME LIKE '%stage/%';
    ```
 
-3. Ensure that `events_statements_*` and
-   `events_stages_*` consumers are enabled.
-   Some consumers may already be enabled by default.
+3. Ensure that `events_statements_*` and `events_stages_*` consumers are enabled. Some consumers may already be enabled by default.
 
    ```
    mysql> UPDATE performance_schema.setup_consumers
@@ -95,8 +65,7 @@ as [`SHOW PROFILES`](show-profiles.html "15.7.7.34 SHOW PROFILES Statement") an
           WHERE NAME LIKE '%events_stages_%';
    ```
 
-4. Under the user account you are monitoring, run the statement
-   that you want to profile. For example:
+4. Under the user account you are monitoring, run the statement that you want to profile. For example:
 
    ```
    mysql> SELECT * FROM employees.employees WHERE emp_no = 10001;
@@ -107,14 +76,7 @@ as [`SHOW PROFILES`](show-profiles.html "15.7.7.34 SHOW PROFILES Statement") an
    +--------+------------+------------+-----------+--------+------------+
    ```
 
-5. Identify the `EVENT_ID` of the statement by
-   querying the
-   [`events_statements_history_long`](performance-schema-events-statements-history-long-table.html "29.12.6.3 The events_statements_history_long Table")
-   table. This step is similar to running
-   [`SHOW PROFILES`](show-profiles.html "15.7.7.34 SHOW PROFILES Statement") to identify the
-   `Query_ID`. The following query produces
-   output similar to [`SHOW
-   PROFILES`](show-profiles.html "15.7.7.34 SHOW PROFILES Statement"):
+5. Identify the `EVENT_ID` of the statement by querying the `events_statements_history_long` table. This step is similar to running `SHOW PROFILES` to identify the `Query_ID`. The following query produces output similar to [`SHOW PROFILES`](show-profiles.html "15.7.7.34 SHOW PROFILES Statement"):
 
    ```
    mysql> SELECT EVENT_ID, TRUNCATE(TIMER_WAIT/1000000000000,6) as Duration, SQL_TEXT
@@ -126,13 +88,7 @@ as [`SHOW PROFILES`](show-profiles.html "15.7.7.34 SHOW PROFILES Statement") an
    +----------+----------+--------------------------------------------------------+
    ```
 
-6. Query the
-   [`events_stages_history_long`](performance-schema-events-stages-history-long-table.html "29.12.5.3 The events_stages_history_long Table")
-   table to retrieve the statement's stage events. Stages are
-   linked to statements using event nesting. Each stage event
-   record has a `NESTING_EVENT_ID` column that
-   contains the `EVENT_ID` of the parent
-   statement.
+6. Query the `events_stages_history_long` table to retrieve the statement's stage events. Stages are linked to statements using event nesting. Each stage event record has a `NESTING_EVENT_ID` column that contains the `EVENT_ID` of the parent statement.
 
    ```
    mysql> SELECT event_name AS Stage, TRUNCATE(TIMER_WAIT/1000000000000,6) AS Duration

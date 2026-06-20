@@ -1,7 +1,6 @@
 #### 29.12.21.2 The setup\_meters Table
 
-The [`setup_meters`](performance-schema-setup-meters-table.html "29.12.21.2 The setup_meters Table") table lists the
-registered meters:
+The `setup_meters` table lists the registered meters:
 
 ```
 mysql> select * from performance_schema.setup_meters;
@@ -24,16 +23,10 @@ mysql> select * from performance_schema.setup_meters;
 ```
 
 * `NAME`: Name of the meter.
-* `FREQUENCY`: Frequency in seconds of
-  metric export. Default is every 10 seconds. This value can
-  be edited for registered meters.
+* `FREQUENCY`: Frequency in seconds of metric export. Default is every 10 seconds. This value can be edited for registered meters.
 
-* `ENABLED`: Whether the meter is enabled.
-  The value is YES or NO. A disabled meter exports no
-  metrics. This column can be modified
+* `ENABLED`: Whether the meter is enabled. The value is YES or NO. A disabled meter exports no metrics. This column can be modified
 
-* `DESCRIPTION`: A string describing the
-  meter.
+* `DESCRIPTION`: A string describing the meter.
 
-`FREQUENCY` and `ENABLED`
-can be edited.
+`FREQUENCY` and `ENABLED` can be edited.

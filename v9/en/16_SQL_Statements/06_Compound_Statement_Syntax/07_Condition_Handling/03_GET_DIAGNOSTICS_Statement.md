@@ -40,31 +40,13 @@ condition_number, target:
     (see following discussion)
 ```
 
-SQL statements produce diagnostic information that populates the
-diagnostics area. The [`GET
-DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") statement enables applications to inspect
-this information. (You can also use [`SHOW
-WARNINGS`](show-warnings.html "15.7.7.43 SHOW WARNINGS Statement") or [`SHOW ERRORS`](show-errors.html "15.7.7.19 SHOW ERRORS Statement")
-to see conditions or errors.)
+SQL statements produce diagnostic information that populates the diagnostics area. The [`GET DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") statement enables applications to inspect this information. (You can also use [`SHOW WARNINGS`](show-warnings.html "15.7.7.43 SHOW WARNINGS Statement") or `SHOW ERRORS` to see conditions or errors.)
 
-No special privileges are required to execute
-[`GET DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement").
+No special privileges are required to execute `GET DIAGNOSTICS`.
 
-The keyword `CURRENT` means to retrieve
-information from the current diagnostics area. The keyword
-`STACKED` means to retrieve information from
-the second diagnostics area, which is available only if the
-current context is a condition handler. If neither keyword is
-given, the default is to use the current diagnostics area.
+The keyword `CURRENT` means to retrieve information from the current diagnostics area. The keyword `STACKED` means to retrieve information from the second diagnostics area, which is available only if the current context is a condition handler. If neither keyword is given, the default is to use the current diagnostics area.
 
-The [`GET DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") statement is
-typically used in a handler within a stored program. It is a
-MySQL extension that
-[`GET [CURRENT]
-DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") is permitted outside handler context to
-check the execution of any SQL statement. For example, if you
-invoke the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") client program, you can
-enter these statements at the prompt:
+The `GET DIAGNOSTICS` statement is typically used in a handler within a stored program. It is a MySQL extension that [`GET [CURRENT] DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") is permitted outside handler context to check the execution of any SQL statement. For example, if you invoke the **mysql** client program, you can enter these statements at the prompt:
 
 ```
 mysql> DROP TABLE test.no_such_table;
@@ -79,28 +61,15 @@ mysql> SELECT @p1, @p2;
 +-------+------------------------------------+
 ```
 
-This extension applies only to the current diagnostics area. It
-does not apply to the second diagnostics area because
-`GET STACKED DIAGNOSTICS` is permitted only if
-the current context is a condition handler. If that is not the
-case, a `GET STACKED DIAGNOSTICS when handler not
-active` error occurs.
+This extension applies only to the current diagnostics area. It does not apply to the second diagnostics area because `GET STACKED DIAGNOSTICS` is permitted only if the current context is a condition handler. If that is not the case, a `GET STACKED DIAGNOSTICS when handler not active` error occurs.
 
-For a description of the diagnostics area, see
-[Section 15.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "15.6.7.7 The MySQL Diagnostics Area"). Briefly, it contains two
-kinds of information:
+For a description of the diagnostics area, see Section 15.6.7.7, “The MySQL Diagnostics Area”. Briefly, it contains two kinds of information:
 
-* Statement information, such as the number of conditions that
-  occurred or the affected-rows count.
+* Statement information, such as the number of conditions that occurred or the affected-rows count.
 
-* Condition information, such as the error code and message.
-  If a statement raises multiple conditions, this part of the
-  diagnostics area has a condition area for each one. If a
-  statement raises no conditions, this part of the diagnostics
-  area is empty.
+* Condition information, such as the error code and message. If a statement raises multiple conditions, this part of the diagnostics area has a condition area for each one. If a statement raises no conditions, this part of the diagnostics area is empty.
 
-For a statement that produces three conditions, the diagnostics
-area contains statement and condition information like this:
+For a statement that produces three conditions, the diagnostics area contains statement and condition information like this:
 
 ```
 Statement information:
@@ -121,62 +90,28 @@ Condition area list:
     ... other condition information items ...
 ```
 
-[`GET DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") can obtain either
-statement or condition information, but not both in the same
-statement:
+`GET DIAGNOSTICS` can obtain either statement or condition information, but not both in the same statement:
 
-* To obtain statement information, retrieve the desired
-  statement items into target variables. This instance of
-  [`GET DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") assigns the
-  number of available conditions and the rows-affected count
-  to the user variables `@p1` and
-  `@p2`:
+* To obtain statement information, retrieve the desired statement items into target variables. This instance of `GET DIAGNOSTICS` assigns the number of available conditions and the rows-affected count to the user variables `@p1` and `@p2`:
 
   ```
   GET DIAGNOSTICS @p1 = NUMBER, @p2 = ROW_COUNT;
   ```
 
-* To obtain condition information, specify the condition
-  number and retrieve the desired condition items into target
-  variables. This instance of [`GET
-  DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") assigns the SQLSTATE value and error
-  message to the user variables `@p3` and
-  `@p4`:
+* To obtain condition information, specify the condition number and retrieve the desired condition items into target variables. This instance of [`GET DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") assigns the SQLSTATE value and error message to the user variables `@p3` and `@p4`:
 
   ```
   GET DIAGNOSTICS CONDITION 1
     @p3 = RETURNED_SQLSTATE, @p4 = MESSAGE_TEXT;
   ```
 
-The retrieval list specifies one or more
-`target =
-item_name` assignments,
-separated by commas. Each assignment names a target variable and
-either a
-*`statement_information_item_name`* or
-*`condition_information_item_name`*
-designator, depending on whether the statement retrieves
-statement or condition information.
+The retrieval list specifies one or more `target = item_name` assignments, separated by commas. Each assignment names a target variable and either a *`statement_information_item_name`* or *`condition_information_item_name`* designator, depending on whether the statement retrieves statement or condition information.
 
-Valid *`target`* designators for storing
-item information can be stored procedure or function parameters,
-stored program local variables declared with
-[`DECLARE`](declare.html "15.6.3 DECLARE Statement"), or user-defined
-variables.
+Valid *`target`* designators for storing item information can be stored procedure or function parameters, stored program local variables declared with `DECLARE`, or user-defined variables.
 
-Valid *`condition_number`* designators
-can be stored procedure or function parameters, stored program
-local variables declared with
-[`DECLARE`](declare.html "15.6.3 DECLARE Statement"), user-defined variables,
-system variables, or literals. A character literal may include a
-*`_charset`* introducer. A warning occurs
-if the condition number is not in the range from 1 to the number
-of condition areas that have information. In this case, the
-warning is added to the diagnostics area without clearing it.
+Valid *`condition_number`* designators can be stored procedure or function parameters, stored program local variables declared with `DECLARE`, user-defined variables, system variables, or literals. A character literal may include a *`_charset`* introducer. A warning occurs if the condition number is not in the range from 1 to the number of condition areas that have information. In this case, the warning is added to the diagnostics area without clearing it.
 
-When a condition occurs, MySQL does not populate all condition
-items recognized by [`GET
-DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement"). For example:
+When a condition occurs, MySQL does not populate all condition items recognized by [`GET DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement"). For example:
 
 ```
 mysql> GET DIAGNOSTICS CONDITION 1
@@ -189,37 +124,22 @@ mysql> SELECT @p5, @p6;
 +------+------+
 ```
 
-In standard SQL, if there are multiple conditions, the first
-condition relates to the `SQLSTATE` value
-returned for the previous SQL statement. In MySQL, this is not
-guaranteed. To get the main error, you cannot do this:
+In standard SQL, if there are multiple conditions, the first condition relates to the `SQLSTATE` value returned for the previous SQL statement. In MySQL, this is not guaranteed. To get the main error, you cannot do this:
 
 ```
 GET DIAGNOSTICS CONDITION 1 @errno = MYSQL_ERRNO;
 ```
 
-Instead, retrieve the condition count first, then use it to
-specify which condition number to inspect:
+Instead, retrieve the condition count first, then use it to specify which condition number to inspect:
 
 ```
 GET DIAGNOSTICS @cno = NUMBER;
 GET DIAGNOSTICS CONDITION @cno @errno = MYSQL_ERRNO;
 ```
 
-For information about permissible statement and condition
-information items, and which ones are populated when a condition
-occurs, see
-[Diagnostics Area Information Items](diagnostics-area.html#diagnostics-area-information-items "Diagnostics Area Information Items").
+For information about permissible statement and condition information items, and which ones are populated when a condition occurs, see Diagnostics Area Information Items.
 
-Here is an example that uses [`GET
-DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") and an exception handler in stored
-procedure context to assess the outcome of an insert operation.
-If the insert was successful, the procedure uses
-[`GET DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") to get the
-rows-affected count. This shows that you can use
-[`GET DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") multiple times to
-retrieve information about a statement as long as the current
-diagnostics area has not been cleared.
+Here is an example that uses [`GET DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") and an exception handler in stored procedure context to assess the outcome of an insert operation. If the insert was successful, the procedure uses `GET DIAGNOSTICS` to get the rows-affected count. This shows that you can use `GET DIAGNOSTICS` multiple times to retrieve information about a statement as long as the current diagnostics area has not been cleared.
 
 ```
 CREATE PROCEDURE do_insert(value INT)
@@ -250,11 +170,7 @@ BEGIN
 END;
 ```
 
-Suppose that `t1.int_col` is an integer column
-that is declared as `NOT NULL`. The procedure
-produces these results when invoked to insert
-non-`NULL` and `NULL` values,
-respectively:
+Suppose that `t1.int_col` is an integer column that is declared as `NOT NULL`. The procedure produces these results when invoked to insert non-`NULL` and `NULL` values, respectively:
 
 ```
 mysql> CALL do_insert(1);
@@ -272,54 +188,21 @@ mysql> CALL do_insert(NULL);
 +-------------------------------------------------------------------------+
 ```
 
-When a condition handler activates, a push to the diagnostics
-area stack occurs:
+When a condition handler activates, a push to the diagnostics area stack occurs:
 
-* The first (current) diagnostics area becomes the second
-  (stacked) diagnostics area and a new current diagnostics
-  area is created as a copy of it.
+* The first (current) diagnostics area becomes the second (stacked) diagnostics area and a new current diagnostics area is created as a copy of it.
 
-* [`GET
-  [CURRENT] DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") and
-  [`GET STACKED
-  DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") can be used within the handler to
-  access the contents of the current and stacked diagnostics
-  areas.
+* [`GET [CURRENT] DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") and [`GET STACKED DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") can be used within the handler to access the contents of the current and stacked diagnostics areas.
 
-* Initially, both diagnostics areas return the same result, so
-  it is possible to get information from the current
-  diagnostics area about the condition that activated the
-  handler, *as long as* you execute no
-  statements within the handler that change its current
-  diagnostics area.
+* Initially, both diagnostics areas return the same result, so it is possible to get information from the current diagnostics area about the condition that activated the handler, *as long as* you execute no statements within the handler that change its current diagnostics area.
 
-* However, statements executing within the handler can modify
-  the current diagnostics area, clearing and setting its
-  contents according to the normal rules (see
-  [How the Diagnostics Area is Cleared and Populated](diagnostics-area.html#diagnostics-area-populating "How the Diagnostics Area is Cleared and Populated")).
+* However, statements executing within the handler can modify the current diagnostics area, clearing and setting its contents according to the normal rules (see How the Diagnostics Area is Cleared and Populated).
 
-  A more reliable way to obtain information about the
-  handler-activating condition is to use the stacked
-  diagnostics area, which cannot be modified by statements
-  executing within the handler except
-  [`RESIGNAL`](resignal.html "15.6.7.4 RESIGNAL Statement"). For information
-  about when the current diagnostics area is set and cleared,
-  see [Section 15.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "15.6.7.7 The MySQL Diagnostics Area").
+  A more reliable way to obtain information about the handler-activating condition is to use the stacked diagnostics area, which cannot be modified by statements executing within the handler except `RESIGNAL`. For information about when the current diagnostics area is set and cleared, see Section 15.6.7.7, “The MySQL Diagnostics Area”.
 
-The next example shows how `GET STACKED
-DIAGNOSTICS` can be used within a handler to obtain
-information about the handled exception, even after the current
-diagnostics area has been modified by handler statements.
+The next example shows how `GET STACKED DIAGNOSTICS` can be used within a handler to obtain information about the handled exception, even after the current diagnostics area has been modified by handler statements.
 
-Within a stored procedure `p()`, we attempt to
-insert two values into a table that contains a `TEXT NOT
-NULL` column. The first value is a
-non-`NULL` string and the second is
-`NULL`. The column prohibits
-`NULL` values, so the first insert succeeds but
-the second causes an exception. The procedure includes an
-exception handler that maps attempts to insert
-`NULL` into inserts of the empty string:
+Within a stored procedure `p()`, we attempt to insert two values into a table that contains a `TEXT NOT NULL` column. The first value is a non-`NULL` string and the second is `NULL`. The column prohibits `NULL` values, so the first insert succeeds but the second causes an exception. The procedure includes an exception handler that maps attempts to insert `NULL` into inserts of the empty string:
 
 ```
 DROP TABLE IF EXISTS t1;
@@ -371,10 +254,7 @@ CALL p();
 SELECT * FROM t1;
 ```
 
-When the handler activates, a copy of the current diagnostics
-area is pushed to the diagnostics area stack. The handler first
-displays the contents of the current and stacked diagnostics
-areas, which are both the same initially:
+When the handler activates, a copy of the current diagnostics area is pushed to the diagnostics area stack. The handler first displays the contents of the current and stacked diagnostics areas, which are both the same initially:
 
 ```
 +---------------------------------+-------+----------------------------+
@@ -390,15 +270,7 @@ areas, which are both the same initially:
 +---------------------------------+-------+----------------------------+
 ```
 
-Statements executing after the [`GET
-DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") statements may reset the current
-diagnostics area. statements may reset the current diagnostics
-area. For example, the handler maps the `NULL`
-insert to an empty-string insert and displays the result. The
-new insert succeeds and clears the current diagnostics area, but
-the stacked diagnostics area remains unchanged and still
-contains information about the condition that activated the
-handler:
+Statements executing after the [`GET DIAGNOSTICS`](get-diagnostics.html "15.6.7.3 GET DIAGNOSTICS Statement") statements may reset the current diagnostics area. statements may reset the current diagnostics area. For example, the handler maps the `NULL` insert to an empty-string insert and displays the result. The new insert succeeds and clears the current diagnostics area, but the stacked diagnostics area remains unchanged and still contains information about the condition that activated the handler:
 
 ```
 +----------------------------------------------+
@@ -414,14 +286,9 @@ handler:
 +--------------------------------+-------+----------------------------+
 ```
 
-When the condition handler ends, its current diagnostics area is
-popped from the stack and the stacked diagnostics area becomes
-the current diagnostics area in the stored procedure.
+When the condition handler ends, its current diagnostics area is popped from the stack and the stacked diagnostics area becomes the current diagnostics area in the stored procedure.
 
-After the procedure returns, the table contains two rows. The
-empty row results from the attempt to insert
-`NULL` that was mapped to an empty-string
-insert:
+After the procedure returns, the table contains two rows. The empty row results from the attempt to insert `NULL` that was mapped to an empty-string insert:
 
 ```
 +----------+

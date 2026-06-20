@@ -1,7 +1,3 @@
 ## 15.4 Replication Statements
 
-Replication can be controlled through the SQL interface using the
-statements described in this section. Statements are split into a
-group which controls source servers, a group which controls replica
-servers, and a group which can be applied to any replication
-servers.
+Replication can be controlled through the SQL interface using the statements described in this section. Statements are split into a group which controls source servers, a group which controls replica servers, and a group which can be applied to any replication servers.

@@ -1,11 +1,8 @@
 ### 28.4.22 The INFORMATION\_SCHEMA INNODB\_SESSION\_TEMP\_TABLESPACES Table
 
-The [`INNODB_SESSION_TEMP_TABLESPACES`](information-schema-innodb-session-temp-tablespaces-table.html "28.4.22 The INFORMATION_SCHEMA INNODB_SESSION_TEMP_TABLESPACES Table")
-table provides metadata about session temporary tablespaces used
-for internal and user-created temporary tables.
+The `INNODB_SESSION_TEMP_TABLESPACES` table provides metadata about session temporary tablespaces used for internal and user-created temporary tables.
 
-The [`INNODB_SESSION_TEMP_TABLESPACES`](information-schema-innodb-session-temp-tablespaces-table.html "28.4.22 The INFORMATION_SCHEMA INNODB_SESSION_TEMP_TABLESPACES Table")
-table has these columns:
+The `INNODB_SESSION_TEMP_TABLESPACES` table has these columns:
 
 * `ID`
 
@@ -13,16 +10,11 @@ table has these columns:
 
 * `SPACE`
 
-  The tablespace ID. A range of 400 thousand space IDs is
-  reserved for session temporary tablespaces. Session temporary
-  tablespaces are recreated each time the server is started.
-  Space IDs are not persisted when the server is shut down and
-  may be reused.
+  The tablespace ID. A range of 400 thousand space IDs is reserved for session temporary tablespaces. Session temporary tablespaces are recreated each time the server is started. Space IDs are not persisted when the server is shut down and may be reused.
 
 * `PATH`
 
-  The tablespace data file path. A session temporary tablespace
-  has an `ibt` file extension.
+  The tablespace data file path. A session temporary tablespace has an `ibt` file extension.
 
 * `SIZE`
 
@@ -30,22 +22,11 @@ table has these columns:
 
 * `STATE`
 
-  The state of the tablespace. `ACTIVE`
-  indicates that the tablespace is currently used by a session.
-  `INACTIVE` indicates that the tablespace is
-  in the pool of available session temporary tablespaces.
+  The state of the tablespace. `ACTIVE` indicates that the tablespace is currently used by a session. `INACTIVE` indicates that the tablespace is in the pool of available session temporary tablespaces.
 
 * `PURPOSE`
 
-  The purpose of the tablespace. `INTRINSIC`
-  indicates that the tablespace is used for optimized internal
-  temporary tables use by the optimizer.
-  `SLAVE` indicates that the tablespace is
-  allocated for storing user-created temporary tables on a
-  replica. `USER` indicates that the tablespace
-  is used for user-created temporary tables.
-  `NONE` indicates that the tablespace is not
-  in use.
+  The purpose of the tablespace. `INTRINSIC` indicates that the tablespace is used for optimized internal temporary tables use by the optimizer. `SLAVE` indicates that the tablespace is allocated for storing user-created temporary tables on a replica. `USER` indicates that the tablespace is used for user-created temporary tables. `NONE` indicates that the tablespace is not in use.
 
 #### Example
 
@@ -69,11 +50,6 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SESSION_TEMP_TABLESPACES;
 
 #### Notes
 
-* You must have the [`PROCESS`](privileges-provided.html#priv_process)
-  privilege to query this table.
+* You must have the `PROCESS` privilege to query this table.
 
-* Use the `INFORMATION_SCHEMA`
-  [`COLUMNS`](information-schema-columns-table.html "28.3.8 The INFORMATION_SCHEMA COLUMNS Table") table or the
-  [`SHOW COLUMNS`](show-columns.html "15.7.7.6 SHOW COLUMNS Statement") statement to view
-  additional information about the columns of this table,
-  including data types and default values.
+* Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.

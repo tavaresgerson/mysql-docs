@@ -1,10 +1,8 @@
 #### 25.6.15.34 The ndbinfo error\_messages Table
 
-The `error_messages` table provides information
-about
+The `error_messages` table provides information about
 
-The `error_messages` table contains the
-following columns:
+The `error_messages` table contains the following columns:
 
 * `error_code`
 
@@ -24,16 +22,11 @@ following columns:
 
 ##### Notes
 
-`error_code` is a numeric NDB error code. This
-is the same error code that can be supplied to
-[**ndb\_perror**](mysql-cluster-programs-ndb-perror.html "25.5.16 ndb_perror — Obtain NDB Error Message Information").
+`error_code` is a numeric NDB error code. This is the same error code that can be supplied to **ndb\_perror**.
 
-`error_description` provides a basic
-description of the condition causing the error.
+`error_description` provides a basic description of the condition causing the error.
 
-The `error_status` column provides status
-information relating to the error. Possible values for this
-column are listed here:
+The `error_status` column provides status information relating to the error. Possible values for this column are listed here:
 
 * `No error`
 * `Illegal connect string`
@@ -60,11 +53,8 @@ column are listed here:
 * `Unknown result`
 * `Temporary error, restart node`
 * `Permanent error, external action needed`
-* `Ndbd file system error, restart node
-  initial`
+* `Ndbd file system error, restart node initial`
 
 * `Unknown`
 
-The error\_classification column shows the error classification.
-See [NDB Error Classifications](/doc/ndbapi/en/ndb-error-classifications.html), for information
-about classification codes and their meanings.
+The error\_classification column shows the error classification. See NDB Error Classifications, for information about classification codes and their meanings.

@@ -16,48 +16,19 @@ option: {
 }
 ```
 
-This statement creates the definition of a server for use with the
-`FEDERATED` storage engine. The `CREATE
-SERVER` statement creates a new row in the
-`servers` table in the `mysql`
-database. This statement requires the
-[`SUPER`](privileges-provided.html#priv_super) privilege.
+This statement creates the definition of a server for use with the `FEDERATED` storage engine. The `CREATE SERVER` statement creates a new row in the `servers` table in the `mysql` database. This statement requires the `SUPER` privilege.
 
-The `server_name`
-should be a unique reference to the server. Server definitions are
-global within the scope of the server, it is not possible to
-qualify the server definition to a specific database.
-`server_name` has a
-maximum length of 64 characters (names longer than 64 characters
-are silently truncated), and is case-insensitive. You may specify
-the name as a quoted string.
+The `server_name` should be a unique reference to the server. Server definitions are global within the scope of the server, it is not possible to qualify the server definition to a specific database. `server_name` has a maximum length of 64 characters (names longer than 64 characters are silently truncated), and is case-insensitive. You may specify the name as a quoted string.
 
-The `wrapper_name` is
-an identifier and may be quoted with single quotation marks.
+The `wrapper_name` is an identifier and may be quoted with single quotation marks.
 
-For each `option` you
-must specify either a character literal or numeric literal.
-Character literals are UTF-8, support a maximum length of 64
-characters and default to a blank (empty) string. String literals
-are silently truncated to 64 characters. Numeric literals must be
-a number between 0 and 9999, default value is 0.
+For each `option` you must specify either a character literal or numeric literal. Character literals are UTF-8, support a maximum length of 64 characters and default to a blank (empty) string. String literals are silently truncated to 64 characters. Numeric literals must be a number between 0 and 9999, default value is 0.
 
 Note
 
-The `OWNER` option is currently not applied,
-and has no effect on the ownership or operation of the server
-connection that is created.
+The `OWNER` option is currently not applied, and has no effect on the ownership or operation of the server connection that is created.
 
-The `CREATE SERVER` statement creates an entry in
-the `mysql.servers` table that can later be used
-with the [`CREATE TABLE`](create-table.html "15.1.24 CREATE TABLE Statement") statement
-when creating a `FEDERATED` table. The options
-that you specify are used to populate the columns in the
-`mysql.servers` table. The table columns are
-`Server_name`, `Host`,
-`Db`, `Username`,
-`Password`, `Port` and
-`Socket`.
+The `CREATE SERVER` statement creates an entry in the `mysql.servers` table that can later be used with the `CREATE TABLE` statement when creating a `FEDERATED` table. The options that you specify are used to populate the columns in the `mysql.servers` table. The table columns are `Server_name`, `Host`, `Db`, `Username`, `Password`, `Port` and `Socket`.
 
 For example:
 
@@ -67,23 +38,16 @@ FOREIGN DATA WRAPPER mysql
 OPTIONS (USER 'Remote', HOST '198.51.100.106', DATABASE 'test');
 ```
 
-Be sure to specify all options necessary to establish a connection
-to the server. The user name, host name, and database name are
-mandatory. Other options might be required as well, such as
-password.
+Be sure to specify all options necessary to establish a connection to the server. The user name, host name, and database name are mandatory. Other options might be required as well, such as password.
 
-The data stored in the table can be used when creating a
-connection to a `FEDERATED` table:
+The data stored in the table can be used when creating a connection to a `FEDERATED` table:
 
 ```
 CREATE TABLE t (s1 INT) ENGINE=FEDERATED CONNECTION='s';
 ```
 
-For more information, see
-[Section 18.8, “The FEDERATED Storage Engine”](federated-storage-engine.html "18.8 The FEDERATED Storage Engine").
+For more information, see Section 18.8, “The FEDERATED Storage Engine”.
 
-`CREATE SERVER` causes an implicit commit. See
-[Section 15.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "15.3.3 Statements That Cause an Implicit Commit").
+`CREATE SERVER` causes an implicit commit. See Section 15.3.3, “Statements That Cause an Implicit Commit”.
 
-`CREATE SERVER` is not written to the binary log,
-regardless of the logging format that is in use.
+`CREATE SERVER` is not written to the binary log, regardless of the logging format that is in use.

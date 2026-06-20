@@ -1,12 +1,8 @@
 #### 30.4.3.52 The waits\_global\_by\_latency and x$waits\_global\_by\_latency Views
 
-These views summarize wait events, grouped by event. By
-default, rows are sorted by descending total latency. Idle
-events are ignored.
+These views summarize wait events, grouped by event. By default, rows are sorted by descending total latency. Idle events are ignored.
 
-The [`waits_global_by_latency`](sys-waits-global-by-latency.html "30.4.3.52 The waits_global_by_latency and x$waits_global_by_latency Views") and
-[`x$waits_global_by_latency`](sys-waits-global-by-latency.html "30.4.3.52 The waits_global_by_latency and x$waits_global_by_latency Views") views
-have these columns:
+The `waits_global_by_latency` and `x$waits_global_by_latency` views have these columns:
 
 * `events`
 
@@ -26,5 +22,4 @@ have these columns:
 
 * `max_latency`
 
-  The maximum single wait time of timed occurrences of the
-  event.
+  The maximum single wait time of timed occurrences of the event.

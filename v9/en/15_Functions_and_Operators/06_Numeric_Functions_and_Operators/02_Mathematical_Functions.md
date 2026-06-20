@@ -2,144 +2,15 @@
 
 **Table 14.10 Mathematical Functions**
 
-<table frame="box" rules="all" summary="A reference that lists mathematical functions."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th>
-<th>Description</th>
-</tr></thead><tbody><tr><td><a class="link" href="mathematical-functions.html#function_abs"><code class="literal">ABS()</code></a></td>
-<td>
-      Return the absolute value
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_acos"><code class="literal">ACOS()</code></a></td>
-<td>
-      Return the arc cosine
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_asin"><code class="literal">ASIN()</code></a></td>
-<td>
-      Return the arc sine
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_atan"><code class="literal">ATAN()</code></a></td>
-<td>
-      Return the arc tangent
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_atan2"><code class="literal">ATAN2()</code>, <code class="literal">ATAN()</code></a></td>
-<td>
-      Return the arc tangent of the two arguments
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_ceil"><code class="literal">CEIL()</code></a></td>
-<td>
-      Return the smallest integer value not less than the argument
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_ceiling"><code class="literal">CEILING()</code></a></td>
-<td>
-      Return the smallest integer value not less than the argument
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_conv"><code class="literal">CONV()</code></a></td>
-<td>
-      Convert numbers between different number bases
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_cos"><code class="literal">COS()</code></a></td>
-<td>
-      Return the cosine
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_cot"><code class="literal">COT()</code></a></td>
-<td>
-      Return the cotangent
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_crc32"><code class="literal">CRC32()</code></a></td>
-<td>
-      Compute a cyclic redundancy check value
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_degrees"><code class="literal">DEGREES()</code></a></td>
-<td>
-      Convert radians to degrees
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_exp"><code class="literal">EXP()</code></a></td>
-<td>
-      Raise to the power of
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_floor"><code class="literal">FLOOR()</code></a></td>
-<td>
-      Return the largest integer value not greater than the argument
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_ln"><code class="literal">LN()</code></a></td>
-<td>
-      Return the natural logarithm of the argument
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_log"><code class="literal">LOG()</code></a></td>
-<td>
-      Return the natural logarithm of the first argument
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_log10"><code class="literal">LOG10()</code></a></td>
-<td>
-      Return the base-10 logarithm of the argument
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_log2"><code class="literal">LOG2()</code></a></td>
-<td>
-      Return the base-2 logarithm of the argument
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_mod"><code class="literal">MOD()</code></a></td>
-<td>
-      Return the remainder
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_pi"><code class="literal">PI()</code></a></td>
-<td>
-      Return the value of pi
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_pow"><code class="literal">POW()</code></a></td>
-<td>
-      Return the argument raised to the specified power
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_power"><code class="literal">POWER()</code></a></td>
-<td>
-      Return the argument raised to the specified power
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_radians"><code class="literal">RADIANS()</code></a></td>
-<td>
-      Return argument converted to radians
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_rand"><code class="literal">RAND()</code></a></td>
-<td>
-      Return a random floating-point value
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_round"><code class="literal">ROUND()</code></a></td>
-<td>
-      Round the argument
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_sign"><code class="literal">SIGN()</code></a></td>
-<td>
-      Return the sign of the argument
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_sin"><code class="literal">SIN()</code></a></td>
-<td>
-      Return the sine of the argument
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_sqrt"><code class="literal">SQRT()</code></a></td>
-<td>
-      Return the square root of the argument
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_tan"><code class="literal">TAN()</code></a></td>
-<td>
-      Return the tangent of the argument
-    </td>
-</tr><tr><td><a class="link" href="mathematical-functions.html#function_truncate"><code class="literal">TRUNCATE()</code></a></td>
-<td>
-      Truncate to specified number of decimal places
-    </td>
-</tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists mathematical functions."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mathematical-functions.html#function_abs"><code class="literal">ABS()</code></a></td> <td> Return the absolute value </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_acos"><code class="literal">ACOS()</code></a></td> <td> Return the arc cosine </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_asin"><code class="literal">ASIN()</code></a></td> <td> Return the arc sine </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_atan"><code class="literal">ATAN()</code></a></td> <td> Return the arc tangent </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_atan2"><code class="literal">ATAN2()</code>, <code class="literal">ATAN()</code></a></td> <td> Return the arc tangent of the two arguments </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_ceil"><code class="literal">CEIL()</code></a></td> <td> Return the smallest integer value not less than the argument </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_ceiling"><code class="literal">CEILING()</code></a></td> <td> Return the smallest integer value not less than the argument </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_conv"><code class="literal">CONV()</code></a></td> <td> Convert numbers between different number bases </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_cos"><code class="literal">COS()</code></a></td> <td> Return the cosine </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_cot"><code class="literal">COT()</code></a></td> <td> Return the cotangent </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_crc32"><code class="literal">CRC32()</code></a></td> <td> Compute a cyclic redundancy check value </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_degrees"><code class="literal">DEGREES()</code></a></td> <td> Convert radians to degrees </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_exp"><code class="literal">EXP()</code></a></td> <td> Raise to the power of </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_floor"><code class="literal">FLOOR()</code></a></td> <td> Return the largest integer value not greater than the argument </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_ln"><code class="literal">LN()</code></a></td> <td> Return the natural logarithm of the argument </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_log"><code class="literal">LOG()</code></a></td> <td> Return the natural logarithm of the first argument </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_log10"><code class="literal">LOG10()</code></a></td> <td> Return the base-10 logarithm of the argument </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_log2"><code class="literal">LOG2()</code></a></td> <td> Return the base-2 logarithm of the argument </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_mod"><code class="literal">MOD()</code></a></td> <td> Return the remainder </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_pi"><code class="literal">PI()</code></a></td> <td> Return the value of pi </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_pow"><code class="literal">POW()</code></a></td> <td> Return the argument raised to the specified power </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_power"><code class="literal">POWER()</code></a></td> <td> Return the argument raised to the specified power </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_radians"><code class="literal">RADIANS()</code></a></td> <td> Return argument converted to radians </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_rand"><code class="literal">RAND()</code></a></td> <td> Return a random floating-point value </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_round"><code class="literal">ROUND()</code></a></td> <td> Round the argument </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_sign"><code class="literal">SIGN()</code></a></td> <td> Return the sign of the argument </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_sin"><code class="literal">SIN()</code></a></td> <td> Return the sine of the argument </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_sqrt"><code class="literal">SQRT()</code></a></td> <td> Return the square root of the argument </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_tan"><code class="literal">TAN()</code></a></td> <td> Return the tangent of the argument </td> </tr><tr><td><a class="link" href="mathematical-functions.html#function_truncate"><code class="literal">TRUNCATE()</code></a></td> <td> Truncate to specified number of decimal places </td> </tr></tbody></table>
 
-All mathematical functions return `NULL` in the
-event of an error.
+All mathematical functions return `NULL` in the event of an error.
 
-* [`ABS(X)`](mathematical-functions.html#function_abs)
+* `ABS(X)`
 
-  Returns the absolute value of *`X`*,
-  or `NULL` if *`X`*
-  is `NULL`.
+  Returns the absolute value of *`X`*, or `NULL` if *`X`* is `NULL`.
 
-  The result type is derived from the argument type. An
-  implication of this is that
-  [`ABS(-9223372036854775808)`](mathematical-functions.html#function_abs)
-  produces an error because the result cannot be stored in a
-  signed `BIGINT` value.
+  The result type is derived from the argument type. An implication of this is that `ABS(-9223372036854775808)` produces an error because the result cannot be stored in a signed `BIGINT` value.
 
   ```
   mysql> SELECT ABS(2);
@@ -148,17 +19,11 @@ event of an error.
           -> 32
   ```
 
-  This function is safe to use with
-  [`BIGINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") values.
+  This function is safe to use with `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") values.
 
-* [`ACOS(X)`](mathematical-functions.html#function_acos)
+* `ACOS(X)`
 
-  Returns the arc cosine of *`X`*, that
-  is, the value whose cosine is *`X`*.
-  Returns `NULL` if
-  *`X`* is not in the range
-  `-1` to `1`, or if
-  *`X`* is `NULL`.
+  Returns the arc cosine of *`X`*, that is, the value whose cosine is *`X`*. Returns `NULL` if *`X`* is not in the range `-1` to `1`, or if *`X`* is `NULL`.
 
   ```
   mysql> SELECT ACOS(1);
@@ -169,14 +34,9 @@ event of an error.
           -> 1.5707963267949
   ```
 
-* [`ASIN(X)`](mathematical-functions.html#function_asin)
+* `ASIN(X)`
 
-  Returns the arc sine of *`X`*, that
-  is, the value whose sine is *`X`*.
-  Returns `NULL` if
-  *`X`* is not in the range
-  `-1` to `1`, or if
-  *`X`* is `NULL`.
+  Returns the arc sine of *`X`*, that is, the value whose sine is *`X`*. Returns `NULL` if *`X`* is not in the range `-1` to `1`, or if *`X`* is `NULL`.
 
   ```
   mysql> SELECT ASIN(0.2);
@@ -198,13 +58,9 @@ event of an error.
   +---------+------+-----------------------------------------+
   ```
 
-* [`ATAN(X)`](mathematical-functions.html#function_atan)
+* `ATAN(X)`
 
-  Returns the arc tangent of *`X`*,
-  that is, the value whose tangent is
-  *`X`*. Returns
-  *`NULL`* if
-  *`X`* is `NULL`
+  Returns the arc tangent of *`X`*, that is, the value whose tangent is *`X`*. Returns *`NULL`* if *`X`* is `NULL`
 
   ```
   mysql> SELECT ATAN(2);
@@ -213,18 +69,9 @@ event of an error.
           -> -1.1071487177941
   ```
 
-* [`ATAN(Y,X)`](mathematical-functions.html#function_atan2),
-  [`ATAN2(Y,X)`](mathematical-functions.html#function_atan2)
+* `ATAN(Y,X)`, `ATAN2(Y,X)`
 
-  Returns the arc tangent of the two variables
-  *`X`* and
-  *`Y`*. It is similar to calculating
-  the arc tangent of `Y /
-  X`, except that the
-  signs of both arguments are used to determine the quadrant
-  of the result. Returns `NULL` if
-  *`X`* or *`Y`*
-  is `NULL`.
+  Returns the arc tangent of the two variables *`X`* and *`Y`*. It is similar to calculating the arc tangent of `Y / X`, except that the signs of both arguments are used to determine the quadrant of the result. Returns `NULL` if *`X`* or *`Y`* is `NULL`.
 
   ```
   mysql> SELECT ATAN(-2,2);
@@ -233,17 +80,13 @@ event of an error.
           -> 1.5707963267949
   ```
 
-* [`CEIL(X)`](mathematical-functions.html#function_ceil)
+* `CEIL(X)`
 
-  [`CEIL()`](mathematical-functions.html#function_ceil) is a synonym for
-  [`CEILING()`](mathematical-functions.html#function_ceiling).
+  `CEIL()` is a synonym for `CEILING()`.
 
-* [`CEILING(X)`](mathematical-functions.html#function_ceiling)
+* `CEILING(X)`
 
-  Returns the smallest integer value not less than
-  *`X`*. Returns
-  `NULL` if *`X`* is
-  `NULL`.
+  Returns the smallest integer value not less than *`X`*. Returns `NULL` if *`X`* is `NULL`.
 
   ```
   mysql> SELECT CEILING(1.23);
@@ -252,31 +95,13 @@ event of an error.
           -> -1
   ```
 
-  For exact-value numeric arguments, the return value has an
-  exact-value numeric type. For string or floating-point
-  arguments, the return value has a floating-point type.
+  For exact-value numeric arguments, the return value has an exact-value numeric type. For string or floating-point arguments, the return value has a floating-point type.
 
-* [`CONV(N,from_base,to_base)`](mathematical-functions.html#function_conv)
+* `CONV(N,from_base,to_base)`
 
-  Converts numbers between different number bases. Returns a
-  string representation of the number
-  *`N`*, converted from base
-  *`from_base`* to base
-  *`to_base`*. Returns
-  `NULL` if any argument is
-  `NULL`. The argument
-  *`N`* is interpreted as an integer,
-  but may be specified as an integer or a string. The minimum
-  base is `2` and the maximum base is
-  `36`. If
-  *`from_base`* is a negative number,
-  *`N`* is regarded as a signed number.
-  Otherwise, *`N`* is treated as
-  unsigned. [`CONV()`](mathematical-functions.html#function_conv) works with
-  64-bit precision.
+  Converts numbers between different number bases. Returns a string representation of the number *`N`*, converted from base *`from_base`* to base *`to_base`*. Returns `NULL` if any argument is `NULL`. The argument *`N`* is interpreted as an integer, but may be specified as an integer or a string. The minimum base is `2` and the maximum base is `36`. If *`from_base`* is a negative number, *`N`* is regarded as a signed number. Otherwise, *`N`* is treated as unsigned. `CONV()` works with 64-bit precision.
 
-  `CONV()` returns `NULL` if
-  any of its arguments are `NULL`.
+  `CONV()` returns `NULL` if any of its arguments are `NULL`.
 
   ```
   mysql> SELECT CONV('a',16,2);
@@ -289,23 +114,18 @@ event of an error.
           -> '40'
   ```
 
-* [`COS(X)`](mathematical-functions.html#function_cos)
+* `COS(X)`
 
-  Returns the cosine of *`X`*, where
-  *`X`* is given in radians. Returns
-  `NULL` if *`X`* is
-  `NULL`.
+  Returns the cosine of *`X`*, where *`X`* is given in radians. Returns `NULL` if *`X`* is `NULL`.
 
   ```
   mysql> SELECT COS(PI());
           -> -1
   ```
 
-* [`COT(X)`](mathematical-functions.html#function_cot)
+* `COT(X)`
 
-  Returns the cotangent of *`X`*.
-  Returns `NULL` if
-  *`X`* is `NULL`.
+  Returns the cotangent of *`X`*. Returns `NULL` if *`X`* is `NULL`.
 
   ```
   mysql> SELECT COT(12);
@@ -314,13 +134,9 @@ event of an error.
           -> out-of-range error
   ```
 
-* [`CRC32(expr)`](mathematical-functions.html#function_crc32)
+* `CRC32(expr)`
 
-  Computes a cyclic redundancy check value and returns a
-  32-bit unsigned value. The result is `NULL`
-  if the argument is `NULL`. The argument is
-  expected to be a string and (if possible) is treated as one
-  if it is not.
+  Computes a cyclic redundancy check value and returns a 32-bit unsigned value. The result is `NULL` if the argument is `NULL`. The argument is expected to be a string and (if possible) is treated as one if it is not.
 
   ```
   mysql> SELECT CRC32('MySQL');
@@ -329,11 +145,9 @@ event of an error.
           -> 2501908538
   ```
 
-* [`DEGREES(X)`](mathematical-functions.html#function_degrees)
+* `DEGREES(X)`
 
-  Returns the argument *`X`*, converted
-  from radians to degrees. Returns `NULL` if
-  *`X`* is `NULL`.
+  Returns the argument *`X`*, converted from radians to degrees. Returns `NULL` if *`X`* is `NULL`.
 
   ```
   mysql> SELECT DEGREES(PI());
@@ -342,16 +156,11 @@ event of an error.
           -> 90
   ```
 
-* [`EXP(X)`](mathematical-functions.html#function_exp)
+* `EXP(X)`
 
-  Returns the value of *e* (the base of
-  natural logarithms) raised to the power of
-  *`X`*. The inverse of this function
-  is [`LOG()`](mathematical-functions.html#function_log) (using a single
-  argument only) or [`LN()`](mathematical-functions.html#function_ln).
+  Returns the value of *e* (the base of natural logarithms) raised to the power of *`X`*. The inverse of this function is `LOG()` (using a single argument only) or `LN()`.
 
-  If *`X`* is `NULL`,
-  this function returns `NULL`.
+  If *`X`* is `NULL`, this function returns `NULL`.
 
   ```
   mysql> SELECT EXP(2);
@@ -362,49 +171,28 @@ event of an error.
           -> 1
   ```
 
-* [`FLOOR(X)`](mathematical-functions.html#function_floor)
+* `FLOOR(X)`
 
-  Returns the largest integer value not greater than
-  *`X`*. Returns
-  `NULL` if *`X`* is
-  `NULL`.
+  Returns the largest integer value not greater than *`X`*. Returns `NULL` if *`X`* is `NULL`.
 
   ```
   mysql> SELECT FLOOR(1.23), FLOOR(-1.23);
           -> 1, -2
   ```
 
-  For exact-value numeric arguments, the return value has an
-  exact-value numeric type. For string or floating-point
-  arguments, the return value has a floating-point type.
+  For exact-value numeric arguments, the return value has an exact-value numeric type. For string or floating-point arguments, the return value has a floating-point type.
 
-* [`FORMAT(X,D)`](string-functions.html#function_format)
+* `FORMAT(X,D)`
 
-  Formats the number *`X`* to a format
-  like `'#,###,###.##'`, rounded to
-  *`D`* decimal places, and returns the
-  result as a string. For details, see
-  [Section 14.8, “String Functions and Operators”](string-functions.html "14.8 String Functions and Operators").
+  Formats the number *`X`* to a format like `'#,###,###.##'`, rounded to *`D`* decimal places, and returns the result as a string. For details, see Section 14.8, “String Functions and Operators”.
 
-* [`HEX(N_or_S)`](string-functions.html#function_hex)
+* `HEX(N_or_S)`
 
-  This function can be used to obtain a hexadecimal
-  representation of a decimal number or a string; the manner
-  in which it does so varies according to the argument's
-  type. See this function's description in
-  [Section 14.8, “String Functions and Operators”](string-functions.html "14.8 String Functions and Operators"), for details.
+  This function can be used to obtain a hexadecimal representation of a decimal number or a string; the manner in which it does so varies according to the argument's type. See this function's description in Section 14.8, “String Functions and Operators”, for details.
 
-* [`LN(X)`](mathematical-functions.html#function_ln)
+* `LN(X)`
 
-  Returns the natural logarithm of
-  *`X`*; that is, the
-  base-*e* logarithm of
-  *`X`*. If
-  *`X`* is less than or equal to 0.0E0,
-  the function returns `NULL` and a warning
-  “Invalid argument for logarithm” is reported.
-  Returns `NULL` if
-  *`X`* is `NULL`.
+  Returns the natural logarithm of *`X`*; that is, the base-*e* logarithm of *`X`*. If *`X`* is less than or equal to 0.0E0, the function returns `NULL` and a warning “Invalid argument for logarithm” is reported. Returns `NULL` if *`X`* is `NULL`.
 
   ```
   mysql> SELECT LN(2);
@@ -413,26 +201,13 @@ event of an error.
           -> NULL
   ```
 
-  This function is synonymous with
-  [`LOG(X)`](mathematical-functions.html#function_log).
-  The inverse of this function is the
-  [`EXP()`](mathematical-functions.html#function_exp) function.
+  This function is synonymous with `LOG(X)`. The inverse of this function is the `EXP()` function.
 
-* [`LOG(X)`](mathematical-functions.html#function_log),
-  [`LOG(B,X)`](mathematical-functions.html#function_log)
+* `LOG(X)`, `LOG(B,X)`
 
-  If called with one parameter, this function returns the
-  natural logarithm of *`X`*. If
-  *`X`* is less than or equal to 0.0E0,
-  the function returns `NULL` and a warning
-  “Invalid argument for logarithm” is reported.
-  Returns `NULL` if
-  *`X`* or *`B`*
-  is `NULL`.
+  If called with one parameter, this function returns the natural logarithm of *`X`*. If *`X`* is less than or equal to 0.0E0, the function returns `NULL` and a warning “Invalid argument for logarithm” is reported. Returns `NULL` if *`X`* or *`B`* is `NULL`.
 
-  The inverse of this function (when called with a single
-  argument) is the [`EXP()`](mathematical-functions.html#function_exp)
-  function.
+  The inverse of this function (when called with a single argument) is the `EXP()` function.
 
   ```
   mysql> SELECT LOG(2);
@@ -441,12 +216,7 @@ event of an error.
           -> NULL
   ```
 
-  If called with two parameters, this function returns the
-  logarithm of *`X`* to the base
-  *`B`*. If
-  *`X`* is less than or equal to 0, or
-  if *`B`* is less than or equal to 1,
-  then `NULL` is returned.
+  If called with two parameters, this function returns the logarithm of *`X`* to the base *`B`*. If *`X`* is less than or equal to 0, or if *`B`* is less than or equal to 1, then `NULL` is returned.
 
   ```
   mysql> SELECT LOG(2,65536);
@@ -457,20 +227,11 @@ event of an error.
           -> NULL
   ```
 
-  [`LOG(B,X)`](mathematical-functions.html#function_log)
-  is equivalent to
-  [`LOG(X) /
-  LOG(B)`](mathematical-functions.html#function_log).
+  `LOG(B,X)` is equivalent to [`LOG(X) / LOG(B)`](mathematical-functions.html#function_log).
 
-* [`LOG2(X)`](mathematical-functions.html#function_log2)
+* `LOG2(X)`
 
-  Returns the base-2 logarithm of
-  `X`. If
-  *`X`* is less than or equal to 0.0E0,
-  the function returns `NULL` and a warning
-  “Invalid argument for logarithm” is reported.
-  Returns `NULL` if
-  *`X`* is `NULL`.
+  Returns the base-2 logarithm of `X`. If *`X`* is less than or equal to 0.0E0, the function returns `NULL` and a warning “Invalid argument for logarithm” is reported. Returns `NULL` if *`X`* is `NULL`.
 
   ```
   mysql> SELECT LOG2(65536);
@@ -479,21 +240,11 @@ event of an error.
           -> NULL
   ```
 
-  [`LOG2()`](mathematical-functions.html#function_log2) is useful for finding
-  out how many bits a number requires for storage. This
-  function is approximately equivalent to the expression
-  [`LOG(X) /
-  LOG(2)`](mathematical-functions.html#function_log).
+  `LOG2()` is useful for finding out how many bits a number requires for storage. This function is approximately equivalent to the expression [`LOG(X) / LOG(2)`](mathematical-functions.html#function_log).
 
-* [`LOG10(X)`](mathematical-functions.html#function_log10)
+* `LOG10(X)`
 
-  Returns the base-10 logarithm of
-  *`X`*. If
-  *`X`* is less than or equal to 0.0E0,
-  the function returns `NULL` and a warning
-  “Invalid argument for logarithm” is reported.
-  Returns `NULL` if
-  *`X`* is `NULL`.
+  Returns the base-10 logarithm of *`X`*. If *`X`* is less than or equal to 0.0E0, the function returns `NULL` and a warning “Invalid argument for logarithm” is reported. Returns `NULL` if *`X`* is `NULL`.
 
   ```
   mysql> SELECT LOG10(2);
@@ -504,21 +255,11 @@ event of an error.
           -> NULL
   ```
 
-  [`LOG10(X)`](mathematical-functions.html#function_log10)
-  is approximately equivalent to
-  [`LOG(10,X)`](mathematical-functions.html#function_log).
+  `LOG10(X)` is approximately equivalent to `LOG(10,X)`.
 
-* [`MOD(N,M)`](mathematical-functions.html#function_mod),
-  [`N
-  % M`](arithmetic-functions.html#operator_mod),
-  [`N
-  MOD M`](arithmetic-functions.html#operator_mod)
+* `MOD(N,M)`, [`N % M`](arithmetic-functions.html#operator_mod), [`N MOD M`](arithmetic-functions.html#operator_mod)
 
-  Modulo operation. Returns the remainder of
-  *`N`* divided by
-  *`M`*. Returns
-  `NULL` if *`M`* or
-  *`N`* is `NULL`.
+  Modulo operation. Returns the remainder of *`N`* divided by *`M`*. Returns `NULL` if *`M`* or *`N`* is `NULL`.
 
   ```
   mysql> SELECT MOD(234, 10);
@@ -531,32 +272,22 @@ event of an error.
           -> 2
   ```
 
-  This function is safe to use with
-  [`BIGINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") values.
+  This function is safe to use with `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") values.
 
-  [`MOD()`](mathematical-functions.html#function_mod) also works on values
-  that have a fractional part and returns the exact remainder
-  after division:
+  `MOD()` also works on values that have a fractional part and returns the exact remainder after division:
 
   ```
   mysql> SELECT MOD(34.5,3);
           -> 1.5
   ```
 
-  [`MOD(N,0)`](mathematical-functions.html#function_mod)
-  returns `NULL`.
+  `MOD(N,0)` returns `NULL`.
 
-* [`PI()`](mathematical-functions.html#function_pi)
+* `PI()`
 
-  Returns the value of π (pi). The default number of
-  decimal places displayed is seven, but MySQL uses the full
-  double-precision value internally.
+  Returns the value of π (pi). The default number of decimal places displayed is seven, but MySQL uses the full double-precision value internally.
 
-  Because the return value of this function is a
-  double-precision value, its exact representation may vary
-  between platforms or implementations. This also applies to
-  any expressions making use of `PI()`. See
-  [Section 13.1.4, “Floating-Point Types (Approximate Value) - FLOAT, DOUBLE”](floating-point-types.html "13.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE").
+  Because the return value of this function is a double-precision value, its exact representation may vary between platforms or implementations. This also applies to any expressions making use of `PI()`. See Section 13.1.4, “Floating-Point Types (Approximate Value) - FLOAT, DOUBLE” - FLOAT, DOUBLE").
 
   ```
   mysql> SELECT PI();
@@ -565,12 +296,9 @@ event of an error.
           -> 3.141592653589793000
   ```
 
-* [`POW(X,Y)`](mathematical-functions.html#function_pow)
+* `POW(X,Y)`
 
-  Returns the value of *`X`* raised to
-  the power of *`Y`*. Returns
-  `NULL` if *`X`* or
-  *`Y`* is `NULL`.
+  Returns the value of *`X`* raised to the power of *`Y`*. Returns `NULL` if *`X`* or *`Y`* is `NULL`.
 
   ```
   mysql> SELECT POW(2,2);
@@ -579,65 +307,36 @@ event of an error.
           -> 0.25
   ```
 
-* [`POWER(X,Y)`](mathematical-functions.html#function_power)
+* `POWER(X,Y)`
 
-  This is a synonym for [`POW()`](mathematical-functions.html#function_pow).
+  This is a synonym for `POW()`.
 
-* [`RADIANS(X)`](mathematical-functions.html#function_radians)
+* `RADIANS(X)`
 
-  Returns the argument *`X`*, converted
-  from degrees to radians. (Note that π radians equals 180
-  degrees.) Returns `NULL` if
-  *`X`* is `NULL`.
+  Returns the argument *`X`*, converted from degrees to radians. (Note that π radians equals 180 degrees.) Returns `NULL` if *`X`* is `NULL`.
 
   ```
   mysql> SELECT RADIANS(90);
           -> 1.5707963267949
   ```
 
-* [`RAND([N])`](mathematical-functions.html#function_rand)
+* `RAND([N])`
 
-  Returns a random floating-point value
-  *`v`* in the range
-  `0` <= *`v`* <
-  `1.0`. To obtain a random integer
-  *`R`* in the range
-  *`i`* <=
-  *`R`* <
-  *`j`*, use the expression
-  [`FLOOR(i
+  Returns a random floating-point value *`v`* in the range `0` <= *`v`* < `1.0`. To obtain a random integer *`R`* in the range *`i`* <= *`R`* < *`j`*, use the expression [`FLOOR(i
 
-  + RAND() * (j`](mathematical-functions.html#function_floor)
-  − `i))`.
-  For example, to obtain a random integer in the range the
-  range `7` <=
-  *`R`* < `12`, use
-  the following statement:
+  + RAND() * (j`](mathematical-functions.html#function_floor) − `i))`. For example, to obtain a random integer in the range the range `7` <= *`R`* < `12`, use the following statement:
 
   ```
   SELECT FLOOR(7 + (RAND() * 5));
   ```
 
-  If an integer argument *`N`* is
-  specified, it is used as the seed value:
+  If an integer argument *`N`* is specified, it is used as the seed value:
 
-  + With a constant initializer argument, the seed is
-    initialized once when the statement is prepared, prior
-    to execution.
+  + With a constant initializer argument, the seed is initialized once when the statement is prepared, prior to execution.
 
-  + With a nonconstant initializer argument (such as a
-    column name), the seed is initialized with the value for
-    each invocation of
-    [`RAND()`](mathematical-functions.html#function_rand).
+  + With a nonconstant initializer argument (such as a column name), the seed is initialized with the value for each invocation of `RAND()`.
 
-  One implication of this behavior is that for equal argument
-  values,
-  [`RAND(N)`](mathematical-functions.html#function_rand)
-  returns the same value each time, and thus produces a
-  repeatable sequence of column values. In the following
-  example, the sequence of values produced by
-  `RAND(3)` is the same both places it
-  occurs.
+  One implication of this behavior is that for equal argument values, `RAND(N)` returns the same value each time, and thus produces a repeatable sequence of column values. In the following example, the sequence of values produced by `RAND(3)` is the same both places it occurs.
 
   ```
   mysql> CREATE TABLE t (i INT);
@@ -688,62 +387,27 @@ event of an error.
   3 rows in set (0.01 sec)
   ```
 
-  [`RAND()`](mathematical-functions.html#function_rand) in a
-  `WHERE` clause is evaluated for every row
-  (when selecting from one table) or combination of rows (when
-  selecting from a multiple-table join). Thus, for optimizer
-  purposes, [`RAND()`](mathematical-functions.html#function_rand) is not a
-  constant value and cannot be used for index optimizations.
-  For more information, see
-  [Section 10.2.1.20, “Function Call Optimization”](function-optimization.html "10.2.1.20 Function Call Optimization").
+  `RAND()` in a `WHERE` clause is evaluated for every row (when selecting from one table) or combination of rows (when selecting from a multiple-table join). Thus, for optimizer purposes, `RAND()` is not a constant value and cannot be used for index optimizations. For more information, see Section 10.2.1.20, “Function Call Optimization”.
 
-  Use of a column with [`RAND()`](mathematical-functions.html#function_rand)
-  values in an `ORDER BY` or `GROUP
-  BY` clause may yield unexpected results because for
-  either clause a [`RAND()`](mathematical-functions.html#function_rand)
-  expression can be evaluated multiple times for the same row,
-  each time returning a different result. If the goal is to
-  retrieve rows in random order, you can use a statement like
-  this:
+  Use of a column with `RAND()` values in an `ORDER BY` or `GROUP BY` clause may yield unexpected results because for either clause a `RAND()` expression can be evaluated multiple times for the same row, each time returning a different result. If the goal is to retrieve rows in random order, you can use a statement like this:
 
   ```
   SELECT * FROM tbl_name ORDER BY RAND();
   ```
 
-  To select a random sample from a set of rows, combine
-  `ORDER BY RAND()` with
-  `LIMIT`:
+  To select a random sample from a set of rows, combine `ORDER BY RAND()` with `LIMIT`:
 
   ```
   SELECT * FROM table1, table2 WHERE a=b AND c<d ORDER BY RAND() LIMIT 1000;
   ```
 
-  [`RAND()`](mathematical-functions.html#function_rand) is not meant to be a
-  perfect random generator. It is a fast way to generate
-  random numbers on demand that is portable between platforms
-  for the same MySQL version.
+  `RAND()` is not meant to be a perfect random generator. It is a fast way to generate random numbers on demand that is portable between platforms for the same MySQL version.
 
-  This function is unsafe for statement-based replication. A
-  warning is logged if you use this function when
-  [`binlog_format`](replication-options-binary-log.html#sysvar_binlog_format) is set to
-  `STATEMENT`.
+  This function is unsafe for statement-based replication. A warning is logged if you use this function when `binlog_format` is set to `STATEMENT`.
 
-* [`ROUND(X)`](mathematical-functions.html#function_round),
-  [`ROUND(X,D)`](mathematical-functions.html#function_round)
+* `ROUND(X)`, `ROUND(X,D)`
 
-  Rounds the argument *`X`* to
-  *`D`* decimal places. The rounding
-  algorithm depends on the data type of
-  *`X`*. *`D`*
-  defaults to 0 if not specified. *`D`*
-  can be negative to cause *`D`* digits
-  left of the decimal point of the value
-  *`X`* to become zero. The maximum
-  absolute value for *`D`* is 30; any
-  digits in excess of 30 (or -30) are truncated. If
-  *`X`* or *`D`*
-  is `NULL`, the function returns
-  `NULL`.
+  Rounds the argument *`X`* to *`D`* decimal places. The rounding algorithm depends on the data type of *`X`*. *`D`* defaults to 0 if not specified. *`D`* can be negative to cause *`D`* digits left of the decimal point of the value *`X`* to become zero. The maximum absolute value for *`D`* is 30; any digits in excess of 30 (or -30) are truncated. If *`X`* or *`D`* is `NULL`, the function returns `NULL`.
 
   ```
   mysql> SELECT ROUND(-1.23);
@@ -762,10 +426,7 @@ event of an error.
           -> 0.123456789012345678901234567890
   ```
 
-  The return value has the same type as the first argument
-  (assuming that it is integer, double, or decimal). This
-  means that for an integer argument, the result is an integer
-  (no decimal places):
+  The return value has the same type as the first argument (assuming that it is integer, double, or decimal). This means that for an integer argument, the result is an integer (no decimal places):
 
   ```
   mysql> SELECT ROUND(150.000,2), ROUND(150,2);
@@ -776,29 +437,13 @@ event of an error.
   +------------------+--------------+
   ```
 
-  [`ROUND()`](mathematical-functions.html#function_round) uses the following
-  rules depending on the type of the first argument:
+  `ROUND()` uses the following rules depending on the type of the first argument:
 
-  + For exact-value numbers,
-    [`ROUND()`](mathematical-functions.html#function_round) uses the
-    “round half away from zero” or “round
-    toward nearest” rule: A value with a fractional
-    part of .5 or greater is rounded up to the next integer
-    if positive or down to the next integer if negative. (In
-    other words, it is rounded away from zero.) A value with
-    a fractional part less than .5 is rounded down to the
-    next integer if positive or up to the next integer if
-    negative.
+  + For exact-value numbers, `ROUND()` uses the “round half away from zero” or “round toward nearest” rule: A value with a fractional part of .5 or greater is rounded up to the next integer if positive or down to the next integer if negative. (In other words, it is rounded away from zero.) A value with a fractional part less than .5 is rounded down to the next integer if positive or up to the next integer if negative.
 
-  + For approximate-value numbers, the result depends on the
-    C library. On many systems, this means that
-    [`ROUND()`](mathematical-functions.html#function_round) uses the
-    “round to nearest even” rule: A value with
-    a fractional part exactly halfway between two integers
-    is rounded to the nearest even integer.
+  + For approximate-value numbers, the result depends on the C library. On many systems, this means that `ROUND()` uses the “round to nearest even” rule: A value with a fractional part exactly halfway between two integers is rounded to the nearest even integer.
 
-  The following example shows how rounding differs for exact
-  and approximate values:
+  The following example shows how rounding differs for exact and approximate values:
 
   ```
   mysql> SELECT ROUND(2.5), ROUND(25E-1);
@@ -809,58 +454,27 @@ event of an error.
   +------------+--------------+
   ```
 
-  For more information, see [Section 14.25, “Precision Math”](precision-math.html "14.25 Precision Math").
+  For more information, see Section 14.25, “Precision Math”.
 
-  The data type returned by `ROUND()` (and
-  [`TRUNCATE()`](mathematical-functions.html#function_truncate)) is determined
-  according to the rules listed here:
+  The data type returned by `ROUND()` (and `TRUNCATE()`) is determined according to the rules listed here:
 
-  + When the first argument is of any integer type, the
-    return type is always
-    [`BIGINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT").
+  + When the first argument is of any integer type, the return type is always `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT").
 
-  + When the first argument is of any floating-point type or
-    of any non-numeric type, the return type is always
-    [`DOUBLE`](floating-point-types.html "13.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE").
+  + When the first argument is of any floating-point type or of any non-numeric type, the return type is always `DOUBLE` - FLOAT, DOUBLE").
 
-  + When the first argument is a
-    [`DECIMAL`](fixed-point-types.html "13.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC") value, the return
-    type is also `DECIMAL`.
+  + When the first argument is a `DECIMAL` - DECIMAL, NUMERIC") value, the return type is also `DECIMAL`.
 
-  + The type attributes for the return value are also copied
-    from the first argument, except in the case of
-    `DECIMAL`, when the second argument is
-    a constant value.
+  + The type attributes for the return value are also copied from the first argument, except in the case of `DECIMAL`, when the second argument is a constant value.
 
-    When the desired number of decimal places is less than
-    the scale of the argument, the scale and the precision
-    of the result are adjusted accordingly.
+    When the desired number of decimal places is less than the scale of the argument, the scale and the precision of the result are adjusted accordingly.
 
-    In addition, for `ROUND()` (but not for
-    the [`TRUNCATE()`](mathematical-functions.html#function_truncate) function),
-    the precision is extended by one place to accommodate
-    rounding that increases the number of significant
-    digits. If the second argument is negative, the return
-    type is adjusted such that its scale is 0, with a
-    corresponding precision. For example,
-    `ROUND(99.999, 2)` returns
-    `100.00`—the first argument is
-    `DECIMAL(5, 3)`, and the return type is
-    `DECIMAL(5, 2)`.
+    In addition, for `ROUND()` (but not for the `TRUNCATE()` function), the precision is extended by one place to accommodate rounding that increases the number of significant digits. If the second argument is negative, the return type is adjusted such that its scale is 0, with a corresponding precision. For example, `ROUND(99.999, 2)` returns `100.00`—the first argument is `DECIMAL(5, 3)`, and the return type is `DECIMAL(5, 2)`.
 
-    If the second argument is negative, the return type has
-    scale 0 and a corresponding precision;
-    `ROUND(99.999, -1)` returns
-    `100`, which is `DECIMAL(3,
-    0)`.
+    If the second argument is negative, the return type has scale 0 and a corresponding precision; `ROUND(99.999, -1)` returns `100`, which is `DECIMAL(3, 0)`.
 
-* [`SIGN(X)`](mathematical-functions.html#function_sign)
+* `SIGN(X)`
 
-  Returns the sign of the argument as `-1`,
-  `0`, or `1`, depending on
-  whether *`X`* is negative, zero, or
-  positive. Returns `NULL` if
-  *`X`* is `NULL`.
+  Returns the sign of the argument as `-1`, `0`, or `1`, depending on whether *`X`* is negative, zero, or positive. Returns `NULL` if *`X`* is `NULL`.
 
   ```
   mysql> SELECT SIGN(-32);
@@ -871,12 +485,9 @@ event of an error.
           -> 1
   ```
 
-* [`SIN(X)`](mathematical-functions.html#function_sin)
+* `SIN(X)`
 
-  Returns the sine of *`X`*, where
-  *`X`* is given in radians. Returns
-  `NULL` if *`X`* is
-  `NULL`.
+  Returns the sine of *`X`*, where *`X`* is given in radians. Returns `NULL` if *`X`* is `NULL`.
 
   ```
   mysql> SELECT SIN(PI());
@@ -885,12 +496,9 @@ event of an error.
           -> 0
   ```
 
-* [`SQRT(X)`](mathematical-functions.html#function_sqrt)
+* `SQRT(X)`
 
-  Returns the square root of a nonnegative number
-  *`X`*. If
-  *`X`* is `NULL`, the
-  function returns `NULL`.
+  Returns the square root of a nonnegative number *`X`*. If *`X`* is `NULL`, the function returns `NULL`.
 
   ```
   mysql> SELECT SQRT(4);
@@ -901,12 +509,9 @@ event of an error.
           -> NULL
   ```
 
-* [`TAN(X)`](mathematical-functions.html#function_tan)
+* `TAN(X)`
 
-  Returns the tangent of *`X`*, where
-  *`X`* is given in radians. Returns
-  `NULL` if *`X`* is
-  `NULL`.
+  Returns the tangent of *`X`*, where *`X`* is given in radians. Returns `NULL` if *`X`* is `NULL`.
 
   ```
   mysql> SELECT TAN(PI());
@@ -915,18 +520,9 @@ event of an error.
           -> 1.5574077246549
   ```
 
-* [`TRUNCATE(X,D)`](mathematical-functions.html#function_truncate)
+* `TRUNCATE(X,D)`
 
-  Returns the number *`X`*, truncated
-  to *`D`* decimal places. If
-  *`D`* is `0`, the
-  result has no decimal point or fractional part.
-  *`D`* can be negative to cause
-  *`D`* digits left of the decimal
-  point of the value *`X`* to become
-  zero. If *`X`* or
-  *`D`* is `NULL`, the
-  function returns `NULL`.
+  Returns the number *`X`*, truncated to *`D`* decimal places. If *`D`* is `0`, the result has no decimal point or fractional part. *`D`* can be negative to cause *`D`* digits left of the decimal point of the value *`X`* to become zero. If *`X`* or *`D`* is `NULL`, the function returns `NULL`.
 
   ```
   mysql> SELECT TRUNCATE(1.223,1);
@@ -945,7 +541,4 @@ event of an error.
 
   All numbers are rounded toward zero.
 
-  The data type returned by `TRUNCATE()`
-  follows the same rules that determine the return type of the
-  `ROUND()` function; for details, see the
-  description for [`ROUND()`](mathematical-functions.html#function_round).
+  The data type returned by `TRUNCATE()` follows the same rules that determine the return type of the `ROUND()` function; for details, see the description for `ROUND()`.

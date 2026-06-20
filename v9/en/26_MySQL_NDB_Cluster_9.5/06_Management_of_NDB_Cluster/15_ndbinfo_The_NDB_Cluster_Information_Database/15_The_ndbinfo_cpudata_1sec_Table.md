@@ -1,10 +1,8 @@
 #### 25.6.15.15 The ndbinfo cpudata\_1sec Table
 
-The `cpudata_1sec` table provides data about
-CPU usage per second over the last 20 seconds.
+The `cpudata_1sec` table provides data about CPU usage per second over the last 20 seconds.
 
-The `cpustat` table contains the following
-columns:
+The `cpustat` table contains the following columns:
 
 * `node_id`
 
@@ -48,5 +46,4 @@ columns:
 
 ##### Notes
 
-The `cpudata_1sec` table is available only on
-Linux and Solaris operating systems.
+The `cpudata_1sec` table is available only on Linux and Solaris operating systems.

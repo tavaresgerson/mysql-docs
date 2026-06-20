@@ -1,10 +1,8 @@
 #### 25.6.15.39 The ndbinfo hwinfo Table
 
-The `hwinfo` table provides information about
-the hardware on which a given data node executes.
+The `hwinfo` table provides information about the hardware on which a given data node executes.
 
-The `hwinfo` table contains the following
-columns:
+The `hwinfo` table contains the following columns:
 
 * `node_id`
 
@@ -36,5 +34,4 @@ columns:
 
 ##### Notes
 
-The `hwinfo` table is available on all
-operating systems supported by `NDB`.
+The `hwinfo` table is available on all operating systems supported by `NDB`.

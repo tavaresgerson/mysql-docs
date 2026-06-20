@@ -1,48 +1,28 @@
 ### 29.12.4 Performance Schema Wait Event Tables
 
-The Performance Schema instruments waits, which are events that
-take time. Within the event hierarchy, wait events nest within
-stage events, which nest within statement events, which nest
-within transaction events.
+The Performance Schema instruments waits, which are events that take time. Within the event hierarchy, wait events nest within stage events, which nest within statement events, which nest within transaction events.
 
 These tables store wait events:
 
-* [`events_waits_current`](performance-schema-events-waits-current-table.html "29.12.4.1 The events_waits_current Table"): The
-  current wait event for each thread.
+* `events_waits_current`: The current wait event for each thread.
 
-* [`events_waits_history`](performance-schema-events-waits-history-table.html "29.12.4.2 The events_waits_history Table"): The most
-  recent wait events that have ended per thread.
+* `events_waits_history`: The most recent wait events that have ended per thread.
 
-* [`events_waits_history_long`](performance-schema-events-waits-history-long-table.html "29.12.4.3 The events_waits_history_long Table"): The
-  most recent wait events that have ended globally (across all
-  threads).
+* `events_waits_history_long`: The most recent wait events that have ended globally (across all threads).
 
-The following sections describe the wait event tables. There are
-also summary tables that aggregate information about wait
-events; see
-[Section 29.12.20.1, “Wait Event Summary Tables”](performance-schema-wait-summary-tables.html "29.12.20.1 Wait Event Summary Tables").
+The following sections describe the wait event tables. There are also summary tables that aggregate information about wait events; see Section 29.12.20.1, “Wait Event Summary Tables”.
 
-For more information about the relationship between the three
-wait event tables, see
-[Section 29.9, “Performance Schema Tables for Current and Historical Events”](performance-schema-event-tables.html "29.9 Performance Schema Tables for Current and Historical Events").
+For more information about the relationship between the three wait event tables, see Section 29.9, “Performance Schema Tables for Current and Historical Events”.
 
 #### Configuring Wait Event Collection
 
-To control whether to collect wait events, set the state of the
-relevant instruments and consumers:
+To control whether to collect wait events, set the state of the relevant instruments and consumers:
 
-* The [`setup_instruments`](performance-schema-setup-instruments-table.html "29.12.2.3 The setup_instruments Table") table
-  contains instruments with names that begin with
-  `wait`. Use these instruments to enable or
-  disable collection of individual wait event classes.
+* The `setup_instruments` table contains instruments with names that begin with `wait`. Use these instruments to enable or disable collection of individual wait event classes.
 
-* The [`setup_consumers`](performance-schema-setup-consumers-table.html "29.12.2.2 The setup_consumers Table") table
-  contains consumer values with names corresponding to the
-  current and historical wait event table names. Use these
-  consumers to filter collection of wait events.
+* The `setup_consumers` table contains consumer values with names corresponding to the current and historical wait event table names. Use these consumers to filter collection of wait events.
 
-Some wait instruments are enabled by default; others are
-disabled. For example:
+Some wait instruments are enabled by default; others are disabled. For example:
 
 ```
 mysql> SELECT NAME, ENABLED, TIMED
@@ -85,8 +65,7 @@ mysql> SELECT *
 +---------------------------+---------+
 ```
 
-To control wait event collection at server startup, use lines
-like these in your `my.cnf` file:
+To control wait event collection at server startup, use lines like these in your `my.cnf` file:
 
 * Enable:
 
@@ -108,9 +87,7 @@ like these in your `my.cnf` file:
   performance-schema-consumer-events-waits-history-long=OFF
   ```
 
-To control wait event collection at runtime, update the
-[`setup_instruments`](performance-schema-setup-instruments-table.html "29.12.2.3 The setup_instruments Table") and
-[`setup_consumers`](performance-schema-setup-consumers-table.html "29.12.2.2 The setup_consumers Table") tables:
+To control wait event collection at runtime, update the `setup_instruments` and `setup_consumers` tables:
 
 * Enable:
 
@@ -136,11 +113,6 @@ To control wait event collection at runtime, update the
   WHERE NAME LIKE 'events_waits%';
   ```
 
-To collect only specific wait events, enable only the
-corresponding wait instruments. To collect wait events only for
-specific wait event tables, enable the wait instruments but only
-the wait consumers corresponding to the desired tables.
+To collect only specific wait events, enable only the corresponding wait instruments. To collect wait events only for specific wait event tables, enable the wait instruments but only the wait consumers corresponding to the desired tables.
 
-For additional information about configuring event collection,
-see [Section 29.3, “Performance Schema Startup Configuration”](performance-schema-startup-configuration.html "29.3 Performance Schema Startup Configuration"),
-and [Section 29.4, “Performance Schema Runtime Configuration”](performance-schema-runtime-configuration.html "29.4 Performance Schema Runtime Configuration").
+For additional information about configuring event collection, see Section 29.3, “Performance Schema Startup Configuration”, and Section 29.4, “Performance Schema Runtime Configuration”.

@@ -1,7 +1,6 @@
 #### 25.4.3.2 Recommended Starting Configuration for NDB Cluster
 
-Achieving the best performance from an NDB Cluster depends on a
-number of factors including the following:
+Achieving the best performance from an NDB Cluster depends on a number of factors including the following:
 
 * NDB Cluster software version
 * Numbers of data nodes and SQL nodes
@@ -10,20 +9,9 @@ number of factors including the following:
 * Amount of data to be stored
 * Size and type of load under which the cluster is to operate
 
-Therefore, obtaining an optimum configuration is likely to be an
-iterative process, the outcome of which can vary widely with the
-specifics of each NDB Cluster deployment. Changes in
-configuration are also likely to be indicated when changes are
-made in the platform on which the cluster is run, or in
-applications that use the NDB Cluster 's data. For these
-reasons, it is not possible to offer a single configuration that
-is ideal for all usage scenarios. However, in this section, we
-provide a recommended base configuration.
+Therefore, obtaining an optimum configuration is likely to be an iterative process, the outcome of which can vary widely with the specifics of each NDB Cluster deployment. Changes in configuration are also likely to be indicated when changes are made in the platform on which the cluster is run, or in applications that use the NDB Cluster 's data. For these reasons, it is not possible to offer a single configuration that is ideal for all usage scenarios. However, in this section, we provide a recommended base configuration.
 
-**Starting config.ini file.**
-The following `config.ini` file is a
-recommended starting point for configuring a cluster running
-NDB Cluster 9.5:
+**Starting config.ini file.** The following `config.ini` file is a recommended starting point for configuring a cluster running NDB Cluster 9.5:
 
 ```
 # TCP PARAMETERS
@@ -176,9 +164,4 @@ LockMaintThreadsToCPU=0
 # for cluster nodes.
 ```
 
-**Required my.cnf options for SQL nodes.**
-MySQL servers acting as NDB Cluster SQL nodes must always be
-started with the [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster)
-and [`--ndb-connectstring`](mysql-cluster-options-variables.html#option_mysqld_ndb-connectstring)
-options, either on the command line or in
-`my.cnf`.
+**Required my.cnf options for SQL nodes.** MySQL servers acting as NDB Cluster SQL nodes must always be started with the `--ndbcluster` and `--ndb-connectstring` options, either on the command line or in `my.cnf`.

@@ -1,21 +1,12 @@
 #### 30.4.5.10 The ps\_is\_consumer\_enabled() Function
 
-Returns `YES` or `NO` to
-indicate whether a given Performance Schema consumer is
-enabled, or `NULL` if the argument is
-`NULL`. If the argument is not a valid
-consumer name, an error occurs.
+Returns `YES` or `NO` to indicate whether a given Performance Schema consumer is enabled, or `NULL` if the argument is `NULL`. If the argument is not a valid consumer name, an error occurs.
 
-This function accounts for the consumer hierarchy, so a
-consumer is not considered enabled unless all consumers on
-which depends are also enabled. For information about the
-consumer hierarchy, see
-[Section 29.4.7, “Pre-Filtering by Consumer”](performance-schema-consumer-filtering.html "29.4.7 Pre-Filtering by Consumer").
+This function accounts for the consumer hierarchy, so a consumer is not considered enabled unless all consumers on which depends are also enabled. For information about the consumer hierarchy, see Section 29.4.7, “Pre-Filtering by Consumer”.
 
 ##### Parameters
 
-* `in_consumer VARCHAR(64)`: The name of
-  the consumer to check.
+* `in_consumer VARCHAR(64)`: The name of the consumer to check.
 
 ##### Return Value
 

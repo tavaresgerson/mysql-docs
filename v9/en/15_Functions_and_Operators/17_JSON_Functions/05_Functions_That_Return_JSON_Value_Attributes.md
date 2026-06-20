@@ -2,17 +2,11 @@
 
 The functions in this section return attributes of JSON values.
 
-* [`JSON_DEPTH(json_doc)`](json-attribute-functions.html#function_json-depth)
+* `JSON_DEPTH(json_doc)`
 
-  Returns the maximum depth of a JSON document. Returns
-  `NULL` if the argument is
-  `NULL`. An error occurs if the argument is
-  not a valid JSON document.
+  Returns the maximum depth of a JSON document. Returns `NULL` if the argument is `NULL`. An error occurs if the argument is not a valid JSON document.
 
-  An empty array, empty object, or scalar value has depth 1. A
-  nonempty array containing only elements of depth 1 or nonempty
-  object containing only member values of depth 1 has depth 2.
-  Otherwise, a JSON document has depth greater than 2.
+  An empty array, empty object, or scalar value has depth 1. A nonempty array containing only elements of depth 1 or nonempty object containing only member values of depth 1 has depth 2. Otherwise, a JSON document has depth greater than 2.
 
   ```
   mysql> SELECT JSON_DEPTH('{}'), JSON_DEPTH('[]'), JSON_DEPTH('true');
@@ -35,27 +29,16 @@ The functions in this section return attributes of JSON values.
   +-------------------------------+
   ```
 
-* [`JSON_LENGTH(json_doc[,
-  path])`](json-attribute-functions.html#function_json-length)
+* [`JSON_LENGTH(json_doc[, path])`](json-attribute-functions.html#function_json-length)
 
-  Returns the length of a JSON document, or, if a
-  *`path`* argument is given, the length
-  of the value within the document identified by the path.
-  Returns `NULL` if any argument is
-  `NULL` or the *`path`*
-  argument does not identify a value in the document. An error
-  occurs if the *`json_doc`* argument is
-  not a valid JSON document or the
-  *`path`* argument is not a valid path
-  expression.
+  Returns the length of a JSON document, or, if a *`path`* argument is given, the length of the value within the document identified by the path. Returns `NULL` if any argument is `NULL` or the *`path`* argument does not identify a value in the document. An error occurs if the *`json_doc`* argument is not a valid JSON document or the *`path`* argument is not a valid path expression.
 
   The length of a document is determined as follows:
 
   + The length of a scalar is 1.
   + The length of an array is the number of array elements.
   + The length of an object is the number of object members.
-  + The length does not count the length of nested arrays or
-    objects.
+  + The length does not count the length of nested arrays or objects.
 
   ```
   mysql> SELECT JSON_LENGTH('[1, 2, {"a": 3}]');
@@ -78,11 +61,9 @@ The functions in this section return attributes of JSON values.
   +------------------------------------------------+
   ```
 
-* [`JSON_TYPE(json_val)`](json-attribute-functions.html#function_json-type)
+* `JSON_TYPE(json_val)`
 
-  Returns a `utf8mb4` string indicating the
-  type of a JSON value. This can be an object, an array, or a
-  scalar type, as shown here:
+  Returns a `utf8mb4` string indicating the type of a JSON value. This can be an object, an array, or a scalar type, as shown here:
 
   ```
   mysql> SET @j = '{"a": [10, true]}';
@@ -112,9 +93,7 @@ The functions in this section return attributes of JSON values.
   +---------------------------------------+
   ```
 
-  [`JSON_TYPE()`](json-attribute-functions.html#function_json-type) returns
-  `NULL` if the argument is
-  `NULL`:
+  `JSON_TYPE()` returns `NULL` if the argument is `NULL`:
 
   ```
   mysql> SELECT JSON_TYPE(NULL);
@@ -133,73 +112,45 @@ The functions in this section return attributes of JSON values.
   to function json_type; a JSON string or JSON type is required.
   ```
 
-  For a non-`NULL`, non-error result, the
-  following list describes the possible
-  [`JSON_TYPE()`](json-attribute-functions.html#function_json-type) return values:
+  For a non-`NULL`, non-error result, the following list describes the possible `JSON_TYPE()` return values:
 
   + Purely JSON types:
 
     - `OBJECT`: JSON objects
     - `ARRAY`: JSON arrays
-    - `BOOLEAN`: The JSON true and false
-      literals
+    - `BOOLEAN`: The JSON true and false literals
 
     - `NULL`: The JSON null literal
   + Numeric types:
 
-    - `INTEGER`: MySQL
-      [`TINYINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"),
-      [`SMALLINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"),
-      [`MEDIUMINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") and
-      [`INT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") and
-      [`BIGINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") scalars
+    - `INTEGER`: MySQL `TINYINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `SMALLINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `MEDIUMINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") and `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") and `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") scalars
 
-    - `DOUBLE`: MySQL
-      [`DOUBLE`](floating-point-types.html "13.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE")
-      [`FLOAT`](floating-point-types.html "13.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE") scalars
+    - `DOUBLE`: MySQL `DOUBLE` - FLOAT, DOUBLE") `FLOAT` - FLOAT, DOUBLE") scalars
 
-    - `DECIMAL`: MySQL
-      [`DECIMAL`](fixed-point-types.html "13.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC") and
-      [`NUMERIC`](fixed-point-types.html "13.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC") scalars
+    - `DECIMAL`: MySQL `DECIMAL` - DECIMAL, NUMERIC") and `NUMERIC` - DECIMAL, NUMERIC") scalars
 
   + Temporal types:
 
-    - `DATETIME`: MySQL
-      [`DATETIME`](datetime.html "13.2.2 The DATE, DATETIME, and TIMESTAMP Types") and
-      [`TIMESTAMP`](datetime.html "13.2.2 The DATE, DATETIME, and TIMESTAMP Types") scalars
+    - `DATETIME`: MySQL `DATETIME` and `TIMESTAMP` scalars
 
-    - `DATE`: MySQL
-      [`DATE`](datetime.html "13.2.2 The DATE, DATETIME, and TIMESTAMP Types") scalars
+    - `DATE`: MySQL `DATE` scalars
 
-    - `TIME`: MySQL
-      [`TIME`](time.html "13.2.3 The TIME Type") scalars
+    - `TIME`: MySQL `TIME` scalars
 
   + String types:
 
-    - `STRING`: MySQL
-      `utf8mb3` character type scalars:
-      [`CHAR`](char.html "13.3.2 The CHAR and VARCHAR Types"),
-      [`VARCHAR`](char.html "13.3.2 The CHAR and VARCHAR Types"),
-      [`TEXT`](blob.html "13.3.4 The BLOB and TEXT Types"),
-      [`ENUM`](enum.html "13.3.6 The ENUM Type"), and
-      [`SET`](set.html "13.3.7 The SET Type")
+    - `STRING`: MySQL `utf8mb3` character type scalars: `CHAR`, `VARCHAR`, `TEXT`, `ENUM`, and `SET`
 
   + Binary types:
 
-    - `BLOB`: MySQL binary type scalars
-      including [`BINARY`](binary-varbinary.html "13.3.3 The BINARY and VARBINARY Types"),
-      [`VARBINARY`](binary-varbinary.html "13.3.3 The BINARY and VARBINARY Types"),
-      [`BLOB`](blob.html "13.3.4 The BLOB and TEXT Types"), and
-      [`BIT`](bit-type.html "13.1.5 Bit-Value Type - BIT")
+    - `BLOB`: MySQL binary type scalars including `BINARY`, `VARBINARY`, `BLOB`, and `BIT`
 
   + All other types:
 
     - `OPAQUE` (raw bits)
-* [`JSON_VALID(val)`](json-attribute-functions.html#function_json-valid)
+* `JSON_VALID(val)`
 
-  Returns 0 or 1 to indicate whether a value is valid JSON.
-  Returns `NULL` if the argument is
-  `NULL`.
+  Returns 0 or 1 to indicate whether a value is valid JSON. Returns `NULL` if the argument is `NULL`.
 
   ```
   mysql> SELECT JSON_VALID('{"a": 1}');

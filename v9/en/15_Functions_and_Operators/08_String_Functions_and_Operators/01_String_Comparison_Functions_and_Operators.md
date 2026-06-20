@@ -2,58 +2,21 @@
 
 **Table 14.13 String Comparison Functions and Operators**
 
-<table frame="box" rules="all" summary="A reference that lists string comparison functions and operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th>
-<th>Description</th>
-</tr></thead><tbody><tr><td><a class="link" href="string-comparison-functions.html#operator_like"><code class="literal">LIKE</code></a></td>
-<td>
-      Simple pattern matching
-    </td>
-</tr><tr><td><a class="link" href="string-comparison-functions.html#operator_not-like"><code class="literal">NOT LIKE</code></a></td>
-<td>
-      Negation of simple pattern matching
-    </td>
-</tr><tr><td><a class="link" href="string-comparison-functions.html#function_strcmp"><code class="literal">STRCMP()</code></a></td>
-<td>
-      Compare two strings
-    </td>
-</tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists string comparison functions and operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="string-comparison-functions.html#operator_like"><code class="literal">LIKE</code></a></td> <td> Simple pattern matching </td> </tr><tr><td><a class="link" href="string-comparison-functions.html#operator_not-like"><code class="literal">NOT LIKE</code></a></td> <td> Negation of simple pattern matching </td> </tr><tr><td><a class="link" href="string-comparison-functions.html#function_strcmp"><code class="literal">STRCMP()</code></a></td> <td> Compare two strings </td> </tr></tbody></table>
 
-If a string function is given a binary string as an argument,
-the resulting string is also a binary string. A number converted
-to a string is treated as a binary string. This affects only
-comparisons.
+If a string function is given a binary string as an argument, the resulting string is also a binary string. A number converted to a string is treated as a binary string. This affects only comparisons.
 
-Normally, if any expression in a string comparison is
-case-sensitive, the comparison is performed in case-sensitive
-fashion.
+Normally, if any expression in a string comparison is case-sensitive, the comparison is performed in case-sensitive fashion.
 
-If a string function is invoked from within the
-[**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") client, binary strings display using
-hexadecimal notation, depending on the value of the
-[`--binary-as-hex`](mysql-command-options.html#option_mysql_binary-as-hex). For more
-information about that option, see [Section 6.5.1, “mysql — The MySQL Command-Line Client”](mysql.html "6.5.1 mysql — The MySQL Command-Line Client").
+If a string function is invoked from within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 
-* [`expr
-  LIKE pat [ESCAPE
-  'escape_char']`](string-comparison-functions.html#operator_like)
+* [`expr LIKE pat [ESCAPE 'escape_char']`](string-comparison-functions.html#operator_like)
 
-  Pattern matching using an SQL pattern. Returns
-  `1` (`TRUE`) or
-  `0` (`FALSE`). If either
-  *`expr`* or
-  *`pat`* is `NULL`,
-  the result is `NULL`.
+  Pattern matching using an SQL pattern. Returns `1` (`TRUE`) or `0` (`FALSE`). If either *`expr`* or *`pat`* is `NULL`, the result is `NULL`.
 
-  The pattern need not be a literal string. For example, it
-  can be specified as a string expression or table column. In
-  the latter case, the column must be defined as one of the
-  MySQL string types (see [Section 13.3, “String Data Types”](string-types.html "13.3 String Data Types")).
+  The pattern need not be a literal string. For example, it can be specified as a string expression or table column. In the latter case, the column must be defined as one of the MySQL string types (see Section 13.3, “String Data Types”).
 
-  Per the SQL standard, [`LIKE`](string-comparison-functions.html#operator_like)
-  performs matching on a per-character basis, thus it can
-  produce results different from the
-  [`=`](comparison-operators.html#operator_equal) comparison
-  operator:
+  Per the SQL standard, `LIKE` performs matching on a per-character basis, thus it can produce results different from the `=` comparison operator:
 
   ```
   mysql> SELECT 'ä' LIKE 'ae' COLLATE latin1_german2_ci;
@@ -70,21 +33,11 @@ information about that option, see [Section 6.5.1, “mysql — The MySQL Comma
   +--------------------------------------+
   ```
 
-  In particular, trailing spaces are always significant. This
-  differs from comparisons performed with the
-  [`=`](comparison-operators.html#operator_equal) operator,
-  for which the significance of trailing spaces in nonbinary
-  strings (`CHAR`,
-  `VARCHAR`, and `TEXT`
-  values) depends on the pad attribute of the collation used
-  for the comparison. For more information, see
-  [Trailing Space Handling in Comparisons](charset-binary-collations.html#charset-binary-collations-trailing-space-comparisons "Trailing Space Handling in Comparisons").
+  In particular, trailing spaces are always significant. This differs from comparisons performed with the `=` operator, for which the significance of trailing spaces in nonbinary strings (`CHAR`, `VARCHAR`, and `TEXT` values) depends on the pad attribute of the collation used for the comparison. For more information, see Trailing Space Handling in Comparisons.
 
-  With [`LIKE`](string-comparison-functions.html#operator_like) you can use the
-  following two wildcard characters in the pattern:
+  With `LIKE` you can use the following two wildcard characters in the pattern:
 
-  + `%` matches any number of characters,
-    even zero characters.
+  + `%` matches any number of characters, even zero characters.
 
   + `_` matches exactly one character.
 
@@ -95,18 +48,11 @@ information about that option, see [Section 6.5.1, “mysql — The MySQL Comma
           -> 1
   ```
 
-  To test for literal instances of a wildcard character,
-  precede it by the escape character. If you do not specify
-  the `ESCAPE` character,
-  `\` is assumed, unless the
-  [`NO_BACKSLASH_ESCAPES`](sql-mode.html#sqlmode_no_backslash_escapes) SQL
-  mode is enabled. In that case, no escape character is used.
+  To test for literal instances of a wildcard character, precede it by the escape character. If you do not specify the `ESCAPE` character, `\` is assumed, unless the `NO_BACKSLASH_ESCAPES` SQL mode is enabled. In that case, no escape character is used.
 
-  + `\%` matches one `%`
-    character.
+  + `\%` matches one `%` character.
 
-  + `\_` matches one `_`
-    character.
+  + `\_` matches one `_` character.
 
   ```
   mysql> SELECT 'David!' LIKE 'David\_';
@@ -115,25 +61,16 @@ information about that option, see [Section 6.5.1, “mysql — The MySQL Comma
           -> 1
   ```
 
-  To specify a different escape character, use the
-  `ESCAPE` clause:
+  To specify a different escape character, use the `ESCAPE` clause:
 
   ```
   mysql> SELECT 'David_' LIKE 'David|_' ESCAPE '|';
           -> 1
   ```
 
-  The escape sequence should be one character long to specify
-  the escape character, or empty to specify that no escape
-  character is used. The expression must evaluate as a
-  constant at execution time. If the
-  [`NO_BACKSLASH_ESCAPES`](sql-mode.html#sqlmode_no_backslash_escapes) SQL
-  mode is enabled, the sequence cannot be empty.
+  The escape sequence should be one character long to specify the escape character, or empty to specify that no escape character is used. The expression must evaluate as a constant at execution time. If the `NO_BACKSLASH_ESCAPES` SQL mode is enabled, the sequence cannot be empty.
 
-  The following statements illustrate that string comparisons
-  are not case-sensitive unless one of the operands is
-  case-sensitive (uses a case-sensitive collation or is a
-  binary string):
+  The following statements illustrate that string comparisons are not case-sensitive unless one of the operands is case-sensitive (uses a case-sensitive collation or is a binary string):
 
   ```
   mysql> SELECT 'abc' LIKE 'ABC';
@@ -146,40 +83,20 @@ information about that option, see [Section 6.5.1, “mysql — The MySQL Comma
           -> 0
   ```
 
-  As an extension to standard SQL, MySQL permits
-  [`LIKE`](string-comparison-functions.html#operator_like) on numeric expressions.
+  As an extension to standard SQL, MySQL permits `LIKE` on numeric expressions.
 
   ```
   mysql> SELECT 10 LIKE '1%';
           -> 1
   ```
 
-  MySQL attempts in such cases to perform implicit conversion
-  of the expression to a string. See
-  [Section 14.3, “Type Conversion in Expression Evaluation”](type-conversion.html "14.3 Type Conversion in Expression Evaluation").
+  MySQL attempts in such cases to perform implicit conversion of the expression to a string. See Section 14.3, “Type Conversion in Expression Evaluation”.
 
   Note
 
-  MySQL uses C escape syntax in strings (for example,
-  `\n` to represent the newline character).
-  If you want a [`LIKE`](string-comparison-functions.html#operator_like) string to
-  contain a literal `\`, you must double
-  it. (Unless the
-  [`NO_BACKSLASH_ESCAPES`](sql-mode.html#sqlmode_no_backslash_escapes) SQL
-  mode is enabled, in which case no escape character is
-  used.) For example, to search for `\n`,
-  specify it as `\\n`. To search for
-  `\`, specify it as
-  `\\\\`; this is because the backslashes
-  are stripped once by the parser and again when the pattern
-  match is made, leaving a single backslash to be matched
-  against.
+  MySQL uses C escape syntax in strings (for example, `\n` to represent the newline character). If you want a `LIKE` string to contain a literal `\`, you must double it. (Unless the `NO_BACKSLASH_ESCAPES` SQL mode is enabled, in which case no escape character is used.) For example, to search for `\n`, specify it as `\\n`. To search for `\`, specify it as `\\\\`; this is because the backslashes are stripped once by the parser and again when the pattern match is made, leaving a single backslash to be matched against.
 
-  Exception: At the end of the pattern string, backslash can
-  be specified as `\\`. At the end of the
-  string, backslash stands for itself because there is
-  nothing following to escape. Suppose that a table contains
-  the following values:
+  Exception: At the end of the pattern string, backslash can be specified as `\\`. At the end of the string, backslash stands for itself because there is nothing following to escape. Suppose that a table contains the following values:
 
   ```
   mysql> SELECT filename FROM t1;
@@ -193,8 +110,7 @@ information about that option, see [Section 6.5.1, “mysql — The MySQL Comma
   +--------------+
   ```
 
-  To test for values that end with backslash, you can match
-  the values using either of the following patterns:
+  To test for values that end with backslash, you can match the values using either of the following patterns:
 
   ```
   mysql> SELECT filename, filename LIKE '%\\' FROM t1;
@@ -218,21 +134,13 @@ information about that option, see [Section 6.5.1, “mysql — The MySQL Comma
   +--------------+-----------------------+
   ```
 
-* [`expr
-  NOT LIKE pat [ESCAPE
-  'escape_char']`](string-comparison-functions.html#operator_not-like)
+* [`expr NOT LIKE pat [ESCAPE 'escape_char']`](string-comparison-functions.html#operator_not-like)
 
-  This is the same as `NOT
-  (expr LIKE
-  pat [ESCAPE
-  'escape_char'])`.
+  This is the same as `NOT (expr LIKE pat [ESCAPE 'escape_char'])`.
 
   Note
 
-  Aggregate queries involving [`NOT
-  LIKE`](string-comparison-functions.html#operator_not-like) comparisons with columns containing
-  `NULL` may yield unexpected results. For
-  example, consider the following table and data:
+  Aggregate queries involving [`NOT LIKE`](string-comparison-functions.html#operator_not-like) comparisons with columns containing `NULL` may yield unexpected results. For example, consider the following table and data:
 
   ```
   CREATE TABLE foo (bar VARCHAR(10));
@@ -240,38 +148,15 @@ information about that option, see [Section 6.5.1, “mysql — The MySQL Comma
   INSERT INTO foo VALUES (NULL), (NULL);
   ```
 
-  The query `SELECT COUNT(*) FROM foo WHERE bar LIKE
-  '%baz%';` returns `0`. You might
-  assume that `SELECT COUNT(*) FROM foo WHERE bar
-  NOT LIKE '%baz%';` would return
-  `2`. However, this is not the case: The
-  second query returns `0`. This is because
-  `NULL NOT LIKE
-  expr` always returns
-  `NULL`, regardless of the value of
-  *`expr`*. The same is true for
-  aggregate queries involving `NULL` and
-  comparisons using
-  [`NOT
-  RLIKE`](regexp.html#operator_not-regexp) or [`NOT
-  REGEXP`](regexp.html#operator_not-regexp). In such cases, you must test explicitly
-  for `NOT NULL` using
-  [`OR`](logical-operators.html#operator_or) (and not
-  [`AND`](logical-operators.html#operator_and)), as shown here:
+  The query `SELECT COUNT(*) FROM foo WHERE bar LIKE '%baz%';` returns `0`. You might assume that `SELECT COUNT(*) FROM foo WHERE bar NOT LIKE '%baz%';` would return `2`. However, this is not the case: The second query returns `0`. This is because `NULL NOT LIKE expr` always returns `NULL`, regardless of the value of *`expr`*. The same is true for aggregate queries involving `NULL` and comparisons using [`NOT RLIKE`](regexp.html#operator_not-regexp) or [`NOT REGEXP`](regexp.html#operator_not-regexp). In such cases, you must test explicitly for `NOT NULL` using `OR` (and not `AND`), as shown here:
 
   ```
   SELECT COUNT(*) FROM foo WHERE bar NOT LIKE '%baz%' OR bar IS NULL;
   ```
 
-* [`STRCMP(expr1,expr2)`](string-comparison-functions.html#function_strcmp)
+* `STRCMP(expr1,expr2)`
 
-  [`STRCMP()`](string-comparison-functions.html#function_strcmp) returns
-  `0` if the strings are the same,
-  `-1` if the first argument is smaller than
-  the second according to the current sort order, and
-  `NULL` if either argument is
-  `NULL`. It returns `1`
-  otherwise.
+  `STRCMP()` returns `0` if the strings are the same, `-1` if the first argument is smaller than the second according to the current sort order, and `NULL` if either argument is `NULL`. It returns `1` otherwise.
 
   ```
   mysql> SELECT STRCMP('text', 'text2');
@@ -282,8 +167,7 @@ information about that option, see [Section 6.5.1, “mysql — The MySQL Comma
           -> 0
   ```
 
-  [`STRCMP()`](string-comparison-functions.html#function_strcmp) performs the
-  comparison using the collation of the arguments.
+  `STRCMP()` performs the comparison using the collation of the arguments.
 
   ```
   mysql> SET @s1 = _utf8mb4 'x' COLLATE utf8mb4_0900_ai_ci;
@@ -298,9 +182,7 @@ information about that option, see [Section 6.5.1, “mysql — The MySQL Comma
   +------------------+------------------+
   ```
 
-  If the collations are incompatible, one of the arguments
-  must be converted to be compatible with the other. See
-  [Section 12.8.4, “Collation Coercibility in Expressions”](charset-collation-coercibility.html "12.8.4 Collation Coercibility in Expressions").
+  If the collations are incompatible, one of the arguments must be converted to be compatible with the other. See Section 12.8.4, “Collation Coercibility in Expressions”.
 
   ```
   mysql> SET @s1 = _utf8mb4 'x' COLLATE utf8mb4_0900_ai_ci;

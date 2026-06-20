@@ -1,46 +1,23 @@
 ### 25.5.29 ndb\_size.pl — NDBCLUSTER Size Requirement Estimator
 
-This is a Perl script that can be used to estimate the amount of
-space that would be required by a MySQL database if it were
-converted to use the [`NDBCLUSTER`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 9.5")
-storage engine. Unlike the other utilities discussed in this
-section, it does not require access to an NDB Cluster (in fact,
-there is no reason for it to do so). However, it does need to
-access the MySQL server on which the database to be tested
-resides.
+This is a Perl script that can be used to estimate the amount of space that would be required by a MySQL database if it were converted to use the `NDBCLUSTER` storage engine. Unlike the other utilities discussed in this section, it does not require access to an NDB Cluster (in fact, there is no reason for it to do so). However, it does need to access the MySQL server on which the database to be tested resides.
 
 Note
 
-[**ndb\_size.pl**](mysql-cluster-programs-ndb-size-pl.html "25.5.29 ndb_size.pl — NDBCLUSTER Size Requirement Estimator") is no longer supported; you
-should expect it to be removed from a future version of the
-NDB Cluster distribution, and modify any dependent
-applications accordingly.
+**ndb\_size.pl** is no longer supported; you should expect it to be removed from a future version of the NDB Cluster distribution, and modify any dependent applications accordingly.
 
 #### Requirements
 
-* A running MySQL server. The server instance does not have to
-  provide support for NDB Cluster.
+* A running MySQL server. The server instance does not have to provide support for NDB Cluster.
 
 * A working installation of Perl.
-* The `DBI` module, which can be obtained
-  from CPAN if it is not already part of your Perl
-  installation. (Many Linux and other operating system
-  distributions provide their own packages for this library.)
+* The `DBI` module, which can be obtained from CPAN if it is not already part of your Perl installation. (Many Linux and other operating system distributions provide their own packages for this library.)
 
-* A MySQL user account having the necessary privileges. If you
-  do not wish to use an existing account, then creating one
-  using `GRANT USAGE ON
-  db_name.*`—where
-  *`db_name`* is the name of the
-  database to be examined—is sufficient for this
-  purpose.
+* A MySQL user account having the necessary privileges. If you do not wish to use an existing account, then creating one using `GRANT USAGE ON db_name.*`—where *`db_name`* is the name of the database to be examined—is sufficient for this purpose.
 
-`ndb_size.pl` can also be found in the MySQL
-sources in `storage/ndb/tools`.
+`ndb_size.pl` can also be found in the MySQL sources in `storage/ndb/tools`.
 
-Options that can be used with [**ndb\_size.pl**](mysql-cluster-programs-ndb-size-pl.html "25.5.29 ndb_size.pl — NDBCLUSTER Size Requirement Estimator") are
-shown in the following table. Additional descriptions follow the
-table.
+Options that can be used with **ndb\_size.pl** are shown in the following table. Additional descriptions follow the table.
 
 #### Usage
 
@@ -51,29 +28,7 @@ perl ndb_size.pl [--database={db_name|ALL}] [--hostname=host[:port]] [--socket=s
       [--loadqueries=file_name] [--savequeries=file_name]
 ```
 
-By default, this utility attempts to analyze all databases on
-the server. You can specify a single database using the
-`--database` option; the default behavior can be
-made explicit by using `ALL` for the name of
-the database. You can also exclude one or more databases by
-using the `--excludedbs` option with a
-comma-separated list of the names of the databases to be
-skipped. Similarly, you can cause specific tables to be skipped
-by listing their names, separated by commas, following the
-optional `--excludetables` option. A host name
-can be specified using `--hostname`; the default
-is `localhost`. You can specify a port in
-addition to the host using
-*`host`*:*`port`*
-format for the value of `--hostname`. The default
-port number is 3306. If necessary, you can also specify a
-socket; the default is `/var/lib/mysql.sock`.
-A MySQL user name and password can be specified the
-corresponding options shown. It also possible to control the
-format of the output using the `--format` option;
-this can take either of the values `html` or
-`text`, with `text` being the
-default. An example of the text output is shown here:
+By default, this utility attempts to analyze all databases on the server. You can specify a single database using the `--database` option; the default behavior can be made explicit by using `ALL` for the name of the database. You can also exclude one or more databases by using the `--excludedbs` option with a comma-separated list of the names of the databases to be skipped. Similarly, you can cause specific tables to be skipped by listing their names, separated by commas, following the optional `--excludetables` option. A host name can be specified using `--hostname`; the default is `localhost`. You can specify a port in addition to the host using *`host`*:*`port`* format for the value of `--hostname`. The default port number is 3306. If necessary, you can also specify a socket; the default is `/var/lib/mysql.sock`. A MySQL user name and password can be specified the corresponding options shown. It also possible to control the format of the output using the `--format` option; this can take either of the values `html` or `text`, with `text` being the default. An example of the text output is shown here:
 
 ```
 $> ndb_size.pl --database=test --socket=/tmp/mysql.sock
@@ -143,40 +98,20 @@ Parameter Minimum Requirements
              NoOfTriggers         768          5           5           5
 ```
 
-For debugging purposes, the Perl arrays containing the queries
-run by this script can be read from the file specified using can
-be saved to a file using `--savequeries`; a file
-containing such arrays to be read during script execution can be
-specified using `--loadqueries`. Neither of these
-options has a default value.
+For debugging purposes, the Perl arrays containing the queries run by this script can be read from the file specified using can be saved to a file using `--savequeries`; a file containing such arrays to be read during script execution can be specified using `--loadqueries`. Neither of these options has a default value.
 
-To produce output in HTML format, use the
-`--format` option and redirect the output to a
-file, as shown here:
+To produce output in HTML format, use the `--format` option and redirect the output to a file, as shown here:
 
 ```
 $> ndb_size.pl --database=test --socket=/tmp/mysql.sock --format=html > ndb_size.html
 ```
 
-(Without the redirection, the output is sent to
-`stdout`.)
+(Without the redirection, the output is sent to `stdout`.)
 
 The output from this script includes the following information:
 
-* Minimum values for the
-  [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory),
-  [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory),
-  [`MaxNoOfTables`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooftables),
-  [`MaxNoOfAttributes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofattributes),
-  [`MaxNoOfOrderedIndexes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooforderedindexes),
-  and [`MaxNoOfTriggers`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooftriggers)
-  configuration parameters required to accommodate the tables
-  analyzed.
+* Minimum values for the `DataMemory`, `IndexMemory`, `MaxNoOfTables`, `MaxNoOfAttributes`, `MaxNoOfOrderedIndexes`, and `MaxNoOfTriggers` configuration parameters required to accommodate the tables analyzed.
 
-* Memory requirements for all of the tables, attributes,
-  ordered indexes, and unique hash indexes defined in the
-  database.
+* Memory requirements for all of the tables, attributes, ordered indexes, and unique hash indexes defined in the database.
 
-* The [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory) and
-  [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) required
-  per table and table row.
+* The `IndexMemory` and `DataMemory` required per table and table row.

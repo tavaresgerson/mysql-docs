@@ -1,36 +1,24 @@
 ## 26.5 Partition Selection
 
-Explicit selection of partitions and subpartitions for rows
-matching a given `WHERE` condition is supported.
-Partition selection is similar to partition pruning, in that only
-specific partitions are checked for matches, but differs in two
-key respects:
+Explicit selection of partitions and subpartitions for rows matching a given `WHERE` condition is supported. Partition selection is similar to partition pruning, in that only specific partitions are checked for matches, but differs in two key respects:
 
-1. The partitions to be checked are specified by the issuer of
-   the statement, unlike partition pruning, which is automatic.
+1. The partitions to be checked are specified by the issuer of the statement, unlike partition pruning, which is automatic.
 
-2. Whereas partition pruning applies only to queries, explicit
-   selection of partitions is supported for both queries and a
-   number of DML statements.
+2. Whereas partition pruning applies only to queries, explicit selection of partitions is supported for both queries and a number of DML statements.
 
-SQL statements supporting explicit partition selection are listed
-here:
+SQL statements supporting explicit partition selection are listed here:
 
-* [`SELECT`](select.html "15.2.13 SELECT Statement")
-* [`DELETE`](delete.html "15.2.2 DELETE Statement")
-* [`INSERT`](insert.html "15.2.7 INSERT Statement")
-* [`REPLACE`](replace.html "15.2.12 REPLACE Statement")
-* [`UPDATE`](update.html "15.2.17 UPDATE Statement")
-* [`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement").
-* [`LOAD XML`](load-xml.html "15.2.10 LOAD XML Statement").
+* `SELECT`
+* `DELETE`
+* `INSERT`
+* `REPLACE`
+* `UPDATE`
+* `LOAD DATA`.
+* `LOAD XML`.
 
-The remainder of this section discusses explicit partition
-selection as it applies generally to the statements just listed,
-and provides some examples.
+The remainder of this section discusses explicit partition selection as it applies generally to the statements just listed, and provides some examples.
 
-Explicit partition selection is implemented using a
-`PARTITION` option. For all supported statements,
-this option uses the syntax shown here:
+Explicit partition selection is implemented using a `PARTITION` option. For all supported statements, this option uses the syntax shown here:
 
 ```
       PARTITION (partition_names)
@@ -39,24 +27,9 @@ this option uses the syntax shown here:
           partition_name, ...
 ```
 
-This option always follows the name of the table to which the
-partition or partitions belong.
-*`partition_names`* is a comma-separated
-list of partitions or subpartitions to be used. Each name in this
-list must be the name of an existing partition or subpartition of
-the specified table; if any of the partitions or subpartitions are
-not found, the statement fails with an error (partition
-'*`partition_name`*' doesn't
-exist). Partitions and subpartitions named in
-*`partition_names`* may be listed in any
-order, and may overlap.
+This option always follows the name of the table to which the partition or partitions belong. *`partition_names`* is a comma-separated list of partitions or subpartitions to be used. Each name in this list must be the name of an existing partition or subpartition of the specified table; if any of the partitions or subpartitions are not found, the statement fails with an error (partition '*`partition_name`*' doesn't exist). Partitions and subpartitions named in *`partition_names`* may be listed in any order, and may overlap.
 
-When the `PARTITION` option is used, only the
-partitions and subpartitions listed are checked for matching rows.
-This option can be used in a [`SELECT`](select.html "15.2.13 SELECT Statement")
-statement to determine which rows belong to a given partition.
-Consider a partitioned table named `employees`,
-created and populated using the statements shown here:
+When the `PARTITION` option is used, only the partitions and subpartitions listed are checked for matching rows. This option can be used in a `SELECT` statement to determine which rows belong to a given partition. Consider a partitioned table named `employees`, created and populated using the statements shown here:
 
 ```
 SET @@SQL_MODE = '';
@@ -87,8 +60,7 @@ INSERT INTO employees VALUES
     ('', 'Mark', 'Morgan', 3, 3), ('', 'Karen', 'Cole', 3, 2);
 ```
 
-You can see which rows are stored in partition
-`p1` like this:
+You can see which rows are stored in partition `p1` like this:
 
 ```
 mysql> SELECT * FROM employees PARTITION (p1);
@@ -104,24 +76,11 @@ mysql> SELECT * FROM employees PARTITION (p1);
 5 rows in set (0.00 sec)
 ```
 
-The result is the same as obtained by the query `SELECT *
-FROM employees WHERE id BETWEEN 5 AND 9`.
+The result is the same as obtained by the query `SELECT * FROM employees WHERE id BETWEEN 5 AND 9`.
 
-To obtain rows from multiple partitions, supply their names as a
-comma-delimited list. For example, `SELECT * FROM
-employees PARTITION (p1, p2)` returns all rows from
-partitions `p1` and `p2` while
-excluding rows from the remaining partitions.
+To obtain rows from multiple partitions, supply their names as a comma-delimited list. For example, `SELECT * FROM employees PARTITION (p1, p2)` returns all rows from partitions `p1` and `p2` while excluding rows from the remaining partitions.
 
-Any valid query against a partitioned table can be rewritten with
-a `PARTITION` option to restrict the result to
-one or more desired partitions. You can use
-`WHERE` conditions, `ORDER BY`
-and `LIMIT` options, and so on. You can also use
-aggregate functions with `HAVING` and
-`GROUP BY` options. Each of the following queries
-produces a valid result when run on the
-`employees` table as previously defined:
+Any valid query against a partitioned table can be rewritten with a `PARTITION` option to restrict the result to one or more desired partitions. You can use `WHERE` conditions, `ORDER BY` and `LIMIT` options, and so on. You can also use aggregate functions with `HAVING` and `GROUP BY` options. Each of the following queries produces a valid result when run on the `employees` table as previously defined:
 
 ```
 mysql> SELECT * FROM employees PARTITION (p0, p2)
@@ -158,28 +117,7 @@ mysql> SELECT store_id, COUNT(department_id) AS c
 2 rows in set (0.00 sec)
 ```
 
-Statements using partition selection can be employed with tables
-using any of the supported partitioning types. When a table is
-created using `[LINEAR] HASH` or
-`[LINEAR] KEY` partitioning and the names of the
-partitions are not specified, MySQL automatically names the
-partitions `p0`, `p1`,
-`p2`, ...,
-`pN-1`, where
-*`N`* is the number of partitions. For
-subpartitions not explicitly named, MySQL assigns automatically to
-the subpartitions in each partition
-`pX` the names
-`pXsp0`,
-`pXsp1`,
-`pXsp2`, ...,
-`pXspM-1`,
-where *`M`* is the number of subpartitions.
-When executing against this table a
-[`SELECT`](select.html "15.2.13 SELECT Statement") (or other SQL statement for
-which explicit partition selection is allowed), you can use these
-generated names in a `PARTITION` option, as shown
-here:
+Statements using partition selection can be employed with tables using any of the supported partitioning types. When a table is created using `[LINEAR] HASH` or `[LINEAR] KEY` partitioning and the names of the partitions are not specified, MySQL automatically names the partitions `p0`, `p1`, `p2`, ..., `pN-1`, where *`N`* is the number of partitions. For subpartitions not explicitly named, MySQL assigns automatically to the subpartitions in each partition `pX` the names `pXsp0`, `pXsp1`, `pXsp2`, ..., `pXspM-1`, where *`M`* is the number of subpartitions. When executing against this table a `SELECT` (or other SQL statement for which explicit partition selection is allowed), you can use these generated names in a `PARTITION` option, as shown here:
 
 ```
 mysql> CREATE TABLE employees_sub  (
@@ -216,10 +154,7 @@ mysql> SELECT id, CONCAT(fname, ' ', lname) AS name
 2 rows in set (0.00 sec)
 ```
 
-You may also use a `PARTITION` option in the
-[`SELECT`](select.html "15.2.13 SELECT Statement") portion of an
-[`INSERT ...
-SELECT`](insert-select.html "15.2.7.1 INSERT ... SELECT Statement") statement, as shown here:
+You may also use a `PARTITION` option in the `SELECT` portion of an [`INSERT ... SELECT`](insert-select.html "15.2.7.1 INSERT ... SELECT Statement") statement, as shown here:
 
 ```
 mysql> CREATE TABLE employees_copy LIKE employees;
@@ -243,8 +178,7 @@ mysql> SELECT * FROM employees_copy;
 5 rows in set (0.00 sec)
 ```
 
-Partition selection can also be used with joins. Suppose we create
-and populate two tables using the statements shown here:
+Partition selection can also be used with joins. Suppose we create and populate two tables using the statements shown here:
 
 ```
 CREATE TABLE stores (
@@ -270,17 +204,7 @@ INSERT INTO departments VALUES
     ('', 'Delivery'), ('', 'Accounting');
 ```
 
-You can explicitly select partitions (or subpartitions, or both)
-from any or all of the tables in a join. (The
-`PARTITION` option used to select partitions from
-a given table immediately follows the name of the table, before
-all other options, including any table alias.) For example, the
-following query gets the name, employee ID, department, and city
-of all employees who work in the Sales or Delivery department
-(partition `p1` of the
-`departments` table) at the stores in either of
-the cities of Nambucca and Bellingen (partition
-`p0` of the `stores` table):
+You can explicitly select partitions (or subpartitions, or both) from any or all of the tables in a join. (The `PARTITION` option used to select partitions from a given table immediately follows the name of the table, before all other options, including any table alias.) For example, the following query gets the name, employee ID, department, and city of all employees who work in the Sales or Delivery department (partition `p1` of the `departments` table) at the stores in either of the cities of Nambucca and Bellingen (partition `p0` of the `stores` table):
 
 ```
 mysql> SELECT
@@ -302,14 +226,9 @@ mysql> SELECT
 5 rows in set (0.00 sec)
 ```
 
-For general information about joins in MySQL, see
-[Section 15.2.13.2, “JOIN Clause”](join.html "15.2.13.2 JOIN Clause").
+For general information about joins in MySQL, see Section 15.2.13.2, “JOIN Clause”.
 
-When the `PARTITION` option is used with
-[`DELETE`](delete.html "15.2.2 DELETE Statement") statements, only those
-partitions (and subpartitions, if any) listed with the option are
-checked for rows to be deleted. Any other partitions are ignored,
-as shown here:
+When the `PARTITION` option is used with `DELETE` statements, only those partitions (and subpartitions, if any) listed with the option are checked for rows to be deleted. Any other partitions are ignored, as shown here:
 
 ```
 mysql> SELECT * FROM employees WHERE fname LIKE 'j%';
@@ -335,19 +254,9 @@ mysql> SELECT * FROM employees WHERE fname LIKE 'j%';
 1 row in set (0.00 sec)
 ```
 
-Only the two rows in partitions `p0` and
-`p1` matching the `WHERE`
-condition were deleted. As you can see from the result when the
-[`SELECT`](select.html "15.2.13 SELECT Statement") is run a second time, there
-remains a row in the table matching the `WHERE`
-condition, but residing in a different partition
-(`p2`).
+Only the two rows in partitions `p0` and `p1` matching the `WHERE` condition were deleted. As you can see from the result when the `SELECT` is run a second time, there remains a row in the table matching the `WHERE` condition, but residing in a different partition (`p2`).
 
-[`UPDATE`](update.html "15.2.17 UPDATE Statement") statements using explicit
-partition selection behave in the same way; only rows in the
-partitions referenced by the `PARTITION` option
-are considered when determining the rows to be updated, as can be
-seen by executing the following statements:
+`UPDATE` statements using explicit partition selection behave in the same way; only rows in the partitions referenced by the `PARTITION` option are considered when determining the rows to be updated, as can be seen by executing the following statements:
 
 ```
 mysql> UPDATE employees PARTITION (p0)
@@ -377,15 +286,9 @@ mysql> SELECT * FROM employees WHERE fname = 'Jill';
 1 row in set (0.00 sec)
 ```
 
-In the same way, when `PARTITION` is used with
-[`DELETE`](delete.html "15.2.2 DELETE Statement"), only rows in the partition
-or partitions named in the partition list are checked for
-deletion.
+In the same way, when `PARTITION` is used with `DELETE`, only rows in the partition or partitions named in the partition list are checked for deletion.
 
-For statements that insert rows, the behavior differs in that
-failure to find a suitable partition causes the statement to fail.
-This is true for both [`INSERT`](insert.html "15.2.7 INSERT Statement") and
-[`REPLACE`](replace.html "15.2.12 REPLACE Statement") statements, as shown here:
+For statements that insert rows, the behavior differs in that failure to find a suitable partition causes the statement to fail. This is true for both `INSERT` and `REPLACE` statements, as shown here:
 
 ```
 mysql> INSERT INTO employees PARTITION (p2) VALUES (20, 'Jan', 'Jones', 1, 3);
@@ -400,15 +303,7 @@ mysql> REPLACE INTO employees PARTITION (p3) VALUES (20, 'Jan', 'Jones', 3, 2);
 Query OK, 2 rows affected (0.09 sec)
 ```
 
-For statements that write multiple rows to a partitioned table
-that using the [`InnoDB`](innodb-storage-engine.html "Chapter 17 The InnoDB Storage Engine") storage engine:
-If any row in the list following `VALUES` cannot
-be written to one of the partitions specified in the
-*`partition_names`* list, the entire
-statement fails and no rows are written. This is shown for
-[`INSERT`](insert.html "15.2.7 INSERT Statement") statements in the following
-example, reusing the `employees` table created
-previously:
+For statements that write multiple rows to a partitioned table that using the `InnoDB` storage engine: If any row in the list following `VALUES` cannot be written to one of the partitions specified in the *`partition_names`* list, the entire statement fails and no rows are written. This is shown for `INSERT` statements in the following example, reusing the `employees` table created previously:
 
 ```
 mysql> ALTER TABLE employees
@@ -450,11 +345,6 @@ Query OK, 2 rows affected (0.06 sec)
 Records: 2  Duplicates: 0  Warnings: 0
 ```
 
-The preceding is true for both
-[`INSERT`](insert.html "15.2.7 INSERT Statement") statements and
-[`REPLACE`](replace.html "15.2.12 REPLACE Statement") statements that write
-multiple rows.
+The preceding is true for both `INSERT` statements and `REPLACE` statements that write multiple rows.
 
-Partition selection is disabled for tables employing a storage
-engine that supplies automatic partitioning, such as
-`NDB`.
+Partition selection is disabled for tables employing a storage engine that supplies automatic partitioning, such as `NDB`.

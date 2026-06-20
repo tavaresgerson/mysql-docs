@@ -1,7 +1,6 @@
 #### 30.4.5.22 The version\_patch() Function
 
-This function returns the patch release version of the MySQL
-server.
+This function returns the patch release version of the MySQL server.
 
 ##### Parameters
 

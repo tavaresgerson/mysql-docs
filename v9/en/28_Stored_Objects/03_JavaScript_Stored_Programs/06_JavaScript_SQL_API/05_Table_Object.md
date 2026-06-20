@@ -2,27 +2,16 @@
 
 The `Table` object represents a database table
 
-* `existsInDatabase()`: Returns
-  `true` if the table exists in the current
-  database, otherwise `false`.
+* `existsInDatabase()`: Returns `true` if the table exists in the current database, otherwise `false`.
 
-* `count()`: Returns the number of rows in
-  this table if it exists in the current database, otherwise
-  throws an error.
+* `count()`: Returns the number of rows in this table if it exists in the current database, otherwise throws an error.
 
-* `isView()`: Returns `true`
-  if the table is a view, otherwise `false`.
+* `isView()`: Returns `true` if the table is a view, otherwise `false`.
 
-  See also [Section 27.6, “Using Views”](views.html "27.6 Using Views"), for further information
-  about database views in MySQL.
+  See also Section 27.6, “Using Views”, for further information about database views in MySQL.
 
-* `getName()`: Returns the name of the
-  `Table` (a `String`).
+* `getName()`: Returns the name of the `Table` (a `String`).
 
-* `getName()`: Returns the
-  [`Schema`](srjsapi-schema.html "27.3.6.4 Schema Object") in which this table
-  resides.
+* `getName()`: Returns the `Schema` in which this table resides.
 
-* `getSession()`: Returns the
-  [`Session`](srjsapi-session.html "27.3.6.1 Session Object") object
-  corresponding to the current session.
+* `getSession()`: Returns the `Session` object corresponding to the current session.

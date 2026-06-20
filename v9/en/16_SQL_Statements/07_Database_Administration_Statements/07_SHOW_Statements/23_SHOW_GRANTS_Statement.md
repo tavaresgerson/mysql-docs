@@ -11,26 +11,15 @@ user_or_role: {
 }
 ```
 
-This statement displays the privileges and roles that are
-assigned to a MySQL user account or role, in the form of
-[`GRANT`](grant.html "15.7.1.6 GRANT Statement") statements that must be
-executed to duplicate the privilege and role assignments.
+This statement displays the privileges and roles that are assigned to a MySQL user account or role, in the form of `GRANT` statements that must be executed to duplicate the privilege and role assignments.
 
 Note
 
-To display nonprivilege information for MySQL accounts, use
-the [`SHOW CREATE USER`](show-create-user.html "15.7.7.14 SHOW CREATE USER Statement") statement.
-See [Section 15.7.7.14, “SHOW CREATE USER Statement”](show-create-user.html "15.7.7.14 SHOW CREATE USER Statement").
+To display nonprivilege information for MySQL accounts, use the `SHOW CREATE USER` statement. See Section 15.7.7.14, “SHOW CREATE USER Statement”.
 
-[`SHOW GRANTS`](show-grants.html "15.7.7.23 SHOW GRANTS Statement") requires the
-[`SELECT`](privileges-provided.html#priv_select) privilege for the
-`mysql` system schema, except to display
-privileges and roles for the current user.
+`SHOW GRANTS` requires the `SELECT` privilege for the `mysql` system schema, except to display privileges and roles for the current user.
 
-To name the account or role for [`SHOW
-GRANTS`](show-grants.html "15.7.7.23 SHOW GRANTS Statement"), use the same format as for the
-[`GRANT`](grant.html "15.7.1.6 GRANT Statement") statement (for example,
-`'jeffrey'@'localhost'`):
+To name the account or role for [`SHOW GRANTS`](show-grants.html "15.7.7.23 SHOW GRANTS Statement"), use the same format as for the `GRANT` statement (for example, `'jeffrey'@'localhost'`):
 
 ```
 mysql> SHOW GRANTS FOR 'jeffrey'@'localhost';
@@ -42,14 +31,9 @@ mysql> SHOW GRANTS FOR 'jeffrey'@'localhost';
 +------------------------------------------------------------------+
 ```
 
-The host part, if omitted, defaults to `'%'`.
-For additional information about specifying account and role
-names, see [Section 8.2.4, “Specifying Account Names”](account-names.html "8.2.4 Specifying Account Names"), and
-[Section 8.2.5, “Specifying Role Names”](role-names.html "8.2.5 Specifying Role Names").
+The host part, if omitted, defaults to `'%'`. For additional information about specifying account and role names, see Section 8.2.4, “Specifying Account Names”, and Section 8.2.5, “Specifying Role Names”.
 
-To display the privileges granted to the current user (the
-account you are using to connect to the server), you can use any
-of the following statements:
+To display the privileges granted to the current user (the account you are using to connect to the server), you can use any of the following statements:
 
 ```
 SHOW GRANTS;
@@ -57,20 +41,9 @@ SHOW GRANTS FOR CURRENT_USER;
 SHOW GRANTS FOR CURRENT_USER();
 ```
 
-If `SHOW GRANTS FOR CURRENT_USER` (or any
-equivalent syntax) is used in definer context, such as within a
-stored procedure that executes with definer rather than invoker
-privileges, the grants displayed are those of the definer and
-not the invoker.
+If `SHOW GRANTS FOR CURRENT_USER` (or any equivalent syntax) is used in definer context, such as within a stored procedure that executes with definer rather than invoker privileges, the grants displayed are those of the definer and not the invoker.
 
-In MySQL 9.5 compared to previous series,
-[`SHOW GRANTS`](show-grants.html "15.7.7.23 SHOW GRANTS Statement") no longer displays
-[`ALL PRIVILEGES`](privileges-provided.html#priv_all) in
-its global-privileges output because the meaning of
-[`ALL PRIVILEGES`](privileges-provided.html#priv_all) at
-the global level varies depending on which dynamic privileges
-are defined. Instead, [`SHOW GRANTS`](show-grants.html "15.7.7.23 SHOW GRANTS Statement")
-explicitly lists each granted global privilege:
+In MySQL 9.5 compared to previous series, `SHOW GRANTS` no longer displays `ALL PRIVILEGES` in its global-privileges output because the meaning of `ALL PRIVILEGES` at the global level varies depending on which dynamic privileges are defined. Instead, `SHOW GRANTS` explicitly lists each granted global privilege:
 
 ```
 mysql> SHOW GRANTS FOR 'root'@'localhost';
@@ -88,37 +61,19 @@ mysql> SHOW GRANTS FOR 'root'@'localhost';
 +---------------------------------------------------------------------+
 ```
 
-Applications that process [`SHOW
-GRANTS`](show-grants.html "15.7.7.23 SHOW GRANTS Statement") output should be adjusted accordingly.
+Applications that process [`SHOW GRANTS`](show-grants.html "15.7.7.23 SHOW GRANTS Statement") output should be adjusted accordingly.
 
-At the global level, [`GRANT OPTION`](privileges-provided.html#priv_grant-option)
-applies to all granted static global privileges if granted for
-any of them, but applies individually to granted dynamic
-privileges. [`SHOW GRANTS`](show-grants.html "15.7.7.23 SHOW GRANTS Statement") displays
-global privileges this way:
+At the global level, `GRANT OPTION` applies to all granted static global privileges if granted for any of them, but applies individually to granted dynamic privileges. `SHOW GRANTS` displays global privileges this way:
 
-* One line listing all granted static privileges, if there are
-  any, including `WITH GRANT OPTION` if
-  appropriate.
+* One line listing all granted static privileges, if there are any, including `WITH GRANT OPTION` if appropriate.
 
-* One line listing all granted dynamic privileges for which
-  [`GRANT OPTION`](privileges-provided.html#priv_grant-option) is granted, if
-  there are any, including `WITH GRANT
-  OPTION`.
+* One line listing all granted dynamic privileges for which `GRANT OPTION` is granted, if there are any, including `WITH GRANT OPTION`.
 
-* One line listing all granted dynamic privileges for which
-  [`GRANT OPTION`](privileges-provided.html#priv_grant-option) is not granted,
-  if there are any, without `WITH GRANT
-  OPTION`.
+* One line listing all granted dynamic privileges for which `GRANT OPTION` is not granted, if there are any, without `WITH GRANT OPTION`.
 
-With the optional `USING` clause,
-[`SHOW GRANTS`](show-grants.html "15.7.7.23 SHOW GRANTS Statement") enables you to
-examine the privileges associated with roles for the user. Each
-role named in the `USING` clause must be
-granted to the user.
+With the optional `USING` clause, `SHOW GRANTS` enables you to examine the privileges associated with roles for the user. Each role named in the `USING` clause must be granted to the user.
 
-Suppose that user `u1` is assigned roles
-`r1` and `r2`, as follows:
+Suppose that user `u1` is assigned roles `r1` and `r2`, as follows:
 
 ```
 CREATE ROLE 'r1', 'r2';
@@ -128,8 +83,7 @@ CREATE USER 'u1'@'localhost' IDENTIFIED BY 'u1pass';
 GRANT 'r1', 'r2' TO 'u1'@'localhost';
 ```
 
-[`SHOW GRANTS`](show-grants.html "15.7.7.23 SHOW GRANTS Statement") without
-`USING` shows the granted roles:
+`SHOW GRANTS` without `USING` shows the granted roles:
 
 ```
 mysql> SHOW GRANTS FOR 'u1'@'localhost';
@@ -141,9 +95,7 @@ mysql> SHOW GRANTS FOR 'u1'@'localhost';
 +---------------------------------------------+
 ```
 
-Adding a `USING` clause causes the statement to
-also display the privileges associated with each role named in
-the clause:
+Adding a `USING` clause causes the statement to also display the privileges associated with each role named in the clause:
 
 ```
 mysql> SHOW GRANTS FOR 'u1'@'localhost' USING 'r1';
@@ -174,20 +126,9 @@ mysql> SHOW GRANTS FOR 'u1'@'localhost' USING 'r1', 'r2';
 
 Note
 
-A privilege granted to an account is always in effect, but a
-role is not. The active roles for an account can differ across
-and within sessions, depending on the value of the
-[`activate_all_roles_on_login`](server-system-variables.html#sysvar_activate_all_roles_on_login)
-system variable, the account default roles, and whether
-[`SET ROLE`](set-role.html "15.7.1.11 SET ROLE Statement") has been executed
-within a session.
+A privilege granted to an account is always in effect, but a role is not. The active roles for an account can differ across and within sessions, depending on the value of the `activate_all_roles_on_login` system variable, the account default roles, and whether `SET ROLE` has been executed within a session.
 
-MySQL supports partial revocation of global privileges, such
-that a global privilege can be restricted from applying to
-particular schemas (see [Section 8.2.12, “Privilege Restriction Using Partial Revokes”](partial-revokes.html "8.2.12 Privilege Restriction Using Partial Revokes")). To
-indicate which global schema privileges have been revoked for
-particular schemas, `SHOW GRANTS` output
-includes `REVOKE` statements:
+MySQL supports partial revocation of global privileges, such that a global privilege can be restricted from applying to particular schemas (see Section 8.2.12, “Privilege Restriction Using Partial Revokes”). To indicate which global schema privileges have been revoked for particular schemas, `SHOW GRANTS` output includes `REVOKE` statements:
 
 ```
 mysql> SET PERSIST partial_revokes = ON;
@@ -205,37 +146,14 @@ mysql> SHOW GRANTS FOR u1;
 +--------------------------------------------------+
 ```
 
-[`SHOW GRANTS`](show-grants.html "15.7.7.23 SHOW GRANTS Statement") does not display
-privileges that are available to the named account but are
-granted to a different account. For example, if an anonymous
-account exists, the named account might be able to use its
-privileges, but [`SHOW GRANTS`](show-grants.html "15.7.7.23 SHOW GRANTS Statement") does
-not display them.
+`SHOW GRANTS` does not display privileges that are available to the named account but are granted to a different account. For example, if an anonymous account exists, the named account might be able to use its privileges, but `SHOW GRANTS` does not display them.
 
-[`SHOW GRANTS`](show-grants.html "15.7.7.23 SHOW GRANTS Statement") displays mandatory
-roles named in the
-[`mandatory_roles`](server-system-variables.html#sysvar_mandatory_roles) system variable
-value as follows:
+`SHOW GRANTS` displays mandatory roles named in the `mandatory_roles` system variable value as follows:
 
-* [`SHOW GRANTS`](show-grants.html "15.7.7.23 SHOW GRANTS Statement") without a
-  `FOR` clause displays privileges for the
-  current user, and includes mandatory roles.
+* `SHOW GRANTS` without a `FOR` clause displays privileges for the current user, and includes mandatory roles.
 
-* [`SHOW GRANTS FOR
-  user`](show-grants.html "15.7.7.23 SHOW GRANTS Statement") displays
-  privileges for the named user, and does not include
-  mandatory roles.
+* [`SHOW GRANTS FOR user`](show-grants.html "15.7.7.23 SHOW GRANTS Statement") displays privileges for the named user, and does not include mandatory roles.
 
-This behavior is for the benefit of applications that use the
-output of [`SHOW
-GRANTS FOR user`](show-grants.html "15.7.7.23 SHOW GRANTS Statement") to
-determine which privileges are granted explicitly to the named
-user. Were that output to include mandatory roles, it would be
-difficult to distinguish roles granted explicitly to the user
-from mandatory roles.
+This behavior is for the benefit of applications that use the output of [`SHOW GRANTS FOR user`](show-grants.html "15.7.7.23 SHOW GRANTS Statement") to determine which privileges are granted explicitly to the named user. Were that output to include mandatory roles, it would be difficult to distinguish roles granted explicitly to the user from mandatory roles.
 
-For the current user, applications can determine privileges with
-or without mandatory roles by using [`SHOW
-GRANTS`](show-grants.html "15.7.7.23 SHOW GRANTS Statement") or
-[`SHOW GRANTS FOR
-CURRENT_USER`](show-grants.html "15.7.7.23 SHOW GRANTS Statement"), respectively.
+For the current user, applications can determine privileges with or without mandatory roles by using [`SHOW GRANTS`](show-grants.html "15.7.7.23 SHOW GRANTS Statement") or [`SHOW GRANTS FOR CURRENT_USER`](show-grants.html "15.7.7.23 SHOW GRANTS Statement"), respectively.

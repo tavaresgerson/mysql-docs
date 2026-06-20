@@ -1,10 +1,9 @@
 ## 35.1 Installing OpenTelemetry Support
 
-This section describes the installation of the server and client
-OpenTelemetry support.
+This section describes the installation of the server and client OpenTelemetry support.
 
-* [Installing Server Component](telemetry-trace-install.html#telemetry-trace-install-server "Installing Server Component")
-* [Installing Client Plugin](telemetry-trace-install.html#telemetry-trace-install-client "Installing Client Plugin")
+* Installing Server Component
+* Installing Client Plugin
 
 ### Installing Server Component
 
@@ -14,8 +13,7 @@ To install the server component, run the following command:
 install component 'file://component_telemetry';
 ```
 
-To confirm the component is present in your server, run the
-following query:
+To confirm the component is present in your server, run the following query:
 
 ```
 mysql> select * from mysql.component;
@@ -28,12 +26,9 @@ mysql> select * from mysql.component;
 +--------------+--------------------+---------------------------------+
 ```
 
-If `component_telemetry` is present in the
-`component_urn` column, the component is
-installed.
+If `component_telemetry` is present in the `component_urn` column, the component is installed.
 
-The component installation also adds telemetry-specific system
-variables.
+The component installation also adds telemetry-specific system variables.
 
 ```
 mysql> show variables like "%telemetry%";
@@ -96,9 +91,4 @@ mysql> show variables like "%telemetry%";
 
 ### Installing Client Plugin
 
-The Telemetry plugin for the MySQL client can be enabled with a
-command line switch,
-[`--telemetry_client`](mysql-command-options.html#option_mysql_telemetry_client) or from a
-configuration option, `telemetry-client=ON
-|OFF`, defined in the `[mysql]`
-section of the configuration file.
+The Telemetry plugin for the MySQL client can be enabled with a command line switch, `--telemetry_client` or from a configuration option, `telemetry-client=ON |OFF`, defined in the `[mysql]` section of the configuration file.

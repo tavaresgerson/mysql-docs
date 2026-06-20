@@ -1,11 +1,6 @@
 #### 19.1.2.7 Setting the Source Configuration on the Replica
 
-To set up the replica to communicate with the source for
-replication, configure the replica with the necessary connection
-information. To do this, on the replica, execute the following
-[`CHANGE REPLICATION SOURCE TO`](change-replication-source-to.html "15.4.2.2 CHANGE REPLICATION SOURCE TO Statement")
-statement, replacing the option values with the actual values
-relevant to your system:
+To set up the replica to communicate with the source for replication, configure the replica with the necessary connection information. To do this, on the replica, execute the following `CHANGE REPLICATION SOURCE TO` statement, replacing the option values with the actual values relevant to your system:
 
 ```
 mysql> CHANGE REPLICATION SOURCE TO
@@ -18,25 +13,10 @@ mysql> CHANGE REPLICATION SOURCE TO
 
 Note
 
-Replication cannot use Unix socket files. You must be able to
-connect to the source MySQL server using TCP/IP.
+Replication cannot use Unix socket files. You must be able to connect to the source MySQL server using TCP/IP.
 
-The [`CHANGE REPLICATION SOURCE TO`](change-replication-source-to.html "15.4.2.2 CHANGE REPLICATION SOURCE TO Statement")
-statement has other options as well. For example, it is possible
-to set up secure replication using SSL. For a full list of
-options, and information about the maximum permissible length
-for the string-valued options, see
-[Section 15.4.2.2, “CHANGE REPLICATION SOURCE TO Statement”](change-replication-source-to.html "15.4.2.2 CHANGE REPLICATION SOURCE TO Statement").
+The `CHANGE REPLICATION SOURCE TO` statement has other options as well. For example, it is possible to set up secure replication using SSL. For a full list of options, and information about the maximum permissible length for the string-valued options, see Section 15.4.2.2, “CHANGE REPLICATION SOURCE TO Statement”.
 
 Important
 
-As noted in [Section 19.1.2.3, “Creating a User for Replication”](replication-howto-repuser.html "19.1.2.3 Creating a User for Replication"), if
-you are not using a secure connection and the user account
-named in the `SOURCE_USER` option
-authenticates with the
-`caching_sha2_password` plugin (the default
-in MySQL 9.5), you must specify the
-`SOURCE_PUBLIC_KEY_PATH` or
-`GET_SOURCE_PUBLIC_KEY` option in the
-[`CHANGE REPLICATION SOURCE TO`](change-replication-source-to.html "15.4.2.2 CHANGE REPLICATION SOURCE TO Statement")
-statement to enable RSA key pair-based password exchange.
+As noted in Section 19.1.2.3, “Creating a User for Replication”, if you are not using a secure connection and the user account named in the `SOURCE_USER` option authenticates with the `caching_sha2_password` plugin (the default in MySQL 9.5), you must specify the `SOURCE_PUBLIC_KEY_PATH` or `GET_SOURCE_PUBLIC_KEY` option in the `CHANGE REPLICATION SOURCE TO` statement to enable RSA key pair-based password exchange.

@@ -1,17 +1,10 @@
 #### 6.5.8.2 Diagnostic Queries
 
-This section lists the diagnostic queries run by
-[**mysqldm**](mysqldm.html "6.5.8 mysqldm — The MySQL Diagnostic Monitor"). There are two sets of queries, one
-run once at the start of the diagnostics, and another run
-iteratively for the defined number of iterations and the defined
-delay between each iteration.
+This section lists the diagnostic queries run by **mysqldm**. There are two sets of queries, one run once at the start of the diagnostics, and another run iteratively for the defined number of iterations and the defined delay between each iteration.
 
-The following lists the queries run once when
-[**mysqldm**](mysqldm.html "6.5.8 mysqldm — The MySQL Diagnostic Monitor") starts and the filenames their
-results are written to:
+The following lists the queries run once when **mysqldm** starts and the filenames their results are written to:
 
-* ```
-  SELECT NOW()
+* ``` SELECT NOW()
   ```
 
   `mysqldm_start_time.json`
@@ -21,8 +14,7 @@ results are written to:
 
   `show_global_variables.json`
 
-* ```
-  SELECT * FROM PERFORMANCE_SCHEMA.ERROR_LOG
+* ``` SELECT * FROM PERFORMANCE_SCHEMA.ERROR_LOG
   ```
 
   `error_log.json`
@@ -32,8 +24,7 @@ results are written to:
 
   `host_cache.json`
 
-* ```
-  SELECT * FROM PERFORMANCE_SCHEMA.PERSISTED_VARIABLES
+* ``` SELECT * FROM PERFORMANCE_SCHEMA.PERSISTED_VARIABLES
   ```
 
   `persisted_variables.json`
@@ -43,8 +34,7 @@ results are written to:
 
   `replication_applier_configuration.json`
 
-* ```
-  SELECT * FROM PERFORMANCE_SCHEMA.REPLICATION_APPLIER_FILTERS
+* ``` SELECT * FROM PERFORMANCE_SCHEMA.REPLICATION_APPLIER_FILTERS
   ```
 
   `replication_applier_filters.json`
@@ -54,8 +44,7 @@ results are written to:
 
   `replication_applier_global_filters.json`
 
-* ```
-  SELECT * FROM PERFORMANCE_SCHEMA.REPLICATION_APPLIER_STATUS
+* ``` SELECT * FROM PERFORMANCE_SCHEMA.REPLICATION_APPLIER_STATUS
   ```
 
   `replication_applier_status.json`
@@ -65,8 +54,7 @@ results are written to:
 
   `replication_applier_status_by_coordinator,json`
 
-* ```
-  SELECT * FROM PERFORMANCE_SCHEMA.REPLICATION_APPLIER_STATUS_BY_WORKER
+* ``` SELECT * FROM PERFORMANCE_SCHEMA.REPLICATION_APPLIER_STATUS_BY_WORKER
   ```
 
   `replication_applier_status_by_worker.json`
@@ -76,8 +64,7 @@ results are written to:
 
   `replication_asynchronous_connection_failover.json`
 
-* ```
-  SELECT * FROM PERFORMANCE_SCHEMA.REPLICATION_ASYNCHRONOUS_CONNECTION_FAILOVER_MANAGED
+* ``` SELECT * FROM PERFORMANCE_SCHEMA.REPLICATION_ASYNCHRONOUS_CONNECTION_FAILOVER_MANAGED
   ```
 
   `replication_asynchronous_connection_failover_managed.json`
@@ -87,8 +74,7 @@ results are written to:
 
   `replication_connection_configuration.json`
 
-* ```
-  SELECT * FROM PERFORMANCE_SCHEMA.REPLICATION_CONNECTION_STATUS
+* ``` SELECT * FROM PERFORMANCE_SCHEMA.REPLICATION_CONNECTION_STATUS
   ```
 
   `replication_connection_status.json`
@@ -98,8 +84,7 @@ results are written to:
 
   `replication_group_member_stats.json`
 
-* ```
-  SELECT * FROM PERFORMANCE_SCHEMA.REPLICATION_GROUP_MEMBERS
+* ``` SELECT * FROM PERFORMANCE_SCHEMA.REPLICATION_GROUP_MEMBERS
   ```
 
   `replication_group_members.json`
@@ -109,10 +94,7 @@ results are written to:
 
   `available_storage_engines.json`
 
-* ```
-  SELECT g.variable_name name, g.variable_value value, i.variable_source source
-              FROM performance_schema.global_variables g
-              JOIN performance_schema.variables_info i ON g.variable_name=i.variable_name ORDER BY name
+* ``` SELECT g.variable_name name, g.variable_value value, i.variable_source source FROM performance_schema.global_variables g JOIN performance_schema.variables_info i ON g.variable_name=i.variable_name ORDER BY name
   ```
 
   `global_variables_details.json`
@@ -122,8 +104,7 @@ results are written to:
 
   `xa_recover.json`
 
-* ```
-  SHOW ENGINE PERFORMANCE_SCHEMA STATUS
+* ``` SHOW ENGINE PERFORMANCE_SCHEMA STATUS
   ```
 
   `show_engine_performance_schema_status.json`
@@ -133,8 +114,7 @@ results are written to:
 
   `performance_schema_setup_actors.json`
 
-* ```
-  SELECT * FROM PERFORMANCE_SCHEMA.SETUP_OBJECTS
+* ``` SELECT * FROM PERFORMANCE_SCHEMA.SETUP_OBJECTS
   ```
 
   `performance_schema_setup_objects.json`
@@ -145,14 +125,7 @@ results are written to:
 
   `performance_schema_setup_consumers.json`
 
-* ```
-  SELECT
-              SUBSTRING_INDEX(NAME, '/', 2) AS 'InstrumentClass',
-              ROUND(100*SUM(IF(ENABLED = 'YES', 1, 0))/COUNT(*), 2) AS 'EnabledPct',
-              ROUND(100*SUM(IF(TIMED = 'YES', 1, 0))/COUNT(*), 2) AS 'TimedPct'
-              FROM PERFORMANCE_SCHEMA.SETUP_INSTRUMENTS
-              GROUP BY SUBSTRING_INDEX(NAME, '/', 2)
-              ORDER BY SUBSTRING_INDEX(NAME, '/', 2)
+* ``` SELECT SUBSTRING_INDEX(NAME, '/', 2) AS 'InstrumentClass', ROUND(100*SUM(IF(ENABLED = 'YES', 1, 0))/COUNT(*), 2) AS 'EnabledPct', ROUND(100*SUM(IF(TIMED = 'YES', 1, 0))/COUNT(*), 2) AS 'TimedPct' FROM PERFORMANCE_SCHEMA.SETUP_INSTRUMENTS GROUP BY SUBSTRING_INDEX(NAME, '/', 2) ORDER BY SUBSTRING_INDEX(NAME, '/', 2)
   ```
 
   `performance_schema_setup_instruments_enabled_pct.json`
@@ -167,26 +140,7 @@ results are written to:
 
   `performance_schema_thread_instrumented_pct.json`
 
-* ```
-  SELECT
-              @@GLOBAL.HOSTNAME AS `HOSTNAME`,
-              @@GLOBAL.PORT AS `PORT`,
-              @@GLOBAL.REPORT_HOST AS `REPORT HOST`,
-              @@GLOBAL.REPORT_PORT AS `REPORT PORT`,
-              @@GLOBAL.SOCKET AS `SOCKET`,
-              @@GLOBAL.DATADIR AS `DATADIR`,
-              @@GLOBAL.SERVER_UUID AS `SERVER UUID`,
-              @@GLOBAL.SERVER_ID AS `SERVER_ID`,
-              VERSION() AS `MYSQL VERSION`,
-              (SELECT SYS_VERSION FROM SYS.VERSION) AS `SYS SCHEMA VERSION`,
-              @@GLOBAL.VERSION_COMMENT AS `VERSION COMMENT`,
-              @@GLOBAL.VERSION_COMPILE_OS AS `VERSION COMPILE OS`,
-              @@GLOBAL.VERSION_COMPILE_MACHINE AS `VERSION COMPILE MACHINE`,
-              UTC_TIMESTAMP() AS `UTC TIME`,
-              NOW() AS `LOCAL TIME`,
-              @@TIME_ZONE AS `TIME ZONE`,
-              @@SYSTEM_TIME_ZONE AS `SYSTEM TIME ZONE`,
-              CAST(TIMEDIFF(NOW(), UTC_TIMESTAMP()) AS CHAR) AS `TIME ZONE OFFSET`)
+* ``` SELECT @@GLOBAL.HOSTNAME AS `HOSTNAME`, @@GLOBAL.PORT AS `PORT`, @@GLOBAL.REPORT_HOST AS `REPORT HOST`, @@GLOBAL.REPORT_PORT AS `REPORT PORT`, @@GLOBAL.SOCKET AS `SOCKET`, @@GLOBAL.DATADIR AS `DATADIR`, @@GLOBAL.SERVER_UUID AS `SERVER UUID`, @@GLOBAL.SERVER_ID AS `SERVER_ID`, VERSION() AS `MYSQL VERSION`, (SELECT SYS_VERSION FROM SYS.VERSION) AS `SYS SCHEMA VERSION`, @@GLOBAL.VERSION_COMMENT AS `VERSION COMMENT`, @@GLOBAL.VERSION_COMPILE_OS AS `VERSION COMPILE OS`, @@GLOBAL.VERSION_COMPILE_MACHINE AS `VERSION COMPILE MACHINE`, UTC_TIMESTAMP() AS `UTC TIME`, NOW() AS `LOCAL TIME`, @@TIME_ZONE AS `TIME ZONE`, @@SYSTEM_TIME_ZONE AS `SYSTEM TIME ZONE`, CAST(TIMEDIFF(NOW(), UTC_TIMESTAMP()) AS CHAR) AS `TIME ZONE OFFSET`)
   ```
 
   `"instance_summary.json`
@@ -196,25 +150,7 @@ results are written to:
 
   `engine_support.json`
 
-* ```
-  SELECT
-              IFNULL((SELECT SUPPORT
-              FROM INFORMATION_SCHEMA.ENGINES
-              WHERE ENGINE = 'INNODB'), 'NO') AS HAS_INNODB,
-              IFNULL((SELECT SUPPORT
-              FROM INFORMATION_SCHEMA.ENGINES
-              WHERE ENGINE = 'NDBCLUSTER'), 'NO') AS HAS_NDBCLUSTER,
-              IFNULL((SELECT SUPPORT
-              FROM INFORMATION_SCHEMA.ENGINES
-              WHERE ENGINE = 'PERFORMANCE_SCHEMA'), 'NO')
-              AS HAS_PERFORMANCE_SCHEMA,
-              IFNULL((SELECT SUPPORT
-              FROM INFORMATION_SCHEMA.ENGINES
-              WHERE ENGINE = 'PERFORMANCE_SCHEMA'), 'NO')
-              AS HAS_P_S_REPLICATION,
-              IF((SELECT COUNT(*)
-              FROM PERFORMANCE_SCHEMA.REPLICATION_CONNECTION_STATUS) > 0,
-              'YES', 'NO') AS 'HAS_REPLICATION'
+* ``` SELECT IFNULL((SELECT SUPPORT FROM INFORMATION_SCHEMA.ENGINES WHERE ENGINE = 'INNODB'), 'NO') AS HAS_INNODB, IFNULL((SELECT SUPPORT FROM INFORMATION_SCHEMA.ENGINES WHERE ENGINE = 'NDBCLUSTER'), 'NO') AS HAS_NDBCLUSTER, IFNULL((SELECT SUPPORT FROM INFORMATION_SCHEMA.ENGINES WHERE ENGINE = 'PERFORMANCE_SCHEMA'), 'NO') AS HAS_PERFORMANCE_SCHEMA, IFNULL((SELECT SUPPORT FROM INFORMATION_SCHEMA.ENGINES WHERE ENGINE = 'PERFORMANCE_SCHEMA'), 'NO') AS HAS_P_S_REPLICATION, IF((SELECT COUNT(*) FROM PERFORMANCE_SCHEMA.REPLICATION_CONNECTION_STATUS) > 0, 'YES', 'NO') AS 'HAS_REPLICATION'
   ```
 
   `engine_summary.json`
@@ -231,8 +167,7 @@ results are written to:
 
   `engine_table_usage_summary.json`
 
-* ```
-  SELECT * FROM SYS.SCHEMA_OBJECT_OVERVIEW
+* ``` SELECT * FROM SYS.SCHEMA_OBJECT_OVERVIEW
   ```
 
   `sys_schema_object_overview.json`
@@ -242,13 +177,7 @@ results are written to:
 
   `sys_host_summary.json`
 
-* ```
-  SELECT TABLE_SCHEMA, COUNT(*)
-              FROM INFORMATION_SCHEMA.TABLES
-              WHERE
-              TABLE_SCHEMA NOT IN
-              ('PERFORMANCE_SCHEMA', 'SYS', 'MYSQL', 'INFORMATION_SCHEMA'))
-              GROUP BY TABLE_SCHEMA
+* ``` SELECT TABLE_SCHEMA, COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA NOT IN ('PERFORMANCE_SCHEMA', 'SYS', 'MYSQL', 'INFORMATION_SCHEMA')) GROUP BY TABLE_SCHEMA
   ```
 
   `table_count.json`
@@ -261,9 +190,7 @@ results are written to:
 
   `routine_count.json`
 
-* ```
-  SELECT * FROM SYS.SCHEMA_UNUSED_INDEXES
-      WHERE OBJECT_SCHEMA NOT IN ('PERFORMANCE_SCHEMA', 'SYS', 'MYSQL', 'INFORMATION_SCHEMA')
+* ``` SELECT * FROM SYS.SCHEMA_UNUSED_INDEXES WHERE OBJECT_SCHEMA NOT IN ('PERFORMANCE_SCHEMA', 'SYS', 'MYSQL', 'INFORMATION_SCHEMA')
   ```
 
   `sys_unused_indexes.json`
@@ -278,8 +205,7 @@ is the number of the iteration:
 
   `nowN.json`
 
-* ```
-  SHOW GLOBAL STATUS
+* ``` SHOW GLOBAL STATUS
   ```
 
   `show_global_statusN.json`
@@ -289,8 +215,7 @@ is the number of the iteration:
 
   `sys_metricsN.json`
 
-* ```
-  SHOW ENGINE INNODB STATUS
+* ``` SHOW ENGINE INNODB STATUS
   ```
 
   `show_engine_innodb_statusN.json`
@@ -300,8 +225,7 @@ is the number of the iteration:
 
   `show_full_processlistN.json`
 
-* ```
-  SHOW OPEN TABLES
+* ``` SHOW OPEN TABLES
   ```
 
   `show_open_tablesN.json`
@@ -311,8 +235,7 @@ is the number of the iteration:
 
   `show_binary_log_statusN.json`
 
-* ```
-  SHOW BINARY LOGS
+* ``` SHOW BINARY LOGS
   ```
 
   `show_binary_logsN.json`
@@ -322,8 +245,7 @@ is the number of the iteration:
 
   `show_replicasN.json`
 
-* ```
-  SHOW REPLICA STATUS
+* ``` SHOW REPLICA STATUS
   ```
 
   `show_replica_statusN.json`
@@ -333,9 +255,7 @@ is the number of the iteration:
 
   `mysql_slave_master_infoN.json`
 
-* ```
-  SELECT Channel_name, Sql_delay, Number_of_workers, Id
-  FROM mysql.slave_relay_log_info ORDER BY Channel_name
+* ``` SELECT Channel_name, Sql_delay, Number_of_workers, Id FROM mysql.slave_relay_log_info ORDER BY Channel_name
   ```
 
   `mysql_slave_relay_log_infoN.json`
@@ -345,8 +265,7 @@ is the number of the iteration:
 
   `metadata_locksN.json`
 
-* ```
-  SELECT * FROM performance_schema.threads
+* ``` SELECT * FROM performance_schema.threads
   ```
 
   `threadsN.json`
@@ -356,8 +275,7 @@ is the number of the iteration:
 
   `schema_lock_waitsN.json`
 
-* ```
-  SELECT * FROM sys.session_ssl_status
+* ``` SELECT * FROM sys.session_ssl_status
   ```
 
   `session_ssl_statusN.json`
@@ -367,8 +285,7 @@ is the number of the iteration:
 
   `sys_sessionN.json`
 
-* ```
-  SELECT * FROM sys.processlist
+* ``` SELECT * FROM sys.processlist
   ```
 
   `sys_processlistN.json`
@@ -378,8 +295,7 @@ is the number of the iteration:
 
   `ps_event_waits_currentN.json`
 
-* ```
-  SELECT * FROM information_schema.innodb_trx
+* ``` SELECT * FROM information_schema.innodb_trx
   ```
 
   `innodb_trxN.json`
@@ -389,8 +305,7 @@ is the number of the iteration:
 
   `innodb_metricsN.json`
 
-* ```
-  SELECT * FROM sys.innodb_lock_waits
+* ``` SELECT * FROM sys.innodb_lock_waits
   ```
 
   `innodb_lock_waitsN.json`
@@ -400,8 +315,7 @@ is the number of the iteration:
 
   `memory_globalN.json`
 
-* ```
-  SELECT * FROM sys.memory_by_thread_by_current_bytes
+* ``` SELECT * FROM sys.memory_by_thread_by_current_bytes
   ```
 
   `memory_by_threadN.json`
@@ -411,8 +325,7 @@ is the number of the iteration:
 
   `memory_by_hostN.json`
 
-* ```
-  SELECT * FROM sys.memory_by_user_by_current_bytes
+* ``` SELECT * FROM sys.memory_by_user_by_current_bytes
   ```
 
   `memory_by_userN.json`

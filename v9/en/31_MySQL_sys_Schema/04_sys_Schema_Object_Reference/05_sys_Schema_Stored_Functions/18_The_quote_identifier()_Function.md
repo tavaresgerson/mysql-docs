@@ -1,14 +1,10 @@
 #### 30.4.5.18 The quote\_identifier() Function
 
-Given a string argument, this function produces a quoted
-identifier suitable for inclusion in SQL statements. This is
-useful when a value to be used as an identifier is a reserved
-word or contains backtick (`` ` ``) characters.
+Given a string argument, this function produces a quoted identifier suitable for inclusion in SQL statements. This is useful when a value to be used as an identifier is a reserved word or contains backtick (`` ` ``) characters.
 
 ##### Parameters
 
-`in_identifier TEXT`: The identifier to
-quote.
+`in_identifier TEXT`: The identifier to quote.
 
 ##### Return Value
 

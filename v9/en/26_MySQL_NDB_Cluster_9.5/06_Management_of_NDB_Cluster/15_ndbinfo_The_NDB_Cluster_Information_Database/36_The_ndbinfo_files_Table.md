@@ -1,8 +1,6 @@
 #### 25.6.15.36 The ndbinfo files Table
 
-The `files` tables provides information about
-files and other objects used by `NDB` disk data
-tables, and contains the columns listed here:
+The `files` tables provides information about files and other objects used by `NDB` disk data tables, and contains the columns listed here:
 
 * `id`
 
@@ -10,10 +8,7 @@ tables, and contains the columns listed here:
 
 * `type`
 
-  The type of object; one of `Log file
-  group`, `Tablespace`,
-  `Undo file`, or `Data
-  file`
+  The type of object; one of `Log file group`, `Tablespace`, `Undo file`, or `Data file`
 
 * `name`
 
@@ -51,18 +46,8 @@ tables, and contains the columns listed here:
 
   Autoextend size (bytes)
 
-For log file groups and tablespaces, `parent`
-is always `0`, and the
-`parent_name`, `free_extents`,
-`total_extents`,
-`extent_size`, `initial_size`,
-`maximum_size`, and
-`autoentend_size` columns are all
-`NULL`.
+For log file groups and tablespaces, `parent` is always `0`, and the `parent_name`, `free_extents`, `total_extents`, `extent_size`, `initial_size`, `maximum_size`, and `autoentend_size` columns are all `NULL`.
 
-The `files` table is empty if no disk data
-objects have been created in `NDB`. See
-[Section 25.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "25.6.11.1 NDB Cluster Disk Data Objects"), for more
-information.
+The `files` table is empty if no disk data objects have been created in `NDB`. See Section 25.6.11.1, “NDB Cluster Disk Data Objects”, for more information.
 
-See also [Section 28.3.15, “The INFORMATION\_SCHEMA FILES Table”](information-schema-files-table.html "28.3.15 The INFORMATION_SCHEMA FILES Table").
+See also Section 28.3.15, “The INFORMATION\_SCHEMA FILES Table”.

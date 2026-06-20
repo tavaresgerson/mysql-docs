@@ -1,10 +1,8 @@
 #### 25.6.15.17 The ndbinfo cpudata\_50ms Table
 
-The `cpudata_50ms` table provides data about
-CPU usage per 50-millisecond interval over the last second.
+The `cpudata_50ms` table provides data about CPU usage per 50-millisecond interval over the last second.
 
-The `cpustat` table contains the following
-columns:
+The `cpustat` table contains the following columns:
 
 * `node_id`
 
@@ -48,5 +46,4 @@ columns:
 
 ##### Notes
 
-The `cpudata_50ms` table is available only on
-Linux and Solaris operating systems.
+The `cpudata_50ms` table is available only on Linux and Solaris operating systems.

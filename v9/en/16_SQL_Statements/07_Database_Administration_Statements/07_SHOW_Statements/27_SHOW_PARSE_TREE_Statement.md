@@ -4,17 +4,11 @@
 SHOW PARSE_TREE select_statement
 ```
 
-[`SHOW PARSE_TREE`](show-parse-tree.html "15.7.7.27 SHOW PARSE_TREE Statement") displays a
-representation of the parse tree for the input
-[`SELECT`](select.html "15.2.13 SELECT Statement") statement, in JSON format.
+`SHOW PARSE_TREE` displays a representation of the parse tree for the input `SELECT` statement, in JSON format.
 
 Note
 
-This statement is available only in debug builds, or if the
-MySQL server was built using
-[`-DWITH_SHOW_PARSE_TREE`](source-configuration-options.html#option_cmake_with_show_parse_tree). It is
-intended for use in testing and development only, and not in
-production.
+This statement is available only in debug builds, or if the MySQL server was built using `-DWITH_SHOW_PARSE_TREE`. It is intended for use in testing and development only, and not in production.
 
 Example:
 

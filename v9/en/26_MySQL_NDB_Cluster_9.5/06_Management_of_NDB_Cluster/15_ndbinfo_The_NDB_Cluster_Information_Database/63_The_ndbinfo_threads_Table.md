@@ -1,10 +1,8 @@
 #### 25.6.15.63 The ndbinfo threads Table
 
-The `threads` table provides information about
-threads running in the `NDB` kernel.
+The `threads` table provides information about threads running in the `NDB` kernel.
 
-The `threads` table contains the following
-columns:
+The `threads` table contains the following columns:
 
 * `node_id`
 
@@ -24,8 +22,7 @@ columns:
 
 ##### Notes
 
-Sample output from a 2-node example cluster, including thread
-descriptions, is shown here:
+Sample output from a 2-node example cluster, including thread descriptions, is shown here:
 
 ```
 mysql> SELECT * FROM threads;
@@ -44,16 +41,4 @@ mysql> SELECT * FROM threads;
 8 rows in set (0.01 sec)
 ```
 
-It is also possible to set either of the
-[`ThreadConfig`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-threadconfig) arguments
-`main` or `rep` to 0 while
-keeping the other at 1, in which case the thread name is
-`main_rep` and its description is `main
-and rep thread, schema, distribution, proxy block and asynch
-replication handling`. You can also set both
-`main` and `rep` to 0, in
-which case the name of the resulting thread is shown in this
-table as `main_rep_recv`, and its description
-is `main, rep and recv thread, schema, distribution,
-proxy block and asynch replication handling and handling receive
-and polling for new receives`.
+It is also possible to set either of the `ThreadConfig` arguments `main` or `rep` to 0 while keeping the other at 1, in which case the thread name is `main_rep` and its description is `main and rep thread, schema, distribution, proxy block and asynch replication handling`. You can also set both `main` and `rep` to 0, in which case the name of the resulting thread is shown in this table as `main_rep_recv`, and its description is `main, rep and recv thread, schema, distribution, proxy block and asynch replication handling and handling receive and polling for new receives`.

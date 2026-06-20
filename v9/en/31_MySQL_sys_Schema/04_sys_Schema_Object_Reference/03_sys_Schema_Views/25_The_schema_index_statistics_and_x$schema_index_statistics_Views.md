@@ -1,11 +1,8 @@
 #### 30.4.3.25 The schema\_index\_statistics and x$schema\_index\_statistics Views
 
-These views provide index statistics. By default, rows are
-sorted by descending total index latency.
+These views provide index statistics. By default, rows are sorted by descending total index latency.
 
-The [`schema_index_statistics`](sys-schema-index-statistics.html "30.4.3.25 The schema_index_statistics and x$schema_index_statistics Views") and
-[`x$schema_index_statistics`](sys-schema-index-statistics.html "30.4.3.25 The schema_index_statistics and x$schema_index_statistics Views") views
-have these columns:
+The `schema_index_statistics` and `x$schema_index_statistics` views have these columns:
 
 * `table_schema`
 

@@ -6,16 +6,9 @@
 END WHILE [end_label]
 ```
 
-The statement list within a [`WHILE`](while.html "15.6.5.8 WHILE Statement")
-statement is repeated as long as the
-*`search_condition`* expression is true.
-*`statement_list`* consists of one or
-more SQL statements, each terminated by a semicolon
-(`;`) statement delimiter.
+The statement list within a `WHILE` statement is repeated as long as the *`search_condition`* expression is true. *`statement_list`* consists of one or more SQL statements, each terminated by a semicolon (`;`) statement delimiter.
 
-A [`WHILE`](while.html "15.6.5.8 WHILE Statement") statement can be labeled.
-For the rules regarding label use, see
-[Section 15.6.2, “Statement Labels”](statement-labels.html "15.6.2 Statement Labels").
+A `WHILE` statement can be labeled. For the rules regarding label use, see Section 15.6.2, “Statement Labels”.
 
 Example:
 

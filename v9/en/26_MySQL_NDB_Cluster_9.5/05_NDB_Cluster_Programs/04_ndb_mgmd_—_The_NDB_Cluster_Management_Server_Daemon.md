@@ -1,611 +1,263 @@
 ### 25.5.4 ndb\_mgmd — The NDB Cluster Management Server Daemon
 
-The management server is the process that reads the cluster
-configuration file and distributes this information to all nodes
-in the cluster that request it. It also maintains a log of
-cluster activities. Management clients can connect to the
-management server and check the cluster's status.
+The management server is the process that reads the cluster configuration file and distributes this information to all nodes in the cluster that request it. It also maintains a log of cluster activities. Management clients can connect to the management server and check the cluster's status.
 
-All options that can be used with [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")
-are shown in the following table. Additional descriptions follow
-the table.
+All options that can be used with **ndb\_mgmd** are shown in the following table. Additional descriptions follow the table.
 
-* [`--bind-address=host`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_bind-address)
+* `--bind-address=host`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--bind-address=host</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=host</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
 
-  Causes the management server to bind to a specific network
-  interface (host name or IP address). This option has no
-  default value.
+  Causes the management server to bind to a specific network interface (host name or IP address). This option has no default value.
 
-* [`--character-sets-dir`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_character-sets-dir)
+* `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Directory containing character sets.
 
-* [`cluster-config-suffix`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_cluster-config-suffix)
+* `cluster-config-suffix`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--cluster-config-suffix=name</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
 
-  Override defaults group suffix when reading cluster
-  configuration sections in `my.cnf`; used
-  in testing.
+  Override defaults group suffix when reading cluster configuration sections in `my.cnf`; used in testing.
 
-* [`--config-cache`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-cache)
+* `--config-cache`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--config-cache[=TRUE|FALSE]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">TRUE</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>
 
-  This option, whose default value is `1` (or
-  `TRUE`, or `ON`), can be
-  used to disable the management server's configuration
-  cache, so that it reads its configuration from
-  `config.ini` every time it starts (see
-  [Section 25.4.3, “NDB Cluster Configuration Files”](mysql-cluster-config-file.html "25.4.3 NDB Cluster Configuration Files")). You can do
-  this by starting the [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") process
-  with any one of the following options:
+  This option, whose default value is `1` (or `TRUE`, or `ON`), can be used to disable the management server's configuration cache, so that it reads its configuration from `config.ini` every time it starts (see Section 25.4.3, “NDB Cluster Configuration Files”). You can do this by starting the **ndb\_mgmd** process with any one of the following options:
 
   + `--config-cache=0`
   + `--config-cache=FALSE`
   + `--config-cache=OFF`
-  + [`--skip-config-cache`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_skip-config-cache)
+  + `--skip-config-cache`
 
-  Using one of the options just listed is effective only if
-  the management server has no stored configuration at the
-  time it is started. If the management server finds any
-  configuration cache files, then the
-  `--config-cache` option or the
-  `--skip-config-cache` option is ignored.
-  Therefore, to disable configuration caching, the option
-  should be used the *first* time that the
-  management server is started. Otherwise—that is, if
-  you wish to disable configuration caching for a management
-  server that has *already* created a
-  configuration cache—you must stop the management
-  server, delete any existing configuration cache files
-  manually, then restart the management server with
-  `--skip-config-cache` (or with
-  `--config-cache` set equal to 0,
-  `OFF`, or `FALSE`).
+  Using one of the options just listed is effective only if the management server has no stored configuration at the time it is started. If the management server finds any configuration cache files, then the `--config-cache` option or the `--skip-config-cache` option is ignored. Therefore, to disable configuration caching, the option should be used the *first* time that the management server is started. Otherwise—that is, if you wish to disable configuration caching for a management server that has *already* created a configuration cache—you must stop the management server, delete any existing configuration cache files manually, then restart the management server with `--skip-config-cache` (or with `--config-cache` set equal to 0, `OFF`, or `FALSE`).
 
-  Configuration cache files are normally created in a
-  directory named `mysql-cluster` under the
-  installation directory (unless this location has been
-  overridden using the
-  [`--configdir`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_configdir) option). Each
-  time the management server updates its configuration data,
-  it writes a new cache file. The files are named sequentially
-  in order of creation using the following format:
+  Configuration cache files are normally created in a directory named `mysql-cluster` under the installation directory (unless this location has been overridden using the `--configdir` option). Each time the management server updates its configuration data, it writes a new cache file. The files are named sequentially in order of creation using the following format:
 
   ```
   ndb_node-id_config.bin.seq-number
   ```
 
-  *`node-id`* is the management
-  server's node ID; *`seq-number`*
-  is a sequence number, beginning with 1. For example, if the
-  management server's node ID is 5, then the first three
-  configuration cache files would, when they are created, be
-  named `ndb_5_config.bin.1`,
-  `ndb_5_config.bin.2`, and
-  `ndb_5_config.bin.3`.
+  *`node-id`* is the management server's node ID; *`seq-number`* is a sequence number, beginning with 1. For example, if the management server's node ID is 5, then the first three configuration cache files would, when they are created, be named `ndb_5_config.bin.1`, `ndb_5_config.bin.2`, and `ndb_5_config.bin.3`.
 
-  If your intent is to purge or reload the configuration cache
-  without actually disabling caching, you should start
-  [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") with one of the options
-  [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) or
-  [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) instead of
-  `--skip-config-cache`.
+  If your intent is to purge or reload the configuration cache without actually disabling caching, you should start **ndb\_mgmd** with one of the options `--reload` or `--initial` instead of `--skip-config-cache`.
 
-  To re-enable the configuration cache, simply restart the
-  management server, but without the
-  `--config-cache` or
-  `--skip-config-cache` option that was used
-  previously to disable the configuration cache.
+  To re-enable the configuration cache, simply restart the management server, but without the `--config-cache` or `--skip-config-cache` option that was used previously to disable the configuration cache.
 
-  [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") does not check for the
-  configuration directory
-  ([`--configdir`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_configdir)) or attempts
-  to create one when `--skip-config-cache` is
-  used. (Bug #13428853)
+  **ndb\_mgmd** does not check for the configuration directory (`--configdir`) or attempts to create one when `--skip-config-cache` is used. (Bug #13428853)
 
-* [`--config-file=filename`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file),
-  `-f filename`
+* `--config-file=filename`, `-f filename`
 
-  <table frame="box" rules="all" summary="Properties for config-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--config-file=file</code></td>
-</tr><tr><th>Disabled by</th>
-<td><code class="literal">skip-config-file</code></td>
-</tr><tr><th>Type</th>
-<td>File name</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-file=file</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-config-file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
 
-  Instructs the management server as to which file it should
-  use for its configuration file. By default, the management
-  server looks for a file named
-  `config.ini` in the same directory as the
-  [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") executable; otherwise the file
-  name and location must be specified explicitly.
+  Instructs the management server as to which file it should use for its configuration file. By default, the management server looks for a file named `config.ini` in the same directory as the **ndb\_mgmd** executable; otherwise the file name and location must be specified explicitly.
 
-  This option has no default value, and is ignored unless the
-  management server is forced to read the configuration file,
-  either because [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") was started with
-  the [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) or
-  [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) option, or
-  because the management server could not find any
-  configuration cache. If
-  [`--config-file`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file) is specified
-  without either of [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial)
-  or [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload),
-  [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") refuses to start.
+  This option has no default value, and is ignored unless the management server is forced to read the configuration file, either because **ndb\_mgmd** was started with the `--reload` or `--initial` option, or because the management server could not find any configuration cache. If `--config-file` is specified without either of `--initial` or `--reload`, **ndb\_mgmd** refuses to start.
 
-  The [`--config-file`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file) option is
-  also read if [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") was started with
-  [`--config-cache=OFF`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-cache). See
-  [Section 25.4.3, “NDB Cluster Configuration Files”](mysql-cluster-config-file.html "25.4.3 NDB Cluster Configuration Files"), for more
-  information.
+  The `--config-file` option is also read if **ndb\_mgmd** was started with `--config-cache=OFF`. See Section 25.4.3, “NDB Cluster Configuration Files”, for more information.
 
-* [`--configdir=dir_name`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_configdir)
+* `--configdir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for configdir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><p class="valid-value"><code class="literal">--configdir=directory</code></p><p class="valid-value"><code class="literal">--config-dir=directory</code></p></td>
-</tr><tr><th>Type</th>
-<td>File name</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">$INSTALLDIR/mysql-cluster</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for configdir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><p class="valid-value"><code class="literal">--configdir=directory</code></p><p class="valid-value"><code class="literal">--config-dir=directory</code></p></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal">$INSTALLDIR/mysql-cluster</code></td> </tr></tbody></table>
 
-  Specifies the cluster management server's configuration
-  cache directory. This must be an absolute path. Otherwise,
-  the management server refuses to start.
+  Specifies the cluster management server's configuration cache directory. This must be an absolute path. Otherwise, the management server refuses to start.
 
   `--config-dir` is an alias for this option.
 
-* [`--connect-retries`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_connect-retries)
+* `--connect-retries`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>
 
   Number of times to retry connection before giving up.
 
-* [`--connect-retry-delay`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_connect-retry-delay)
+* `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retry-delay=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">5</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">5</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">5</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">5</code></td> </tr></tbody></table>
 
-  Number of seconds to wait between attempts to contact
-  management server.
+  Number of seconds to wait between attempts to contact management server.
 
-* [`--connect-string`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_connect-string)
+* `--connect-string`
 
-  <table frame="box" rules="all" summary="Properties for connect-string"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-string=connection_string</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-string"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-string=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
 
   Same as --ndb-connectstring.
 
-* [`--core-file`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_core-file)
+* `--core-file`
 
-  <table frame="box" rules="all" summary="Properties for core-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--core-file</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for core-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--core-file</code></td> </tr></tbody></table>
 
   Write core file on error; used in debugging.
 
-* [`--daemon`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_daemon),
-  `-d`
+* `--daemon`, `-d`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>0
 
-  Instructs [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") to start as a daemon
-  process. This is the default behavior.
+  Instructs **ndb\_mgmd** to start as a daemon process. This is the default behavior.
 
-  This option has no effect when running
-  [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") on Windows platforms.
+  This option has no effect when running **ndb\_mgmd** on Windows platforms.
 
-* [`--defaults-extra-file`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_defaults-extra-file)
+* `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>1
 
   Read given file after global files are read.
 
-* [`--defaults-file`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_defaults-file)
+* `--defaults-file`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>2
 
   Read default options from given file only.
 
-* [`--defaults-group-suffix`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_defaults-group-suffix)
+* `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>3
 
   Also read groups with concat(group, suffix).
 
-* [`--help`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_help)
+* `--help`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>4
 
   Display help text and exit.
 
-* [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial)
+* `--initial`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>5
 
-  Configuration data is cached internally, rather than being
-  read from the cluster global configuration file each time
-  the management server is started (see
-  [Section 25.4.3, “NDB Cluster Configuration Files”](mysql-cluster-config-file.html "25.4.3 NDB Cluster Configuration Files")). Using the
-  `--initial` option overrides this behavior,
-  by forcing the management server to delete any existing
-  cache files, and then to re-read the configuration data from
-  the cluster configuration file and to build a new cache.
+  Configuration data is cached internally, rather than being read from the cluster global configuration file each time the management server is started (see Section 25.4.3, “NDB Cluster Configuration Files”). Using the `--initial` option overrides this behavior, by forcing the management server to delete any existing cache files, and then to re-read the configuration data from the cluster configuration file and to build a new cache.
 
-  This differs in two ways from the
-  [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) option. First,
-  `--reload` forces the server to check the
-  configuration file against the cache and reload its data
-  only if the contents of the file are different from the
-  cache. Second, `--reload` does not delete any
-  existing cache files.
+  This differs in two ways from the `--reload` option. First, `--reload` forces the server to check the configuration file against the cache and reload its data only if the contents of the file are different from the cache. Second, `--reload` does not delete any existing cache files.
 
-  If [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") is invoked with
-  `--initial` but cannot find a global
-  configuration file, the management server cannot start.
+  If **ndb\_mgmd** is invoked with `--initial` but cannot find a global configuration file, the management server cannot start.
 
-  When a management server starts, it checks for another
-  management server in the same NDB Cluster and tries to use
-  the other management server's configuration data. This
-  behavior has implications when performing a rolling restart
-  of an NDB Cluster with multiple management nodes. See
-  [Section 25.6.5, “Performing a Rolling Restart of an NDB Cluster”](mysql-cluster-rolling-restart.html "25.6.5 Performing a Rolling Restart of an NDB Cluster"), for more
-  information.
+  When a management server starts, it checks for another management server in the same NDB Cluster and tries to use the other management server's configuration data. This behavior has implications when performing a rolling restart of an NDB Cluster with multiple management nodes. See Section 25.6.5, “Performing a Rolling Restart of an NDB Cluster”, for more information.
 
-  When used together with the
-  [`--config-file`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file) option, the
-  cache is cleared only if the configuration file is actually
-  found.
+  When used together with the `--config-file` option, the cache is cleared only if the configuration file is actually found.
 
-* [`--install[=name]`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_install)
+* `--install[=name]`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>6
 
-  Causes [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") to be installed as a
-  Windows service. Optionally, you can specify a name for the
-  service; if not set, the service name defaults to
-  `ndb_mgmd`. Although it is preferable to
-  specify other [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") program options in
-  a `my.ini` or `my.cnf`
-  configuration file, it is possible to use them together with
-  [`--install`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_install). However, in such
-  cases, the [`--install`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_install) option
-  must be specified first, before any other options are given,
-  for the Windows service installation to succeed.
+  Causes **ndb\_mgmd** to be installed as a Windows service. Optionally, you can specify a name for the service; if not set, the service name defaults to `ndb_mgmd`. Although it is preferable to specify other **ndb\_mgmd** program options in a `my.ini` or `my.cnf` configuration file, it is possible to use them together with `--install`. However, in such cases, the `--install` option must be specified first, before any other options are given, for the Windows service installation to succeed.
 
-  It is generally not advisable to use this option together
-  with the [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) option,
-  since this causes the configuration cache to be wiped and
-  rebuilt every time the service is stopped and started. Care
-  should also be taken if you intend to use any other
-  [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") options that affect the starting
-  of the management server, and you should make absolutely
-  certain you fully understand and allow for any possible
-  consequences of doing so.
+  It is generally not advisable to use this option together with the `--initial` option, since this causes the configuration cache to be wiped and rebuilt every time the service is stopped and started. Care should also be taken if you intend to use any other **ndb\_mgmd** options that affect the starting of the management server, and you should make absolutely certain you fully understand and allow for any possible consequences of doing so.
 
-  The [`--install`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_install) option has no
-  effect on non-Windows platforms.
+  The `--install` option has no effect on non-Windows platforms.
 
-* [`--interactive`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_interactive)
+* `--interactive`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>7
 
-  Starts [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") in interactive mode; that
-  is, an [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client") client session is started
-  as soon as the management server is running. This option
-  does not start any other NDB Cluster nodes.
+  Starts **ndb\_mgmd** in interactive mode; that is, an **ndb\_mgm** client session is started as soon as the management server is running. This option does not start any other NDB Cluster nodes.
 
-* [`--log-name=name`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_log-name)
+* `--log-name=name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>8
 
   Provides a name to be used for this node in the cluster log.
 
-* [`--login-path`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_login-path)
+* `--login-path`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>9
 
   Read given path from login file.
 
-* [`--no-login-paths`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_no-login-paths)
+* `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--cluster-config-suffix=name</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>0
 
   Skips reading options from the login path file.
 
-* [`--mycnf`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_mycnf)
+* `--mycnf`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--cluster-config-suffix=name</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>1
 
-  Read configuration data from the `my.cnf`
-  file.
+  Read configuration data from the `my.cnf` file.
 
-* [`--ndb-connectstring`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_ndb-connectstring)
+* `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--cluster-config-suffix=name</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>2
 
-  Set connection string. Syntax:
-  `[nodeid=id;][host=]hostname[:port]`.
-  Overrides entries in `NDB_CONNECTSTRING`
-  and `my.cnf`. Ignored if
-  [`--config-file`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file) is specified;
-  a warning is issued if both options are used concurrently.
+  Set connection string. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`. Ignored if `--config-file` is specified; a warning is issued if both options are used concurrently.
 
-* [`--ndb-log-timestamps`](mysql-cluster-programs-ndbd.html#option_ndbd_ndb-log-timestamps)
+* `--ndb-log-timestamps`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--cluster-config-suffix=name</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>3
 
-  Sets the format used for timestamps in node logs. This is
-  one of the following values:
+  Sets the format used for timestamps in node logs. This is one of the following values:
 
-  + `LEGACY`: The system timezone, with
-    resolution in seconds.
+  + `LEGACY`: The system timezone, with resolution in seconds.
 
-  + `UTC`:
-    [RFC
-    3339](https://datatracker.ietf.org/doc/html/rfc3339) format, with microsecond resolution.
+  + `UTC`: [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format, with microsecond resolution.
 
   + `SYSTEM`: RFC 3339 format.
 
-  `UTC` is the default in MySQL
-  9.5.
+  `UTC` is the default in MySQL 9.5.
 
-* [`--ndb-mgm-tls`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_ndb-mgm-tls)
+* `--ndb-mgm-tls`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--cluster-config-suffix=name</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>4
 
-  Sets the level of TLS support required to connect to the
-  management server; one of `relaxed` or
-  `strict`. `relaxed` (the
-  default) means that a TLS connection is attempted, but
-  success is not required; `strict` means
-  that TLS is required to connect.
+  Sets the level of TLS support required to connect to the management server; one of `relaxed` or `strict`. `relaxed` (the default) means that a TLS connection is attempted, but success is not required; `strict` means that TLS is required to connect.
 
-* [`--ndb-mgmd-host`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_ndb-mgmd-host)
+* `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--cluster-config-suffix=name</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>5
 
   Same as --ndb-connectstring.
 
-* [`--ndb-nodeid`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_ndb-nodeid)
+* `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--cluster-config-suffix=name</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>6
 
-  Set node ID for this node, overriding any ID set by
-  --ndb-connectstring.
+  Set node ID for this node, overriding any ID set by --ndb-connectstring.
 
-* [`--ndb-optimized-node-selection`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_ndb-optimized-node-selection)
+* `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--cluster-config-suffix=name</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>7
 
-  Enable optimizations for selection of nodes for
-  transactions. Enabled by default; use
-  `--skip-ndb-optimized-node-selection` to
-  disable.
+  Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
 
-* [`--ndb-tls-search-path`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_ndb-tls-search-path)
+* `--ndb-tls-search-path`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--cluster-config-suffix=name</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>8
 
-  Specify a list of directories to search for a CA file. On
-  Unix platforms, the directory names are separated by colons
-  (`:`); on Windows systems, the semicolon
-  character (`;`) is used as the separator. A
-  directory reference may be relative or absolute; it may
-  contain one or more environment variables, each denoted by a
-  prefixed dollar sign (`$`), and expanded
-  prior to use.
+  Specify a list of directories to search for a CA file. On Unix platforms, the directory names are separated by colons (`:`); on Windows systems, the semicolon character (`;`) is used as the separator. A directory reference may be relative or absolute; it may contain one or more environment variables, each denoted by a prefixed dollar sign (`$`), and expanded prior to use.
 
-  Searching begins with the leftmost named directory and
-  proceeds from left to right until a file is found. An empty
-  string denotes an empty search path, which causes all
-  searches to fail. A string consisting of a single dot
-  (`.`) indicates that the search path
-  limited to the current working directory.
+  Searching begins with the leftmost named directory and proceeds from left to right until a file is found. An empty string denotes an empty search path, which causes all searches to fail. A string consisting of a single dot (`.`) indicates that the search path limited to the current working directory.
 
-  If no search path is supplied, the compiled-in default value
-  is used. This value depends on the platform used: On
-  Windows, this is `\ndb-tls`; on other
-  platforms (including Linux), it is
-  `$HOME/ndb-tls`. This can be overridden by
-  compiling NDB Cluster using
-  [`-DWITH_NDB_TLS_SEARCH_PATH`](source-configuration-options.html#option_cmake_with_ndb_tls_search_path).
+  If no search path is supplied, the compiled-in default value is used. This value depends on the platform used: On Windows, this is `\ndb-tls`; on other platforms (including Linux), it is `$HOME/ndb-tls`. This can be overridden by compiling NDB Cluster using `-DWITH_NDB_TLS_SEARCH_PATH`.
 
-* [`--no-nodeid-checks`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_no-nodeid-checks)
+* `--no-nodeid-checks`
 
-  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--cluster-config-suffix=name</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--cluster-config-suffix=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>9
 
   Do not perform any checks of node IDs.
 
-* [`--nodaemon`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_nodaemon)
+* `--nodaemon`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--config-cache[=TRUE|FALSE]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">TRUE</code></td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>0
 
-  Instructs [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") not to start as a
-  daemon process.
+  Instructs **ndb\_mgmd** not to start as a daemon process.
 
-  The default behavior for [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") on
-  Windows is to run in the foreground, making this option
-  unnecessary on Windows platforms.
+  The default behavior for **ndb\_mgmd** on Windows is to run in the foreground, making this option unnecessary on Windows platforms.
 
-* [`--no-defaults`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_no-defaults)
+* `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--config-cache[=TRUE|FALSE]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">TRUE</code></td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>1
 
-  Do not read default options from any option file other than
-  login file.
+  Do not read default options from any option file other than login file.
 
-* [`--nowait-nodes`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_nowait-nodes)
+* `--nowait-nodes`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--config-cache[=TRUE|FALSE]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">TRUE</code></td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>2
 
-  When starting an NDB Cluster is configured with two
-  management nodes, each management server normally checks to
-  see whether the other [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") is also
-  operational and whether the other management server's
-  configuration is identical to its own. However, it is
-  sometimes desirable to start the cluster with only one
-  management node (and perhaps to allow the other
-  [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") to be started later). This
-  option causes the management node to bypass any checks for
-  any other management nodes whose node IDs are passed to this
-  option, permitting the cluster to start as though configured
-  to use only the management node that was started.
+  When starting an NDB Cluster is configured with two management nodes, each management server normally checks to see whether the other **ndb\_mgmd** is also operational and whether the other management server's configuration is identical to its own. However, it is sometimes desirable to start the cluster with only one management node (and perhaps to allow the other **ndb\_mgmd** to be started later). This option causes the management node to bypass any checks for any other management nodes whose node IDs are passed to this option, permitting the cluster to start as though configured to use only the management node that was started.
 
-  For purposes of illustration, consider the following portion
-  of a `config.ini` file (where we have
-  omitted most of the configuration parameters that are not
-  relevant to this example):
+  For purposes of illustration, consider the following portion of a `config.ini` file (where we have omitted most of the configuration parameters that are not relevant to this example):
 
   ```
   [ndbd]
@@ -641,265 +293,96 @@ the table.
   HostName = 198.51.100.201
   ```
 
-  Assume that you wish to start this cluster using only the
-  management server having node ID `10` and
-  running on the host having the IP address 198.51.100.150.
-  (Suppose, for example, that the host computer on which you
-  intend to the other management server is temporarily
-  unavailable due to a hardware failure, and you are waiting
-  for it to be repaired.) To start the cluster in this way,
-  use a command line on the machine at 198.51.100.150 to enter
-  the following command:
+  Assume that you wish to start this cluster using only the management server having node ID `10` and running on the host having the IP address 198.51.100.150. (Suppose, for example, that the host computer on which you intend to the other management server is temporarily unavailable due to a hardware failure, and you are waiting for it to be repaired.) To start the cluster in this way, use a command line on the machine at 198.51.100.150 to enter the following command:
 
   ```
   $> ndb_mgmd --ndb-nodeid=10 --nowait-nodes=11
   ```
 
-  As shown in the preceding example, when using
-  [`--nowait-nodes`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_nowait-nodes), you must
-  also use the [`--ndb-nodeid`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_ndb-nodeid)
-  option to specify the node ID of this
-  [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") process.
+  As shown in the preceding example, when using `--nowait-nodes`, you must also use the `--ndb-nodeid` option to specify the node ID of this **ndb\_mgmd** process.
 
-  You can then start each of the cluster's data nodes in
-  the usual way. If you wish to start and use the second
-  management server in addition to the first management server
-  at a later time without restarting the data nodes, you must
-  start each data node with a connection string that
-  references both management servers, like this:
+  You can then start each of the cluster's data nodes in the usual way. If you wish to start and use the second management server in addition to the first management server at a later time without restarting the data nodes, you must start each data node with a connection string that references both management servers, like this:
 
   ```
   $> ndbd -c 198.51.100.150,198.51.100.151
   ```
 
-  The same is true with regard to the connection string used
-  with any [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") processes that you wish
-  to start as NDB Cluster SQL nodes connected to this cluster.
-  See [Section 25.4.3.3, “NDB Cluster Connection Strings”](mysql-cluster-connection-strings.html "25.4.3.3 NDB Cluster Connection Strings"), for
-  more information.
+  The same is true with regard to the connection string used with any **mysqld** processes that you wish to start as NDB Cluster SQL nodes connected to this cluster. See Section 25.4.3.3, “NDB Cluster Connection Strings”, for more information.
 
-  When used with [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"), this option
-  affects the behavior of the management node with regard to
-  other management nodes only. Do not confuse it with the
-  [`--nowait-nodes`](mysql-cluster-programs-ndbd.html#option_ndbd_nowait-nodes) option used with
-  [**ndbd**](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "25.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") to
-  permit a cluster to start with fewer than its full
-  complement of data nodes; when used with data nodes, this
-  option affects their behavior only with regard to other data
-  nodes.
+  When used with **ndb\_mgmd**, this option affects the behavior of the management node with regard to other management nodes only. Do not confuse it with the `--nowait-nodes` option used with **ndbd** or **ndbmtd**") to permit a cluster to start with fewer than its full complement of data nodes; when used with data nodes, this option affects their behavior only with regard to other data nodes.
 
-  Multiple management node IDs may be passed to this option as
-  a comma-separated list. Each node ID must be no less than 1
-  and no greater than 255. In practice, it is quite rare to
-  use more than two management servers for the same NDB
-  Cluster (or to have any need for doing so); in most cases
-  you need to pass to this option only the single node ID for
-  the one management server that you do not wish to use when
-  starting the cluster.
+  Multiple management node IDs may be passed to this option as a comma-separated list. Each node ID must be no less than 1 and no greater than 255. In practice, it is quite rare to use more than two management servers for the same NDB Cluster (or to have any need for doing so); in most cases you need to pass to this option only the single node ID for the one management server that you do not wish to use when starting the cluster.
 
   Note
 
-  When you later start the “missing” management
-  server, its configuration must match that of the
-  management server that is already in use by the cluster.
-  Otherwise, it fails the configuration check performed by
-  the existing management server, and does not start.
+  When you later start the “missing” management server, its configuration must match that of the management server that is already in use by the cluster. Otherwise, it fails the configuration check performed by the existing management server, and does not start.
 
-* [`--print-defaults`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_print-defaults)
+* `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--config-cache[=TRUE|FALSE]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">TRUE</code></td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>3
 
   Print program argument list and exit.
 
-* [`--print-full-config`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_print-full-config),
-  `-P`
+* `--print-full-config`, `-P`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--config-cache[=TRUE|FALSE]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">TRUE</code></td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>4
 
-  Shows extended information regarding the configuration of
-  the cluster. With this option on the command line the
-  [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") process prints information about
-  the cluster setup including an extensive list of the cluster
-  configuration sections as well as parameters and their
-  values. Normally used together with the
-  [`--config-file`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file)
-  (`-f`) option.
+  Shows extended information regarding the configuration of the cluster. With this option on the command line the **ndb\_mgmd** process prints information about the cluster setup including an extensive list of the cluster configuration sections as well as parameters and their values. Normally used together with the `--config-file` (`-f`) option.
 
-* [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload)
+* `--reload`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--config-cache[=TRUE|FALSE]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">TRUE</code></td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>5
 
-  NDB Cluster configuration data is stored internally rather
-  than being read from the cluster global configuration file
-  each time the management server is started (see
-  [Section 25.4.3, “NDB Cluster Configuration Files”](mysql-cluster-config-file.html "25.4.3 NDB Cluster Configuration Files")). Using this
-  option forces the management server to check its internal
-  data store against the cluster configuration file and to
-  reload the configuration if it finds that the configuration
-  file does not match the cache. Existing configuration cache
-  files are preserved, but not used.
+  NDB Cluster configuration data is stored internally rather than being read from the cluster global configuration file each time the management server is started (see Section 25.4.3, “NDB Cluster Configuration Files”). Using this option forces the management server to check its internal data store against the cluster configuration file and to reload the configuration if it finds that the configuration file does not match the cache. Existing configuration cache files are preserved, but not used.
 
-  This differs in two ways from the
-  [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) option. First,
-  `--initial` causes all cache files to be
-  deleted. Second, `--initial` forces the
-  management server to re-read the global configuration file
-  and construct a new cache.
+  This differs in two ways from the `--initial` option. First, `--initial` causes all cache files to be deleted. Second, `--initial` forces the management server to re-read the global configuration file and construct a new cache.
 
-  If the management server cannot find a global configuration
-  file, then the `--reload` option is ignored.
+  If the management server cannot find a global configuration file, then the `--reload` option is ignored.
 
-  When `--reload` is used, the management
-  server must be able to communicate with data nodes and any
-  other management servers in the cluster before it attempts
-  to read the global configuration file; otherwise, the
-  management server fails to start. This can happen due to
-  changes in the networking environment, such as new IP
-  addresses for nodes or an altered firewall configuration. In
-  such cases, you must use
-  [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) instead to force
-  the existing cached configuration to be discarded and
-  reloaded from the file. See
-  [Section 25.6.5, “Performing a Rolling Restart of an NDB Cluster”](mysql-cluster-rolling-restart.html "25.6.5 Performing a Rolling Restart of an NDB Cluster"), for
-  additional information.
+  When `--reload` is used, the management server must be able to communicate with data nodes and any other management servers in the cluster before it attempts to read the global configuration file; otherwise, the management server fails to start. This can happen due to changes in the networking environment, such as new IP addresses for nodes or an altered firewall configuration. In such cases, you must use `--initial` instead to force the existing cached configuration to be discarded and reloaded from the file. See Section 25.6.5, “Performing a Rolling Restart of an NDB Cluster”, for additional information.
 
-* [`--remove[=name]`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_remove)
+* `--remove[=name]`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--config-cache[=TRUE|FALSE]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">TRUE</code></td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>6
 
-  Remove a management server process that has been installed
-  as a Windows service, optionally specifying the name of the
-  service to be removed. Applies only to Windows platforms.
+  Remove a management server process that has been installed as a Windows service, optionally specifying the name of the service to be removed. Applies only to Windows platforms.
 
-* [`--skip-config-file`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_skip-config-file)
+* `--skip-config-file`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--config-cache[=TRUE|FALSE]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">TRUE</code></td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>7
 
-  Do not read cluster configuration file; ignore
-  [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) and
-  [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) options if
-  specified.
+  Do not read cluster configuration file; ignore `--initial` and `--reload` options if specified.
 
-* [`--usage`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_usage)
+* `--usage`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--config-cache[=TRUE|FALSE]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">TRUE</code></td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>8
 
   Display help text and exit; same as --help.
 
-* [`--verbose`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_verbose),
-  `-v`
+* `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--config-cache[=TRUE|FALSE]</code></td>
-</tr><tr><th>Type</th>
-<td>Boolean</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">TRUE</code></td>
-</tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>9
 
-  Remove a management server process that has been installed
-  as a Windows service, optionally specifying the name of the
-  service to be removed. Applies only to Windows platforms.
+  Remove a management server process that has been installed as a Windows service, optionally specifying the name of the service to be removed. Applies only to Windows platforms.
 
-* [`--version`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_version)
+* `--version`
 
-  <table frame="box" rules="all" summary="Properties for config-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--config-file=file</code></td>
-</tr><tr><th>Disabled by</th>
-<td><code class="literal">skip-config-file</code></td>
-</tr><tr><th>Type</th>
-<td>File name</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for config-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--config-file=file</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-config-file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>0
 
   Display version information and exit.
 
-It is not strictly necessary to specify a connection string when
-starting the management server. However, if you are using more
-than one management server, a connection string should be
-provided and each node in the cluster should specify its node ID
-explicitly.
+It is not strictly necessary to specify a connection string when starting the management server. However, if you are using more than one management server, a connection string should be provided and each node in the cluster should specify its node ID explicitly.
 
-See [Section 25.4.3.3, “NDB Cluster Connection Strings”](mysql-cluster-connection-strings.html "25.4.3.3 NDB Cluster Connection Strings"), for
-information about using connection strings.
-[Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"), describes
-other options for [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon").
+See Section 25.4.3.3, “NDB Cluster Connection Strings”, for information about using connection strings. Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”, describes other options for **ndb\_mgmd**.
 
-The following files are created or used by
-[**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") in its starting directory, and are
-placed in the [`DataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datadir) as
-specified in the `config.ini` configuration
-file. In the list that follows,
-*`node_id`* is the unique node
-identifier.
+The following files are created or used by **ndb\_mgmd** in its starting directory, and are placed in the `DataDir` as specified in the `config.ini` configuration file. In the list that follows, *`node_id`* is the unique node identifier.
 
-* `config.ini` is the configuration file
-  for the cluster as a whole. This file is created by the user
-  and read by the management server.
-  [Section 25.4, “Configuration of NDB Cluster”](mysql-cluster-configuration.html "25.4 Configuration of NDB Cluster"), discusses how
-  to set up this file.
+* `config.ini` is the configuration file for the cluster as a whole. This file is created by the user and read by the management server. Section 25.4, “Configuration of NDB Cluster”, discusses how to set up this file.
 
-* `ndb_node_id_cluster.log`
-  is the cluster events log file. Examples of such events
-  include checkpoint startup and completion, node startup
-  events, node failures, and levels of memory usage. A
-  complete listing of cluster events with descriptions may be
-  found in [Section 25.6, “Management of NDB Cluster”](mysql-cluster-management.html "25.6 Management of NDB Cluster").
+* `ndb_node_id_cluster.log` is the cluster events log file. Examples of such events include checkpoint startup and completion, node startup events, node failures, and levels of memory usage. A complete listing of cluster events with descriptions may be found in Section 25.6, “Management of NDB Cluster”.
 
-  By default, when the size of the cluster log reaches one
-  million bytes, the file is renamed to
-  `ndb_node_id_cluster.log.seq_id`,
-  where *`seq_id`* is the sequence
-  number of the cluster log file. (For example: If files with
-  the sequence numbers 1, 2, and 3 already exist, the next log
-  file is named using the number `4`.) You
-  can change the size and number of files, and other
-  characteristics of the cluster log, using the
-  [`LogDestination`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-logdestination)
-  configuration parameter.
+  By default, when the size of the cluster log reaches one million bytes, the file is renamed to `ndb_node_id_cluster.log.seq_id`, where *`seq_id`* is the sequence number of the cluster log file. (For example: If files with the sequence numbers 1, 2, and 3 already exist, the next log file is named using the number `4`.) You can change the size and number of files, and other characteristics of the cluster log, using the `LogDestination` configuration parameter.
 
-* `ndb_node_id_out.log`
-  is the file used for `stdout` and
-  `stderr` when running the management server
-  as a daemon.
+* `ndb_node_id_out.log` is the file used for `stdout` and `stderr` when running the management server as a daemon.
 
-* `ndb_node_id.pid`
-  is the process ID file used when running the management
-  server as a daemon.
+* `ndb_node_id.pid` is the process ID file used when running the management server as a daemon.

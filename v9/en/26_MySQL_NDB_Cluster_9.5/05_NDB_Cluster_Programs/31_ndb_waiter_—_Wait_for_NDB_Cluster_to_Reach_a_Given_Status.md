@@ -1,44 +1,22 @@
 ### 25.5.31 ndb\_waiter — Wait for NDB Cluster to Reach a Given Status
 
-[**ndb\_waiter**](mysql-cluster-programs-ndb-waiter.html "25.5.31 ndb_waiter — Wait for NDB Cluster to Reach a Given Status") repeatedly (each 100 milliseconds)
-prints out the status of all cluster data nodes until either the
-cluster reaches a given status or the
-[`--timeout`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_timeout) limit is exceeded,
-then exits. By default, it waits for the cluster to achieve
-`STARTED` status, in which all nodes have
-started and connected to the cluster. This can be overridden
-using the [`--no-contact`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_no-contact) and
-[`--not-started`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_not-started) options.
+**ndb\_waiter** repeatedly (each 100 milliseconds) prints out the status of all cluster data nodes until either the cluster reaches a given status or the `--timeout` limit is exceeded, then exits. By default, it waits for the cluster to achieve `STARTED` status, in which all nodes have started and connected to the cluster. This can be overridden using the `--no-contact` and `--not-started` options.
 
 The node states reported by this utility are as follows:
 
 * `NO_CONTACT`: The node cannot be contacted.
-* `UNKNOWN`: The node can be contacted, but
-  its status is not yet known. Usually, this means that the
-  node has received a
-  [`START`](mysql-cluster-mgm-client-commands.html#ndbclient-start) or
-  [`RESTART`](mysql-cluster-mgm-client-commands.html#ndbclient-restart) command from the
-  management server, but has not yet acted on it.
+* `UNKNOWN`: The node can be contacted, but its status is not yet known. Usually, this means that the node has received a `START` or `RESTART` command from the management server, but has not yet acted on it.
 
-* `NOT_STARTED`: The node has stopped, but
-  remains in contact with the cluster. This is seen when
-  restarting the node using the management client's
-  `RESTART` command.
+* `NOT_STARTED`: The node has stopped, but remains in contact with the cluster. This is seen when restarting the node using the management client's `RESTART` command.
 
-* `STARTING`: The node's
-  [**ndbd**](mysql-cluster-programs-ndbd.html "25.5.1 ndbd — The NDB Cluster Data Node Daemon") process has started, but the node
-  has not yet joined the cluster.
+* `STARTING`: The node's **ndbd** process has started, but the node has not yet joined the cluster.
 
-* `STARTED`: The node is operational, and has
-  joined the cluster.
+* `STARTED`: The node is operational, and has joined the cluster.
 
 * `SHUTTING_DOWN`: The node is shutting down.
-* `SINGLE USER MODE`: This is shown for all
-  cluster data nodes when the cluster is in single user mode.
+* `SINGLE USER MODE`: This is shown for all cluster data nodes when the cluster is in single user mode.
 
-Options that can be used with [**ndb\_waiter**](mysql-cluster-programs-ndb-waiter.html "25.5.31 ndb_waiter — Wait for NDB Cluster to Reach a Given Status") are
-shown in the following table. Additional descriptions follow the
-table.
+Options that can be used with **ndb\_waiter** are shown in the following table. Additional descriptions follow the table.
 
 #### Usage
 
@@ -48,310 +26,129 @@ ndb_waiter [-c connection_string]
 
 #### Additional Options
 
-* [`--character-sets-dir`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_character-sets-dir)
+* `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--character-sets-dir=path</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=path</code></td> </tr></tbody></table>
 
   Directory containing character sets.
 
-* [`--connect-retries`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_connect-retries)
+* `--connect-retries`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>
 
   Number of times to retry connection before giving up.
 
-* [`--connect-retry-delay`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_connect-retry-delay)
+* `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retry-delay=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">5</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">5</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">5</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">5</code></td> </tr></tbody></table>
 
-  Number of seconds to wait between attempts to contact
-  management server.
+  Number of seconds to wait between attempts to contact management server.
 
-* [`--connect-string`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_connect-string)
+* `--connect-string`
 
-  <table frame="box" rules="all" summary="Properties for connect-string"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-string=connection_string</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-string"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-string=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
 
-  Same as
-  [`--ndb-connectstring`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_ndb-connectstring).
+  Same as `--ndb-connectstring`.
 
-* [`--core-file`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_core-file)
+* `--core-file`
 
-  <table frame="box" rules="all" summary="Properties for core-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--core-file</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for core-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--core-file</code></td> </tr></tbody></table>
 
   Write core file on error; used in debugging.
 
-* [`--defaults-extra-file`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_defaults-extra-file)
+* `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--defaults-extra-file=path</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--defaults-extra-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
 
   Read given file after global files are read.
 
-* [`--defaults-file`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_defaults-file)
+* `--defaults-file`
 
-  <table frame="box" rules="all" summary="Properties for defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--defaults-file=path</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--defaults-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
 
   Read default options from given file only.
 
-* [`--defaults-group-suffix`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_defaults-group-suffix)
+* `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--defaults-group-suffix=string</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--defaults-group-suffix=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
 
   Also read groups with concat(group, suffix).
 
-* [`--login-path`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_login-path)
+* `--login-path`
 
-  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--login-path=path</code></td>
-</tr><tr><th>Type</th>
-<td>String</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">[none]</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for login-path"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--login-path=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
 
   Read given path from login file.
 
-* [`--no-login-paths`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_no-login-paths)
+* `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--no-login-paths</code></td>
-</tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for no-login-paths"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--no-login-paths</code></td> </tr></tbody></table>
 
   Skips reading options from the login path file.
 
-* [`--help`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_help)
+* `--help`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>0
 
   Display help text and exit.
 
-* [`--ndb-connectstring`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_ndb-connectstring)
+* `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>1
 
-  Set connection string for connecting to
-  [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"). Syntax:
-  `[nodeid=id;][host=]hostname[:port]`.
-  Overrides entries in `NDB_CONNECTSTRING`
-  and `my.cnf`.
+  Set connection string for connecting to **ndb\_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
-* [`--ndb-mgm-tls`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_ndb-mgm-tls)
+* `--ndb-mgm-tls`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>2
 
-  Sets the level of TLS support required to connect to the
-  management server; one of `relaxed` or
-  `strict`. `relaxed` (the
-  default) means that a TLS connection is attempted, but
-  success is not required; `strict` means
-  that TLS is required to connect.
+  Sets the level of TLS support required to connect to the management server; one of `relaxed` or `strict`. `relaxed` (the default) means that a TLS connection is attempted, but success is not required; `strict` means that TLS is required to connect.
 
-* [`--ndb-mgmd-host`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_ndb-mgmd-host)
+* `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>3
 
-  Same as
-  --[`ndb-connectstring`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_ndb-connectstring).
+  Same as --`ndb-connectstring`.
 
-* [`--ndb-nodeid`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_ndb-nodeid)
+* `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>4
 
-  Set node ID for this node, overriding any ID set by
-  [`--ndb-connectstring`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_ndb-connectstring).
+  Set node ID for this node, overriding any ID set by `--ndb-connectstring`.
 
-* [`--ndb-optimized-node-selection`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_ndb-optimized-node-selection)
+* `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>5
 
-  Enable optimizations for selection of nodes for
-  transactions. Enabled by default; use
-  `--skip-ndb-optimized-node-selection` to
-  disable.
+  Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
 
-* [`--ndb-tls-search-path`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_ndb-tls-search-path)
+* `--ndb-tls-search-path`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>6
 
-  Specify a list of directories to search for a CA file. On
-  Unix platforms, the directory names are separated by colons
-  (`:`); on Windows systems, the semicolon
-  character (`;`) is used as the separator. A
-  directory reference may be relative or absolute; it may
-  contain one or more environment variables, each denoted by a
-  prefixed dollar sign (`$`), and expanded
-  prior to use.
+  Specify a list of directories to search for a CA file. On Unix platforms, the directory names are separated by colons (`:`); on Windows systems, the semicolon character (`;`) is used as the separator. A directory reference may be relative or absolute; it may contain one or more environment variables, each denoted by a prefixed dollar sign (`$`), and expanded prior to use.
 
-  Searching begins with the leftmost named directory and
-  proceeds from left to right until a file is found. An empty
-  string denotes an empty search path, which causes all
-  searches to fail. A string consisting of a single dot
-  (`.`) indicates that the search path
-  limited to the current working directory.
+  Searching begins with the leftmost named directory and proceeds from left to right until a file is found. An empty string denotes an empty search path, which causes all searches to fail. A string consisting of a single dot (`.`) indicates that the search path limited to the current working directory.
 
-  If no search path is supplied, the compiled-in default value
-  is used. This value depends on the platform used: On
-  Windows, this is `\ndb-tls`; on other
-  platforms (including Linux), it is
-  `$HOME/ndb-tls`. This can be overridden by
-  compiling NDB Cluster using
-  [`-DWITH_NDB_TLS_SEARCH_PATH`](source-configuration-options.html#option_cmake_with_ndb_tls_search_path).
+  If no search path is supplied, the compiled-in default value is used. This value depends on the platform used: On Windows, this is `\ndb-tls`; on other platforms (including Linux), it is `$HOME/ndb-tls`. This can be overridden by compiling NDB Cluster using `-DWITH_NDB_TLS_SEARCH_PATH`.
 
-* [`--no-contact`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_no-contact),
-  `-n`
+* `--no-contact`, `-n`
 
-  Instead of waiting for the `STARTED` state,
-  [**ndb\_waiter**](mysql-cluster-programs-ndb-waiter.html "25.5.31 ndb_waiter — Wait for NDB Cluster to Reach a Given Status") continues running until the
-  cluster reaches `NO_CONTACT` status before
-  exiting.
+  Instead of waiting for the `STARTED` state, **ndb\_waiter** continues running until the cluster reaches `NO_CONTACT` status before exiting.
 
-* [`--no-defaults`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_no-defaults)
+* `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>7
 
-  Do not read default options from any option file other than
-  login file.
+  Do not read default options from any option file other than login file.
 
-* [`--not-started`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_not-started)
+* `--not-started`
 
-  Instead of waiting for the `STARTED` state,
-  [**ndb\_waiter**](mysql-cluster-programs-ndb-waiter.html "25.5.31 ndb_waiter — Wait for NDB Cluster to Reach a Given Status") continues running until the
-  cluster reaches `NOT_STARTED` status before
-  exiting.
+  Instead of waiting for the `STARTED` state, **ndb\_waiter** continues running until the cluster reaches `NOT_STARTED` status before exiting.
 
-* [`--nowait-nodes=list`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_nowait-nodes)
+* `--nowait-nodes=list`
 
-  When this option is used, [**ndb\_waiter**](mysql-cluster-programs-ndb-waiter.html "25.5.31 ndb_waiter — Wait for NDB Cluster to Reach a Given Status") does
-  not wait for the nodes whose IDs are listed. The list is
-  comma-delimited; ranges can be indicated by dashes, as shown
-  here:
+  When this option is used, **ndb\_waiter** does not wait for the nodes whose IDs are listed. The list is comma-delimited; ranges can be indicated by dashes, as shown here:
 
   ```
   $> ndb_waiter --nowait-nodes=1,3,7-9
@@ -359,117 +156,59 @@ ndb_waiter [-c connection_string]
 
   Important
 
-  Do *not* use this option together with
-  the [`--wait-nodes`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_wait-nodes)
-  option.
+  Do *not* use this option together with the `--wait-nodes` option.
 
-* [`--print-defaults`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_print-defaults)
+* `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>8
 
   Print program argument list and exit.
 
-* [`--timeout=seconds`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_timeout),
-  `-t seconds`
+* `--timeout=seconds`, `-t seconds`
 
-  Time to wait. The program exits if the desired state is not
-  achieved within this number of seconds. The default is 120
-  seconds (1200 reporting cycles).
+  Time to wait. The program exits if the desired state is not achieved within this number of seconds. The default is 120 seconds (1200 reporting cycles).
 
-* [`--single-user`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_single-user)
+* `--single-user`
 
   The program waits for the cluster to enter single user mode.
 
-* [`--usage`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_usage)
+* `--usage`
 
-  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retries=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">12</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">12</code></td>
-</tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">12</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">12</code></td> </tr></tbody></table>9
 
-  Display help text and exit; same as
-  [`--help`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_help).
+  Display help text and exit; same as `--help`.
 
-* [`--verbose`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_verbose)
+* `--verbose`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retry-delay=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">5</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">5</code></td>
-</tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">5</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">5</code></td> </tr></tbody></table>0
 
-  Controls verbosity level of printout. Possible levels and
-  their effects are listed here:
+  Controls verbosity level of printout. Possible levels and their effects are listed here:
 
-  + `0`: Do not print (return exit code
-    only; see following for exit codes).
+  + `0`: Do not print (return exit code only; see following for exit codes).
 
-  + `1`: Print final connection status
-    only.
+  + `1`: Print final connection status only.
 
-  + `2`: Print status each time it is
-    checked.
+  + `2`: Print status each time it is checked.
 
-    This is the same behavior as in versions of NDB Cluster
-    previous to 8.4.
+    This is the same behavior as in versions of NDB Cluster previous to 8.4.
 
-  Exit codes returned by [**ndb\_waiter**](mysql-cluster-programs-ndb-waiter.html "25.5.31 ndb_waiter — Wait for NDB Cluster to Reach a Given Status") are
-  listed here, with their meanings:
+  Exit codes returned by **ndb\_waiter** are listed here, with their meanings:
 
   + `0`: Success.
   + `1`: Wait timed out.
-  + `2`: Parameter error, such as an
-    invalid node ID.
+  + `2`: Parameter error, such as an invalid node ID.
 
-  + `3`: Failed to connect to the
-    management server.
+  + `3`: Failed to connect to the management server.
 
-* [`--version`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_version)
+* `--version`
 
-  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th>
-<td><code class="literal">--connect-retry-delay=#</code></td>
-</tr><tr><th>Type</th>
-<td>Integer</td>
-</tr><tr><th>Default Value</th>
-<td><code class="literal">5</code></td>
-</tr><tr><th>Minimum Value</th>
-<td><code class="literal">0</code></td>
-</tr><tr><th>Maximum Value</th>
-<td><code class="literal">5</code></td>
-</tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">5</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">5</code></td> </tr></tbody></table>1
 
   Display version information and exit.
 
-* [`--wait-nodes=list`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_wait-nodes),
-  `-w list`
+* `--wait-nodes=list`, `-w list`
 
-  When this option is used, [**ndb\_waiter**](mysql-cluster-programs-ndb-waiter.html "25.5.31 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
-  waits only for the nodes whose IDs are listed. The list is
-  comma-delimited; ranges can be indicated by dashes, as shown
-  here:
+  When this option is used, **ndb\_waiter** waits only for the nodes whose IDs are listed. The list is comma-delimited; ranges can be indicated by dashes, as shown here:
 
   ```
   $> ndb_waiter --wait-nodes=2,4-6,10
@@ -477,15 +216,9 @@ ndb_waiter [-c connection_string]
 
   Important
 
-  Do *not* use this option together with
-  the [`--nowait-nodes`](mysql-cluster-programs-ndb-waiter.html#option_ndb_waiter_nowait-nodes)
-  option.
+  Do *not* use this option together with the `--nowait-nodes` option.
 
-**Sample Output.**
-Shown here is the output from [**ndb\_waiter**](mysql-cluster-programs-ndb-waiter.html "25.5.31 ndb_waiter — Wait for NDB Cluster to Reach a Given Status")
-when run against a 4-node cluster in which two nodes have been
-shut down and then started again manually. Duplicate reports
-(indicated by `...`) are omitted.
+**Sample Output.** Shown here is the output from **ndb\_waiter** when run against a 4-node cluster in which two nodes have been shut down and then started again manually. Duplicate reports (indicated by `...`) are omitted.
 
 ```
 $> ./ndb_waiter -c localhost
@@ -548,7 +281,4 @@ Waiting for cluster enter state STARTED
 
 Note
 
-If no connection string is specified, then
-[**ndb\_waiter**](mysql-cluster-programs-ndb-waiter.html "25.5.31 ndb_waiter — Wait for NDB Cluster to Reach a Given Status") tries to connect to a management
-on `localhost`, and reports
-`Connecting to mgmsrv at (null)`.
+If no connection string is specified, then **ndb\_waiter** tries to connect to a management on `localhost`, and reports `Connecting to mgmsrv at (null)`.

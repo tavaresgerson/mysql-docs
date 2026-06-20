@@ -1,19 +1,8 @@
 ### 27.7.1 Creating JSON Duality Views
 
-The
-[`CREATE
-JSON RELATIONAL DUALITY VIEW`](create-json-duality-view.html "15.1.17 CREATE JSON DUALITY VIEW Statement") statement is an extension
-of the [`CREATE VIEW`](create-view.html "15.1.27 CREATE VIEW Statement") statement. There
-are some additional clauses with
-[`CREATE
-JSON RELATIONAL DUALITY VIEW`](create-json-duality-view.html "15.1.17 CREATE JSON DUALITY VIEW Statement"), and some restrictions on
-the [`SELECT`](select.html "15.2.13 SELECT Statement") statement. The
-`RELATIONAL` keyword is optional, and is omitted
-in examples.
+The [`CREATE JSON RELATIONAL DUALITY VIEW`](create-json-duality-view.html "15.1.17 CREATE JSON DUALITY VIEW Statement") statement is an extension of the `CREATE VIEW` statement. There are some additional clauses with [`CREATE JSON RELATIONAL DUALITY VIEW`](create-json-duality-view.html "15.1.17 CREATE JSON DUALITY VIEW Statement"), and some restrictions on the `SELECT` statement. The `RELATIONAL` keyword is optional, and is omitted in examples.
 
-In this example, we create two tables,
-`customers` and `orders`, and
-insert some data into each table:
+In this example, we create two tables, `customers` and `orders`, and insert some data into each table:
 
 ```
 mysql> CREATE TABLE customers (
@@ -35,10 +24,7 @@ Query OK, 4 rows affected (0.007 sec)
 Records: 4  Duplicates: 0  Warnings: 0
 ```
 
-The JSON duality views `customer_orders_dv` and
-`order_dv` give us a hierarchical view of the
-data in the table. We can create them using the following SQL
-statements:
+The JSON duality views `customer_orders_dv` and `order_dv` give us a hierarchical view of the data in the table. We can create them using the following SQL statements:
 
 ```
 mysql> CREATE JSON RELATIONAL DUALITY VIEW customer_orders_dv AS
@@ -75,13 +61,7 @@ SELECT JSON_DUALITY_OBJECT( WITH(INSERT,UPDATE,DELETE)
 FROM orders;
 ```
 
-JSON duality views support [`SELECT`](select.html "15.2.13 SELECT Statement")
-statements in the same way as regular views, allowing you to
-retrieve the relevant data. The result set is structured with a
-single column named `data`, and a unique row
-identifier named `_id`. You can also use
-`WHERE` clauses to filter results. See the
-following example:
+JSON duality views support `SELECT` statements in the same way as regular views, allowing you to retrieve the relevant data. The result set is structured with a single column named `data`, and a unique row identifier named `_id`. You can also use `WHERE` clauses to filter results. See the following example:
 
 ```
 mysql> SELECT JSON_PRETTY(data) FROM customer_orders_dv WHERE data->'$._id' = 1 \G

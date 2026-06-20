@@ -1,15 +1,8 @@
 #### 30.4.3.37 The statements\_with\_full\_table\_scans and x$statements\_with\_full\_table\_scans Views
 
-These views display normalized statements that have done full
-table scans. By default, rows are sorted by descending
-percentage of time a full scan was done and descending total
-latency.
+These views display normalized statements that have done full table scans. By default, rows are sorted by descending percentage of time a full scan was done and descending total latency.
 
-The
-[`statements_with_full_table_scans`](sys-statements-with-full-table-scans.html "30.4.3.37 The statements_with_full_table_scans and x$statements_with_full_table_scans Views")
-and
-[`x$statements_with_full_table_scans`](sys-statements-with-full-table-scans.html "30.4.3.37 The statements_with_full_table_scans and x$statements_with_full_table_scans Views")
-views have these columns:
+The `statements_with_full_table_scans` and `x$statements_with_full_table_scans` views have these columns:
 
 * `query`
 
@@ -17,8 +10,7 @@ views have these columns:
 
 * `db`
 
-  The default database for the statement, or
-  `NULL` if there is none.
+  The default database for the statement, or `NULL` if there is none.
 
 * `exec_count`
 
@@ -26,23 +18,19 @@ views have these columns:
 
 * `total_latency`
 
-  The total wait time of timed statement events for the
-  statement.
+  The total wait time of timed statement events for the statement.
 
 * `no_index_used_count`
 
-  The total number of times no index was used to scan the
-  table.
+  The total number of times no index was used to scan the table.
 
 * `no_good_index_used_count`
 
-  The total number of times no good index was used to scan
-  the table.
+  The total number of times no good index was used to scan the table.
 
 * `no_index_used_pct`
 
-  The percentage of the time no index was used to scan the
-  table.
+  The percentage of the time no index was used to scan the table.
 
 * `rows_sent`
 
@@ -50,8 +38,7 @@ views have these columns:
 
 * `rows_examined`
 
-  The total number of rows read from the storage engine for
-  the table.
+  The total number of rows read from the storage engine for the table.
 
 * `rows_sent_avg`
 
@@ -59,8 +46,7 @@ views have these columns:
 
 * `rows_examined_avg`
 
-  The average number of rows read from the storage engine
-  for the table.
+  The average number of rows read from the storage engine for the table.
 
 * `first_seen`
 

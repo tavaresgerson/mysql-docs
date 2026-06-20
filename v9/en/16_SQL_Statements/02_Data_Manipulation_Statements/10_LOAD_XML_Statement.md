@@ -15,44 +15,25 @@ LOAD XML
         [, col_name={expr | DEFAULT}] ...]
 ```
 
-The [`LOAD XML`](load-xml.html "15.2.10 LOAD XML Statement") statement reads data
-from an XML file into a table. The
-*`file_name`* must be given as a literal
-string. The *`tagname`* in the optional
-`ROWS IDENTIFIED BY` clause must also be given as
-a literal string, and must be surrounded by angle brackets
-(`<` and `>`).
+The `LOAD XML` statement reads data from an XML file into a table. The *`file_name`* must be given as a literal string. The *`tagname`* in the optional `ROWS IDENTIFIED BY` clause must also be given as a literal string, and must be surrounded by angle brackets (`<` and `>`).
 
-[`LOAD XML`](load-xml.html "15.2.10 LOAD XML Statement") acts as the complement of
-running the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") client in XML output mode
-(that is, starting the client with the
-[`--xml`](mysql-command-options.html#option_mysql_xml) option). To write data from a
-table to an XML file, you can invoke the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client")
-client with the [`--xml`](mysql-command-options.html#option_mysql_xml) and
-[`-e`](mysql-command-options.html#option_mysql_execute) options from
-the system shell, as shown here:
+`LOAD XML` acts as the complement of running the **mysql** client in XML output mode (that is, starting the client with the `--xml` option). To write data from a table to an XML file, you can invoke the **mysql** client with the `--xml` and `-e` options from the system shell, as shown here:
 
 ```
 $> mysql --xml -e 'SELECT * FROM mydb.mytable' > file.xml
 ```
 
-To read the file back into a table, use [`LOAD
-XML`](load-xml.html "15.2.10 LOAD XML Statement"). By default, the `<row>`
-element is considered to be the equivalent of a database table
-row; this can be changed using the `ROWS IDENTIFIED
-BY` clause.
+To read the file back into a table, use [`LOAD XML`](load-xml.html "15.2.10 LOAD XML Statement"). By default, the `<row>` element is considered to be the equivalent of a database table row; this can be changed using the `ROWS IDENTIFIED BY` clause.
 
 This statement supports three different XML formats:
 
-* Column names as attributes and column values as attribute
-  values:
+* Column names as attributes and column values as attribute values:
 
   ```
   <row column1="value1" column2="value2" .../>
   ```
 
-* Column names as tags and column values as the content of these
-  tags:
+* Column names as tags and column values as the content of these tags:
 
   ```
   <row>
@@ -61,9 +42,7 @@ This statement supports three different XML formats:
   </row>
   ```
 
-* Column names are the `name` attributes of
-  `<field>` tags, and values are the
-  contents of these tags:
+* Column names are the `name` attributes of `<field>` tags, and values are the contents of these tags:
 
   ```
   <row>
@@ -72,47 +51,26 @@ This statement supports three different XML formats:
   </row>
   ```
 
-  This is the format used by other MySQL tools, such as
-  [**mysqldump**](mysqldump.html "6.5.4 mysqldump — A Database Backup Program").
+  This is the format used by other MySQL tools, such as **mysqldump**.
 
-All three formats can be used in the same XML file; the import
-routine automatically detects the format for each row and
-interprets it correctly. Tags are matched based on the tag or
-attribute name and the column name.
+All three formats can be used in the same XML file; the import routine automatically detects the format for each row and interprets it correctly. Tags are matched based on the tag or attribute name and the column name.
 
-The following clauses work essentially the same way for
-[`LOAD XML`](load-xml.html "15.2.10 LOAD XML Statement") as they do for
-[`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement"):
+The following clauses work essentially the same way for `LOAD XML` as they do for `LOAD DATA`:
 
-* `LOW_PRIORITY` or
-  `CONCURRENT`
+* `LOW_PRIORITY` or `CONCURRENT`
 
 * `LOCAL`
 * `REPLACE` or `IGNORE`
 * `CHARACTER SET`
 * `SET`
 
-See [Section 15.2.9, “LOAD DATA Statement”](load-data.html "15.2.9 LOAD DATA Statement"), for more information about these
-clauses.
+See Section 15.2.9, “LOAD DATA Statement”, for more information about these clauses.
 
-`(field_name_or_user_var,
-...)` is a list of one or more comma-separated XML fields
-or user variables. The name of a user variable used for this
-purpose must match the name of a field from the XML file, prefixed
-with `@`. You can use field names to select only
-desired fields. User variables can be employed to store the
-corresponding field values for subsequent re-use.
+`(field_name_or_user_var, ...)` is a list of one or more comma-separated XML fields or user variables. The name of a user variable used for this purpose must match the name of a field from the XML file, prefixed with `@`. You can use field names to select only desired fields. User variables can be employed to store the corresponding field values for subsequent re-use.
 
-The `IGNORE number
-LINES` or `IGNORE
-number ROWS` clause causes the
-first *`number`* rows in the XML file to be
-skipped. It is analogous to the [`LOAD
-DATA`](load-data.html "15.2.9 LOAD DATA Statement") statement's `IGNORE ... LINES`
-clause.
+The `IGNORE number LINES` or `IGNORE number ROWS` clause causes the first *`number`* rows in the XML file to be skipped. It is analogous to the [`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement") statement's `IGNORE ... LINES` clause.
 
-Suppose that we have a table named `person`,
-created as shown here:
+Suppose that we have a table named `person`, created as shown here:
 
 ```
 USE test;
@@ -127,8 +85,7 @@ CREATE TABLE person (
 
 Suppose further that this table is initially empty.
 
-Now suppose that we have a simple XML file
-`person.xml`, whose contents are as shown here:
+Now suppose that we have a simple XML file `person.xml`, whose contents are as shown here:
 
 ```
 <list>
@@ -145,11 +102,9 @@ Now suppose that we have a simple XML file
 </list>
 ```
 
-Each of the permissible XML formats discussed previously is
-represented in this example file.
+Each of the permissible XML formats discussed previously is represented in this example file.
 
-To import the data in `person.xml` into the
-`person` table, you can use this statement:
+To import the data in `person.xml` into the `person` table, you can use this statement:
 
 ```
 mysql> LOAD XML LOCAL INFILE 'person.xml'
@@ -160,25 +115,15 @@ Query OK, 8 rows affected (0.00 sec)
 Records: 8  Deleted: 0  Skipped: 0  Warnings: 0
 ```
 
-Here, we assume that `person.xml` is located in
-the MySQL data directory. If the file cannot be found, the
-following error results:
+Here, we assume that `person.xml` is located in the MySQL data directory. If the file cannot be found, the following error results:
 
 ```
 ERROR 2 (HY000): File '/person.xml' not found (Errcode: 2)
 ```
 
-The `ROWS IDENTIFIED BY '<person>'` clause
-means that each `<person>` element in the
-XML file is considered equivalent to a row in the table into which
-the data is to be imported. In this case, this is the
-`person` table in the `test`
-database.
+The `ROWS IDENTIFIED BY '<person>'` clause means that each `<person>` element in the XML file is considered equivalent to a row in the table into which the data is to be imported. In this case, this is the `person` table in the `test` database.
 
-As can be seen by the response from the server, 8 rows were
-imported into the `test.person` table. This can
-be verified by a simple [`SELECT`](select.html "15.2.13 SELECT Statement")
-statement:
+As can be seen by the response from the server, 8 rows were imported into the `test.person` table. This can be verified by a simple `SELECT` statement:
 
 ```
 mysql> SELECT * FROM person;
@@ -197,14 +142,9 @@ mysql> SELECT * FROM person;
 8 rows in set (0.00 sec)
 ```
 
-This shows, as stated earlier in this section, that any or all of
-the 3 permitted XML formats may appear in a single file and be
-read using [`LOAD XML`](load-xml.html "15.2.10 LOAD XML Statement").
+This shows, as stated earlier in this section, that any or all of the 3 permitted XML formats may appear in a single file and be read using `LOAD XML`.
 
-The inverse of the import operation just shown—that is,
-dumping MySQL table data into an XML file—can be
-accomplished using the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") client from the
-system shell, as shown here:
+The inverse of the import operation just shown—that is, dumping MySQL table data into an XML file—can be accomplished using the **mysql** client from the system shell, as shown here:
 
 ```
 $> mysql --xml -e "SELECT * FROM test.person" > person-dump.xml
@@ -264,15 +204,9 @@ $> cat person-dump.xml
 
 Note
 
-The [`--xml`](mysql-command-options.html#option_mysql_xml) option causes the
-[**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") client to use XML formatting for its
-output; the [`-e`](mysql-command-options.html#option_mysql_execute)
-option causes the client to execute the SQL statement
-immediately following the option. See [Section 6.5.1, “mysql — The MySQL Command-Line Client”](mysql.html "6.5.1 mysql — The MySQL Command-Line Client").
+The `--xml` option causes the **mysql** client to use XML formatting for its output; the `-e` option causes the client to execute the SQL statement immediately following the option. See Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 
-You can verify that the dump is valid by creating a copy of the
-`person` table and importing the dump file into
-the new table, like this:
+You can verify that the dump is valid by creating a copy of the `person` table and importing the dump file into the new table, like this:
 
 ```
 mysql> USE test;
@@ -300,13 +234,7 @@ mysql> SELECT * FROM person2;
 8 rows in set (0.00 sec)
 ```
 
-There is no requirement that every field in the XML file be
-matched with a column in the corresponding table. Fields which
-have no corresponding columns are skipped. You can see this by
-first emptying the `person2` table and dropping
-the `created` column, then using the same
-[`LOAD XML`](load-xml.html "15.2.10 LOAD XML Statement") statement we just employed
-previously, like this:
+There is no requirement that every field in the XML file be matched with a column in the corresponding table. Fields which have no corresponding columns are skipped. You can see this by first emptying the `person2` table and dropping the `created` column, then using the same `LOAD XML` statement we just employed previously, like this:
 
 ```
 mysql> TRUNCATE person2;
@@ -348,22 +276,9 @@ mysql> SELECT * FROM person2;
 8 rows in set (0.00 sec)
 ```
 
-The order in which the fields are given within each row of the XML
-file does not affect the operation of [`LOAD
-XML`](load-xml.html "15.2.10 LOAD XML Statement"); the field order can vary from row to row, and is
-not required to be in the same order as the corresponding columns
-in the table.
+The order in which the fields are given within each row of the XML file does not affect the operation of [`LOAD XML`](load-xml.html "15.2.10 LOAD XML Statement"); the field order can vary from row to row, and is not required to be in the same order as the corresponding columns in the table.
 
-As mentioned previously, you can use a
-`(field_name_or_user_var,
-...)` list of one or more XML fields (to select desired
-fields only) or user variables (to store the corresponding field
-values for later use). User variables can be especially useful
-when you want to insert data from an XML file into table columns
-whose names do not match those of the XML fields. To see how this
-works, we first create a table named `individual`
-whose structure matches that of the `person`
-table, but whose columns are named differently:
+As mentioned previously, you can use a `(field_name_or_user_var, ...)` list of one or more XML fields (to select desired fields only) or user variables (to store the corresponding field values for later use). User variables can be especially useful when you want to insert data from an XML file into table columns whose names do not match those of the XML fields. To see how this works, we first create a table named `individual` whose structure matches that of the `person` table, but whose columns are named differently:
 
 ```
 mysql> CREATE TABLE individual (
@@ -375,20 +290,14 @@ mysql> CREATE TABLE individual (
 Query OK, 0 rows affected (0.42 sec)
 ```
 
-In this case, you cannot simply load the XML file directly into
-the table, because the field and column names do not match:
+In this case, you cannot simply load the XML file directly into the table, because the field and column names do not match:
 
 ```
 mysql> LOAD XML INFILE '../bin/person-dump.xml' INTO TABLE test.individual;
 ERROR 1263 (22004): Column set to default value; NULL supplied to NOT NULL column 'individual_id' at row 1
 ```
 
-This happens because the MySQL server looks for field names
-matching the column names of the target table. You can work around
-this problem by selecting the field values into user variables,
-then setting the target table's columns equal to the values
-of those variables using `SET`. You can perform
-both of these operations in a single statement, as shown here:
+This happens because the MySQL server looks for field names matching the column names of the target table. You can work around this problem by selecting the field values into user variables, then setting the target table's columns equal to the values of those variables using `SET`. You can perform both of these operations in a single statement, as shown here:
 
 ```
 mysql> LOAD XML INFILE '../bin/person-dump.xml'
@@ -413,18 +322,9 @@ mysql> SELECT * FROM individual;
 8 rows in set (0.00 sec)
 ```
 
-The names of the user variables *must* match
-those of the corresponding fields from the XML file, with the
-addition of the required `@` prefix to indicate
-that they are variables. The user variables need not be listed or
-assigned in the same order as the corresponding fields.
+The names of the user variables *must* match those of the corresponding fields from the XML file, with the addition of the required `@` prefix to indicate that they are variables. The user variables need not be listed or assigned in the same order as the corresponding fields.
 
-Using a `ROWS IDENTIFIED BY
-'<tagname>'` clause, it
-is possible to import data from the same XML file into database
-tables with different definitions. For this example, suppose that
-you have a file named `address.xml` which
-contains the following XML:
+Using a `ROWS IDENTIFIED BY '<tagname>'` clause, it is possible to import data from the same XML file into database tables with different definitions. For this example, suppose that you have a file named `address.xml` which contains the following XML:
 
 ```
 <?xml version="1.0"?>
@@ -447,10 +347,7 @@ contains the following XML:
 </list>
 ```
 
-You can again use the `test.person` table as
-defined previously in this section, after clearing all the
-existing records from the table and then showing its structure as
-shown here:
+You can again use the `test.person` table as defined previously in this section, after clearing all the existing records from the table and then showing its structure as shown here:
 
 ```
 mysql< TRUNCATE person;
@@ -469,9 +366,7 @@ Create Table: CREATE TABLE `person` (
 1 row in set (0.00 sec)
 ```
 
-Now create an `address` table in the
-`test` database using the following
-[`CREATE TABLE`](create-table.html "15.1.24 CREATE TABLE Statement") statement:
+Now create an `address` table in the `test` database using the following `CREATE TABLE` statement:
 
 ```
 CREATE TABLE address (
@@ -484,11 +379,7 @@ CREATE TABLE address (
 );
 ```
 
-To import the data from the XML file into the
-`person` table, execute the following
-[`LOAD XML`](load-xml.html "15.2.10 LOAD XML Statement") statement, which specifies
-that rows are to be specified by the
-`<person>` element, as shown here;
+To import the data from the XML file into the `person` table, execute the following `LOAD XML` statement, which specifies that rows are to be specified by the `<person>` element, as shown here;
 
 ```
 mysql> LOAD XML LOCAL INFILE 'address.xml'
@@ -498,8 +389,7 @@ Query OK, 2 rows affected (0.00 sec)
 Records: 2  Deleted: 0  Skipped: 0  Warnings: 0
 ```
 
-You can verify that the records were imported using a
-[`SELECT`](select.html "15.2.13 SELECT Statement") statement:
+You can verify that the records were imported using a `SELECT` statement:
 
 ```
 mysql> SELECT * FROM person;
@@ -512,13 +402,9 @@ mysql> SELECT * FROM person;
 2 rows in set (0.00 sec)
 ```
 
-Since the `<address>` elements in the XML
-file have no corresponding columns in the
-`person` table, they are skipped.
+Since the `<address>` elements in the XML file have no corresponding columns in the `person` table, they are skipped.
 
-To import the data from the `<address>`
-elements into the `address` table, use the
-[`LOAD XML`](load-xml.html "15.2.10 LOAD XML Statement") statement shown here:
+To import the data from the `<address>` elements into the `address` table, use the `LOAD XML` statement shown here:
 
 ```
 mysql> LOAD XML LOCAL INFILE 'address.xml'
@@ -528,8 +414,7 @@ Query OK, 3 rows affected (0.00 sec)
 Records: 3  Deleted: 0  Skipped: 0  Warnings: 0
 ```
 
-You can see that the data was imported using a
-[`SELECT`](select.html "15.2.13 SELECT Statement") statement such as this one:
+You can see that the data was imported using a `SELECT` statement such as this one:
 
 ```
 mysql> SELECT * FROM address;
@@ -543,57 +428,18 @@ mysql> SELECT * FROM address;
 3 rows in set (0.00 sec)
 ```
 
-The data from the `<address>` element that
-is enclosed in XML comments is not imported. However, since there
-is a `person_id` column in the
-`address` table, the value of the
-`person_id` attribute from the parent
-`<person>` element for each
-`<address>` *is*
-imported into the `address` table.
+The data from the `<address>` element that is enclosed in XML comments is not imported. However, since there is a `person_id` column in the `address` table, the value of the `person_id` attribute from the parent `<person>` element for each `<address>` *is* imported into the `address` table.
 
-**Security Considerations.**
-As with the [`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement") statement,
-the transfer of the XML file from the client host to the server
-host is initiated by the MySQL server. In theory, a patched
-server could be built that would tell the client program to
-transfer a file of the server's choosing rather than the file
-named by the client in the [`LOAD
-XML`](load-xml.html "15.2.10 LOAD XML Statement") statement. Such a server could access any file on
-the client host to which the client user has read access.
+**Security Considerations.** As with the `LOAD DATA` statement, the transfer of the XML file from the client host to the server host is initiated by the MySQL server. In theory, a patched server could be built that would tell the client program to transfer a file of the server's choosing rather than the file named by the client in the [`LOAD XML`](load-xml.html "15.2.10 LOAD XML Statement") statement. Such a server could access any file on the client host to which the client user has read access.
 
-In a Web environment, clients usually connect to MySQL from a Web
-server. A user that can run any command against the MySQL server
-can use [`LOAD XML
-LOCAL`](load-xml.html "15.2.10 LOAD XML Statement") to read any files to which the Web server process
-has read access. In this environment, the client with respect to
-the MySQL server is actually the Web server, not the remote
-program being run by the user who connects to the Web server.
+In a Web environment, clients usually connect to MySQL from a Web server. A user that can run any command against the MySQL server can use [`LOAD XML LOCAL`](load-xml.html "15.2.10 LOAD XML Statement") to read any files to which the Web server process has read access. In this environment, the client with respect to the MySQL server is actually the Web server, not the remote program being run by the user who connects to the Web server.
 
-You can disable loading of XML files from clients by starting the
-server with [`--local-infile=0`](server-system-variables.html#sysvar_local_infile) or
-[`--local-infile=OFF`](server-system-variables.html#sysvar_local_infile). This option
-can also be used when starting the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") client
-to disable [`LOAD XML`](load-xml.html "15.2.10 LOAD XML Statement") for the
-duration of the client session.
+You can disable loading of XML files from clients by starting the server with `--local-infile=0` or `--local-infile=OFF`. This option can also be used when starting the **mysql** client to disable `LOAD XML` for the duration of the client session.
 
-To prevent a client from loading XML files from the server, do not
-grant the [`FILE`](privileges-provided.html#priv_file) privilege to the
-corresponding MySQL user account, or revoke this privilege if the
-client user account already has it.
+To prevent a client from loading XML files from the server, do not grant the `FILE` privilege to the corresponding MySQL user account, or revoke this privilege if the client user account already has it.
 
 Important
 
-Revoking the [`FILE`](privileges-provided.html#priv_file) privilege (or
-not granting it in the first place) keeps the user only from
-executing the [`LOAD XML`](load-xml.html "15.2.10 LOAD XML Statement") statement
-(as well as the [`LOAD_FILE()`](string-functions.html#function_load-file)
-function; it does *not* prevent the user from
-executing [`LOAD XML
-LOCAL`](load-xml.html "15.2.10 LOAD XML Statement"). To disallow this statement, you must start the
-server or the client with `--local-infile=OFF`.
+Revoking the `FILE` privilege (or not granting it in the first place) keeps the user only from executing the `LOAD XML` statement (as well as the `LOAD_FILE()` function; it does *not* prevent the user from executing [`LOAD XML LOCAL`](load-xml.html "15.2.10 LOAD XML Statement"). To disallow this statement, you must start the server or the client with `--local-infile=OFF`.
 
-In other words, the [`FILE`](privileges-provided.html#priv_file)
-privilege affects only whether the client can read files on the
-server; it has no bearing on whether the client can read files
-on the local file system.
+In other words, the `FILE` privilege affects only whether the client can read files on the server; it has no bearing on whether the client can read files on the local file system.

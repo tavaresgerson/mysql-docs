@@ -1,19 +1,14 @@
 ### 28.4.13 The INFORMATION\_SCHEMA INNODB\_FOREIGN\_COLS Table
 
-The [`INNODB_FOREIGN_COLS`](information-schema-innodb-foreign-cols-table.html "28.4.13 The INFORMATION_SCHEMA INNODB_FOREIGN_COLS Table") table
-provides status information about `InnoDB`
-foreign key columns.
+The `INNODB_FOREIGN_COLS` table provides status information about `InnoDB` foreign key columns.
 
-For related usage information and examples, see
-[Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”](innodb-information-schema-system-tables.html "17.15.3 InnoDB INFORMATION_SCHEMA Schema Object Tables").
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
 
-The [`INNODB_FOREIGN_COLS`](information-schema-innodb-foreign-cols-table.html "28.4.13 The INFORMATION_SCHEMA INNODB_FOREIGN_COLS Table") table has
-these columns:
+The `INNODB_FOREIGN_COLS` table has these columns:
 
 * `ID`
 
-  The foreign key index associated with this index key field;
-  the same value as `INNODB_FOREIGN.ID`.
+  The foreign key index associated with this index key field; the same value as `INNODB_FOREIGN.ID`.
 
 * `FOR_COL_NAME`
 
@@ -25,8 +20,7 @@ these columns:
 
 * `POS`
 
-  The ordinal position of this key field within the foreign key
-  index, starting from 0.
+  The ordinal position of this key field within the foreign key index, starting from 0.
 
 #### Example
 
@@ -41,11 +35,6 @@ REF_COL_NAME: id
 
 #### Notes
 
-* You must have the [`PROCESS`](privileges-provided.html#priv_process)
-  privilege to query this table.
+* You must have the `PROCESS` privilege to query this table.
 
-* Use the `INFORMATION_SCHEMA`
-  [`COLUMNS`](information-schema-columns-table.html "28.3.8 The INFORMATION_SCHEMA COLUMNS Table") table or the
-  [`SHOW COLUMNS`](show-columns.html "15.7.7.6 SHOW COLUMNS Statement") statement to view
-  additional information about the columns of this table,
-  including data types and default values.
+* Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.

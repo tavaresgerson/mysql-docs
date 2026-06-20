@@ -1,25 +1,16 @@
 ### 6.6.5 myisamlog — Display MyISAM Log File Contents
 
-[**myisamlog**](myisamlog.html "6.6.5 myisamlog — Display MyISAM Log File Contents") processes the contents of a
-`MyISAM` log file. To create such a file, start
-the server with a
-[`--log-isam=log_file`](server-options.html#option_mysqld_log-isam)
-option.
+**myisamlog** processes the contents of a `MyISAM` log file. To create such a file, start the server with a `--log-isam=log_file` option.
 
-Invoke [**myisamlog**](myisamlog.html "6.6.5 myisamlog — Display MyISAM Log File Contents") like this:
+Invoke **myisamlog** like this:
 
 ```
 myisamlog [options] [file_name [tbl_name] ...]
 ```
 
-The default operation is update (`-u`). If a
-recovery is done (`-r`), all writes and possibly
-updates and deletes are done and errors are only counted. The
-default log file name is `myisam.log` if no
-*`log_file`* argument is given. If tables
-are named on the command line, only those tables are updated.
+The default operation is update (`-u`). If a recovery is done (`-r`), all writes and possibly updates and deletes are done and errors are only counted. The default log file name is `myisam.log` if no *`log_file`* argument is given. If tables are named on the command line, only those tables are updated.
 
-[**myisamlog**](myisamlog.html "6.6.5 myisamlog — Display MyISAM Log File Contents") supports the following options:
+**myisamlog** supports the following options:
 
 * `-?`, `-I`
 
@@ -53,8 +44,7 @@ are named on the command line, only those tables are updated.
 
   Perform a recovery operation.
 
-* `-R record_pos_file
-  record_pos`
+* `-R record_pos_file record_pos`
 
   Specify record position file and record position.
 
@@ -64,9 +54,7 @@ are named on the command line, only those tables are updated.
 
 * `-v`
 
-  Verbose mode. Print more output about what the program does.
-  This option can be given multiple times to produce more and
-  more output.
+  Verbose mode. Print more output about what the program does. This option can be given multiple times to produce more and more output.
 
 * `-w write_file`
 

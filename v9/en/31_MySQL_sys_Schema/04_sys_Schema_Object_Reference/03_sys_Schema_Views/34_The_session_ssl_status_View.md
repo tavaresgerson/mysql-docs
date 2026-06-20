@@ -1,10 +1,8 @@
 #### 30.4.3.34 The session\_ssl\_status View
 
-For each connection, this view displays the SSL version,
-cipher, and count of reused SSL sessions.
+For each connection, this view displays the SSL version, cipher, and count of reused SSL sessions.
 
-The [`session_ssl_status`](sys-session-ssl-status.html "30.4.3.34 The session_ssl_status View") view has
-these columns:
+The `session_ssl_status` view has these columns:
 
 * `thread_id`
 

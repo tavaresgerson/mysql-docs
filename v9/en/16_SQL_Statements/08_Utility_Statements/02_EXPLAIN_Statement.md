@@ -35,28 +35,17 @@ schema_spec:
 FOR {SCHEMA | DATABASE} schema_name
 ```
 
-The [`DESCRIBE`](describe.html "15.8.1 DESCRIBE Statement") and
-[`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") statements are synonyms. In
-practice, the [`DESCRIBE`](describe.html "15.8.1 DESCRIBE Statement") keyword is
-more often used to obtain information about table structure,
-whereas [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") is used to obtain a
-query execution plan (that is, an explanation of how MySQL would
-execute a query).
+The `DESCRIBE` and `EXPLAIN` statements are synonyms. In practice, the `DESCRIBE` keyword is more often used to obtain information about table structure, whereas `EXPLAIN` is used to obtain a query execution plan (that is, an explanation of how MySQL would execute a query).
 
-The following discussion uses the
-[`DESCRIBE`](describe.html "15.8.1 DESCRIBE Statement") and
-[`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") keywords in accordance with
-those uses, but the MySQL parser treats them as completely
-synonymous.
+The following discussion uses the `DESCRIBE` and `EXPLAIN` keywords in accordance with those uses, but the MySQL parser treats them as completely synonymous.
 
-* [Obtaining Table Structure Information](explain.html#explain-table-structure "Obtaining Table Structure Information")
-* [Obtaining Execution Plan Information](explain.html#explain-execution-plan "Obtaining Execution Plan Information")
-* [Obtaining Information with EXPLAIN ANALYZE](explain.html#explain-analyze "Obtaining Information with EXPLAIN ANALYZE")
+* Obtaining Table Structure Information
+* Obtaining Execution Plan Information
+* Obtaining Information with EXPLAIN ANALYZE
 
 #### Obtaining Table Structure Information
 
-[`DESCRIBE`](describe.html "15.8.1 DESCRIBE Statement") provides information
-about the columns in a table:
+`DESCRIBE` provides information about the columns in a table:
 
 ```
 mysql> DESCRIBE City;
@@ -71,101 +60,35 @@ mysql> DESCRIBE City;
 +------------+----------+------+-----+---------+----------------+
 ```
 
-[`DESCRIBE`](describe.html "15.8.1 DESCRIBE Statement") is a shortcut for
-[`SHOW COLUMNS`](show-columns.html "15.7.7.6 SHOW COLUMNS Statement"). These statements
-also display information for views. The description for
-[`SHOW COLUMNS`](show-columns.html "15.7.7.6 SHOW COLUMNS Statement") provides more
-information about the output columns. See
-[Section 15.7.7.6, “SHOW COLUMNS Statement”](show-columns.html "15.7.7.6 SHOW COLUMNS Statement").
+`DESCRIBE` is a shortcut for `SHOW COLUMNS`. These statements also display information for views. The description for `SHOW COLUMNS` provides more information about the output columns. See Section 15.7.7.6, “SHOW COLUMNS Statement”.
 
-By default, [`DESCRIBE`](describe.html "15.8.1 DESCRIBE Statement") displays
-information about all columns in the table.
-*`col_name`*, if given, is the name of a
-column in the table. In this case, the statement displays
-information only for the named column.
-*`wild`*, if given, is a pattern string.
-It can contain the SQL `%` and
-`_` wildcard characters. In this case, the
-statement displays output only for the columns with names
-matching the string. There is no need to enclose the string
-within quotation marks unless it contains spaces or other
-special characters.
+By default, `DESCRIBE` displays information about all columns in the table. *`col_name`*, if given, is the name of a column in the table. In this case, the statement displays information only for the named column. *`wild`*, if given, is a pattern string. It can contain the SQL `%` and `_` wildcard characters. In this case, the statement displays output only for the columns with names matching the string. There is no need to enclose the string within quotation marks unless it contains spaces or other special characters.
 
-The [`DESCRIBE`](describe.html "15.8.1 DESCRIBE Statement") statement is
-provided for compatibility with Oracle.
+The `DESCRIBE` statement is provided for compatibility with Oracle.
 
-The [`SHOW CREATE TABLE`](show-create-table.html "15.7.7.12 SHOW CREATE TABLE Statement"),
-[`SHOW TABLE STATUS`](show-table-status.html "15.7.7.39 SHOW TABLE STATUS Statement"), and
-[`SHOW INDEX`](show-index.html "15.7.7.24 SHOW INDEX Statement") statements also
-provide information about tables. See [Section 15.7.7, “SHOW Statements”](show.html "15.7.7 SHOW Statements").
+The `SHOW CREATE TABLE`, `SHOW TABLE STATUS`, and `SHOW INDEX` statements also provide information about tables. See Section 15.7.7, “SHOW Statements”.
 
-The [`explain_format`](server-system-variables.html#sysvar_explain_format) system
-variable has no effect on the output of
-`EXPLAIN` when used to obtain information about
-table columns.
+The `explain_format` system variable has no effect on the output of `EXPLAIN` when used to obtain information about table columns.
 
 #### Obtaining Execution Plan Information
 
-The [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") statement provides
-information about how MySQL executes statements:
+The `EXPLAIN` statement provides information about how MySQL executes statements:
 
-* [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") works with
-  [`SELECT`](select.html "15.2.13 SELECT Statement"),
-  [`DELETE`](delete.html "15.2.2 DELETE Statement"),
-  [`INSERT`](insert.html "15.2.7 INSERT Statement"),
-  [`REPLACE`](replace.html "15.2.12 REPLACE Statement"),
-  [`UPDATE`](update.html "15.2.17 UPDATE Statement"), and
-  [`TABLE`](table.html "15.2.16 TABLE Statement") statements.
+* `EXPLAIN` works with `SELECT`, `DELETE`, `INSERT`, `REPLACE`, `UPDATE`, and `TABLE` statements.
 
-* When [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") is used with an
-  explainable statement, MySQL displays information from the
-  optimizer about the statement execution plan. That is, MySQL
-  explains how it would process the statement, including
-  information about how tables are joined and in which order.
-  For information about using
-  [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") to obtain execution
-  plan information, see [Section 10.8.2, “EXPLAIN Output Format”](explain-output.html "10.8.2 EXPLAIN Output Format").
+* When `EXPLAIN` is used with an explainable statement, MySQL displays information from the optimizer about the statement execution plan. That is, MySQL explains how it would process the statement, including information about how tables are joined and in which order. For information about using `EXPLAIN` to obtain execution plan information, see Section 10.8.2, “EXPLAIN Output Format”.
 
-* When [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") is used with
-  `FOR CONNECTION
-  connection_id` rather
-  than an explainable statement, it displays the execution
-  plan for the statement executing in the named connection.
-  See [Section 10.8.4, “Obtaining Execution Plan Information for a Named Connection”](explain-for-connection.html "10.8.4 Obtaining Execution Plan Information for a Named Connection").
+* When `EXPLAIN` is used with `FOR CONNECTION connection_id` rather than an explainable statement, it displays the execution plan for the statement executing in the named connection. See Section 10.8.4, “Obtaining Execution Plan Information for a Named Connection”.
 
-* For explainable statements,
-  [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") produces additional
-  execution plan information that can be displayed using
-  [`SHOW WARNINGS`](show-warnings.html "15.7.7.43 SHOW WARNINGS Statement"). See
-  [Section 10.8.3, “Extended EXPLAIN Output Format”](explain-extended.html "10.8.3 Extended EXPLAIN Output Format").
+* For explainable statements, `EXPLAIN` produces additional execution plan information that can be displayed using `SHOW WARNINGS`. See Section 10.8.3, “Extended EXPLAIN Output Format”.
 
-* [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") is useful for
-  examining queries involving partitioned tables. See
-  [Section 26.3.5, “Obtaining Information About Partitions”](partitioning-info.html "26.3.5 Obtaining Information About Partitions").
+* `EXPLAIN` is useful for examining queries involving partitioned tables. See Section 26.3.5, “Obtaining Information About Partitions”.
 
-* The `FORMAT` option can be used to select
-  the output format. `TRADITIONAL` presents
-  the output in tabular format. This is the default if no
-  `FORMAT` option is present.
-  `JSON` format displays the information in
-  JSON format. `TREE` provides tree-like
-  output with more precise descriptions of query handling than
-  the `TRADITIONAL` format; it is the only
-  format which shows hash join usage (see
-  [Section 10.2.1.4, “Hash Join Optimization”](hash-joins.html "10.2.1.4 Hash Join Optimization")) and is always used for
-  `EXPLAIN ANALYZE`.
+* The `FORMAT` option can be used to select the output format. `TRADITIONAL` presents the output in tabular format. This is the default if no `FORMAT` option is present. `JSON` format displays the information in JSON format. `TREE` provides tree-like output with more precise descriptions of query handling than the `TRADITIONAL` format; it is the only format which shows hash join usage (see Section 10.2.1.4, “Hash Join Optimization”) and is always used for `EXPLAIN ANALYZE`.
 
-  In MySQL 9.5, the default output format used by
-  `EXPLAIN` (that is, when it has no
-  `FORMAT` option) is determined by the value
-  of the [`explain_format`](server-system-variables.html#sysvar_explain_format)
-  system variable. The precise effects of this variable are
-  described later in this section.
+  In MySQL 9.5, the default output format used by `EXPLAIN` (that is, when it has no `FORMAT` option) is determined by the value of the `explain_format` system variable. The precise effects of this variable are described later in this section.
 
-  MySQL 9.5 supports an additional
-  `INTO` option with `EXPLAIN
-  FORMAT=JSON`, which enables saving the JSON
-  formatted output into a user variable, like this:
+  MySQL 9.5 supports an additional `INTO` option with `EXPLAIN FORMAT=JSON`, which enables saving the JSON formatted output into a user variable, like this:
 
   ```
   mysql> EXPLAIN FORMAT=JSON INTO @myselect
@@ -213,15 +136,7 @@ information about how MySQL executes statements:
   1 row in set (0.00 sec)
   ```
 
-  This works with any explainable statement
-  ([`SELECT`](select.html "15.2.13 SELECT Statement"),
-  [`TABLE`](table.html "15.2.16 TABLE Statement"),
-  [`INSERT`](insert.html "15.2.7 INSERT Statement"),
-  [`UPDATE`](update.html "15.2.17 UPDATE Statement"),
-  [`REPLACE`](replace.html "15.2.12 REPLACE Statement"), or
-  [`DELETE`](delete.html "15.2.2 DELETE Statement")). Examples using
-  `UPDATE` and `DELETE`
-  statements are shown here:
+  This works with any explainable statement (`SELECT`, `TABLE`, `INSERT`, `UPDATE`, `REPLACE`, or `DELETE`). Examples using `UPDATE` and `DELETE` statements are shown here:
 
   ```
   mysql> EXPLAIN FORMAT=JSON INTO @myupdate
@@ -274,9 +189,7 @@ information about how MySQL executes statements:
   1 row in set (0.00 sec)
   ```
 
-  You can work with this value using MySQL JSON functions as
-  you would with any other JSON value, as in these examples
-  using [`JSON_EXTRACT()`](json-search-functions.html#function_json-extract):
+  You can work with this value using MySQL JSON functions as you would with any other JSON value, as in these examples using `JSON_EXTRACT()`:
 
   ```
   mysql> SELECT JSON_EXTRACT(@myselect, "$.query_block.table.key");
@@ -297,44 +210,21 @@ information about how MySQL executes statements:
   1 row in set (0.00 sec)
   ```
 
-  For complex statements, the JSON output can be quite large;
-  in particular, it can be difficult when reading it to pair
-  the closing bracket and opening brackets; to cause the JSON
-  structure's key, if it has one, to be repeated near the
-  closing bracket, set
-  [`end_markers_in_json=ON`](server-system-variables.html#sysvar_end_markers_in_json). You
-  should be aware that while this makes the output easier to
-  read, it also renders the JSON invalid, causing JSON
-  functions to raise an error.
+  For complex statements, the JSON output can be quite large; in particular, it can be difficult when reading it to pair the closing bracket and opening brackets; to cause the JSON structure's key, if it has one, to be repeated near the closing bracket, set `end_markers_in_json=ON`. You should be aware that while this makes the output easier to read, it also renders the JSON invalid, causing JSON functions to raise an error.
 
-  See also [Section 14.17, “JSON Functions”](json-functions.html "14.17 JSON Functions").
+  See also Section 14.17, “JSON Functions”.
 
-  Trying to use an `INTO` clause without
-  explicitly including `FORMAT=JSON` causes
-  `EXPLAIN` to be rejected with
-  [`ER_EXPLAIN_INTO_IMPLICIT_FORMAT_NOT_SUPPORTED`](/doc/mysql-errors/9.5/en/server-error-reference.html#error_er_explain_into_implicit_format_not_supported).
-  This is true regardless of the current value of the
-  [`explain_format`](server-system-variables.html#sysvar_explain_format) system
-  variable.
+  Trying to use an `INTO` clause without explicitly including `FORMAT=JSON` causes `EXPLAIN` to be rejected with `ER_EXPLAIN_INTO_IMPLICIT_FORMAT_NOT_SUPPORTED`. This is true regardless of the current value of the `explain_format` system variable.
 
-  The `INTO` clause is not supported with
-  `FOR CONNECTION`.
+  The `INTO` clause is not supported with `FOR CONNECTION`.
 
-  `INTO` is also not supported with
-  `EXPLAIN ANALYZE` when
-  [`explain_json_format_version=1`](server-system-variables.html#sysvar_explain_json_format_version).
+  `INTO` is also not supported with `EXPLAIN ANALYZE` when `explain_json_format_version=1`.
 
   Important
 
-  If, for any reason, the statement to be analyzed is
-  rejected, the user variable is not updated.
+  If, for any reason, the statement to be analyzed is rejected, the user variable is not updated.
 
-* MySQL 9.5 supports a `FOR
-  SCHEMA` clause, which causes
-  `EXPLAIN` to behave as if the statement to
-  be analyzed had been executed in the named database;
-  `FOR DATABASE` is supported as a synonym. A
-  simple example of use is shown here:
+* MySQL 9.5 supports a `FOR SCHEMA` clause, which causes `EXPLAIN` to behave as if the statement to be analyzed had been executed in the named database; `FOR DATABASE` is supported as a synonym. A simple example of use is shown here:
 
   ```
   mysql> USE b;
@@ -372,46 +262,20 @@ information about how MySQL executes statements:
   1 row in set (0.00 sec)
   ```
 
-  If the database does not exist, the statement is rejected
-  with [`ER_BAD_DB_ERROR`](/doc/mysql-errors/9.5/en/server-error-reference.html#error_er_bad_db_error). If the
-  user does not have the necessary privileges to run the
-  statement, it is rejected with
-  [`ER_DBACCESS_DENIED_ERROR`](/doc/mysql-errors/9.5/en/server-error-reference.html#error_er_dbaccess_denied_error).
+  If the database does not exist, the statement is rejected with `ER_BAD_DB_ERROR`. If the user does not have the necessary privileges to run the statement, it is rejected with `ER_DBACCESS_DENIED_ERROR`.
 
-  `FOR SCHEMA` is not compatible with
-  `FOR CONNECTION`.
+  `FOR SCHEMA` is not compatible with `FOR CONNECTION`.
 
-[`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") requires the same
-privileges required to execute the explained statement.
-Additionally, [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") also
-requires the [`SHOW VIEW`](privileges-provided.html#priv_show-view) privilege
-for any explained view.
-[`EXPLAIN ... FOR
-CONNECTION`](explain.html "15.8.2 EXPLAIN Statement") also requires the
-[`PROCESS`](privileges-provided.html#priv_process) privilege if the
-specified connection belongs to a different user.
+`EXPLAIN` requires the same privileges required to execute the explained statement. Additionally, `EXPLAIN` also requires the `SHOW VIEW` privilege for any explained view. [`EXPLAIN ... FOR CONNECTION`](explain.html "15.8.2 EXPLAIN Statement") also requires the `PROCESS` privilege if the specified connection belongs to a different user.
 
-The [`explain_format`](server-system-variables.html#sysvar_explain_format) system
-variable determines the format of the output from
-`EXPLAIN` when used to display a query
-execution plan. This variable can take any of the values used
-with the `FORMAT` option, with the addition of
-`DEFAULT` as a synonym for
-`TRADITIONAL`. The following example uses the
-`country` table from the
-`world` database which can be obtained from
-[MySQL: Other
-Downloads](/doc/index-other.html):
+The `explain_format` system variable determines the format of the output from `EXPLAIN` when used to display a query execution plan. This variable can take any of the values used with the `FORMAT` option, with the addition of `DEFAULT` as a synonym for `TRADITIONAL`. The following example uses the `country` table from the `world` database which can be obtained from [MySQL: Other Downloads](/doc/index-other.html):
 
 ```
 mysql> USE world; # Make world the current database
 Database changed
 ```
 
-Checking the value of `explain_format`, we see
-that it has the default value, and that
-`EXPLAIN` (with no `FORMAT`
-option) therefore uses the traditional tabular output:
+Checking the value of `explain_format`, we see that it has the default value, and that `EXPLAIN` (with no `FORMAT` option) therefore uses the traditional tabular output:
 
 ```
 mysql> SELECT @@explain_format;
@@ -431,10 +295,7 @@ mysql> EXPLAIN SELECT Name FROM country WHERE Code Like 'A%';
 1 row in set, 1 warning (0.00 sec)
 ```
 
-If we set the value of `explain_format` to
-`TREE`, then rerun the same
-`EXPLAIN` statement, the output uses the
-tree-like format:
+If we set the value of `explain_format` to `TREE`, then rerun the same `EXPLAIN` statement, the output uses the tree-like format:
 
 ```
 mysql> SET @@explain_format=TREE;
@@ -458,11 +319,7 @@ mysql> EXPLAIN SELECT Name FROM country WHERE Code LIKE 'A%';
 1 row in set, 1 warning (0.00 sec)
 ```
 
-As stated previously, the `FORMAT` option
-overrides this setting. Executing the same
-`EXPLAIN` statement using
-`FORMAT=JSON` instead of
-`FORMAT=TREE` shows that this is the case:
+As stated previously, the `FORMAT` option overrides this setting. Executing the same `EXPLAIN` statement using `FORMAT=JSON` instead of `FORMAT=TREE` shows that this is the case:
 
 ```
 mysql> EXPLAIN FORMAT=JSON SELECT Name FROM country WHERE Code LIKE 'A%';
@@ -507,11 +364,7 @@ mysql> EXPLAIN FORMAT=JSON SELECT Name FROM country WHERE Code LIKE 'A%';
 1 row in set, 1 warning (0.00 sec)
 ```
 
-To return the default output of `EXPLAIN` to
-the tabular format, set `explain_format` to
-`TRADITIONAL`. Alternatively, you can set it to
-`DEFAULT`, which has the same effect, as shown
-here:
+To return the default output of `EXPLAIN` to the tabular format, set `explain_format` to `TRADITIONAL`. Alternatively, you can set it to `DEFAULT`, which has the same effect, as shown here:
 
 ```
 mysql> SET @@explain_format=DEFAULT;
@@ -526,16 +379,7 @@ mysql> SELECT @@explain_format;
 1 row in set (0.00 sec)
 ```
 
-MySQL 9.5 supports two versions of the JSON output
-format. Version 1 is the linear format used in MySQL 9.4
-and earlier.
-Version 2 of the JSON output format is based on access paths,
-and is the default as of MySQL 9.5. You can switch the format by
-changing the value of the
-[`explain_json_format_version`](server-system-variables.html#sysvar_explain_json_format_version)
-server system variable, as shown here
-for the same `EXPLAIN` statement used in the
-previous example:
+MySQL 9.5 supports two versions of the JSON output format. Version 1 is the linear format used in MySQL 9.4 and earlier. Version 2 of the JSON output format is based on access paths, and is the default as of MySQL 9.5. You can switch the format by changing the value of the `explain_json_format_version` server system variable, as shown here for the same `EXPLAIN` statement used in the previous example:
 
 ```
 mysql> SELECT @@explain_json_format_version;
@@ -599,10 +443,7 @@ EXPLAIN: {
 1 row in set, 1 warning (0.01 sec)
 ```
 
-Setting `explain_json_format_version = 2` also
-enables support for an `INTO` clause with
-`EXPLAIN ANALYZE FORMAT=JSON`, which enables
-you to store the JSON output in a user variable, as shown here:
+Setting `explain_json_format_version = 2` also enables support for an `INTO` clause with `EXPLAIN ANALYZE FORMAT=JSON`, which enables you to store the JSON output in a user variable, as shown here:
 
 ```
 mysql> EXPLAIN ANALYZE FORMAT=JSON INTO @v1
@@ -660,8 +501,7 @@ mysql> SELECT @v1\G
 1 row in set (0.00 sec)
 ```
 
-You can use the variable as an argument to JSON functions to
-obtain specific items of information from the value, like this:
+You can use the variable as an argument to JSON functions to obtain specific items of information from the value, like this:
 
 ```
 mysql> SELECT JSON_EXTRACT(@v1,'$.index_name') AS iname,
@@ -672,113 +512,46 @@ tname: "country"
 1 row in set (0.00 sec)
 ```
 
-This form of `EXPLAIN ANALYZE` requires an
-explicit `FORMAT=JSON` clause, and is supported
-only with [`SELECT`](select.html "15.2.13 SELECT Statement") statements. An
-optional `FOR SCHEMA` option is also supported,
-but not required. (`FOR DATABASE` can also be
-used, instead.) The `INTO` clause is supported
-with `FORMAT=JSON` only when
-[`explain_json_format_version`](server-system-variables.html#sysvar_explain_json_format_version) is
-equal to 2; otherwise the statement fails with
-EXPLAIN ANALYZE does not support FORMAT=JSON with
-explain\_json\_format\_version=1
-([`ER_EXPLAIN_ANALYZE_JSON_FORMAT_VERSION_NOT_SUPPORTED`](/doc/mysql-errors/9.5/en/server-error-reference.html#error_er_explain_analyze_json_format_version_not_supported)).
+This form of `EXPLAIN ANALYZE` requires an explicit `FORMAT=JSON` clause, and is supported only with `SELECT` statements. An optional `FOR SCHEMA` option is also supported, but not required. (`FOR DATABASE` can also be used, instead.) The `INTO` clause is supported with `FORMAT=JSON` only when `explain_json_format_version` is equal to 2; otherwise the statement fails with EXPLAIN ANALYZE does not support FORMAT=JSON with explain\_json\_format\_version=1 (`ER_EXPLAIN_ANALYZE_JSON_FORMAT_VERSION_NOT_SUPPORTED`).
 
-After using the Version 2 format, you can cause the JSON output
-from all subsequent `EXPLAIN FORMAT=JSON`
-statements to revert to the Version 1 format by setting
-`explain_json_format_version` back to
-`1` (the default).
+After using the Version 2 format, you can cause the JSON output from all subsequent `EXPLAIN FORMAT=JSON` statements to revert to the Version 1 format by setting `explain_json_format_version` back to `1` (the default).
 
-The value of `explain_json_format_version`
-determines the version of the JSON output format employed by all
-`EXPLAIN` statements which use it, whether the
-JSON format is used because a given `EXPLAIN`
-statement includes an explicit `FORMAT=JSON`
-option, or because the JSON format is used automatically due to
-the [`explain_format`](server-system-variables.html#sysvar_explain_format) system
-variable being set to `JSON`.
+The value of `explain_json_format_version` determines the version of the JSON output format employed by all `EXPLAIN` statements which use it, whether the JSON format is used because a given `EXPLAIN` statement includes an explicit `FORMAT=JSON` option, or because the JSON format is used automatically due to the `explain_format` system variable being set to `JSON`.
 
-With the help of [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement"), you can
-see where you should add indexes to tables so that the statement
-executes faster by using indexes to find rows. You can also use
-[`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") to check whether the
-optimizer joins the tables in an optimal order. To give a hint
-to the optimizer to use a join order corresponding to the order
-in which the tables are named in a
-[`SELECT`](select.html "15.2.13 SELECT Statement") statement, begin the
-statement with `SELECT STRAIGHT_JOIN` rather
-than just [`SELECT`](select.html "15.2.13 SELECT Statement"). (See
-[Section 15.2.13, “SELECT Statement”](select.html "15.2.13 SELECT Statement").)
+With the help of `EXPLAIN`, you can see where you should add indexes to tables so that the statement executes faster by using indexes to find rows. You can also use `EXPLAIN` to check whether the optimizer joins the tables in an optimal order. To give a hint to the optimizer to use a join order corresponding to the order in which the tables are named in a `SELECT` statement, begin the statement with `SELECT STRAIGHT_JOIN` rather than just `SELECT`. (See Section 15.2.13, “SELECT Statement”.)
 
-The optimizer trace may sometimes provide information
-complementary to that of [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement").
-However, the optimizer trace format and content are subject to
-change between versions. For details, see
-[Section 10.15, “Tracing the Optimizer”](optimizer-tracing.html "10.15 Tracing the Optimizer").
+The optimizer trace may sometimes provide information complementary to that of `EXPLAIN`. However, the optimizer trace format and content are subject to change between versions. For details, see Section 10.15, “Tracing the Optimizer”.
 
-If you have a problem with indexes not being used when you
-believe that they should be, run [`ANALYZE
-TABLE`](analyze-table.html "15.7.3.1 ANALYZE TABLE Statement") to update table statistics, such as cardinality
-of keys, that can affect the choices the optimizer makes. See
-[Section 15.7.3.1, “ANALYZE TABLE Statement”](analyze-table.html "15.7.3.1 ANALYZE TABLE Statement").
+If you have a problem with indexes not being used when you believe that they should be, run [`ANALYZE TABLE`](analyze-table.html "15.7.3.1 ANALYZE TABLE Statement") to update table statistics, such as cardinality of keys, that can affect the choices the optimizer makes. See Section 15.7.3.1, “ANALYZE TABLE Statement”.
 
 Note
 
-MySQL Workbench has a Visual Explain capability that provides a
-visual representation of
-[`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") output. See
-[Tutorial: Using Explain to Improve Query Performance](/doc/workbench/en/wb-tutorial-visual-explain-dbt3.html).
+MySQL Workbench has a Visual Explain capability that provides a visual representation of `EXPLAIN` output. See Tutorial: Using Explain to Improve Query Performance.
 
 #### Obtaining Information with EXPLAIN ANALYZE
 
-`EXPLAIN ANALYZE` runs a statement and produces
-[`EXPLAIN`](explain.html#explain-execution-plan "Obtaining Execution Plan Information")
-output along with timing and additional, iterator-based,
-information about how the optimizer's expectations matched
-the actual execution. For each iterator, the following
-information is provided:
+`EXPLAIN ANALYZE` runs a statement and produces `EXPLAIN` output along with timing and additional, iterator-based, information about how the optimizer's expectations matched the actual execution. For each iterator, the following information is provided:
 
 * Estimated execution cost
 
-  (Some iterators are not accounted for by the cost model, and
-  so are not included in the estimate.)
+  (Some iterators are not accounted for by the cost model, and so are not included in the estimate.)
 
 * Estimated number of returned rows
 * Time to return first row
-* Time spent executing this iterator (including child
-  iterators, but not parent iterators), in milliseconds.
+* Time spent executing this iterator (including child iterators, but not parent iterators), in milliseconds.
 
-  (When there are multiple loops, this figure shows the
-  average time per loop.)
+  (When there are multiple loops, this figure shows the average time per loop.)
 
 * Number of rows returned by the iterator
 * Number of loops
 
-The query execution information is displayed using the
-`TREE` output format, in which nodes represent
-iterators. `EXPLAIN ANALYZE` uses an output
-format which can optionally be specified explicitly using
-`FORMAT=TREE` or
-`FORMAT=JSON`; the default is
-`TREE`. `FORMAT=JSON` can be
-used only if
-[`explain_json_format_version`](server-system-variables.html#sysvar_explain_json_format_version) is
-set to 2.
+The query execution information is displayed using the `TREE` output format, in which nodes represent iterators. `EXPLAIN ANALYZE` uses an output format which can optionally be specified explicitly using `FORMAT=TREE` or `FORMAT=JSON`; the default is `TREE`. `FORMAT=JSON` can be used only if `explain_json_format_version` is set to 2.
 
-`EXPLAIN ANALYZE` can be used with
-[`SELECT`](select.html "15.2.13 SELECT Statement") statements, multi-table
-[`UPDATE`](update.html "15.2.17 UPDATE Statement") and
-[`DELETE`](delete.html "15.2.2 DELETE Statement") statements, and
-[`TABLE`](table.html "15.2.16 TABLE Statement") statements.
+`EXPLAIN ANALYZE` can be used with `SELECT` statements, multi-table `UPDATE` and `DELETE` statements, and `TABLE` statements.
 
-You can terminate this statement using
-[`KILL QUERY`](kill.html "15.7.8.4 KILL Statement") or
-**CTRL-C**.
+You can terminate this statement using `KILL QUERY` or **CTRL-C**.
 
-`EXPLAIN ANALYZE` cannot be used with
-`FOR CONNECTION`.
+`EXPLAIN ANALYZE` cannot be used with `FOR CONNECTION`.
 
 Example output:
 
@@ -854,8 +627,7 @@ EXPLAIN: {
 }
 ```
 
-The tables used in the example output were created by the
-statements shown here:
+The tables used in the example output were created by the statements shown here:
 
 ```
 CREATE TABLE t1 (
@@ -874,48 +646,24 @@ CREATE TABLE t3 (
 );
 ```
 
-Values shown for `actual time` in the output of
-this statement are expressed in milliseconds.
+Values shown for `actual time` in the output of this statement are expressed in milliseconds.
 
-[`explain_format`](server-system-variables.html#sysvar_explain_format) has the
-following effects on `EXPLAIN ANALYZE`:
+`explain_format` has the following effects on `EXPLAIN ANALYZE`:
 
-* If the value of this variable is
-  `TRADITIONAL` or `TREE`
-  (or the synonym `DEFAULT`),
-  `EXPLAIN ANALYZE` uses the
-  `TREE` format unless the statement includes
-  `FORMAT=JSON`.
+* If the value of this variable is `TRADITIONAL` or `TREE` (or the synonym `DEFAULT`), `EXPLAIN ANALYZE` uses the `TREE` format unless the statement includes `FORMAT=JSON`.
 
-* If the value of `explain_format` is
-  `JSON`, `EXPLAIN ANALYZE`
-  uses the JSON format unless `FORMAT=TREE`
-  is specified as part of the statement.
+* If the value of `explain_format` is `JSON`, `EXPLAIN ANALYZE` uses the JSON format unless `FORMAT=TREE` is specified as part of the statement.
 
-Using `FORMAT=TRADITIONAL` or
-`FORMAT=DEFAULT` with `EXPLAIN
-ANALYZE` always raises an error, regardless of the
-value of `explain_format`.
+Using `FORMAT=TRADITIONAL` or `FORMAT=DEFAULT` with `EXPLAIN ANALYZE` always raises an error, regardless of the value of `explain_format`.
 
-In MySQL 9.5, numbers in the output of
-`EXPLAIN ANALYZE` and `EXPLAIN
-FORMAT=TREE` are formatted according to the following
-rules:
+In MySQL 9.5, numbers in the output of `EXPLAIN ANALYZE` and `EXPLAIN FORMAT=TREE` are formatted according to the following rules:
 
-* Numbers in the range 0.001-999999.5 are printed as decimal
-  numbers.
+* Numbers in the range 0.001-999999.5 are printed as decimal numbers.
 
-  Decimal numbers less than 1000 have three significant
-  digits; the remainder have four, five, or six.
+  Decimal numbers less than 1000 have three significant digits; the remainder have four, five, or six.
 
-* Numbers outside the range 0.001-999999.5 are printed in
-  engineering format. Examples of such values are
-  `1.23e+9` and `934e-6`.
+* Numbers outside the range 0.001-999999.5 are printed in engineering format. Examples of such values are `1.23e+9` and `934e-6`.
 
-* No trailing zeros are printed. For example, we print
-  `2.3` rather than `2.30`,
-  and `1.2e+6` rather than
-  `1.20e+6`.
+* No trailing zeros are printed. For example, we print `2.3` rather than `2.30`, and `1.2e+6` rather than `1.20e+6`.
 
-* Numbers less than `1e-12` are printed as
-  `0`.
+* Numbers less than `1e-12` are printed as `0`.

@@ -1,12 +1,6 @@
 #### 7.9.1.5 Using a Stack Trace
 
-On some operating systems, the error log contains a stack trace
-if [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") dies unexpectedly. You can use this
-to find out where (and maybe why) [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server")
-died. See [Section 7.4.2, “The Error Log”](error-log.html "7.4.2 The Error Log"). To get a stack trace, you
-must not compile [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") with the
-`-fomit-frame-pointer` option to gcc. See
-[Section 7.9.1.1, “Compiling MySQL for Debugging”](compiling-for-debugging.html "7.9.1.1 Compiling MySQL for Debugging").
+On some operating systems, the error log contains a stack trace if **mysqld** dies unexpectedly. You can use this to find out where (and maybe why) **mysqld** died. See Section 7.4.2, “The Error Log”. To get a stack trace, you must not compile **mysqld** with the `-fomit-frame-pointer` option to gcc. See Section 7.9.1.1, “Compiling MySQL for Debugging”.
 
 A stack trace in the error log looks something like this:
 
@@ -31,8 +25,7 @@ mysqld(_Z10do_commandP3THD+0x24d)[0x6811b6]
 mysqld(handle_one_connection+0x11c)[0x66e05e]
 ```
 
-If resolution of function names for the trace fails, the trace
-contains less information:
+If resolution of function names for the trace fails, the trace contains less information:
 
 ```
 mysqld got signal 11;
@@ -55,17 +48,13 @@ stack_bottom = 0x41fd0110 thread_stack 0x40000
 [0x66e05e]
 ```
 
-Newer versions of `glibc` stack trace functions
-also print the address as relative to the object. On
-`glibc`-based systems (Linux), the trace for an
-unexpected exit within a plugin looks something like:
+Newer versions of `glibc` stack trace functions also print the address as relative to the object. On `glibc`-based systems (Linux), the trace for an unexpected exit within a plugin looks something like:
 
 ```
 plugin/auth/auth_test_plugin.so(+0x9a6)[0x7ff4d11c29a6]
 ```
 
-To translate the relative address (`+0x9a6`)
-into a file name and line number, use this command:
+To translate the relative address (`+0x9a6`) into a file name and line number, use this command:
 
 ```
 $> addr2line -fie auth_test_plugin.so 0x9a6
@@ -73,12 +62,9 @@ auth_test_plugin
 mysql-trunk/plugin/auth/test_plugin.c:65
 ```
 
-The **addr2line** utility is part of the
-`binutils` package on Linux.
+The **addr2line** utility is part of the `binutils` package on Linux.
 
-On Solaris, the procedure is similar. The Solaris
-`printstack()` already prints relative
-addresses:
+On Solaris, the procedure is similar. The Solaris `printstack()` already prints relative addresses:
 
 ```
 plugin/auth/auth_test_plugin.so:0x1510

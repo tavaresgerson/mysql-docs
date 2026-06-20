@@ -1,61 +1,16 @@
 #### 14.16.9.2 Spatial Relation Functions That Use Minimum Bounding Rectangles
 
-MySQL provides several MySQL-specific functions that test the
-relationship between minimum bounding rectangles (MBRs) of two
-geometries *`g1`* and
-*`g2`*. The return values 1 and 0
-indicate true and false, respectively.
+MySQL provides several MySQL-specific functions that test the relationship between minimum bounding rectangles (MBRs) of two geometries *`g1`* and *`g2`*. The return values 1 and 0 indicate true and false, respectively.
 
-The MBR (also known as the bounding box) for a two-dimensional
-geometry is the smallest rectangle which holds all points in the
-geometry, and so encloses the area between its greatest extents
-in both coordinate directions. In other words, it is the
-rectangle bounded by the points `(min(x),
-min(y))`, `(min(x), max(y))`,
-`(max(x), max(y))`, and `(max(x),
-min(y))`, where `min()` and
-`max()` represent the geometry's minimum
-and maximum x-coordinate or y-coordinate, respectively.
+The MBR (also known as the bounding box) for a two-dimensional geometry is the smallest rectangle which holds all points in the geometry, and so encloses the area between its greatest extents in both coordinate directions. In other words, it is the rectangle bounded by the points `(min(x), min(y))`, `(min(x), max(y))`, `(max(x), max(y))`, and `(max(x), min(y))`, where `min()` and `max()` represent the geometry's minimum and maximum x-coordinate or y-coordinate, respectively.
 
-When speaking of relationships between geometries, it is
-important to distinguish between containment and covering, as
-described here:
+When speaking of relationships between geometries, it is important to distinguish between containment and covering, as described here:
 
-* A geometry *`g1`*
-  *contains* another geometry
-  *`g2`* if and only if all points in
-  *`g2`* are also in
-  *`g1`*, and their boundaries do not
-  intersect. That is, all points `(a, b)` in
-  *`g2`* must satisfy the conditions
-  `min(x) < a < max(x)` and
-  `min(y) < b < max(y)`. In this case,
-  [`ST_Contains(g1,
-  g2)`](spatial-relation-functions-object-shapes.html#function_st-contains) and
-  [`MBRContains(g1,
-  g2)`](spatial-relation-functions-mbr.html#function_mbrcontains) both return true,
-  as does
-  [`ST_Within(g2,
-  g1)`](spatial-relation-functions-object-shapes.html#function_st-within).
+* A geometry *`g1`* *contains* another geometry *`g2`* if and only if all points in *`g2`* are also in *`g1`*, and their boundaries do not intersect. That is, all points `(a, b)` in *`g2`* must satisfy the conditions `min(x) < a < max(x)` and `min(y) < b < max(y)`. In this case, [`ST_Contains(g1, g2)`](spatial-relation-functions-object-shapes.html#function_st-contains) and [`MBRContains(g1, g2)`](spatial-relation-functions-mbr.html#function_mbrcontains) both return true, as does [`ST_Within(g2, g1)`](spatial-relation-functions-object-shapes.html#function_st-within).
 
-* We say that *`g1`*
-  *covers* *`g2`* if
-  all points in *`g2`* are also in
-  *`g1`*, including any boundary
-  points. That is, all points `(a, b)` in
-  *`g2`* must satisfy the conditions
-  `min(x) <= a <= max(x)` and
-  `min(y) <= b <= max(y)`. In this
-  case,
-  [`MBRCovers(g1,
-  g2)`](spatial-relation-functions-mbr.html#function_mbrcovers) and
-  [`MBRCoveredBy(g2,
-  g1)`](spatial-relation-functions-mbr.html#function_mbrcoveredby) both return true.
+* We say that *`g1`* *covers* *`g2`* if all points in *`g2`* are also in *`g1`*, including any boundary points. That is, all points `(a, b)` in *`g2`* must satisfy the conditions `min(x) <= a <= max(x)` and `min(y) <= b <= max(y)`. In this case, [`MBRCovers(g1, g2)`](spatial-relation-functions-mbr.html#function_mbrcovers) and [`MBRCoveredBy(g2, g1)`](spatial-relation-functions-mbr.html#function_mbrcoveredby) both return true.
 
-Let us define a rectangle *`g1`* and
-points *`p1`*,
-*`p2`*, and *`p3`*
-using the SQL statements shown here:
+Let us define a rectangle *`g1`* and points *`p1`*, *`p2`*, and *`p3`* using the SQL statements shown here:
 
 ```
 SET
@@ -66,11 +21,7 @@ SET
   @p3 = ST_GeomFromText('Point(5 5)');
 ```
 
-*`g1`* contains and covers
-*`p1`*; *`p1`* is
-entirely within *`g1`* and does not touch
-any of its boundaries, as we can see from the
-[`SELECT`](select.html "15.2.13 SELECT Statement") statement shown here:
+*`g1`* contains and covers *`p1`*; *`p1`* is entirely within *`g1`* and does not touch any of its boundaries, as we can see from the `SELECT` statement shown here:
 
 ```
 mysql> SELECT
@@ -89,17 +40,7 @@ ST_Intersects(@g1, @p1): 1
 1 row in set (0.01 sec)
 ```
 
-Using the same query with `@p2` in place of
-`@p1`, we can see that
-*`g2`* covers
-*`p2`*, but does not contain it, because
-*`p2`* is included in the boundary of
-*`g2`*, but does not lie within its
-interior. (That is, `min(x) <= a <=
-max(x)` and `min(y) <= b <=
-max(y)` are true, but `min(x) < a <
-max(x)` and `min(y) < b <
-max(y)` are not.)
+Using the same query with `@p2` in place of `@p1`, we can see that *`g2`* covers *`p2`*, but does not contain it, because *`p2`* is included in the boundary of *`g2`*, but does not lie within its interior. (That is, `min(x) <= a <= max(x)` and `min(y) <= b <= max(y)` are true, but `min(x) < a < max(x)` and `min(y) < b < max(y)` are not.)
 
 ```
 mysql> SELECT
@@ -118,17 +59,7 @@ ST_Intersects(@g1, @p2): 1
 1 row in set (0.00 sec)
 ```
 
-Executing the query—this time using `@p3`
-rather than `@p2` or
-`@p1`—shows us that
-*`p3`* is disjoint from
-*`g1`*; the two geometries have no points
-in common, and *`g1`* neither contains
-nor covers *`p3`*.
-[`ST_Disjoint(g1,
-p3)`](spatial-relation-functions-object-shapes.html#function_st-disjoint) returns true;
-[`ST_Intersects(g1,
-p3)`](spatial-relation-functions-object-shapes.html#function_st-intersects) returns false.
+Executing the query—this time using `@p3` rather than `@p2` or `@p1`—shows us that *`p3`* is disjoint from *`g1`*; the two geometries have no points in common, and *`g1`* neither contains nor covers *`p3`*. [`ST_Disjoint(g1, p3)`](spatial-relation-functions-object-shapes.html#function_st-disjoint) returns true; [`ST_Intersects(g1, p3)`](spatial-relation-functions-object-shapes.html#function_st-intersects) returns false.
 
 ```
 mysql> SELECT
@@ -147,84 +78,45 @@ ST_Intersects(@g1, @p3): 0
 1 row in set (0.00 sec)
 ```
 
-The function descriptions shown later in this section and in
-[Section 14.16.9.1, “Spatial Relation Functions That Use Object Shapes”](spatial-relation-functions-object-shapes.html "14.16.9.1 Spatial Relation Functions That Use Object Shapes")
-provide additional examples.
+The function descriptions shown later in this section and in Section 14.16.9.1, “Spatial Relation Functions That Use Object Shapes” provide additional examples.
 
-The bounding box of a point is interpreted as a point that is
-both boundary and interior.
+The bounding box of a point is interpreted as a point that is both boundary and interior.
 
-The bounding box of a straight horizontal or vertical line is
-interpreted as a line where the interior of the line is also
-boundary. The endpoints are boundary points.
+The bounding box of a straight horizontal or vertical line is interpreted as a line where the interior of the line is also boundary. The endpoints are boundary points.
 
-If any of the parameters are geometry collections, the interior,
-boundary, and exterior of those parameters are those of the
-union of all elements in the collection.
+If any of the parameters are geometry collections, the interior, boundary, and exterior of those parameters are those of the union of all elements in the collection.
 
-Functions in this section detect arguments in either Cartesian
-or geographic spatial reference systems (SRSs), and return
-results appropriate to the SRS.
+Functions in this section detect arguments in either Cartesian or geographic spatial reference systems (SRSs), and return results appropriate to the SRS.
 
-Unless otherwise specified, functions in this section handle
-their geometry arguments as follows:
+Unless otherwise specified, functions in this section handle their geometry arguments as follows:
 
-* If any argument is `NULL` or an empty
-  geometry, the return value is `NULL`.
+* If any argument is `NULL` or an empty geometry, the return value is `NULL`.
 
-* If any geometry argument is not a syntactically well-formed
-  geometry, an
-  [`ER_GIS_INVALID_DATA`](/doc/mysql-errors/9.5/en/server-error-reference.html#error_er_gis_invalid_data) error
-  occurs.
+* If any geometry argument is not a syntactically well-formed geometry, an `ER_GIS_INVALID_DATA` error occurs.
 
-* If any geometry argument is a syntactically well-formed
-  geometry in an undefined spatial reference system (SRS), an
-  [`ER_SRS_NOT_FOUND`](/doc/mysql-errors/9.5/en/server-error-reference.html#error_er_srs_not_found) error
-  occurs.
+* If any geometry argument is a syntactically well-formed geometry in an undefined spatial reference system (SRS), an `ER_SRS_NOT_FOUND` error occurs.
 
-* For functions that take multiple geometry arguments, if
-  those arguments are not in the same SRS, an
-  [`ER_GIS_DIFFERENT_SRIDS`](/doc/mysql-errors/9.5/en/server-error-reference.html#error_er_gis_different_srids) error
-  occurs.
+* For functions that take multiple geometry arguments, if those arguments are not in the same SRS, an `ER_GIS_DIFFERENT_SRIDS` error occurs.
 
-* If any argument is geometrically invalid, either the result
-  is true or false (it is undefined which), or an error
-  occurs.
+* If any argument is geometrically invalid, either the result is true or false (it is undefined which), or an error occurs.
 
-* For geographic SRS geometry arguments, if any argument has a
-  longitude or latitude that is out of range, an error occurs:
+* For geographic SRS geometry arguments, if any argument has a longitude or latitude that is out of range, an error occurs:
 
-  + If a longitude value is not in the range (−180,
-    180], an
-    [`ER_GEOMETRY_PARAM_LONGITUDE_OUT_OF_RANGE`](/doc/mysql-errors/9.5/en/server-error-reference.html#error_er_geometry_param_longitude_out_of_range)
-    error occurs.
+  + If a longitude value is not in the range (−180, 180], an `ER_GEOMETRY_PARAM_LONGITUDE_OUT_OF_RANGE` error occurs.
 
-  + If a latitude value is not in the range [−90, 90],
-    an
-    [`ER_GEOMETRY_PARAM_LATITUDE_OUT_OF_RANGE`](/doc/mysql-errors/9.5/en/server-error-reference.html#error_er_geometry_param_latitude_out_of_range)
-    error occurs.
+  + If a latitude value is not in the range [−90, 90], an `ER_GEOMETRY_PARAM_LATITUDE_OUT_OF_RANGE` error occurs.
 
-  Ranges shown are in degrees. If an SRS uses another unit,
-  the range uses the corresponding values in its unit. The
-  exact range limits deviate slightly due to floating-point
-  arithmetic.
+  Ranges shown are in degrees. If an SRS uses another unit, the range uses the corresponding values in its unit. The exact range limits deviate slightly due to floating-point arithmetic.
 
 * Otherwise, the return value is non-`NULL`.
 
-These MBR functions are available for testing geometry
-relationships:
+These MBR functions are available for testing geometry relationships:
 
-* [`MBRContains(g1,
-  g2)`](spatial-relation-functions-mbr.html#function_mbrcontains)
+* [`MBRContains(g1, g2)`](spatial-relation-functions-mbr.html#function_mbrcontains)
 
-  Returns 1 or 0 to indicate whether the minimum bounding
-  rectangle of *`g1`* contains the
-  minimum bounding rectangle of *`g2`*.
-  This tests the opposite relationship as
-  [`MBRWithin()`](spatial-relation-functions-mbr.html#function_mbrwithin).
+  Returns 1 or 0 to indicate whether the minimum bounding rectangle of *`g1`* contains the minimum bounding rectangle of *`g2`*. This tests the opposite relationship as `MBRWithin()`.
 
-  [`MBRContains()`](spatial-relation-functions-mbr.html#function_mbrcontains) handles its
-  arguments as described in the introduction to this section.
+  `MBRContains()` handles its arguments as described in the introduction to this section.
 
   ```
   mysql> SET
@@ -272,17 +164,11 @@ relationships:
   1 row in set (0.00 sec)
   ```
 
-* [`MBRCoveredBy(g1,
-  g2)`](spatial-relation-functions-mbr.html#function_mbrcoveredby)
+* [`MBRCoveredBy(g1, g2)`](spatial-relation-functions-mbr.html#function_mbrcoveredby)
 
-  Returns 1 or 0 to indicate whether the minimum bounding
-  rectangle of *`g1`* is covered by the
-  minimum bounding rectangle of *`g2`*.
-  This tests the opposite relationship as
-  [`MBRCovers()`](spatial-relation-functions-mbr.html#function_mbrcovers).
+  Returns 1 or 0 to indicate whether the minimum bounding rectangle of *`g1`* is covered by the minimum bounding rectangle of *`g2`*. This tests the opposite relationship as `MBRCovers()`.
 
-  [`MBRCoveredBy()`](spatial-relation-functions-mbr.html#function_mbrcoveredby) handles its
-  arguments as described in the introduction to this section.
+  `MBRCoveredBy()` handles its arguments as described in the introduction to this section.
 
   ```
   mysql> SET @g1 = ST_GeomFromText('Polygon((0 0,0 3,3 3,3 0,0 0))');
@@ -301,23 +187,13 @@ relationships:
   +--------------------+-----------------------+
   ```
 
-  See the description of the
-  [`MBRCovers()`](spatial-relation-functions-mbr.html#function_mbrcovers) function for
-  additional examples.
+  See the description of the `MBRCovers()` function for additional examples.
 
-* [`MBRCovers(g1,
-  g2)`](spatial-relation-functions-mbr.html#function_mbrcovers)
+* [`MBRCovers(g1, g2)`](spatial-relation-functions-mbr.html#function_mbrcovers)
 
-  Returns 1 or 0 to indicate whether the minimum bounding
-  rectangle of *`g1`* covers the
-  minimum bounding rectangle of *`g2`*.
-  This tests the opposite relationship as
-  [`MBRCoveredBy()`](spatial-relation-functions-mbr.html#function_mbrcoveredby). See the
-  description of [`MBRCoveredBy()`](spatial-relation-functions-mbr.html#function_mbrcoveredby)
-  for additional examples.
+  Returns 1 or 0 to indicate whether the minimum bounding rectangle of *`g1`* covers the minimum bounding rectangle of *`g2`*. This tests the opposite relationship as `MBRCoveredBy()`. See the description of `MBRCoveredBy()` for additional examples.
 
-  [`MBRCovers()`](spatial-relation-functions-mbr.html#function_mbrcovers) handles its
-  arguments as described in the introduction to this section.
+  `MBRCovers()` handles its arguments as described in the introduction to this section.
 
   ```
   mysql> SET
@@ -339,17 +215,11 @@ relationships:
   1 row in set (0.00 sec)
   ```
 
-* [`MBRDisjoint(g1,
-  g2)`](spatial-relation-functions-mbr.html#function_mbrdisjoint)
+* [`MBRDisjoint(g1, g2)`](spatial-relation-functions-mbr.html#function_mbrdisjoint)
 
-  Returns 1 or 0 to indicate whether the minimum bounding
-  rectangles of the two geometries
-  *`g1`* and
-  *`g2`* are disjoint (do not
-  intersect).
+  Returns 1 or 0 to indicate whether the minimum bounding rectangles of the two geometries *`g1`* and *`g2`* are disjoint (do not intersect).
 
-  [`MBRDisjoint()`](spatial-relation-functions-mbr.html#function_mbrdisjoint) handles its
-  arguments as described in the introduction to this section.
+  `MBRDisjoint()` handles its arguments as described in the introduction to this section.
 
   ```
   mysql> SET
@@ -378,18 +248,11 @@ relationships:
   1 row in set (0.00 sec)
   ```
 
-* [`MBREquals(g1,
-  g2)`](spatial-relation-functions-mbr.html#function_mbrequals)
+* [`MBREquals(g1, g2)`](spatial-relation-functions-mbr.html#function_mbrequals)
 
-  Returns 1 or 0 to indicate whether the minimum bounding
-  rectangles of the two geometries
-  *`g1`* and
-  *`g2`* are the same.
+  Returns 1 or 0 to indicate whether the minimum bounding rectangles of the two geometries *`g1`* and *`g2`* are the same.
 
-  [`MBREquals()`](spatial-relation-functions-mbr.html#function_mbrequals) handles its
-  arguments as described in the introduction to this section,
-  except that it does not return `NULL` for
-  empty geometry arguments.
+  `MBREquals()` handles its arguments as described in the introduction to this section, except that it does not return `NULL` for empty geometry arguments.
 
   ```
   mysql> SET
@@ -416,16 +279,11 @@ relationships:
   1 row in set (0.00 sec)
   ```
 
-* [`MBRIntersects(g1,
-  g2)`](spatial-relation-functions-mbr.html#function_mbrintersects)
+* [`MBRIntersects(g1, g2)`](spatial-relation-functions-mbr.html#function_mbrintersects)
 
-  Returns 1 or 0 to indicate whether the minimum bounding
-  rectangles of the two geometries
-  *`g1`* and
-  *`g2`* intersect.
+  Returns 1 or 0 to indicate whether the minimum bounding rectangles of the two geometries *`g1`* and *`g2`* intersect.
 
-  [`MBRIntersects()`](spatial-relation-functions-mbr.html#function_mbrintersects) handles its
-  arguments as described in the introduction to this section.
+  `MBRIntersects()` handles its arguments as described in the introduction to this section.
 
   ```
   mysql> SET
@@ -459,49 +317,27 @@ relationships:
   1 row in set (0.00 sec)
   ```
 
-* [`MBROverlaps(g1,
-  g2)`](spatial-relation-functions-mbr.html#function_mbroverlaps)
+* [`MBROverlaps(g1, g2)`](spatial-relation-functions-mbr.html#function_mbroverlaps)
 
-  Two geometries *spatially overlap* if
-  they intersect and their intersection results in a geometry
-  of the same dimension but not equal to either of the given
-  geometries.
+  Two geometries *spatially overlap* if they intersect and their intersection results in a geometry of the same dimension but not equal to either of the given geometries.
 
-  This function returns 1 or 0 to indicate whether the minimum
-  bounding rectangles of the two geometries
-  *`g1`* and
-  *`g2`* overlap.
+  This function returns 1 or 0 to indicate whether the minimum bounding rectangles of the two geometries *`g1`* and *`g2`* overlap.
 
-  [`MBROverlaps()`](spatial-relation-functions-mbr.html#function_mbroverlaps) handles its
-  arguments as described in the introduction to this section.
+  `MBROverlaps()` handles its arguments as described in the introduction to this section.
 
-* [`MBRTouches(g1,
-  g2)`](spatial-relation-functions-mbr.html#function_mbrtouches)
+* [`MBRTouches(g1, g2)`](spatial-relation-functions-mbr.html#function_mbrtouches)
 
-  Two geometries *spatially touch* if their
-  interiors do not intersect, but the boundary of one of the
-  geometries intersects either the boundary or the interior of
-  the other.
+  Two geometries *spatially touch* if their interiors do not intersect, but the boundary of one of the geometries intersects either the boundary or the interior of the other.
 
-  This function returns 1 or 0 to indicate whether the minimum
-  bounding rectangles of the two geometries
-  *`g1`* and
-  *`g2`* touch.
+  This function returns 1 or 0 to indicate whether the minimum bounding rectangles of the two geometries *`g1`* and *`g2`* touch.
 
-  [`MBRTouches()`](spatial-relation-functions-mbr.html#function_mbrtouches) handles its
-  arguments as described in the introduction to this section.
+  `MBRTouches()` handles its arguments as described in the introduction to this section.
 
-* [`MBRWithin(g1,
-  g2)`](spatial-relation-functions-mbr.html#function_mbrwithin)
+* [`MBRWithin(g1, g2)`](spatial-relation-functions-mbr.html#function_mbrwithin)
 
-  Returns 1 or 0 to indicate whether the minimum bounding
-  rectangle of *`g1`* is within the
-  minimum bounding rectangle of *`g2`*.
-  This tests the opposite relationship as
-  [`MBRContains()`](spatial-relation-functions-mbr.html#function_mbrcontains).
+  Returns 1 or 0 to indicate whether the minimum bounding rectangle of *`g1`* is within the minimum bounding rectangle of *`g2`*. This tests the opposite relationship as `MBRContains()`.
 
-  [`MBRWithin()`](spatial-relation-functions-mbr.html#function_mbrwithin) handles its
-  arguments as described in the introduction to this section.
+  `MBRWithin()` handles its arguments as described in the introduction to this section.
 
   ```
   mysql> SET

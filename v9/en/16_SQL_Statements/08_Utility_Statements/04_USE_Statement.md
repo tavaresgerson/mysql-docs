@@ -4,14 +4,9 @@
 USE db_name
 ```
 
-The [`USE`](use.html "15.8.4 USE Statement") statement tells MySQL to
-use the named database as the default (current) database for
-subsequent statements. This statement requires some privilege for
-the database or some object within it.
+The `USE` statement tells MySQL to use the named database as the default (current) database for subsequent statements. This statement requires some privilege for the database or some object within it.
 
-The named database remains the default until the end of the
-session or another [`USE`](use.html "15.8.4 USE Statement") statement is
-issued:
+The named database remains the default until the end of the session or another `USE` statement is issued:
 
 ```
 USE db1;
@@ -20,15 +15,9 @@ USE db2;
 SELECT COUNT(*) FROM mytable;   # selects from db2.mytable
 ```
 
-The database name must be specified on a single line. Newlines in
-database names are not supported.
+The database name must be specified on a single line. Newlines in database names are not supported.
 
-Making a particular database the default by means of the
-[`USE`](use.html "15.8.4 USE Statement") statement does not preclude
-accessing tables in other databases. The following example
-accesses the `author` table from the
-`db1` database and the `editor`
-table from the `db2` database:
+Making a particular database the default by means of the `USE` statement does not preclude accessing tables in other databases. The following example accesses the `author` table from the `db1` database and the `editor` table from the `db2` database:
 
 ```
 USE db1;

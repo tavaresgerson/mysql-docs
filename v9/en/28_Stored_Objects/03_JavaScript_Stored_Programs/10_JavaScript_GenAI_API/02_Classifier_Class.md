@@ -1,46 +1,32 @@
 #### 27.3.10.2 Classifier Class
 
-* [Classifier Constructor](srjsapi-classifier.html#srjsapi-classifier-constructor "Classifier Constructor")
-* [Classifier.train()](srjsapi-classifier.html#srjsapi-classifier-train "Classifier.train()")
-* [Classifier.fit()](srjsapi-classifier.html#srjsapi-classifier-fit "Classifier.fit()")
-* [Classifier.predict()](srjsapi-classifier.html#srjsapi-classifier-predict "Classifier.predict()")
-* [Classifier.predictProba()](srjsapi-classifier.html#srjsapi-classifier-predictproba "Classifier.predictProba()")
-* [Classifier.score()](srjsapi-classifier.html#srjsapi-classifier-score "Classifier.score()")
-* [Classifier.explain()](srjsapi-classifier.html#srjsapi-classifier-explain "Classifier.explain()")
-* [Classifier.getExplainer()](srjsapi-classifier.html#srjsapi-classifier-getexplainer "Classifier.getExplainer()")
-* [Classifier.unload()](srjsapi-classifier.html#srjsapi-classifier-unload "Classifier.unload()")
+* Classifier Constructor
+* Classifier.train()")
+* Classifier.fit()")
+* Classifier.predict()")
+* Classifier.predictProba()")
+* Classifier.score()")
+* Classifier.explain()")
+* Classifier.getExplainer()")
+* Classifier.unload()")
 
-This class encapsulates the classification task as described in
-[Train a Model](/doc/heatwave/en/mys-hwaml-training.html).
-`Classifier` supports methods for loading,
-training, and unloading models, predicting labels, calculating
-probabilities, producing explainers, and related tasks.
+This class encapsulates the classification task as described in Train a Model. `Classifier` supports methods for loading, training, and unloading models, predicting labels, calculating probabilities, producing explainers, and related tasks.
 
-An instance of `Classifier` has three
-accessible properties, listed here:
+An instance of `Classifier` has three accessible properties, listed here:
 
-* `name` (`String`): The
-  model name.
+* `name` (`String`): The model name.
 
-* `metadata` (`Object`):
-  Model metadata stored in the model catalog. See
-  [Model Metadata](/doc/heatwave/en/mys-hwaml-ml-model-metadata.html).
+* `metadata` (`Object`): Model metadata stored in the model catalog. See Model Metadata.
 
-* `trainOptions` (`Object`):
-  The training options specified in the constructor.
+* `trainOptions` (`Object`): The training options specified in the constructor.
 
 ##### Classifier Constructor
 
-You can obtain an instance of `Classifier` by
-invoking its constructor, shown here:
+You can obtain an instance of `Classifier` by invoking its constructor, shown here:
 
 **Signature**
 
-* ```
-  new ml.Classifier(
-    String name[,
-    Object trainOptions]
-  )
+* ``` new ml.Classifier( String name[, Object trainOptions] )
   ```
 
 **Arguments**
@@ -81,17 +67,9 @@ specific to the MySQL HeatWave AutoML classification task.
 
 **Arguments**
 
-* *`trainData`*
-  (`Table`): A
-  [`Table`](srjsapi-table.html "27.3.6.5 Table Object") containing a
-  training dataset. The table must not take up more than 10
-  GB space, or hold more than 100 million rows or more than
-  1017 columns.
+* *`trainData`* (`Table`): A `Table` containing a training dataset. The table must not take up more than 10 GB space, or hold more than 100 million rows or more than 1017 columns.
 
-* *`targetColumnName`*
-  (`String`): Name of the target column
-  containing ground truth values. The type used for this
-  column cannot be [`TEXT`](blob.html "13.3.4 The BLOB and TEXT Types").
+* *`targetColumnName`* (`String`): Name of the target column containing ground truth values. The type used for this column cannot be `TEXT`.
 
 **Return type**
 
@@ -99,23 +77,11 @@ specific to the MySQL HeatWave AutoML classification task.
 
 ##### Classifier.fit()
 
-An alias for
-[`train()`](srjsapi-classifier.html#srjsapi-classifier-train "Classifier.train()"), and
-identical to it in all respects save the method name. See
-[Classifier.train()](srjsapi-classifier.html#srjsapi-classifier-train "Classifier.train()"), for more
-information.
+An alias for `train()`"), and identical to it in all respects save the method name. See Classifier.train()"), for more information.
 
 ##### Classifier.predict()
 
-This method predicts labels; it has two variants, one of which
-predicts labels from data found in the indicated table and
-stores them in an output table; this is a wrapper for
-[`sys.ML_PREDICT_TABLE`](/doc/heatwave/en/mys-hwaml-ml-predict-table.html). The other
-variant of this method acts as a wrapper for
-[`sys.ML_PREDICT_ROW`](/doc/heatwave/en/mys-hwaml-ml-predict-row.html), and
-predicts a label for a single set of sample data and returns
-it to the caller. Both versions of
-`predict()` are shown here.
+This method predicts labels; it has two variants, one of which predicts labels from data found in the indicated table and stores them in an output table; this is a wrapper for `sys.ML_PREDICT_TABLE`. The other variant of this method acts as a wrapper for `sys.ML_PREDICT_ROW`, and predicts a label for a single set of sample data and returns it to the caller. Both versions of `predict()` are shown here.
 
 ###### Version 1
 
@@ -123,12 +89,7 @@ Predicts labels and saves them in the specified output table.
 
 **Signature**
 
-* ```
-  Classifier.predict(
-    Table testData,
-    Table outputTable[,
-    Object options]
-  )
+* ``` Classifier.predict( Table testData, Table outputTable[, Object options] )
   ```
 
 **Arguments**
@@ -168,35 +129,19 @@ information.
 
 **Arguments**
 
-* *`sample`*
-  (`Object`): Sample data. This argument
-  must contain members that were used for training; extra
-  members may be included, but these are ignored during
-  prediction.
+* *`sample`* (`Object`): Sample data. This argument must contain members that were used for training; extra members may be included, but these are ignored during prediction.
 
 **Return type**
 
-* `String`. See the documentation for
-  [`ML_PREDICT_ROW`](/doc/heatwave/en/mys-hwaml-ml-predict-row.html) for more
-  information.
+* `String`. See the documentation for `ML_PREDICT_ROW` for more information.
 
 ##### Classifier.predictProba()
 
-Obtains the probabilities for all classes of the passed sample
-data. Like the single-argument version of
-[`predict()`](srjsapi-classifier.html#srjsapi-classifier-predict "Classifier.predict()"), this
-method is a wrapper for
-[`sys.ML_PREDICT_ROW`](/doc/heatwave/en/mys-hwaml-ml-predict-row.html), but unlike
-`predict()`,
-`predictProba()` returns the probabilities
-only.
+Obtains the probabilities for all classes of the passed sample data. Like the single-argument version of `predict()`"), this method is a wrapper for `sys.ML_PREDICT_ROW`, but unlike `predict()`, `predictProba()` returns the probabilities only.
 
 **Signature**
 
-* ```
-  Classifier.predict(
-    Object sample
-  )
+* ``` Classifier.predict( Object sample )
   ```
 
 **Arguments**
@@ -236,27 +181,13 @@ This method serves as a JavaScript wrapper for
 
 **Arguments**
 
-* *`testData`*
-  ([`Table`](srjsapi-table.html "27.3.6.5 Table Object")): Table
-  containing test data to be scored; this table must contain
-  the same columns as the training dataset.
+* *`testData`* (`Table`): Table containing test data to be scored; this table must contain the same columns as the training dataset.
 
-* *`targetColumnName`*
-  (`String`): Name of the target column
-  containing ground truth values.
+* *`targetColumnName`* (`String`): Name of the target column containing ground truth values.
 
-* *`metric`*
-  (`String`): Name of the scoring metric.
-  See [Optimization and Scoring Metrics](/doc/heatwave/en/mys-hwaml-ml-metrics.html), for
-  information about the metrics compatible with AutoML
-  classification.
+* *`metric`* (`String`): Name of the scoring metric. See Optimization and Scoring Metrics, for information about the metrics compatible with AutoML classification.
 
-* *`options`*
-  (`Object`)
-  (*optional*): A set of options in JSON
-  format. See the description of
-  [`ML_SCORE`](/doc/heatwave/en/mys-hwaml-ml-score.html) for more
-  information.
+* *`options`* (`Object`) (*optional*): A set of options in JSON format. See the description of `ML_SCORE` for more information.
 
 **Return type**
 
@@ -264,23 +195,13 @@ This method serves as a JavaScript wrapper for
 
 ##### Classifier.explain()
 
-Given a [`Table`](srjsapi-table.html "27.3.6.5 Table Object") containing a
-labeled, trained dataset and the name of a table column
-containing ground truth values, this method returns the newly
-trained explainer.
+Given a `Table` containing a labeled, trained dataset and the name of a table column containing ground truth values, this method returns the newly trained explainer.
 
-This method serves as a wrapper for the MySQL HeatWave AutoML
-[`sys.ML_EXPLAIN`](/doc/heatwave/en/mys-hwaml-ml-explain.html) routine; see the
-description of that routine for further information.
+This method serves as a wrapper for the MySQL HeatWave AutoML `sys.ML_EXPLAIN` routine; see the description of that routine for further information.
 
 **Signature**
 
-* ```
-  explain(
-    Table data,
-    String targetColumnName[,
-    Object options]
-  )
+* ``` explain( Table data, String targetColumnName[, Object options] )
   ```
 
 **Arguments**
@@ -322,13 +243,11 @@ Returns an explainer for this classifier, if one exists.
 
 ##### Classifier.unload()
 
-Unloads the model. This method is a wrapper for
-[`sys.ML_MODEL_UNLOAD`](/doc/heatwave/en/mys-hwaml-ml-model-unload.html).
+Unloads the model. This method is a wrapper for `sys.ML_MODEL_UNLOAD`.
 
 **Signature**
 
-* ```
-  Classifier.unload()
+* ``` Classifier.unload()
   ```
 
 **Arguments**

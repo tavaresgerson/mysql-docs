@@ -1,8 +1,6 @@
 ## 34.3 Configuring Network Access
 
-For information on OCI Security Rules, see
-[Security
-Rules](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securityrules.htm).
+For information on OCI Security Rules, see [Security Rules](https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/securityrules.htm).
 
 Important
 

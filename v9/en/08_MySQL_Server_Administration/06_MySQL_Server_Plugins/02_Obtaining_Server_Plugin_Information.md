@@ -1,12 +1,8 @@
 ### 7.6.2 Obtaining Server Plugin Information
 
-There are several ways to determine which plugins are installed in
-the server:
+There are several ways to determine which plugins are installed in the server:
 
-* The Information Schema [`PLUGINS`](information-schema-plugins-table.html "28.3.27 The INFORMATION_SCHEMA PLUGINS Table")
-  table contains a row for each loaded plugin. Any that have a
-  `PLUGIN_LIBRARY` value of
-  `NULL` are built in and cannot be unloaded.
+* The Information Schema `PLUGINS` table contains a row for each loaded plugin. Any that have a `PLUGIN_LIBRARY` value of `NULL` are built in and cannot be unloaded.
 
   ```
   mysql> TABLE INFORMATION_SCHEMA.PLUGINS\G
@@ -37,10 +33,7 @@ the server:
   ...
   ```
 
-* The [`SHOW PLUGINS`](show-plugins.html "15.7.7.28 SHOW PLUGINS Statement") statement
-  displays a row for each loaded plugin. Any that have a
-  `Library` value of `NULL`
-  are built in and cannot be unloaded.
+* The `SHOW PLUGINS` statement displays a row for each loaded plugin. Any that have a `Library` value of `NULL` are built in and cannot be unloaded.
 
   ```
   mysql> SHOW PLUGINS\G
@@ -59,9 +52,4 @@ the server:
   ...
   ```
 
-* The `mysql.plugin` table shows which plugins
-  have been registered with [`INSTALL
-  PLUGIN`](install-plugin.html "15.7.4.4 INSTALL PLUGIN Statement"). The table contains only plugin names and
-  library file names, so it does not provide as much information
-  as the [`PLUGINS`](information-schema-plugins-table.html "28.3.27 The INFORMATION_SCHEMA PLUGINS Table") table or the
-  [`SHOW PLUGINS`](show-plugins.html "15.7.7.28 SHOW PLUGINS Statement") statement.
+* The `mysql.plugin` table shows which plugins have been registered with [`INSTALL PLUGIN`](install-plugin.html "15.7.4.4 INSTALL PLUGIN Statement"). The table contains only plugin names and library file names, so it does not provide as much information as the `PLUGINS` table or the `SHOW PLUGINS` statement.

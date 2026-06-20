@@ -5,14 +5,7 @@ SHOW COLLATION
     [LIKE 'pattern' | WHERE expr]
 ```
 
-This statement lists collations supported by the server. By
-default, the output from [`SHOW
-COLLATION`](show-collation.html "15.7.7.5 SHOW COLLATION Statement") includes all available collations. The
-[`LIKE`](string-comparison-functions.html#operator_like) clause, if present, indicates
-which collation names to match. The `WHERE`
-clause can be given to select rows using more general
-conditions, as discussed in [Section 28.8, “Extensions to SHOW Statements”](extended-show.html "28.8 Extensions to SHOW Statements"). For
-example:
+This statement lists collations supported by the server. By default, the output from [`SHOW COLLATION`](show-collation.html "15.7.7.5 SHOW COLLATION Statement") includes all available collations. The `LIKE` clause, if present, indicates which collation names to match. The `WHERE` clause can be given to select rows using more general conditions, as discussed in Section 28.8, “Extensions to SHOW Statements”. For example:
 
 ```
 mysql> SHOW COLLATION WHERE Charset = 'latin1';
@@ -30,8 +23,7 @@ mysql> SHOW COLLATION WHERE Charset = 'latin1';
 +-------------------+---------+----+---------+----------+---------+
 ```
 
-[`SHOW COLLATION`](show-collation.html "15.7.7.5 SHOW COLLATION Statement") output has these
-columns:
+`SHOW COLLATION` output has these columns:
 
 * `Collation`
 
@@ -39,8 +31,7 @@ columns:
 
 * `Charset`
 
-  The name of the character set with which the collation is
-  associated.
+  The name of the character set with which the collation is associated.
 
 * `Id`
 
@@ -56,20 +47,13 @@ columns:
 
 * `Sortlen`
 
-  This is related to the amount of memory required to sort
-  strings expressed in the character set.
+  This is related to the amount of memory required to sort strings expressed in the character set.
 
 * `Pad_attribute`
 
-  The collation pad attribute, one of `NO
-  PAD` or `PAD SPACE`. This
-  attribute affects whether trailing spaces are significant in
-  string comparisons; for more information, see
-  [Trailing Space Handling in Comparisons](charset-binary-collations.html#charset-binary-collations-trailing-space-comparisons "Trailing Space Handling in Comparisons").
+  The collation pad attribute, one of `NO PAD` or `PAD SPACE`. This attribute affects whether trailing spaces are significant in string comparisons; for more information, see Trailing Space Handling in Comparisons.
 
-To see the default collation for each character set, use the
-following statement. `Default` is a reserved
-word, so to use it as an identifier, it must be quoted as such:
+To see the default collation for each character set, use the following statement. `Default` is a reserved word, so to use it as an identifier, it must be quoted as such:
 
 ```
 mysql> SHOW COLLATION WHERE `Default` = 'Yes';
@@ -85,7 +69,4 @@ mysql> SHOW COLLATION WHERE `Default` = 'Yes';
 ...
 ```
 
-Collation information is also available from the
-`INFORMATION_SCHEMA`
-[`COLLATIONS`](information-schema-collations-table.html "28.3.6 The INFORMATION_SCHEMA COLLATIONS Table") table. See
-[Section 28.3.6, “The INFORMATION\_SCHEMA COLLATIONS Table”](information-schema-collations-table.html "28.3.6 The INFORMATION_SCHEMA COLLATIONS Table").
+Collation information is also available from the `INFORMATION_SCHEMA` `COLLATIONS` table. See Section 28.3.6, “The INFORMATION\_SCHEMA COLLATIONS Table”.

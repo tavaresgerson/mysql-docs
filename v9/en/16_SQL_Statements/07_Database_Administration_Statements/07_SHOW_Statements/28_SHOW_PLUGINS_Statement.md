@@ -4,10 +4,9 @@
 SHOW PLUGINS
 ```
 
-[`SHOW PLUGINS`](show-plugins.html "15.7.7.28 SHOW PLUGINS Statement") displays information
-about server plugins.
+`SHOW PLUGINS` displays information about server plugins.
 
-Example of [`SHOW PLUGINS`](show-plugins.html "15.7.7.28 SHOW PLUGINS Statement") output:
+Example of `SHOW PLUGINS` output:
 
 ```
 mysql> SHOW PLUGINS\G
@@ -38,54 +37,30 @@ License: GPL
 ...
 ```
 
-[`SHOW PLUGINS`](show-plugins.html "15.7.7.28 SHOW PLUGINS Statement") output has these
-columns:
+`SHOW PLUGINS` output has these columns:
 
 * `Name`
 
-  The name used to refer to the plugin in statements such as
-  [`INSTALL PLUGIN`](install-plugin.html "15.7.4.4 INSTALL PLUGIN Statement") and
-  [`UNINSTALL PLUGIN`](uninstall-plugin.html "15.7.4.6 UNINSTALL PLUGIN Statement").
+  The name used to refer to the plugin in statements such as `INSTALL PLUGIN` and `UNINSTALL PLUGIN`.
 
 * `Status`
 
-  The plugin status, one of `ACTIVE`,
-  `INACTIVE`, `DISABLED`,
-  `DELETING`, or `DELETED`.
+  The plugin status, one of `ACTIVE`, `INACTIVE`, `DISABLED`, `DELETING`, or `DELETED`.
 
 * `Type`
 
-  The type of plugin, such as `STORAGE
-  ENGINE`, `INFORMATION_SCHEMA`, or
-  `AUTHENTICATION`.
+  The type of plugin, such as `STORAGE ENGINE`, `INFORMATION_SCHEMA`, or `AUTHENTICATION`.
 
 * `Library`
 
-  The name of the plugin shared library file. This is the name
-  used to refer to the plugin file in statements such as
-  [`INSTALL PLUGIN`](install-plugin.html "15.7.4.4 INSTALL PLUGIN Statement") and
-  [`UNINSTALL PLUGIN`](uninstall-plugin.html "15.7.4.6 UNINSTALL PLUGIN Statement"). This file
-  is located in the directory named by the
-  [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable.
-  If the library name is `NULL`, the plugin
-  is compiled in and cannot be uninstalled with
-  [`UNINSTALL PLUGIN`](uninstall-plugin.html "15.7.4.6 UNINSTALL PLUGIN Statement").
+  The name of the plugin shared library file. This is the name used to refer to the plugin file in statements such as `INSTALL PLUGIN` and `UNINSTALL PLUGIN`. This file is located in the directory named by the `plugin_dir` system variable. If the library name is `NULL`, the plugin is compiled in and cannot be uninstalled with `UNINSTALL PLUGIN`.
 
 * `License`
 
-  How the plugin is licensed (for example,
-  `GPL`).
+  How the plugin is licensed (for example, `GPL`).
 
-For plugins installed with [`INSTALL
-PLUGIN`](install-plugin.html "15.7.4.4 INSTALL PLUGIN Statement"), the `Name` and
-`Library` values are also registered in the
-`mysql.plugin` system table.
+For plugins installed with [`INSTALL PLUGIN`](install-plugin.html "15.7.4.4 INSTALL PLUGIN Statement"), the `Name` and `Library` values are also registered in the `mysql.plugin` system table.
 
-For information about plugin data structures that form the basis
-of the information displayed by [`SHOW
-PLUGINS`](show-plugins.html "15.7.7.28 SHOW PLUGINS Statement"), see [The MySQL Plugin API](/doc/extending-mysql/9.5/en/plugin-api.html).
+For information about plugin data structures that form the basis of the information displayed by [`SHOW PLUGINS`](show-plugins.html "15.7.7.28 SHOW PLUGINS Statement"), see The MySQL Plugin API.
 
-Plugin information is also available from the
-`INFORMATION_SCHEMA`
-`.PLUGINS` table. See
-[Section 28.3.27, “The INFORMATION\_SCHEMA PLUGINS Table”](information-schema-plugins-table.html "28.3.27 The INFORMATION_SCHEMA PLUGINS Table").
+Plugin information is also available from the `INFORMATION_SCHEMA` `.PLUGINS` table. See Section 28.3.27, “The INFORMATION\_SCHEMA PLUGINS Table”.

@@ -1,12 +1,10 @@
 ### 10.14.2 Thread Command Values
 
-A thread can have any of the following
-`Command` values:
+A thread can have any of the following `Command` values:
 
 * `Binlog Dump`
 
-  This is a thread on a replication source for sending binary
-  log contents to a replica.
+  This is a thread on a replication source for sending binary log contents to a replica.
 
 * `Change user`
 
@@ -18,8 +16,7 @@ A thread can have any of the following
 
 * `Connect`
 
-  Used by replication receiver threads connected to the
-  source, and by replication worker threads.
+  Used by replication receiver threads connected to the source, and by replication worker threads.
 
 * `Connect Out`
 
@@ -31,8 +28,7 @@ A thread can have any of the following
 
 * `Daemon`
 
-  This thread is internal to the server, not a thread that
-  services a client connection.
+  This thread is internal to the server, not a thread that services a client connection.
 
 * `Debug`
 
@@ -53,8 +49,7 @@ A thread can have any of the following
 
 * `Fetch`
 
-  The thread is fetching the results from executing a prepared
-  statement.
+  The thread is fetching the results from executing a prepared statement.
 
 * `Field List`
 
@@ -70,8 +65,7 @@ A thread can have any of the following
 
 * `Long Data`
 
-  The thread is retrieving long data in the result of
-  executing a prepared statement.
+  The thread is retrieving long data in the result of executing a prepared statement.
 
 * `Ping`
 
@@ -87,9 +81,7 @@ A thread can have any of the following
 
 * `Query`
 
-  Employed for user clients while executing queries by
-  single-threaded replication applier threads, as well as by
-  the replication coordinator thread.
+  Employed for user clients while executing queries by single-threaded replication applier threads, as well as by the replication coordinator thread.
 
 * `Quit`
 
@@ -97,8 +89,7 @@ A thread can have any of the following
 
 * `Refresh`
 
-  The thread is flushing table, logs, or caches, or resetting
-  status variable or replication server information.
+  The thread is flushing table, logs, or caches, or resetting status variable or replication server information.
 
 * `Register Slave`
 
@@ -110,8 +101,7 @@ A thread can have any of the following
 
 * `Set option`
 
-  The thread is setting or resetting a client statement
-  execution option.
+  The thread is setting or resetting a client statement execution option.
 
 * `Shutdown`
 
@@ -119,8 +109,7 @@ A thread can have any of the following
 
 * `Sleep`
 
-  The thread is waiting for the client to send a new statement
-  to it.
+  The thread is waiting for the client to send a new statement to it.
 
 * `Statistics`
 

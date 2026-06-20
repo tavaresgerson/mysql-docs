@@ -1,41 +1,24 @@
 #### 30.4.5.17 The ps\_thread\_trx\_info() Function
 
-Returns a JSON object containing information about a given
-thread. The information includes the current transaction, and
-the statements it has already executed, derived from the
-Performance Schema
-[`events_transactions_current`](performance-schema-events-transactions-current-table.html "29.12.7.1 The events_transactions_current Table") and
-[`events_statements_history`](performance-schema-events-statements-history-table.html "29.12.6.2 The events_statements_history Table") tables.
-(The consumers for those tables must be enabled to obtain full
-data in the JSON object.)
+Returns a JSON object containing information about a given thread. The information includes the current transaction, and the statements it has already executed, derived from the Performance Schema `events_transactions_current` and `events_statements_history` tables. (The consumers for those tables must be enabled to obtain full data in the JSON object.)
 
-If the output exceeds the truncation length (65535 by
-default), a JSON error object is returned, such as:
+If the output exceeds the truncation length (65535 by default), a JSON error object is returned, such as:
 
 ```
 { "error": "Trx info truncated: Row 6 was cut by GROUP_CONCAT()" }
 ```
 
-Similar error objects are returned for other warnings and
-exceptions raised during function execution.
+Similar error objects are returned for other warnings and exceptions raised during function execution.
 
 ##### Parameters
 
-* `in_thread_id BIGINT UNSIGNED`: The
-  thread ID for which to return transaction information.
-  The value should match the `THREAD_ID`
-  column from some Performance Schema
-  [`threads`](performance-schema-threads-table.html "29.12.22.10 The threads Table") table row.
+* `in_thread_id BIGINT UNSIGNED`: The thread ID for which to return transaction information. The value should match the `THREAD_ID` column from some Performance Schema `threads` table row.
 
 ##### Configuration Options
 
-[`ps_thread_trx_info()`](sys-ps-thread-trx-info.html "30.4.5.17 The ps_thread_trx_info() Function") operation
-can be modified using the following configuration options or
-their corresponding user-defined variables (see
-[Section 30.4.2.1, “The sys\_config Table”](sys-sys-config.html "30.4.2.1 The sys_config Table")):
+`ps_thread_trx_info()` Function") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 30.4.2.1, “The sys\_config Table”):
 
-* `ps_thread_trx_info.max_length`,
-  `@sys.ps_thread_trx_info.max_length`
+* `ps_thread_trx_info.max_length`, `@sys.ps_thread_trx_info.max_length`
 
   The maximum length of the output. The default is 65535.
 

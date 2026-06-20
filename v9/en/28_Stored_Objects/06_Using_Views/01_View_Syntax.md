@@ -1,20 +1,8 @@
 ### 27.6.1 View Syntax
 
-The [`CREATE VIEW`](create-view.html "15.1.27 CREATE VIEW Statement") statement creates a
-new view (see [Section 15.1.27, “CREATE VIEW Statement”](create-view.html "15.1.27 CREATE VIEW Statement")). To alter the
-definition of a view or drop a view, use
-[`ALTER VIEW`](alter-view.html "15.1.13 ALTER VIEW Statement") (see
-[Section 15.1.13, “ALTER VIEW Statement”](alter-view.html "15.1.13 ALTER VIEW Statement")), or [`DROP
-VIEW`](drop-view.html "15.1.40 DROP VIEW Statement") (see [Section 15.1.40, “DROP VIEW Statement”](drop-view.html "15.1.40 DROP VIEW Statement")).
+The `CREATE VIEW` statement creates a new view (see Section 15.1.27, “CREATE VIEW Statement”). To alter the definition of a view or drop a view, use `ALTER VIEW` (see Section 15.1.13, “ALTER VIEW Statement”), or [`DROP VIEW`](drop-view.html "15.1.40 DROP VIEW Statement") (see Section 15.1.40, “DROP VIEW Statement”).
 
-A view can be created from many kinds of
-[`SELECT`](select.html "15.2.13 SELECT Statement") statements. It can refer to
-base tables or other views. It can use joins,
-[`UNION`](union.html "15.2.18 UNION Clause"), and subqueries. The
-[`SELECT`](select.html "15.2.13 SELECT Statement") need not even refer to any
-tables. The following example defines a view that selects two
-columns from another table, as well as an expression calculated
-from those columns:
+A view can be created from many kinds of `SELECT` statements. It can refer to base tables or other views. It can use joins, `UNION`, and subqueries. The `SELECT` need not even refer to any tables. The following example defines a view that selects two columns from another table, as well as an expression calculated from those columns:
 
 ```
 mysql> CREATE TABLE t (qty INT, price INT);

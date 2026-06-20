@@ -1,17 +1,8 @@
 #### 5.3.4.5 Date Calculations
 
-MySQL provides several functions that you can use to perform
-calculations on dates, for example, to calculate ages or
-extract parts of dates.
+MySQL provides several functions that you can use to perform calculations on dates, for example, to calculate ages or extract parts of dates.
 
-To determine how many years old each of your pets is, use the
-[`TIMESTAMPDIFF()`](date-and-time-functions.html#function_timestampdiff) function. Its
-arguments are the unit in which you want the result expressed,
-and the two dates for which to take the difference. The
-following query shows, for each pet, the birth date, the
-current date, and the age in years. An
-*alias* (`age`) is used to
-make the final output column label more meaningful.
+To determine how many years old each of your pets is, use the `TIMESTAMPDIFF()` function. Its arguments are the unit in which you want the result expressed, and the two dates for which to take the difference. The following query shows, for each pet, the birth date, the current date, and the age in years. An *alias* (`age`) is used to make the final output column label more meaningful.
 
 ```
 mysql> SELECT name, birth, CURDATE(),
@@ -32,10 +23,7 @@ mysql> SELECT name, birth, CURDATE(),
 +----------+------------+------------+------+
 ```
 
-The query works, but the result could be scanned more easily
-if the rows were presented in some order. This can be done by
-adding an `ORDER BY name` clause to sort the
-output by name:
+The query works, but the result could be scanned more easily if the rows were presented in some order. This can be done by adding an `ORDER BY name` clause to sort the output by name:
 
 ```
 mysql> SELECT name, birth, CURDATE(),
@@ -56,9 +44,7 @@ mysql> SELECT name, birth, CURDATE(),
 +----------+------------+------------+------+
 ```
 
-To sort the output by `age` rather than
-`name`, just use a different `ORDER
-BY` clause:
+To sort the output by `age` rather than `name`, just use a different `ORDER BY` clause:
 
 ```
 mysql> SELECT name, birth, CURDATE(),
@@ -79,13 +65,7 @@ mysql> SELECT name, birth, CURDATE(),
 +----------+------------+------------+------+
 ```
 
-A similar query can be used to determine age at death for
-animals that have died. You determine which animals these are
-by checking whether the `death` value is
-`NULL`. Then, for those with
-non-`NULL` values, compute the difference
-between the `death` and
-`birth` values:
+A similar query can be used to determine age at death for animals that have died. You determine which animals these are by checking whether the `death` value is `NULL`. Then, for those with non-`NULL` values, compute the difference between the `death` and `birth` values:
 
 ```
 mysql> SELECT name, birth, death,
@@ -98,24 +78,9 @@ mysql> SELECT name, birth, death,
 +--------+------------+------------+------+
 ```
 
-The query uses `death IS NOT NULL` rather
-than `death <> NULL` because
-`NULL` is a special value that cannot be
-compared using the usual comparison operators. This is
-discussed later. See [Section 5.3.4.6, “Working with NULL Values”](working-with-null.html "5.3.4.6 Working with NULL Values").
+The query uses `death IS NOT NULL` rather than `death <> NULL` because `NULL` is a special value that cannot be compared using the usual comparison operators. This is discussed later. See Section 5.3.4.6, “Working with NULL Values”.
 
-What if you want to know which animals have birthdays next
-month? For this type of calculation, year and day are
-irrelevant; you simply want to extract the month part of the
-`birth` column. MySQL provides several
-functions for extracting parts of dates, such as
-[`YEAR()`](date-and-time-functions.html#function_year),
-[`MONTH()`](date-and-time-functions.html#function_month), and
-[`DAYOFMONTH()`](date-and-time-functions.html#function_dayofmonth).
-[`MONTH()`](date-and-time-functions.html#function_month) is the appropriate
-function here. To see how it works, run a simple query that
-displays the value of both `birth` and
-[`MONTH(birth)`](date-and-time-functions.html#function_month):
+What if you want to know which animals have birthdays next month? For this type of calculation, year and day are irrelevant; you simply want to extract the month part of the `birth` column. MySQL provides several functions for extracting parts of dates, such as `YEAR()`, `MONTH()`, and `DAYOFMONTH()`. `MONTH()` is the appropriate function here. To see how it works, run a simple query that displays the value of both `birth` and `MONTH(birth)`:
 
 ```
 mysql> SELECT name, birth, MONTH(birth) FROM pet;
@@ -134,10 +99,7 @@ mysql> SELECT name, birth, MONTH(birth) FROM pet;
 +----------+------------+--------------+
 ```
 
-Finding animals with birthdays in the upcoming month is also
-simple. Suppose that the current month is April. Then the
-month value is `4` and you can look for
-animals born in May (month `5`) like this:
+Finding animals with birthdays in the upcoming month is also simple. Suppose that the current month is April. Then the month value is `4` and you can look for animals born in May (month `5`) like this:
 
 ```
 mysql> SELECT name, birth FROM pet WHERE MONTH(birth) = 5;
@@ -148,49 +110,25 @@ mysql> SELECT name, birth FROM pet WHERE MONTH(birth) = 5;
 +-------+------------+
 ```
 
-There is a small complication if the current month is
-December. You cannot merely add one to the month number
-(`12`) and look for animals born in month
-`13`, because there is no such month.
-Instead, you look for animals born in January (month
-`1`).
+There is a small complication if the current month is December. You cannot merely add one to the month number (`12`) and look for animals born in month `13`, because there is no such month. Instead, you look for animals born in January (month `1`).
 
-You can write the query so that it works no matter what the
-current month is, so that you do not have to use the number
-for a particular month.
-[`DATE_ADD()`](date-and-time-functions.html#function_date-add) enables you to add a
-time interval to a given date. If you add a month to the value
-of [`CURDATE()`](date-and-time-functions.html#function_curdate), then extract the
-month part with [`MONTH()`](date-and-time-functions.html#function_month), the
-result produces the month in which to look for birthdays:
+You can write the query so that it works no matter what the current month is, so that you do not have to use the number for a particular month. `DATE_ADD()` enables you to add a time interval to a given date. If you add a month to the value of `CURDATE()`, then extract the month part with `MONTH()`, the result produces the month in which to look for birthdays:
 
 ```
 mysql> SELECT name, birth FROM pet
        WHERE MONTH(birth) = MONTH(DATE_ADD(CURDATE(),INTERVAL 1 MONTH));
 ```
 
-A different way to accomplish the same task is to add
-`1` to get the next month after the current
-one after using the modulo function (`MOD`)
-to wrap the month value to `0` if it is
-currently `12`:
+A different way to accomplish the same task is to add `1` to get the next month after the current one after using the modulo function (`MOD`) to wrap the month value to `0` if it is currently `12`:
 
 ```
 mysql> SELECT name, birth FROM pet
        WHERE MONTH(birth) = MOD(MONTH(CURDATE()), 12) + 1;
 ```
 
-[`MONTH()`](date-and-time-functions.html#function_month) returns a number
-between `1` and `12`. And
-[`MOD(something,12)`](mathematical-functions.html#function_mod) returns a
-number between `0` and `11`.
-So the addition has to be after the
-[`MOD()`](mathematical-functions.html#function_mod), otherwise we would go
-from November (`11`) to January
-(`1`).
+`MONTH()` returns a number between `1` and `12`. And `MOD(something,12)` returns a number between `0` and `11`. So the addition has to be after the `MOD()`, otherwise we would go from November (`11`) to January (`1`).
 
-If a calculation uses invalid dates, the calculation fails and
-produces warnings:
+If a calculation uses invalid dates, the calculation fails and produces warnings:
 
 ```
 mysql> SELECT '2018-10-31' + INTERVAL 1 DAY;

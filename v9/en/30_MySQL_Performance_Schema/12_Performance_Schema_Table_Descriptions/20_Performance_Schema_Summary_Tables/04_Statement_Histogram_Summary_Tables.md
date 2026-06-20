@@ -1,21 +1,8 @@
 #### 29.12.20.4 Statement Histogram Summary Tables
 
-The Performance Schema maintains statement event summary
-tables that contain information about minimum, maximum, and
-average statement latency (see
-[Section 29.12.20.3, “Statement Summary Tables”](performance-schema-statement-summary-tables.html "29.12.20.3 Statement Summary Tables")).
-Those tables permit high-level assessment of system
-performance. To permit assessment at a more fine-grained
-level, the Performance Schema also collects histogram data for
-statement latencies. These histograms provide additional
-insight into latency distributions.
+The Performance Schema maintains statement event summary tables that contain information about minimum, maximum, and average statement latency (see Section 29.12.20.3, “Statement Summary Tables”). Those tables permit high-level assessment of system performance. To permit assessment at a more fine-grained level, the Performance Schema also collects histogram data for statement latencies. These histograms provide additional insight into latency distributions.
 
-[Section 29.12.6, “Performance Schema Statement Event Tables”](performance-schema-statement-tables.html "29.12.6 Performance Schema Statement Event Tables")
-describes the events on which statement summaries are based.
-See that discussion for information about the content of
-statement events, the current and historical statement event
-tables, and how to control statement event collection, which
-is partially disabled by default.
+Section 29.12.6, “Performance Schema Statement Event Tables” describes the events on which statement summaries are based. See that discussion for information about the content of statement events, the current and historical statement event tables, and how to control statement event collection, which is partially disabled by default.
 
 Example statement histogram information:
 
@@ -63,125 +50,69 @@ COUNT_BUCKET_AND_LOWER: 10
 ...
 ```
 
-For example, in row 3, these values indicate that 23.52% of
-queries run in under 75.86 microseconds:
+For example, in row 3, these values indicate that 23.52% of queries run in under 75.86 microseconds:
 
 ```
 BUCKET_TIMER_HIGH: 75857757
   BUCKET_QUANTILE: 0.235294
 ```
 
-In row 4, these values indicate that 62.50% of queries run in
-under 79.44 microseconds:
+In row 4, these values indicate that 62.50% of queries run in under 79.44 microseconds:
 
 ```
 BUCKET_TIMER_HIGH: 79432823
   BUCKET_QUANTILE: 0.625000
 ```
 
-Each statement histogram summary table has one or more
-grouping columns to indicate how the table aggregates events:
+Each statement histogram summary table has one or more grouping columns to indicate how the table aggregates events:
 
-* [`events_statements_histogram_by_digest`](performance-schema-statement-histogram-summary-tables.html "29.12.20.4 Statement Histogram Summary Tables")
-  has `SCHEMA_NAME`,
-  `DIGEST`, and
-  `BUCKET_NUMBER` columns:
+* `events_statements_histogram_by_digest` has `SCHEMA_NAME`, `DIGEST`, and `BUCKET_NUMBER` columns:
 
-  + The `SCHEMA_NAME` and
-    `DIGEST` columns identify a statement
-    digest row in the
-    [`events_statements_summary_by_digest`](performance-schema-statement-summary-tables.html "29.12.20.3 Statement Summary Tables")
-    table.
+  + The `SCHEMA_NAME` and `DIGEST` columns identify a statement digest row in the `events_statements_summary_by_digest` table.
 
-  + The
-    [`events_statements_histogram_by_digest`](performance-schema-statement-histogram-summary-tables.html "29.12.20.4 Statement Histogram Summary Tables")
-    rows with the same `SCHEMA_NAME` and
-    `DIGEST` values comprise the
-    histogram for that schema/digest combination.
+  + The `events_statements_histogram_by_digest` rows with the same `SCHEMA_NAME` and `DIGEST` values comprise the histogram for that schema/digest combination.
 
-  + Within a given histogram, the
-    `BUCKET_NUMBER` column indicates the
-    bucket number.
+  + Within a given histogram, the `BUCKET_NUMBER` column indicates the bucket number.
 
-* [`events_statements_histogram_global`](performance-schema-statement-histogram-summary-tables.html "29.12.20.4 Statement Histogram Summary Tables")
-  has a `BUCKET_NUMBER` column. This table
-  summarizes latencies globally across schema name and
-  digest values, using a single histogram. The
-  `BUCKET_NUMBER` column indicates the
-  bucket number within this global histogram.
+* `events_statements_histogram_global` has a `BUCKET_NUMBER` column. This table summarizes latencies globally across schema name and digest values, using a single histogram. The `BUCKET_NUMBER` column indicates the bucket number within this global histogram.
 
-A histogram consists of *`N`* buckets,
-where each row represents one bucket, with the bucket number
-indicated by the `BUCKET_NUMBER` column.
-Bucket numbers begin with 0.
+A histogram consists of *`N`* buckets, where each row represents one bucket, with the bucket number indicated by the `BUCKET_NUMBER` column. Bucket numbers begin with 0.
 
-Each statement histogram summary table has these summary
-columns containing aggregated values:
+Each statement histogram summary table has these summary columns containing aggregated values:
 
-* `BUCKET_TIMER_LOW`,
-  `BUCKET_TIMER_HIGH`
+* `BUCKET_TIMER_LOW`, `BUCKET_TIMER_HIGH`
 
-  A bucket counts statements that have a latency, in
-  picoseconds, measured between
-  `BUCKET_TIMER_LOW` and
-  `BUCKET_TIMER_HIGH`:
+  A bucket counts statements that have a latency, in picoseconds, measured between `BUCKET_TIMER_LOW` and `BUCKET_TIMER_HIGH`:
 
-  + The value of `BUCKET_TIMER_LOW` for
-    the first bucket (`BUCKET_NUMBER` =
+  + The value of `BUCKET_TIMER_LOW` for the first bucket (`BUCKET_NUMBER` =
     0) is 0.
 
-  + The value of `BUCKET_TIMER_LOW` for a
-    bucket (`BUCKET_NUMBER` =
-    *`k`*) is the same as
-    `BUCKET_TIMER_HIGH` for the previous
-    bucket (`BUCKET_NUMBER` =
-    *`k`*−1)
+  + The value of `BUCKET_TIMER_LOW` for a bucket (`BUCKET_NUMBER` = *`k`*) is the same as `BUCKET_TIMER_HIGH` for the previous bucket (`BUCKET_NUMBER` = *`k`*−1)
 
-  + The last bucket is a catchall for statements that have
-    a latency exceeding previous buckets in the histogram.
+  + The last bucket is a catchall for statements that have a latency exceeding previous buckets in the histogram.
 
 * `COUNT_BUCKET`
 
-  The number of statements measured with a latency in the
-  interval from `BUCKET_TIMER_LOW` up to
-  but not including `BUCKET_TIMER_HIGH`.
+  The number of statements measured with a latency in the interval from `BUCKET_TIMER_LOW` up to but not including `BUCKET_TIMER_HIGH`.
 
 * `COUNT_BUCKET_AND_LOWER`
 
-  The number of statements measured with a latency in the
-  interval from 0 up to but not including
-  `BUCKET_TIMER_HIGH`.
+  The number of statements measured with a latency in the interval from 0 up to but not including `BUCKET_TIMER_HIGH`.
 
 * `BUCKET_QUANTILE`
 
-  The proportion of statements that fall into this or a
-  lower bucket. This proportion corresponds by definition to
-  `COUNT_BUCKET_AND_LOWER /
-  SUM(COUNT_BUCKET)` and is displayed as a
-  convenience column.
+  The proportion of statements that fall into this or a lower bucket. This proportion corresponds by definition to `COUNT_BUCKET_AND_LOWER / SUM(COUNT_BUCKET)` and is displayed as a convenience column.
 
 The statement histogram summary tables have these indexes:
 
-* [`events_statements_histogram_by_digest`](performance-schema-statement-histogram-summary-tables.html "29.12.20.4 Statement Histogram Summary Tables"):
+* `events_statements_histogram_by_digest`:
 
-  + Unique index on (`SCHEMA_NAME`,
-    `DIGEST`,
-    `BUCKET_NUMBER`)
+  + Unique index on (`SCHEMA_NAME`, `DIGEST`, `BUCKET_NUMBER`)
 
-* [`events_statements_histogram_global`](performance-schema-statement-histogram-summary-tables.html "29.12.20.4 Statement Histogram Summary Tables"):
+* `events_statements_histogram_global`:
 
   + Primary key on (`BUCKET_NUMBER`)
 
-[`TRUNCATE TABLE`](truncate-table.html "15.1.42 TRUNCATE TABLE Statement") is permitted for
-statement histogram summary tables. Truncation sets the
-`COUNT_BUCKET` and
-`COUNT_BUCKET_AND_LOWER` columns to 0.
+`TRUNCATE TABLE` is permitted for statement histogram summary tables. Truncation sets the `COUNT_BUCKET` and `COUNT_BUCKET_AND_LOWER` columns to 0.
 
-In addition, truncating
-[`events_statements_summary_by_digest`](performance-schema-statement-summary-tables.html "29.12.20.3 Statement Summary Tables")
-implicitly truncates
-[`events_statements_histogram_by_digest`](performance-schema-statement-histogram-summary-tables.html "29.12.20.4 Statement Histogram Summary Tables"),
-and truncating
-[`events_statements_summary_global_by_event_name`](performance-schema-statement-summary-tables.html "29.12.20.3 Statement Summary Tables")
-implicitly truncates
-[`events_statements_histogram_global`](performance-schema-statement-histogram-summary-tables.html "29.12.20.4 Statement Histogram Summary Tables").
+In addition, truncating `events_statements_summary_by_digest` implicitly truncates `events_statements_histogram_by_digest`, and truncating `events_statements_summary_global_by_event_name` implicitly truncates `events_statements_histogram_global`.

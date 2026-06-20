@@ -23,30 +23,23 @@ mysql> select * from performance_schema.setup_meters;
 +------------------------+-----------+---------+-------------------------------------------+
 ```
 
-`FREQUENCY` and `ENABLED` can
-be edited. For example, to update the frequency of the
-mysql.inno metrics:
+`FREQUENCY` and `ENABLED` can be edited. For example, to update the frequency of the mysql.inno metrics:
 
 ```
        mysql>update performance_schema.setup_meters set FREQUENCY='30' where name = 'mysql.inno';
 ```
 
-The maximum number of meter instruments which can be created is
-set by
-[`performance_schema_max_meter_classes`](performance-schema-system-variables.html#sysvar_performance_schema_max_meter_classes).
+The maximum number of meter instruments which can be created is set by `performance_schema_max_meter_classes`.
 
-Meters can also be configured from the commandline, on server
-startup, or from a configuration file.
+Meters can also be configured from the commandline, on server startup, or from a configuration file.
 
-To enable, or disable, a meter, or alter the meter frequency,
-use the following commandline parameter syntax:
+To enable, or disable, a meter, or alter the meter frequency, use the following commandline parameter syntax:
 
 ```
         --performance-schema-meter='meterName=frequency:integer,enabled:ON|OFF'
 ```
 
-The following example enables the `mysql.inno`
-meter and sets the frequency to 50:
+The following example enables the `mysql.inno` meter and sets the frequency to 50:
 
 ```
         --performance-schema-meter='mysql.inno=frequency:50,enabled:ON'

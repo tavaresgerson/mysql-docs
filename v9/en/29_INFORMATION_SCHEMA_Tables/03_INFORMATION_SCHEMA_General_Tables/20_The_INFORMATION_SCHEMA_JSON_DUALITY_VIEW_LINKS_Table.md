@@ -1,12 +1,8 @@
 ### 28.3.20 The INFORMATION SCHEMA JSON\_DUALITY\_VIEW\_LINKS Table
 
-The [`JSON_DUALITY_VIEW_LINKS`](information-schema-json-duality-view-links-table.html "28.3.20 The INFORMATION SCHEMA JSON_DUALITY_VIEW_LINKS Table") table
-shows information about the relationships between parent and child
-tables for all views accessible by the current user. There is one
-row per view.
+The `JSON_DUALITY_VIEW_LINKS` table shows information about the relationships between parent and child tables for all views accessible by the current user. There is one row per view.
 
-The [`JSON_DUALITY_VIEW_LINKS`](information-schema-json-duality-view-links-table.html "28.3.20 The INFORMATION SCHEMA JSON_DUALITY_VIEW_LINKS Table") table has
-the columns shown here:
+The `JSON_DUALITY_VIEW_LINKS` table has the columns shown here:
 
 * `TABLE_CATALOG`
 

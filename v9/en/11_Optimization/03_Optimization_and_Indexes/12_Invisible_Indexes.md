@@ -1,15 +1,8 @@
 ### 10.3.12 Invisible Indexes
 
-MySQL supports invisible indexes; that is, indexes that are not
-used by the optimizer. The feature applies to indexes other than
-primary keys (either explicit or implicit).
+MySQL supports invisible indexes; that is, indexes that are not used by the optimizer. The feature applies to indexes other than primary keys (either explicit or implicit).
 
-Indexes are visible by default. To control visibility explicitly
-for a new index, use a `VISIBLE` or
-`INVISIBLE` keyword as part of the index
-definition for [`CREATE TABLE`](create-table.html "15.1.24 CREATE TABLE Statement"),
-[`CREATE INDEX`](create-index.html "15.1.18 CREATE INDEX Statement"), or
-[`ALTER TABLE`](alter-table.html "15.1.11 ALTER TABLE Statement"):
+Indexes are visible by default. To control visibility explicitly for a new index, use a `VISIBLE` or `INVISIBLE` keyword as part of the index definition for `CREATE TABLE`, `CREATE INDEX`, or `ALTER TABLE`:
 
 ```
 CREATE TABLE t1 (
@@ -22,20 +15,14 @@ CREATE INDEX j_idx ON t1 (j) INVISIBLE;
 ALTER TABLE t1 ADD INDEX k_idx (k) INVISIBLE;
 ```
 
-To alter the visibility of an existing index, use a
-`VISIBLE` or `INVISIBLE`
-keyword with the `ALTER TABLE ... ALTER INDEX`
-operation:
+To alter the visibility of an existing index, use a `VISIBLE` or `INVISIBLE` keyword with the `ALTER TABLE ... ALTER INDEX` operation:
 
 ```
 ALTER TABLE t1 ALTER INDEX i_idx INVISIBLE;
 ALTER TABLE t1 ALTER INDEX i_idx VISIBLE;
 ```
 
-Information about whether an index is visible or invisible is
-available from the Information Schema
-[`STATISTICS`](information-schema-statistics-table.html "28.3.40 The INFORMATION_SCHEMA STATISTICS Table") table or
-[`SHOW INDEX`](show-index.html "15.7.7.24 SHOW INDEX Statement") output. For example:
+Information about whether an index is visible or invisible is available from the Information Schema `STATISTICS` table or `SHOW INDEX` output. For example:
 
 ```
 mysql> SELECT INDEX_NAME, IS_VISIBLE
@@ -50,45 +37,21 @@ mysql> SELECT INDEX_NAME, IS_VISIBLE
 +------------+------------+
 ```
 
-Invisible indexes make it possible to test the effect of
-removing an index on query performance, without making a
-destructive change that must be undone should the index turn out
-to be required. Dropping and re-adding an index can be expensive
-for a large table, whereas making it invisible and visible are
-fast, in-place operations.
+Invisible indexes make it possible to test the effect of removing an index on query performance, without making a destructive change that must be undone should the index turn out to be required. Dropping and re-adding an index can be expensive for a large table, whereas making it invisible and visible are fast, in-place operations.
 
-If an index made invisible actually is needed or used by the
-optimizer, there are several ways to notice the effect of its
-absence on queries for the table:
+If an index made invisible actually is needed or used by the optimizer, there are several ways to notice the effect of its absence on queries for the table:
 
-* Errors occur for queries that include index hints that refer
-  to the invisible index.
+* Errors occur for queries that include index hints that refer to the invisible index.
 
-* Performance Schema data shows an increase in workload for
-  affected queries.
+* Performance Schema data shows an increase in workload for affected queries.
 
-* Queries have different
-  [`EXPLAIN`](explain.html "15.8.2 EXPLAIN Statement") execution plans.
+* Queries have different `EXPLAIN` execution plans.
 
-* Queries appear in the slow query log that did not appear
-  there previously.
+* Queries appear in the slow query log that did not appear there previously.
 
-The [`use_invisible_indexes`](switchable-optimizations.html#optflag_use-invisible-indexes) flag
-of the [`optimizer_switch`](server-system-variables.html#sysvar_optimizer_switch) system
-variable controls whether the optimizer uses invisible indexes
-for query execution plan construction. If the flag is
-`off` (the default), the optimizer ignores
-invisible indexes (the same behavior as prior to the
-introduction of this flag). If the flag is
-`on`, invisible indexes remain invisible but
-the optimizer takes them into account for execution plan
-construction.
+The `use_invisible_indexes` flag of the `optimizer_switch` system variable controls whether the optimizer uses invisible indexes for query execution plan construction. If the flag is `off` (the default), the optimizer ignores invisible indexes (the same behavior as prior to the introduction of this flag). If the flag is `on`, invisible indexes remain invisible but the optimizer takes them into account for execution plan construction.
 
-Using the [`SET_VAR`](optimizer-hints.html#optimizer-hints-set-var "Variable-Setting Hint Syntax") optimizer
-hint to update the value of
-[`optimizer_switch`](server-system-variables.html#sysvar_optimizer_switch) temporarily,
-you can enable invisible indexes for the duration of a single
-query only, like this:
+Using the `SET_VAR` optimizer hint to update the value of `optimizer_switch` temporarily, you can enable invisible indexes for the duration of a single query only, like this:
 
 ```
 mysql> EXPLAIN SELECT /*+ SET_VAR(optimizer_switch = 'use_invisible_indexes=on') */
@@ -123,17 +86,9 @@ possible_keys: NULL
         Extra: Using where
 ```
 
-Index visibility does not affect index maintenance. For example,
-an index continues to be updated per changes to table rows, and
-a unique index prevents insertion of duplicates into a column,
-regardless of whether the index is visible or invisible.
+Index visibility does not affect index maintenance. For example, an index continues to be updated per changes to table rows, and a unique index prevents insertion of duplicates into a column, regardless of whether the index is visible or invisible.
 
-A table with no explicit primary key may still have an effective
-implicit primary key if it has any `UNIQUE`
-indexes on `NOT NULL` columns. In this case,
-the first such index places the same constraint on table rows as
-an explicit primary key and that index cannot be made invisible.
-Consider the following table definition:
+A table with no explicit primary key may still have an effective implicit primary key if it has any `UNIQUE` indexes on `NOT NULL` columns. In this case, the first such index places the same constraint on table rows as an explicit primary key and that index cannot be made invisible. Consider the following table definition:
 
 ```
 CREATE TABLE t2 (
@@ -143,10 +98,7 @@ CREATE TABLE t2 (
 ) ENGINE = InnoDB;
 ```
 
-The definition includes no explicit primary key, but the index
-on `NOT NULL` column `j`
-places the same constraint on rows as a primary key and cannot
-be made invisible:
+The definition includes no explicit primary key, but the index on `NOT NULL` column `j` places the same constraint on rows as a primary key and cannot be made invisible:
 
 ```
 mysql> ALTER TABLE t2 ALTER INDEX j_idx INVISIBLE;
@@ -159,9 +111,7 @@ Now suppose that an explicit primary key is added to the table:
 ALTER TABLE t2 ADD PRIMARY KEY (i);
 ```
 
-The explicit primary key cannot be made invisible. In addition,
-the unique index on `j` no longer acts as an
-implicit primary key and as a result can be made invisible:
+The explicit primary key cannot be made invisible. In addition, the unique index on `j` no longer acts as an implicit primary key and as a result can be made invisible:
 
 ```
 mysql> ALTER TABLE t2 ALTER INDEX j_idx INVISIBLE;

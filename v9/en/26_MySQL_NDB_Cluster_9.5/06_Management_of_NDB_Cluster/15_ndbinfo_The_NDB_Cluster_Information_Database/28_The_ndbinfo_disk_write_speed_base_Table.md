@@ -1,11 +1,8 @@
 #### 25.6.15.28 The ndbinfo disk\_write\_speed\_base Table
 
-The `disk_write_speed_base` table provides base
-information about the speed of disk writes during LCP, backup,
-and restore operations.
+The `disk_write_speed_base` table provides base information about the speed of disk writes during LCP, backup, and restore operations.
 
-The `disk_write_speed_base` table contains the
-following columns:
+The `disk_write_speed_base` table contains the following columns:
 
 * `node_id`
 
@@ -25,8 +22,7 @@ following columns:
 
 * `backup_lcp_bytes_written`
 
-  Number of bytes written to disk by local checkpoints and
-  backup processes during this period
+  Number of bytes written to disk by local checkpoints and backup processes during this period
 
 * `redo_bytes_written`
 

@@ -1,21 +1,12 @@
 #### 30.4.3.45 The user\_summary\_by\_statement\_latency and x$user\_summary\_by\_statement\_latency Views
 
-These views summarize overall statement statistics, grouped by
-user. By default, rows are sorted by descending total latency.
+These views summarize overall statement statistics, grouped by user. By default, rows are sorted by descending total latency.
 
-The
-[`user_summary_by_statement_latency`](sys-user-summary-by-statement-latency.html "30.4.3.45 The user_summary_by_statement_latency and x$user_summary_by_statement_latency Views")
-and
-[`x$user_summary_by_statement_latency`](sys-user-summary-by-statement-latency.html "30.4.3.45 The user_summary_by_statement_latency and x$user_summary_by_statement_latency Views")
-views have these columns:
+The `user_summary_by_statement_latency` and `x$user_summary_by_statement_latency` views have these columns:
 
 * `user`
 
-  The client user name. Rows for which the
-  `USER` column in the underlying
-  Performance Schema table is `NULL` are
-  assumed to be for background threads and are reported with
-  a host name of `background`.
+  The client user name. Rows for which the `USER` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
 
 * `total`
 
@@ -27,13 +18,11 @@ views have these columns:
 
 * `max_latency`
 
-  The maximum single wait time of timed statements for the
-  user.
+  The maximum single wait time of timed statements for the user.
 
 * `lock_latency`
 
-  The total time waiting for locks by timed statements for
-  the user.
+  The total time waiting for locks by timed statements for the user.
 
 * `cpu_latency`
 
@@ -41,20 +30,16 @@ views have these columns:
 
 * `rows_sent`
 
-  The total number of rows returned by statements for the
-  user.
+  The total number of rows returned by statements for the user.
 
 * `rows_examined`
 
-  The total number of rows read from storage engines by
-  statements for the user.
+  The total number of rows read from storage engines by statements for the user.
 
 * `rows_affected`
 
-  The total number of rows affected by statements for the
-  user.
+  The total number of rows affected by statements for the user.
 
 * `full_scans`
 
-  The total number of full table scans by statements for the
-  user.
+  The total number of full table scans by statements for the user.

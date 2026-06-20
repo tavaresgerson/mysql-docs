@@ -4,10 +4,7 @@
 SHOW PRIVILEGES
 ```
 
-[`SHOW PRIVILEGES`](show-privileges.html "15.7.7.29 SHOW PRIVILEGES Statement") shows the list of
-system privileges that the MySQL server supports. The privileges
-displayed include all static privileges, and all currently
-registered dynamic privileges.
+`SHOW PRIVILEGES` shows the list of system privileges that the MySQL server supports. The privileges displayed include all static privileges, and all currently registered dynamic privileges.
 
 ```
 mysql> SHOW PRIVILEGES\G
@@ -34,6 +31,4 @@ Privilege: Create role
 ...
 ```
 
-Privileges belonging to a specific user are displayed by the
-[`SHOW GRANTS`](show-grants.html "15.7.7.23 SHOW GRANTS Statement") statement. See
-[Section 15.7.7.23, “SHOW GRANTS Statement”](show-grants.html "15.7.7.23 SHOW GRANTS Statement"), for more information.
+Privileges belonging to a specific user are displayed by the `SHOW GRANTS` statement. See Section 15.7.7.23, “SHOW GRANTS Statement”, for more information.

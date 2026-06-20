@@ -1,10 +1,8 @@
 #### 25.6.15.50 The ndbinfo pgman\_time\_track\_stats Table
 
-This table provides information regarding the latency of disk
-operations for NDB Cluster Disk Data tablespaces.
+This table provides information regarding the latency of disk operations for NDB Cluster Disk Data tablespaces.
 
-The `pgman_time_track_stats` table contains the
-following columns:
+The `pgman_time_track_stats` table contains the following columns:
 
 * `node_id`
 
@@ -12,8 +10,7 @@ following columns:
 
 * `block_number`
 
-  Block number (from [`blocks`](mysql-cluster-ndbinfo-blocks.html "25.6.15.5 The ndbinfo blocks Table")
-  table)
+  Block number (from `blocks` table)
 
 * `block_instance`
 
@@ -41,14 +38,6 @@ following columns:
 
 ##### Notes
 
-The read latency (`page_reads` column) measures
-the time from when the read request is sent to the file system
-thread until the read is complete and has been reported back to
-the execution thread. The write latency
-(`page_writes`) is calculated in a similar
-fashion. The size of the page read to or written from a Disk
-Data tablespace is always 32 KB.
+The read latency (`page_reads` column) measures the time from when the read request is sent to the file system thread until the read is complete and has been reported back to the execution thread. The write latency (`page_writes`) is calculated in a similar fashion. The size of the page read to or written from a Disk Data tablespace is always 32 KB.
 
-Log wait latency (`log_waits` column) is the
-length of time a page write must wait for the undo log to be
-flushed, which must be done prior to each page write.
+Log wait latency (`log_waits` column) is the length of time a page write must wait for the undo log to be flushed, which must be done prior to each page write.

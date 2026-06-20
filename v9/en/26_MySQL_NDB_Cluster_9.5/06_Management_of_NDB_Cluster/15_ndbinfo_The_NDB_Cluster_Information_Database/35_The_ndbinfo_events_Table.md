@@ -1,9 +1,6 @@
 #### 25.6.15.35 The ndbinfo events Table
 
-This table provides information about event subscriptions in
-`NDB`. The columns of the
-`events` table are listed here, with short
-descriptions of each:
+This table provides information about event subscriptions in `NDB`. The columns of the `events` table are listed here, with short descriptions of each:
 
 * `event_id`
 
@@ -19,8 +16,7 @@ descriptions of each:
 
 * `reporting`
 
-  One of `updated`, `all`,
-  `subscribe`, or `DDL`
+  One of `updated`, `all`, `subscribe`, or `DDL`
 
 * `columns`
 
@@ -28,15 +24,4 @@ descriptions of each:
 
 * `table_event`
 
-  One or more of `INSERT`,
-  `DELETE`, `UPDATE`,
-  `SCAN`, `DROP`,
-  `ALTER`, `CREATE`,
-  `GCP_COMPLETE`,
-  `CLUSTER_FAILURE`, `STOP`,
-  `NODE_FAILURE`,
-  `SUBSCRIBE`,
-  `UNSUBSCRIBE`, and `ALL`
-  (defined by
-  [`Event::TableEvent`](/doc/ndbapi/en/ndb-event.html#ndb-event-tableevent) in the
-  NDB API)
+  One or more of `INSERT`, `DELETE`, `UPDATE`, `SCAN`, `DROP`, `ALTER`, `CREATE`, `GCP_COMPLETE`, `CLUSTER_FAILURE`, `STOP`, `NODE_FAILURE`, `SUBSCRIBE`, `UNSUBSCRIBE`, and `ALL` (defined by `Event::TableEvent` in the NDB API)

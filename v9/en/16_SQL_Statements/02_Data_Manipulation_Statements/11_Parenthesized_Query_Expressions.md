@@ -29,11 +29,7 @@ set_op:
     UNION | INTERSECT | EXCEPT
 ```
 
-MySQL 9.5 supports parenthesized query expressions
-according to the preceding syntax. At its simplest, a
-parenthesized query expression contains a single
-[`SELECT`](select.html "15.2.13 SELECT Statement") or other statement returning
-a result set and no following optional clauses:
+MySQL 9.5 supports parenthesized query expressions according to the preceding syntax. At its simplest, a parenthesized query expression contains a single `SELECT` or other statement returning a result set and no following optional clauses:
 
 ```
 (SELECT 1);
@@ -44,10 +40,7 @@ TABLE t;
 VALUES ROW(2, 3, 4), ROW(1, -2, 3);
 ```
 
-A parenthesized query expression can also contain queries linked
-by one or more set operations such as
-[`UNION`](union.html "15.2.18 UNION Clause"), and end with any or all of
-the optional clauses:
+A parenthesized query expression can also contain queries linked by one or more set operations such as `UNION`, and end with any or all of the optional clauses:
 
 ```
 mysql> (SELECT 1 AS result UNION SELECT 2);
@@ -93,9 +86,7 @@ mysql> SELECT @var;
 +------+
 ```
 
-`INTERSECT` acts before `UNION`
-and `EXCEPT`, so that the following two
-statements are equivalent:
+`INTERSECT` acts before `UNION` and `EXCEPT`, so that the following two statements are equivalent:
 
 ```
 SELECT a FROM t1 EXCEPT SELECT b FROM t2 INTERSECT SELECT c FROM t3;
@@ -103,23 +94,15 @@ SELECT a FROM t1 EXCEPT SELECT b FROM t2 INTERSECT SELECT c FROM t3;
 SELECT a FROM t1 EXCEPT (SELECT b FROM t2 INTERSECT SELECT c FROM t3);
 ```
 
-Parenthesized query expressions are also used as query
-expressions, so a query expression, usually composed of query
-blocks, may also consist of parenthesized query expressions:
+Parenthesized query expressions are also used as query expressions, so a query expression, usually composed of query blocks, may also consist of parenthesized query expressions:
 
 ```
 (TABLE t1 ORDER BY a) UNION (TABLE t2 ORDER BY b) ORDER BY z;
 ```
 
-Query blocks may have trailing `ORDER BY` and
-`LIMIT` clauses, which are applied before the
-outer set operation, `ORDER BY`, and
-`LIMIT`.
+Query blocks may have trailing `ORDER BY` and `LIMIT` clauses, which are applied before the outer set operation, `ORDER BY`, and `LIMIT`.
 
-You cannot have a query block with a trailing `ORDER
-BY` or `LIMIT` without wrapping it in
-parentheses but parentheses may be used for enforcement in various
-ways:
+You cannot have a query block with a trailing `ORDER BY` or `LIMIT` without wrapping it in parentheses but parentheses may be used for enforcement in various ways:
 
 * To enforce `LIMIT` on each query block:
 
@@ -129,42 +112,31 @@ ways:
   (VALUES ROW(1), ROW(2) LIMIT 2) EXCEPT (SELECT 2 LIMIT 1);
   ```
 
-* To enforce `LIMIT` on both query blocks and
-  the entire query expression:
+* To enforce `LIMIT` on both query blocks and the entire query expression:
 
   ```
   (SELECT 1 LIMIT 1) UNION (SELECT 2 LIMIT 1) LIMIT 1;
   ```
 
-* To enforce `LIMIT` on the entire query
-  expression (with no parentheses):
+* To enforce `LIMIT` on the entire query expression (with no parentheses):
 
   ```
   VALUES ROW(1), ROW(2) INTERSECT VALUES ROW(2), ROW(1) LIMIT 1;
   ```
 
-* Hybrid enforcement: `LIMIT` on the first
-  query block and on the entire query expression:
+* Hybrid enforcement: `LIMIT` on the first query block and on the entire query expression:
 
   ```
   (SELECT 1 LIMIT 1) UNION SELECT 2 LIMIT 1;
   ```
 
-The syntax described in this section is subject to certain
-restrictions:
+The syntax described in this section is subject to certain restrictions:
 
-* A trailing `INTO` clause for a query
-  expression is not permitted if there is another
-  `INTO` clause inside parentheses.
+* A trailing `INTO` clause for a query expression is not permitted if there is another `INTO` clause inside parentheses.
 
-* An `ORDER BY` or `LIMIT`
-  within a parenthesized query expression which is also applied
-  in the outer query is handled in accordance with the SQL
-  standard.
+* An `ORDER BY` or `LIMIT` within a parenthesized query expression which is also applied in the outer query is handled in accordance with the SQL standard.
 
-  Nested parenthesized query expressions are permitted. The
-  maximum level of nesting supported is 63; this is after any
-  simplifications or merges have been performed by the parser.
+  Nested parenthesized query expressions are permitted. The maximum level of nesting supported is 63; this is after any simplifications or merges have been performed by the parser.
 
   An example of such a statement is shown here:
 
@@ -179,8 +151,4 @@ restrictions:
   2 rows in set (0.00 sec)
   ```
 
-  You should be aware that, when collapsing parenthesized
-  expression bodies, MySQL follows SQL standard semantics, so
-  that a higher outer limit cannot override an inner lower one.
-  For example, `(SELECT ... LIMIT 5) LIMIT 10`
-  can return no more than five rows.
+  You should be aware that, when collapsing parenthesized expression bodies, MySQL follows SQL standard semantics, so that a higher outer limit cannot override an inner lower one. For example, `(SELECT ... LIMIT 5) LIMIT 10` can return no more than five rows.

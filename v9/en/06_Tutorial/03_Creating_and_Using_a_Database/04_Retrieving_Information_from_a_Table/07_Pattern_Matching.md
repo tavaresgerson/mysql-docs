@@ -1,20 +1,8 @@
 #### 5.3.4.7 Pattern Matching
 
-MySQL provides standard SQL pattern matching as well as a form
-of pattern matching based on extended regular expressions
-similar to those used by Unix utilities such as
-**vi**, **grep**, and
-**sed**.
+MySQL provides standard SQL pattern matching as well as a form of pattern matching based on extended regular expressions similar to those used by Unix utilities such as **vi**, **grep**, and **sed**.
 
-SQL pattern matching enables you to use `_`
-to match any single character and `%` to
-match an arbitrary number of characters (including zero
-characters). In MySQL, SQL patterns are case-insensitive by
-default. Some examples are shown here. Do not use
-`=` or `<>` when you
-use SQL patterns. Use the [`LIKE`](string-comparison-functions.html#operator_like) or
-[`NOT LIKE`](string-comparison-functions.html#operator_not-like) comparison operators
-instead.
+SQL pattern matching enables you to use `_` to match any single character and `%` to match an arbitrary number of characters (including zero characters). In MySQL, SQL patterns are case-insensitive by default. Some examples are shown here. Do not use `=` or `<>` when you use SQL patterns. Use the `LIKE` or `NOT LIKE` comparison operators instead.
 
 To find names beginning with `b`:
 
@@ -53,8 +41,7 @@ mysql> SELECT * FROM pet WHERE name LIKE '%w%';
 +----------+-------+---------+------+------------+------------+
 ```
 
-To find names containing exactly five characters, use five
-instances of the `_` pattern character:
+To find names containing exactly five characters, use five instances of the `_` pattern character:
 
 ```
 mysql> SELECT * FROM pet WHERE name LIKE '_____';
@@ -66,51 +53,22 @@ mysql> SELECT * FROM pet WHERE name LIKE '_____';
 +-------+--------+---------+------+------------+-------+
 ```
 
-The other type of pattern matching provided by MySQL uses
-extended regular expressions. When you test for a match for
-this type of pattern, use the
-[`REGEXP_LIKE()`](regexp.html#function_regexp-like) function (or the
-[`REGEXP`](regexp.html#operator_regexp) or
-[`RLIKE`](regexp.html#operator_regexp)
-operators, which are synonyms for
-[`REGEXP_LIKE()`](regexp.html#function_regexp-like)).
+The other type of pattern matching provided by MySQL uses extended regular expressions. When you test for a match for this type of pattern, use the `REGEXP_LIKE()` function (or the `REGEXP` or `RLIKE` operators, which are synonyms for `REGEXP_LIKE()`).
 
-The following list describes some characteristics of extended
-regular expressions:
+The following list describes some characteristics of extended regular expressions:
 
 * `.` matches any single character.
-* A character class `[...]` matches any
-  character within the brackets. For example,
-  `[abc]` matches `a`,
-  `b`, or `c`. To name a
-  range of characters, use a dash. `[a-z]`
-  matches any letter, whereas `[0-9]`
-  matches any digit.
+* A character class `[...]` matches any character within the brackets. For example, `[abc]` matches `a`, `b`, or `c`. To name a range of characters, use a dash. `[a-z]` matches any letter, whereas `[0-9]` matches any digit.
 
-* `*` matches zero or more instances of the
-  thing preceding it. For example, `x*`
-  matches any number of `x` characters,
-  `[0-9]*` matches any number of digits,
-  and `.*` matches any number of anything.
+* `*` matches zero or more instances of the thing preceding it. For example, `x*` matches any number of `x` characters, `[0-9]*` matches any number of digits, and `.*` matches any number of anything.
 
-* A regular expression pattern match succeeds if the pattern
-  matches anywhere in the value being tested. (This differs
-  from a [`LIKE`](string-comparison-functions.html#operator_like) pattern match,
-  which succeeds only if the pattern matches the entire
-  value.)
+* A regular expression pattern match succeeds if the pattern matches anywhere in the value being tested. (This differs from a `LIKE` pattern match, which succeeds only if the pattern matches the entire value.)
 
-* To anchor a pattern so that it must match the beginning or
-  end of the value being tested, use `^` at
-  the beginning or `$` at the end of the
-  pattern.
+* To anchor a pattern so that it must match the beginning or end of the value being tested, use `^` at the beginning or `$` at the end of the pattern.
 
-To demonstrate how extended regular expressions work, the
-[`LIKE`](string-comparison-functions.html#operator_like) queries shown previously are
-rewritten here to use
-[`REGEXP_LIKE()`](regexp.html#function_regexp-like).
+To demonstrate how extended regular expressions work, the `LIKE` queries shown previously are rewritten here to use `REGEXP_LIKE()`.
 
-To find names beginning with `b`, use
-`^` to match the beginning of the name:
+To find names beginning with `b`, use `^` to match the beginning of the name:
 
 ```
 mysql> SELECT * FROM pet WHERE REGEXP_LIKE(name, '^b');
@@ -122,12 +80,7 @@ mysql> SELECT * FROM pet WHERE REGEXP_LIKE(name, '^b');
 +--------+--------+---------+------+------------+------------+
 ```
 
-To force a regular expression comparison to be case-sensitive,
-use a case-sensitive collation, or use the
-[`BINARY`](cast-functions.html#operator_binary) keyword to make one of the
-strings a binary string, or specify the `c`
-match-control character. Each of these queries matches only
-lowercase `b` at the beginning of a name:
+To force a regular expression comparison to be case-sensitive, use a case-sensitive collation, or use the `BINARY` keyword to make one of the strings a binary string, or specify the `c` match-control character. Each of these queries matches only lowercase `b` at the beginning of a name:
 
 ```
 SELECT * FROM pet WHERE REGEXP_LIKE(name, '^b' COLLATE utf8mb4_0900_as_cs);
@@ -135,8 +88,7 @@ SELECT * FROM pet WHERE REGEXP_LIKE(name, BINARY '^b');
 SELECT * FROM pet WHERE REGEXP_LIKE(name, '^b', 'c');
 ```
 
-To find names ending with `fy`, use
-`$` to match the end of the name:
+To find names ending with `fy`, use `$` to match the end of the name:
 
 ```
 mysql> SELECT * FROM pet WHERE REGEXP_LIKE(name, 'fy$');
@@ -148,8 +100,7 @@ mysql> SELECT * FROM pet WHERE REGEXP_LIKE(name, 'fy$');
 +--------+--------+---------+------+------------+-------+
 ```
 
-To find names containing a `w`, use this
-query:
+To find names containing a `w`, use this query:
 
 ```
 mysql> SELECT * FROM pet WHERE REGEXP_LIKE(name, 'w');
@@ -162,16 +113,9 @@ mysql> SELECT * FROM pet WHERE REGEXP_LIKE(name, 'w');
 +----------+-------+---------+------+------------+------------+
 ```
 
-Because a regular expression pattern matches if it occurs
-anywhere in the value, it is not necessary in the previous
-query to put a wildcard on either side of the pattern to get
-it to match the entire value as would be true with an SQL
-pattern.
+Because a regular expression pattern matches if it occurs anywhere in the value, it is not necessary in the previous query to put a wildcard on either side of the pattern to get it to match the entire value as would be true with an SQL pattern.
 
-To find names containing exactly five characters, use
-`^` and `$` to match the
-beginning and end of the name, and five instances of
-`.` in between:
+To find names containing exactly five characters, use `^` and `$` to match the beginning and end of the name, and five instances of `.` in between:
 
 ```
 mysql> SELECT * FROM pet WHERE REGEXP_LIKE(name, '^.....$');
@@ -183,10 +127,7 @@ mysql> SELECT * FROM pet WHERE REGEXP_LIKE(name, '^.....$');
 +-------+--------+---------+------+------------+-------+
 ```
 
-You could also write the previous query using the
-`{n}`
-(“repeat-*`n`*-times”)
-operator:
+You could also write the previous query using the `{n}` (“repeat-*`n`*-times”) operator:
 
 ```
 mysql> SELECT * FROM pet WHERE REGEXP_LIKE(name, '^.{5}$');
@@ -198,5 +139,4 @@ mysql> SELECT * FROM pet WHERE REGEXP_LIKE(name, '^.{5}$');
 +-------+--------+---------+------+------------+-------+
 ```
 
-For more information about the syntax for regular expressions,
-see [Section 14.8.2, “Regular Expressions”](regexp.html "14.8.2 Regular Expressions").
+For more information about the syntax for regular expressions, see Section 14.8.2, “Regular Expressions”.

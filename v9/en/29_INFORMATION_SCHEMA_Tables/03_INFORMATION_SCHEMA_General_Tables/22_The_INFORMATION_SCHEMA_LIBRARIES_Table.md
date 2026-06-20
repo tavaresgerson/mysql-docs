@@ -1,17 +1,12 @@
 ### 28.3.22 The INFORMATION\_SCHEMA LIBRARIES Table
 
-The [`LIBRARIES`](information-schema-libraries-table.html "28.3.22 The INFORMATION_SCHEMA LIBRARIES Table") table contains
-information about JavaScript and WebAssembly libraries known to
-the MLE JavaScript component (see
-[Section 7.5.7, “Multilingual Engine Component (MLE)”](mle-component.html "7.5.7 Multilingual Engine Component (MLE)")).
+The `LIBRARIES` table contains information about JavaScript and WebAssembly libraries known to the MLE JavaScript component (see Section 7.5.7, “Multilingual Engine Component (MLE)”")).
 
-The [`LIBRARIES`](information-schema-libraries-table.html "28.3.22 The INFORMATION_SCHEMA LIBRARIES Table") table has these
-columns:
+The `LIBRARIES` table has these columns:
 
 * `LIBRARY_CATALOG`
 
-  Library catalog name. Currently, this is always
-  `def`.
+  Library catalog name. Currently, this is always `def`.
 
 * `LIBRARY_SCHEMA`
 
@@ -23,13 +18,11 @@ columns:
 
 * `LIBRARY_DEFINITION`
 
-  Text of the JavaScript library definition. For WebAssembly
-  libraries, this column is empty.
+  Text of the JavaScript library definition. For WebAssembly libraries, this column is empty.
 
 * `LANGUAGE`
 
-  Language. In MySQL 9.5, this is
-  `JAVASCRIPT` or `WASM`.
+  Language. In MySQL 9.5, this is `JAVASCRIPT` or `WASM`.
 
 * `CREATED`
 
@@ -41,38 +34,11 @@ columns:
 
 * `SQL_MODE`
 
-  SQL mode in effect at time of creation (see
-  [Section 7.1.11, “Server SQL Modes”](sql-mode.html "7.1.11 Server SQL Modes")). This is a set consisting of none
-  or any one or more of the following:
-  `REAL_AS_FLOAT`,
-  `PIPES_AS_CONCAT`,
-  `ANSI_QUOTES`,
-  `IGNORE_SPACE`,
-  `ONLY_FULL_GROUP_BY`,
-  `NO_UNSIGNED_SUBTRACTION`,
-  `NO_DIR_IN_CREATE`, `ANSI`,
-  `NO_AUTO_VALUE_ON_ZERO`,
-  `NO_BACKSLASH_ESCAPES`,
-  `STRICT_TRANS_TABLES`,
-  `STRICT_ALL_TABLES`,
-  `NO_ZERO_IN_DATE`,
-  `NO_ZERO_DATE`,
-  `ALLOW_INVALID_DATES`,
-  `ERROR_FOR_DIVISION_BY_ZERO`,
-  `TRADITIONAL`,
-  `HIGH_NOT_PRECEDENCE`,
-  `NO_ENGINE_SUBSTITUTION`,
-  `PAD_CHAR_TO_FULL_LENGTH`,
-  `TIME_TRUNCATE_FRACTIONAL`. The default is
-  `ONLY_FULL_GROUP_BY, STRICT_TRANS_TABLES,
-  NO_ZERO_IN_DATE, NO_ZERO_DATE, ERROR_FOR_DIVISION_BY_ZERO,
-  NO_ENGINE_SUBSTITUTION`.
+  SQL mode in effect at time of creation (see Section 7.1.11, “Server SQL Modes”). This is a set consisting of none or any one or more of the following: `REAL_AS_FLOAT`, `PIPES_AS_CONCAT`, `ANSI_QUOTES`, `IGNORE_SPACE`, `ONLY_FULL_GROUP_BY`, `NO_UNSIGNED_SUBTRACTION`, `NO_DIR_IN_CREATE`, `ANSI`, `NO_AUTO_VALUE_ON_ZERO`, `NO_BACKSLASH_ESCAPES`, `STRICT_TRANS_TABLES`, `STRICT_ALL_TABLES`, `NO_ZERO_IN_DATE`, `NO_ZERO_DATE`, `ALLOW_INVALID_DATES`, `ERROR_FOR_DIVISION_BY_ZERO`, `TRADITIONAL`, `HIGH_NOT_PRECEDENCE`, `NO_ENGINE_SUBSTITUTION`, `PAD_CHAR_TO_FULL_LENGTH`, `TIME_TRUNCATE_FRACTIONAL`. The default is `ONLY_FULL_GROUP_BY, STRICT_TRANS_TABLES, NO_ZERO_IN_DATE, NO_ZERO_DATE, ERROR_FOR_DIVISION_BY_ZERO, NO_ENGINE_SUBSTITUTION`.
 
 * `LIBRARY_COMMENT`
 
-  Comment specified, if any, when the library was created (or
-  last altered, using [`ALTER
-  LIBRARY`](alter-library.html "15.1.7 ALTER LIBRARY Statement")).
+  Comment specified, if any, when the library was created (or last altered, using [`ALTER LIBRARY`](alter-library.html "15.1.7 ALTER LIBRARY Statement")).
 
 * `CREATOR`
 

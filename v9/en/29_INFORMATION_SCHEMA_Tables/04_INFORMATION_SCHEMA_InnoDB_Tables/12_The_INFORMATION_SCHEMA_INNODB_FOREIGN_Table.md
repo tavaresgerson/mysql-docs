@@ -1,30 +1,22 @@
 ### 28.4.12 The INFORMATION\_SCHEMA INNODB\_FOREIGN Table
 
-The [`INNODB_FOREIGN`](information-schema-innodb-foreign-table.html "28.4.12 The INFORMATION_SCHEMA INNODB_FOREIGN Table") table provides
-metadata about `InnoDB`
-[foreign keys](glossary.html#glos_foreign_key "foreign key").
+The `INNODB_FOREIGN` table provides metadata about `InnoDB` foreign keys.
 
-For related usage information and examples, see
-[Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”](innodb-information-schema-system-tables.html "17.15.3 InnoDB INFORMATION_SCHEMA Schema Object Tables").
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
 
-The [`INNODB_FOREIGN`](information-schema-innodb-foreign-table.html "28.4.12 The INFORMATION_SCHEMA INNODB_FOREIGN Table") table has these
-columns:
+The `INNODB_FOREIGN` table has these columns:
 
 * `ID`
 
-  The name (not a numeric value) of the foreign key index,
-  preceded by the schema (database) name (for example,
-  `test/products_fk`).
+  The name (not a numeric value) of the foreign key index, preceded by the schema (database) name (for example, `test/products_fk`).
 
 * `FOR_NAME`
 
-  The name of the [child
-  table](glossary.html#glos_child_table "child table") in this foreign key relationship.
+  The name of the [child table](glossary.html#glos_child_table "child table") in this foreign key relationship.
 
 * `REF_NAME`
 
-  The name of the [parent
-  table](glossary.html#glos_parent_table "parent table") in this foreign key relationship.
+  The name of the [parent table](glossary.html#glos_parent_table "parent table") in this foreign key relationship.
 
 * `N_COLS`
 
@@ -32,13 +24,7 @@ columns:
 
 * `TYPE`
 
-  A collection of bit flags with information about the foreign
-  key column, ORed together. 0 = `ON DELETE/UPDATE
-  RESTRICT`, 1 = `ON DELETE CASCADE`,
-  2 = `ON DELETE SET NULL`, 4 = `ON
-  UPDATE CASCADE`, 8 = `ON UPDATE SET
-  NULL`, 16 = `ON DELETE NO ACTION`,
-  32 = `ON UPDATE NO ACTION`.
+  A collection of bit flags with information about the foreign key column, ORed together. 0 = `ON DELETE/UPDATE RESTRICT`, 1 = `ON DELETE CASCADE`, 2 = `ON DELETE SET NULL`, 4 = `ON UPDATE CASCADE`, 8 = `ON UPDATE SET NULL`, 16 = `ON DELETE NO ACTION`, 32 = `ON UPDATE NO ACTION`.
 
 #### Example
 
@@ -54,11 +40,6 @@ REF_NAME: test/parent
 
 #### Notes
 
-* You must have the [`PROCESS`](privileges-provided.html#priv_process)
-  privilege to query this table.
+* You must have the `PROCESS` privilege to query this table.
 
-* Use the `INFORMATION_SCHEMA`
-  [`COLUMNS`](information-schema-columns-table.html "28.3.8 The INFORMATION_SCHEMA COLUMNS Table") table or the
-  [`SHOW COLUMNS`](show-columns.html "15.7.7.6 SHOW COLUMNS Statement") statement to view
-  additional information about the columns of this table,
-  including data types and default values.
+* Use the `INFORMATION_SCHEMA` `COLUMNS` table or the `SHOW COLUMNS` statement to view additional information about the columns of this table, including data types and default values.

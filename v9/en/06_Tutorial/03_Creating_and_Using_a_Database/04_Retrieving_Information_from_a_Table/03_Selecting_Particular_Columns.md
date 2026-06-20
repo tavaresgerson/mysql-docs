@@ -1,10 +1,6 @@
 #### 5.3.4.3 Selecting Particular Columns
 
-If you do not want to see entire rows from your table, just
-name the columns in which you are interested, separated by
-commas. For example, if you want to know when your animals
-were born, select the `name` and
-`birth` columns:
+If you do not want to see entire rows from your table, just name the columns in which you are interested, separated by commas. For example, if you want to know when your animals were born, select the `name` and `birth` columns:
 
 ```
 mysql> SELECT name, birth FROM pet;
@@ -42,11 +38,7 @@ mysql> SELECT owner FROM pet;
 +--------+
 ```
 
-Notice that the query simply retrieves the
-`owner` column from each record, and some of
-them appear more than once. To minimize the output, retrieve
-each unique output record just once by adding the keyword
-`DISTINCT`:
+Notice that the query simply retrieves the `owner` column from each record, and some of them appear more than once. To minimize the output, retrieve each unique output record just once by adding the keyword `DISTINCT`:
 
 ```
 mysql> SELECT DISTINCT owner FROM pet;
@@ -60,9 +52,7 @@ mysql> SELECT DISTINCT owner FROM pet;
 +--------+
 ```
 
-You can use a `WHERE` clause to combine row
-selection with column selection. For example, to get birth
-dates for dogs and cats only, use this query:
+You can use a `WHERE` clause to combine row selection with column selection. For example, to get birth dates for dogs and cats only, use this query:
 
 ```
 mysql> SELECT name, species, birth FROM pet

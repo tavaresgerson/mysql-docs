@@ -1,47 +1,33 @@
 #### 27.3.10.6 Recommender Class
 
-* [Recommender Constructor](srjsapi-recommender.html#srjsapi-recommender-constructor "Recommender Constructor")
-* [Recommender.train()](srjsapi-recommender.html#srjsapi-recommender-train "Recommender.train()")
-* [Recommender.fit()](srjsapi-recommender.html#srjsapi-recommender-fit "Recommender.fit()")
-* [Recommender.predictRatings()](srjsapi-recommender.html#srjsapi-recommender-predictratings "Recommender.predictRatings()")
-* [Recommender.predictItems()](srjsapi-recommender.html#srjsapi-recommender-predictitems "Recommender.predictItems()")
-* [Recommender.predictUsers()](srjsapi-recommender.html#srjsapi-recommender-predictusers "Recommender.predictUsers()")
-* [Recommender.predictSimilarItems()](srjsapi-recommender.html#srjsapi-recommender-predictsimilaritems "Recommender.predictSimilarItems()")
-* [Recommender.predictSimilarUsers()](srjsapi-recommender.html#srjsapi-recommender-predictsimilarusers "Recommender.predictSimilarUsers()")
-* [Recommender.score()](srjsapi-recommender.html#srjsapi-recommender-score "Recommender.score()")
-* [Recommender.unload()](srjsapi-recommender.html#srjsapi-recommender-unload "Recommender.unload()")
+* Recommender Constructor
+* Recommender.train()")
+* Recommender.fit()")
+* Recommender.predictRatings()")
+* Recommender.predictItems()")
+* Recommender.predictUsers()")
+* Recommender.predictSimilarItems()")
+* Recommender.predictSimilarUsers()")
+* Recommender.score()")
+* Recommender.unload()")
 
-This class encapsulates the recommendation task as described in
-[Generate Recommendations](/doc/heatwave/en/mys-hwaml-recommendations.html).
-`Recommender` supports methods for loading,
-training, and unloading models, predicting labels, calculating
-probabilities, producing explainers, and related tasks.
+This class encapsulates the recommendation task as described in Generate Recommendations. `Recommender` supports methods for loading, training, and unloading models, predicting labels, calculating probabilities, producing explainers, and related tasks.
 
-An instance of `Recommender` has three
-accessible properties, listed here:
+An instance of `Recommender` has three accessible properties, listed here:
 
-* `name` (`String`): The
-  model name.
+* `name` (`String`): The model name.
 
-* `metadata` (`Object`):
-  Model metadata stored in the model catalog. See
-  [Model Metadata](/doc/heatwave/en/mys-hwaml-ml-model-metadata.html).
+* `metadata` (`Object`): Model metadata stored in the model catalog. See Model Metadata.
 
-* `trainOptions` (`Object`):
-  The training options specified in the constructor.
+* `trainOptions` (`Object`): The training options specified in the constructor.
 
 ##### Recommender Constructor
 
-You can obtain an instance of `Recommender`
-by invoking its constructor, shown here:
+You can obtain an instance of `Recommender` by invoking its constructor, shown here:
 
 **Signature**
 
-* ```
-  new ml.Recommender(
-    String name[,
-    Object trainOptions]
-  )
+* ``` new ml.Recommender( String name[, Object trainOptions] )
   ```
 
 **Arguments**
@@ -79,21 +65,13 @@ specific to the AutoML recommendation task.
 
 **Arguments**
 
-* *`trainData`*
-  (`Table`): A
-  [`Table`](srjsapi-table.html "27.3.6.5 Table Object") containing a
-  training dataset. The maximum size of the table must not
-  exceed 10 GB space, 100 million rows, or 1017 columns.
+* *`trainData`* (`Table`): A `Table` containing a training dataset. The maximum size of the table must not exceed 10 GB space, 100 million rows, or 1017 columns.
 
-* *`users`*
-  (`String`): List of one or more users.
+* *`users`* (`String`): List of one or more users.
 
-* *`items`*
-  (*`String`*): List of one or more
-  items being rated.
+* *`items`* (*`String`*): List of one or more items being rated.
 
-* *`ratings`*
-  (*`String`*): List of ratings.
+* *`ratings`* (*`String`*): List of ratings.
 
 **Return type**
 
@@ -101,37 +79,21 @@ specific to the AutoML recommendation task.
 
 ##### Recommender.fit()
 
-This is an alias for
-[`train()`](srjsapi-recommender.html#srjsapi-recommender-train "Recommender.train()"), to
-which it is identical in all respects other than the method
-name. See [Recommender.train()](srjsapi-recommender.html#srjsapi-recommender-train "Recommender.train()"), for
-more information.
+This is an alias for `train()`"), to which it is identical in all respects other than the method name. See Recommender.train()"), for more information.
 
 ##### Recommender.predictRatings()
 
-This method predicts ratings for one or more samples, and
-provides two variants. The first of these predicts ratings
-over a table and stores them in an output table, while the
-second predicts the rating of a single sample of data and
-returns the rating to the caller. Both versions are covered in
-this section.
+This method predicts ratings for one or more samples, and provides two variants. The first of these predicts ratings over a table and stores them in an output table, while the second predicts the rating of a single sample of data and returns the rating to the caller. Both versions are covered in this section.
 
-See also
-[Generate Predictions for a Recommendation Model](/doc/heatwave/en/mys-hwaml-using-a-recommendation-model.html).
+See also Generate Predictions for a Recommendation Model.
 
 ###### Version 1
 
-Predicts ratings over an entire table and stores them in the
-specified output table. A wrapper for the MySQL HeatWave AutoML
-[`ML_PREDICT_TABLE`](/doc/heatwave/en/mys-hwaml-ml-predict-table.html) routine.
+Predicts ratings over an entire table and stores them in the specified output table. A wrapper for the MySQL HeatWave AutoML `ML_PREDICT_TABLE` routine.
 
 **Signature**
 
-* ```
-  Recommender.predictRatings(
-    Table testData,
-    Table outputTable[,
-    Object options])
+* ``` Recommender.predictRatings( Table testData, Table outputTable[, Object options])
   ```
 
 **Arguments**
@@ -167,47 +129,25 @@ is a wrapper for
 
 **Arguments**
 
-* *`sample`*
-  (`Object`): Data sample. Refer to
-  [Generate Predictions for a Recommendation Model](/doc/heatwave/en/mys-hwaml-using-a-recommendation-model.html),
-  for format and other information.
+* *`sample`* (`Object`): Data sample. Refer to Generate Predictions for a Recommendation Model, for format and other information.
 
-* *`options`*
-  (`Object`)
-  (*optional*): One or more options, as
-  described under
-  [Options for Generating Predictions](/doc/heatwave/en/mys-hwaml-using-a-recommendation-model.html#mys-hwaml-using-a-recommendation-model-options),
-  in the MySQL HeatWave AutoML documentation.
+* *`options`* (`Object`) (*optional*): One or more options, as described under Options for Generating Predictions, in the MySQL HeatWave AutoML documentation.
 
 **Return type**
 
-* `Object`. See
-  [Generate Predictions for Ratings and Rankings](/doc/heatwave/en/mys-hwaml-using-a-recommendation-model-ratings-rankings.html),
-  for details.
+* `Object`. See Generate Predictions for Ratings and Rankings, for details.
 
 ##### Recommender.predictItems()
 
-This method predicts items for users, as described in
-[Generate Predictions for a Recommendation Model](/doc/heatwave/en/mys-hwaml-using-a-recommendation-model.html). Like
-other Recommender prediction methods, predictItems() exists in
-two versions. The first predicts items over an entire table of
-users and stores the predictions in an output table, while the
-second predicts items for a single sample of data. Both
-versions are described in this section.
+This method predicts items for users, as described in Generate Predictions for a Recommendation Model. Like other Recommender prediction methods, predictItems() exists in two versions. The first predicts items over an entire table of users and stores the predictions in an output table, while the second predicts items for a single sample of data. Both versions are described in this section.
 
 ###### Version 1
 
-Predicts items over a table of users and stores the
-predictions in an output table; JavaScript wrapper for
-[`ML_PREDICT_TABLE`](/doc/heatwave/en/mys-hwaml-ml-predict-table.html).
+Predicts items over a table of users and stores the predictions in an output table; JavaScript wrapper for `ML_PREDICT_TABLE`.
 
 **Signature**
 
-* ```
-  Recommender.predictItems(
-    Table testData,
-    Table outputTable[,
-    Object options])
+* ``` Recommender.predictItems( Table testData, Table outputTable[, Object options])
   ```
 
 **Arguments**
@@ -245,13 +185,9 @@ the method is a wrapper for
 
 **Arguments**
 
-* *`sample`*
-  (`Object`): Sample data.
+* *`sample`* (`Object`): Sample data.
 
-* *`options`*
-  (`Object`)
-  (*optional*): One or more options to
-  employ when making predictions.
+* *`options`* (`Object`) (*optional*): One or more options to employ when making predictions.
 
 **Return type**
 
@@ -259,29 +195,15 @@ the method is a wrapper for
 
 ##### Recommender.predictUsers()
 
-Depending on which version of the method is called,
-`predictUsers()` either predicts users over
-an entire table of items and stores them in an output table,
-or predicts users for a single set of sample item data and
-returns the result as an object. (See
-[Generate Predictions for a Recommendation Model](/doc/heatwave/en/mys-hwaml-using-a-recommendation-model.html).)
-Both versions are described in the following paragraphs.
+Depending on which version of the method is called, `predictUsers()` either predicts users over an entire table of items and stores them in an output table, or predicts users for a single set of sample item data and returns the result as an object. (See Generate Predictions for a Recommendation Model.) Both versions are described in the following paragraphs.
 
 ###### Version 1
 
-Predicts users over a table of items and stores them in an
-output table. A wrapper for
-[`ML_PREDICT_TABLE`](/doc/heatwave/en/mys-hwaml-ml-predict-table.html) specific to
-AutoML user prediction.
+Predicts users over a table of items and stores them in an output table. A wrapper for `ML_PREDICT_TABLE` specific to AutoML user prediction.
 
 **Signature**
 
-* ```
-  Recommender.predictUsers(
-    Table testData,
-    Table outputTable[,
-    Object options]
-  )
+* ``` Recommender.predictUsers( Table testData, Table outputTable[, Object options] )
   ```
 
 **Arguments**
@@ -321,52 +243,29 @@ intended for user prediction.
 
 **Arguments**
 
-* *`sample`*
-  (`Object`): Sample item data.
+* *`sample`* (`Object`): Sample item data.
 
-* *`options`*
-  (`Object`)
-  (*optional*): One or more options to
-  employ when making predictions.
+* *`options`* (`Object`) (*optional*): One or more options to employ when making predictions.
 
 **Return type**
 
-* `Object`; this is a set of user
-  predictions in JavaScript object format.
+* `Object`; this is a set of user predictions in JavaScript object format.
 
 ##### Recommender.predictSimilarItems()
 
-From items given, predict similar items. Two variants of this
-method are supported, as described in the rest of this
-section: the first predicts similar items for an entire table
-containing items, and stores the predictions in an output
-table; the other returns a set of predicted similar items for
-a single set of items.
+From items given, predict similar items. Two variants of this method are supported, as described in the rest of this section: the first predicts similar items for an entire table containing items, and stores the predictions in an output table; the other returns a set of predicted similar items for a single set of items.
 
-predictSimilarItems(Table testData, Table outputTable[, Object
-options]) predicts similar items over the whole table of items
-and stores them in outputTable. Refer to docs for more
-information.
+predictSimilarItems(Table testData, Table outputTable[, Object options]) predicts similar items over the whole table of items and stores them in outputTable. Refer to docs for more information.
 
-predictSimilarItems(Object sample[, Object options]) -> Object
-predicts similar items from the single item. Refer to docs for
-more information.
+predictSimilarItems(Object sample[, Object options]) -> Object predicts similar items from the single item. Refer to docs for more information.
 
 ###### Version 1
 
-Predicts similar items over a table of items and stores the
-predicted items in an output table. A wrapper for
-[`ML_PREDICT_TABLE`](/doc/heatwave/en/mys-hwaml-ml-predict-table.html) specific to
-AutoML the recommendation task for user prediction.
+Predicts similar items over a table of items and stores the predicted items in an output table. A wrapper for `ML_PREDICT_TABLE` specific to AutoML the recommendation task for user prediction.
 
 **Signature**
 
-* ```
-  Recommender.predictSimilarItems(
-    Table testData,
-    Table outputTable[,
-    Object options]
-  )
+* ``` Recommender.predictSimilarItems( Table testData, Table outputTable[, Object options] )
   ```
 
 **Arguments**
@@ -407,38 +306,25 @@ intended for recommendation for similar item prediction.
 
 **Arguments**
 
-* *`sample`*
-  (`Object`): Sample item data.
+* *`sample`* (`Object`): Sample item data.
 
-* *`options`*
-  (`Object`)
-  (*optional*): One or more options to
-  employ when making predictions.
+* *`options`* (`Object`) (*optional*): One or more options to employ when making predictions.
 
 **Return type**
 
-* `Object`; a set of predicted similar
-  items.
+* `Object`; a set of predicted similar items.
 
 ##### Recommender.predictSimilarUsers()
 
-Predicts similar users from a given set of users (see
-[Generate Predictions for a Recommendation Model](/doc/heatwave/en/mys-hwaml-using-a-recommendation-model.html)). Two
-versions of this method are supported; both are described in
-this section.
+Predicts similar users from a given set of users (see Generate Predictions for a Recommendation Model). Two versions of this method are supported; both are described in this section.
 
 ###### Version 1
 
-[Options for Generating Predictions](/doc/heatwave/en/mys-hwaml-using-a-recommendation-model.html#mys-hwaml-using-a-recommendation-model-options)
+Options for Generating Predictions
 
 **Signature**
 
-* ```
-  predictSimilarUsers(
-    Table testData,
-    Table outputTable[,
-    Object options]
-  )
+* ``` predictSimilarUsers( Table testData, Table outputTable[, Object options] )
   ```
 
 **Arguments**
@@ -476,37 +362,23 @@ predictions to the caller.
 
 **Arguments**
 
-* *`sample`*
-  (`Object`): Sample item data.
+* *`sample`* (`Object`): Sample item data.
 
-* *`options`*
-  (`Object`)
-  (*optional*): One or more options to
-  employ when making predictions.
+* *`options`* (`Object`) (*optional*): One or more options to employ when making predictions.
 
 **Return type**
 
-* `Object`; this is a set of predicted
-  similar users.
+* `Object`; this is a set of predicted similar users.
 
 ##### Recommender.score()
 
-Returns the score for the test data in the indicated table and
-column. For possible metrics and their effects, see
-[Optimization and Scoring Metrics](/doc/heatwave/en/mys-hwaml-ml-metrics.html).
+Returns the score for the test data in the indicated table and column. For possible metrics and their effects, see Optimization and Scoring Metrics.
 
-This method serves as a JavaScript wrapper for the MySQL HeatWave AutoML
-[`sys.ML_SCORE`](/doc/heatwave/en/mys-hwaml-ml-score.html) routine.
+This method serves as a JavaScript wrapper for the MySQL HeatWave AutoML `sys.ML_SCORE` routine.
 
 **Signature**
 
-* ```
-  score(
-    Table testData,
-    String targetColumnName,
-    String metric[,
-    Object options]
-  )
+* ``` score( Table testData, String targetColumnName, String metric[, Object options] )
   ```
 
 **Arguments**

@@ -1,16 +1,10 @@
 #### 30.4.3.28 The schema\_table\_lock\_waits and x$schema\_table\_lock\_waits Views
 
-These views display which sessions are blocked waiting on
-metadata locks, and what is blocking them.
+These views display which sessions are blocked waiting on metadata locks, and what is blocking them.
 
-The column descriptions here are brief. For additional
-information, see the description of the Performance Schema
-[`metadata_locks`](performance-schema-metadata-locks-table.html "29.12.13.3 The metadata_locks Table") table at
-[Section 29.12.13.3, “The metadata\_locks Table”](performance-schema-metadata-locks-table.html "29.12.13.3 The metadata_locks Table").
+The column descriptions here are brief. For additional information, see the description of the Performance Schema `metadata_locks` table at Section 29.12.13.3, “The metadata\_locks Table”.
 
-The [`schema_table_lock_waits`](sys-schema-table-lock-waits.html "30.4.3.28 The schema_table_lock_waits and x$schema_table_lock_waits Views") and
-[`x$schema_table_lock_waits`](sys-schema-table-lock-waits.html "30.4.3.28 The schema_table_lock_waits and x$schema_table_lock_waits Views") views
-have these columns:
+The `schema_table_lock_waits` and `x$schema_table_lock_waits` views have these columns:
 
 * `object_schema`
 
@@ -26,13 +20,11 @@ have these columns:
 
 * `waiting_pid`
 
-  The processlist ID of the thread that is waiting for the
-  lock.
+  The processlist ID of the thread that is waiting for the lock.
 
 * `waiting_account`
 
-  The account associated with the session that is waiting
-  for the lock.
+  The account associated with the session that is waiting for the lock.
 
 * `waiting_lock_type`
 
@@ -56,23 +48,19 @@ have these columns:
 
 * `waiting_query_rows_examined`
 
-  The number of rows read from storage engines by the
-  statement.
+  The number of rows read from storage engines by the statement.
 
 * `blocking_thread_id`
 
-  The thread ID of the thread that is blocking the waiting
-  lock.
+  The thread ID of the thread that is blocking the waiting lock.
 
 * `blocking_pid`
 
-  The processlist ID of the thread that is blocking the
-  waiting lock.
+  The processlist ID of the thread that is blocking the waiting lock.
 
 * `blocking_account`
 
-  The account associated with the thread that is blocking
-  the waiting lock.
+  The account associated with the thread that is blocking the waiting lock.
 
 * `blocking_lock_type`
 
@@ -84,11 +72,8 @@ have these columns:
 
 * `sql_kill_blocking_query`
 
-  The [`KILL`](kill.html "15.7.8.4 KILL Statement") statement to
-  execute to kill the blocking statement.
+  The `KILL` statement to execute to kill the blocking statement.
 
 * `sql_kill_blocking_connection`
 
-  The [`KILL`](kill.html "15.7.8.4 KILL Statement") statement to
-  execute to kill the session running the blocking
-  statement.
+  The `KILL` statement to execute to kill the session running the blocking statement.

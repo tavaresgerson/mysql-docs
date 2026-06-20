@@ -1,21 +1,10 @@
 ## 11.3 Keywords and Reserved Words
 
-Keywords are words that have significance in SQL. Certain
-keywords, such as [`SELECT`](select.html "15.2.13 SELECT Statement"),
-[`DELETE`](delete.html "15.2.2 DELETE Statement"), or
-[`BIGINT`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), are reserved and require
-special treatment for use as identifiers such as table and column
-names. This may also be true for the names of built-in functions.
+Keywords are words that have significance in SQL. Certain keywords, such as `SELECT`, `DELETE`, or `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), are reserved and require special treatment for use as identifiers such as table and column names. This may also be true for the names of built-in functions.
 
-Most nonreserved keywords are permitted as identifiers without
-quoting. Some keywords which are otherwise considered nonreserved
-are restricted from use as unquoted identifiers for roles, stored
-program labels, or, in some cases, both. See
-[MySQL 9.5 Restricted Keywords](keywords.html#keywords-restricted "MySQL 9.5 Restricted Keywords"), for listings of these
-keywords.
+Most nonreserved keywords are permitted as identifiers without quoting. Some keywords which are otherwise considered nonreserved are restricted from use as unquoted identifiers for roles, stored program labels, or, in some cases, both. See MySQL 9.5 Restricted Keywords, for listings of these keywords.
 
-Reserved words are permitted as identifiers if you quote them as
-described in [Section 11.2, “Schema Object Names”](identifiers.html "11.2 Schema Object Names"):
+Reserved words are permitted as identifiers if you quote them as described in Section 11.2, “Schema Object Names”:
 
 ```
 mysql> CREATE TABLE interval (begin INT, end INT);
@@ -23,84 +12,36 @@ ERROR 1064 (42000): You have an error in your SQL syntax ...
 near 'interval (begin INT, end INT)'
 ```
 
-`BEGIN` and `END` are keywords
-but not reserved, so their use as identifiers does not require
-quoting. `INTERVAL` is a reserved keyword and
-must be quoted to be used as an identifier:
+`BEGIN` and `END` are keywords but not reserved, so their use as identifiers does not require quoting. `INTERVAL` is a reserved keyword and must be quoted to be used as an identifier:
 
 ```
 mysql> CREATE TABLE `interval` (begin INT, end INT);
 Query OK, 0 rows affected (0.01 sec)
 ```
 
-Exception: A word that follows a period in a qualified name must
-be an identifier, so it need not be quoted even if it is reserved:
+Exception: A word that follows a period in a qualified name must be an identifier, so it need not be quoted even if it is reserved:
 
 ```
 mysql> CREATE TABLE mydb.interval (begin INT, end INT);
 Query OK, 0 rows affected (0.01 sec)
 ```
 
-Names of built-in functions are permitted as identifiers but may
-require care to be used as such. For example,
-`COUNT` is acceptable as a column name. However,
-by default, no whitespace is permitted in function invocations
-between the function name and the following `(`
-character. This requirement enables the parser to distinguish
-whether the name is used in a function call or in nonfunction
-context. For further details on recognition of function names, see
-[Section 11.2.5, “Function Name Parsing and Resolution”](function-resolution.html "11.2.5 Function Name Parsing and Resolution").
+Names of built-in functions are permitted as identifiers but may require care to be used as such. For example, `COUNT` is acceptable as a column name. However, by default, no whitespace is permitted in function invocations between the function name and the following `(` character. This requirement enables the parser to distinguish whether the name is used in a function call or in nonfunction context. For further details on recognition of function names, see Section 11.2.5, “Function Name Parsing and Resolution”.
 
-The `INFORMATION_SCHEMA.KEYWORDS` table lists the
-words considered keywords by MySQL and indicates whether they are
-reserved. See [Section 28.3.17, “The INFORMATION\_SCHEMA KEYWORDS Table”](information-schema-keywords-table.html "28.3.17 The INFORMATION_SCHEMA KEYWORDS Table").
+The `INFORMATION_SCHEMA.KEYWORDS` table lists the words considered keywords by MySQL and indicates whether they are reserved. See Section 28.3.17, “The INFORMATION\_SCHEMA KEYWORDS Table”.
 
-* [MySQL 9.5 Keywords and Reserved Words](keywords.html#keywords-in-current-series "MySQL 9.5 Keywords and Reserved Words")
-* [MySQL 9.5 New Keywords and Reserved Words](keywords.html#keywords-new-in-current-series "MySQL 9.5 New Keywords and Reserved Words")
-* [MySQL 9.5 Removed Keywords and Reserved Words](keywords.html#keywords-removed-in-current-series "MySQL 9.5 Removed Keywords and Reserved Words")
-* [MySQL 9.5 Restricted Keywords](keywords.html#keywords-restricted "MySQL 9.5 Restricted Keywords")
+* MySQL 9.5 Keywords and Reserved Words
+* MySQL 9.5 New Keywords and Reserved Words
+* MySQL 9.5 Removed Keywords and Reserved Words
+* MySQL 9.5 Restricted Keywords
 
 ### MySQL 9.5 Keywords and Reserved Words
 
-The following list shows the keywords and reserved words in
-MySQL 9.5, along with changes to individual words
-from version to version. Reserved keywords are marked with (R).
-In addition, `_FILENAME` is reserved.
+The following list shows the keywords and reserved words in MySQL 9.5, along with changes to individual words from version to version. Reserved keywords are marked with (R). In addition, `_FILENAME` is reserved.
 
-At some point, you might upgrade to a higher version, so it is a
-good idea to have a look at future reserved words, too. You can
-find these in the manuals that cover higher versions of MySQL.
-Most of the reserved words in the list are forbidden by standard
-SQL as column or table names (for example,
-`GROUP`). A few are reserved because MySQL
-needs them and uses a **yacc** parser.
+At some point, you might upgrade to a higher version, so it is a good idea to have a look at future reserved words, too. You can find these in the manuals that cover higher versions of MySQL. Most of the reserved words in the list are forbidden by standard SQL as column or table names (for example, `GROUP`). A few are reserved because MySQL needs them and uses a **yacc** parser.
 
-[A](keywords.html#keywords-9-5-detailed-A)
-| [B](keywords.html#keywords-9-5-detailed-B)
-| [C](keywords.html#keywords-9-5-detailed-C)
-| [D](keywords.html#keywords-9-5-detailed-D)
-| [E](keywords.html#keywords-9-5-detailed-E)
-| [F](keywords.html#keywords-9-5-detailed-F)
-| [G](keywords.html#keywords-9-5-detailed-G)
-| [H](keywords.html#keywords-9-5-detailed-H)
-| [I](keywords.html#keywords-9-5-detailed-I)
-| [J](keywords.html#keywords-9-5-detailed-J)
-| [K](keywords.html#keywords-9-5-detailed-K)
-| [L](keywords.html#keywords-9-5-detailed-L)
-| [M](keywords.html#keywords-9-5-detailed-M)
-| [N](keywords.html#keywords-9-5-detailed-N)
-| [O](keywords.html#keywords-9-5-detailed-O)
-| [P](keywords.html#keywords-9-5-detailed-P)
-| [Q](keywords.html#keywords-9-5-detailed-Q)
-| [R](keywords.html#keywords-9-5-detailed-R)
-| [S](keywords.html#keywords-9-5-detailed-S)
-| [T](keywords.html#keywords-9-5-detailed-T)
-| [U](keywords.html#keywords-9-5-detailed-U)
-| [V](keywords.html#keywords-9-5-detailed-V)
-| [W](keywords.html#keywords-9-5-detailed-W)
-| [X](keywords.html#keywords-9-5-detailed-X)
-| [Y](keywords.html#keywords-9-5-detailed-Y)
-| [Z](keywords.html#keywords-9-5-detailed-Z)
+A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z
 
 A
 
@@ -935,23 +876,9 @@ Z
 
 ### MySQL 9.5 New Keywords and Reserved Words
 
-The following list shows the keywords and reserved words that
-are added in MySQL 9.5, compared to MySQL 8.4.
-Reserved keywords are marked with (R).
+The following list shows the keywords and reserved words that are added in MySQL 9.5, compared to MySQL 8.4. Reserved keywords are marked with (R).
 
-[A](keywords.html#keywords-new-9-5-A)
-| [D](keywords.html#keywords-new-9-5-D)
-| [E](keywords.html#keywords-new-9-5-E)
-| [F](keywords.html#keywords-new-9-5-F)
-| [G](keywords.html#keywords-new-9-5-G)
-| [H](keywords.html#keywords-new-9-5-H)
-| [L](keywords.html#keywords-new-9-5-L)
-| [M](keywords.html#keywords-new-9-5-M)
-| [P](keywords.html#keywords-new-9-5-P)
-| [R](keywords.html#keywords-new-9-5-R)
-| [S](keywords.html#keywords-new-9-5-S)
-| [U](keywords.html#keywords-new-9-5-U)
-| [V](keywords.html#keywords-new-9-5-V)
+A | D | E | F | G | H | L | M | P | R | S | U | V
 
 A
 
@@ -1016,43 +943,23 @@ V
 
 ### MySQL 9.5 Removed Keywords and Reserved Words
 
-The following list shows the keywords and reserved words that
-are removed in MySQL 9.5, compared to MySQL 8.4.
-Reserved keywords are marked with (R).
+The following list shows the keywords and reserved words that are removed in MySQL 9.5, compared to MySQL 8.4. Reserved keywords are marked with (R).
 
 There are no keywords removed between MySQL 8.4-9.5.
 
 ### MySQL 9.5 Restricted Keywords
 
-Some MySQL keywords are not reserved but even so must be quoted
-in certain circumstances. This section provides listings of
-these keywords.
+Some MySQL keywords are not reserved but even so must be quoted in certain circumstances. This section provides listings of these keywords.
 
-* [Keywords which must be quoted when used as labels](keywords.html#keywords-restricted-labels "Keywords which must be quoted when used as labels")
-* [Keywords which must be quoted when used as role names](keywords.html#keywords-restricted-roles "Keywords which must be quoted when used as role names")
-* [Keywords which must be quoted when used as labels or role names](keywords.html#keywords-restricted-labels-roles "Keywords which must be quoted when used as labels or role names")
+* Keywords which must be quoted when used as labels
+* Keywords which must be quoted when used as role names
+* Keywords which must be quoted when used as labels or role names
 
 #### Keywords which must be quoted when used as labels
 
-The keywords listed here must be quoted when used as labels in
-MySQL stored programs:
+The keywords listed here must be quoted when used as labels in MySQL stored programs:
 
-[A](keywords.html#keywords-9-2-restricted-labels-A) |
-[B](keywords.html#keywords-9-2-restricted-labels-B) |
-[C](keywords.html#keywords-9-2-restricted-labels-C) |
-[D](keywords.html#keywords-9-2-restricted-labels-D) |
-[E](keywords.html#keywords-9-2-restricted-labels-E) |
-[F](keywords.html#keywords-9-2-restricted-labels-F) |
-[H](keywords.html#keywords-9-2-restricted-labels-H) |
-[I](keywords.html#keywords-9-2-restricted-labels-I) |
-[L](keywords.html#keywords-9-2-restricted-labels-L) |
-[N](keywords.html#keywords-9-2-restricted-labels-N) |
-[P](keywords.html#keywords-9-2-restricted-labels-P) |
-[R](keywords.html#keywords-9-2-restricted-labels-R) |
-[S](keywords.html#keywords-9-2-restricted-labels-S) |
-[T](keywords.html#keywords-9-2-restricted-labels-T) |
-[U](keywords.html#keywords-9-2-restricted-labels-U) |
-[X](keywords.html#keywords-9-2-restricted-labels-X)
+A | B | C | D | E | F | H | I | L | N | P | R | S | T | U | X
 
 A
 
@@ -1140,8 +1047,7 @@ X
 
 #### Keywords which must be quoted when used as role names
 
-The keywords listed here must be quoted when used as names of
-roles:
+The keywords listed here must be quoted when used as names of roles:
 
 * `EVENT`
 * `FILE`
@@ -1155,8 +1061,7 @@ roles:
 
 #### Keywords which must be quoted when used as labels or role names
 
-The keywords listed here must be quoted when used as labels in
-stored programs, or as names of roles:
+The keywords listed here must be quoted when used as labels in stored programs, or as names of roles:
 
 * `EXECUTE`
 * `RESTART`

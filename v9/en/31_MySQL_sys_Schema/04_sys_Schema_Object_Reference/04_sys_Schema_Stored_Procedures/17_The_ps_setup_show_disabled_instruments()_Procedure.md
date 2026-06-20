@@ -1,7 +1,6 @@
 #### 30.4.4.17 The ps\_setup\_show\_disabled\_instruments() Procedure
 
-Displays all currently disabled Performance Schema
-instruments. This might be a long list.
+Displays all currently disabled Performance Schema instruments. This might be a long list.
 
 ##### Parameters
 

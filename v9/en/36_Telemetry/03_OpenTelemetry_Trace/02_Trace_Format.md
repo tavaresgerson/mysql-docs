@@ -1,20 +1,14 @@
 ### 35.3.2 Trace Format
 
-A span represents an operation within a trace. For more
-information, see
-[OpenTelemetry
-Span](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#span). The following span types are emitted by the
-telemetry component:
+A span represents an operation within a trace. For more information, see [OpenTelemetry Span](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/trace/api.md#span). The following span types are emitted by the telemetry component:
 
-* [Control Span](telemetry-trace-format.html#telemetry-trace-format-control "Control Span")
-* [Session Span](telemetry-trace-format.html#telemetry-trace-format-session "Session Span")
-* [Statement Span](telemetry-trace-format.html#telemetry-trace-format-statement "Statement Span")
+* Control Span
+* Session Span
+* Statement Span
 
 #### Control Span
 
-Issued when the telemetry configuration changes, notifying
-downstream system of which signal collection has been enabled
-or disabled.
+Issued when the telemetry configuration changes, notifying downstream system of which signal collection has been enabled or disabled.
 
 This span type has the following attributes:
 
@@ -26,8 +20,7 @@ This span type has the following attributes:
 
 #### Session Span
 
-Issued when a client session ends, recording data relevant to
-that session from initial connection to close of session.
+Issued when a client session ends, recording data relevant to that session from initial connection to close of session.
 
 This span type has the following attributes:
 
@@ -38,12 +31,7 @@ This span type has the following attributes:
 * `mysql.host`
 * `mysql.group`
 
-This span also contains dynamic attributes generated with the
-format
-`mysql.session_attr.xxx`,
-where `xxx` is the
-session connect attribute name. See
-[`session_connect_attrs`](performance-schema-session-connect-attrs-table.html "29.12.9.2 The session_connect_attrs Table").
+This span also contains dynamic attributes generated with the format `mysql.session_attr.xxx`, where `xxx` is the session connect attribute name. See `session_connect_attrs`.
 
 For example, after the following session disconnects:
 
@@ -93,9 +81,7 @@ Attributes:
 
 #### Statement Span
 
-Issued when a statement execution ends in the server,
-recording all relevant statement information from the start of
-the execution to its completion.
+Issued when a statement execution ends in the server, recording all relevant statement information from the start of the execution to its completion.
 
 This span type has the following attributes:
 

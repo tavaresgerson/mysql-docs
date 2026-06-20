@@ -1,9 +1,6 @@
 ### 15.2.19 VALUES Statement
 
-[`VALUES`](values.html "15.2.19 VALUES Statement") is a DML statement which
-returns a set of one or more rows as a table. In other words, it
-is a table value constructor which also functions as a standalone
-SQL statement.
+`VALUES` is a DML statement which returns a set of one or more rows as a table. In other words, it is a table value constructor which also functions as a standalone SQL statement.
 
 ```
 VALUES row_constructor_list [ORDER BY column_designator] [LIMIT number]
@@ -18,26 +15,13 @@ column_designator:
     column_index
 ```
 
-The [`VALUES`](values.html "15.2.19 VALUES Statement") statement consists of
-the `VALUES` keyword followed by a list of one or
-more row constructors, separated by commas. A row constructor
-consists of the `ROW()` row constructor clause
-with a value list of one or more scalar values enclosed in the
-parentheses. A value can be a literal of any MySQL data type or an
-expression that resolves to a scalar value.
+The `VALUES` statement consists of the `VALUES` keyword followed by a list of one or more row constructors, separated by commas. A row constructor consists of the `ROW()` row constructor clause with a value list of one or more scalar values enclosed in the parentheses. A value can be a literal of any MySQL data type or an expression that resolves to a scalar value.
 
-`ROW()` cannot be empty (but each of the supplied
-scalar values can be `NULL`). Each
-`ROW()` in the same
-[`VALUES`](values.html "15.2.19 VALUES Statement") statement must have the same
-number of values in its value list.
+`ROW()` cannot be empty (but each of the supplied scalar values can be `NULL`). Each `ROW()` in the same `VALUES` statement must have the same number of values in its value list.
 
-The `DEFAULT` keyword is not supported by
-`VALUES` and causes a syntax error, except when
-it is used to supply values in an
-[`INSERT`](insert.html "15.2.7 INSERT Statement") statement.
+The `DEFAULT` keyword is not supported by `VALUES` and causes a syntax error, except when it is used to supply values in an `INSERT` statement.
 
-The output of [`VALUES`](values.html "15.2.19 VALUES Statement") is a table:
+The output of `VALUES` is a table:
 
 ```
 mysql> VALUES ROW(1,-2,3), ROW(5,7,9), ROW(4,6,8);
@@ -51,14 +35,7 @@ mysql> VALUES ROW(1,-2,3), ROW(5,7,9), ROW(4,6,8);
 3 rows in set (0.00 sec)
 ```
 
-The columns of the table output from
-[`VALUES`](values.html "15.2.19 VALUES Statement") have the implicitly named
-columns `column_0`, `column_1`,
-`column_2`, and so on, always beginning with
-`0`. This fact can be used to order the rows by
-column using an optional `ORDER BY` clause in the
-same way that this clause works with a
-[`SELECT`](select.html "15.2.13 SELECT Statement") statement, as shown here:
+The columns of the table output from `VALUES` have the implicitly named columns `column_0`, `column_1`, `column_2`, and so on, always beginning with `0`. This fact can be used to order the rows by column using an optional `ORDER BY` clause in the same way that this clause works with a `SELECT` statement, as shown here:
 
 ```
 mysql> VALUES ROW(1,-2,3), ROW(5,7,9), ROW(4,6,8) ORDER BY column_1;
@@ -72,13 +49,9 @@ mysql> VALUES ROW(1,-2,3), ROW(5,7,9), ROW(4,6,8) ORDER BY column_1;
 3 rows in set (0.00 sec)
 ```
 
-[`VALUES`](values.html "15.2.19 VALUES Statement") statement also supports a
-`LIMIT` clause for limiting the number of rows in
-the output.
+`VALUES` statement also supports a `LIMIT` clause for limiting the number of rows in the output.
 
-The `VALUES` statement is permissive regarding
-data types of column values; you can mix types within the same
-column, as shown here:
+The `VALUES` statement is permissive regarding data types of column values; you can mix types within the same column, as shown here:
 
 ```
 mysql> VALUES ROW("q", 42, '2019-12-18'),
@@ -96,28 +69,13 @@ mysql> VALUES ROW("q", 42, '2019-12-18'),
 
 Important
 
-`VALUES` with one or more instances of
-`ROW()` acts as a table value constructor;
-although it can be used to supply values in an
-[`INSERT`](insert.html "15.2.7 INSERT Statement") or
-[`REPLACE`](replace.html "15.2.12 REPLACE Statement") statement, do not confuse
-it with the `VALUES` keyword that is also used
-for this purpose. You should also not confuse it with the
-[`VALUES()`](miscellaneous-functions.html#function_values) function that refers to
-column values in
-[`INSERT ...
-ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "15.2.7.2 INSERT ... ON DUPLICATE KEY UPDATE Statement").
+`VALUES` with one or more instances of `ROW()` acts as a table value constructor; although it can be used to supply values in an `INSERT` or `REPLACE` statement, do not confuse it with the `VALUES` keyword that is also used for this purpose. You should also not confuse it with the `VALUES()` function that refers to column values in [`INSERT ... ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "15.2.7.2 INSERT ... ON DUPLICATE KEY UPDATE Statement").
 
-You should also bear in mind that `ROW()` is a
-row value constructor (see [Section 15.2.15.5, “Row Subqueries”](row-subqueries.html "15.2.15.5 Row Subqueries")),
-whereas `VALUES ROW()` is a table value
-constructor; the two cannot be used interchangeably.
+You should also bear in mind that `ROW()` is a row value constructor (see Section 15.2.15.5, “Row Subqueries”), whereas `VALUES ROW()` is a table value constructor; the two cannot be used interchangeably.
 
-[`VALUES`](values.html "15.2.19 VALUES Statement") can be used in many cases
-where you could employ [`SELECT`](select.html "15.2.13 SELECT Statement"),
-including those listed here:
+`VALUES` can be used in many cases where you could employ `SELECT`, including those listed here:
 
-* With [`UNION`](union.html "15.2.18 UNION Clause"), as shown here:
+* With `UNION`, as shown here:
 
   ```
   mysql> SELECT 1,2 UNION SELECT 10,15;
@@ -139,8 +97,7 @@ including those listed here:
   2 rows in set (0.00 sec)
   ```
 
-  You can union together constructed tables having more than one
-  row, like this:
+  You can union together constructed tables having more than one row, like this:
 
   ```
   mysql> VALUES ROW(1,2), ROW(3,4), ROW(5,6)
@@ -157,10 +114,7 @@ including those listed here:
   5 rows in set (0.00 sec)
   ```
 
-  You can also (and it is usually preferable to) omit
-  [`UNION`](union.html "15.2.18 UNION Clause") altogether in such cases
-  and use a single **`VALUES`** statement, like
-  this:
+  You can also (and it is usually preferable to) omit `UNION` altogether in such cases and use a single **`VALUES`** statement, like this:
 
   ```
   mysql> VALUES ROW(1,2), ROW(3,4), ROW(5,6), ROW(10,15), ROW(20,25);
@@ -175,20 +129,11 @@ including those listed here:
   +----------+----------+
   ```
 
-  `VALUES` can also be used in unions with
-  [`SELECT`](select.html "15.2.13 SELECT Statement") statements,
-  [`TABLE`](table.html "15.2.16 TABLE Statement") statements, or both.
+  `VALUES` can also be used in unions with `SELECT` statements, `TABLE` statements, or both.
 
-  The constructed tables in the
-  [`UNION`](union.html "15.2.18 UNION Clause") must contain the same
-  number of columns, just as if you were using
-  [`SELECT`](select.html "15.2.13 SELECT Statement"). See
-  [Section 15.2.18, “UNION Clause”](union.html "15.2.18 UNION Clause"), for further examples.
+  The constructed tables in the `UNION` must contain the same number of columns, just as if you were using `SELECT`. See Section 15.2.18, “UNION Clause”, for further examples.
 
-  You can use [`EXCEPT`](except.html "15.2.4 EXCEPT Clause") and
-  [`INTERSECT`](intersect.html "15.2.8 INTERSECT Clause") with
-  `VALUES` in much the same way as
-  `UNION`, as shown here:
+  You can use `EXCEPT` and `INTERSECT` with `VALUES` in much the same way as `UNION`, as shown here:
 
   ```
   mysql> VALUES ROW(1,2), ROW(3,4), ROW(5,6)
@@ -213,21 +158,10 @@ including those listed here:
   2 rows in set (0.00 sec)
   ```
 
-  See [Section 15.2.4, “EXCEPT Clause”](except.html "15.2.4 EXCEPT Clause"), and [Section 15.2.8, “INTERSECT Clause”](intersect.html "15.2.8 INTERSECT Clause"),
-  for more information.
+  See Section 15.2.4, “EXCEPT Clause”, and Section 15.2.8, “INTERSECT Clause”, for more information.
 
-* In joins. See [Section 15.2.13.2, “JOIN Clause”](join.html "15.2.13.2 JOIN Clause"), for more information and
-  examples.
+* In joins. See Section 15.2.13.2, “JOIN Clause”, for more information and examples.
 
-* In place of [`VALUES()`](miscellaneous-functions.html#function_values) in an
-  [`INSERT`](insert.html "15.2.7 INSERT Statement") or
-  [`REPLACE`](replace.html "15.2.12 REPLACE Statement") statement, in which
-  case its semantics differ slightly from what is described
-  here. See [Section 15.2.7, “INSERT Statement”](insert.html "15.2.7 INSERT Statement"), for details.
+* In place of `VALUES()` in an `INSERT` or `REPLACE` statement, in which case its semantics differ slightly from what is described here. See Section 15.2.7, “INSERT Statement”, for details.
 
-* In place of the source table in
-  [`CREATE
-  TABLE ... SELECT`](create-table-select.html "15.1.24.4 CREATE TABLE ... SELECT Statement") and
-  [`CREATE VIEW ...
-  SELECT`](create-view.html "15.1.27 CREATE VIEW Statement"). See the descriptions of these statements for
-  more information and examples.
+* In place of the source table in [`CREATE TABLE ... SELECT`](create-table-select.html "15.1.24.4 CREATE TABLE ... SELECT Statement") and [`CREATE VIEW ... SELECT`](create-view.html "15.1.27 CREATE VIEW Statement"). See the descriptions of these statements for more information and examples.

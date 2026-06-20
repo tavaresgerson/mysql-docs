@@ -1,7 +1,6 @@
 #### 5.3.4.1 Selecting All Data
 
-The simplest form of [`SELECT`](select.html "15.2.13 SELECT Statement")
-retrieves everything from a table:
+The simplest form of `SELECT` retrieves everything from a table:
 
 ```
 mysql> SELECT * FROM pet;
@@ -20,42 +19,25 @@ mysql> SELECT * FROM pet;
 +----------+--------+---------+------+------------+------------+
 ```
 
-This form of [`SELECT`](select.html "15.2.13 SELECT Statement") uses
-`*`, which is shorthand for “select all
-columns.” This is useful if you want to review your
-entire table, for example, after you've just loaded it with
-your initial data set. For example, you may happen to think
-that the birth date for Bowser doesn't seem quite right.
-Consulting your original pedigree papers, you find that the
-correct birth year should be 1989, not 1979.
+This form of `SELECT` uses `*`, which is shorthand for “select all columns.” This is useful if you want to review your entire table, for example, after you've just loaded it with your initial data set. For example, you may happen to think that the birth date for Bowser doesn't seem quite right. Consulting your original pedigree papers, you find that the correct birth year should be 1989, not 1979.
 
 There are at least two ways to fix this:
 
-* Edit the file `pet.txt` to correct the
-  error, then empty the table and reload it using
-  [`DELETE`](delete.html "15.2.2 DELETE Statement") and
-  [`LOAD DATA`](load-data.html "15.2.9 LOAD DATA Statement"):
+* Edit the file `pet.txt` to correct the error, then empty the table and reload it using `DELETE` and `LOAD DATA`:
 
   ```
   mysql> DELETE FROM pet;
   mysql> LOAD DATA LOCAL INFILE 'pet.txt' INTO TABLE pet;
   ```
 
-  However, if you do this, you must also re-enter the record
-  for Puffball.
+  However, if you do this, you must also re-enter the record for Puffball.
 
-* Fix only the erroneous record with an
-  [`UPDATE`](update.html "15.2.17 UPDATE Statement") statement:
+* Fix only the erroneous record with an `UPDATE` statement:
 
   ```
   mysql> UPDATE pet SET birth = '1989-08-31' WHERE name = 'Bowser';
   ```
 
-  The [`UPDATE`](update.html "15.2.17 UPDATE Statement") changes only the
-  record in question and does not require you to reload the
-  table.
+  The `UPDATE` changes only the record in question and does not require you to reload the table.
 
-There is an exception to the principle that `SELECT
-*` selects all columns. If a table contains invisible
-columns, `*` does not include them. For more
-information, see [Section 15.1.24.10, “Invisible Columns”](invisible-columns.html "15.1.24.10 Invisible Columns").
+There is an exception to the principle that `SELECT *` selects all columns. If a table contains invisible columns, `*` does not include them. For more information, see Section 15.1.24.10, “Invisible Columns”.
