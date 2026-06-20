@@ -1,9 +1,5 @@
 ### 19.2.3 Replication Threads
 
-[19.2.3.1 Monitoring Replication Main Threads](replication-threads-monitor-main.html)
-
-[19.2.3.2 Monitoring Replication Applier Worker Threads](replication-threads-monitor-worker.html)
-
 MySQL replication capabilities are implemented using the following
 types of threads:
 

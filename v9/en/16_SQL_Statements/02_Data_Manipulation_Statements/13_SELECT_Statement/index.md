@@ -1,9 +1,5 @@
 ### 15.2.13 SELECT Statement
 
-[15.2.13.1 SELECT ... INTO Statement](select-into.html)
-
-[15.2.13.2 JOIN Clause](join.html)
-
 ```
 SELECT
     [ALL | DISTINCT | DISTINCTROW ]

@@ -1,43 +1,5 @@
 ## 7.1 The MySQL Server
 
-[7.1.1 Configuring the Server](server-configuration.html)
-
-[7.1.2 Server Configuration Defaults](server-configuration-defaults.html)
-
-[7.1.3 Server Configuration Validation](server-configuration-validation.html)
-
-[7.1.4 Server Option, System Variable, and Status Variable Reference](server-option-variable-reference.html)
-
-[7.1.5 Server System Variable Reference](server-system-variable-reference.html)
-
-[7.1.6 Server Status Variable Reference](server-status-variable-reference.html)
-
-[7.1.7 Server Command Options](server-options.html)
-
-[7.1.8 Server System Variables](server-system-variables.html)
-
-[7.1.9 Using System Variables](using-system-variables.html)
-
-[7.1.10 Server Status Variables](server-status-variables.html)
-
-[7.1.11 Server SQL Modes](sql-mode.html)
-
-[7.1.12 Connection Management](connection-management.html)
-
-[7.1.13 IPv6 Support](ipv6-support.html)
-
-[7.1.14 Network Namespace Support](network-namespace-support.html)
-
-[7.1.15 MySQL Server Time Zone Support](time-zone-support.html)
-
-[7.1.16 Resource Groups](resource-groups.html)
-
-[7.1.17 Server-Side Help Support](server-side-help-support.html)
-
-[7.1.18 Server Tracking of Client Session State](session-state-tracking.html)
-
-[7.1.19 The Server Shutdown Process](server-shutdown.html)
-
 [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") is the MySQL server. The following
 discussion covers these MySQL server configuration topics:
 

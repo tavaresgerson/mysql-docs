@@ -1,13 +1,5 @@
 ## 17.1 Introduction to InnoDB
 
-[17.1.1 Benefits of Using InnoDB Tables](innodb-benefits.html)
-
-[17.1.2 Best Practices for InnoDB Tables](innodb-best-practices.html)
-
-[17.1.3 Verifying that InnoDB is the Default Storage Engine](innodb-check-availability.html)
-
-[17.1.4 Testing and Benchmarking with InnoDB](innodb-benchmarking.html)
-
 `InnoDB` is a general-purpose storage engine that
 balances high reliability and high performance. In MySQL
 9.5, `InnoDB` is the default MySQL

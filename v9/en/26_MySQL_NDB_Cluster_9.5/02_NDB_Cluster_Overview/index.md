@@ -1,19 +1,5 @@
 ## 25.2 NDB Cluster Overview
 
-[25.2.1 NDB Cluster Core Concepts](mysql-cluster-basics.html)
-
-[25.2.2 NDB Cluster Nodes, Node Groups, Fragment Replicas, and Partitions](mysql-cluster-nodes-groups.html)
-
-[25.2.3 NDB Cluster Hardware, Software, and Networking Requirements](mysql-cluster-overview-requirements.html)
-
-[25.2.4 What is New in MySQL NDB Cluster 9.5](mysql-cluster-what-is-new.html)
-
-[25.2.5 Options, Variables, and Parameters Added, Deprecated or Removed in NDB 9.5](mysql-cluster-added-deprecated-removed.html)
-
-[25.2.6 MySQL Server Using InnoDB Compared with NDB Cluster](mysql-cluster-compared.html)
-
-[25.2.7 Known Limitations of NDB Cluster](mysql-cluster-limitations.html)
-
 NDB Cluster is a technology
 that enables clustering of in-memory databases in a shared-nothing
 system. The shared-nothing architecture enables the system to work

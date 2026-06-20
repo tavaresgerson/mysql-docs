@@ -1,15 +1,5 @@
 ## 9.4 Using mysqldump for Backups
 
-[9.4.1 Dumping Data in SQL Format with mysqldump](mysqldump-sql-format.html)
-
-[9.4.2 Reloading SQL-Format Backups](reloading-sql-format-dumps.html)
-
-[9.4.3 Dumping Data in Delimited-Text Format with mysqldump](mysqldump-delimited-text.html)
-
-[9.4.4 Reloading Delimited-Text Format Backups](reloading-delimited-text-dumps.html)
-
-[9.4.5 mysqldump Tips](mysqldump-tips.html)
-
 Tip
 
 Consider using the [MySQL Shell dump utilities](/doc/mysql-shell/9.5/en/mysql-shell-utilities-dump-instance-schema.html), which provide parallel dumping with multiple threads, file compression, and progress information display, as well as cloud features such as Oracle Cloud Infrastructure Object Storage streaming, and MySQL HeatWave compatibility checks and modifications. Dumps can be easily imported into a MySQL Server instance or a MySQL HeatWave DB System using the [MySQL Shell load dump utilities](/doc/mysql-shell/9.5/en/mysql-shell-utilities-load-dump.html). Installation instructions for MySQL Shell can be found [here](/doc/mysql-shell/9.5/en/mysql-shell-install.html).

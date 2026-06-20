@@ -1,9 +1,5 @@
 ### 8.4.3 Connection Control Plugins
 
-[8.4.3.1 Connection Control Plugin Installation](connection-control-plugin-installation.html)
-
-[8.4.3.2 Connection Control Plugin System and Status Variables](connection-control-plugin-variables.html)
-
 Note
 
 The Connection Control plugins are deprecated, and are subject

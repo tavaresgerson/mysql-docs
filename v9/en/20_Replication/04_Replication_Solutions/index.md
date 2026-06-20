@@ -1,27 +1,5 @@
 ## 19.4 Replication Solutions
 
-[19.4.1 Using Replication for Backups](replication-solutions-backups.html)
-
-[19.4.2 Handling an Unexpected Halt of a Replica](replication-solutions-unexpected-replica-halt.html)
-
-[19.4.3 Monitoring Row-based Replication](replication-solutions-rbr-monitoring.html)
-
-[19.4.4 Using Replication with Different Source and Replica Storage Engines](replication-solutions-diffengines.html)
-
-[19.4.5 Using Replication for Scale-Out](replication-solutions-scaleout.html)
-
-[19.4.6 Replicating Different Databases to Different Replicas](replication-solutions-partitioning.html)
-
-[19.4.7 Improving Replication Performance](replication-solutions-performance.html)
-
-[19.4.8 Switching Sources During Failover](replication-solutions-switch.html)
-
-[19.4.9 Switching Sources and Replicas with Asynchronous Connection Failover](replication-asynchronous-connection-failover.html)
-
-[19.4.10 Semisynchronous Replication](replication-semisync.html)
-
-[19.4.11 Delayed Replication](replication-delayed.html)
-
 Replication can be used in many different environments for a range
 of purposes. This section provides general notes and advice on using
 replication for specific solution types.

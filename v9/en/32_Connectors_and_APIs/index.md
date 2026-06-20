@@ -1,36 +1,5 @@
 # Chapter 31 Connectors and APIs
 
-**Table of Contents**
-
-[31.1 MySQL Connector/C++](connector-cpp-info.html)
-
-[31.2 MySQL Connector/J](connector-j-info.html)
-
-[31.3 MySQL Connector/NET](connector-net-info.html)
-
-[31.4 MySQL Connector/ODBC](connector-odbc-info.html)
-
-[31.5 MySQL Connector/Python](connector-python-info.html)
-
-[31.6 MySQL Connector/Node.js](connector-nodejs-info.html)
-
-[31.7 MySQL C API](c-api-info.html)
-
-[31.8 MySQL PHP API](apis-php-info.html)
-
-[31.9 MySQL Perl API](apis-perl.html)
-
-[31.10 MySQL Python API](apis-python.html)
-
-[31.11 MySQL Ruby APIs](apis-ruby.html)
-:   [31.11.1 The MySQL/Ruby API](apis-ruby-mysqlruby.html)
-
-    [31.11.2 The Ruby/MySQL API](apis-ruby-rubymysql.html)
-
-[31.12 MySQL Tcl API](apis-tcl.html)
-
-[31.13 MySQL Eiffel Wrapper](apis-eiffel.html)
-
 MySQL Connectors provide connectivity to the MySQL server for client
 programs. APIs provide low-level access to MySQL resources using
 either the classic MySQL protocol or X Protocol. Both Connectors and the

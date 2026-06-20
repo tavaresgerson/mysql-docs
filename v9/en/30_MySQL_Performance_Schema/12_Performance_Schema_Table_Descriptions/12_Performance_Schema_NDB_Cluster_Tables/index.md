@@ -1,11 +1,5 @@
 ### 29.12.12 Performance Schema NDB Cluster Tables
 
-[29.12.12.1 The ndb\_sync\_pending\_objects Table](performance-schema-ndb-sync-pending-objects-table.html)
-
-[29.12.12.2 The ndb\_sync\_excluded\_objects Table](performance-schema-ndb-sync-excluded-objects-table.html)
-
-[29.12.12.3 The ndb\_replication\_applier\_status Table](performance-schema-ndb-replication-applier-status-table.html)
-
 The following table shows all Performance Schema tables relating
 to the [`NDBCLUSTER`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 9.5") storage engine.
 

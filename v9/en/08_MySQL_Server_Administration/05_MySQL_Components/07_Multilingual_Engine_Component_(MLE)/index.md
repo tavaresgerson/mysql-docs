@@ -1,13 +1,5 @@
 ### 7.5.7 Multilingual Engine Component (MLE)
 
-[7.5.7.1 MLE Component Option and Variable Reference](mle-component-options-variables.html)
-
-[7.5.7.2 MLE Component Status and Session Information](mle-component-status.html)
-
-[7.5.7.3 MLE Component Memory and Thread Usage](mle-component-memory.html)
-
-[7.5.7.4 MLE Component Stored Program Usage](mle-component-stored-programs.html)
-
 The Multilingual Engine component (MLE) provides support for languages other
 than SQL in MySQL stored procedures and functions. The MLE
 Component is available as part of MySQL Enterprise Edition.

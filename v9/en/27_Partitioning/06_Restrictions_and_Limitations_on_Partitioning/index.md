@@ -1,11 +1,5 @@
 ## 26.6 Restrictions and Limitations on Partitioning
 
-[26.6.1 Partitioning Keys, Primary Keys, and Unique Keys](partitioning-limitations-partitioning-keys-unique-keys.html)
-
-[26.6.2 Partitioning Limitations Relating to Storage Engines](partitioning-limitations-storage-engines.html)
-
-[26.6.3 Partitioning Limitations Relating to Functions](partitioning-limitations-functions.html)
-
 This section discusses current restrictions and limitations on
 MySQL partitioning support.
 

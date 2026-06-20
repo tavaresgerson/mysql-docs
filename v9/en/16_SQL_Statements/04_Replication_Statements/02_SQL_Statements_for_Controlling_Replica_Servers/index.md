@@ -1,15 +1,5 @@
 ### 15.4.2 SQL Statements for Controlling Replica Servers
 
-[15.4.2.1 CHANGE REPLICATION FILTER Statement](change-replication-filter.html)
-
-[15.4.2.2 CHANGE REPLICATION SOURCE TO Statement](change-replication-source-to.html)
-
-[15.4.2.3 RESET REPLICA Statement](reset-replica.html)
-
-[15.4.2.4 START REPLICA Statement](start-replica.html)
-
-[15.4.2.5 STOP REPLICA Statement](stop-replica.html)
-
 This section discusses statements for managing replica servers.
 [Section 15.4.1, “SQL Statements for Controlling Source Servers”](replication-statements-source.html "15.4.1 SQL Statements for Controlling Source Servers"), discusses
 statements for managing source servers.

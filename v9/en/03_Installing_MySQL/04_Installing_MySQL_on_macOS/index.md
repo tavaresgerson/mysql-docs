@@ -1,13 +1,5 @@
 ## 2.4 Installing MySQL on macOS
 
-[2.4.1 General Notes on Installing MySQL on macOS](macos-installation-notes.html)
-
-[2.4.2 Installing MySQL on macOS Using Native Packages](macos-installation-pkg.html)
-
-[2.4.3 Installing and Using the MySQL Launch Daemon](macos-installation-launchd.html)
-
-[2.4.4 Installing and Using the MySQL Preference Pane](macos-installation-prefpane.html)
-
 For a list of macOS versions that the MySQL server supports, see
 <https://www.mysql.com/support/supportedplatforms/database.html>.
 

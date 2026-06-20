@@ -1,13 +1,5 @@
 ## 28.5 INFORMATION\_SCHEMA Thread Pool Tables
 
-[28.5.1 INFORMATION\_SCHEMA Thread Pool Table Reference](information-schema-thread-pool-table-reference.html)
-
-[28.5.2 The INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATE Table](information-schema-tp-thread-group-state-table.html)
-
-[28.5.3 The INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATS Table](information-schema-tp-thread-group-stats-table.html)
-
-[28.5.4 The INFORMATION\_SCHEMA TP\_THREAD\_STATE Table](information-schema-tp-thread-state-table.html)
-
 Note
 
 The `INFORMATION_SCHEMA` thread pool tables are

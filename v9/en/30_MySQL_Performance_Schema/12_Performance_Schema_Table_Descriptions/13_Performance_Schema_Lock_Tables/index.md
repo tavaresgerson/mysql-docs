@@ -1,13 +1,5 @@
 ### 29.12.13 Performance Schema Lock Tables
 
-[29.12.13.1 The data\_locks Table](performance-schema-data-locks-table.html)
-
-[29.12.13.2 The data\_lock\_waits Table](performance-schema-data-lock-waits-table.html)
-
-[29.12.13.3 The metadata\_locks Table](performance-schema-metadata-locks-table.html)
-
-[29.12.13.4 The table\_handles Table](performance-schema-table-handles-table.html)
-
 The Performance Schema exposes lock information through these
 tables:
 

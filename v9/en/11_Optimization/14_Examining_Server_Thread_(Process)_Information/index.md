@@ -1,23 +1,5 @@
 ## 10.14 Examining Server Thread (Process) Information
 
-[10.14.1 Accessing the Process List](processlist-access.html)
-
-[10.14.2 Thread Command Values](thread-commands.html)
-
-[10.14.3 General Thread States](general-thread-states.html)
-
-[10.14.4 Replication Source Thread States](source-thread-states.html)
-
-[10.14.5 Replication I/O (Receiver) Thread States](replica-io-thread-states.html)
-
-[10.14.6 Replication SQL Thread States](replica-sql-thread-states.html)
-
-[10.14.7 Replication Connection Thread States](replica-connection-thread-states.html)
-
-[10.14.8 NDB Cluster Thread States](mysql-cluster-thread-states.html)
-
-[10.14.9 Event Scheduler Thread States](event-scheduler-thread-states.html)
-
 To ascertain what your MySQL server is doing, it can be helpful to
 examine the process list, which indicates the operations currently
 being performed by the set of threads executing within the server.

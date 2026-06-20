@@ -1,21 +1,5 @@
 ### 19.1.5 MySQL Multi-Source Replication
 
-[19.1.5.1 Configuring Multi-Source Replication](replication-multi-source-configuration.html)
-
-[19.1.5.2 Provisioning a Multi-Source Replica for GTID-Based Replication](replication-multi-source-provision-replica.html)
-
-[19.1.5.3 Adding GTID-Based Sources to a Multi-Source Replica](replication-multi-source-adding-gtid-master.html)
-
-[19.1.5.4 Adding Binary Log Based Replication Sources to a Multi-Source Replica](replication-multi-source-adding-binlog-master.html)
-
-[19.1.5.5 Starting Multi-Source Replicas](replication-multi-source-start-replica.html)
-
-[19.1.5.6 Stopping Multi-Source Replicas](replication-multi-source-stop-replica.html)
-
-[19.1.5.7 Resetting Multi-Source Replicas](replication-multi-source-reset-replica.html)
-
-[19.1.5.8 Monitoring Multi-Source Replication](replication-multi-source-monitoring.html)
-
 Multi-source replication in MySQL 9.5 enables a replica
 to receive transactions from multiple immediate sources in parallel.
 In a multi-source replication topology, a replica creates a

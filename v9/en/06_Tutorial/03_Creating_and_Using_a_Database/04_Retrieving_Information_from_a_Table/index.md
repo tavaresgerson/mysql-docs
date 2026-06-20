@@ -1,23 +1,5 @@
 ### 5.3.4 Retrieving Information from a Table
 
-[5.3.4.1 Selecting All Data](selecting-all.html)
-
-[5.3.4.2 Selecting Particular Rows](selecting-rows.html)
-
-[5.3.4.3 Selecting Particular Columns](selecting-columns.html)
-
-[5.3.4.4 Sorting Rows](sorting-rows.html)
-
-[5.3.4.5 Date Calculations](date-calculations.html)
-
-[5.3.4.6 Working with NULL Values](working-with-null.html)
-
-[5.3.4.7 Pattern Matching](pattern-matching.html)
-
-[5.3.4.8 Counting Rows](counting-rows.html)
-
-[5.3.4.9 Using More Than one Table](multiple-tables.html)
-
 The [`SELECT`](select.html "15.2.13 SELECT Statement") statement is used to
 pull information from a table. The general form of the statement
 is:

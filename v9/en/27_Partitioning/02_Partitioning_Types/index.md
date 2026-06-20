@@ -1,19 +1,5 @@
 ## 26.2 Partitioning Types
 
-[26.2.1 RANGE Partitioning](partitioning-range.html)
-
-[26.2.2 LIST Partitioning](partitioning-list.html)
-
-[26.2.3 COLUMNS Partitioning](partitioning-columns.html)
-
-[26.2.4 HASH Partitioning](partitioning-hash.html)
-
-[26.2.5 KEY Partitioning](partitioning-key.html)
-
-[26.2.6 Subpartitioning](partitioning-subpartitions.html)
-
-[26.2.7 How MySQL Partitioning Handles NULL](partitioning-handling-nulls.html)
-
 This section discusses the types of partitioning which are
 available in MySQL 9.5. These include the types
 listed here:

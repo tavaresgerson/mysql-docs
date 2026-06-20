@@ -1,13 +1,5 @@
 ### 27.7.2 DML Operations on JSON Duality Views (MySQL Enterprise Edition)
 
-[27.7.2.1 Examples of DML Operations on JSON Duality Views](jdv-examples.html)
-
-[27.7.2.2 JSON Duality Views—Concurrency](jdv-concurrency.html)
-
-[27.7.2.3 Requirements for DML Operations and Table Annotations](jdv-requirements.html)
-
-[27.7.2.4 Limitations on DML Operations](jdv-limitations.html)
-
 In MySQL Enterprise Edition, DML operations are supported on JSON duality views. DML
 enables seamless [`INSERT`](insert.html "15.2.7 INSERT Statement"),
 [`UPDATE`](update.html "15.2.17 UPDATE Statement"), and

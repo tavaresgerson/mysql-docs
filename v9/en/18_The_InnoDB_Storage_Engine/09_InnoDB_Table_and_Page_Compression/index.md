@@ -1,9 +1,5 @@
 ## 17.9 InnoDB Table and Page Compression
 
-[17.9.1 InnoDB Table Compression](innodb-table-compression.html)
-
-[17.9.2 InnoDB Page Compression](innodb-page-compression.html)
-
 This section provides information about the
 `InnoDB` table compression and
 `InnoDB` page compression features. The page

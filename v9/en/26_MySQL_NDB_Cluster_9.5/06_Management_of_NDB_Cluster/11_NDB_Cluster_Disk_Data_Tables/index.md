@@ -1,9 +1,5 @@
 ### 25.6.11 NDB Cluster Disk Data Tables
 
-[25.6.11.1 NDB Cluster Disk Data Objects](mysql-cluster-disk-data-objects.html)
-
-[25.6.11.2 NDB Cluster Disk Data Storage Requirements](mysql-cluster-disk-data-storage-requirements.html)
-
 NDB Cluster supports storing nonindexed columns of
 [`NDB`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 9.5") tables on disk, rather than in
 RAM. Column data and logging metadata are kept in data files and

@@ -1,9 +1,5 @@
 ## 17.16 InnoDB Integration with MySQL Performance Schema
 
-[17.16.1 Monitoring ALTER TABLE Progress for InnoDB Tables Using Performance Schema](monitor-alter-table-performance-schema.html)
-
-[17.16.2 Monitoring InnoDB Mutex Waits Using Performance Schema](monitor-innodb-mutex-waits-performance-schema.html)
-
 This section provides a brief introduction to
 `InnoDB` integration with Performance Schema. For
 comprehensive Performance Schema documentation, see

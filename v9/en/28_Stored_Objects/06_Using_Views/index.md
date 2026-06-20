@@ -1,15 +1,5 @@
 ## 27.6 Using Views
 
-[27.6.1 View Syntax](view-syntax.html)
-
-[27.6.2 View Processing Algorithms](view-algorithms.html)
-
-[27.6.3 Updatable and Insertable Views](view-updatability.html)
-
-[27.6.4 The View WITH CHECK OPTION Clause](view-check-option.html)
-
-[27.6.5 View Metadata](view-metadata.html)
-
 MySQL supports views, including updatable views. Views are stored
 queries that when invoked produce a result set. A view acts as a
 virtual table.

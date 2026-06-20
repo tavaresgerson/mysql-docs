@@ -1,9 +1,5 @@
 ### 26.2.3 COLUMNS Partitioning
 
-[26.2.3.1 RANGE COLUMNS partitioning](partitioning-columns-range.html)
-
-[26.2.3.2 LIST COLUMNS partitioning](partitioning-columns-list.html)
-
 The next two sections discuss
 `COLUMNS`
 partitioning, which are variants on

@@ -1,9 +1,5 @@
 ### 25.7.9 NDB Cluster Backups With NDB Cluster Replication
 
-[25.7.9.1 NDB Cluster Replication: Automating Synchronization of the Replica to the Source Binary Log](mysql-cluster-replication-auto-sync.html)
-
-[25.7.9.2 Point-In-Time Recovery Using NDB Cluster Replication](mysql-cluster-replication-pitr.html)
-
 This section discusses making backups and restoring from them
 using NDB Cluster replication. We assume that the replication
 servers have already been configured as covered previously (see

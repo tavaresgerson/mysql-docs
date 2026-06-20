@@ -1,11 +1,5 @@
 ## 15.5 Prepared Statements
 
-[15.5.1 PREPARE Statement](prepare.html)
-
-[15.5.2 EXECUTE Statement](execute.html)
-
-[15.5.3 DEALLOCATE PREPARE Statement](deallocate-prepare.html)
-
 MySQL 9.5 provides support for server-side prepared
 statements. This support takes advantage of the efficient
 client/server binary protocol. Using prepared statements with

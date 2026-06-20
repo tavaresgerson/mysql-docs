@@ -1,9 +1,5 @@
 ### 20.7.2 Flow Control
 
-[20.7.2.1 Probes and Statistics](group-replication-probes-and-statistics.html)
-
-[20.7.2.2 Group Replication Throttling](group-replication-throttling.html)
-
 MySQL Group Replication ensures that a transaction commits only
 after a majority of the members in a group have received it and
 agreed on the relative order amongst all transactions sent

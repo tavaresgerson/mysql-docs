@@ -1,11 +1,5 @@
 ### 19.1.7 Common Replication Administration Tasks
 
-[19.1.7.1 Checking Replication Status](replication-administration-status.html)
-
-[19.1.7.2 Pausing Replication on the Replica](replication-administration-pausing.html)
-
-[19.1.7.3 Skipping Transactions](replication-administration-skip.html)
-
 Once replication has been started it executes without requiring
 much regular administration. This section describes how to check
 the status of replication, how to pause a replica, and how to skip

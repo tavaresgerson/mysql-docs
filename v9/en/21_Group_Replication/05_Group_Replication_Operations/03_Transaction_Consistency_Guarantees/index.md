@@ -1,9 +1,5 @@
 ### 20.5.3 Transaction Consistency Guarantees
 
-[20.5.3.1 Understanding Transaction Consistency Guarantees](group-replication-understanding-consistency-guarantees.html)
-
-[20.5.3.2 Configuring Transaction Consistency Guarantees](group-replication-configuring-consistency-guarantees.html)
-
 One of the major implications of a distributed system such as
 Group Replication is the consistency guarantees that it provides
 as a group. In other words, the consistency of the global

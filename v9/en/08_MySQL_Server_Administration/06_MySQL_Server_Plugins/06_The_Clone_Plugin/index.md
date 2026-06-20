@@ -1,33 +1,5 @@
 ### 7.6.6 The Clone Plugin
 
-[7.6.6.1 Installing the Clone Plugin](clone-plugin-installation.html)
-
-[7.6.6.2 Cloning Data Locally](clone-plugin-local.html)
-
-[7.6.6.3 Cloning Remote Data](clone-plugin-remote.html)
-
-[7.6.6.4 Cloning and Concurrent DDL](clone-plugin-concurrent-ddl.html)
-
-[7.6.6.5 Cloning Encrypted Data](clone-plugin-encrypted-data.html)
-
-[7.6.6.6 Cloning Compressed Data](clone-plugin-compressed-data.html)
-
-[7.6.6.7 Cloning for Replication](clone-plugin-replication.html)
-
-[7.6.6.8 Directories and Files Created During a Cloning Operation](clone-plugin-directories.html)
-
-[7.6.6.9 Remote Cloning Operation Failure Handling](clone-plugin-failure-handling.html)
-
-[7.6.6.10 Monitoring Cloning Operations](clone-plugin-monitoring.html)
-
-[7.6.6.11 Stopping a Cloning Operation](clone-plugin-stop.html)
-
-[7.6.6.12 Clone System Variable Reference](clone-plugin-option-variable-reference.html)
-
-[7.6.6.13 Clone System Variables](clone-plugin-options-variables.html)
-
-[7.6.6.14 Clone Plugin Limitations](clone-plugin-limitations.html)
-
 The clone plugin permits cloning data locally or from a remote
 MySQL server instance. Cloned data is a physical snapshot of data
 stored in `InnoDB` that includes schemas, tables,

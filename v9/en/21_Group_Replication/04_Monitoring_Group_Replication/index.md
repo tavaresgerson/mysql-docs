@@ -1,13 +1,5 @@
 ## 20.4 Monitoring Group Replication
 
-[20.4.1 GTIDs and Group Replication](group-replication-gtids.html)
-
-[20.4.2 Group Replication Server States](group-replication-server-states.html)
-
-[20.4.3 The replication\_group\_members Table](group-replication-replication-group-members.html)
-
-[20.4.4 The replication\_group\_member\_stats Table](group-replication-replication-group-member-stats.html)
-
 You can use the MySQL [Performance
 Schema](performance-schema.html "Chapter 29 MySQL Performance Schema") to monitor Group Replication. These Performance Schema
 tables display information specific to Group Replication:

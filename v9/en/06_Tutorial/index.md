@@ -1,45 +1,5 @@
 # Chapter 5 Tutorial
 
-**Table of Contents**
-
-[5.1 Connecting to and Disconnecting from the Server](connecting-disconnecting.html)
-
-[5.2 Entering Queries](entering-queries.html)
-
-[5.3 Creating and Using a Database](database-use.html)
-:   [5.3.1 Creating and Selecting a Database](creating-database.html)
-
-    [5.3.2 Creating a Table](creating-tables.html)
-
-    [5.3.3 Loading Data into a Table](loading-tables.html)
-
-    [5.3.4 Retrieving Information from a Table](retrieving-data.html)
-
-[5.4 Getting Information About Databases and Tables](getting-information.html)
-
-[5.5 Using mysql in Batch Mode](batch-mode.html)
-
-[5.6 Examples of Common Queries](examples.html)
-:   [5.6.1 The Maximum Value for a Column](example-maximum-column.html)
-
-    [5.6.2 The Row Holding the Maximum of a Certain Column](example-maximum-row.html)
-
-    [5.6.3 Maximum of Column per Group](example-maximum-column-group.html)
-
-    [5.6.4 The Rows Holding the Group-wise Maximum of a Certain Column](example-maximum-column-group-row.html)
-
-    [5.6.5 Using User-Defined Variables](example-user-variables.html)
-
-    [5.6.6 Using Foreign Keys](example-foreign-keys.html)
-
-    [5.6.7 Searching on Two Keys](searching-on-two-keys.html)
-
-    [5.6.8 Calculating Visits Per Day](calculating-days.html)
-
-    [5.6.9 Using AUTO\_INCREMENT](example-auto-increment.html)
-
-[5.7 Using MySQL with Apache](apache.html)
-
 This chapter provides a tutorial introduction to MySQL by showing
 how to use the [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") client program to create and
 use a simple database. [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") (sometimes referred

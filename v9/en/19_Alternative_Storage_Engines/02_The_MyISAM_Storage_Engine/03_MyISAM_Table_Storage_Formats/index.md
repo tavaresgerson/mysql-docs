@@ -1,11 +1,5 @@
 ### 18.2.3 MyISAM Table Storage Formats
 
-[18.2.3.1 Static (Fixed-Length) Table Characteristics](static-format.html)
-
-[18.2.3.2 Dynamic Table Characteristics](dynamic-format.html)
-
-[18.2.3.3 Compressed Table Characteristics](compressed-format.html)
-
 `MyISAM` supports three different storage
 formats. Two of them, fixed and dynamic format, are chosen
 automatically depending on the type of columns you are using. The

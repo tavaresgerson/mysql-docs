@@ -1,11 +1,5 @@
 ### 19.3.2 Encrypting Binary Log Files and Relay Log Files
 
-[19.3.2.1 Scope of Binary Log Encryption](replication-binlog-encryption-scope.html)
-
-[19.3.2.2 Binary Log Encryption Keys](replication-binlog-encryption-encryption-keys.html)
-
-[19.3.2.3 Binary Log Master Key Rotation](replication-binlog-encryption-key-rotation.html)
-
 MySQL binary log files and relay log files can be encrypted,
 helping to protect these files and the potentially sensitive data
 contained in them from being misused by outside attackers, and

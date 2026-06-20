@@ -1,11 +1,5 @@
 ### 29.12.8 Performance Schema Connection Tables
 
-[29.12.8.1 The accounts Table](performance-schema-accounts-table.html)
-
-[29.12.8.2 The hosts Table](performance-schema-hosts-table.html)
-
-[29.12.8.3 The users Table](performance-schema-users-table.html)
-
 When a client connects to the MySQL server, it does so under a
 particular user name and from a particular host. The Performance
 Schema provides statistics about these connections, tracking

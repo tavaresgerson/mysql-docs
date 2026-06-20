@@ -1,17 +1,5 @@
 # Chapter 34 MySQL on OCI Marketplace
 
-**Table of Contents**
-
-[34.1 Prerequisites to Deploying MySQL EE on Oracle Cloud Infrastructure](mysql-oci-marketplace-prereqs.html)
-
-[34.2 Deploying MySQL EE on Oracle Cloud Infrastructure](mysql-oci-marketplace-deploy.html)
-
-[34.3 Configuring Network Access](mysql-oci-marketplace-network-configuration.html)
-
-[34.4 Connecting](mysql-oci-marketplace-connecting.html)
-
-[34.5 Maintenance](mysql-oci-marketplace-maintenance.html)
-
 This chapter describes how to deploy MySQL Enterprise Edition as an Oracle Cloud
 Infrastructure (OCI) Marketplace Application. This is a BYOL
 product.

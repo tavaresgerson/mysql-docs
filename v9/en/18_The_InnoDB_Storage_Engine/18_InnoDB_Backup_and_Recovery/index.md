@@ -1,9 +1,5 @@
 ## 17.18 InnoDB Backup and Recovery
 
-[17.18.1 InnoDB Backup](innodb-backup.html)
-
-[17.18.2 InnoDB Recovery](innodb-recovery.html)
-
 This section covers topics related to `InnoDB`
 backup and recovery.
 

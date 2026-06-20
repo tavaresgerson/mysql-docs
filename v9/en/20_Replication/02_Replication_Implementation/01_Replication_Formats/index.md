@@ -1,11 +1,5 @@
 ### 19.2.1 Replication Formats
 
-[19.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication](replication-sbr-rbr.html)
-
-[19.2.1.2 Usage of Row-Based Logging and Replication](replication-rbr-usage.html)
-
-[19.2.1.3 Determination of Safe and Unsafe Statements in Binary Logging](replication-rbr-safe-unsafe.html)
-
 Replication works because events written to the binary log are
 read from the source and then processed on the replica. The events
 are recorded within the binary log in different formats according

@@ -1,29 +1,5 @@
 ### 29.12.20 Performance Schema Summary Tables
 
-[29.12.20.1 Wait Event Summary Tables](performance-schema-wait-summary-tables.html)
-
-[29.12.20.2 Stage Summary Tables](performance-schema-stage-summary-tables.html)
-
-[29.12.20.3 Statement Summary Tables](performance-schema-statement-summary-tables.html)
-
-[29.12.20.4 Statement Histogram Summary Tables](performance-schema-statement-histogram-summary-tables.html)
-
-[29.12.20.5 Transaction Summary Tables](performance-schema-transaction-summary-tables.html)
-
-[29.12.20.6 Object Wait Summary Table](performance-schema-objects-summary-global-by-type-table.html)
-
-[29.12.20.7 File I/O Summary Tables](performance-schema-file-summary-tables.html)
-
-[29.12.20.8 Table I/O and Lock Wait Summary Tables](performance-schema-table-wait-summary-tables.html)
-
-[29.12.20.9 Socket Summary Tables](performance-schema-socket-summary-tables.html)
-
-[29.12.20.10 Memory Summary Tables](performance-schema-memory-summary-tables.html)
-
-[29.12.20.11 Error Summary Tables](performance-schema-error-summary-tables.html)
-
-[29.12.20.12 Status Variable Summary Tables](performance-schema-status-variable-summary-tables.html)
-
 Summary tables provide aggregated information for terminated
 events over time. The tables in this group summarize event data
 in different ways.

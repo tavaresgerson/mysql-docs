@@ -1,11 +1,5 @@
 ## 19.3 Replication Security
 
-[19.3.1 Setting Up Replication to Use Encrypted Connections](replication-encrypted-connections.html)
-
-[19.3.2 Encrypting Binary Log Files and Relay Log Files](replication-binlog-encryption.html)
-
-[19.3.3 Replication Privilege Checks](replication-privilege-checks.html)
-
 To protect against unauthorized access to data that is stored on and
 transferred between replication source servers and replicas, set up
 all the servers involved using the security measures that you would

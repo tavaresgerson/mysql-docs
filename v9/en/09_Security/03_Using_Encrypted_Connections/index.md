@@ -1,15 +1,5 @@
 ## 8.3 Using Encrypted Connections
 
-[8.3.1 Configuring MySQL to Use Encrypted Connections](using-encrypted-connections.html)
-
-[8.3.2 Encrypted Connection TLS Protocols and Ciphers](encrypted-connection-protocols-ciphers.html)
-
-[8.3.3 Creating SSL and RSA Certificates and Keys](creating-ssl-rsa-files.html)
-
-[8.3.4 Connecting to MySQL Remotely from Windows with SSH](windows-and-ssh.html)
-
-[8.3.5 Reusing SSL Sessions](reusing-ssl-sessions.html)
-
 With an unencrypted connection between the MySQL client and the
 server, someone with access to the network could watch all your
 traffic and inspect the data being sent or received between client

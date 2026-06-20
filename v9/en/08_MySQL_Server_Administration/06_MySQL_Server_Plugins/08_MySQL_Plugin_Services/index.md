@@ -1,9 +1,5 @@
 ### 7.6.8 MySQL Plugin Services
 
-[7.6.8.1 The Locking Service](locking-service.html)
-
-[7.6.8.2 The Keyring Service](keyring-service.html)
-
 MySQL server plugins have access to server “plugin
 services.” The plugin services interface complements the
 plugin API by exposing server functionality that plugins can call.

@@ -1,9 +1,5 @@
 ### 6.5.8 mysqldm — The MySQL Diagnostic Monitor
 
-[6.5.8.1 Options](mysqldm-options.html)
-
-[6.5.8.2 Diagnostic Queries](mysqldm-queries.html)
-
 The diagnostics monitor [**mysqldm**](mysqldm.html "6.5.8 mysqldm — The MySQL Diagnostic Monitor") enables you
 to collect diagnostic data on your MySQL server. It runs a
 series of queries and generates JSON files containing the

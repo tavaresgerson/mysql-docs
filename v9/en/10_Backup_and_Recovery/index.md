@@ -1,45 +1,5 @@
 # Chapter 9 Backup and Recovery
 
-**Table of Contents**
-
-[9.1 Backup and Recovery Types](backup-types.html)
-
-[9.2 Database Backup Methods](backup-methods.html)
-
-[9.3 Example Backup and Recovery Strategy](backup-strategy-example.html)
-:   [9.3.1 Establishing a Backup Policy](backup-policy.html)
-
-    [9.3.2 Using Backups for Recovery](recovery-from-backups.html)
-
-    [9.3.3 Backup Strategy Summary](backup-strategy-summary.html)
-
-[9.4 Using mysqldump for Backups](using-mysqldump.html)
-:   [9.4.1 Dumping Data in SQL Format with mysqldump](mysqldump-sql-format.html)
-
-    [9.4.2 Reloading SQL-Format Backups](reloading-sql-format-dumps.html)
-
-    [9.4.3 Dumping Data in Delimited-Text Format with mysqldump](mysqldump-delimited-text.html)
-
-    [9.4.4 Reloading Delimited-Text Format Backups](reloading-delimited-text-dumps.html)
-
-    [9.4.5 mysqldump Tips](mysqldump-tips.html)
-
-[9.5 Point-in-Time (Incremental) Recovery](point-in-time-recovery.html)
-:   [9.5.1 Point-in-Time Recovery Using Binary Log](point-in-time-recovery-binlog.html)
-
-    [9.5.2 Point-in-Time Recovery Using Event Positions](point-in-time-recovery-positions.html)
-
-[9.6 MyISAM Table Maintenance and Crash Recovery](myisam-table-maintenance.html)
-:   [9.6.1 Using myisamchk for Crash Recovery](myisam-crash-recovery.html)
-
-    [9.6.2 How to Check MyISAM Tables for Errors](myisam-check.html)
-
-    [9.6.3 How to Repair MyISAM Tables](myisam-repair.html)
-
-    [9.6.4 MyISAM Table Optimization](myisam-optimization.html)
-
-    [9.6.5 Setting Up a MyISAM Table Maintenance Schedule](myisam-maintenance-schedule.html)
-
 It is important to back up your databases so that you can recover
 your data and be up and running again in case problems occur, such
 as system crashes, hardware failures, or users deleting data by

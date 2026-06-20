@@ -1,9 +1,5 @@
 ### 8.7.5 SELinux TCP Port Context
 
-[8.7.5.1 Setting the TCP Port Context for mysqld](selinux-context-mysqld-tcp-port.html)
-
-[8.7.5.2 Setting the TCP Port Context for MySQL Features](selinux-context-mysql-feature-ports.html)
-
 The instructions that follow use the `semanage`
 binary to manage port context; on RHEL, it's part of the
 `policycoreutils-python-utils` package:

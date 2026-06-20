@@ -1,11 +1,5 @@
 ## 20.8 Upgrading Group Replication
 
-[20.8.1 Combining Different Member Versions in a Group](group-replication-online-upgrade-combining-versions.html)
-
-[20.8.2 Group Replication Offline Upgrade](group-replication-offline-upgrade.html)
-
-[20.8.3 Group Replication Online Upgrade](group-replication-online-upgrade.html)
-
 This section explains how to upgrade a Group Replication setup. The
 basic process of upgrading members of a group is the same as
 upgrading stand-alone instances, see [Chapter 3, *Upgrading MySQL*](upgrading.html "Chapter 3 Upgrading MySQL") for

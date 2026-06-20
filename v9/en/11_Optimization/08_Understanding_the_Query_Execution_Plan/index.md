@@ -1,15 +1,5 @@
 ## 10.8 Understanding the Query Execution Plan
 
-[10.8.1 Optimizing Queries with EXPLAIN](using-explain.html)
-
-[10.8.2 EXPLAIN Output Format](explain-output.html)
-
-[10.8.3 Extended EXPLAIN Output Format](explain-extended.html)
-
-[10.8.4 Obtaining Execution Plan Information for a Named Connection](explain-for-connection.html)
-
-[10.8.5 Estimating Query Performance](estimating-performance.html)
-
 Depending on the details of your tables, columns, indexes, and the
 conditions in your `WHERE` clause, the MySQL
 optimizer considers many techniques to efficiently perform the

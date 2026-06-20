@@ -1,13 +1,5 @@
 ## 7.8 Running Multiple MySQL Instances on One Machine
 
-[7.8.1 Setting Up Multiple Data Directories](multiple-data-directories.html)
-
-[7.8.2 Running Multiple MySQL Instances on Windows](multiple-windows-servers.html)
-
-[7.8.3 Running Multiple MySQL Instances on Unix](multiple-unix-servers.html)
-
-[7.8.4 Using Client Programs in a Multiple-Server Environment](multiple-server-clients.html)
-
 In some cases, you might want to run multiple instances of MySQL on
 a single machine. You might want to test a new MySQL release while
 leaving an existing production setup undisturbed. Or you might want

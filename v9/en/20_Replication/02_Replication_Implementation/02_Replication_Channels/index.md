@@ -1,13 +1,5 @@
 ### 19.2.2 Replication Channels
 
-[19.2.2.1 Commands for Operations on a Single Channel](channels-commands-single-channel.html)
-
-[19.2.2.2 Compatibility with Previous Replication Statements](channels-with-prev-replication.html)
-
-[19.2.2.3 Startup Options and Replication Channels](channels-startup-options.html)
-
-[19.2.2.4 Replication Channel Naming Conventions](channels-naming-conventions.html)
-
 In MySQL multi-source replication, a replica opens multiple
 replication channels, one for each source server. The replication
 channels represent the path of transactions flowing from a source to

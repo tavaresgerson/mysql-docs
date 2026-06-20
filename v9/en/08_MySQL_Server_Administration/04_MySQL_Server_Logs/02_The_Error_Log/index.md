@@ -1,25 +1,5 @@
 ### 7.4.2 The Error Log
 
-[7.4.2.1 Error Log Configuration](error-log-configuration.html)
-
-[7.4.2.2 Default Error Log Destination Configuration](error-log-destination-configuration.html)
-
-[7.4.2.3 Error Event Fields](error-log-event-fields.html)
-
-[7.4.2.4 Types of Error Log Filtering](error-log-filtering.html)
-
-[7.4.2.5 Priority-Based Error Log Filtering (log\_filter\_internal)](error-log-priority-based-filtering.html)
-
-[7.4.2.6 Rule-Based Error Log Filtering (log\_filter\_dragnet)](error-log-rule-based-filtering.html)
-
-[7.4.2.7 Error Logging in JSON Format](error-log-json.html)
-
-[7.4.2.8 Error Logging to the System Log](error-log-syslog.html)
-
-[7.4.2.9 Error Log Output Format](error-log-format.html)
-
-[7.4.2.10 Error Log File Flushing and Renaming](error-log-rotation.html)
-
 This section discusses how to configure the MySQL server for
 logging of diagnostic messages to the error log. For information
 about selecting the error message character set and language, see

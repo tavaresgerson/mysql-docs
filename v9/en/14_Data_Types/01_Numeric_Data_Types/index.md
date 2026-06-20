@@ -1,19 +1,5 @@
 ## 13.1 Numeric Data Types
 
-[13.1.1 Numeric Data Type Syntax](numeric-type-syntax.html)
-
-[13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT](integer-types.html)
-
-[13.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC](fixed-point-types.html)
-
-[13.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE](floating-point-types.html)
-
-[13.1.5 Bit-Value Type - BIT](bit-type.html)
-
-[13.1.6 Numeric Type Attributes](numeric-type-attributes.html)
-
-[13.1.7 Out-of-Range and Overflow Handling](out-of-range-and-overflow.html)
-
 MySQL supports all standard SQL numeric data types. These types
 include the exact numeric data types
 ([`INTEGER`](integer-types.html "13.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"),

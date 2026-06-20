@@ -1,33 +1,5 @@
 ### 25.4.3 NDB Cluster Configuration Files
 
-[25.4.3.1 NDB Cluster Configuration: Basic Example](mysql-cluster-config-example.html)
-
-[25.4.3.2 Recommended Starting Configuration for NDB Cluster](mysql-cluster-config-starting.html)
-
-[25.4.3.3 NDB Cluster Connection Strings](mysql-cluster-connection-strings.html)
-
-[25.4.3.4 Defining Computers in an NDB Cluster](mysql-cluster-computer-definition.html)
-
-[25.4.3.5 Defining an NDB Cluster Management Server](mysql-cluster-mgm-definition.html)
-
-[25.4.3.6 Defining NDB Cluster Data Nodes](mysql-cluster-ndbd-definition.html)
-
-[25.4.3.7 Defining SQL and Other API Nodes in an NDB Cluster](mysql-cluster-api-definition.html)
-
-[25.4.3.8 Defining the System](mysql-cluster-system-definition.html)
-
-[25.4.3.9 MySQL Server Options and Variables for NDB Cluster](mysql-cluster-options-variables.html)
-
-[25.4.3.10 NDB Cluster TCP/IP Connections](mysql-cluster-tcp-definition.html)
-
-[25.4.3.11 NDB Cluster TCP/IP Connections Using Direct Connections](mysql-cluster-tcp-definition-direct.html)
-
-[25.4.3.12 NDB Cluster Shared-Memory Connections](mysql-cluster-shm-definition.html)
-
-[25.4.3.13 Data Node Memory Management](mysql-cluster-data-node-memory-management.html)
-
-[25.4.3.14 Configuring NDB Cluster Send Buffer Parameters](mysql-cluster-config-send-buffers.html)
-
 Configuring NDB Cluster requires working with two files:
 
 * `my.cnf`: Specifies options for all NDB

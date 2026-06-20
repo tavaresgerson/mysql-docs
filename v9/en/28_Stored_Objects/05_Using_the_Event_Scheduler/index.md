@@ -1,17 +1,5 @@
 ## 27.5 Using the Event Scheduler
 
-[27.5.1 Event Scheduler Overview](events-overview.html)
-
-[27.5.2 Event Scheduler Configuration](events-configuration.html)
-
-[27.5.3 Event Syntax](events-syntax.html)
-
-[27.5.4 Event Metadata](events-metadata.html)
-
-[27.5.5 Event Scheduler Status](events-status-info.html)
-
-[27.5.6 The Event Scheduler and MySQL Privileges](events-privileges.html)
-
 The MySQL Event Scheduler
 manages the scheduling and execution of events, that is, tasks that
 run according to a schedule. The following discussion covers the

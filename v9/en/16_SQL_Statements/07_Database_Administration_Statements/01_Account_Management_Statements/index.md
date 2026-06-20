@@ -1,27 +1,5 @@
 ### 15.7.1 Account Management Statements
 
-[15.7.1.1 ALTER USER Statement](alter-user.html)
-
-[15.7.1.2 CREATE ROLE Statement](create-role.html)
-
-[15.7.1.3 CREATE USER Statement](create-user.html)
-
-[15.7.1.4 DROP ROLE Statement](drop-role.html)
-
-[15.7.1.5 DROP USER Statement](drop-user.html)
-
-[15.7.1.6 GRANT Statement](grant.html)
-
-[15.7.1.7 RENAME USER Statement](rename-user.html)
-
-[15.7.1.8 REVOKE Statement](revoke.html)
-
-[15.7.1.9 SET DEFAULT ROLE Statement](set-default-role.html)
-
-[15.7.1.10 SET PASSWORD Statement](set-password.html)
-
-[15.7.1.11 SET ROLE Statement](set-role.html)
-
 MySQL account information is stored in the tables of the
 `mysql` system schema. This database and the
 access control system are discussed extensively in

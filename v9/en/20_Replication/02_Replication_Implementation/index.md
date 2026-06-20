@@ -1,15 +1,5 @@
 ## 19.2 Replication Implementation
 
-[19.2.1 Replication Formats](replication-formats.html)
-
-[19.2.2 Replication Channels](replication-channels.html)
-
-[19.2.3 Replication Threads](replication-threads.html)
-
-[19.2.4 Relay Log and Replication Metadata Repositories](replica-logs.html)
-
-[19.2.5 How Servers Evaluate Replication Filtering Rules](replication-rules.html)
-
 Replication is based on the source server keeping track of all
 changes to its databases (updates, deletes, and so on) in its binary
 log. The binary log serves as a written record of all events that

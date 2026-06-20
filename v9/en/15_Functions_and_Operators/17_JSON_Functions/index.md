@@ -1,21 +1,5 @@
 ## 14.17 JSON Functions
 
-[14.17.1 JSON Function Reference](json-function-reference.html)
-
-[14.17.2 Functions That Create JSON Values](json-creation-functions.html)
-
-[14.17.3 Functions That Search JSON Values](json-search-functions.html)
-
-[14.17.4 Functions That Modify JSON Values](json-modification-functions.html)
-
-[14.17.5 Functions That Return JSON Value Attributes](json-attribute-functions.html)
-
-[14.17.6 JSON Table Functions](json-table-functions.html)
-
-[14.17.7 JSON Schema Validation Functions](json-validation-functions.html)
-
-[14.17.8 JSON Utility Functions](json-utility-functions.html)
-
 The functions described in this section perform operations on JSON
 values. For discussion of the [`JSON`](json.html "13.5 The JSON Data Type")
 data type and additional examples showing how to use these

@@ -1,11 +1,5 @@
 ### 15.7.6 SET Statements
 
-[15.7.6.1 SET Syntax for Variable Assignment](set-variable.html)
-
-[15.7.6.2 SET CHARACTER SET Statement](set-character-set.html)
-
-[15.7.6.3 SET NAMES Statement](set-names.html)
-
 The [`SET`](set-statement.html "15.7.6 SET Statements")
 statement has several forms. Descriptions for those forms that are
 not associated with a specific server capability appear in

@@ -1,9 +1,5 @@
 ## 9.5 Point-in-Time (Incremental) Recovery
 
-[9.5.1 Point-in-Time Recovery Using Binary Log](point-in-time-recovery-binlog.html)
-
-[9.5.2 Point-in-Time Recovery Using Event Positions](point-in-time-recovery-positions.html)
-
 Point-in-time recovery refers to recovery of data changes up to a
 given point in time. Typically, this type of recovery is performed
 after restoring a full backup that brings the server to its state

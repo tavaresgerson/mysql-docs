@@ -1,11 +1,5 @@
 ### 1.7.3 How MySQL Deals with Constraints
 
-[1.7.3.1 PRIMARY KEY and UNIQUE Index Constraints](constraint-primary-key.html)
-
-[1.7.3.2 FOREIGN KEY Constraints](constraint-foreign-key.html)
-
-[1.7.3.3 ENUM and SET Constraints](constraint-enum.html)
-
 MySQL enables you to work both with transactional tables that
 permit rollback and with nontransactional tables that do not.
 Because of this, constraint handling is a bit different in MySQL

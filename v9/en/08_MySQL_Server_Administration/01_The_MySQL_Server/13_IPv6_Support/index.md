@@ -1,15 +1,5 @@
 ### 7.1.13 IPv6 Support
 
-[7.1.13.1 Verifying System Support for IPv6](ipv6-system-support.html)
-
-[7.1.13.2 Configuring the MySQL Server to Permit IPv6 Connections](ipv6-server-config.html)
-
-[7.1.13.3 Connecting Using the IPv6 Local Host Address](ipv6-local-connections.html)
-
-[7.1.13.4 Connecting Using IPv6 Nonlocal Host Addresses](ipv6-remote-connections.html)
-
-[7.1.13.5 Obtaining an IPv6 Address from a Broker](ipv6-brokers.html)
-
 Support for IPv6 in MySQL includes these capabilities:
 
 * MySQL Server can accept TCP/IP connections from clients

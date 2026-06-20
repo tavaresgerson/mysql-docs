@@ -1,15 +1,5 @@
 ### 25.6.8 Online Backup of NDB Cluster
 
-[25.6.8.1 NDB Cluster Backup Concepts](mysql-cluster-backup-concepts.html)
-
-[25.6.8.2 Using The NDB Cluster Management Client to Create a Backup](mysql-cluster-backup-using-management-client.html)
-
-[25.6.8.3 Configuration for NDB Cluster Backups](mysql-cluster-backup-configuration.html)
-
-[25.6.8.4 NDB Cluster Backup Troubleshooting](mysql-cluster-backup-troubleshooting.html)
-
-[25.6.8.5 Taking an NDB Backup with Parallel Data Nodes](mysql-cluster-backup-parallel-data-nodes.html)
-
 The next few sections describe how to prepare for and then to
 create an NDB Cluster backup using the functionality for this
 purpose found in the [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "25.5.5 ndb_mgm — The NDB Cluster Management Client") management client.

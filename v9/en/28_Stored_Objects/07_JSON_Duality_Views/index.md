@@ -1,11 +1,5 @@
 ## 27.7 JSON Duality Views
 
-[27.7.1 Creating JSON Duality Views](json-duality-views-syntax.html)
-
-[27.7.2 DML Operations on JSON Duality Views (MySQL Enterprise Edition)](json-duality-views-updatable.html)
-
-[27.7.3 JSON Duality View Metadata](json-duality-view-metadata.html)
-
 MySQL 9.5 supports JSON duality views. Also known as
 JSON relational duality views, these objects are stored queries that
 when invoked produce a set of values in JSON format. In effect, a

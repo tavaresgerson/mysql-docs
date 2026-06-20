@@ -1,31 +1,5 @@
 # Chapter 1 General Information
 
-**Table of Contents**
-
-[1.1 About This Manual](manual-info.html)
-
-[1.2 Overview of the MySQL Database Management System](what-is.html)
-:   [1.2.1 What is MySQL?](what-is-mysql.html)
-
-    [1.2.2 The Main Features of MySQL](features.html)
-
-    [1.2.3 History of MySQL](history.html)
-
-[1.3 MySQL Releases: Innovation and LTS](mysql-releases.html)
-
-[1.4 What Is New in MySQL 9.5](mysql-nutshell.html)
-
-[1.5 Server and Status Variables and Options Added, Deprecated, or Removed in MySQL 9.5](added-deprecated-removed.html)
-
-[1.6 How to Report Bugs or Problems](bug-reports.html)
-
-[1.7 MySQL Standards Compliance](compatibility.html)
-:   [1.7.1 MySQL Extensions to Standard SQL](extensions-to-ansi.html)
-
-    [1.7.2 MySQL Differences from Standard SQL](differences-from-ansi.html)
-
-    [1.7.3 How MySQL Deals with Constraints](constraints.html)
-
 The MySQL software delivers a very fast, multithreaded, multi-user,
 and robust SQL (Structured Query Language) database server. MySQL
 Server is intended for mission-critical, heavy-load production

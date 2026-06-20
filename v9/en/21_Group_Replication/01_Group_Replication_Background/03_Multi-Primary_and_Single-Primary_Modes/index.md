@@ -1,9 +1,5 @@
 ### 20.1.3 Multi-Primary and Single-Primary Modes
 
-[20.1.3.1 Single-Primary Mode](group-replication-single-primary-mode.html)
-
-[20.1.3.2 Multi-Primary Mode](group-replication-multi-primary-mode.html)
-
 Group Replication operates either in single-primary mode or in
 multi-primary mode. The group's mode is a group-wide configuration
 setting, specified by the

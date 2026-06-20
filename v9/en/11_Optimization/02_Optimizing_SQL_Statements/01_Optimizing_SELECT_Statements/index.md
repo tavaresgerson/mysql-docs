@@ -1,51 +1,5 @@
 ### 10.2.1 Optimizing SELECT Statements
 
-[10.2.1.1 WHERE Clause Optimization](where-optimization.html)
-
-[10.2.1.2 Range Optimization](range-optimization.html)
-
-[10.2.1.3 Index Merge Optimization](index-merge-optimization.html)
-
-[10.2.1.4 Hash Join Optimization](hash-joins.html)
-
-[10.2.1.5 Engine Condition Pushdown Optimization](engine-condition-pushdown-optimization.html)
-
-[10.2.1.6 Index Condition Pushdown Optimization](index-condition-pushdown-optimization.html)
-
-[10.2.1.7 Nested-Loop Join Algorithms](nested-loop-joins.html)
-
-[10.2.1.8 Nested Join Optimization](nested-join-optimization.html)
-
-[10.2.1.9 Outer Join Optimization](outer-join-optimization.html)
-
-[10.2.1.10 Outer Join Simplification](outer-join-simplification.html)
-
-[10.2.1.11 Multi-Range Read Optimization](mrr-optimization.html)
-
-[10.2.1.12 Block Nested-Loop and Batched Key Access Joins](bnl-bka-optimization.html)
-
-[10.2.1.13 Condition Filtering](condition-filtering.html)
-
-[10.2.1.14 Constant-Folding Optimization](constant-folding-optimization.html)
-
-[10.2.1.15 IS NULL Optimization](is-null-optimization.html)
-
-[10.2.1.16 ORDER BY Optimization](order-by-optimization.html)
-
-[10.2.1.17 GROUP BY Optimization](group-by-optimization.html)
-
-[10.2.1.18 DISTINCT Optimization](distinct-optimization.html)
-
-[10.2.1.19 LIMIT Query Optimization](limit-optimization.html)
-
-[10.2.1.20 Function Call Optimization](function-optimization.html)
-
-[10.2.1.21 Window Function Optimization](window-function-optimization.html)
-
-[10.2.1.22 Row Constructor Expression Optimization](row-constructor-optimization.html)
-
-[10.2.1.23 Avoiding Full Table Scans](table-scan-avoidance.html)
-
 Queries, in the form of [`SELECT`](select.html "15.2.13 SELECT Statement")
 statements, perform all the lookup operations in the database.
 Tuning these statements is a top priority, whether to achieve

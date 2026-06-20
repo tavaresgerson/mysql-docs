@@ -1,15 +1,5 @@
 ### 7.1.9 Using System Variables
 
-[7.1.9.1 System Variable Privileges](system-variable-privileges.html)
-
-[7.1.9.2 Dynamic System Variables](dynamic-system-variables.html)
-
-[7.1.9.3 Persisted System Variables](persisted-system-variables.html)
-
-[7.1.9.4 Nonpersistible and Persist-Restricted System Variables](nonpersistible-system-variables.html)
-
-[7.1.9.5 Structured System Variables](structured-system-variables.html)
-
 The MySQL server maintains many system variables that configure
 its operation. [Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables"),
 describes the meaning of these variables. Each system variable has

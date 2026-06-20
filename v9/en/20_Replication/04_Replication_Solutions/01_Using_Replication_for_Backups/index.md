@@ -1,11 +1,5 @@
 ### 19.4.1 Using Replication for Backups
 
-[19.4.1.1 Backing Up a Replica Using mysqldump](replication-solutions-backups-mysqldump.html)
-
-[19.4.1.2 Backing Up Raw Data from a Replica](replication-solutions-backups-rawdata.html)
-
-[19.4.1.3 Backing Up a Source or Replica by Making It Read Only](replication-solutions-backups-read-only.html)
-
 To use replication as a backup solution, replicate data from the
 source to a replica, and then back up the replica. The replica can
 be paused and shut down without affecting the running operation of

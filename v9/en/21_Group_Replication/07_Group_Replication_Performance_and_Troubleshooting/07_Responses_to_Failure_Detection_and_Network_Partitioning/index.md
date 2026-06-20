@@ -1,13 +1,5 @@
 ### 20.7.7 Responses to Failure Detection and Network Partitioning
 
-[20.7.7.1 Expel Timeout](group-replication-responses-failure-expel.html)
-
-[20.7.7.2 Unreachable Majority Timeout](group-replication-responses-failure-partition.html)
-
-[20.7.7.3 Auto-Rejoin](group-replication-responses-failure-rejoin.html)
-
-[20.7.7.4 Exit Action](group-replication-responses-failure-exit.html)
-
 Group Replication's failure detection mechanism is designed to
 identify group members that are no longer communicating with the
 group, and expel them as and when it seems likely that they have

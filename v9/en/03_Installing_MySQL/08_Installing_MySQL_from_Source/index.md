@@ -1,25 +1,5 @@
 ## 2.8 Installing MySQL from Source
 
-[2.8.1 Source Installation Methods](source-installation-methods.html)
-
-[2.8.2 Source Installation Prerequisites](source-installation-prerequisites.html)
-
-[2.8.3 MySQL Layout for Source Installation](source-installation-layout.html)
-
-[2.8.4 Installing MySQL Using a Standard Source Distribution](installing-source-distribution.html)
-
-[2.8.5 Installing MySQL Using a Development Source Tree](installing-development-tree.html)
-
-[2.8.6 Configuring SSL Library Support](source-ssl-library-configuration.html)
-
-[2.8.7 MySQL Source-Configuration Options](source-configuration-options.html)
-
-[2.8.8 Dealing with Problems Compiling MySQL](compilation-problems.html)
-
-[2.8.9 MySQL Configuration and Third-Party Tools](source-configuration-third-party.html)
-
-[2.8.10 Generating MySQL Doxygen Documentation Content](source-installation-doxygen.html)
-
 Building MySQL from the source code enables you to customize build
 parameters, compiler optimizations, and installation location. For a
 list of systems on which MySQL is known to run, see

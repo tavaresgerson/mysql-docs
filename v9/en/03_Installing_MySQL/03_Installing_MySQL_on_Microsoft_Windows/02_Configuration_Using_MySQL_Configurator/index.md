@@ -1,9 +1,5 @@
 ### 2.3.2 Configuration: Using MySQL Configurator
 
-[2.3.2.1 MySQL Server Configuration with MySQL Configurator](mysql-configurator-workflow-server.html)
-
-[2.3.2.2 MySQL Configurator CLI](mysql-configurator-cli.html)
-
 MySQL Configurator is a standalone application designed to ease the
 complexity of configuring a MySQL server to run MySQL on Microsoft
 Windows. It is bundled with the MySQL server, in both the MSI and

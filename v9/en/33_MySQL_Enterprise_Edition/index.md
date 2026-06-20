@@ -1,25 +1,5 @@
 # Chapter 32 MySQL Enterprise Edition
 
-**Table of Contents**
-
-[32.1 MySQL Enterprise Backup Overview](mysql-enterprise-backup.html)
-
-[32.2 MySQL Enterprise Security Overview](mysql-enterprise-security.html)
-
-[32.3 MySQL Enterprise Encryption Overview](mysql-enterprise-encryption.html)
-
-[32.4 MySQL Enterprise Audit Overview](mysql-enterprise-audit.html)
-
-[32.5 MySQL Enterprise Firewall Overview](mysql-enterprise-firewall.html)
-
-[32.6 MySQL Enterprise Thread Pool Overview](mysql-enterprise-thread-pool.html)
-
-[32.7 MySQL Enterprise Data Masking and De-Identification Overview](mysql-enterprise-data-masking.html)
-
-[32.8 MySQL Enterprise Monitor Overview](mysql-enterprise-monitor.html)
-
-[32.9 MySQL Telemetry](mysql-enterprise-telemetry.html)
-
 MySQL Enterprise Edition is a commercial product. Like MySQL Community Edition, MySQL Enterprise Edition
 includes MySQL Server, a fully integrated transaction-safe,
 ACID-compliant database with full commit, rollback, crash-recovery,

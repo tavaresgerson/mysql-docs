@@ -1,13 +1,5 @@
 ## 12.14 Adding a Collation to a Character Set
 
-[12.14.1 Collation Implementation Types](charset-collation-implementations.html)
-
-[12.14.2 Choosing a Collation ID](adding-collation-choosing-id.html)
-
-[12.14.3 Adding a Simple Collation to an 8-Bit Character Set](adding-collation-simple-8bit.html)
-
-[12.14.4 Adding a UCA Collation to a Unicode Character Set](adding-collation-unicode-uca.html)
-
 Warning
 
 User-defined collations are deprecated; you should expect

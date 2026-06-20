@@ -1,19 +1,5 @@
 ### 7.9.1 Debugging a MySQL Server
 
-[7.9.1.1 Compiling MySQL for Debugging](compiling-for-debugging.html)
-
-[7.9.1.2 Creating Trace Files](making-trace-files.html)
-
-[7.9.1.3 Using WER with PDB to create a Windows crashdump](making-windows-dumps.html)
-
-[7.9.1.4 Debugging mysqld under gdb](using-gdb-on-mysqld.html)
-
-[7.9.1.5 Using a Stack Trace](using-stack-trace.html)
-
-[7.9.1.6 Using Server Logs to Find Causes of Errors in mysqld](using-log-files.html)
-
-[7.9.1.7 Making a Test Case If You Experience Table Corruption](reproducible-test-case.html)
-
 If you are using some functionality that is very new in MySQL, you
 can try to run [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") with the
 [`--skip-new`](server-options.html#option_mysqld_skip-new) option (which disables

@@ -1,15 +1,5 @@
 ## 20.1 Group Replication Background
 
-[20.1.1 Replication Technologies](group-replication-replication-technologies.html)
-
-[20.1.2 Group Replication Use Cases](group-replication-use-cases.html)
-
-[20.1.3 Multi-Primary and Single-Primary Modes](group-replication-deploying-in-multi-primary-or-single-primary-mode.html)
-
-[20.1.4 Group Replication Services](group-replication-details.html)
-
-[20.1.5 Group Replication Plugin Architecture](group-replication-plugin-architecture.html)
-
 This section provides background information on MySQL Group
 Replication.
 

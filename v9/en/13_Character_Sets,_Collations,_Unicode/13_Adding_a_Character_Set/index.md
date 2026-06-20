@@ -1,11 +1,5 @@
 ## 12.13 Adding a Character Set
 
-[12.13.1 Character Definition Arrays](character-arrays.html)
-
-[12.13.2 String Collating Support for Complex Character Sets](string-collating.html)
-
-[12.13.3 Multi-Byte Character Support for Complex Character Sets](multibyte-characters.html)
-
 This section discusses the procedure for adding a character set to
 MySQL. The proper procedure depends on whether the character set
 is simple or complex:

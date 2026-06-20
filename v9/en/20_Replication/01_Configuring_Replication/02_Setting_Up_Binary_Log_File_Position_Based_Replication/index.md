@@ -1,21 +1,5 @@
 ### 19.1.2 Setting Up Binary Log File Position Based Replication
 
-[19.1.2.1 Setting the Replication Source Configuration](replication-howto-masterbaseconfig.html)
-
-[19.1.2.2 Setting the Replica Configuration](replication-howto-slavebaseconfig.html)
-
-[19.1.2.3 Creating a User for Replication](replication-howto-repuser.html)
-
-[19.1.2.4 Obtaining the Replication Source Binary Log Coordinates](replication-howto-masterstatus.html)
-
-[19.1.2.5 Choosing a Method for Data Snapshots](replication-snapshot-method.html)
-
-[19.1.2.6 Setting Up Replicas](replication-setup-replicas.html)
-
-[19.1.2.7 Setting the Source Configuration on the Replica](replication-howto-slaveinit.html)
-
-[19.1.2.8 Adding Replicas to a Replication Environment](replication-howto-additionalslaves.html)
-
 This section describes how to set up a MySQL server to use binary
 log file position based replication. There are a number of
 different methods for setting up replication, and the exact method

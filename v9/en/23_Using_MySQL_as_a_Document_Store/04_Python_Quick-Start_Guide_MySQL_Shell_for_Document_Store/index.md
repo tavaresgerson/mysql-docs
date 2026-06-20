@@ -1,15 +1,5 @@
 ## 22.4 Python Quick-Start Guide: MySQL Shell for Document Store
 
-[22.4.1 MySQL Shell](mysql-shell-tutorial-python-shell.html)
-
-[22.4.2 Download and Import world\_x Database](mysql-shell-tutorial-python-download.html)
-
-[22.4.3 Documents and Collections](mysql-shell-tutorial-python-documents-collections.html)
-
-[22.4.4 Relational Tables](mysql-shell-tutorial-python-relational-tables.html)
-
-[22.4.5 Documents in Tables](mysql-shell-tutorial-python-documents-in-tables.html)
-
 This quick-start guide provides instructions to begin prototyping
 document store applications interactively with MySQL Shell. The
 guide includes the following topics:

@@ -1,29 +1,5 @@
 ## 27.3 JavaScript Stored Programs
 
-[27.3.1 JavaScript Stored Program Creation and Management](srjs-management.html)
-
-[27.3.2 Obtaining Information About JavaScript Stored Programs](srjs-metadata.html)
-
-[27.3.3 JavaScript Stored Program Language Support](srjs-language-support.html)
-
-[27.3.4 JavaScript Stored Program Data Types and Argument Handling](srjs-data-arguments.html)
-
-[27.3.5 JavaScript Stored Programs—Session Information and Options](srjs-session-info.html)
-
-[27.3.6 JavaScript SQL API](srjs-sql-api.html)
-
-[27.3.7 Using the JavaScript SQL API](srjs-api-using.html)
-
-[27.3.8 Using JavaScript Libraries](srjs-libraries.html)
-
-[27.3.9 Using WebAssembly Libraries](srjs-webassembly.html)
-
-[27.3.10 JavaScript GenAI API](srjs-genai-api.html)
-
-[27.3.11 JavaScript Stored Program Limitations and Restrictions](srjs-limitations.html)
-
-[27.3.12 JavaScript Stored Program Examples](srjs-examples.html)
-
 MySQL 9.5 supports stored routines written in
 JavaScript, as in the simple example shown here:
 

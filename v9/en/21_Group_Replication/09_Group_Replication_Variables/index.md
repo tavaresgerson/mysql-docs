@@ -1,9 +1,5 @@
 ## 20.9 Group Replication Variables
 
-[20.9.1 Group Replication System Variables](group-replication-system-variables.html)
-
-[20.9.2 Group Replication Status Variables](group-replication-status-variables.html)
-
 The next two sections contain information about MySQL server system
 and server status variables which are specific to the Group
 Replication plugin.

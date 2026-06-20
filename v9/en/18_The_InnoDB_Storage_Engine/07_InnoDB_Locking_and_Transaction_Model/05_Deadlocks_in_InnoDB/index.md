@@ -1,11 +1,5 @@
 ### 17.7.5 Deadlocks in InnoDB
 
-[17.7.5.1 An InnoDB Deadlock Example](innodb-deadlock-example.html)
-
-[17.7.5.2 Deadlock Detection](innodb-deadlock-detection.html)
-
-[17.7.5.3 How to Minimize and Handle Deadlocks](innodb-deadlocks-handling.html)
-
 A deadlock is a situation in which multiple transactions are
 unable to proceed because each transaction holds a lock that is
 needed by another one. Because all transactions involved are

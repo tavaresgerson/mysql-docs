@@ -1,15 +1,5 @@
 ## 2.9 Postinstallation Setup and Testing
 
-[2.9.1 Initializing the Data Directory](data-directory-initialization.html)
-
-[2.9.2 Starting the Server](starting-server.html)
-
-[2.9.3 Testing the Server](testing-server.html)
-
-[2.9.4 Securing the Initial MySQL Account](default-privileges.html)
-
-[2.9.5 Starting and Stopping MySQL Automatically](automatic-start.html)
-
 This section discusses tasks that you should perform after
 installing MySQL:
 

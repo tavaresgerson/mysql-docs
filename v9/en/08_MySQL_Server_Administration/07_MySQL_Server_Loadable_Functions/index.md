@@ -1,9 +1,5 @@
 ## 7.7 MySQL Server Loadable Functions
 
-[7.7.1 Installing and Uninstalling Loadable Functions](function-loading.html)
-
-[7.7.2 Obtaining Information About Loadable Functions](obtaining-loadable-function-information.html)
-
 MySQL supports loadable functions, that is, functions that are not
 built in but can be loaded at runtime (either during startup or
 later) to extend server capabilities, or unloaded to remove

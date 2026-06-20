@@ -1,11 +1,5 @@
 ### 17.8.10 Configuring Optimizer Statistics for InnoDB
 
-[17.8.10.1 Configuring Persistent Optimizer Statistics Parameters](innodb-persistent-stats.html)
-
-[17.8.10.2 Configuring Non-Persistent Optimizer Statistics Parameters](innodb-statistics-estimation.html)
-
-[17.8.10.3 Estimating ANALYZE TABLE Complexity for InnoDB Tables](innodb-analyze-table-complexity.html)
-
 This section describes how to configure persistent and
 non-persistent optimizer statistics for `InnoDB`
 tables.

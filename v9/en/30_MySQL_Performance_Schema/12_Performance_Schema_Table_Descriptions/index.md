@@ -1,49 +1,5 @@
 ## 29.12 Performance Schema Table Descriptions
 
-[29.12.1 Performance Schema Table Reference](performance-schema-table-reference.html)
-
-[29.12.2 Performance Schema Setup Tables](performance-schema-setup-tables.html)
-
-[29.12.3 Performance Schema Instance Tables](performance-schema-instance-tables.html)
-
-[29.12.4 Performance Schema Wait Event Tables](performance-schema-wait-tables.html)
-
-[29.12.5 Performance Schema Stage Event Tables](performance-schema-stage-tables.html)
-
-[29.12.6 Performance Schema Statement Event Tables](performance-schema-statement-tables.html)
-
-[29.12.7 Performance Schema Transaction Tables](performance-schema-transaction-tables.html)
-
-[29.12.8 Performance Schema Connection Tables](performance-schema-connection-tables.html)
-
-[29.12.9 Performance Schema Connection Attribute Tables](performance-schema-connection-attribute-tables.html)
-
-[29.12.10 Performance Schema User-Defined Variable Tables](performance-schema-user-variable-tables.html)
-
-[29.12.11 Performance Schema Replication Tables](performance-schema-replication-tables.html)
-
-[29.12.12 Performance Schema NDB Cluster Tables](performance-schema-ndb-cluster-tables.html)
-
-[29.12.13 Performance Schema Lock Tables](performance-schema-lock-tables.html)
-
-[29.12.14 Performance Schema System Variable Tables](performance-schema-system-variable-tables.html)
-
-[29.12.15 Performance Schema Status Variable Tables](performance-schema-status-variable-tables.html)
-
-[29.12.16 Performance Schema Thread Pool Tables](performance-schema-thread-pool-tables.html)
-
-[29.12.17 Performance Schema Firewall Tables](performance-schema-firewall-tables.html)
-
-[29.12.18 Performance Schema Keyring Tables](performance-schema-keyring-tables.html)
-
-[29.12.19 Performance Schema Clone Tables](performance-schema-clone-tables.html)
-
-[29.12.20 Performance Schema Summary Tables](performance-schema-summary-tables.html)
-
-[29.12.21 Performance Schema Telemetry Tables](performance-schema-telemetry-tables.html)
-
-[29.12.22 Performance Schema Miscellaneous Tables](performance-schema-miscellaneous-tables.html)
-
 Tables in the `performance_schema` database can
 be grouped as follows:
 

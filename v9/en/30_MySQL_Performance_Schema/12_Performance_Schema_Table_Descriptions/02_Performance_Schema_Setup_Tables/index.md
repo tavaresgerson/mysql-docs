@@ -1,15 +1,5 @@
 ### 29.12.2 Performance Schema Setup Tables
 
-[29.12.2.1 The setup\_actors Table](performance-schema-setup-actors-table.html)
-
-[29.12.2.2 The setup\_consumers Table](performance-schema-setup-consumers-table.html)
-
-[29.12.2.3 The setup\_instruments Table](performance-schema-setup-instruments-table.html)
-
-[29.12.2.4 The setup\_objects Table](performance-schema-setup-objects-table.html)
-
-[29.12.2.5 The setup\_threads Table](performance-schema-setup-threads-table.html)
-
 The setup tables provide information about the current
 instrumentation and enable the monitoring configuration to be
 changed. For this reason, some columns in these tables can be

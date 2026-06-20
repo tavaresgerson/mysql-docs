@@ -1,17 +1,5 @@
 ### 22.4.3 Documents and Collections
 
-[22.4.3.1 Create, List, and Drop Collections](mysql-shell-tutorial-python-collections-operations.html)
-
-[22.4.3.2 Working with Collections](mysql-shell-tutorial-python-documents-add.html)
-
-[22.4.3.3 Find Documents](mysql-shell-tutorial-python-documents-find.html)
-
-[22.4.3.4 Modify Documents](mysql-shell-tutorial-python-documents-modify.html)
-
-[22.4.3.5 Remove Documents](mysql-shell-tutorial-python-documents-remove.html)
-
-[22.4.3.6 Create and Drop Indexes](mysql-shell-tutorial-python-documents-index.html)
-
 When you are using MySQL as a Document Store, collections are
 containers within a schema that you can create, list, and drop.
 Collections contain JSON documents that you can add, find, update,

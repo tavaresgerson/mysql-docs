@@ -1,11 +1,5 @@
 ### 19.4.10 Semisynchronous Replication
 
-[19.4.10.1 Installing Semisynchronous Replication](replication-semisync-installation.html)
-
-[19.4.10.2 Configuring Semisynchronous Replication](replication-semisync-interface.html)
-
-[19.4.10.3 Semisynchronous Replication Monitoring](replication-semisync-monitoring.html)
-
 In addition to the built-in asynchronous replication, MySQL
 9.5 supports an interface to semisynchronous
 replication that is implemented by plugins. This section discusses

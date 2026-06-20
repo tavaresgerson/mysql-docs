@@ -1,17 +1,5 @@
 ### 6.6.4 myisamchk — MyISAM Table-Maintenance Utility
 
-[6.6.4.1 myisamchk General Options](myisamchk-general-options.html)
-
-[6.6.4.2 myisamchk Check Options](myisamchk-check-options.html)
-
-[6.6.4.3 myisamchk Repair Options](myisamchk-repair-options.html)
-
-[6.6.4.4 Other myisamchk Options](myisamchk-other-options.html)
-
-[6.6.4.5 Obtaining Table Information with myisamchk](myisamchk-table-info.html)
-
-[6.6.4.6 myisamchk Memory Usage](myisamchk-memory.html)
-
 The [**myisamchk**](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility") utility gets information about
 your database tables or checks, repairs, or optimizes them.
 [**myisamchk**](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility") works with

@@ -1,13 +1,5 @@
 ## 18.2 The MyISAM Storage Engine
 
-[18.2.1 MyISAM Startup Options](myisam-start.html)
-
-[18.2.2 Space Needed for Keys](key-space.html)
-
-[18.2.3 MyISAM Table Storage Formats](myisam-table-formats.html)
-
-[18.2.4 MyISAM Table Problems](myisam-table-problems.html)
-
 `MyISAM` is based on the older (and no longer
 available) `ISAM` storage engine but has many
 useful extensions.

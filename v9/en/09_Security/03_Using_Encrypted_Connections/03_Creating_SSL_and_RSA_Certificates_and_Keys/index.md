@@ -1,11 +1,5 @@
 ### 8.3.3 Creating SSL and RSA Certificates and Keys
 
-[8.3.3.1 Creating SSL and RSA Certificates and Keys using MySQL](creating-ssl-rsa-files-using-mysql.html)
-
-[8.3.3.2 Creating SSL Certificates and Keys Using openssl](creating-ssl-files-using-openssl.html)
-
-[8.3.3.3 Creating RSA Keys Using openssl](creating-rsa-files-using-openssl.html)
-
 The following discussion describes how to create the files
 required for SSL and RSA support in MySQL. File creation can be
 performed using facilities provided by MySQL itself, or by

@@ -1,9 +1,5 @@
 ### 7.8.2 Running Multiple MySQL Instances on Windows
 
-[7.8.2.1 Starting Multiple MySQL Instances at the Windows Command Line](multiple-windows-command-line-servers.html)
-
-[7.8.2.2 Starting Multiple MySQL Instances as Windows Services](multiple-windows-services.html)
-
 You can run multiple servers on Windows by starting them manually
 from the command line, each with appropriate operating parameters,
 or by installing several servers as Windows services and running

@@ -1,9 +1,5 @@
 ## 20.2 Getting Started
 
-[20.2.1 Deploying Group Replication in Single-Primary Mode](group-replication-deploying-in-single-primary-mode.html)
-
-[20.2.2 Deploying Group Replication Locally](group-replication-deploying-locally.html)
-
 MySQL Group Replication is provided as a plugin for the MySQL
 server; each server in a group requires configuration and
 installation of the plugin. This section provides a detailed

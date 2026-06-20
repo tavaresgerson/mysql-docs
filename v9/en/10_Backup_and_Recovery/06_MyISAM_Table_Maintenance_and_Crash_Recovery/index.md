@@ -1,15 +1,5 @@
 ## 9.6 MyISAM Table Maintenance and Crash Recovery
 
-[9.6.1 Using myisamchk for Crash Recovery](myisam-crash-recovery.html)
-
-[9.6.2 How to Check MyISAM Tables for Errors](myisam-check.html)
-
-[9.6.3 How to Repair MyISAM Tables](myisam-repair.html)
-
-[9.6.4 MyISAM Table Optimization](myisam-optimization.html)
-
-[9.6.5 Setting Up a MyISAM Table Maintenance Schedule](myisam-maintenance-schedule.html)
-
 This section discusses how to use [**myisamchk**](myisamchk.html "6.6.4 myisamchk — MyISAM Table-Maintenance Utility") to
 check or repair `MyISAM` tables (tables that have
 `.MYD` and `.MYI` files for

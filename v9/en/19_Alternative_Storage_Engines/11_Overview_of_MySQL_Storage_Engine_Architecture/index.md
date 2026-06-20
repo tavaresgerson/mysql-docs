@@ -1,9 +1,5 @@
 ## 18.11 Overview of MySQL Storage Engine Architecture
 
-[18.11.1 Pluggable Storage Engine Architecture](pluggable-storage.html)
-
-[18.11.2 The Common Database Server Layer](pluggable-storage-common-layer.html)
-
 The MySQL pluggable storage engine architecture enables a database
 professional to select a specialized storage engine for a
 particular application need while being completely shielded from

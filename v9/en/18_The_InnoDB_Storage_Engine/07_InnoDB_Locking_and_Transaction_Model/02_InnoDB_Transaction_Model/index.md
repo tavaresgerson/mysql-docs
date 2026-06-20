@@ -1,13 +1,5 @@
 ### 17.7.2 InnoDB Transaction Model
 
-[17.7.2.1 Transaction Isolation Levels](innodb-transaction-isolation-levels.html)
-
-[17.7.2.2 autocommit, Commit, and Rollback](innodb-autocommit-commit-rollback.html)
-
-[17.7.2.3 Consistent Nonlocking Reads](innodb-consistent-read.html)
-
-[17.7.2.4 Locking Reads](innodb-locking-reads.html)
-
 The `InnoDB` transaction model aims to combine
 the best properties of a
 [multi-versioning](glossary.html#glos_mvcc "MVCC") database with

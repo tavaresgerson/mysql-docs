@@ -1,15 +1,5 @@
 ### 29.12.3 Performance Schema Instance Tables
 
-[29.12.3.1 The cond\_instances Table](performance-schema-cond-instances-table.html)
-
-[29.12.3.2 The file\_instances Table](performance-schema-file-instances-table.html)
-
-[29.12.3.3 The mutex\_instances Table](performance-schema-mutex-instances-table.html)
-
-[29.12.3.4 The rwlock\_instances Table](performance-schema-rwlock-instances-table.html)
-
-[29.12.3.5 The socket\_instances Table](performance-schema-socket-instances-table.html)
-
 Instance tables document what types of objects are instrumented.
 They provide event names and explanatory notes or status
 information:

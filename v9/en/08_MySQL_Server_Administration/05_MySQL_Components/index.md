@@ -1,21 +1,5 @@
 ## 7.5 MySQL Components
 
-[7.5.1 Installing and Uninstalling Components](component-loading.html)
-
-[7.5.2 Obtaining Component Information](obtaining-component-information.html)
-
-[7.5.3 Error Log Components](error-log-components.html)
-
-[7.5.4 Query Attribute Components](query-attribute-components.html)
-
-[7.5.5 Scheduler Component](scheduler-component.html)
-
-[7.5.6 Replication Components](replication-components.html)
-
-[7.5.7 Multilingual Engine Component (MLE)](mle-component.html)
-
-[7.5.8 Option Tracker Component](option-tracker-component.html)
-
 MySQL Server includes a component-based infrastructure for extending
 server capabilities. A component provides services that are
 available to the server and other components. (With respect to

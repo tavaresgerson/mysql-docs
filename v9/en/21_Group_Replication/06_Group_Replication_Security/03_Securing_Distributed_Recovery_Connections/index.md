@@ -1,9 +1,5 @@
 ### 20.6.3 Securing Distributed Recovery Connections
 
-[20.6.3.1 Secure User Credentials for Distributed Recovery](group-replication-secure-user.html)
-
-[20.6.3.2 Secure Socket Layer (SSL) Connections for Distributed Recovery](group-replication-configuring-ssl-for-recovery.html)
-
 Important
 
 When using the MySQL communication stack

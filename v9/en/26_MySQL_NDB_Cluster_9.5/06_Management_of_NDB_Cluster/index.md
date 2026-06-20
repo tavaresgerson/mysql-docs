@@ -1,43 +1,5 @@
 ## 25.6 Management of NDB Cluster
 
-[25.6.1 Commands in the NDB Cluster Management Client](mysql-cluster-mgm-client-commands.html)
-
-[25.6.2 NDB Cluster Log Messages](mysql-cluster-logs-ndb-messages.html)
-
-[25.6.3 Event Reports Generated in NDB Cluster](mysql-cluster-event-reports.html)
-
-[25.6.4 Summary of NDB Cluster Start Phases](mysql-cluster-start-phases.html)
-
-[25.6.5 Performing a Rolling Restart of an NDB Cluster](mysql-cluster-rolling-restart.html)
-
-[25.6.6 NDB Cluster Single User Mode](mysql-cluster-single-user-mode.html)
-
-[25.6.7 Adding NDB Cluster Data Nodes Online](mysql-cluster-online-add-node.html)
-
-[25.6.8 Online Backup of NDB Cluster](mysql-cluster-backup.html)
-
-[25.6.9 Importing Data Into MySQL Cluster](mysql-cluster-importing-data.html)
-
-[25.6.10 MySQL Server Usage for NDB Cluster](mysql-cluster-mysqld.html)
-
-[25.6.11 NDB Cluster Disk Data Tables](mysql-cluster-disk-data.html)
-
-[25.6.12 Online Operations with ALTER TABLE in NDB Cluster](mysql-cluster-online-operations.html)
-
-[25.6.13 Privilege Synchronization and NDB\_STORED\_USER](mysql-cluster-privilege-synchronization.html)
-
-[25.6.14 NDB API Statistics Counters and Variables](mysql-cluster-ndb-api-statistics.html)
-
-[25.6.15 ndbinfo: The NDB Cluster Information Database](mysql-cluster-ndbinfo.html)
-
-[25.6.16 INFORMATION\_SCHEMA Tables for NDB Cluster](mysql-cluster-information-schema-tables.html)
-
-[25.6.17 NDB Cluster and the Performance Schema](mysql-cluster-ps-tables.html)
-
-[25.6.18 Quick Reference: NDB Cluster SQL Statements](mysql-cluster-sql-statements.html)
-
-[25.6.19 NDB Cluster Security](mysql-cluster-security.html)
-
 Managing an NDB Cluster involves a number of tasks, the first of
 which is to configure and start NDB Cluster. This is covered in
 [Section 25.4, “Configuration of NDB Cluster”](mysql-cluster-configuration.html "25.4 Configuration of NDB Cluster"), and

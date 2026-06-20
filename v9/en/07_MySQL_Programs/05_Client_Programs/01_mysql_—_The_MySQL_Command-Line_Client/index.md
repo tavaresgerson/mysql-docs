@@ -1,17 +1,5 @@
 ### 6.5.1 mysql — The MySQL Command-Line Client
 
-[6.5.1.1 mysql Client Options](mysql-command-options.html)
-
-[6.5.1.2 mysql Client Commands](mysql-commands.html)
-
-[6.5.1.3 mysql Client Logging](mysql-logging.html)
-
-[6.5.1.4 mysql Client Server-Side Help](mysql-server-side-help.html)
-
-[6.5.1.5 Executing SQL Statements from a Text File](mysql-batch-commands.html)
-
-[6.5.1.6 mysql Client Tips](mysql-tips.html)
-
 [**mysql**](mysql.html "6.5.1 mysql — The MySQL Command-Line Client") is a simple SQL shell with input line
 editing capabilities. It supports interactive and noninteractive
 use. When used interactively, query results are presented in an

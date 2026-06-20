@@ -1,11 +1,5 @@
 ## 8.5 MySQL Enterprise Data Masking
 
-[8.5.1 Data-Masking Components Versus the Data-Masking Plugin](data-masking-components-vs-plugin.html)
-
-[8.5.2 MySQL Enterprise Data Masking Components](data-masking-components.html)
-
-[8.5.3 MySQL Enterprise Data Masking Plugin](data-masking-plugin.html)
-
 Note
 
 MySQL Enterprise Data Masking is an extension included in MySQL Enterprise Edition, a commercial product. To

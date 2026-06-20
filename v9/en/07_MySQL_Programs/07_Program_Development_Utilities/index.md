@@ -1,9 +1,5 @@
 ## 6.7 Program Development Utilities
 
-[6.7.1 mysql\_config — Display Options for Compiling Clients](mysql-config.html)
-
-[6.7.2 my\_print\_defaults — Display Options from Option Files](my-print-defaults.html)
-
 This section describes some utilities that you may find useful when
 developing MySQL programs.
 

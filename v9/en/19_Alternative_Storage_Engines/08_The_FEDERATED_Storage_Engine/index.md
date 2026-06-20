@@ -1,13 +1,5 @@
 ## 18.8 The FEDERATED Storage Engine
 
-[18.8.1 FEDERATED Storage Engine Overview](federated-description.html)
-
-[18.8.2 How to Create FEDERATED Tables](federated-create.html)
-
-[18.8.3 FEDERATED Storage Engine Notes and Tips](federated-usagenotes.html)
-
-[18.8.4 FEDERATED Storage Engine Resources](federated-storage-engine-resources.html)
-
 The `FEDERATED` storage engine lets you access data
 from a remote MySQL database without using replication or cluster
 technology. Querying a local `FEDERATED` table

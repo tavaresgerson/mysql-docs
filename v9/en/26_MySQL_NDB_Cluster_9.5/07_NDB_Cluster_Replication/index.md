@@ -1,29 +1,5 @@
 ## 25.7 NDB Cluster Replication
 
-[25.7.1 NDB Cluster Replication: Abbreviations and Symbols](mysql-cluster-replication-abbreviations.html)
-
-[25.7.2 General Requirements for NDB Cluster Replication](mysql-cluster-replication-general.html)
-
-[25.7.3 Known Issues in NDB Cluster Replication](mysql-cluster-replication-issues.html)
-
-[25.7.4 NDB Cluster Replication Schema and Tables](mysql-cluster-replication-schema.html)
-
-[25.7.5 Preparing the NDB Cluster for Replication](mysql-cluster-replication-preparation.html)
-
-[25.7.6 Starting NDB Cluster Replication (Single Replication Channel)](mysql-cluster-replication-starting.html)
-
-[25.7.7 Using Two Replication Channels for NDB Cluster Replication](mysql-cluster-replication-two-channels.html)
-
-[25.7.8 Implementing Failover with NDB Cluster Replication](mysql-cluster-replication-failover.html)
-
-[25.7.9 NDB Cluster Backups With NDB Cluster Replication](mysql-cluster-replication-backups.html)
-
-[25.7.10 NDB Cluster Replication: Bidirectional and Circular Replication](mysql-cluster-replication-multi-source.html)
-
-[25.7.11 NDB Cluster Replication Using the Multithreaded Applier](mysql-cluster-replication-mta.html)
-
-[25.7.12 NDB Cluster Replication Conflict Resolution](mysql-cluster-replication-conflict-resolution.html)
-
 NDB Cluster supports asynchronous
 replication, more usually referred to simply as
 “replication”. This section explains how to set up and

@@ -1,27 +1,5 @@
 ## 13.4 Spatial Data Types
 
-[13.4.1 Spatial Data Types](spatial-type-overview.html)
-
-[13.4.2 The OpenGIS Geometry Model](opengis-geometry-model.html)
-
-[13.4.3 Supported Spatial Data Formats](gis-data-formats.html)
-
-[13.4.4 Geometry Well-Formedness and Validity](geometry-well-formedness-validity.html)
-
-[13.4.5 Spatial Reference System Support](spatial-reference-systems.html)
-
-[13.4.6 Creating Spatial Columns](creating-spatial-columns.html)
-
-[13.4.7 Populating Spatial Columns](populating-spatial-columns.html)
-
-[13.4.8 Fetching Spatial Data](fetching-spatial-data.html)
-
-[13.4.9 Optimizing Spatial Analysis](optimizing-spatial-analysis.html)
-
-[13.4.10 Creating Spatial Indexes](creating-spatial-indexes.html)
-
-[13.4.11 Using Spatial Indexes](using-spatial-indexes.html)
-
 The [Open Geospatial
 Consortium](http://www.opengeospatial.org) (OGC) is an international consortium of more
 than 250 companies, agencies, and universities participating in

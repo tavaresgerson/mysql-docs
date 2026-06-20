@@ -1,9 +1,5 @@
 ### 7.6.5 The ddl\_rewriter Plugin
 
-[7.6.5.1 Installing or Uninstalling ddl\_rewriter](ddl-rewriter-installation.html)
-
-[7.6.5.2 ddl\_rewriter Plugin Options](ddl-rewriter-options.html)
-
 MySQL 9.5 includes a `ddl_rewriter`
 plugin that modifies [`CREATE TABLE`](create-table.html "15.1.24 CREATE TABLE Statement")
 statements received by the server before it parses and executes

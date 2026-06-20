@@ -1,7 +1,5 @@
 ## 35.5 OpenTelemetry Logging
 
-[35.5.1 Configuring Log Telemetry](telemetry-logs-configuration.html)
-
 MySQL's OpenTelemetry Logging enables you to export telemetry logs
 from your MySQL Server to OpenTelemetry backends for analysis.
 This feature is implemented in the following ways:

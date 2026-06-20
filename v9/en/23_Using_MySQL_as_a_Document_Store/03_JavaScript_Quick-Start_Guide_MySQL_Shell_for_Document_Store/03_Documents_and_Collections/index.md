@@ -1,17 +1,5 @@
 ### 22.3.3 Documents and Collections
 
-[22.3.3.1 Create, List, and Drop Collections](mysql-shell-tutorial-javascript-collections-operations.html)
-
-[22.3.3.2 Working with Collections](mysql-shell-tutorial-javascript-collections-add.html)
-
-[22.3.3.3 Find Documents](mysql-shell-tutorial-javascript-documents-find.html)
-
-[22.3.3.4 Modify Documents](mysql-shell-tutorial-javascript-documents-modify.html)
-
-[22.3.3.5 Remove Documents](mysql-shell-tutorial-javascript-documents-remove.html)
-
-[22.3.3.6 Create and Drop Indexes](mysql-shell-tutorial-javascript-indexes-create.html)
-
 When you are using MySQL as a Document Store, collections are
 containers within a schema that you can create, list, and drop.
 Collections contain JSON documents that you can add, find, update,

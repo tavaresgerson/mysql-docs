@@ -1,13 +1,5 @@
 ## 14.4 Operators
 
-[14.4.1 Operator Precedence](operator-precedence.html)
-
-[14.4.2 Comparison Functions and Operators](comparison-operators.html)
-
-[14.4.3 Logical Operators](logical-operators.html)
-
-[14.4.4 Assignment Operators](assignment-operators.html)
-
 **Table 14.3 Operators**
 
 <table frame="box" rules="all" summary="A reference that lists all operators."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Name</th>

@@ -1,23 +1,5 @@
 ## 2.5 Installing MySQL on Linux
 
-[2.5.1 Installing MySQL on Linux Using the MySQL Yum Repository](linux-installation-yum-repo.html)
-
-[2.5.2 Installing MySQL on Linux Using the MySQL APT Repository](linux-installation-apt-repo.html)
-
-[2.5.3 Using the MySQL SLES Repository](linux-installation-sles-repo.html)
-
-[2.5.4 Installing MySQL on Linux Using RPM Packages from Oracle](linux-installation-rpm.html)
-
-[2.5.5 Installing MySQL on Linux Using Debian Packages from Oracle](linux-installation-debian.html)
-
-[2.5.6 Deploying MySQL on Linux with Docker Containers](linux-installation-docker.html)
-
-[2.5.7 Installing MySQL on Linux from the Native Software Repositories](linux-installation-native.html)
-
-[2.5.8 Installing MySQL on Linux with Juju](linux-installation-juju.html)
-
-[2.5.9 Managing MySQL Server with systemd](using-systemd.html)
-
 Linux supports a number of different solutions for installing MySQL.
 We recommend that you use one of the distributions from Oracle, for
 which several methods for installation are available:

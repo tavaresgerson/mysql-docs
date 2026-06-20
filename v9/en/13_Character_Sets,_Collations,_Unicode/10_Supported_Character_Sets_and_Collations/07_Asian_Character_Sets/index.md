@@ -1,9 +1,5 @@
 ### 12.10.7 Asian Character Sets
 
-[12.10.7.1 The cp932 Character Set](charset-cp932.html)
-
-[12.10.7.2 The gb18030 Character Set](charset-gb18030.html)
-
 The Asian character sets that we support include Chinese,
 Japanese, Korean, and Thai. These can be complicated. For
 example, the Chinese sets must allow for thousands of different

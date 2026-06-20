@@ -1,15 +1,5 @@
 ## 8.6 MySQL Enterprise Encryption
 
-[8.6.1 MySQL Enterprise Encryption Installation and Upgrading](enterprise-encryption-installation.html)
-
-[8.6.2 Configuring MySQL Enterprise Encryption](enterprise-encryption-configuring.html)
-
-[8.6.3 MySQL Enterprise Encryption Usage and Examples](enterprise-encryption-usage.html)
-
-[8.6.4 MySQL Enterprise Encryption Function Reference](enterprise-encryption-function-reference.html)
-
-[8.6.5 MySQL Enterprise Encryption Component Function Descriptions](enterprise-encryption-functions.html)
-
 Note
 
 MySQL Enterprise Encryption is an extension included in MySQL Enterprise Edition, a commercial

@@ -1,13 +1,5 @@
 ### 19.2.5 How Servers Evaluate Replication Filtering Rules
 
-[19.2.5.1 Evaluation of Database-Level Replication and Binary Logging Options](replication-rules-db-options.html)
-
-[19.2.5.2 Evaluation of Table-Level Replication Options](replication-rules-table-options.html)
-
-[19.2.5.3 Interactions Between Replication Filtering Options](replication-rules-examples.html)
-
-[19.2.5.4 Replication Channel Based Filters](replication-rules-channel-based-filters.html)
-
 If a replication source server does not write a statement to its
 binary log, the statement is not replicated. If the server does
 log the statement, the statement is sent to all replicas and each

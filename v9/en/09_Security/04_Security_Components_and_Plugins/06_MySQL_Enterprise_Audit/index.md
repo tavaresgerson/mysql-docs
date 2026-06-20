@@ -1,29 +1,5 @@
 ### 8.4.6 MySQL Enterprise Audit
 
-[8.4.6.1 Elements of MySQL Enterprise Audit](audit-log-elements.html)
-
-[8.4.6.2 Installing or Uninstalling MySQL Enterprise Audit](audit-log-installation.html)
-
-[8.4.6.3 MySQL Enterprise Audit Security Considerations](audit-log-security.html)
-
-[8.4.6.4 Audit Log File Formats](audit-log-file-formats.html)
-
-[8.4.6.5 Configuring Audit Logging Characteristics](audit-log-logging-configuration.html)
-
-[8.4.6.6 Reading Audit Log Files](audit-log-file-reading.html)
-
-[8.4.6.7 Audit Log Filtering](audit-log-filtering.html)
-
-[8.4.6.8 Writing Audit Log Filter Definitions](audit-log-filter-definitions.html)
-
-[8.4.6.9 Disabling Audit Logging](audit-log-disabling.html)
-
-[8.4.6.10 Legacy Mode Audit Log Filtering](audit-log-legacy-filtering.html)
-
-[8.4.6.11 Audit Log Reference](audit-log-reference.html)
-
-[8.4.6.12 Audit Log Restrictions](audit-log-restrictions.html)
-
 Note
 
 MySQL Enterprise Audit is an extension included in MySQL Enterprise Edition, a commercial

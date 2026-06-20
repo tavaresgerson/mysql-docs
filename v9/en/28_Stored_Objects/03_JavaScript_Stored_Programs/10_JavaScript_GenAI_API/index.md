@@ -1,21 +1,5 @@
 ### 27.3.10 JavaScript GenAI API
 
-[27.3.10.1 AnomalyDetector Class](srjsapi-anomalydetector.html)
-
-[27.3.10.2 Classifier Class](srjsapi-classifier.html)
-
-[27.3.10.3 Explainer Class](srjsapi-explainer.html)
-
-[27.3.10.4 Forecaster Class](srjsapi-forecaster.html)
-
-[27.3.10.5 LLM Class](srjsapi-llm.html)
-
-[27.3.10.6 Recommender Class](srjsapi-recommender.html)
-
-[27.3.10.7 Regressor Class](srjsapi-regressor.html)
-
-[27.3.10.8 Convenience Methods](srjsapi-convenience-methods.html)
-
 This section provides reference information for the GenAI API
 supported by JavaScript stored routines in the MLE Component.
 

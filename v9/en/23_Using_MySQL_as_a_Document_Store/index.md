@@ -1,48 +1,5 @@
 # Chapter 22 Using MySQL as a Document Store
 
-**Table of Contents**
-
-[22.1 Interfaces to a MySQL Document Store](document-store-interfaces.html)
-
-[22.2 Document Store Concepts](document-store-concepts.html)
-
-[22.3 JavaScript Quick-Start Guide: MySQL Shell for Document Store](mysql-shell-tutorial-javascript.html)
-:   [22.3.1 MySQL Shell](mysql-shell-tutorial-javascript-shell.html)
-
-    [22.3.2 Download and Import world\_x Database](mysql-shell-tutorial-javascript-download.html)
-
-    [22.3.3 Documents and Collections](mysql-shell-tutorial-javascript-documents-collections.html)
-
-    [22.3.4 Relational Tables](mysql-shell-tutorial-javascript-relational-tables.html)
-
-    [22.3.5 Documents in Tables](mysql-shell-tutorial-javascript-documents-in-tables.html)
-
-[22.4 Python Quick-Start Guide: MySQL Shell for Document Store](mysql-shell-tutorial-python.html)
-:   [22.4.1 MySQL Shell](mysql-shell-tutorial-python-shell.html)
-
-    [22.4.2 Download and Import world\_x Database](mysql-shell-tutorial-python-download.html)
-
-    [22.4.3 Documents and Collections](mysql-shell-tutorial-python-documents-collections.html)
-
-    [22.4.4 Relational Tables](mysql-shell-tutorial-python-relational-tables.html)
-
-    [22.4.5 Documents in Tables](mysql-shell-tutorial-python-documents-in-tables.html)
-
-[22.5 X Plugin](x-plugin.html)
-:   [22.5.1 Checking X Plugin Installation](x-plugin-checking-installation.html)
-
-    [22.5.2 Disabling X Plugin](x-plugin-disabling.html)
-
-    [22.5.3 Using Encrypted Connections with X Plugin](x-plugin-encrypted-connections.html)
-
-    [22.5.4 Using X Plugin with the Caching SHA-2 Authentication Plugin](x-plugin-sha2-cache-plugin.html)
-
-    [22.5.5 Connection Compression with X Plugin](x-plugin-connection-compression.html)
-
-    [22.5.6 X Plugin Options and Variables](x-plugin-options-variables.html)
-
-    [22.5.7 Monitoring X Plugin](x-plugin-system-monitoring.html)
-
 This chapter introduces an alternative way of working with MySQL as
 a document store, sometimes referred to as “using
 NoSQL”. If your intention is to use MySQL in a traditional

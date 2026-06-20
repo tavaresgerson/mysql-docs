@@ -1,29 +1,5 @@
 ### 15.1.24 CREATE TABLE Statement
 
-[15.1.24.1 Files Created by CREATE TABLE](create-table-files.html)
-
-[15.1.24.2 CREATE TEMPORARY TABLE Statement](create-temporary-table.html)
-
-[15.1.24.3 CREATE TABLE ... LIKE Statement](create-table-like.html)
-
-[15.1.24.4 CREATE TABLE ... SELECT Statement](create-table-select.html)
-
-[15.1.24.5 FOREIGN KEY Constraints](create-table-foreign-keys.html)
-
-[15.1.24.6 CHECK Constraints](create-table-check-constraints.html)
-
-[15.1.24.7 Silent Column Specification Changes](silent-column-changes.html)
-
-[15.1.24.8 CREATE TABLE and Generated Columns](create-table-generated-columns.html)
-
-[15.1.24.9 Secondary Indexes and Generated Columns](create-table-secondary-indexes.html)
-
-[15.1.24.10 Invisible Columns](invisible-columns.html)
-
-[15.1.24.11 Generated Invisible Primary Keys](create-table-gipks.html)
-
-[15.1.24.12 Setting NDB Comment Options](create-table-ndb-comment-options.html)
-
 ```
 CREATE [TEMPORARY] TABLE [IF NOT EXISTS] tbl_name
     (create_definition,...)

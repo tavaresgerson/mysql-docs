@@ -1,9 +1,5 @@
 ### 18.8.2 How to Create FEDERATED Tables
 
-[18.8.2.1 Creating a FEDERATED Table Using CONNECTION](federated-create-connection.html)
-
-[18.8.2.2 Creating a FEDERATED Table Using CREATE SERVER](federated-create-server.html)
-
 To create a `FEDERATED` table you should follow
 these steps:
 

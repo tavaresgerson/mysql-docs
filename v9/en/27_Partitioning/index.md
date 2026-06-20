@@ -1,46 +1,5 @@
 # Chapter 26 Partitioning
 
-**Table of Contents**
-
-[26.1 Overview of Partitioning in MySQL](partitioning-overview.html)
-
-[26.2 Partitioning Types](partitioning-types.html)
-:   [26.2.1 RANGE Partitioning](partitioning-range.html)
-
-    [26.2.2 LIST Partitioning](partitioning-list.html)
-
-    [26.2.3 COLUMNS Partitioning](partitioning-columns.html)
-
-    [26.2.4 HASH Partitioning](partitioning-hash.html)
-
-    [26.2.5 KEY Partitioning](partitioning-key.html)
-
-    [26.2.6 Subpartitioning](partitioning-subpartitions.html)
-
-    [26.2.7 How MySQL Partitioning Handles NULL](partitioning-handling-nulls.html)
-
-[26.3 Partition Management](partitioning-management.html)
-:   [26.3.1 Management of RANGE and LIST Partitions](partitioning-management-range-list.html)
-
-    [26.3.2 Management of HASH and KEY Partitions](partitioning-management-hash-key.html)
-
-    [26.3.3 Exchanging Partitions and Subpartitions with Tables](partitioning-management-exchange.html)
-
-    [26.3.4 Maintenance of Partitions](partitioning-maintenance.html)
-
-    [26.3.5 Obtaining Information About Partitions](partitioning-info.html)
-
-[26.4 Partition Pruning](partitioning-pruning.html)
-
-[26.5 Partition Selection](partitioning-selection.html)
-
-[26.6 Restrictions and Limitations on Partitioning](partitioning-limitations.html)
-:   [26.6.1 Partitioning Keys, Primary Keys, and Unique Keys](partitioning-limitations-partitioning-keys-unique-keys.html)
-
-    [26.6.2 Partitioning Limitations Relating to Storage Engines](partitioning-limitations-storage-engines.html)
-
-    [26.6.3 Partitioning Limitations Relating to Functions](partitioning-limitations-functions.html)
-
 This chapter discusses user-defined
 partitioning.
 

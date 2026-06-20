@@ -1,21 +1,5 @@
 ## 12.9 Unicode Support
 
-[12.9.1 The utf8mb4 Character Set (4-Byte UTF-8 Unicode Encoding)](charset-unicode-utf8mb4.html)
-
-[12.9.2 The utf8mb3 Character Set (3-Byte UTF-8 Unicode Encoding)](charset-unicode-utf8mb3.html)
-
-[12.9.3 The utf8 Character Set (Deprecated alias for utf8mb3)](charset-unicode-utf8.html)
-
-[12.9.4 The ucs2 Character Set (UCS-2 Unicode Encoding)](charset-unicode-ucs2.html)
-
-[12.9.5 The utf16 Character Set (UTF-16 Unicode Encoding)](charset-unicode-utf16.html)
-
-[12.9.6 The utf16le Character Set (UTF-16LE Unicode Encoding)](charset-unicode-utf16le.html)
-
-[12.9.7 The utf32 Character Set (UTF-32 Unicode Encoding)](charset-unicode-utf32.html)
-
-[12.9.8 Converting Between 3-Byte and 4-Byte Unicode Character Sets](charset-unicode-conversion.html)
-
 The Unicode Standard includes characters from the Basic
 Multilingual Plane (BMP) and supplementary characters that lie
 outside the BMP. This section describes support for Unicode in

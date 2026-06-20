@@ -1,13 +1,5 @@
 ### 7.6.3 MySQL Enterprise Thread Pool
 
-[7.6.3.1 Thread Pool Elements](thread-pool-elements.html)
-
-[7.6.3.2 Thread Pool Installation](thread-pool-installation.html)
-
-[7.6.3.3 Thread Pool Operation](thread-pool-operation.html)
-
-[7.6.3.4 Thread Pool Tuning](thread-pool-tuning.html)
-
 Note
 
 MySQL Enterprise Thread Pool is an extension included in MySQL Enterprise Edition, a commercial product.

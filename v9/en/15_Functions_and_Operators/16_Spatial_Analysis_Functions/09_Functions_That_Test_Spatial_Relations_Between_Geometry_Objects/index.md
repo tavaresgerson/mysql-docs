@@ -1,9 +1,5 @@
 ### 14.16.9 Functions That Test Spatial Relations Between Geometry Objects
 
-[14.16.9.1 Spatial Relation Functions That Use Object Shapes](spatial-relation-functions-object-shapes.html)
-
-[14.16.9.2 Spatial Relation Functions That Use Minimum Bounding Rectangles](spatial-relation-functions-mbr.html)
-
 The functions described in this section take two geometries as
 arguments and return a qualitative or quantitative relation
 between them.

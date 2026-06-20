@@ -1,15 +1,5 @@
 ## 22.3 JavaScript Quick-Start Guide: MySQL Shell for Document Store
 
-[22.3.1 MySQL Shell](mysql-shell-tutorial-javascript-shell.html)
-
-[22.3.2 Download and Import world\_x Database](mysql-shell-tutorial-javascript-download.html)
-
-[22.3.3 Documents and Collections](mysql-shell-tutorial-javascript-documents-collections.html)
-
-[22.3.4 Relational Tables](mysql-shell-tutorial-javascript-relational-tables.html)
-
-[22.3.5 Documents in Tables](mysql-shell-tutorial-javascript-documents-in-tables.html)
-
 This quick-start guide provides instructions to begin prototyping
 document store applications interactively with MySQL Shell. The
 guide includes the following topics:

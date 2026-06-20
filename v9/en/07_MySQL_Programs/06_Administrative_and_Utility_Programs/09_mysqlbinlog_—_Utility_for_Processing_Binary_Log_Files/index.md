@@ -1,13 +1,5 @@
 ### 6.6.9 mysqlbinlog — Utility for Processing Binary Log Files
 
-[6.6.9.1 mysqlbinlog Hex Dump Format](mysqlbinlog-hexdump.html)
-
-[6.6.9.2 mysqlbinlog Row Event Display](mysqlbinlog-row-events.html)
-
-[6.6.9.3 Using mysqlbinlog to Back Up Binary Log Files](mysqlbinlog-backup.html)
-
-[6.6.9.4 Specifying the mysqlbinlog Server ID](mysqlbinlog-server-id.html)
-
 The server's binary log consists of files containing
 “events” that describe modifications to database
 contents. The server writes these files in binary format. To

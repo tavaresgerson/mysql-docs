@@ -1,9 +1,5 @@
 ### 29.12.9 Performance Schema Connection Attribute Tables
 
-[29.12.9.1 The session\_account\_connect\_attrs Table](performance-schema-session-account-connect-attrs-table.html)
-
-[29.12.9.2 The session\_connect\_attrs Table](performance-schema-session-connect-attrs-table.html)
-
 Connection attributes are key-value pairs that application
 programs can pass to the server at connect time. For
 applications based on the C API implemented by the

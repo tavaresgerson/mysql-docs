@@ -1,15 +1,5 @@
 ## 11.2 Schema Object Names
 
-[11.2.1 Identifier Length Limits](identifier-length.html)
-
-[11.2.2 Identifier Qualifiers](identifier-qualifiers.html)
-
-[11.2.3 Identifier Case Sensitivity](identifier-case-sensitivity.html)
-
-[11.2.4 Mapping of Identifiers to File Names](identifier-mapping.html)
-
-[11.2.5 Function Name Parsing and Resolution](function-resolution.html)
-
 Certain objects within MySQL, including database, table, index,
 column, alias, view, stored procedure, partition, tablespace,
 resource group and other object names are known as identifiers.

@@ -1,15 +1,5 @@
 ### 8.5.2 MySQL Enterprise Data Masking Components
 
-[8.5.2.1 MySQL Enterprise Data Masking Component Installation](data-masking-components-installation.html)
-
-[8.5.2.2 Using MySQL Enterprise Data Masking Components](data-masking-component-usage.html)
-
-[8.5.2.3 MySQL Enterprise Data Masking Component Function Reference](data-masking-component-function-reference.html)
-
-[8.5.2.4 MySQL Enterprise Data Masking Component Function Descriptions](data-masking-component-functions.html)
-
-[8.5.2.5 MySQL Enterprise Data Masking Component Variables](data-masking-component-variables.html)
-
 MySQL Enterprise Data Masking implements these elements:
 
 * A table for persistent storage of dictionaries and terms.

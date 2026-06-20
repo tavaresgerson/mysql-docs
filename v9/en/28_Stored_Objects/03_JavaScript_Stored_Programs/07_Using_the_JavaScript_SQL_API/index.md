@@ -1,11 +1,5 @@
 ### 27.3.7 Using the JavaScript SQL API
 
-[27.3.7.1 Simple Statements](srjs-api-simple-statements.html)
-
-[27.3.7.2 Prepared Statements](srjs-api-prepared-statements.html)
-
-[27.3.7.3 Working with Data and Metadata](srjs-api-data-metadata.html)
-
 This section discusses the use of the API in executing and in
 obtaining and processing results from both simple SQL statements
 and prepared statements. SQL execution in JavaScript is available

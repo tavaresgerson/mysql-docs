@@ -1,15 +1,5 @@
 ### 7.4.4 The Binary Log
 
-[7.4.4.1 Binary Logging Formats](binary-log-formats.html)
-
-[7.4.4.2 Setting The Binary Log Format](binary-log-setting.html)
-
-[7.4.4.3 Mixed Binary Logging Format](binary-log-mixed.html)
-
-[7.4.4.4 Logging Format for Changes to mysql Database Tables](binary-log-mysql-database.html)
-
-[7.4.4.5 Binary Log Transaction Compression](binary-log-transaction-compression.html)
-
 The binary log contains “events” that describe
 database changes such as table creation operations or changes to
 table data. It also contains events for statements that

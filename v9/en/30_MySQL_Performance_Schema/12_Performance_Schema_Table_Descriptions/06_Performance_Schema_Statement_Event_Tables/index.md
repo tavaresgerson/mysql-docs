@@ -1,13 +1,5 @@
 ### 29.12.6 Performance Schema Statement Event Tables
 
-[29.12.6.1 The events\_statements\_current Table](performance-schema-events-statements-current-table.html)
-
-[29.12.6.2 The events\_statements\_history Table](performance-schema-events-statements-history-table.html)
-
-[29.12.6.3 The events\_statements\_history\_long Table](performance-schema-events-statements-history-long-table.html)
-
-[29.12.6.4 The prepared\_statements\_instances Table](performance-schema-prepared-statements-instances-table.html)
-
 The Performance Schema instruments statement execution.
 Statement events occur at a high level of the event hierarchy.
 Within the event hierarchy, wait events nest within stage

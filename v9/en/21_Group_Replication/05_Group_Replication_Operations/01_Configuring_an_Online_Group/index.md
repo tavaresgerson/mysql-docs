@@ -1,15 +1,5 @@
 ### 20.5.1 Configuring an Online Group
 
-[20.5.1.1 Changing the Primary](group-replication-change-primary.html)
-
-[20.5.1.2 Changing the Group Mode](group-replication-changing-group-mode.html)
-
-[20.5.1.3 Using Group Replication Group Write Consensus](group-replication-group-write-consensus.html)
-
-[20.5.1.4 Setting a Group's Communication Protocol Version](group-replication-communication-protocol.html)
-
-[20.5.1.5 Configuring Member Actions](group-replication-member-actions.html)
-
 You can configure an online group while Group Replication is
 running by using a set of functions, which rely on a group action
 coordinator. These functions are installed by the Group

@@ -1,51 +1,5 @@
 ## 8.2 Access Control and Account Management
 
-[8.2.1 Account User Names and Passwords](user-names.html)
-
-[8.2.2 Privileges Provided by MySQL](privileges-provided.html)
-
-[8.2.3 Grant Tables](grant-tables.html)
-
-[8.2.4 Specifying Account Names](account-names.html)
-
-[8.2.5 Specifying Role Names](role-names.html)
-
-[8.2.6 Access Control, Stage 1: Connection Verification](connection-access.html)
-
-[8.2.7 Access Control, Stage 2: Request Verification](request-access.html)
-
-[8.2.8 Adding Accounts, Assigning Privileges, and Dropping Accounts](creating-accounts.html)
-
-[8.2.9 Reserved Accounts](reserved-accounts.html)
-
-[8.2.10 Using Roles](roles.html)
-
-[8.2.11 Account Categories](account-categories.html)
-
-[8.2.12 Privilege Restriction Using Partial Revokes](partial-revokes.html)
-
-[8.2.13 When Privilege Changes Take Effect](privilege-changes.html)
-
-[8.2.14 Assigning Account Passwords](assigning-passwords.html)
-
-[8.2.15 Password Management](password-management.html)
-
-[8.2.16 Server Handling of Expired Passwords](expired-password-handling.html)
-
-[8.2.17 Pluggable Authentication](pluggable-authentication.html)
-
-[8.2.18 Multifactor Authentication](multifactor-authentication.html)
-
-[8.2.19 Proxy Users](proxy-users.html)
-
-[8.2.20 Account Locking](account-locking.html)
-
-[8.2.21 Setting Account Resource Limits](user-resources.html)
-
-[8.2.22 Troubleshooting Problems Connecting to MySQL](problems-connecting.html)
-
-[8.2.23 SQL-Based Account Activity Auditing](account-activity-auditing.html)
-
 MySQL enables the creation of accounts that permit client users to
 connect to the server and access data managed by the server. The
 primary function of the MySQL privilege system is to authenticate a

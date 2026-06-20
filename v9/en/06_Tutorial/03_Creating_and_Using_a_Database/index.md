@@ -1,13 +1,5 @@
 ## 5.3 Creating and Using a Database
 
-[5.3.1 Creating and Selecting a Database](creating-database.html)
-
-[5.3.2 Creating a Table](creating-tables.html)
-
-[5.3.3 Loading Data into a Table](loading-tables.html)
-
-[5.3.4 Retrieving Information from a Table](retrieving-data.html)
-
 Once you know how to enter SQL statements, you are ready to access
 a database.
 

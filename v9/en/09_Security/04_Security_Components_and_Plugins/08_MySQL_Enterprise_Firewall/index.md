@@ -1,9 +1,5 @@
 ### 8.4.8 MySQL Enterprise Firewall
 
-[8.4.8.1 The MySQL Enterprise Firewall Plugin](firewall-plugin.html)
-
-[8.4.8.2 The MySQL Enterprise Firewall Component](firewall-component.html)
-
 Note
 
 MySQL Enterprise Firewall is an extension included in MySQL Enterprise Edition, a commercial product.

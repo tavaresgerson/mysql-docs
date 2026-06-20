@@ -1,17 +1,5 @@
 ## 2.3 Installing MySQL on Microsoft Windows
 
-[2.3.1 Choosing an Installation Package](windows-choosing-package.html)
-
-[2.3.2 Configuration: Using MySQL Configurator](mysql-configurator.html)
-
-[2.3.3 Configuration: Manually](windows-install-archive.html)
-
-[2.3.4 Troubleshooting a Microsoft Windows MySQL Server Installation](windows-troubleshooting.html)
-
-[2.3.5 Windows Postinstallation Procedures](windows-postinstallation.html)
-
-[2.3.6 Windows Platform Restrictions](windows-restrictions.html)
-
 MySQL is available for Microsoft Windows 64-bit operating systems
 only. For supported Windows platform information, see
 <https://www.mysql.com/support/supportedplatforms/database.html>.

@@ -1,11 +1,5 @@
 ### 2.5.6 Deploying MySQL on Linux with Docker Containers
 
-[2.5.6.1 Basic Steps for MySQL Server Deployment with Docker](docker-mysql-getting-started.html)
-
-[2.5.6.2 More Topics on Deploying MySQL Server with Docker](docker-mysql-more-topics.html)
-
-[2.5.6.3 Deploying MySQL on Windows and Other Non-Linux Platforms with Docker](deploy-mysql-nonlinux-docker.html)
-
 This section explains how to deploy MySQL Server using Docker
 containers.
 

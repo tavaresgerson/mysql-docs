@@ -1,17 +1,5 @@
 ### 10.2.2 Optimizing Subqueries, Derived Tables, View References, and Common Table Expressions
 
-[10.2.2.1 Optimizing IN and EXISTS Subquery Predicates with Semijoin and Antijoin Transformations](semijoins-antijoins.html)
-
-[10.2.2.2 Optimizing Subqueries with Materialization](subquery-materialization.html)
-
-[10.2.2.3 Optimizing Subqueries with the EXISTS Strategy](subquery-optimization-with-exists.html)
-
-[10.2.2.4 Optimizing Derived Tables, View References, and Common Table Expressions with Merging or Materialization](derived-table-optimization.html)
-
-[10.2.2.5 Derived Condition Pushdown Optimization](derived-condition-pushdown-optimization.html)
-
-[10.2.2.6 Optimizing ANY and ALL Subqueries](optimizing-any-all-subqueries.html)
-
 The MySQL query optimizer has different strategies available to
 evaluate subqueries:
 

@@ -1,21 +1,5 @@
 ## 8.4 Security Components and Plugins
 
-[8.4.1 Authentication Plugins](authentication-plugins.html)
-
-[8.4.2 The Connection Control Component](connection-control-component.html)
-
-[8.4.3 Connection Control Plugins](connection-control-plugin.html)
-
-[8.4.4 The Password Validation Component](validate-password.html)
-
-[8.4.5 The MySQL Keyring](keyring.html)
-
-[8.4.6 MySQL Enterprise Audit](audit-log.html)
-
-[8.4.7 The Audit Message Component](audit-api-message-emit.html)
-
-[8.4.8 MySQL Enterprise Firewall](firewall.html)
-
 MySQL includes several components and plugins that implement
 security features:
 

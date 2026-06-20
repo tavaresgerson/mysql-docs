@@ -1,25 +1,5 @@
 ## 29.4 Performance Schema Runtime Configuration
 
-[29.4.1 Performance Schema Event Timing](performance-schema-timing.html)
-
-[29.4.2 Performance Schema Event Filtering](performance-schema-filtering.html)
-
-[29.4.3 Event Pre-Filtering](performance-schema-pre-filtering.html)
-
-[29.4.4 Pre-Filtering by Instrument](performance-schema-instrument-filtering.html)
-
-[29.4.5 Pre-Filtering by Object](performance-schema-object-filtering.html)
-
-[29.4.6 Pre-Filtering by Thread](performance-schema-thread-filtering.html)
-
-[29.4.7 Pre-Filtering by Consumer](performance-schema-consumer-filtering.html)
-
-[29.4.8 Example Consumer Configurations](performance-schema-consumer-configurations.html)
-
-[29.4.9 Naming Instruments or Consumers for Filtering Operations](performance-schema-filtering-names.html)
-
-[29.4.10 Determining What Is Instrumented](performance-schema-instrumentation-checking.html)
-
 Specific Performance Schema features can be enabled at runtime to
 control which types of event collection occur.
 

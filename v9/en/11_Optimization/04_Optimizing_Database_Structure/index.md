@@ -1,19 +1,5 @@
 ## 10.4 Optimizing Database Structure
 
-[10.4.1 Optimizing Data Size](data-size.html)
-
-[10.4.2 Optimizing MySQL Data Types](optimize-data-types.html)
-
-[10.4.3 Optimizing for Many Tables](optimize-multi-tables.html)
-
-[10.4.4 Internal Temporary Table Use in MySQL](internal-temporary-tables.html)
-
-[10.4.5 Limits on Number of Databases and Tables](database-count-limit.html)
-
-[10.4.6 Limits on Table Size](table-size-limit.html)
-
-[10.4.7 Limits on Table Column Count and Row Size](column-count-limit.html)
-
 In your role as a database designer, look for the most efficient
 way to organize your schemas, tables, and columns. As when tuning
 application code, you minimize I/O, keep related items together,

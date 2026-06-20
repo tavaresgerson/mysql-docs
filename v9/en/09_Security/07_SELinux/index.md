@@ -1,17 +1,5 @@
 ## 8.7 SELinux
 
-[8.7.1 Check if SELinux is Enabled](selinux-checking.html)
-
-[8.7.2 Changing the SELinux Mode](selinux-mode.html)
-
-[8.7.3 MySQL Server SELinux Policies](selinux-policies.html)
-
-[8.7.4 SELinux File Context](selinux-file-context.html)
-
-[8.7.5 SELinux TCP Port Context](selinux-context-tcp-port.html)
-
-[8.7.6 Troubleshooting SELinux](selinux-troubleshooting.html)
-
 Security-Enhanced Linux (SELinux) is a mandatory access control
 (MAC) system that implements access rights by applying a security
 label referred to as an *SELinux context* to each

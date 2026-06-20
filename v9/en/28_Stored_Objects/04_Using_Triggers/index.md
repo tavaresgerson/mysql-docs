@@ -1,9 +1,5 @@
 ## 27.4 Using Triggers
 
-[27.4.1 Trigger Syntax and Examples](trigger-syntax.html)
-
-[27.4.2 Trigger Metadata](trigger-metadata.html)
-
 A trigger is a named database object that is associated with a
 table, and that activates when a particular event occurs for the
 table. Some uses for triggers are to perform checks of values to be

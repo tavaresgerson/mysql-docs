@@ -1,17 +1,5 @@
 ### 20.2.1 Deploying Group Replication in Single-Primary Mode
 
-[20.2.1.1 Deploying Instances for Group Replication](group-replication-deploying-instances.html)
-
-[20.2.1.2 Configuring an Instance for Group Replication](group-replication-configuring-instances.html)
-
-[20.2.1.3 User Credentials For Distributed Recovery](group-replication-user-credentials.html)
-
-[20.2.1.4 Launching Group Replication](group-replication-launching.html)
-
-[20.2.1.5 Bootstrapping the Group](group-replication-bootstrap.html)
-
-[20.2.1.6 Adding Instances to the Group](group-replication-adding-instances.html)
-
 Each of the MySQL server instances in a group can run on an
 independent physical host machine, which is the recommended way to
 deploy Group Replication. This section explains how to create a

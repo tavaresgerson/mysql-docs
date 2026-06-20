@@ -1,11 +1,5 @@
 ### 15.2.7 INSERT Statement
 
-[15.2.7.1 INSERT ... SELECT Statement](insert-select.html)
-
-[15.2.7.2 INSERT ... ON DUPLICATE KEY UPDATE Statement](insert-on-duplicate.html)
-
-[15.2.7.3 INSERT DELAYED Statement](insert-delayed.html)
-
 ```
 INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY] [IGNORE]
     [INTO] tbl_name

@@ -1,9 +1,5 @@
 ### 20.7.9 Monitoring Group Replication Memory Usage with Performance Schema Memory Instrumentation
 
-[20.7.9.1 Enabling or Disabling Group Replication Instrumentation](mysql-gr-memory-monitoring-ps-instruments-enable.html)
-
-[20.7.9.2 Example Queries](mysql-gr-memory-monitoring-ps-sample-queries.html)
-
 The MySQL [Performance
 Schema](performance-schema.html "Chapter 29 MySQL Performance Schema") provides instrumentation for performance monitoring
 of Group Replication memory usage. To view the available Group

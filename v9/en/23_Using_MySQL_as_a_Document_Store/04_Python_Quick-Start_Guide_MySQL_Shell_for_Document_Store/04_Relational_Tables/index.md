@@ -1,13 +1,5 @@
 ### 22.4.4 Relational Tables
 
-[22.4.4.1 Insert Records into Tables](mysql-shell-tutorial-python-table-insert.html)
-
-[22.4.4.2 Select Tables](mysql-shell-tutorial-python-table-select.html)
-
-[22.4.4.3 Update Tables](mysql-shell-tutorial-python-table-update.html)
-
-[22.4.4.4 Delete Tables](mysql-shell-tutorial-python-table-delete.html)
-
 You can also use X DevAPI to work with relational tables. In
 MySQL, each relational table is associated with a particular
 storage engine. The examples in this section use

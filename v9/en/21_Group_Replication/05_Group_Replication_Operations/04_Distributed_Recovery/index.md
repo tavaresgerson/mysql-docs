@@ -1,15 +1,5 @@
 ### 20.5.4 Distributed Recovery
 
-[20.5.4.1 Connections for Distributed Recovery](group-replication-distributed-recovery-connections.html)
-
-[20.5.4.2 Cloning for Distributed Recovery](group-replication-cloning.html)
-
-[20.5.4.3 Configuring Distributed Recovery](group-replication-tuning-recovery.html)
-
-[20.5.4.4 Fault Tolerance for Distributed Recovery](group-replication-distributed-recovery-fault.html)
-
-[20.5.4.5 How Distributed Recovery Works](group-replication-view-changes.html)
-
 Whenever a member joins or rejoins a replication group, it must
 catch up with the transactions that were applied by the group
 members before it joined, or while it was away. This process is

@@ -1,9 +1,5 @@
 ## 12.2 Character Sets and Collations in MySQL
 
-[12.2.1 Character Set Repertoire](charset-repertoire.html)
-
-[12.2.2 UTF-8 for Metadata](charset-metadata.html)
-
 MySQL Server supports multiple character sets, including several
 Unicode character sets. To display the available character sets,
 use the `INFORMATION_SCHEMA`

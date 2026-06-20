@@ -1,31 +1,5 @@
 ### 8.4.1 Authentication Plugins
 
-[8.4.1.1 Caching SHA-2 Pluggable Authentication](caching-sha2-pluggable-authentication.html)
-
-[8.4.1.2 SHA-256 Pluggable Authentication](sha256-pluggable-authentication.html)
-
-[8.4.1.3 Client-Side Cleartext Pluggable Authentication](cleartext-pluggable-authentication.html)
-
-[8.4.1.4 PAM Pluggable Authentication](pam-pluggable-authentication.html)
-
-[8.4.1.5 Windows Pluggable Authentication](windows-pluggable-authentication.html)
-
-[8.4.1.6 LDAP Pluggable Authentication](ldap-pluggable-authentication.html)
-
-[8.4.1.7 Kerberos Pluggable Authentication](kerberos-pluggable-authentication.html)
-
-[8.4.1.8 No-Login Pluggable Authentication](no-login-pluggable-authentication.html)
-
-[8.4.1.9 OpenID Connect Pluggable Authentication](openid-pluggable-authentication.html)
-
-[8.4.1.10 Socket Peer-Credential Pluggable Authentication](socket-pluggable-authentication.html)
-
-[8.4.1.11 WebAuthn Pluggable Authentication](webauthn-pluggable-authentication.html)
-
-[8.4.1.12 Test Pluggable Authentication](test-pluggable-authentication.html)
-
-[8.4.1.13 Pluggable Authentication System Variables](pluggable-authentication-system-variables.html)
-
 Note
 
 If you are looking for information about the

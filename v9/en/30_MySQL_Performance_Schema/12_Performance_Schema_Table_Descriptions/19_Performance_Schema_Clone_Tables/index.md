@@ -1,9 +1,5 @@
 ### 29.12.19 Performance Schema Clone Tables
 
-[29.12.19.1 The clone\_status Table](performance-schema-clone-status-table.html)
-
-[29.12.19.2 The clone\_progress Table](performance-schema-clone-progress-table.html)
-
 The following sections describe the Performance Schema tables
 associated with the clone plugin (see
 [Section 7.6.6, “The Clone Plugin”](clone-plugin.html "7.6.6 The Clone Plugin")). The tables provide information

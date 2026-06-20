@@ -1,9 +1,5 @@
 ## 14.6 Numeric Functions and Operators
 
-[14.6.1 Arithmetic Operators](arithmetic-functions.html)
-
-[14.6.2 Mathematical Functions](mathematical-functions.html)
-
 **Table 14.8 Numeric Functions and Operators**
 
 <table frame="box" rules="all" summary="A reference that lists numeric functions and operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th>

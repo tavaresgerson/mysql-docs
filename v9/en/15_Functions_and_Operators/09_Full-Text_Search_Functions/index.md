@@ -1,23 +1,5 @@
 ## 14.9 Full-Text Search Functions
 
-[14.9.1 Natural Language Full-Text Searches](fulltext-natural-language.html)
-
-[14.9.2 Boolean Full-Text Searches](fulltext-boolean.html)
-
-[14.9.3 Full-Text Searches with Query Expansion](fulltext-query-expansion.html)
-
-[14.9.4 Full-Text Stopwords](fulltext-stopwords.html)
-
-[14.9.5 Full-Text Restrictions](fulltext-restrictions.html)
-
-[14.9.6 Fine-Tuning MySQL Full-Text Search](fulltext-fine-tuning.html)
-
-[14.9.7 Adding a User-Defined Collation for Full-Text Indexing](full-text-adding-collation.html)
-
-[14.9.8 ngram Full-Text Parser](fulltext-search-ngram.html)
-
-[14.9.9 MeCab Full-Text Parser Plugin](fulltext-search-mecab.html)
-
 [`MATCH
 (col1,col2,...)
 AGAINST (expr

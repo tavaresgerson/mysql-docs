@@ -1,17 +1,5 @@
 ## 7.4 MySQL Server Logs
 
-[7.4.1 Selecting General Query Log and Slow Query Log Output Destinations](log-destinations.html)
-
-[7.4.2 The Error Log](error-log.html)
-
-[7.4.3 The General Query Log](query-log.html)
-
-[7.4.4 The Binary Log](binary-log.html)
-
-[7.4.5 The Slow Query Log](slow-query-log.html)
-
-[7.4.6 Server Log Maintenance](log-file-maintenance.html)
-
 MySQL Server has several logs that can help you find out what
 activity is taking place.
 

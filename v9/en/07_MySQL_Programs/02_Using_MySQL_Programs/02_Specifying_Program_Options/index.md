@@ -1,17 +1,5 @@
 ### 6.2.2 Specifying Program Options
 
-[6.2.2.1 Using Options on the Command Line](command-line-options.html)
-
-[6.2.2.2 Using Option Files](option-files.html)
-
-[6.2.2.3 Command-Line Options that Affect Option-File Handling](option-file-options.html)
-
-[6.2.2.4 Program Option Modifiers](option-modifiers.html)
-
-[6.2.2.5 Using Options to Set Program Variables](program-variables.html)
-
-[6.2.2.6 Option Defaults, Options Expecting Values, and the = Sign](option-defaults-equals.html)
-
 There are several ways to specify options for MySQL programs:
 
 * List the options on the command line following the program

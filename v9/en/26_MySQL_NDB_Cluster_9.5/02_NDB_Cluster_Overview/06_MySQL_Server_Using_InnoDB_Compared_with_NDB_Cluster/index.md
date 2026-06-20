@@ -1,11 +1,5 @@
 ### 25.2.6 MySQL Server Using InnoDB Compared with NDB Cluster
 
-[25.2.6.1 Differences Between the NDB and InnoDB Storage Engines](mysql-cluster-ndb-innodb-engines.html)
-
-[25.2.6.2 NDB and InnoDB Workloads](mysql-cluster-ndb-innodb-workloads.html)
-
-[25.2.6.3 NDB and InnoDB Feature Usage Summary](mysql-cluster-ndb-innodb-usage.html)
-
 MySQL Server offers a number of choices in storage engines. Since
 both [`NDB`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 9.5") and
 [`InnoDB`](innodb-storage-engine.html "Chapter 17 The InnoDB Storage Engine") can serve as transactional

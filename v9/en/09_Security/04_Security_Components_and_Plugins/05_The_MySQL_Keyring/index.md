@@ -1,43 +1,5 @@
 ### 8.4.5 The MySQL Keyring
 
-[8.4.5.1 Keyring Components Versus Keyring Plugins](keyring-component-plugin-comparison.html)
-
-[8.4.5.2 Keyring Component Installation](keyring-component-installation.html)
-
-[8.4.5.3 Keyring Plugin Installation](keyring-plugin-installation.html)
-
-[8.4.5.4 Using the component\_keyring\_file File-Based Keyring Component](keyring-file-component.html)
-
-[8.4.5.5 Using the component\_keyring\_encrypted\_file Encrypted File-Based Keyring Component](keyring-encrypted-file-component.html)
-
-[8.4.5.6 Using the keyring\_okv KMIP Plugin](keyring-okv-plugin.html)
-
-[8.4.5.7 Using the component\_keyring\_kmip KMIP Component](keyring-okv-component.html)
-
-[8.4.5.8 Using the keyring\_aws Amazon Web Services Keyring Plugin](keyring-aws-plugin.html)
-
-[8.4.5.9 Using the component\_keyring\_aws AWS Keyring Component](keyring-aws-component.html)
-
-[8.4.5.10 Using the HashiCorp Vault Keyring Plugin](keyring-hashicorp-plugin.html)
-
-[8.4.5.11 Using the HashiCorp Vault Keyring Component](keyring-hashicorp-component.html)
-
-[8.4.5.12 Using the Oracle Cloud Infrastructure Vault Keyring Component](keyring-oci-component.html)
-
-[8.4.5.13 Supported Keyring Key Types and Lengths](keyring-key-types.html)
-
-[8.4.5.14 Migrating Keys Between Keyring Keystores](keyring-key-migration.html)
-
-[8.4.5.15 General-Purpose Keyring Key-Management Functions](keyring-functions-general-purpose.html)
-
-[8.4.5.16 Plugin-Specific Keyring Key-Management Functions](keyring-functions-plugin-specific.html)
-
-[8.4.5.17 Keyring Metadata](keyring-metadata.html)
-
-[8.4.5.18 Keyring Command Options](keyring-options.html)
-
-[8.4.5.19 Keyring System Variables](keyring-system-variables.html)
-
 MySQL Server supports a keyring that enables internal server
 components and plugins to securely store sensitive information for
 later retrieval. The implementation comprises these elements:

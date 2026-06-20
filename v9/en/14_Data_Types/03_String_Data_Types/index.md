@@ -1,19 +1,5 @@
 ## 13.3 String Data Types
 
-[13.3.1 String Data Type Syntax](string-type-syntax.html)
-
-[13.3.2 The CHAR and VARCHAR Types](char.html)
-
-[13.3.3 The BINARY and VARBINARY Types](binary-varbinary.html)
-
-[13.3.4 The BLOB and TEXT Types](blob.html)
-
-[13.3.5 The VECTOR Type](vector.html)
-
-[13.3.6 The ENUM Type](enum.html)
-
-[13.3.7 The SET Type](set.html)
-
 The string data types are [`CHAR`](char.html "13.3.2 The CHAR and VARCHAR Types"),
 [`VARCHAR`](char.html "13.3.2 The CHAR and VARCHAR Types"),
 [`BINARY`](binary-varbinary.html "13.3.3 The BINARY and VARBINARY Types"),

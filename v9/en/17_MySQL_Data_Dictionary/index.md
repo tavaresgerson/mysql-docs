@@ -1,23 +1,5 @@
 # Chapter 16 MySQL Data Dictionary
 
-**Table of Contents**
-
-[16.1 Data Dictionary Schema](data-dictionary-schema.html)
-
-[16.2 Removal of File-based Metadata Storage](data-dictionary-file-removal.html)
-
-[16.3 Transactional Storage of Dictionary Data](data-dictionary-transactional-storage.html)
-
-[16.4 Dictionary Object Cache](data-dictionary-object-cache.html)
-
-[16.5 INFORMATION\_SCHEMA and Data Dictionary Integration](data-dictionary-information-schema.html)
-
-[16.6 Serialized Dictionary Information (SDI)](serialized-dictionary-information.html)
-
-[16.7 Data Dictionary Usage Differences](data-dictionary-usage-differences.html)
-
-[16.8 Data Dictionary Limitations](data-dictionary-limitations.html)
-
 MySQL Server incorporates a transactional data dictionary that
 stores information about database objects. In previous MySQL
 releases, dictionary data was stored in metadata files,

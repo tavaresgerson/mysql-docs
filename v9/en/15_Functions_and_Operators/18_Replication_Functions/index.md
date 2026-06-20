@@ -1,13 +1,5 @@
 ## 14.18 Replication Functions
 
-[14.18.1 Group Replication Functions](group-replication-functions.html)
-
-[14.18.2 Functions Used with Global Transaction Identifiers (GTIDs)](gtid-functions.html)
-
-[14.18.3 Asynchronous Replication Channel Failover Functions](replication-functions-async-failover.html)
-
-[14.18.4 Position-Based Synchronization Functions](replication-functions-synchronization.html)
-
 The functions described in the following sections are used with
 MySQL Replication.
 

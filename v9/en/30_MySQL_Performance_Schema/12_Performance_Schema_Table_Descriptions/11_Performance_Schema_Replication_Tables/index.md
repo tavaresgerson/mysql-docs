@@ -1,41 +1,5 @@
 ### 29.12.11 Performance Schema Replication Tables
 
-[29.12.11.1 The binary\_log\_transaction\_compression\_stats Table](performance-schema-binary-log-transaction-compression-stats-table.html)
-
-[29.12.11.2 The replication\_applier\_configuration Table](performance-schema-replication-applier-configuration-table.html)
-
-[29.12.11.3 The replication\_applier\_filters Table](performance-schema-replication-applier-filters-table.html)
-
-[29.12.11.4 The replication\_applier\_global\_filters Table](performance-schema-replication-applier-global-filters-table.html)
-
-[29.12.11.5 The replication\_applier\_metrics Table](performance-schema-replication-applier-metrics-table.html)
-
-[29.12.11.6 The replication\_applier\_progress\_by\_worker Table](performance-schema-replication-applier-progress-by-worker-table.html)
-
-[29.12.11.7 The replication\_applier\_status Table](performance-schema-replication-applier-status-table.html)
-
-[29.12.11.8 The replication\_applier\_status\_by\_coordinator Table](performance-schema-replication-applier-status-by-coordinator-table.html)
-
-[29.12.11.9 The replication\_applier\_status\_by\_worker Table](performance-schema-replication-applier-status-by-worker-table.html)
-
-[29.12.11.10 The replication\_asynchronous\_connection\_failover Table](performance-schema-replication-asynchronous-connection-failover-table.html)
-
-[29.12.11.11 The replication\_asynchronous\_connection\_failover\_managed Table](performance-schema-replication-asynchronous-connection-failover-managed-table.html)
-
-[29.12.11.12 The replication\_connection\_configuration Table](performance-schema-replication-connection-configuration-table.html)
-
-[29.12.11.13 The replication\_connection\_status Table](performance-schema-replication-connection-status-table.html)
-
-[29.12.11.14 The replication\_group\_communication\_information Table](performance-schema-replication-group-communication-information-table.html)
-
-[29.12.11.15 The replication\_group\_configuration\_version Table](performance-schema-replication-group-configuration-version-table.html)
-
-[29.12.11.16 The replication\_group\_member\_actions Table](performance-schema-replication-group-member-actions-table.html)
-
-[29.12.11.17 The replication\_group\_member\_stats Table](performance-schema-replication-group-member-stats-table.html)
-
-[29.12.11.18 The replication\_group\_members Table](performance-schema-replication-group-members-table.html)
-
 The Performance Schema provides tables that expose replication
 information. This is similar to the information available from
 the [`SHOW

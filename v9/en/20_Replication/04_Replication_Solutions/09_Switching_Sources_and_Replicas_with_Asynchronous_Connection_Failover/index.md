@@ -1,9 +1,5 @@
 ### 19.4.9 Switching Sources and Replicas with Asynchronous Connection Failover
 
-[19.4.9.1 Asynchronous Connection Failover for Sources](replication-asynchronous-connection-failover-source.html)
-
-[19.4.9.2 Asynchronous Connection Failover for Replicas](replication-asynchronous-connection-failover-replica.html)
-
 You can use the asynchronous connection failover mechanism to
 establish an asynchronous (source-to-replica) replication
 connection to a new source automatically, after the existing

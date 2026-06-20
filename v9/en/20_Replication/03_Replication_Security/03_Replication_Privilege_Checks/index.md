@@ -1,11 +1,5 @@
 ### 19.3.3 Replication Privilege Checks
 
-[19.3.3.1 Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account](replication-privilege-checks-account.html)
-
-[19.3.3.2 Privilege Checks For Group Replication Channels](replication-privilege-checks-gr.html)
-
-[19.3.3.3 Recovering From Failed Replication Privilege Checks](replication-privilege-checks-recover.html)
-
 By default, MySQL replication (including Group Replication) does
 not carry out privilege checks when transactions that were already
 accepted by another server are applied on a replica or group

@@ -1,11 +1,5 @@
 ### 8.4.2 The Connection Control Component
 
-[8.4.2.1 Connection Control Component Installation](connection-control-component-installation.html)
-
-[8.4.2.2 Connection Control Component Configuration](connection-control-component-configuration.html)
-
-[8.4.2.3 Migrating to the Connection Control Component](connection-control-component-migration.html)
-
 The Connection Control component for MySQL
 (`component_connection_control`) makes it
 possible to introduce an increasing delay in the MySQL

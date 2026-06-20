@@ -1,17 +1,5 @@
 ## 17.7 InnoDB Locking and Transaction Model
 
-[17.7.1 InnoDB Locking](innodb-locking.html)
-
-[17.7.2 InnoDB Transaction Model](innodb-transaction-model.html)
-
-[17.7.3 Locks Set by Different SQL Statements in InnoDB](innodb-locks-set.html)
-
-[17.7.4 Phantom Rows](innodb-next-key-locking.html)
-
-[17.7.5 Deadlocks in InnoDB](innodb-deadlocks.html)
-
-[17.7.6 Transaction Scheduling](innodb-transaction-scheduling.html)
-
 To implement a large-scale, busy, or highly reliable database
 application, to port substantial code from a different database
 system, or to tune MySQL performance, it is important to understand

@@ -1,19 +1,5 @@
 ## 8.1 General Security Issues
 
-[8.1.1 Security Guidelines](security-guidelines.html)
-
-[8.1.2 Keeping Passwords Secure](password-security.html)
-
-[8.1.3 Making MySQL Secure Against Attackers](security-against-attack.html)
-
-[8.1.4 Security-Related mysqld Options and Variables](security-options.html)
-
-[8.1.5 How to Run MySQL as a Normal User](changing-mysql-user.html)
-
-[8.1.6 Security Considerations for LOAD DATA LOCAL](load-data-local-security.html)
-
-[8.1.7 Client Programming Security Guidelines](secure-client-programming.html)
-
 This section describes general security issues to be aware of and
 what you can do to make your MySQL installation more secure against
 attack or misuse. For information specifically about the access

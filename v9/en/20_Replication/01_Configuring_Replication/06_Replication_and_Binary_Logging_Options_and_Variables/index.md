@@ -1,15 +1,5 @@
 ### 19.1.6 Replication and Binary Logging Options and Variables
 
-[19.1.6.1 Replication and Binary Logging Option and Variable Reference](replication-options-reference.html)
-
-[19.1.6.2 Replication Source Options and Variables](replication-options-source.html)
-
-[19.1.6.3 Replica Server Options and Variables](replication-options-replica.html)
-
-[19.1.6.4 Binary Logging Options and Variables](replication-options-binary-log.html)
-
-[19.1.6.5 Global Transaction ID System Variables](replication-options-gtids.html)
-
 The following sections contain information about
 [**mysqld**](mysqld.html "6.3.1 mysqld — The MySQL Server") options and server variables that are used
 in replication and for controlling the binary log. Options and

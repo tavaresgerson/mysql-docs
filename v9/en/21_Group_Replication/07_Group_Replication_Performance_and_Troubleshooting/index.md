@@ -1,23 +1,5 @@
 ## 20.7 Group Replication Performance and Troubleshooting
 
-[20.7.1 Fine Tuning the Group Communication Thread](group-replication-fine-tuning-the-group-communication-thread.html)
-
-[20.7.2 Flow Control](group-replication-flow-control.html)
-
-[20.7.3 Single Consensus Leader](group-replication-single-consensus-leader.html)
-
-[20.7.4 Message Compression](group-replication-message-compression.html)
-
-[20.7.5 Message Fragmentation](group-replication-performance-message-fragmentation.html)
-
-[20.7.6 XCom Cache Management](group-replication-performance-xcom-cache.html)
-
-[20.7.7 Responses to Failure Detection and Network Partitioning](group-replication-responses-failure.html)
-
-[20.7.8 Handling a Network Partition and Loss of Quorum](group-replication-network-partitioning.html)
-
-[20.7.9 Monitoring Group Replication Memory Usage with Performance Schema Memory Instrumentation](mysql-gr-memory-monitoring-ps-instruments.html)
-
 Group Replication is designed to create fault-tolerant systems with
 built-in failure detection and automated recovery. If a member
 server instance leaves voluntarily or stops communicating with the

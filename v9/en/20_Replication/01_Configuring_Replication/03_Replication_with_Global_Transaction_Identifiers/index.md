@@ -1,21 +1,5 @@
 ### 19.1.3 Replication with Global Transaction Identifiers
 
-[19.1.3.1 GTID Format and Storage](replication-gtids-concepts.html)
-
-[19.1.3.2 GTID Life Cycle](replication-gtids-lifecycle.html)
-
-[19.1.3.3 GTID Auto-Positioning](replication-gtids-auto-positioning.html)
-
-[19.1.3.4 Setting Up Replication Using GTIDs](replication-gtids-howto.html)
-
-[19.1.3.5 Using GTIDs for Failover and Scaleout](replication-gtids-failover.html)
-
-[19.1.3.6 Replication From a Source Without GTIDs to a Replica With GTIDs](replication-gtids-assign-anon.html)
-
-[19.1.3.7 Restrictions on Replication with GTIDs](replication-gtids-restrictions.html)
-
-[19.1.3.8 Stored Function Examples to Manipulate GTIDs](replication-gtids-functions.html)
-
 This section explains transaction-based replication using
 global transaction identifiers
 (GTIDs). When using GTIDs, each transaction can be identified and

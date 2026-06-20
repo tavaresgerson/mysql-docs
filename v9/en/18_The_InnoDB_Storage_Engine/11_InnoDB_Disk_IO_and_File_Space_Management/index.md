@@ -1,15 +1,5 @@
 ## 17.11 InnoDB Disk I/O and File Space Management
 
-[17.11.1 InnoDB Disk I/O](innodb-disk-io.html)
-
-[17.11.2 File Space Management](innodb-file-space.html)
-
-[17.11.3 InnoDB Checkpoints](innodb-checkpoints.html)
-
-[17.11.4 Defragmenting a Table](innodb-file-defragmenting.html)
-
-[17.11.5 Reclaiming Disk Space with TRUNCATE TABLE](innodb-truncate-table-reclaim-space.html)
-
 As a DBA, you must manage disk I/O to keep the I/O subsystem from
 becoming saturated, and manage disk space to avoid filling up
 storage devices. The [ACID](glossary.html#glos_acid "ACID") design

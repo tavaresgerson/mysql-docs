@@ -1,21 +1,5 @@
 ## 7.6 MySQL Server Plugins
 
-[7.6.1 Installing and Uninstalling Plugins](plugin-loading.html)
-
-[7.6.2 Obtaining Server Plugin Information](obtaining-plugin-information.html)
-
-[7.6.3 MySQL Enterprise Thread Pool](thread-pool.html)
-
-[7.6.4 The Rewriter Query Rewrite Plugin](rewriter-query-rewrite-plugin.html)
-
-[7.6.5 The ddl\_rewriter Plugin](ddl-rewriter.html)
-
-[7.6.6 The Clone Plugin](clone-plugin.html)
-
-[7.6.7 The Keyring Proxy Bridge Plugin](daemon-keyring-proxy-plugin.html)
-
-[7.6.8 MySQL Plugin Services](plugin-services.html)
-
 MySQL supports an plugin API that enables creation of server
 plugins. Plugins can be loaded at server startup, or loaded and
 unloaded at runtime without restarting the server. The plugins

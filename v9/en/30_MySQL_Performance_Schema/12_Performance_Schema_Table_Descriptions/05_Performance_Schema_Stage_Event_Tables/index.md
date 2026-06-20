@@ -1,11 +1,5 @@
 ### 29.12.5 Performance Schema Stage Event Tables
 
-[29.12.5.1 The events\_stages\_current Table](performance-schema-events-stages-current-table.html)
-
-[29.12.5.2 The events\_stages\_history Table](performance-schema-events-stages-history-table.html)
-
-[29.12.5.3 The events\_stages\_history\_long Table](performance-schema-events-stages-history-long-table.html)
-
 The Performance Schema instruments stages, which are steps
 during the statement-execution process, such as parsing a
 statement, opening a table, or performing a

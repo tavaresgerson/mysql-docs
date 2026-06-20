@@ -1,11 +1,5 @@
 ## 1.7 MySQL Standards Compliance
 
-[1.7.1 MySQL Extensions to Standard SQL](extensions-to-ansi.html)
-
-[1.7.2 MySQL Differences from Standard SQL](differences-from-ansi.html)
-
-[1.7.3 How MySQL Deals with Constraints](constraints.html)
-
 This section describes how MySQL relates to the ANSI/ISO SQL
 standards. MySQL Server has many extensions to the SQL standard,
 and here you can find out what they are and how to use them. You

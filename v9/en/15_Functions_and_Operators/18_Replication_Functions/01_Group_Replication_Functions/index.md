@@ -1,15 +1,5 @@
 ### 14.18.1 Group Replication Functions
 
-[14.18.1.1 Function which Configures Group Replication Primary](group-replication-functions-for-new-primary.html)
-
-[14.18.1.2 Functions which Configure the Group Replication Mode](group-replication-functions-for-mode.html)
-
-[14.18.1.3 Functions to Inspect and Configure the Maximum Consensus Instances of a Group](group-replication-functions-for-maximum-consensus.html)
-
-[14.18.1.4 Functions to Inspect and Set the Group Replication Communication Protocol Version](group-replication-functions-for-communication-protocol.html)
-
-[14.18.1.5 Functions to Set and Reset Group Replication Member Actions](group-replication-functions-for-member-actions.html)
-
 The functions described in the following sections are used with
 Group Replication.
 

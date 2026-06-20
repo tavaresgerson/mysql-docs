@@ -1,21 +1,5 @@
 ## 15.6 Compound Statement Syntax
 
-[15.6.1 BEGIN ... END Compound Statement](begin-end.html)
-
-[15.6.2 Statement Labels](statement-labels.html)
-
-[15.6.3 DECLARE Statement](declare.html)
-
-[15.6.4 Variables in Stored Programs](stored-program-variables.html)
-
-[15.6.5 Flow Control Statements](flow-control-statements.html)
-
-[15.6.6 Cursors](cursors.html)
-
-[15.6.7 Condition Handling](condition-handling.html)
-
-[15.6.8 Restrictions on Condition Handling](condition-handling-restrictions.html)
-
 This section describes the syntax for the
 [`BEGIN ... END`](begin-end.html "15.6.1 BEGIN ... END Compound Statement")
 compound statement and other statements that can be used in the body

@@ -1,9 +1,5 @@
 ### 19.2.4 Relay Log and Replication Metadata Repositories
 
-[19.2.4.1 The Relay Log](replica-logs-relaylog.html)
-
-[19.2.4.2 Replication Metadata Repositories](replica-logs-status.html)
-
 A replica server creates several repositories of information to
 use for the replication process:
 

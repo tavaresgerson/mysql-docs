@@ -1,11 +1,5 @@
 ### 8.4.4 The Password Validation Component
 
-[8.4.4.1 Password Validation Component Installation and Uninstallation](validate-password-installation.html)
-
-[8.4.4.2 Password Validation Options and Variables](validate-password-options-variables.html)
-
-[8.4.4.3 Transitioning to the Password Validation Component](validate-password-transitioning.html)
-
 The `validate_password` component serves to
 improve security by requiring account passwords and enabling
 strength testing of potential passwords. This component exposes

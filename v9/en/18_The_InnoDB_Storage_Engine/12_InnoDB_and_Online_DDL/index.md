@@ -1,21 +1,5 @@
 ## 17.12 InnoDB and Online DDL
 
-[17.12.1 Online DDL Operations](innodb-online-ddl-operations.html)
-
-[17.12.2 Online DDL Performance and Concurrency](innodb-online-ddl-performance.html)
-
-[17.12.3 Online DDL Space Requirements](innodb-online-ddl-space-requirements.html)
-
-[17.12.4 Online DDL Memory Management](online-ddl-memory-management.html)
-
-[17.12.5 Configuring Parallel Threads for Online DDL Operations](online-ddl-parallel-thread-configuration.html)
-
-[17.12.6 Simplifying DDL Statements with Online DDL](innodb-online-ddl-single-multi.html)
-
-[17.12.7 Online DDL Failure Conditions](innodb-online-ddl-failure-conditions.html)
-
-[17.12.8 Online DDL Limitations](innodb-online-ddl-limitations.html)
-
 The online DDL feature provides support for instant and in-place
 table alterations and concurrent DML. Benefits of this feature
 include:

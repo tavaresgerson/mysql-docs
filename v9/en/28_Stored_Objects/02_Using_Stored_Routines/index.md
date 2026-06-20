@@ -1,13 +1,5 @@
 ## 27.2 Using Stored Routines
 
-[27.2.1 Stored Routine Syntax](stored-routines-syntax.html)
-
-[27.2.2 Stored Routines and MySQL Privileges](stored-routines-privileges.html)
-
-[27.2.3 Stored Routine Metadata](stored-routines-metadata.html)
-
-[27.2.4 Stored Procedures, Functions, Triggers, and LAST\_INSERT\_ID()](stored-routines-last-insert-id.html)
-
 MySQL supports stored routines (procedures and functions). A stored
 routine is a set of SQL statements that can be stored in the server.
 Once this has been done, clients don't need to keep reissuing the

@@ -1,9 +1,5 @@
 ## 18.7 The MERGE Storage Engine
 
-[18.7.1 MERGE Table Advantages and Disadvantages](merge-table-advantages.html)
-
-[18.7.2 MERGE Table Problems](merge-table-problems.html)
-
 The `MERGE` storage engine, also known as the
 `MRG_MyISAM` engine, is a collection of identical
 `MyISAM` tables that can be used as one.

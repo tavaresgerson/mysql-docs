@@ -1,13 +1,5 @@
 ### 29.12.14 Performance Schema System Variable Tables
 
-[29.12.14.1 Performance Schema global\_variable\_attributes Table](performance-schema-global-variable-attributes-table.html)
-
-[29.12.14.2 Performance Schema persisted\_variables Table](performance-schema-persisted-variables-table.html)
-
-[29.12.14.3 Performance Schema variables\_info Table](performance-schema-variables-info-table.html)
-
-[29.12.14.4 Performance Schema variables\_metadata Table](performance-schema-variables-metadata-table.html)
-
 The MySQL server maintains many system variables that indicate
 how it is configured (see
 [Section 7.1.8, “Server System Variables”](server-system-variables.html "7.1.8 Server System Variables")). System variable

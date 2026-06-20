@@ -1,11 +1,5 @@
 ### 7.6.4 The Rewriter Query Rewrite Plugin
 
-[7.6.4.1 Installing or Uninstalling the Rewriter Query Rewrite Plugin](rewriter-query-rewrite-plugin-installation.html)
-
-[7.6.4.2 Using the Rewriter Query Rewrite Plugin](rewriter-query-rewrite-plugin-usage.html)
-
-[7.6.4.3 Rewriter Query Rewrite Plugin Reference](rewriter-query-rewrite-plugin-reference.html)
-
 MySQL supports query rewrite plugins that can examine and possibly
 modify SQL statements received by the server before the server
 executes them. See [Query Rewrite Plugins](/doc/extending-mysql/9.5/en/plugin-types.html#query-rewrite-plugin-type).

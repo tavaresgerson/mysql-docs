@@ -1,11 +1,5 @@
 ### 15.1.11 ALTER TABLE Statement
 
-[15.1.11.1 ALTER TABLE Partition Operations](alter-table-partition-operations.html)
-
-[15.1.11.2 ALTER TABLE and Generated Columns](alter-table-generated-columns.html)
-
-[15.1.11.3 ALTER TABLE Examples](alter-table-examples.html)
-
 ```
 ALTER TABLE tbl_name
     [alter_option [, alter_option] ...]

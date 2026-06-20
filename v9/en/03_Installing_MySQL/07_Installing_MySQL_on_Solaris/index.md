@@ -1,7 +1,5 @@
 ## 2.7 Installing MySQL on Solaris
 
-[2.7.1 Installing MySQL on Solaris Using a Solaris PKG](solaris-installation-pkg.html)
-
 Note
 
 MySQL 9.5 supports Solaris 11.4 and higher

@@ -1,21 +1,5 @@
 ### 15.6.5 Flow Control Statements
 
-[15.6.5.1 CASE Statement](case.html)
-
-[15.6.5.2 IF Statement](if.html)
-
-[15.6.5.3 ITERATE Statement](iterate.html)
-
-[15.6.5.4 LEAVE Statement](leave.html)
-
-[15.6.5.5 LOOP Statement](loop.html)
-
-[15.6.5.6 REPEAT Statement](repeat.html)
-
-[15.6.5.7 RETURN Statement](return.html)
-
-[15.6.5.8 WHILE Statement](while.html)
-
 MySQL supports the [`IF`](if.html "15.6.5.2 IF Statement"),
 [`CASE`](case.html "15.6.5.1 CASE Statement"),
 [`ITERATE`](iterate.html "15.6.5.3 ITERATE Statement"),

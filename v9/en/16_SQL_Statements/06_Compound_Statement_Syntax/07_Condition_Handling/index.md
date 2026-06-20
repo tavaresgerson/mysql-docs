@@ -1,21 +1,5 @@
 ### 15.6.7 Condition Handling
 
-[15.6.7.1 DECLARE ... CONDITION Statement](declare-condition.html)
-
-[15.6.7.2 DECLARE ... HANDLER Statement](declare-handler.html)
-
-[15.6.7.3 GET DIAGNOSTICS Statement](get-diagnostics.html)
-
-[15.6.7.4 RESIGNAL Statement](resignal.html)
-
-[15.6.7.5 SIGNAL Statement](signal.html)
-
-[15.6.7.6 Scope Rules for Handlers](handler-scope.html)
-
-[15.6.7.7 The MySQL Diagnostics Area](diagnostics-area.html)
-
-[15.6.7.8 Condition Handling and OUT or INOUT Parameters](conditions-and-parameters.html)
-
 Conditions may arise during stored program execution that require
 special handling, such as exiting the current program block or
 continuing execution. Handlers can be defined for general

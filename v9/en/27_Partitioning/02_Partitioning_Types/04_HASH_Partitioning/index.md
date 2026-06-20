@@ -1,7 +1,5 @@
 ### 26.2.4 HASH Partitioning
 
-[26.2.4.1 LINEAR HASH Partitioning](partitioning-linear-hash.html)
-
 Partitioning by `HASH` is used primarily to
 ensure an even distribution of data among a predetermined number
 of partitions. With range or list partitioning, you must specify

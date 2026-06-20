@@ -1,13 +1,5 @@
 ### 1.7.2 MySQL Differences from Standard SQL
 
-[1.7.2.1 SELECT INTO TABLE Differences](ansi-diff-select-into-table.html)
-
-[1.7.2.2 UPDATE Differences](ansi-diff-update.html)
-
-[1.7.2.3 FOREIGN KEY Constraint Differences](ansi-diff-foreign-keys.html)
-
-[1.7.2.4 '--' as the Start of a Comment](ansi-diff-comments.html)
-
 We try to make MySQL Server follow the ANSI SQL standard and the
 ODBC SQL standard, but MySQL Server performs operations
 differently in some cases:

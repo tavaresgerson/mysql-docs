@@ -1,9 +1,5 @@
 ## 29.19 Using the Performance Schema to Diagnose Problems
 
-[29.19.1 Query Profiling Using Performance Schema](performance-schema-query-profiling.html)
-
-[29.19.2 Obtaining Parent Event Information](performance-schema-obtaining-parent-events.html)
-
 The Performance Schema is a tool to help a DBA do performance
 tuning by taking real measurements instead of “wild
 guesses.” This section demonstrates some ways to use the

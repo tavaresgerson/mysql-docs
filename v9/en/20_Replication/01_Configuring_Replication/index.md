@@ -1,19 +1,5 @@
 ## 19.1 Configuring Replication
 
-[19.1.1 Binary Log File Position Based Replication Configuration Overview](binlog-replication-configuration-overview.html)
-
-[19.1.2 Setting Up Binary Log File Position Based Replication](replication-howto.html)
-
-[19.1.3 Replication with Global Transaction Identifiers](replication-gtids.html)
-
-[19.1.4 Changing GTID Mode on Online Servers](replication-mode-change-online.html)
-
-[19.1.5 MySQL Multi-Source Replication](replication-multi-source.html)
-
-[19.1.6 Replication and Binary Logging Options and Variables](replication-options.html)
-
-[19.1.7 Common Replication Administration Tasks](replication-administration.html)
-
 This section describes how to configure the different types of
 replication available in MySQL and includes the setup and
 configuration required for a replication environment, including

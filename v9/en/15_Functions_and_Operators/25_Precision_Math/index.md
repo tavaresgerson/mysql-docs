@@ -1,15 +1,5 @@
 ## 14.25 Precision Math
 
-[14.25.1 Types of Numeric Values](precision-math-numbers.html)
-
-[14.25.2 DECIMAL Data Type Characteristics](precision-math-decimal-characteristics.html)
-
-[14.25.3 Expression Handling](precision-math-expressions.html)
-
-[14.25.4 Rounding Behavior](precision-math-rounding.html)
-
-[14.25.5 Precision Math Examples](precision-math-examples.html)
-
 MySQL provides support for precision math: numeric value handling
 that results in extremely accurate results and a high degree control
 over invalid values. Precision math is based on these two features:

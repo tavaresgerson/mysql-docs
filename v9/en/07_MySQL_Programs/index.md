@@ -2,9 +2,6 @@
 
 **Table of Contents**
 
-[6.1 Overview of MySQL Programs](programs-overview.html)
-
-[6.2 Using MySQL Programs](programs-using.html)
 :   [6.2.1 Invoking MySQL Programs](invoking-programs.html)
 
     [6.2.2 Specifying Program Options](program-options.html)
@@ -23,7 +20,6 @@
 
     [6.2.9 Setting Environment Variables](setting-environment-variables.html)
 
-[6.3 Server and Server-Startup Programs](programs-server.html)
 :   [6.3.1 mysqld — The MySQL Server](mysqld.html)
 
     [6.3.2 mysqld\_safe — MySQL Server Startup Script](mysqld-safe.html)
@@ -32,14 +28,12 @@
 
     [6.3.4 mysqld\_multi — Manage Multiple MySQL Servers](mysqld-multi.html)
 
-[6.4 Installation-Related Programs](programs-installation.html)
 :   [6.4.1 comp\_err — Compile MySQL Error Message File](comp-err.html)
 
     [6.4.2 mysql\_secure\_installation — Improve MySQL Installation Security](mysql-secure-installation.html)
 
     [6.4.3 mysql\_tzinfo\_to\_sql — Load the Time Zone Tables](mysql-tzinfo-to-sql.html)
 
-[6.5 Client Programs](programs-client.html)
 :   [6.5.1 mysql — The MySQL Command-Line Client](mysql.html)
 
     [6.5.2 mysqladmin — A MySQL Server Administration Program](mysqladmin.html)
@@ -56,7 +50,6 @@
 
     [6.5.8 mysqldm — The MySQL Diagnostic Monitor](mysqldm.html)
 
-[6.6 Administrative and Utility Programs](programs-admin-utils.html)
 :   [6.6.1 ibd2sdi — InnoDB Tablespace SDI Extraction Utility](ibd2sdi.html)
 
     [6.6.2 innochecksum — Offline InnoDB File Checksum Utility](innochecksum.html)
@@ -77,17 +70,11 @@
 
     [6.6.10 mysqldumpslow — Summarize Slow Query Log Files](mysqldumpslow.html)
 
-[6.7 Program Development Utilities](programs-development.html)
 :   [6.7.1 mysql\_config — Display Options for Compiling Clients](mysql-config.html)
 
     [6.7.2 my\_print\_defaults — Display Options from Option Files](my-print-defaults.html)
 
-[6.8 Miscellaneous Programs](programs-miscellaneous.html)
 :   [6.8.1 perror — Display MySQL Error Message Information](perror.html)
-
-[6.9 Environment Variables](environment-variables.html)
-
-[6.10 Unix Signal Handling in MySQL](unix-signal-response.html)
 
 This chapter provides a brief overview of the MySQL command-line
 programs provided by Oracle Corporation. It also discusses the

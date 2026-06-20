@@ -1,11 +1,5 @@
 ### 10.2.5 Optimizing Data Change Statements
 
-[10.2.5.1 Optimizing INSERT Statements](insert-optimization.html)
-
-[10.2.5.2 Optimizing UPDATE Statements](update-optimization.html)
-
-[10.2.5.3 Optimizing DELETE Statements](delete-optimization.html)
-
 This section explains how to speed up data change statements:
 [`INSERT`](insert.html "15.2.7 INSERT Statement"),
 [`UPDATE`](update.html "15.2.17 UPDATE Statement"), and

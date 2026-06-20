@@ -1,9 +1,5 @@
 ### 15.6.4 Variables in Stored Programs
 
-[15.6.4.1 Local Variable DECLARE Statement](declare-local-variable.html)
-
-[15.6.4.2 Local Variable Scope and Resolution](local-variable-scope.html)
-
 System variables and user-defined variables can be used in stored
 programs, just as they can be used outside stored-program context.
 In addition, stored programs can use `DECLARE` to

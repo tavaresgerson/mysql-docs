@@ -1,9 +1,5 @@
 ### 20.8.1 Combining Different Member Versions in a Group
 
-[20.8.1.1 Member Versions During Upgrades](group-replication-compatibility-upgrade.html)
-
-[20.8.1.2 Group Replication Communication Protocol Version](group-replication-compatibility-communication.html)
-
 Group Replication is versioned according to the MySQL Server
 version that the Group Replication plugin was bundled with. For
 example, if a member is running MySQL 9.5.0 then that

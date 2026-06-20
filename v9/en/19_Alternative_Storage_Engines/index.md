@@ -1,52 +1,5 @@
 # Chapter 18 Alternative Storage Engines
 
-**Table of Contents**
-
-[18.1 Setting the Storage Engine](storage-engine-setting.html)
-
-[18.2 The MyISAM Storage Engine](myisam-storage-engine.html)
-:   [18.2.1 MyISAM Startup Options](myisam-start.html)
-
-    [18.2.2 Space Needed for Keys](key-space.html)
-
-    [18.2.3 MyISAM Table Storage Formats](myisam-table-formats.html)
-
-    [18.2.4 MyISAM Table Problems](myisam-table-problems.html)
-
-[18.3 The MEMORY Storage Engine](memory-storage-engine.html)
-
-[18.4 The CSV Storage Engine](csv-storage-engine.html)
-:   [18.4.1 Repairing and Checking CSV Tables](se-csv-repair.html)
-
-    [18.4.2 CSV Limitations](se-csv-limitations.html)
-
-[18.5 The ARCHIVE Storage Engine](archive-storage-engine.html)
-
-[18.6 The BLACKHOLE Storage Engine](blackhole-storage-engine.html)
-
-[18.7 The MERGE Storage Engine](merge-storage-engine.html)
-:   [18.7.1 MERGE Table Advantages and Disadvantages](merge-table-advantages.html)
-
-    [18.7.2 MERGE Table Problems](merge-table-problems.html)
-
-[18.8 The FEDERATED Storage Engine](federated-storage-engine.html)
-:   [18.8.1 FEDERATED Storage Engine Overview](federated-description.html)
-
-    [18.8.2 How to Create FEDERATED Tables](federated-create.html)
-
-    [18.8.3 FEDERATED Storage Engine Notes and Tips](federated-usagenotes.html)
-
-    [18.8.4 FEDERATED Storage Engine Resources](federated-storage-engine-resources.html)
-
-[18.9 The EXAMPLE Storage Engine](example-storage-engine.html)
-
-[18.10 Other Storage Engines](storage-engines-other.html)
-
-[18.11 Overview of MySQL Storage Engine Architecture](pluggable-storage-overview.html)
-:   [18.11.1 Pluggable Storage Engine Architecture](pluggable-storage.html)
-
-    [18.11.2 The Common Database Server Layer](pluggable-storage-common-layer.html)
-
 Storage engines are MySQL components that handle the SQL operations
 for different table types. [`InnoDB`](innodb-storage-engine.html "Chapter 17 The InnoDB Storage Engine") is
 the default and most general-purpose storage engine, and Oracle

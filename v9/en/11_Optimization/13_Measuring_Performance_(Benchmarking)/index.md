@@ -1,11 +1,5 @@
 ## 10.13 Measuring Performance (Benchmarking)
 
-[10.13.1 Measuring the Speed of Expressions and Functions](select-benchmarking.html)
-
-[10.13.2 Using Your Own Benchmarks](custom-benchmarks.html)
-
-[10.13.3 Measuring Performance with performance\_schema](monitoring-performance-schema.html)
-
 To measure performance, consider the following factors:
 
 * Whether you are measuring the speed of a single operation on a

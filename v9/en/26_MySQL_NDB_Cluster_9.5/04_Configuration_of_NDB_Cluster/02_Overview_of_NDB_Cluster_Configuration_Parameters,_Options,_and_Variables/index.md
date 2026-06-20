@@ -1,15 +1,5 @@
 ### 25.4.2 Overview of NDB Cluster Configuration Parameters, Options, and Variables
 
-[25.4.2.1 NDB Cluster Data Node Configuration Parameters](mysql-cluster-params-ndbd.html)
-
-[25.4.2.2 NDB Cluster Management Node Configuration Parameters](mysql-cluster-params-mgmd.html)
-
-[25.4.2.3 NDB Cluster SQL Node and API Node Configuration Parameters](mysql-cluster-params-api.html)
-
-[25.4.2.4 Other NDB Cluster Configuration Parameters](mysql-cluster-params-other.html)
-
-[25.4.2.5 NDB Cluster mysqld Option and Variable Reference](mysql-cluster-option-tables.html)
-
 The next several sections provide summary tables of NDB Cluster
 node configuration parameters used in the
 `config.ini` file to govern various aspects of

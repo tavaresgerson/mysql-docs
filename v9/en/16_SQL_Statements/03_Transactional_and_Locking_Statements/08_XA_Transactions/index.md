@@ -1,11 +1,5 @@
 ### 15.3.8 XA Transactions
 
-[15.3.8.1 XA Transaction SQL Statements](xa-statements.html)
-
-[15.3.8.2 XA Transaction States](xa-states.html)
-
-[15.3.8.3 Restrictions on XA Transactions](xa-restrictions.html)
-
 Support for [XA](/doc/refman/8.4/en/glossary.html#glos_xa) transactions is
 available for the [`InnoDB`](innodb-storage-engine.html "Chapter 17 The InnoDB Storage Engine") storage
 engine. The MySQL XA implementation is based on the X/Open CAE

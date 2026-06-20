@@ -1,11 +1,5 @@
 ### 25.6.7 Adding NDB Cluster Data Nodes Online
 
-[25.6.7.1 Adding NDB Cluster Data Nodes Online: General Issues](mysql-cluster-online-add-node-remarks.html)
-
-[25.6.7.2 Adding NDB Cluster Data Nodes Online: Basic procedure](mysql-cluster-online-add-node-basics.html)
-
-[25.6.7.3 Adding NDB Cluster Data Nodes Online: Detailed Example](mysql-cluster-online-add-node-example.html)
-
 This section describes how to add NDB Cluster data nodes
 “online”—that is, without needing to shut down
 the cluster completely and restart it as part of the process.

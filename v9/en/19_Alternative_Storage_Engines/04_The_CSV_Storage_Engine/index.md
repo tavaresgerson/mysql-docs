@@ -1,9 +1,5 @@
 ## 18.4 The CSV Storage Engine
 
-[18.4.1 Repairing and Checking CSV Tables](se-csv-repair.html)
-
-[18.4.2 CSV Limitations](se-csv-limitations.html)
-
 The `CSV` storage engine stores data in text files
 using comma-separated values format.
 

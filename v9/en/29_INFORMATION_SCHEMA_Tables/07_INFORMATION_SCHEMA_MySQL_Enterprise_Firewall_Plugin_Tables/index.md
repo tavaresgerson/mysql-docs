@@ -1,11 +1,5 @@
 ## 28.7 INFORMATION\_SCHEMA MySQL Enterprise Firewall Plugin Tables
 
-[28.7.1 INFORMATION\_SCHEMA Firewall Plugin Table Reference](information-schema-firewall-table-reference.html)
-
-[28.7.2 The INFORMATION\_SCHEMA MYSQL\_FIREWALL\_USERS Table](information-schema-mysql-firewall-users-table.html)
-
-[28.7.3 The INFORMATION\_SCHEMA MYSQL\_FIREWALL\_WHITELIST Table](information-schema-mysql-firewall-whitelist-table.html)
-
 The following sections describe the
 `INFORMATION_SCHEMA` tables associated with the
 MySQL Enterprise Firewall plugin (see [Section 8.4.8.1, “The MySQL Enterprise Firewall Plugin”](firewall-plugin.html "8.4.8.1 The MySQL Enterprise Firewall Plugin")). They provide

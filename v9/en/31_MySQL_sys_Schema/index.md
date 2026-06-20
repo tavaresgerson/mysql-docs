@@ -1,24 +1,5 @@
 # Chapter 30 MySQL sys Schema
 
-**Table of Contents**
-
-[30.1 Prerequisites for Using the sys Schema](sys-schema-prerequisites.html)
-
-[30.2 Using the sys Schema](sys-schema-usage.html)
-
-[30.3 sys Schema Progress Reporting](sys-schema-progress-reporting.html)
-
-[30.4 sys Schema Object Reference](sys-schema-reference.html)
-:   [30.4.1 sys Schema Object Index](sys-schema-object-index.html)
-
-    [30.4.2 sys Schema Tables and Triggers](sys-schema-tables.html)
-
-    [30.4.3 sys Schema Views](sys-schema-views.html)
-
-    [30.4.4 sys Schema Stored Procedures](sys-schema-procedures.html)
-
-    [30.4.5 sys Schema Stored Functions](sys-schema-functions.html)
-
 MySQL 9.5 includes the
 [`sys`](sys-schema.html "Chapter 30 MySQL sys Schema") schema, a set of objects that
 helps DBAs and developers interpret data collected by the

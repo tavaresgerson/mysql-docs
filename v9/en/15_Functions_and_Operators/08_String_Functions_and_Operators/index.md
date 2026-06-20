@@ -1,11 +1,5 @@
 ## 14.8 String Functions and Operators
 
-[14.8.1 String Comparison Functions and Operators](string-comparison-functions.html)
-
-[14.8.2 Regular Expressions](regexp.html)
-
-[14.8.3 Character Set and Collation of Function Results](string-functions-charset.html)
-
 **Table 14.12 String Functions and Operators**
 
 <table frame="box" rules="all" summary="A reference that lists string functions and operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th>

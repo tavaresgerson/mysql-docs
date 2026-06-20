@@ -1,11 +1,5 @@
 ### 15.4.1 SQL Statements for Controlling Source Servers
 
-[15.4.1.1 PURGE BINARY LOGS Statement](purge-binary-logs.html)
-
-[15.4.1.2 RESET BINARY LOGS AND GTIDS Statement](reset-binary-logs-and-gtids.html)
-
-[15.4.1.3 SET sql\_log\_bin Statement](set-sql-log-bin.html)
-
 This section discusses statements for managing replication source
 servers. [Section 15.4.2, “SQL Statements for Controlling Replica Servers”](replication-statements-replica.html "15.4.2 SQL Statements for Controlling Replica Servers"),
 discusses statements for managing replica servers.

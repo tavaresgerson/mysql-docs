@@ -1,23 +1,5 @@
 ## 13.2 Date and Time Data Types
 
-[13.2.1 Date and Time Data Type Syntax](date-and-time-type-syntax.html)
-
-[13.2.2 The DATE, DATETIME, and TIMESTAMP Types](datetime.html)
-
-[13.2.3 The TIME Type](time.html)
-
-[13.2.4 The YEAR Type](year.html)
-
-[13.2.5 Automatic Initialization and Updating for TIMESTAMP and DATETIME](timestamp-initialization.html)
-
-[13.2.6 Fractional Seconds in Time Values](fractional-seconds.html)
-
-[13.2.7 What Calendar Is Used By MySQL?](mysql-calendar.html)
-
-[13.2.8 Conversion Between Date and Time Types](date-and-time-type-conversion.html)
-
-[13.2.9 2-Digit Years in Dates](two-digit-years.html)
-
 The date and time data types for representing temporal values are
 [`DATE`](datetime.html "13.2.2 The DATE, DATETIME, and TIMESTAMP Types"),
 [`TIME`](time.html "13.2.3 The TIME Type"),

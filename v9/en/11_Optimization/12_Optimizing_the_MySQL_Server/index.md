@@ -1,11 +1,5 @@
 ## 10.12 Optimizing the MySQL Server
 
-[10.12.1 Optimizing Disk I/O](disk-issues.html)
-
-[10.12.2 Using Symbolic Links](symbolic-links.html)
-
-[10.12.3 Optimizing Memory Use](optimizing-memory.html)
-
 This section discusses optimization techniques for the database
 server, primarily dealing with system configuration rather than
 tuning SQL statements. The information in this section is

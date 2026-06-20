@@ -1,17 +1,5 @@
 ### 10.10.2 The MyISAM Key Cache
 
-[10.10.2.1 Shared Key Cache Access](shared-key-cache.html)
-
-[10.10.2.2 Multiple Key Caches](multiple-key-caches.html)
-
-[10.10.2.3 Midpoint Insertion Strategy](midpoint-insertion.html)
-
-[10.10.2.4 Index Preloading](index-preloading.html)
-
-[10.10.2.5 Key Cache Block Size](key-cache-block-size.html)
-
-[10.10.2.6 Restructuring a Key Cache](key-cache-restructuring.html)
-
 To minimize disk I/O, the `MyISAM` storage
 engine exploits a strategy that is used by many database
 management systems. It employs a cache mechanism to keep the

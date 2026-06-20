@@ -1,11 +1,5 @@
 ## 2.10 Perl Installation Notes
 
-[2.10.1 Installing Perl on Unix](perl-installation.html)
-
-[2.10.2 Installing ActiveState Perl on Windows](activestate-perl.html)
-
-[2.10.3 Problems Using the Perl DBI/DBD Interface](perl-support-problems.html)
-
 The Perl `DBI` module provides a generic interface
 for database access. You can write a `DBI` script
 that works with many different database engines without change. To

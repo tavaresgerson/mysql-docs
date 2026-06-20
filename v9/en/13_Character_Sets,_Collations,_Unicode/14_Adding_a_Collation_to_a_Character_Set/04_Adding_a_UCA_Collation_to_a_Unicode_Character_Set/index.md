@@ -1,11 +1,5 @@
 ### 12.14.4 Adding a UCA Collation to a Unicode Character Set
 
-[12.14.4.1 Defining a UCA Collation Using LDML Syntax](ldml-collation-example.html)
-
-[12.14.4.2 LDML Syntax Supported in MySQL](ldml-rules.html)
-
-[12.14.4.3 Diagnostics During Index.xml Parsing](collation-diagnostics.html)
-
 This section describes how to add a UCA collation for a Unicode
 character set by writing the
 `<collation>` element within a

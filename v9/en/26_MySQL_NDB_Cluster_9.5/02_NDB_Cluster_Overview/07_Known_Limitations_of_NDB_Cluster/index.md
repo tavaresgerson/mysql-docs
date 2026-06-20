@@ -1,25 +1,5 @@
 ### 25.2.7 Known Limitations of NDB Cluster
 
-[25.2.7.1 Noncompliance with SQL Syntax in NDB Cluster](mysql-cluster-limitations-syntax.html)
-
-[25.2.7.2 Limits and Differences of NDB Cluster from Standard MySQL Limits](mysql-cluster-limitations-limits.html)
-
-[25.2.7.3 Limits Relating to Transaction Handling in NDB Cluster](mysql-cluster-limitations-transactions.html)
-
-[25.2.7.4 NDB Cluster Error Handling](mysql-cluster-limitations-error-handling.html)
-
-[25.2.7.5 Limits Associated with Database Objects in NDB Cluster](mysql-cluster-limitations-database-objects.html)
-
-[25.2.7.6 Unsupported or Missing Features in NDB Cluster](mysql-cluster-limitations-unsupported.html)
-
-[25.2.7.7 Limitations Relating to Performance in NDB Cluster](mysql-cluster-limitations-performance.html)
-
-[25.2.7.8 Issues Exclusive to NDB Cluster](mysql-cluster-limitations-exclusive-to-cluster.html)
-
-[25.2.7.9 Limitations Relating to NDB Cluster Disk Data Storage](mysql-cluster-limitations-disk-data.html)
-
-[25.2.7.10 Limitations Relating to Multiple NDB Cluster Nodes](mysql-cluster-limitations-multiple-nodes.html)
-
 In the sections that follow, we discuss known limitations in
 current releases of NDB Cluster as compared with the features
 available when using the `MyISAM` and

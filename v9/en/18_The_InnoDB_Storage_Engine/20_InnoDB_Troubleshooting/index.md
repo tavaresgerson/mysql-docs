@@ -1,15 +1,5 @@
 ## 17.20 InnoDB Troubleshooting
 
-[17.20.1 Troubleshooting InnoDB I/O Problems](error-creating-innodb.html)
-
-[17.20.2 Troubleshooting Recovery Failures](innodb-troubleshooting-recovery.html)
-
-[17.20.3 Forcing InnoDB Recovery](forcing-innodb-recovery.html)
-
-[17.20.4 Troubleshooting InnoDB Data Dictionary Operations](innodb-troubleshooting-datadict.html)
-
-[17.20.5 InnoDB Error Handling](innodb-error-handling.html)
-
 The following general guidelines apply to troubleshooting
 `InnoDB` problems:
 

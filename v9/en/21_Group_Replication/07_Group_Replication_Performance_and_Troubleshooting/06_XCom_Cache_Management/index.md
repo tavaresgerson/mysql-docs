@@ -1,9 +1,5 @@
 ### 20.7.6 XCom Cache Management
 
-[20.7.6.1 Increasing the cache size](group-replication-performance-xcom-cache-increase.html)
-
-[20.7.6.2 Reducing the cache size](group-replication-performance-xcom-cache-reduce.html)
-
 The group communication engine for Group Replication (XCom, a
 Paxos variant) includes a cache for messages (and their metadata)
 exchanged between the group members as a part of the consensus

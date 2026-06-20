@@ -1,29 +1,5 @@
 ### 15.2.15 Subqueries
 
-[15.2.15.1 The Subquery as Scalar Operand](scalar-subqueries.html)
-
-[15.2.15.2 Comparisons Using Subqueries](comparisons-using-subqueries.html)
-
-[15.2.15.3 Subqueries with ANY, IN, or SOME](any-in-some-subqueries.html)
-
-[15.2.15.4 Subqueries with ALL](all-subqueries.html)
-
-[15.2.15.5 Row Subqueries](row-subqueries.html)
-
-[15.2.15.6 Subqueries with EXISTS or NOT EXISTS](exists-and-not-exists-subqueries.html)
-
-[15.2.15.7 Correlated Subqueries](correlated-subqueries.html)
-
-[15.2.15.8 Derived Tables](derived-tables.html)
-
-[15.2.15.9 Lateral Derived Tables](lateral-derived-tables.html)
-
-[15.2.15.10 Subquery Errors](subquery-errors.html)
-
-[15.2.15.11 Optimizing Subqueries](optimizing-subqueries.html)
-
-[15.2.15.12 Restrictions on Subqueries](subquery-restrictions.html)
-
 A subquery is a [`SELECT`](select.html "15.2.13 SELECT Statement") statement
 within another statement.
 

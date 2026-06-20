@@ -1,13 +1,5 @@
 ### 25.3.1 Installation of NDB Cluster on Linux
 
-[25.3.1.1 Installing an NDB Cluster Binary Release on Linux](mysql-cluster-install-linux-binary.html)
-
-[25.3.1.2 Installing NDB Cluster from RPM](mysql-cluster-install-linux-rpm.html)
-
-[25.3.1.3 Installing NDB Cluster Using .deb Files](mysql-cluster-install-debian.html)
-
-[25.3.1.4 Building NDB Cluster from Source on Linux](mysql-cluster-install-linux-source.html)
-
 This section covers installation methods for NDB Cluster on Linux
 and other Unix-like operating systems. While the next few sections
 refer to a Linux operating system, the instructions and procedures

@@ -1,11 +1,5 @@
 ### 10.12.2 Using Symbolic Links
 
-[10.12.2.1 Using Symbolic Links for Databases on Unix](symbolic-links-to-databases.html)
-
-[10.12.2.2 Using Symbolic Links for MyISAM Tables on Unix](symbolic-links-to-tables.html)
-
-[10.12.2.3 Using Symbolic Links for Databases on Windows](windows-symbolic-links.html)
-
 You can move databases or tables from the database directory to
 other locations and replace them with symbolic links to the new
 locations. You might want to do this, for example, to move a

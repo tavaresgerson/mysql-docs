@@ -1,11 +1,5 @@
 ## 9.3 Example Backup and Recovery Strategy
 
-[9.3.1 Establishing a Backup Policy](backup-policy.html)
-
-[9.3.2 Using Backups for Recovery](recovery-from-backups.html)
-
-[9.3.3 Backup Strategy Summary](backup-strategy-summary.html)
-
 This section discusses a procedure for performing backups that
 enables you to recover data after several types of crashes:
 

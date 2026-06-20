@@ -1,13 +1,5 @@
 ## 25.4 Configuration of NDB Cluster
 
-[25.4.1 Quick Test Setup of NDB Cluster](mysql-cluster-quick.html)
-
-[25.4.2 Overview of NDB Cluster Configuration Parameters, Options, and Variables](mysql-cluster-configuration-overview.html)
-
-[25.4.3 NDB Cluster Configuration Files](mysql-cluster-config-file.html)
-
-[25.4.4 Using High-Speed Interconnects with NDB Cluster](mysql-cluster-interconnects.html)
-
 A MySQL server that is part of an NDB Cluster differs in one chief
 respect from a normal (nonclustered) MySQL server, in that it
 employs the [`NDB`](mysql-cluster.html "Chapter 25 MySQL NDB Cluster 9.5") storage engine. This

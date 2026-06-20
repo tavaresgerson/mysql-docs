@@ -1,26 +1,5 @@
 # Appendix B Error Messages and Common Problems
 
-**Table of Contents**
-
-[B.1 Error Message Sources and Elements](error-message-elements.html)
-
-[B.2 Error Information Interfaces](error-interfaces.html)
-
-[B.3 Problems and Common Errors](problems.html)
-:   [B.3.1 How to Determine What Is Causing a Problem](what-is-crashing.html)
-
-    [B.3.2 Common Errors When Using MySQL Programs](common-errors.html)
-
-    [B.3.3 Administration-Related Issues](administration-issues.html)
-
-    [B.3.4 Query-Related Issues](query-issues.html)
-
-    [B.3.5 Optimizer-Related Issues](optimizer-issues.html)
-
-    [B.3.6 Table Definition-Related Issues](table-definition-issues.html)
-
-    [B.3.7 Known Issues in MySQL](known-issues.html)
-
 This appendix describes the types of error information MySQL
 provides and how to obtain information about them. The final section
 is for troubleshooting. It describes common problems and errors that

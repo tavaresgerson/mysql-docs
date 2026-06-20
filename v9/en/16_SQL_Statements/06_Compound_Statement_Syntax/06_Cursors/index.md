@@ -1,15 +1,5 @@
 ### 15.6.6 Cursors
 
-[15.6.6.1 Cursor CLOSE Statement](close.html)
-
-[15.6.6.2 Cursor DECLARE Statement](declare-cursor.html)
-
-[15.6.6.3 Cursor FETCH Statement](fetch.html)
-
-[15.6.6.4 Cursor OPEN Statement](open.html)
-
-[15.6.6.5 Restrictions on Server-Side Cursors](cursor-restrictions.html)
-
 MySQL supports cursors inside stored programs. The syntax is as in
 embedded SQL. Cursors have these properties:
 

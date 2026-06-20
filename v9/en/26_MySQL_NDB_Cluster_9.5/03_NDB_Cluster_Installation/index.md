@@ -1,19 +1,5 @@
 ## 25.3 NDB Cluster Installation
 
-[25.3.1 Installation of NDB Cluster on Linux](mysql-cluster-install-linux.html)
-
-[25.3.2 Installing NDB Cluster on Windows](mysql-cluster-install-windows.html)
-
-[25.3.3 Initial Configuration of NDB Cluster](mysql-cluster-install-configuration.html)
-
-[25.3.4 Initial Startup of NDB Cluster](mysql-cluster-install-first-start.html)
-
-[25.3.5 NDB Cluster Example with Tables and Data](mysql-cluster-install-example-data.html)
-
-[25.3.6 Safe Shutdown and Restart of NDB Cluster](mysql-cluster-install-shutdown-restart.html)
-
-[25.3.7 Upgrading and Downgrading NDB Cluster](mysql-cluster-upgrade-downgrade.html)
-
 This section describes the basics for planning, installing,
 configuring, and running an NDB Cluster. Whereas the examples in
 [Section 25.4, “Configuration of NDB Cluster”](mysql-cluster-configuration.html "25.4 Configuration of NDB Cluster") provide more in-depth

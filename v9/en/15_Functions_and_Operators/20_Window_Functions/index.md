@@ -1,15 +1,5 @@
 ## 14.20 Window Functions
 
-[14.20.1 Window Function Descriptions](window-function-descriptions.html)
-
-[14.20.2 Window Function Concepts and Syntax](window-functions-usage.html)
-
-[14.20.3 Window Function Frame Specification](window-functions-frames.html)
-
-[14.20.4 Named Windows](window-functions-named-windows.html)
-
-[14.20.5 Window Function Restrictions](window-function-restrictions.html)
-
 MySQL supports window functions that, for each row from a query,
 perform a calculation using rows related to that row. The
 following sections discuss how to use window functions, including

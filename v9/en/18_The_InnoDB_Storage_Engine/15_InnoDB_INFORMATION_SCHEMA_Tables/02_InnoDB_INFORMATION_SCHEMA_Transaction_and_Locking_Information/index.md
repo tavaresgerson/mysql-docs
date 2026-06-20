@@ -1,11 +1,5 @@
 ### 17.15.2 InnoDB INFORMATION\_SCHEMA Transaction and Locking Information
 
-[17.15.2.1 Using InnoDB Transaction and Locking Information](innodb-information-schema-examples.html)
-
-[17.15.2.2 InnoDB Lock and Lock-Wait Information](innodb-information-schema-understanding-innodb-locking.html)
-
-[17.15.2.3 Persistence and Consistency of InnoDB Transaction and Locking Information](innodb-information-schema-internal-data.html)
-
 One `INFORMATION_SCHEMA` table and two
 Performance Schema tables enable you to monitor
 `InnoDB` transactions and diagnose potential

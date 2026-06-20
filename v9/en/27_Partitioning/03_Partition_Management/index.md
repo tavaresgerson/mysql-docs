@@ -1,15 +1,5 @@
 ## 26.3 Partition Management
 
-[26.3.1 Management of RANGE and LIST Partitions](partitioning-management-range-list.html)
-
-[26.3.2 Management of HASH and KEY Partitions](partitioning-management-hash-key.html)
-
-[26.3.3 Exchanging Partitions and Subpartitions with Tables](partitioning-management-exchange.html)
-
-[26.3.4 Maintenance of Partitions](partitioning-maintenance.html)
-
-[26.3.5 Obtaining Information About Partitions](partitioning-info.html)
-
 There are a number of ways using SQL statements to modify
 partitioned tables; it is possible to add, drop, redefine, merge,
 or split existing partitions using the partitioning extensions to

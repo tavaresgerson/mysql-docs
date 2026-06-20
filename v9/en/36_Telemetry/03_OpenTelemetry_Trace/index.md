@@ -1,9 +1,5 @@
 ## 35.3 OpenTelemetry Trace
 
-[35.3.1 Configuring Trace Telemetry](telemetry-trace-configuration.html)
-
-[35.3.2 Trace Format](telemetry-trace-format.html)
-
 Tracing telemetry enables you to visualize the flow of any
 processing action as it is processed through your server. The data
 for each action, a span, includes possible error information and

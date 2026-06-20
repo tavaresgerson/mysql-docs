@@ -1,11 +1,5 @@
 ### 25.6.3 Event Reports Generated in NDB Cluster
 
-[25.6.3.1 NDB Cluster Logging Management Commands](mysql-cluster-logging-management-commands.html)
-
-[25.6.3.2 NDB Cluster Log Events](mysql-cluster-log-events.html)
-
-[25.6.3.3 Using CLUSTERLOG STATISTICS in the NDB Cluster Management Client](mysql-cluster-log-statistics.html)
-
 In this section, we discuss the types of event logs provided by
 NDB Cluster, and the types of events that are logged.
 
