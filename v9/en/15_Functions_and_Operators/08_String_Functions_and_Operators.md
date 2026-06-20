@@ -1,0 +1,1479 @@
+## 14.8 String Functions and Operators
+
+**Table 14.12 String Functions and Operators**
+
+<table frame="box" rules="all" summary="A reference that lists string functions and operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="string-functions.html#function_ascii"><code class="literal">ASCII()</code></a></td> <td> Return numeric value of left-most character </td> </tr><tr><td><a class="link" href="string-functions.html#function_bin"><code class="literal">BIN()</code></a></td> <td> Return a string containing binary representation of a number </td> </tr><tr><td><a class="link" href="string-functions.html#function_bit-length"><code class="literal">BIT_LENGTH()</code></a></td> <td> Return length of argument in bits </td> </tr><tr><td><a class="link" href="string-functions.html#function_char"><code class="literal">CHAR()</code></a></td> <td> Return the character for each integer passed </td> </tr><tr><td><a class="link" href="string-functions.html#function_char-length"><code class="literal">CHAR_LENGTH()</code></a></td> <td> Return number of characters in argument </td> </tr><tr><td><a class="link" href="string-functions.html#function_character-length"><code class="literal">CHARACTER_LENGTH()</code></a></td> <td> Synonym for CHAR_LENGTH() </td> </tr><tr><td><a class="link" href="string-functions.html#function_concat"><code class="literal">CONCAT()</code></a></td> <td> Return concatenated string </td> </tr><tr><td><a class="link" href="string-functions.html#function_concat-ws"><code class="literal">CONCAT_WS()</code></a></td> <td> Return concatenate with separator </td> </tr><tr><td><a class="link" href="string-functions.html#function_elt"><code class="literal">ELT()</code></a></td> <td> Return string at index number </td> </tr><tr><td><a class="link" href="string-functions.html#function_export-set"><code class="literal">EXPORT_SET()</code></a></td> <td> Return a string such that for every bit set in the value bits, you get an on string and for every unset bit, you get an off string </td> </tr><tr><td><a class="link" href="string-functions.html#function_field"><code class="literal">FIELD()</code></a></td> <td> Index (position) of first argument in subsequent arguments </td> </tr><tr><td><a class="link" href="string-functions.html#function_find-in-set"><code class="literal">FIND_IN_SET()</code></a></td> <td> Index (position) of first argument within second argument </td> </tr><tr><td><a class="link" href="string-functions.html#function_format"><code class="literal">FORMAT()</code></a></td> <td> Return a number formatted to specified number of decimal places </td> </tr><tr><td><a class="link" href="string-functions.html#function_from-base64"><code class="literal">FROM_BASE64()</code></a></td> <td> Decode base64 encoded string and return result </td> </tr><tr><td><a class="link" href="string-functions.html#function_hex"><code class="literal">HEX()</code></a></td> <td> Hexadecimal representation of decimal or string value </td> </tr><tr><td><a class="link" href="string-functions.html#function_insert"><code class="literal">INSERT()</code></a></td> <td> Insert substring at specified position up to specified number of characters </td> </tr><tr><td><a class="link" href="string-functions.html#function_instr"><code class="literal">INSTR()</code></a></td> <td> Return the index of the first occurrence of substring </td> </tr><tr><td><a class="link" href="string-functions.html#function_lcase"><code class="literal">LCASE()</code></a></td> <td> Synonym for LOWER() </td> </tr><tr><td><a class="link" href="string-functions.html#function_left"><code class="literal">LEFT()</code></a></td> <td> Return the leftmost number of characters as specified </td> </tr><tr><td><a class="link" href="string-functions.html#function_length"><code class="literal">LENGTH()</code></a></td> <td> Return the length of a string in bytes </td> </tr><tr><td><a class="link" href="string-comparison-functions.html#operator_like"><code class="literal">LIKE</code></a></td> <td> Simple pattern matching </td> </tr><tr><td><a class="link" href="string-functions.html#function_load-file"><code class="literal">LOAD_FILE()</code></a></td> <td> Load the named file </td> </tr><tr><td><a class="link" href="string-functions.html#function_locate"><code class="literal">LOCATE()</code></a></td> <td> Return the position of the first occurrence of substring </td> </tr><tr><td><a class="link" href="string-functions.html#function_lower"><code class="literal">LOWER()</code></a></td> <td> Return the argument in lowercase </td> </tr><tr><td><a class="link" href="string-functions.html#function_lpad"><code class="literal">LPAD()</code></a></td> <td> Return the string argument, left-padded with the specified string </td> </tr><tr><td><a class="link" href="string-functions.html#function_ltrim"><code class="literal">LTRIM()</code></a></td> <td> Remove leading spaces </td> </tr><tr><td><a class="link" href="string-functions.html#function_make-set"><code class="literal">MAKE_SET()</code></a></td> <td> Return a set of comma-separated strings that have the corresponding bit in bits set </td> </tr><tr><td><a class="link" href="fulltext-search.html#function_match"><code class="literal">MATCH()</code></a></td> <td> Perform full-text search </td> </tr><tr><td><a class="link" href="string-functions.html#function_mid"><code class="literal">MID()</code></a></td> <td> Return a substring starting from the specified position </td> </tr><tr><td><a class="link" href="string-comparison-functions.html#operator_not-like"><code class="literal">NOT LIKE</code></a></td> <td> Negation of simple pattern matching </td> </tr><tr><td><a class="link" href="regexp.html#operator_not-regexp"><code class="literal">NOT REGEXP</code></a></td> <td> Negation of REGEXP </td> </tr><tr><td><a class="link" href="string-functions.html#function_oct"><code class="literal">OCT()</code></a></td> <td> Return a string containing octal representation of a number </td> </tr><tr><td><a class="link" href="string-functions.html#function_octet-length"><code class="literal">OCTET_LENGTH()</code></a></td> <td> Synonym for LENGTH() </td> </tr><tr><td><a class="link" href="string-functions.html#function_ord"><code class="literal">ORD()</code></a></td> <td> Return character code for leftmost character of the argument </td> </tr><tr><td><a class="link" href="string-functions.html#function_position"><code class="literal">POSITION()</code></a></td> <td> Synonym for LOCATE() </td> </tr><tr><td><a class="link" href="string-functions.html#function_quote"><code class="literal">QUOTE()</code></a></td> <td> Escape the argument for use in an SQL statement </td> </tr><tr><td><a class="link" href="regexp.html#operator_regexp"><code class="literal">REGEXP</code></a></td> <td> Whether string matches regular expression </td> </tr><tr><td><a class="link" href="regexp.html#function_regexp-instr"><code class="literal">REGEXP_INSTR()</code></a></td> <td> Starting index of substring matching regular expression </td> </tr><tr><td><a class="link" href="regexp.html#function_regexp-like"><code class="literal">REGEXP_LIKE()</code></a></td> <td> Whether string matches regular expression </td> </tr><tr><td><a class="link" href="regexp.html#function_regexp-replace"><code class="literal">REGEXP_REPLACE()</code></a></td> <td> Replace substrings matching regular expression </td> </tr><tr><td><a class="link" href="regexp.html#function_regexp-substr"><code class="literal">REGEXP_SUBSTR()</code></a></td> <td> Return substring matching regular expression </td> </tr><tr><td><a class="link" href="string-functions.html#function_repeat"><code class="literal">REPEAT()</code></a></td> <td> Repeat a string the specified number of times </td> </tr><tr><td><a class="link" href="string-functions.html#function_replace"><code class="literal">REPLACE()</code></a></td> <td> Replace occurrences of a specified string </td> </tr><tr><td><a class="link" href="string-functions.html#function_reverse"><code class="literal">REVERSE()</code></a></td> <td> Reverse the characters in a string </td> </tr><tr><td><a class="link" href="string-functions.html#function_right"><code class="literal">RIGHT()</code></a></td> <td> Return the specified rightmost number of characters </td> </tr><tr><td><a class="link" href="regexp.html#operator_regexp"><code class="literal">RLIKE</code></a></td> <td> Whether string matches regular expression </td> </tr><tr><td><a class="link" href="string-functions.html#function_rpad"><code class="literal">RPAD()</code></a></td> <td> Append string the specified number of times </td> </tr><tr><td><a class="link" href="string-functions.html#function_rtrim"><code class="literal">RTRIM()</code></a></td> <td> Remove trailing spaces </td> </tr><tr><td><a class="link" href="string-functions.html#function_soundex"><code class="literal">SOUNDEX()</code></a></td> <td> Return a soundex string </td> </tr><tr><td><a class="link" href="string-functions.html#operator_sounds-like"><code class="literal">SOUNDS LIKE</code></a></td> <td> Compare sounds </td> </tr><tr><td><a class="link" href="string-functions.html#function_space"><code class="literal">SPACE()</code></a></td> <td> Return a string of the specified number of spaces </td> </tr><tr><td><a class="link" href="string-comparison-functions.html#function_strcmp"><code class="literal">STRCMP()</code></a></td> <td> Compare two strings </td> </tr><tr><td><a class="link" href="string-functions.html#function_substr"><code class="literal">SUBSTR()</code></a></td> <td> Return the substring as specified </td> </tr><tr><td><a class="link" href="string-functions.html#function_substring"><code class="literal">SUBSTRING()</code></a></td> <td> Return the substring as specified </td> </tr><tr><td><a class="link" href="string-functions.html#function_substring-index"><code class="literal">SUBSTRING_INDEX()</code></a></td> <td> Return a substring from a string before the specified number of occurrences of the delimiter </td> </tr><tr><td><a class="link" href="string-functions.html#function_to-base64"><code class="literal">TO_BASE64()</code></a></td> <td> Return the argument converted to a base-64 string </td> </tr><tr><td><a class="link" href="string-functions.html#function_trim"><code class="literal">TRIM()</code></a></td> <td> Remove leading and trailing spaces </td> </tr><tr><td><a class="link" href="string-functions.html#function_ucase"><code class="literal">UCASE()</code></a></td> <td> Synonym for UPPER() </td> </tr><tr><td><a class="link" href="string-functions.html#function_unhex"><code class="literal">UNHEX()</code></a></td> <td> Return a string containing hex representation of a number </td> </tr><tr><td><a class="link" href="string-functions.html#function_upper"><code class="literal">UPPER()</code></a></td> <td> Convert to uppercase </td> </tr><tr><td><a class="link" href="string-functions.html#function_weight-string"><code class="literal">WEIGHT_STRING()</code></a></td> <td> Return the weight string for a string </td> </tr></tbody></table>
+
+String-valued functions return `NULL` if the length of the result would be greater than the value of the `max_allowed_packet` system variable. See Section 7.1.1, “Configuring the Server”.
+
+For functions that operate on string positions, the first position is numbered 1.
+
+For functions that take length arguments, noninteger arguments are rounded to the nearest integer.
+
+* `ASCII(str)`
+
+  Returns the numeric value of the leftmost character of the string *`str`*. Returns `0` if *`str`* is the empty string. Returns `NULL` if *`str`* is `NULL`. `ASCII()` works for 8-bit characters.
+
+  ```
+  mysql> SELECT ASCII('2');
+          -> 50
+  mysql> SELECT ASCII(2);
+          -> 50
+  mysql> SELECT ASCII('dx');
+          -> 100
+  ```
+
+  See also the `ORD()` function.
+
+* `BIN(N)`
+
+  Returns a string representation of the binary value of *`N`*, where *`N`* is a longlong (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) number. This is equivalent to `CONV(N,10,2)`. Returns `NULL` if *`N`* is `NULL`.
+
+  ```
+  mysql> SELECT BIN(12);
+          -> '1100'
+  ```
+
+* `BIT_LENGTH(str)`
+
+  Returns the length of the string *`str`* in bits. Returns `NULL` if *`str`* is `NULL`.
+
+  ```
+  mysql> SELECT BIT_LENGTH('text');
+          -> 32
+  ```
+
+* [`CHAR(N,... [USING charset_name])`](string-functions.html#function_char)
+
+  `CHAR()` interprets each argument *`N`* as an integer and returns a string consisting of the characters given by the code values of those integers. `NULL` values are skipped.
+
+  ```
+  mysql> SELECT CHAR(77,121,83,81,'76');
+  +--------------------------------------------------+
+  | CHAR(77,121,83,81,'76')                          |
+  +--------------------------------------------------+
+  | 0x4D7953514C                                     |
+  +--------------------------------------------------+
+  1 row in set (0.00 sec)
+
+  mysql> SELECT CHAR(77,77.3,'77.3');
+  +--------------------------------------------+
+  | CHAR(77,77.3,'77.3')                       |
+  +--------------------------------------------+
+  | 0x4D4D4D                                   |
+  +--------------------------------------------+
+  1 row in set (0.00 sec)
+  ```
+
+  By default, `CHAR()` returns a binary string. To produce a string in a given character set, use the optional `USING` clause:
+
+  ```
+  mysql> SELECT CHAR(77,121,83,81,'76' USING utf8mb4);
+  +---------------------------------------+
+  | CHAR(77,121,83,81,'76' USING utf8mb4) |
+  +---------------------------------------+
+  | MySQL                                 |
+  +---------------------------------------+
+  1 row in set (0.00 sec)
+
+  mysql> SELECT CHAR(77,77.3,'77.3' USING utf8mb4);
+  +------------------------------------+
+  | CHAR(77,77.3,'77.3' USING utf8mb4) |
+  +------------------------------------+
+  | MMM                                |
+  +------------------------------------+
+  1 row in set, 1 warning (0.00 sec)
+
+  mysql> SHOW WARNINGS;
+  +---------+------+-------------------------------------------+
+  | Level   | Code | Message                                   |
+  +---------+------+-------------------------------------------+
+  | Warning | 1292 | Truncated incorrect INTEGER value: '77.3' |
+  +---------+------+-------------------------------------------+
+  1 row in set (0.00 sec)
+  ```
+
+  If `USING` is given and the result string is illegal for the given character set, a warning is issued. Also, if strict SQL mode is enabled, the result from `CHAR()` becomes `NULL`.
+
+  If `CHAR()` is invoked from within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+
+  `CHAR()` arguments larger than 255 are converted into multiple result bytes. For example, `CHAR(256)` is equivalent to `CHAR(1,0)`, and `CHAR(256*256)` is equivalent to `CHAR(1,0,0)`:
+
+  ```
+  mysql> SELECT HEX(CHAR(1,0)), HEX(CHAR(256));
+  +----------------+----------------+
+  | HEX(CHAR(1,0)) | HEX(CHAR(256)) |
+  +----------------+----------------+
+  | 0100           | 0100           |
+  +----------------+----------------+
+  1 row in set (0.00 sec)
+
+  mysql> SELECT HEX(CHAR(1,0,0)), HEX(CHAR(256*256));
+  +------------------+--------------------+
+  | HEX(CHAR(1,0,0)) | HEX(CHAR(256*256)) |
+  +------------------+--------------------+
+  | 010000           | 010000             |
+  +------------------+--------------------+
+  1 row in set (0.00 sec)
+  ```
+
+* `CHAR_LENGTH(str)`
+
+  Returns the length of the string *`str`*, measured in code points. A multibyte character counts as a single code point. This means that, for a string containing two 3-byte characters, `LENGTH()` returns `6`, whereas `CHAR_LENGTH()` returns `2`, as shown here:
+
+  ```
+  mysql> SET @dolphin:='海豚';
+  Query OK, 0 rows affected (0.01 sec)
+
+  mysql> SELECT LENGTH(@dolphin), CHAR_LENGTH(@dolphin);
+  +------------------+-----------------------+
+  | LENGTH(@dolphin) | CHAR_LENGTH(@dolphin) |
+  +------------------+-----------------------+
+  |                6 |                     2 |
+  +------------------+-----------------------+
+  1 row in set (0.00 sec)
+  ```
+
+  `CHAR_LENGTH()` returns `NULL` if *`str`* is `NULL`.
+
+* `CHARACTER_LENGTH(str)`
+
+  `CHARACTER_LENGTH()` is a synonym for `CHAR_LENGTH()`.
+
+* `CONCAT(str1,str2,...)`
+
+  Returns the string that results from concatenating the arguments. May have one or more arguments. If all arguments are nonbinary strings, the result is a nonbinary string. If the arguments include any binary strings, the result is a binary string. A numeric argument is converted to its equivalent nonbinary string form.
+
+  `CONCAT()` returns `NULL` if any argument is `NULL`.
+
+  ```
+  mysql> SELECT CONCAT('My', 'S', 'QL');
+          -> 'MySQL'
+  mysql> SELECT CONCAT('My', NULL, 'QL');
+          -> NULL
+  mysql> SELECT CONCAT(14.3);
+          -> '14.3'
+  ```
+
+  For quoted strings, concatenation can be performed by placing the strings next to each other:
+
+  ```
+  mysql> SELECT 'My' 'S' 'QL';
+          -> 'MySQL'
+  ```
+
+  If `CONCAT()` is invoked from within the **mysql** client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+
+* `CONCAT_WS(separator,str1,str2,...)`
+
+  `CONCAT_WS()` stands for Concatenate With Separator and is a special form of `CONCAT()`. The first argument is the separator for the rest of the arguments. The separator is added between the strings to be concatenated. The separator can be a string, as can the rest of the arguments. If the separator is `NULL`, the result is `NULL`.
+
+  ```
+  mysql> SELECT CONCAT_WS(',', 'First name', 'Second name', 'Last Name');
+          -> 'First name,Second name,Last Name'
+  mysql> SELECT CONCAT_WS(',', 'First name', NULL, 'Last Name');
+          -> 'First name,Last Name'
+  ```
+
+  `CONCAT_WS()` does not skip empty strings. However, it does skip any `NULL` values after the separator argument.
+
+* `ELT(N,str1,str2,str3,...)`
+
+  `ELT()` returns the *`N`*th element of the list of strings: *`str1`* if *`N`* = `1`, *`str2`* if *`N`* = `2`, and so on. Returns `NULL` if *`N`* is less than `1`, greater than the number of arguments, or `NULL`. `ELT()` is the complement of `FIELD()`.
+
+  ```
+  mysql> SELECT ELT(1, 'Aa', 'Bb', 'Cc', 'Dd');
+          -> 'Aa'
+  mysql> SELECT ELT(4, 'Aa', 'Bb', 'Cc', 'Dd');
+          -> 'Dd'
+  ```
+
+* [`EXPORT_SET(bits,on,off[,separator[,number_of_bits]])`](string-functions.html#function_export-set)
+
+  Returns a string such that for every bit set in the value *`bits`*, you get an *`on`* string and for every bit not set in the value, you get an *`off`* string. Bits in *`bits`* are examined from right to left (from low-order to high-order bits). Strings are added to the result from left to right, separated by the *`separator`* string (the default being the comma character `,`). The number of bits examined is given by *`number_of_bits`*, which has a default of 64 if not specified. *`number_of_bits`* is silently clipped to 64 if larger than 64. It is treated as an unsigned integer, so a value of −1 is effectively the same as 64.
+
+  ```
+  mysql> SELECT EXPORT_SET(5,'Y','N',',',4);
+          -> 'Y,N,Y,N'
+  mysql> SELECT EXPORT_SET(6,'1','0',',',10);
+          -> '0,1,1,0,0,0,0,0,0,0'
+  ```
+
+* `FIELD(str,str1,str2,str3,...)`
+
+  Returns the index (position) of *`str`* in the *`str1`*, *`str2`*, *`str3`*, `...` list. Returns `0` if *`str`* is not found.
+
+  If all arguments to `FIELD()` are strings, all arguments are compared as strings. If all arguments are numbers, they are compared as numbers. Otherwise, the arguments are compared as double.
+
+  If *`str`* is `NULL`, the return value is `0` because `NULL` fails equality comparison with any value. `FIELD()` is the complement of `ELT()`.
+
+  ```
+  mysql> SELECT FIELD('Bb', 'Aa', 'Bb', 'Cc', 'Dd', 'Ff');
+          -> 2
+  mysql> SELECT FIELD('Gg', 'Aa', 'Bb', 'Cc', 'Dd', 'Ff');
+          -> 0
+  ```
+
+* `FIND_IN_SET(str,strlist)`
+
+  Returns a value in the range of 1 to *`N`* if the string *`str`* is in the string list *`strlist`* consisting of *`N`* substrings. A string list is a string composed of substrings separated by `,` characters. If the first argument is a constant string and the second is a column of type `SET`, the `FIND_IN_SET()` function is optimized to use bit arithmetic. Returns `0` if *`str`* is not in *`strlist`* or if *`strlist`* is the empty string. Returns `NULL` if either argument is `NULL`. This function does not work properly if the first argument contains a comma (`,`) character.
+
+  ```
+  mysql> SELECT FIND_IN_SET('b','a,b,c,d');
+          -> 2
+  ```
+
+* `FORMAT(X,D[,locale])`
+
+  Formats the number *`X`* to a format like `'#,###,###.##'`, rounded to *`D`* decimal places, and returns the result as a string. If *`D`* is `0`, the result has no decimal point or fractional part. If *`X`* or *`D`* is `NULL`, the function returns `NULL`.
+
+  The optional third parameter enables a locale to be specified to be used for the result number's decimal point, thousands separator, and grouping between separators. Permissible locale values are the same as the legal values for the `lc_time_names` system variable (see Section 12.16, “MySQL Server Locale Support”). If the locale is `NULL` or not specified, the default locale is `'en_US'`.
+
+  ```
+  mysql> SELECT FORMAT(12332.123456, 4);
+          -> '12,332.1235'
+  mysql> SELECT FORMAT(12332.1,4);
+          -> '12,332.1000'
+  mysql> SELECT FORMAT(12332.2,0);
+          -> '12,332'
+  mysql> SELECT FORMAT(12332.2,2,'de_DE');
+          -> '12.332,20'
+  ```
+
+* `FROM_BASE64(str)`
+
+  Takes a string encoded with the base-64 encoded rules used by `TO_BASE64()` and returns the decoded result as a binary string. The result is `NULL` if the argument is `NULL` or not a valid base-64 string. See the description of `TO_BASE64()` for details about the encoding and decoding rules.
+
+  ```
+  mysql> SELECT TO_BASE64('abc'), FROM_BASE64(TO_BASE64('abc'));
+          -> 'JWJj', 'abc'
+  ```
+
+  If `FROM_BASE64()` is invoked from within the **mysql** client, binary strings display using hexadecimal notation. You can disable this behavior by setting the value of the `--binary-as-hex` to `0` when starting the **mysql** client. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+
+* `HEX(str)`, `HEX(N)`
+
+  For a string argument *`str`*, `HEX()` returns a hexadecimal string representation of *`str`* where each byte of each character in *`str`* is converted to two hexadecimal digits. (Multibyte characters therefore become more than two digits.) The inverse of this operation is performed by the `UNHEX()` function.
+
+  For a numeric argument *`N`*, `HEX()` returns a hexadecimal string representation of the value of *`N`* treated as a longlong (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) number. This is equivalent to `CONV(N,10,16)`. The inverse of this operation is performed by `CONV(HEX(N),16,10)`.
+
+  For a `NULL` argument, this function returns `NULL`.
+
+  ```
+  mysql> SELECT X'616263', HEX('abc'), UNHEX(HEX('abc'));
+          -> 'abc', 616263, 'abc'
+  mysql> SELECT HEX(255), CONV(HEX(255),16,10);
+          -> 'FF', 255
+  ```
+
+* `INSERT(str,pos,len,newstr)`
+
+  Returns the string *`str`*, with the substring beginning at position *`pos`* and *`len`* characters long replaced by the string *`newstr`*. Returns the original string if *`pos`* is not within the length of the string. Replaces the rest of the string from position *`pos`* if *`len`* is not within the length of the rest of the string. Returns `NULL` if any argument is `NULL`.
+
+  ```
+  mysql> SELECT INSERT('Quadratic', 3, 4, 'What');
+          -> 'QuWhattic'
+  mysql> SELECT INSERT('Quadratic', -1, 4, 'What');
+          -> 'Quadratic'
+  mysql> SELECT INSERT('Quadratic', 3, 100, 'What');
+          -> 'QuWhat'
+  ```
+
+  This function is multibyte safe.
+
+* `INSTR(str,substr)`
+
+  Returns the position of the first occurrence of substring *`substr`* in string *`str`*. This is the same as the two-argument form of `LOCATE()`, except that the order of the arguments is reversed.
+
+  ```
+  mysql> SELECT INSTR('foobarbar', 'bar');
+          -> 4
+  mysql> SELECT INSTR('xbar', 'foobar');
+          -> 0
+  ```
+
+  This function is multibyte safe, and is case-sensitive only if at least one argument is a binary string. If either argument is `NULL`, this functions returns `NULL`.
+
+* `LCASE(str)`
+
+  `LCASE()` is a synonym for `LOWER()`.
+
+  `LCASE()` used in a view is rewritten as `LOWER()` when storing the view's definition. (Bug #12844279)
+
+* `LEFT(str,len)`
+
+  Returns the leftmost *`len`* characters from the string *`str`*, or `NULL` if any argument is `NULL`.
+
+  ```
+  mysql> SELECT LEFT('foobarbar', 5);
+          -> 'fooba'
+  ```
+
+  This function is multibyte safe.
+
+* `LENGTH(str)`
+
+  Returns the length of the string *`str`*, measured in bytes. A multibyte character counts as multiple bytes. This means that for a string containing five 2-byte characters, `LENGTH()` returns `10`, whereas `CHAR_LENGTH()` returns `5`. Returns `NULL` if *`str`* is `NULL`.
+
+  ```
+  mysql> SELECT LENGTH('text');
+          -> 4
+  ```
+
+  Note
+
+  The `Length()` OpenGIS spatial function is named `ST_Length()` in MySQL.
+
+* `LOAD_FILE(file_name)`
+
+  Reads the file and returns the file contents as a string. To use this function, the file must be located on the server host, you must specify the full path name to the file, and you must have the `FILE` privilege. The file must be readable by the server and its size less than `max_allowed_packet` bytes. If the `secure_file_priv` system variable is set to a nonempty directory name, the file to be loaded must be located in that directory.
+
+  If the file does not exist or cannot be read because one of the preceding conditions is not satisfied, the function returns `NULL`.
+
+  The `character_set_filesystem` system variable controls interpretation of file names that are given as literal strings.
+
+  ```
+  mysql> UPDATE t
+              SET blob_col=LOAD_FILE('/tmp/picture')
+              WHERE id=1;
+  ```
+
+* `LOCATE(substr,str)`, `LOCATE(substr,str,pos)`
+
+  The first syntax returns the position of the first occurrence of substring *`substr`* in string *`str`*. The second syntax returns the position of the first occurrence of substring *`substr`* in string *`str`*, starting at position *`pos`*. Returns `0` if *`substr`* is not in *`str`*. Returns `NULL` if any argument is `NULL`.
+
+  ```
+  mysql> SELECT LOCATE('bar', 'foobarbar');
+          -> 4
+  mysql> SELECT LOCATE('xbar', 'foobar');
+          -> 0
+  mysql> SELECT LOCATE('bar', 'foobarbar', 5);
+          -> 7
+  ```
+
+  This function is multibyte safe, and is case-sensitive only if at least one argument is a binary string.
+
+* `LOWER(str)`
+
+  Returns the string *`str`* with all characters changed to lowercase according to the current character set mapping, or `NULL` if *`str`* is `NULL`. The default character set is `utf8mb4`.
+
+  ```
+  mysql> SELECT LOWER('QUADRATICALLY');
+          -> 'quadratically'
+  ```
+
+  `LOWER()` (and `UPPER()`) are ineffective when applied to binary strings (`BINARY`, `VARBINARY`, `BLOB`). To perform lettercase conversion of a binary string, first convert it to a nonbinary string using a character set appropriate for the data stored in the string:
+
+  ```
+  mysql> SET @str = BINARY 'New York';
+  mysql> SELECT LOWER(@str), LOWER(CONVERT(@str USING utf8mb4));
+  +-------------+------------------------------------+
+  | LOWER(@str) | LOWER(CONVERT(@str USING utf8mb4)) |
+  +-------------+------------------------------------+
+  | New York    | new york                           |
+  +-------------+------------------------------------+
+  ```
+
+  For collations of Unicode character sets, `LOWER()` and `UPPER()` work according to the Unicode Collation Algorithm (UCA) version in the collation name, if there is one, and UCA 4.0.0 if no version is specified. For example, `utf8mb4_0900_ai_ci` and `utf8mb3_unicode_520_ci` work according to UCA 9.0.0 and 5.2.0, respectively, whereas `utf8mb3_unicode_ci` works according to UCA 4.0.0. See Section 12.10.1, “Unicode Character Sets”.
+
+  This function is multibyte safe.
+
+  `LCASE()` used within views is rewritten as `LOWER()`.
+
+* `LPAD(str,len,padstr)`
+
+  Returns the string *`str`*, left-padded with the string *`padstr`* to a length of *`len`* characters. If *`str`* is longer than *`len`*, the return value is shortened to *`len`* characters.
+
+  ```
+  mysql> SELECT LPAD('hi',4,'??');
+          -> '??hi'
+  mysql> SELECT LPAD('hi',1,'??');
+          -> 'h'
+  ```
+
+  Returns `NULL` if any of its arguments are `NULL`.
+
+* `LTRIM(str)`
+
+  Returns the string *`str`* with leading space characters removed. Returns `NULL` if *`str`* is `NULL`.
+
+  ```
+  mysql> SELECT LTRIM('  barbar');
+          -> 'barbar'
+  ```
+
+  This function is multibyte safe.
+
+* `MAKE_SET(bits,str1,str2,...)`
+
+  Returns a set value (a string containing substrings separated by `,` characters) consisting of the strings that have the corresponding bit in *`bits`* set. *`str1`* corresponds to bit 0, *`str2`* to bit 1, and so on. `NULL` values in *`str1`*, *`str2`*, `...` are not appended to the result.
+
+  ```
+  mysql> SELECT MAKE_SET(1,'a','b','c');
+          -> 'a'
+  mysql> SELECT MAKE_SET(1 | 4,'hello','nice','world');
+          -> 'hello,world'
+  mysql> SELECT MAKE_SET(1 | 4,'hello','nice',NULL,'world');
+          -> 'hello'
+  mysql> SELECT MAKE_SET(0,'a','b','c');
+          -> ''
+  ```
+
+* `MID(str,pos)`, [`MID(str FROM pos)`](string-functions.html#function_mid), `MID(str,pos,len)`, [`MID(str FROM pos FOR len)`](string-functions.html#function_mid)
+
+  `MID(str,pos,len)` is a synonym for `SUBSTRING(str,pos,len)`.
+
+* `OCT(N)`
+
+  Returns a string representation of the octal value of *`N`*, where *`N`* is a longlong (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) number. This is equivalent to `CONV(N,10,8)`. Returns `NULL` if *`N`* is `NULL`.
+
+  ```
+  mysql> SELECT OCT(12);
+          -> '14'
+  ```
+
+* `OCTET_LENGTH(str)`
+
+  `OCTET_LENGTH()` is a synonym for `LENGTH()`.
+
+* `ORD(str)`
+
+  If the leftmost character of the string *`str`* is a multibyte character, returns the code for that character, calculated from the numeric values of its constituent bytes using this formula:
+
+  ```
+    (1st byte code)
+  + (2nd byte code * 256)
+  + (3rd byte code * 256^2) ...
+  ```
+
+  If the leftmost character is not a multibyte character, `ORD()` returns the same value as the `ASCII()` function. The function returns `NULL` if *`str`* is `NULL`.
+
+  ```
+  mysql> SELECT ORD('2');
+          -> 50
+  ```
+
+* [`POSITION(substr IN str)`](string-functions.html#function_position)
+
+  [`POSITION(substr IN str)`](string-functions.html#function_position) is a synonym for `LOCATE(substr,str)`.
+
+* `QUOTE(str)`
+
+  Quotes a string to produce a result that can be used as a properly escaped data value in an SQL statement. The string is returned enclosed by single quotation marks and with each instance of backslash (`\`), single quote (`'`), ASCII `NUL`, and Control+Z preceded by a backslash. If the argument is `NULL`, the return value is the word “NULL” without enclosing single quotation marks.
+
+  ```
+  mysql> SELECT QUOTE('Don\'t!');
+          -> 'Don\'t!'
+  mysql> SELECT QUOTE(NULL);
+          -> NULL
+  ```
+
+  For comparison, see the quoting rules for literal strings and within the C API in Section 11.1.1, “String Literals”, and mysql\_real\_escape\_string\_quote().
+
+* `REPEAT(str,count)`
+
+  Returns a string consisting of the string *`str`* repeated *`count`* times. If *`count`* is less than 1, returns an empty string. Returns `NULL` if *`str`* or *`count`* is `NULL`.
+
+  ```
+  mysql> SELECT REPEAT('MySQL', 3);
+          -> 'MySQLMySQLMySQL'
+  ```
+
+* `REPLACE(str,from_str,to_str)`
+
+  Returns the string *`str`* with all occurrences of the string *`from_str`* replaced by the string *`to_str`*. `REPLACE()` performs a case-sensitive match when searching for *`from_str`*.
+
+  ```
+  mysql> SELECT REPLACE('www.mysql.com', 'w', 'Ww');
+          -> 'WwWwWw.mysql.com'
+  ```
+
+  This function is multibyte safe. It returns `NULL` if any of its arguments are `NULL`.
+
+* `REVERSE(str)`
+
+  Returns the string *`str`* with the order of the characters reversed, or `NULL` if *`str`* is `NULL`.
+
+  ```
+  mysql> SELECT REVERSE('abc');
+          -> 'cba'
+  ```
+
+  This function is multibyte safe.
+
+* `RIGHT(str,len)`
+
+  Returns the rightmost *`len`* characters from the string *`str`*, or `NULL` if any argument is `NULL`.
+
+  ```
+  mysql> SELECT RIGHT('foobarbar', 4);
+          -> 'rbar'
+  ```
+
+  This function is multibyte safe.
+
+* `RPAD(str,len,padstr)`
+
+  Returns the string *`str`*, right-padded with the string *`padstr`* to a length of *`len`* characters. If *`str`* is longer than *`len`*, the return value is shortened to *`len`* characters. If *`str`*, *`padstr`*, or *`len`* is `NULL`, the function returns `NULL`.
+
+  ```
+  mysql> SELECT RPAD('hi',5,'?');
+          -> 'hi???'
+  mysql> SELECT RPAD('hi',1,'?');
+          -> 'h'
+  ```
+
+  This function is multibyte safe.
+
+* `RTRIM(str)`
+
+  Returns the string *`str`* with trailing space characters removed.
+
+  ```
+  mysql> SELECT RTRIM('barbar   ');
+          -> 'barbar'
+  ```
+
+  This function is multibyte safe, and returns `NULL` if *`str`* is `NULL`.
+
+* `SOUNDEX(str)`
+
+  Returns a soundex string from *`str`*, or `NULL` if *`str`* is `NULL`. Two strings that sound almost the same should have identical soundex strings. A standard soundex string is four characters long, but the `SOUNDEX()` function returns an arbitrarily long string. You can use `SUBSTRING()` on the result to get a standard soundex string. All nonalphabetic characters in *`str`* are ignored. All international alphabetic characters outside the A-Z range are treated as vowels.
+
+  Important
+
+  When using `SOUNDEX()`, you should be aware of the following limitations:
+
+  + This function, as currently implemented, is intended to work well with strings that are in the English language only. Strings in other languages may not produce reliable results.
+
+  + This function is not guaranteed to provide consistent results with strings that use multibyte character sets, including `utf-8`. See Bug #22638 for more information.
+
+  ```
+  mysql> SELECT SOUNDEX('Hello');
+          -> 'H400'
+  mysql> SELECT SOUNDEX('Quadratically');
+          -> 'Q36324'
+  ```
+
+  Note
+
+  This function implements the original Soundex algorithm, not the more popular enhanced version (also described by D. Knuth). The difference is that original version discards vowels first and duplicates second, whereas the enhanced version discards duplicates first and vowels second.
+
+* [`expr1 SOUNDS LIKE expr2`](string-functions.html#operator_sounds-like)
+
+  This is the same as [`SOUNDEX(expr1) = SOUNDEX(expr2)`](string-functions.html#function_soundex).
+
+* `SPACE(N)`
+
+  Returns a string consisting of *`N`* space characters, or `NULL` if *`N`* is `NULL`.
+
+  ```
+  mysql> SELECT SPACE(6);
+          -> '      '
+  ```
+
+* `SUBSTR(str,pos)`, [`SUBSTR(str FROM pos)`](string-functions.html#function_substr), `SUBSTR(str,pos,len)`, [`SUBSTR(str FROM pos FOR len)`](string-functions.html#function_substr)
+
+  `SUBSTR()` is a synonym for `SUBSTRING()`.
+
+* `SUBSTRING(str,pos)`, [`SUBSTRING(str FROM pos)`](string-functions.html#function_substring), `SUBSTRING(str,pos,len)`, [`SUBSTRING(str FROM pos FOR len)`](string-functions.html#function_substring)
+
+  The forms without a *`len`* argument return a substring from string *`str`* starting at position *`pos`*. The forms with a *`len`* argument return a substring *`len`* characters long from string *`str`*, starting at position *`pos`*. The forms that use `FROM` are standard SQL syntax. It is also possible to use a negative value for *`pos`*. In this case, the beginning of the substring is *`pos`* characters from the end of the string, rather than the beginning. A negative value may be used for *`pos`* in any of the forms of this function. A value of 0 for *`pos`* returns an empty string.
+
+  For all forms of `SUBSTRING()`, the position of the first character in the string from which the substring is to be extracted is reckoned as `1`.
+
+  ```
+  mysql> SELECT SUBSTRING('Quadratically',5);
+          -> 'ratically'
+  mysql> SELECT SUBSTRING('foobarbar' FROM 4);
+          -> 'barbar'
+  mysql> SELECT SUBSTRING('Quadratically',5,6);
+          -> 'ratica'
+  mysql> SELECT SUBSTRING('Sakila', -3);
+          -> 'ila'
+  mysql> SELECT SUBSTRING('Sakila', -5, 3);
+          -> 'aki'
+  mysql> SELECT SUBSTRING('Sakila' FROM -4 FOR 2);
+          -> 'ki'
+  ```
+
+  This function is multibyte safe. It returns `NULL` if any of its arguments are `NULL`.
+
+  If *`len`* is less than 1, the result is the empty string.
+
+* `SUBSTRING_INDEX(str,delim,count)`
+
+  Returns the substring from string *`str`* before *`count`* occurrences of the delimiter *`delim`*. If *`count`* is positive, everything to the left of the final delimiter (counting from the left) is returned. If *`count`* is negative, everything to the right of the final delimiter (counting from the right) is returned. `SUBSTRING_INDEX()` performs a case-sensitive match when searching for *`delim`*.
+
+  ```
+  mysql> SELECT SUBSTRING_INDEX('www.mysql.com', '.', 2);
+          -> 'www.mysql'
+  mysql> SELECT SUBSTRING_INDEX('www.mysql.com', '.', -2);
+          -> 'mysql.com'
+  ```
+
+  This function is multibyte safe.
+
+  `SUBSTRING_INDEX()` returns `NULL` if any of its arguments are `NULL`.
+
+* `TO_BASE64(str)`
+
+  Converts the string argument to base-64 encoded form and returns the result as a character string with the connection character set and collation. If the argument is not a string, it is converted to a string before conversion takes place. The result is `NULL` if the argument is `NULL`. Base-64 encoded strings can be decoded using the `FROM_BASE64()` function.
+
+  ```
+  mysql> SELECT TO_BASE64('abc'), FROM_BASE64(TO_BASE64('abc'));
+          -> 'JWJj', 'abc'
+  ```
+
+  Different base-64 encoding schemes exist. These are the encoding and decoding rules used by `TO_BASE64()` and `FROM_BASE64()`:
+
+  + The encoding for alphabet value 62 is `'+'`.
+
+  + The encoding for alphabet value 63 is `'/'`.
+
+  + Encoded output consists of groups of 4 printable characters. Each 3 bytes of the input data are encoded using 4 characters. If the last group is incomplete, it is padded with `'='` characters to a length of 4.
+
+  + A newline is added after each 76 characters of encoded output to divide long output into multiple lines.
+
+  + Decoding recognizes and ignores newline, carriage return, tab, and space.
+
+* [`TRIM([{BOTH | LEADING | TRAILING} [remstr] FROM] str)`](string-functions.html#function_trim), [`TRIM([remstr FROM] str)`](string-functions.html#function_trim)
+
+  Returns the string *`str`* with all *`remstr`* prefixes or suffixes removed. If none of the specifiers `BOTH`, `LEADING`, or `TRAILING` is given, `BOTH` is assumed. *`remstr`* is optional and, if not specified, spaces are removed.
+
+  ```
+  mysql> SELECT TRIM('  bar   ');
+          -> 'bar'
+  mysql> SELECT TRIM(LEADING 'x' FROM 'xxxbarxxx');
+          -> 'barxxx'
+  mysql> SELECT TRIM(BOTH 'x' FROM 'xxxbarxxx');
+          -> 'bar'
+  mysql> SELECT TRIM(TRAILING 'xyz' FROM 'barxxyz');
+          -> 'barx'
+  ```
+
+  This function is multibyte safe. It returns `NULL` if any of its arguments are `NULL`.
+
+* `UCASE(str)`
+
+  `UCASE()` is a synonym for `UPPER()`.
+
+  `UCASE()` used within views is rewritten as `UPPER()`.
+
+* `UNHEX(str)`
+
+  For a string argument *`str`*, `UNHEX(str)` interprets each pair of characters in the argument as a hexadecimal number and converts it to the byte represented by the number. The return value is a binary string.
+
+  ```
+  mysql> SELECT UNHEX('4D7953514C');
+          -> 'MySQL'
+  mysql> SELECT X'4D7953514C';
+          -> 'MySQL'
+  mysql> SELECT UNHEX(HEX('string'));
+          -> 'string'
+  mysql> SELECT HEX(UNHEX('1267'));
+          -> '1267'
+  ```
+
+  The characters in the argument string must be legal hexadecimal digits: `'0'` .. `'9'`, `'A'` .. `'F'`, `'a'` .. `'f'`. If the argument contains any nonhexadecimal digits, or is itself `NULL`, the result is `NULL`:
+
+  ```
+  mysql> SELECT UNHEX('GG');
+  +-------------+
+  | UNHEX('GG') |
+  +-------------+
+  | NULL        |
+  +-------------+
+
+  mysql> SELECT UNHEX(NULL);
+  +-------------+
+  | UNHEX(NULL) |
+  +-------------+
+  | NULL        |
+  +-------------+
+  ```
+
+  A `NULL` result can also occur if the argument to `UNHEX()` is a `BINARY` column, because values are padded with `0x00` bytes when stored but those bytes are not stripped on retrieval. For example, `'41'` is stored into a `CHAR(3)` column as `'41 '` and retrieved as `'41'` (with the trailing pad space stripped), so `UNHEX()` for the column value returns `X'41'`. By contrast, `'41'` is stored into a `BINARY(3)` column as `'41\0'` and retrieved as `'41\0'` (with the trailing pad `0x00` byte not stripped). `'\0'` is not a legal hexadecimal digit, so `UNHEX()` for the column value returns `NULL`.
+
+  For a numeric argument *`N`*, the inverse of `HEX(N)` is not performed by `UNHEX()`. Use `CONV(HEX(N),16,10)` instead. See the description of `HEX()`.
+
+  If `UNHEX()` is invoked from within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+
+* `UPPER(str)`
+
+  Returns the string *`str`* with all characters changed to uppercase according to the current character set mapping, or `NULL` if *`str`* is `NULL`. The default character set is `utf8mb4`.
+
+  ```
+  mysql> SELECT UPPER('Hej');
+          -> 'HEJ'
+  ```
+
+  See the description of `LOWER()` for information that also applies to `UPPER()`. This included information about how to perform lettercase conversion of binary strings (`BINARY`, `VARBINARY`, `BLOB`) for which these functions are ineffective, and information about case folding for Unicode character sets.
+
+  This function is multibyte safe.
+
+  `UCASE()` used within views is rewritten as `UPPER()`.
+
+* [`WEIGHT_STRING(str [AS {CHAR|BINARY}(N)] [flags])`](string-functions.html#function_weight-string)
+
+  This function returns the weight string for the input string. The return value is a binary string that represents the comparison and sorting value of the string, or `NULL` if the argument is `NULL`. It has these properties:
+
+  + If `WEIGHT_STRING(str1)` = `WEIGHT_STRING(str2)`, then `str1 = str2` (*`str1`* and *`str2`* are considered equal)
+
+  + If `WEIGHT_STRING(str1)` < `WEIGHT_STRING(str2)`, then `str1 < str2` (*`str1`* sorts before *`str2`*)
+
+  `WEIGHT_STRING()` is a debugging function intended for internal use. Its behavior can change without notice between MySQL versions. It can be used for testing and debugging of collations, especially if you are adding a new collation. See Section 12.14, “Adding a Collation to a Character Set”.
+
+  This list briefly summarizes the arguments. More details are given in the discussion following the list.
+
+  + *`str`*: The input string expression.
+
+  + `AS` clause: Optional; cast the input string to a given type and length.
+
+  + *`flags`*: Optional; unused.
+
+  The input string, *`str`*, is a string expression. If the input is a nonbinary (character) string such as a `CHAR`, `VARCHAR`, or `TEXT` value, the return value contains the collation weights for the string. If the input is a binary (byte) string such as a `BINARY`, `VARBINARY`, or `BLOB` value, the return value is the same as the input (the weight for each byte in a binary string is the byte value). If the input is `NULL`, `WEIGHT_STRING()` returns `NULL`.
+
+  Examples:
+
+  ```
+  mysql> SET @s = _utf8mb4 'AB' COLLATE utf8mb4_0900_ai_ci;
+  mysql> SELECT @s, HEX(@s), HEX(WEIGHT_STRING(@s));
+  +------+---------+------------------------+
+  | @s   | HEX(@s) | HEX(WEIGHT_STRING(@s)) |
+  +------+---------+------------------------+
+  | AB   | 4142    | 1C471C60               |
+  +------+---------+------------------------+
+  ```
+
+  ```
+  mysql> SET @s = _utf8mb4 'ab' COLLATE utf8mb4_0900_ai_ci;
+  mysql> SELECT @s, HEX(@s), HEX(WEIGHT_STRING(@s));
+  +------+---------+------------------------+
+  | @s   | HEX(@s) | HEX(WEIGHT_STRING(@s)) |
+  +------+---------+------------------------+
+  | ab   | 6162    | 1C471C60               |
+  +------+---------+------------------------+
+  ```
+
+  ```
+  mysql> SET @s = CAST('AB' AS BINARY);
+  mysql> SELECT @s, HEX(@s), HEX(WEIGHT_STRING(@s));
+  +------+---------+------------------------+
+  | @s   | HEX(@s) | HEX(WEIGHT_STRING(@s)) |
+  +------+---------+------------------------+
+  | AB   | 4142    | 4142                   |
+  +------+---------+------------------------+
+  ```
+
+  ```
+  mysql> SET @s = CAST('ab' AS BINARY);
+  mysql> SELECT @s, HEX(@s), HEX(WEIGHT_STRING(@s));
+  +------+---------+------------------------+
+  | @s   | HEX(@s) | HEX(WEIGHT_STRING(@s)) |
+  +------+---------+------------------------+
+  | ab   | 6162    | 6162                   |
+  +------+---------+------------------------+
+  ```
+
+  The preceding examples use `HEX()` to display the `WEIGHT_STRING()` result. Because the result is a binary value, `HEX()` can be especially useful when the result contains nonprinting values, to display it in printable form:
+
+  ```
+  mysql> SET @s = CONVERT(X'C39F' USING utf8mb4) COLLATE utf8mb4_czech_ci;
+  mysql> SELECT HEX(WEIGHT_STRING(@s));
+  +------------------------+
+  | HEX(WEIGHT_STRING(@s)) |
+  +------------------------+
+  | 0FEA0FEA               |
+  +------------------------+
+  ```
+
+  For non-`NULL` return values, the data type of the value is `VARBINARY` if its length is within the maximum length for `VARBINARY`, otherwise the data type is `BLOB`.
+
+  The `AS` clause may be given to cast the input string to a nonbinary or binary string and to force it to a given length:
+
+  + `AS CHAR(N)` casts the string to a nonbinary string and pads it on the right with spaces to a length of *`N`* characters. *`N`* must be at least 1. If *`N`* is less than the length of the input string, the string is truncated to *`N`* characters. No warning occurs for truncation.
+
+  + `AS BINARY(N)` is similar but casts the string to a binary string, *`N`* is measured in bytes (not characters), and padding uses `0x00` bytes (not spaces).
+
+  ```
+  mysql> SET NAMES 'latin1';
+  mysql> SELECT HEX(WEIGHT_STRING('ab' AS CHAR(4)));
+  +-------------------------------------+
+  | HEX(WEIGHT_STRING('ab' AS CHAR(4))) |
+  +-------------------------------------+
+  | 41422020                            |
+  +-------------------------------------+
+  mysql> SET NAMES 'utf8mb4';
+  mysql> SELECT HEX(WEIGHT_STRING('ab' AS CHAR(4)));
+  +-------------------------------------+
+  | HEX(WEIGHT_STRING('ab' AS CHAR(4))) |
+  +-------------------------------------+
+  | 1C471C60                            |
+  +-------------------------------------+
+  ```
+
+  ```
+  mysql> SELECT HEX(WEIGHT_STRING('ab' AS BINARY(4)));
+  +---------------------------------------+
+  | HEX(WEIGHT_STRING('ab' AS BINARY(4))) |
+  +---------------------------------------+
+  | 61620000                              |
+  +---------------------------------------+
+  ```
+
+  The *`flags`* clause currently is unused.
+
+  If `WEIGHT_STRING()` is invoked from within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+
+
+### 14.8.1 String Comparison Functions and Operators
+
+**Table 14.13 String Comparison Functions and Operators**
+
+<table frame="box" rules="all" summary="A reference that lists string comparison functions and operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="string-comparison-functions.html#operator_like"><code class="literal">LIKE</code></a></td> <td> Simple pattern matching </td> </tr><tr><td><a class="link" href="string-comparison-functions.html#operator_not-like"><code class="literal">NOT LIKE</code></a></td> <td> Negation of simple pattern matching </td> </tr><tr><td><a class="link" href="string-comparison-functions.html#function_strcmp"><code class="literal">STRCMP()</code></a></td> <td> Compare two strings </td> </tr></tbody></table>
+
+If a string function is given a binary string as an argument, the resulting string is also a binary string. A number converted to a string is treated as a binary string. This affects only comparisons.
+
+Normally, if any expression in a string comparison is case-sensitive, the comparison is performed in case-sensitive fashion.
+
+If a string function is invoked from within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 6.5.1, “mysql — The MySQL Command-Line Client”.
+
+* [`expr LIKE pat [ESCAPE 'escape_char']`](string-comparison-functions.html#operator_like)
+
+  Pattern matching using an SQL pattern. Returns `1` (`TRUE`) or `0` (`FALSE`). If either *`expr`* or *`pat`* is `NULL`, the result is `NULL`.
+
+  The pattern need not be a literal string. For example, it can be specified as a string expression or table column. In the latter case, the column must be defined as one of the MySQL string types (see Section 13.3, “String Data Types”).
+
+  Per the SQL standard, `LIKE` performs matching on a per-character basis, thus it can produce results different from the `=` comparison operator:
+
+  ```
+  mysql> SELECT 'ä' LIKE 'ae' COLLATE latin1_german2_ci;
+  +-----------------------------------------+
+  | 'ä' LIKE 'ae' COLLATE latin1_german2_ci |
+  +-----------------------------------------+
+  |                                       0 |
+  +-----------------------------------------+
+  mysql> SELECT 'ä' = 'ae' COLLATE latin1_german2_ci;
+  +--------------------------------------+
+  | 'ä' = 'ae' COLLATE latin1_german2_ci |
+  +--------------------------------------+
+  |                                    1 |
+  +--------------------------------------+
+  ```
+
+  In particular, trailing spaces are always significant. This differs from comparisons performed with the `=` operator, for which the significance of trailing spaces in nonbinary strings (`CHAR`, `VARCHAR`, and `TEXT` values) depends on the pad attribute of the collation used for the comparison. For more information, see Trailing Space Handling in Comparisons.
+
+  With `LIKE` you can use the following two wildcard characters in the pattern:
+
+  + `%` matches any number of characters, even zero characters.
+
+  + `_` matches exactly one character.
+
+  ```
+  mysql> SELECT 'David!' LIKE 'David_';
+          -> 1
+  mysql> SELECT 'David!' LIKE '%D%v%';
+          -> 1
+  ```
+
+  To test for literal instances of a wildcard character, precede it by the escape character. If you do not specify the `ESCAPE` character, `\` is assumed, unless the `NO_BACKSLASH_ESCAPES` SQL mode is enabled. In that case, no escape character is used.
+
+  + `\%` matches one `%` character.
+
+  + `\_` matches one `_` character.
+
+  ```
+  mysql> SELECT 'David!' LIKE 'David\_';
+          -> 0
+  mysql> SELECT 'David_' LIKE 'David\_';
+          -> 1
+  ```
+
+  To specify a different escape character, use the `ESCAPE` clause:
+
+  ```
+  mysql> SELECT 'David_' LIKE 'David|_' ESCAPE '|';
+          -> 1
+  ```
+
+  The escape sequence should be one character long to specify the escape character, or empty to specify that no escape character is used. The expression must evaluate as a constant at execution time. If the `NO_BACKSLASH_ESCAPES` SQL mode is enabled, the sequence cannot be empty.
+
+  The following statements illustrate that string comparisons are not case-sensitive unless one of the operands is case-sensitive (uses a case-sensitive collation or is a binary string):
+
+  ```
+  mysql> SELECT 'abc' LIKE 'ABC';
+          -> 1
+  mysql> SELECT 'abc' LIKE _utf8mb4 'ABC' COLLATE utf8mb4_0900_as_cs;
+          -> 0
+  mysql> SELECT 'abc' LIKE _utf8mb4 'ABC' COLLATE utf8mb4_bin;
+          -> 0
+  mysql> SELECT 'abc' LIKE BINARY 'ABC';
+          -> 0
+  ```
+
+  As an extension to standard SQL, MySQL permits `LIKE` on numeric expressions.
+
+  ```
+  mysql> SELECT 10 LIKE '1%';
+          -> 1
+  ```
+
+  MySQL attempts in such cases to perform implicit conversion of the expression to a string. See Section 14.3, “Type Conversion in Expression Evaluation”.
+
+  Note
+
+  MySQL uses C escape syntax in strings (for example, `\n` to represent the newline character). If you want a `LIKE` string to contain a literal `\`, you must double it. (Unless the `NO_BACKSLASH_ESCAPES` SQL mode is enabled, in which case no escape character is used.) For example, to search for `\n`, specify it as `\\n`. To search for `\`, specify it as `\\\\`; this is because the backslashes are stripped once by the parser and again when the pattern match is made, leaving a single backslash to be matched against.
+
+  Exception: At the end of the pattern string, backslash can be specified as `\\`. At the end of the string, backslash stands for itself because there is nothing following to escape. Suppose that a table contains the following values:
+
+  ```
+  mysql> SELECT filename FROM t1;
+  +--------------+
+  | filename     |
+  +--------------+
+  | C:           |
+  | C:\          |
+  | C:\Programs  |
+  | C:\Programs\ |
+  +--------------+
+  ```
+
+  To test for values that end with backslash, you can match the values using either of the following patterns:
+
+  ```
+  mysql> SELECT filename, filename LIKE '%\\' FROM t1;
+  +--------------+---------------------+
+  | filename     | filename LIKE '%\\' |
+  +--------------+---------------------+
+  | C:           |                   0 |
+  | C:\          |                   1 |
+  | C:\Programs  |                   0 |
+  | C:\Programs\ |                   1 |
+  +--------------+---------------------+
+
+  mysql> SELECT filename, filename LIKE '%\\\\' FROM t1;
+  +--------------+-----------------------+
+  | filename     | filename LIKE '%\\\\' |
+  +--------------+-----------------------+
+  | C:           |                     0 |
+  | C:\          |                     1 |
+  | C:\Programs  |                     0 |
+  | C:\Programs\ |                     1 |
+  +--------------+-----------------------+
+  ```
+
+* [`expr NOT LIKE pat [ESCAPE 'escape_char']`](string-comparison-functions.html#operator_not-like)
+
+  This is the same as `NOT (expr LIKE pat [ESCAPE 'escape_char'])`.
+
+  Note
+
+  Aggregate queries involving [`NOT LIKE`](string-comparison-functions.html#operator_not-like) comparisons with columns containing `NULL` may yield unexpected results. For example, consider the following table and data:
+
+  ```
+  CREATE TABLE foo (bar VARCHAR(10));
+
+  INSERT INTO foo VALUES (NULL), (NULL);
+  ```
+
+  The query `SELECT COUNT(*) FROM foo WHERE bar LIKE '%baz%';` returns `0`. You might assume that `SELECT COUNT(*) FROM foo WHERE bar NOT LIKE '%baz%';` would return `2`. However, this is not the case: The second query returns `0`. This is because `NULL NOT LIKE expr` always returns `NULL`, regardless of the value of *`expr`*. The same is true for aggregate queries involving `NULL` and comparisons using [`NOT RLIKE`](regexp.html#operator_not-regexp) or [`NOT REGEXP`](regexp.html#operator_not-regexp). In such cases, you must test explicitly for `NOT NULL` using `OR` (and not `AND`), as shown here:
+
+  ```
+  SELECT COUNT(*) FROM foo WHERE bar NOT LIKE '%baz%' OR bar IS NULL;
+  ```
+
+* `STRCMP(expr1,expr2)`
+
+  `STRCMP()` returns `0` if the strings are the same, `-1` if the first argument is smaller than the second according to the current sort order, and `NULL` if either argument is `NULL`. It returns `1` otherwise.
+
+  ```
+  mysql> SELECT STRCMP('text', 'text2');
+          -> -1
+  mysql> SELECT STRCMP('text2', 'text');
+          -> 1
+  mysql> SELECT STRCMP('text', 'text');
+          -> 0
+  ```
+
+  `STRCMP()` performs the comparison using the collation of the arguments.
+
+  ```
+  mysql> SET @s1 = _utf8mb4 'x' COLLATE utf8mb4_0900_ai_ci;
+  mysql> SET @s2 = _utf8mb4 'X' COLLATE utf8mb4_0900_ai_ci;
+  mysql> SET @s3 = _utf8mb4 'x' COLLATE utf8mb4_0900_as_cs;
+  mysql> SET @s4 = _utf8mb4 'X' COLLATE utf8mb4_0900_as_cs;
+  mysql> SELECT STRCMP(@s1, @s2), STRCMP(@s3, @s4);
+  +------------------+------------------+
+  | STRCMP(@s1, @s2) | STRCMP(@s3, @s4) |
+  +------------------+------------------+
+  |                0 |               -1 |
+  +------------------+------------------+
+  ```
+
+  If the collations are incompatible, one of the arguments must be converted to be compatible with the other. See Section 12.8.4, “Collation Coercibility in Expressions”.
+
+  ```
+  mysql> SET @s1 = _utf8mb4 'x' COLLATE utf8mb4_0900_ai_ci;
+  mysql> SET @s2 = _utf8mb4 'X' COLLATE utf8mb4_0900_ai_ci;
+  mysql> SET @s3 = _utf8mb4 'x' COLLATE utf8mb4_0900_as_cs;
+  mysql> SET @s4 = _utf8mb4 'X' COLLATE utf8mb4_0900_as_cs;
+  -->
+  mysql> SELECT STRCMP(@s1, @s3);
+  ERROR 1267 (HY000): Illegal mix of collations (utf8mb4_0900_ai_ci,IMPLICIT)
+  and (utf8mb4_0900_as_cs,IMPLICIT) for operation 'strcmp'
+  mysql> SELECT STRCMP(@s1, @s3 COLLATE utf8mb4_0900_ai_ci);
+  +---------------------------------------------+
+  | STRCMP(@s1, @s3 COLLATE utf8mb4_0900_ai_ci) |
+  +---------------------------------------------+
+  |                                           0 |
+  +---------------------------------------------+
+  ```
+
+
+### 14.8.2 Regular Expressions
+
+**Table 14.14 Regular Expression Functions and Operators**
+
+<table frame="box" rules="all" summary="A reference that lists regular expression functions and operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="regexp.html#operator_not-regexp"><code class="literal">NOT REGEXP</code></a></td> <td> Negation of REGEXP </td> </tr><tr><td><a class="link" href="regexp.html#operator_regexp"><code class="literal">REGEXP</code></a></td> <td> Whether string matches regular expression </td> </tr><tr><td><a class="link" href="regexp.html#function_regexp-instr"><code class="literal">REGEXP_INSTR()</code></a></td> <td> Starting index of substring matching regular expression </td> </tr><tr><td><a class="link" href="regexp.html#function_regexp-like"><code class="literal">REGEXP_LIKE()</code></a></td> <td> Whether string matches regular expression </td> </tr><tr><td><a class="link" href="regexp.html#function_regexp-replace"><code class="literal">REGEXP_REPLACE()</code></a></td> <td> Replace substrings matching regular expression </td> </tr><tr><td><a class="link" href="regexp.html#function_regexp-substr"><code class="literal">REGEXP_SUBSTR()</code></a></td> <td> Return substring matching regular expression </td> </tr><tr><td><a class="link" href="regexp.html#operator_regexp"><code class="literal">RLIKE</code></a></td> <td> Whether string matches regular expression </td> </tr></tbody></table>
+
+A regular expression is a powerful way of specifying a pattern for a complex search. This section discusses the functions and operators available for regular expression matching and illustrates, with examples, some of the special characters and constructs that can be used for regular expression operations. See also Section 5.3.4.7, “Pattern Matching”.
+
+MySQL implements regular expression support using International Components for Unicode (ICU), which provides full Unicode support and is multibyte safe.
+
+Use of a binary string with any of the MySQL regular expression functions is rejected with `ER_CHARACTER_SET_MISMATCH`.
+
+* Regular Expression Function and Operator Descriptions
+* Regular Expression Syntax
+* Regular Expression Resource Control
+
+#### Regular Expression Function and Operator Descriptions
+
+* [`expr NOT REGEXP pat`](regexp.html#operator_not-regexp), [`expr NOT RLIKE pat`](regexp.html#operator_not-regexp)
+
+  This is the same as `NOT (expr REGEXP pat)`.
+
+* [`expr REGEXP pat`](regexp.html#operator_regexp), [`expr RLIKE pat`](regexp.html#operator_regexp)
+
+  Returns 1 if the string *`expr`* matches the regular expression specified by the pattern *`pat`*, 0 otherwise. If *`expr`* or *`pat`* is `NULL`, the return value is `NULL`.
+
+  `REGEXP` and `RLIKE` are synonyms for `REGEXP_LIKE()`.
+
+  For additional information about how matching occurs, see the description for `REGEXP_LIKE()`.
+
+  ```
+  mysql> SELECT 'Michael!' REGEXP '.*';
+  +------------------------+
+  | 'Michael!' REGEXP '.*' |
+  +------------------------+
+  |                      1 |
+  +------------------------+
+  mysql> SELECT 'new*\n*line' REGEXP 'new\\*.\\*line';
+  +---------------------------------------+
+  | 'new*\n*line' REGEXP 'new\\*.\\*line' |
+  +---------------------------------------+
+  |                                     0 |
+  +---------------------------------------+
+  mysql> SELECT 'a' REGEXP '^[a-d]';
+  +---------------------+
+  | 'a' REGEXP '^[a-d]' |
+  +---------------------+
+  |                   1 |
+  +---------------------+
+  ```
+
+* [`REGEXP_INSTR(expr, pat[, pos[, occurrence[, return_option[, match_type]]]])`](regexp.html#function_regexp-instr)
+
+  Returns the starting index of the substring of the string *`expr`* that matches the regular expression specified by the pattern *`pat`*, 0 if there is no match. If *`expr`* or *`pat`* is `NULL`, the return value is `NULL`. Character indexes begin at 1.
+
+  `REGEXP_INSTR()` takes these optional arguments:
+
+  + *`pos`*: The position in *`expr`* at which to start the search. If omitted, the default is 1.
+
+  + *`occurrence`*: Which occurrence of a match to search for. If omitted, the default is 1.
+
+  + *`return_option`*: Which type of position to return. If this value is 0, `REGEXP_INSTR()` returns the position of the matched substring's first character. If this value is 1, `REGEXP_INSTR()` returns the position following the matched substring. If omitted, the default is 0.
+
+  + *`match_type`*: A string that specifies how to perform matching. The meaning is as described for `REGEXP_LIKE()`.
+
+  For additional information about how matching occurs, see the description for `REGEXP_LIKE()`.
+
+  ```
+  mysql> SELECT REGEXP_INSTR('dog cat dog', 'dog');
+  +------------------------------------+
+  | REGEXP_INSTR('dog cat dog', 'dog') |
+  +------------------------------------+
+  |                                  1 |
+  +------------------------------------+
+  mysql> SELECT REGEXP_INSTR('dog cat dog', 'dog', 2);
+  +---------------------------------------+
+  | REGEXP_INSTR('dog cat dog', 'dog', 2) |
+  +---------------------------------------+
+  |                                     9 |
+  +---------------------------------------+
+  mysql> SELECT REGEXP_INSTR('aa aaa aaaa', 'a{2}');
+  +-------------------------------------+
+  | REGEXP_INSTR('aa aaa aaaa', 'a{2}') |
+  +-------------------------------------+
+  |                                   1 |
+  +-------------------------------------+
+  mysql> SELECT REGEXP_INSTR('aa aaa aaaa', 'a{4}');
+  +-------------------------------------+
+  | REGEXP_INSTR('aa aaa aaaa', 'a{4}') |
+  +-------------------------------------+
+  |                                   8 |
+  +-------------------------------------+
+  ```
+
+* [`REGEXP_LIKE(expr, pat[, match_type])`](regexp.html#function_regexp-like)
+
+  Returns 1 if the string *`expr`* matches the regular expression specified by the pattern *`pat`*, 0 otherwise. If *`expr`* or *`pat`* is `NULL`, the return value is `NULL`.
+
+  The pattern can be an extended regular expression, the syntax for which is discussed in Regular Expression Syntax. The pattern need not be a literal string. For example, it can be specified as a string expression or table column.
+
+  The optional *`match_type`* argument is a string that may contain any or all the following characters specifying how to perform matching:
+
+  + `c`: Case-sensitive matching.
+  + `i`: Case-insensitive matching.
+  + `m`: Multiple-line mode. Recognize line terminators within the string. The default behavior is to match line terminators only at the start and end of the string expression.
+
+  + `n`: The `.` character matches line terminators. The default is for `.` matching to stop at the end of a line.
+
+  + `u`: Unix-only line endings. Only the newline character is recognized as a line ending by the `.`, `^`, and `$` match operators.
+
+  If characters specifying contradictory options are specified within *`match_type`*, the rightmost one takes precedence.
+
+  By default, regular expression operations use the character set and collation of the *`expr`* and *`pat`* arguments when deciding the type of a character and performing the comparison. If the arguments have different character sets or collations, coercibility rules apply as described in Section 12.8.4, “Collation Coercibility in Expressions”. Arguments may be specified with explicit collation indicators to change comparison behavior.
+
+  ```
+  mysql> SELECT REGEXP_LIKE('CamelCase', 'CAMELCASE');
+  +---------------------------------------+
+  | REGEXP_LIKE('CamelCase', 'CAMELCASE') |
+  +---------------------------------------+
+  |                                     1 |
+  +---------------------------------------+
+  mysql> SELECT REGEXP_LIKE('CamelCase', 'CAMELCASE' COLLATE utf8mb4_0900_as_cs);
+  +------------------------------------------------------------------+
+  | REGEXP_LIKE('CamelCase', 'CAMELCASE' COLLATE utf8mb4_0900_as_cs) |
+  +------------------------------------------------------------------+
+  |                                                                0 |
+  +------------------------------------------------------------------+
+  ```
+
+  *`match_type`* may be specified with the `c` or `i` characters to override the default case sensitivity. Exception: If either argument is a binary string, the arguments are handled in case-sensitive fashion as binary strings, even if *`match_type`* contains the `i` character.
+
+  Note
+
+  MySQL uses C escape syntax in strings (for example, `\n` to represent the newline character). If you want your *`expr`* or *`pat`* argument to contain a literal `\`, you must double it. (Unless the `NO_BACKSLASH_ESCAPES` SQL mode is enabled, in which case no escape character is used.)
+
+  ```
+  mysql> SELECT REGEXP_LIKE('Michael!', '.*');
+  +-------------------------------+
+  | REGEXP_LIKE('Michael!', '.*') |
+  +-------------------------------+
+  |                             1 |
+  +-------------------------------+
+  mysql> SELECT REGEXP_LIKE('new*\n*line', 'new\\*.\\*line');
+  +----------------------------------------------+
+  | REGEXP_LIKE('new*\n*line', 'new\\*.\\*line') |
+  +----------------------------------------------+
+  |                                            0 |
+  +----------------------------------------------+
+  mysql> SELECT REGEXP_LIKE('a', '^[a-d]');
+  +----------------------------+
+  | REGEXP_LIKE('a', '^[a-d]') |
+  +----------------------------+
+  |                          1 |
+  +----------------------------+
+  ```
+
+  ```
+  mysql> SELECT REGEXP_LIKE('abc', 'ABC');
+  +---------------------------+
+  | REGEXP_LIKE('abc', 'ABC') |
+  +---------------------------+
+  |                         1 |
+  +---------------------------+
+  mysql> SELECT REGEXP_LIKE('abc', 'ABC', 'c');
+  +--------------------------------+
+  | REGEXP_LIKE('abc', 'ABC', 'c') |
+  +--------------------------------+
+  |                              0 |
+  +--------------------------------+
+  ```
+
+* [`REGEXP_REPLACE(expr, pat, repl[, pos[, occurrence[, match_type]]])`](regexp.html#function_regexp-replace)
+
+  Replaces occurrences in the string *`expr`* that match the regular expression specified by the pattern *`pat`* with the replacement string *`repl`*, and returns the resulting string. If *`expr`*, *`pat`*, or *`repl`* is `NULL`, the return value is `NULL`.
+
+  `REGEXP_REPLACE()` takes these optional arguments:
+
+  + *`pos`*: The position in *`expr`* at which to start the search. If omitted, the default is 1.
+
+  + *`occurrence`*: Which occurrence of a match to replace. If omitted, the default is 0 (which means “replace all occurrences”).
+
+  + *`match_type`*: A string that specifies how to perform matching. The meaning is as described for `REGEXP_LIKE()`.
+
+  The result returned by this function uses the character set and collation of the expression searched for matches.
+
+  For additional information about how matching occurs, see the description for `REGEXP_LIKE()`.
+
+  ```
+  mysql> SELECT REGEXP_REPLACE('a b c', 'b', 'X');
+  +-----------------------------------+
+  | REGEXP_REPLACE('a b c', 'b', 'X') |
+  +-----------------------------------+
+  | a X c                             |
+  +-----------------------------------+
+  mysql> SELECT REGEXP_REPLACE('abc def ghi', '[a-z]+', 'X', 1, 3);
+  +----------------------------------------------------+
+  | REGEXP_REPLACE('abc def ghi', '[a-z]+', 'X', 1, 3) |
+  +----------------------------------------------------+
+  | abc def X                                          |
+  +----------------------------------------------------+
+  ```
+
+* [`REGEXP_SUBSTR(expr, pat[, pos[, occurrence[, match_type]]])`](regexp.html#function_regexp-substr)
+
+  Returns the substring of the string *`expr`* that matches the regular expression specified by the pattern *`pat`*, `NULL` if there is no match. If *`expr`* or *`pat`* is `NULL`, the return value is `NULL`.
+
+  `REGEXP_SUBSTR()` takes these optional arguments:
+
+  + *`pos`*: The position in *`expr`* at which to start the search. If omitted, the default is 1.
+
+  + *`occurrence`*: Which occurrence of a match to search for. If omitted, the default is 1.
+
+  + *`match_type`*: A string that specifies how to perform matching. The meaning is as described for `REGEXP_LIKE()`.
+
+  The result returned by this function uses the character set and collation of the expression searched for matches.
+
+  For additional information about how matching occurs, see the description for `REGEXP_LIKE()`.
+
+  ```
+  mysql> SELECT REGEXP_SUBSTR('abc def ghi', '[a-z]+');
+  +----------------------------------------+
+  | REGEXP_SUBSTR('abc def ghi', '[a-z]+') |
+  +----------------------------------------+
+  | abc                                    |
+  +----------------------------------------+
+  mysql> SELECT REGEXP_SUBSTR('abc def ghi', '[a-z]+', 1, 3);
+  +----------------------------------------------+
+  | REGEXP_SUBSTR('abc def ghi', '[a-z]+', 1, 3) |
+  +----------------------------------------------+
+  | ghi                                          |
+  +----------------------------------------------+
+  ```
+
+#### Regular Expression Syntax
+
+A regular expression describes a set of strings. The simplest regular expression is one that has no special characters in it. For example, the regular expression `hello` matches `hello` and nothing else.
+
+Nontrivial regular expressions use certain special constructs so that they can match more than one string. For example, the regular expression `hello|world` contains the `|` alternation operator and matches either the `hello` or `world`.
+
+As a more complex example, the regular expression `B[an]*s` matches any of the strings `Bananas`, `Baaaaas`, `Bs`, and any other string starting with a `B`, ending with an `s`, and containing any number of `a` or `n` characters in between.
+
+The following list covers some of the basic special characters and constructs that can be used in regular expressions. For information about the full regular expression syntax supported by the ICU library used to implement regular expression support, visit the [International Components for Unicode web site](https://unicode-org.github.io/icu/userguide/).
+
+* `^`
+
+  Match the beginning of a string.
+
+  ```
+  mysql> SELECT REGEXP_LIKE('fo\nfo', '^fo$');                   -> 0
+  mysql> SELECT REGEXP_LIKE('fofo', '^fo');                      -> 1
+  ```
+
+* `$`
+
+  Match the end of a string.
+
+  ```
+  mysql> SELECT REGEXP_LIKE('fo\no', '^fo\no$');                 -> 1
+  mysql> SELECT REGEXP_LIKE('fo\no', '^fo$');                    -> 0
+  ```
+
+* `.`
+
+  Match any character (including carriage return and newline, although to match these in the middle of a string, the `m` (multiple line) match-control character or the `(?m)` within-pattern modifier must be given).
+
+  ```
+  mysql> SELECT REGEXP_LIKE('fofo', '^f.*$');                    -> 1
+  mysql> SELECT REGEXP_LIKE('fo\r\nfo', '^f.*$');                -> 0
+  mysql> SELECT REGEXP_LIKE('fo\r\nfo', '^f.*$', 'm');           -> 1
+  mysql> SELECT REGEXP_LIKE('fo\r\nfo', '(?m)^f.*$');           -> 1
+  ```
+
+* `a*`
+
+  Match any sequence of zero or more `a` characters.
+
+  ```
+  mysql> SELECT REGEXP_LIKE('Ban', '^Ba*n');                     -> 1
+  mysql> SELECT REGEXP_LIKE('Baaan', '^Ba*n');                   -> 1
+  mysql> SELECT REGEXP_LIKE('Bn', '^Ba*n');                      -> 1
+  ```
+
+* `a+`
+
+  Match any sequence of one or more `a` characters.
+
+  ```
+  mysql> SELECT REGEXP_LIKE('Ban', '^Ba+n');                     -> 1
+  mysql> SELECT REGEXP_LIKE('Bn', '^Ba+n');                      -> 0
+  ```
+
+* `a?`
+
+  Match either zero or one `a` character.
+
+  ```
+  mysql> SELECT REGEXP_LIKE('Bn', '^Ba?n');                      -> 1
+  mysql> SELECT REGEXP_LIKE('Ban', '^Ba?n');                     -> 1
+  mysql> SELECT REGEXP_LIKE('Baan', '^Ba?n');                    -> 0
+  ```
+
+* `de|abc`
+
+  Alternation; match either of the sequences `de` or `abc`.
+
+  ```
+  mysql> SELECT REGEXP_LIKE('pi', 'pi|apa');                     -> 1
+  mysql> SELECT REGEXP_LIKE('axe', 'pi|apa');                    -> 0
+  mysql> SELECT REGEXP_LIKE('apa', 'pi|apa');                    -> 1
+  mysql> SELECT REGEXP_LIKE('apa', '^(pi|apa)$');                -> 1
+  mysql> SELECT REGEXP_LIKE('pi', '^(pi|apa)$');                 -> 1
+  mysql> SELECT REGEXP_LIKE('pix', '^(pi|apa)$');                -> 0
+  ```
+
+* `(abc)*`
+
+  Match zero or more instances of the sequence `abc`.
+
+  ```
+  mysql> SELECT REGEXP_LIKE('pi', '^(pi)*$');                    -> 1
+  mysql> SELECT REGEXP_LIKE('pip', '^(pi)*$');                   -> 0
+  mysql> SELECT REGEXP_LIKE('pipi', '^(pi)*$');                  -> 1
+  ```
+
+* `{1}`, `{2,3}`
+
+  Repetition; `{n}` and `{m,n}` notation provide a more general way of writing regular expressions that match many occurrences of the previous atom (or “piece”) of the pattern. *`m`* and *`n`* are integers.
+
+  + `a*`
+
+    Can be written as `a{0,}`.
+
+  + `a+`
+
+    Can be written as `a{1,}`.
+
+  + `a?`
+
+    Can be written as `a{0,1}`.
+
+  To be more precise, `a{n}` matches exactly *`n`* instances of `a`. `a{n,}` matches *`n`* or more instances of `a`. `a{m,n}` matches *`m`* through *`n`* instances of `a`, inclusive. If both *`m`* and *`n`* are given, *`m`* must be less than or equal to *`n`*.
+
+  ```
+  mysql> SELECT REGEXP_LIKE('abcde', 'a[bcd]{2}e');              -> 0
+  mysql> SELECT REGEXP_LIKE('abcde', 'a[bcd]{3}e');              -> 1
+  mysql> SELECT REGEXP_LIKE('abcde', 'a[bcd]{1,10}e');           -> 1
+  ```
+
+* `[a-dX]`, `[^a-dX]`
+
+  Matches any character that is (or is not, if `^` is used) either `a`, `b`, `c`, `d` or `X`. A `-` character between two other characters forms a range that matches all characters from the first character to the second. For example, `[0-9]` matches any decimal digit. To include a literal `]` character, it must immediately follow the opening bracket `[`. To include a literal `-` character, it must be written first or last. Any character that does not have a defined special meaning inside a `[]` pair matches only itself.
+
+  ```
+  mysql> SELECT REGEXP_LIKE('aXbc', '[a-dXYZ]');                 -> 1
+  mysql> SELECT REGEXP_LIKE('aXbc', '^[a-dXYZ]$');               -> 0
+  mysql> SELECT REGEXP_LIKE('aXbc', '^[a-dXYZ]+$');              -> 1
+  mysql> SELECT REGEXP_LIKE('aXbc', '^[^a-dXYZ]+$');             -> 0
+  mysql> SELECT REGEXP_LIKE('gheis', '^[^a-dXYZ]+$');            -> 1
+  mysql> SELECT REGEXP_LIKE('gheisa', '^[^a-dXYZ]+$');           -> 0
+  ```
+
+* `[=character_class=]`
+
+  Within a bracket expression (written using `[` and `]`), `[=character_class=]` represents an equivalence class. It matches all characters with the same collation value, including itself. For example, if `o` and `(+)` are the members of an equivalence class, `[[=o=]]`, `[[=(+)=]]`, and `[o(+)]` are all synonymous. An equivalence class may not be used as an endpoint of a range.
+
+* `[:character_class:]`
+
+  Within a bracket expression (written using `[` and `]`), `[:character_class:]` represents a character class that matches all characters belonging to that class. The following table lists the standard class names. These names stand for the character classes defined in the `ctype(3)` manual page. A particular locale may provide other class names. A character class may not be used as an endpoint of a range.
+
+  <table summary="Character class names and the meaning of each class."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Character Class Name</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code class="literal">alnum</code></td> <td>Alphanumeric characters</td> </tr><tr> <td><code class="literal">alpha</code></td> <td>Alphabetic characters</td> </tr><tr> <td><code class="literal">blank</code></td> <td>Whitespace characters</td> </tr><tr> <td><code class="literal">cntrl</code></td> <td>Control characters</td> </tr><tr> <td><code class="literal">digit</code></td> <td>Digit characters</td> </tr><tr> <td><code class="literal">graph</code></td> <td>Graphic characters</td> </tr><tr> <td><code class="literal">lower</code></td> <td>Lowercase alphabetic characters</td> </tr><tr> <td><code class="literal">print</code></td> <td>Graphic or space characters</td> </tr><tr> <td><code class="literal">punct</code></td> <td>Punctuation characters</td> </tr><tr> <td><code class="literal">space</code></td> <td>Space, tab, newline, and carriage return</td> </tr><tr> <td><code class="literal">upper</code></td> <td>Uppercase alphabetic characters</td> </tr><tr> <td><code class="literal">xdigit</code></td> <td>Hexadecimal digit characters</td> </tr></tbody></table>
+
+  ```
+  mysql> SELECT REGEXP_LIKE('justalnums', '[[:alnum:]]+');       -> 1
+  mysql> SELECT REGEXP_LIKE('!!', '[[:alnum:]]+');               -> 0
+  ```
+
+To use a literal instance of a special character in a regular expression, precede it by two backslash (\) characters. The MySQL parser interprets one of the backslashes, and the regular expression library interprets the other. For example, to match the string `1+2` that contains the special `+` character, only the last of the following regular expressions is the correct one:
+
+```
+mysql> SELECT REGEXP_LIKE('1+2', '1+2');                       -> 0
+mysql> SELECT REGEXP_LIKE('1+2', '1\+2');                      -> 0
+mysql> SELECT REGEXP_LIKE('1+2', '1\\+2');                     -> 1
+```
+
+#### Regular Expression Resource Control
+
+`REGEXP_LIKE()` and similar functions use resources that can be controlled by setting system variables:
+
+* The match engine uses memory for its internal stack. To control the maximum available memory for the stack in bytes, set the `regexp_stack_limit` system variable.
+
+* The match engine operates in steps. To control the maximum number of steps performed by the engine (and thus indirectly the execution time), set the `regexp_time_limit` system variable. Because this limit is expressed as number of steps, it affects execution time only indirectly. Typically, it is on the order of milliseconds.
+
+
+### 14.8.3 Character Set and Collation of Function Results
+
+MySQL has many operators and functions that return a string. This section answers the question: What is the character set and collation of such a string?
+
+For simple functions that take string input and return a string result as output, the output's character set and collation are the same as those of the principal input value. For example, `UPPER(X)` returns a string with the same character string and collation as *`X`*. The same applies for `INSTR()`, `LCASE()`, `LOWER()`, `LTRIM()`, `MID()`, `REPEAT()`, `REPLACE()`, `REVERSE()`, `RIGHT()`, `RPAD()`, `RTRIM()`, `SOUNDEX()`, `SUBSTRING()`, `TRIM()`, `UCASE()`, and `UPPER()`.
+
+Note
+
+The `REPLACE()` function, unlike all other functions, always ignores the collation of the string input and performs a case-sensitive comparison.
+
+If a string input or function result is a binary string, the string has the `binary` character set and collation. This can be checked by using the `CHARSET()` and `COLLATION()` functions, both of which return `binary` for a binary string argument:
+
+```
+mysql> SELECT CHARSET(BINARY 'a'), COLLATION(BINARY 'a');
++---------------------+-----------------------+
+| CHARSET(BINARY 'a') | COLLATION(BINARY 'a') |
++---------------------+-----------------------+
+| binary              | binary                |
++---------------------+-----------------------+
+```
+
+For operations that combine multiple string inputs and return a single string output, the “aggregation rules” of standard SQL apply for determining the collation of the result:
+
+* If an explicit `COLLATE Y` occurs, use *`Y`*.
+
+* If explicit `COLLATE Y` and `COLLATE Z` occur, raise an error.
+
+* Otherwise, if all collations are *`Y`*, use *`Y`*.
+
+* Otherwise, the result has no collation.
+
+For example, with `CASE ... WHEN a THEN b WHEN b THEN c COLLATE X END`, the resulting collation is *`X`*. The same applies for `UNION`, `||`, `CONCAT()`, `ELT()`, `GREATEST()`, `IF()`, and `LEAST()`.
+
+For operations that convert to character data, the character set and collation of the strings that result from the operations are defined by the `character_set_connection` and `collation_connection` system variables that determine the default connection character set and collation (see Section 12.4, “Connection Character Sets and Collations”). This applies only to `BIN_TO_UUID()`, `CAST()`, `CONV()`, `FORMAT()`, `HEX()`, and `SPACE()`.
+
+An exception to the preceding principle occurs for expressions for virtual generated columns. In such expressions, the table character set is used for `BIN_TO_UUID()`, `CONV()`, or `HEX()` results, regardless of connection character set.
+
+If there is any question about the character set or collation of the result returned by a string function, use the `CHARSET()` or `COLLATION()` function to find out:
+
+```
+mysql> SELECT USER(), CHARSET(USER()), COLLATION(USER());
++----------------+-----------------+--------------------+
+| USER()         | CHARSET(USER()) | COLLATION(USER())  |
++----------------+-----------------+--------------------+
+| test@localhost | utf8mb3         | utf8mb3_general_ci |
++----------------+-----------------+--------------------+
+mysql> SELECT CHARSET(COMPRESS('abc')), COLLATION(COMPRESS('abc'));
++--------------------------+----------------------------+
+| CHARSET(COMPRESS('abc')) | COLLATION(COMPRESS('abc')) |
++--------------------------+----------------------------+
+| binary                   | binary                     |
++--------------------------+----------------------------+
+```

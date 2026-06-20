@@ -1,1 +1,0 @@
-## 1.2 Overview of the MySQL Database Management System
