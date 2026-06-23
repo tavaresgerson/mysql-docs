@@ -1,0 +1,105 @@
+## 13.7 Requisitos de armazenamento de tipo de dados
+
+* Requisitos de Armazenamento de Tabela InnoDB
+* Requisitos de Armazenamento de Tabela NDB
+* Requisitos de Armazenamento de Tipo Numérico
+* Requisitos de Armazenamento de Tipo Data e Hora
+* Requisitos de Armazenamento de Tipo de String
+* Requisitos de Armazenamento de Tipo Espacial
+* Requisitos de Armazenamento de JSON
+
+Os requisitos de armazenamento para dados de tabela em disco dependem de vários fatores. Diferentes motores de armazenamento representam tipos de dados e armazenam dados brutos de maneira diferente. Os dados de tabela podem ser comprimidos, seja para uma coluna ou para uma linha inteira, o que complica o cálculo dos requisitos de armazenamento para uma tabela ou coluna.
+
+Apesar das diferenças no layout de armazenamento no disco, as APIs internas do MySQL que comunicam e trocam informações sobre as linhas das tabelas utilizam uma estrutura de dados consistente que se aplica em todos os mecanismos de armazenamento.
+
+Esta seção inclui diretrizes e informações sobre os requisitos de armazenamento para cada tipo de dado suportado pelo MySQL, incluindo o formato interno e o tamanho para motores de armazenamento que utilizam uma representação de tamanho fixo para tipos de dados. As informações são listadas por categoria ou motor de armazenamento.
+
+A representação interna de uma tabela tem um tamanho máximo de linha de 65.535 bytes, mesmo que o mecanismo de armazenamento seja capaz de suportar linhas maiores. Esse número exclui as colunas `BLOB` ou `TEXT`, que contribuem apenas com 9 a 12 bytes para esse tamanho. Para os dados `BLOB` e `TEXT`, as informações são armazenadas internamente em uma área diferente da memória do buffer de linha. Diferentes mecanismos de armazenamento lidam com a alocação e armazenamento desses dados de maneiras diferentes, de acordo com o método que usam para lidar com os tipos correspondentes. Para mais informações, consulte o Capítulo 18, *Mecanismos de Armazenamento Alternativos*, e a Seção 10.4.7, “Limites no Número de Colunas de Tabela e Tamanho da Linha”.
+
+### Requisitos de Armazenamento de Tabela InnoDB
+
+Consulte a Seção 17.10, “Formatos de Linha InnoDB”, para obter informações sobre os requisitos de armazenamento para as tabelas [[`InnoDB`] ].
+
+### Requisitos para o armazenamento de tabela NDB
+
+Importante
+
+As tabelas `NDB` utilizam alinhamento de 4 bytes; toda a `NDB` armazenamento de dados é feita em múltiplos de 4 bytes. Assim, um valor de coluna que normalmente ocuparia 15 bytes requer 16 bytes em uma tabela `NDB`. Por exemplo, em tabelas `NDB`, os tipos de coluna `TINYINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `SMALLINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `MEDIUMINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), e `INTEGER` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") (`INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) (`INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) (`INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) cada um requer armazenamento de 4 bytes por registro devido ao fator de alinhamento.
+
+Cada coluna `BIT(M)` ocupa *`M`* bits de espaço de armazenamento. Embora uma coluna `BIT` individual não esteja alinhada com 4 bytes, `NDB` reserva 4 bytes (32 bits) por linha para os primeiros 1-32 bits necessários para as colunas `BIT`, depois outros 4 bytes para os bits 33-64, e assim por diante.
+
+Embora um `NULL` em si não exija espaço de armazenamento, o `NDB` reserva 4 bytes por linha se a definição da tabela contiver quaisquer colunas que permitam `NULL`, até 32 colunas `NULL`. (Se uma tabela de NDB Cluster for definida com mais de 32 colunas `NULL` até 64 colunas `NULL`, então 8 bytes por linha são reservados.)
+
+Cada tabela que utiliza o mecanismo de armazenamento `NDB` requer uma chave primária; se você não definir uma chave primária, uma chave primária “oculta” é criada pelo `NDB`. Esta chave primária oculta consome 31 a 35 bytes por registro da tabela.
+
+Você pode usar o script Perl **ndb_size.pl** para estimar os requisitos de armazenamento do `NDB`. Ele se conecta a um banco de dados MySQL atual (não NDB Cluster) e cria um relatório sobre quantos espaços esse banco de dados exigiria se usasse o motor de armazenamento `NDB`. Consulte a Seção 25.5.28, “ndb_size.pl — Estimatório de Requisitos de Tamanho NDBCLUSTER”, para obter mais informações.
+
+### Requisitos de armazenamento de tipo numérico
+
+<table summary="Storage required for numeric data types."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Tipo de dados</th> <th>Armazenamento necessário</th> </tr></thead><tbody><tr> <td><code>TINYINT</code></td> <td>1 byte</td> </tr><tr> <td><code>SMALLINT</code></td> <td>2 bytes</td> </tr><tr> <td><code>MEDIUMINT</code></td> <td>3 bytes</td> </tr><tr> <td><code>INT</code>,<code>INTEGER</code></td> <td>4 bytes</td> </tr><tr> <td><code>BIGINT</code></td> <td>8 bytes</td> </tr><tr> <td><code>FLOAT(<em class="replaceable"><code>p</code></em>)</code></td> <td>4 bytes se 0 &lt;=<em class="replaceable"><code>p</code></em>&lt;= 24, 8 bytes se 25 &lt;=<em class="replaceable"><code>p</code></em>&lt;= 53</td> </tr><tr> <td><code>FLOAT</code></td> <td>4 bytes</td> </tr><tr> <td><code>DOUBLE [PRECISION]</code>,<code>REAL</code></td> <td>8 bytes</td> </tr><tr> <td><code>DECIMAL(<em class="replaceable"><code>M</code></em>,<em class="replaceable"><code>D</code></em>)</code>,<code>NUMERIC(<em class="replaceable"><code>M</code></em>,<em class="replaceable"><code>D</code></em>)</code></td> <td>Varia; veja a discussão a seguir</td> </tr><tr> <td><code>BIT(<em class="replaceable"><code>M</code></em>)</code></td> <td>aproximadamente (<em class="replaceable"><code>M</code></em>+7)/8 bytes</td> </tr></tbody></table>
+
+Os valores das colunas `DECIMAL` - DECIMAL, NUMERIC") (e `NUMERIC` - DECIMAL, NUMERIC")) são representados usando um formato binário que compacta nove dígitos decimais (base 10) em quatro bytes. O armazenamento para as partes inteiras e fracionárias de cada valor é determinado separadamente. Cada múltiplo de nove dígitos requer quatro bytes, e os dígitos "remanescentes" requerem uma fração de quatro bytes. O armazenamento necessário para dígitos excedentes é dado pela tabela a seguir.
+
+<table summary="Storage required by excess/leftover digits in DECIMAL values."><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Leftover Digits</th> <th>Number of Bytes</th> </tr></thead><tbody><tr> <td>0</td> <td>0</td> </tr><tr> <td>1</td> <td>1</td> </tr><tr> <td>2</td> <td>1</td> </tr><tr> <td>3</td> <td>2</td> </tr><tr> <td>4</td> <td>2</td> </tr><tr> <td>5</td> <td>3</td> </tr><tr> <td>6</td> <td>3</td> </tr><tr> <td>7</td> <td>4</td> </tr><tr> <td>8</td> <td>4</td> </tr></tbody></table>
+
+### Data e Hora Tipo de Requisitos de Armazenamento
+
+Para as colunas `TIME`, `DATETIME` e `TIMESTAMP`, o armazenamento necessário para tabelas criadas antes do MySQL 5.6.4 difere das tabelas criadas a partir do 5.6.4. Isso ocorre devido a uma mudança no 5.6.4 que permite que esses tipos tenham uma parte fracionária, o que exige de 0 a 3 bytes.
+
+<table summary="Storage required for date and time data types before MySQL 5.6.4 and as of MySQL 5.6.4."><col style="width: 20%"/><col style="width: 40%"/><col style="width: 40%"/><thead><tr> <th scope="col">Tipo de dados</th> <th scope="col">Armazenamento necessário antes do MySQL 5.6.4</th> <th scope="col">Armazenamento necessário a partir do MySQL 5.6.4</th> </tr></thead><tbody><tr> <th scope="row"><code>YEAR</code></th> <td>1 byte</td> <td>1 byte</td> </tr><tr> <th scope="row"><code>DATE</code></th> <td>3 bytes</td> <td>3 bytes</td> </tr><tr> <th scope="row"><code>TIME</code></th> <td>3 bytes</td> <td>Armazenamento de 3 bytes + segundos fracionários</td> </tr><tr> <th scope="row"><code>DATETIME</code></th> <td>8 bytes</td> <td>Armazenamento de 5 bytes + segundos fracionários</td> </tr><tr> <th scope="row"><code>TIMESTAMP</code></th> <td>4 bytes</td> <td>Armazenamento de 4 bytes + segundos fracionários</td> </tr></tbody></table>
+
+A partir do MySQL 5.6.4, o armazenamento para `YEAR` e `DATE` permanece inalterado. No entanto, `TIME`, `DATETIME` e `TIMESTAMP` são representados de maneira diferente. `DATETIME` é embalado de forma mais eficiente, exigindo 5 bytes em vez de 8 bytes para a parte não fracionária, e todas as três partes têm uma parte fracionária que requer de 0 a 3 bytes, dependendo da precisão dos segundos fracionários dos valores armazenados.
+
+<table summary="Required storage for fractional seconds precision."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Fractional Seconds Precision</th> <th>Storage Required</th> </tr></thead><tbody><tr> <td>0</td> <td>0 bytes</td> </tr><tr> <td>1, 2</td> <td>1 byte</td> </tr><tr> <td>3, 4</td> <td>2 bytes</td> </tr><tr> <td>5, 6</td> <td>3 bytes</td> </tr></tbody></table>
+
+Por exemplo, `TIME(0)`, `TIME(2)`, `TIME(4)` e `TIME(6)` utilizam 3, 4, 5 e 6 bytes, respectivamente. `TIME` e `TIME(0)` são equivalentes e exigem o mesmo armazenamento.
+
+Para obter detalhes sobre a representação interna de valores temporais, consulte [MySQL Internals: Algoritmos e estruturas importantes][(/doc/internals/en/algorithms.html)].
+
+### Requisitos de armazenamento do tipo de cordão
+
+Na tabela a seguir, *`M`* representa o comprimento declarado da coluna em caracteres para tipos de string não binários e bytes para tipos de string binários. *`L`* representa o comprimento real em bytes de um valor de string dado.
+
+<table summary="Storage required for string types."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Tipo de dados</th> <th>Armazenamento necessário</th> </tr></thead><tbody><tr> <td><code>CHAR(<em class="replaceable"><code>M</code></em>)</code></td> <td>A família compacta de formatos de linha InnoDB otimiza o armazenamento para conjuntos de caracteres de comprimento variável. Veja as Características de Armazenamento de Formato de Linha COMPACT. Caso contrário,<em class="replaceable"><code>M</code></em>×<em class="replaceable"><code>w</code></em>bytes,<code class="literal">&lt;= <em class="replaceable"><code>M</code></em> &lt;=</code>255, onde<em class="replaceable"><code>w</code></em>é o número de bytes necessários para o caractere de comprimento máximo no conjunto de caracteres.</td> </tr><tr> <td><code>BINARY(<em class="replaceable"><code>M</code></em>)</code></td> <td><em class="replaceable"><code>M</code></em>bytes, 0<code class="literal">&lt;= <em class="replaceable"><code>M</code></em> &lt;=</code>255</td> </tr><tr> <td><code>VARCHAR(<em class="replaceable"><code>M</code></em>)</code>,<code>VARBINARY(<em class="replaceable"><code>M</code></em>)</code></td> <td><em class="replaceable"><code>L</code></em>+ 1 byte, se os valores da coluna exigirem 0 a 255 bytes,<em class="replaceable"><code>L</code></em>+ 2 bytes se os valores puderem exigir mais de 255 bytes</td> </tr><tr> <td><code>TINYBLOB</code>,<code>TINYTEXT</code></td> <td><em class="replaceable"><code>L</code></em>+ 1 byte, onde<em class="replaceable"><code>L</code></em>&lt; 2<sup>8</sup></td> </tr><tr> <td><code>BLOB</code>,<code>TEXT</code></td> <td><em class="replaceable"><code>L</code></em>+ 2 bytes, onde<em class="replaceable"><code>L</code></em>&lt; 2<sup>16</sup></td> </tr><tr> <td><code>MEDIUMBLOB</code>,<code>MEDIUMTEXT</code></td> <td><em class="replaceable"><code>L</code></em>+ 3 bytes, onde<em class="replaceable"><code>L</code></em>&lt; 2<sup>24</sup></td> </tr><tr> <td><code>LONGBLOB</code>,<code>LONGTEXT</code></td> <td><em class="replaceable"><code>L</code></em>+ 4 bytes, onde<em class="replaceable"><code>L</code></em>&lt; 2<sup>32</sup></td> </tr><tr> <td><code>ENUM('<em class="replaceable"><code>value1</code></em>','<em class="replaceable"><code>value2</code></em>',...)</code></td> <td>1 ou 2 bytes, dependendo do número de valores de enumeração (máximo de 65.535 valores)</td> </tr><tr> <td><code>SET('<em class="replaceable"><code>value1</code></em>','<em class="replaceable"><code>value2</code></em>',...)</code></td> <td>1, 2, 3, 4 ou 8 bytes, dependendo do número de membros do conjunto (máximo de 64 membros)</td> </tr></tbody></table>
+
+Os tipos de string de comprimento variável são armazenados usando um prefixo de comprimento mais dados. O prefixo de comprimento requer de um a quatro bytes, dependendo do tipo de dados, e o valor do prefixo é *`L`* (o comprimento em bytes da string). Por exemplo, o armazenamento para um valor de `MEDIUMTEXT` requer *`L`* bytes para armazenar o valor mais três bytes para armazenar o comprimento do valor.
+
+Para calcular o número de bytes usados para armazenar um valor específico da coluna `CHAR`, `VARCHAR` ou `TEXT`, você deve levar em conta o conjunto de caracteres usado para essa coluna e se o valor contém caracteres multibytes. Em particular, ao usar um conjunto de caracteres Unicode UTF-8, você deve ter em mente que nem todos os caracteres usam o mesmo número de bytes. Os conjuntos de caracteres `utf8mb3` e `utf8mb4` podem exigir até três e quatro bytes por caractere, respectivamente. Para uma análise da armazenagem usada para diferentes categorias de caracteres `utf8mb3` ou `utf8mb4`, consulte a Seção 12.9, “Suporte Unicode”.
+
+Os tipos `VARCHAR`, `VARBINARY` e os tipos `BLOB` e `TEXT` são tipos de comprimento variável. Para cada um deles, os requisitos de armazenamento dependem desses fatores:
+
+* O comprimento real do valor da coluna * O comprimento máximo possível da coluna * O conjunto de caracteres utilizado para a coluna, pois alguns conjuntos de caracteres contêm caracteres multibyte
+
+Por exemplo, uma coluna `VARCHAR(255)` pode armazenar uma string com um comprimento máximo de 255 caracteres. Supondo que a coluna utilize o conjunto de caracteres `latin1` (um byte por caractere), o armazenamento real necessário é o comprimento da string (*`L`*), mais um byte para registrar o comprimento da string. Para a string `'abcd'`, *`L`* é 4 e o requisito de armazenamento é cinco bytes. Se a mesma coluna for declarada para usar o conjunto de caracteres de caracteres de dupla byte `ucs2`, o requisito de armazenamento é de 10 bytes: o comprimento de `'abcd'` é oito bytes e a coluna requer dois bytes para armazenar comprimentos porque o comprimento máximo é maior que 255 (até 510 bytes).
+
+O número máximo efetivo de *bytes* que pode ser armazenado em uma coluna `VARCHAR` ou `VARBINARY` está sujeito ao tamanho máximo da linha de 65.535 bytes, que é compartilhado entre todas as colunas. Para uma coluna `VARCHAR` que armazena caracteres multibyte, o número máximo efetivo de *caracteres* é menor. Por exemplo, os caracteres `utf8mb4` podem exigir até quatro bytes por caractere, então uma coluna `VARCHAR` que usa o conjunto de caracteres `utf8mb4` pode ser declarada como um máximo de 16.383 caracteres. Veja a Seção 10.4.7, “Limites no Número de Coluna da Tabela e Tamanho da Linha”.
+
+`InnoDB` codifica campos de comprimento fixo com comprimento igual ou superior a 768 bytes como campos de comprimento variável, que podem ser armazenados fora da página. Por exemplo, uma coluna `CHAR(255)` pode exceder 768 bytes se o comprimento máximo de byte do conjunto de caracteres for maior que 3, como é o caso de `utf8mb4`.
+
+O motor de armazenamento `NDB` suporta colunas de largura variável. Isso significa que uma coluna `VARCHAR` em uma tabela de NDB Cluster requer a mesma quantidade de armazenamento que qualquer outro motor de armazenamento, com a exceção de que esses valores são alinhados em 4 bytes. Assim, a string `'abcd'` armazenada em uma coluna `VARCHAR(50)` usando o conjunto de caracteres `latin1` requer 8 bytes (em vez de 5 bytes para o mesmo valor da coluna em uma tabela `MyISAM`).
+
+As colunas `TEXT`, `BLOB` e `JSON` são implementadas de maneira diferente no motor de armazenamento `NDB`, na qual cada linha da coluna é composta por duas partes separadas. Uma dessas partes tem tamanho fixo (256 bytes para `TEXT` e `BLOB`, 4000 bytes para `JSON`) e é armazenada na tabela original. A outra consiste em quaisquer dados que excedam 256 bytes, que são armazenados em uma tabela de partes de blob oculta. O tamanho das linhas nesta segunda tabela é determinado pelo tipo exato da coluna, conforme mostrado na tabela a seguir:
+
+<table summary="NDB blob table row lengths for TEXT and BLOB types."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Type</th> <th>Blob Part Size</th> </tr></thead><tbody><tr> <td><code>BLOB</code>, <code>TEXT</code></td> <td>2000</td> </tr><tr> <td><code>MEDIUMBLOB</code>, <code>MEDIUMTEXT</code></td> <td>4000</td> </tr><tr> <td><code>LONGBLOB</code>, <code>LONGTEXT</code></td> <td>13948</td> </tr><tr> <td><code>JSON</code></td> <td>8100</td> </tr></tbody></table>
+
+Isso significa que o tamanho de uma coluna `TEXT` é de 256 se *`size`* <= 256 (onde *`size`* representa o tamanho da linha); caso contrário, o tamanho é de 256 + *`size`* + (2000 × (*`size`* − 256) % 2000).
+
+Nenhuma parte do blob é armazenada separadamente pelo `NDB` para os valores das colunas `TINYBLOB` ou `TINYTEXT`.
+
+Você pode aumentar o tamanho da parte blob de uma coluna de blob `NDB` para o máximo de 13948 usando `NDB_COLUMN` em um comentário de coluna ao criar ou alterar a tabela principal. Em NDB 8.0.30 e versões posteriores, também é possível definir o tamanho inline para uma coluna `TEXT`, `BLOB` ou `JSON`, usando `NDB_TABLE` em um comentário de coluna. Consulte Opções de COLUNA NDB, para obter mais informações.
+
+O tamanho de um objeto `ENUM` é determinado pelo número de diferentes valores de enumeração. Um byte é usado para enumerações com até 255 valores possíveis. Dois bytes são usados para enumerações que têm entre 256 e 65.535 valores possíveis. Veja a Seção 13.3.5, “O Tipo ENUM”.
+
+O tamanho de um objeto `SET` é determinado pelo número de membros de conjunto diferentes. Se o tamanho do conjunto é *`N`*, o objeto ocupa `(N+7)/8` bytes, arredondados para 1, 2, 3, 4 ou 8 bytes. Um `SET` pode ter um máximo de 64 membros. Veja a Seção 13.3.6, “O Tipo SET”.
+
+### Requisitos de armazenamento de tipo espacial
+
+O MySQL armazena valores de geometria usando 4 bytes para indicar o SRID seguido pela representação WKB do valor. A função `LENGTH()` retorna o espaço em bytes necessário para o armazenamento do valor.
+
+Para descrições do WKB e dos formatos de armazenamento interno para valores espaciais, consulte a Seção 13.4.3, “Formatos de dados espaciais suportados”.
+
+### Requisitos de Armazenamento JSON
+
+De forma geral, o requisito de armazenamento para uma coluna `JSON` é aproximadamente o mesmo que para uma coluna `LONGBLOB` ou `LONGTEXT`; ou seja, o espaço consumido por um documento JSON é aproximadamente o mesmo que seria para a representação em string do documento armazenado em uma coluna de um desses tipos. No entanto, há um custo adicional imposto pela codificação binária, incluindo metadados e dicionários necessários para pesquisa, dos valores individuais armazenados no documento JSON. Por exemplo, uma string armazenada em um documento JSON requer de 4 a 10 bytes de armazenamento adicional, dependendo do comprimento da string e do tamanho do objeto ou array em que ela é armazenada.
+
+Além disso, o MySQL impõe um limite ao tamanho de qualquer documento JSON armazenado em uma coluna `JSON`, de modo que ele não pode ser maior que o valor de `max_allowed_packet`.

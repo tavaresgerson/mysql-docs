@@ -1,0 +1,5 @@
+## 32.6 Visão geral do pool de threads do MySQL Enterprise
+
+A Edição Empresarial do MySQL inclui o MySQL Enterprise Thread Pool, implementado usando um plugin de servidor. O modelo padrão de manipulação de threads no MySQL Server executa instruções usando um thread por conexão de cliente. À medida que mais clientes se conectam ao servidor e executam instruções, o desempenho geral se degrada. Na Edição Empresarial do MySQL, um plugin de pool de threads oferece um modelo alternativo de manipulação de threads projetado para reduzir o custo e melhorar o desempenho. O plugin implementa um pool de threads que aumenta o desempenho do servidor, gerenciando eficientemente os threads de execução de instruções para um grande número de conexões de clientes.
+
+Para mais informações, consulte a Seção 7.6.3, “MySQL Enterprise Thread Pool”.

@@ -1,0 +1,13 @@
+# Capítulo 22 Usando o MySQL como um repositório de documentos
+
+Este capítulo apresenta uma maneira alternativa de trabalhar com MySQL como um banco de documentos, às vezes referido como “uso de NoSQL”. Se a sua intenção é usar MySQL de uma maneira tradicional (SQL), este capítulo provavelmente não é relevante para você.
+
+Tradicionalmente, bancos de dados relacionais, como o MySQL, geralmente exigem que um esquema seja definido antes que os documentos possam ser armazenados. As funcionalidades descritas nesta seção permitem que você use o MySQL como um banco de documentos, que é um sistema de armazenamento sem esquema e, portanto, flexível em termos de esquema, para documentos. Por exemplo, ao criar documentos que descrevem produtos, você não precisa conhecer e definir todos os atributos possíveis de quaisquer produtos antes de armazenar e operar com os documentos. Isso difere do trabalho com um banco de dados relacional e do armazenamento de produtos em uma tabela, quando todas as colunas da tabela devem ser conhecidas e definidas antes de adicionar quaisquer produtos ao banco de dados. As funcionalidades descritas neste capítulo permitem que você escolha como configurar o MySQL, usando apenas o modelo de banco de documentos, ou combinando a flexibilidade do modelo de banco de documentos com o poder do modelo relacional.
+
+Para usar o MySQL como um banco de documentos, você utiliza as seguintes funcionalidades do servidor:
+
+* O X Plugin permite que o MySQL Server comunique-se com clientes usando o Protocolo X, que é um pré-requisito para o uso do MySQL como um banco de documentos. O X Plugin é ativado por padrão no MySQL Server a partir do MySQL 8.0. Para obter instruções para verificar a instalação do X Plugin e para configurar e monitorar o X Plugin, consulte a Seção 22.5, “X Plugin”.
+
+* O X Protocol suporta operações CRUD e SQL, autenticação via SASL, permite o fluxo (pipelining) de comandos e é extenível na camada de protocolo e na camada de mensagem. Os clientes compatíveis com o X Protocol incluem o MySQL Shell e os Conectadores MySQL 8.0.
+
+* Os clientes que se comunicam com um servidor MySQL usando o Protocolo X podem usar o X DevAPI para desenvolver aplicativos. O X DevAPI oferece uma interface de programação moderna com um design simples, mas poderoso, que oferece suporte a conceitos estabelecidos de padrão da indústria. Este capítulo explica como começar a usar a implementação do X DevAPI em JavaScript ou Python no MySQL Shell como cliente. Consulte o Guia do Usuário do X DevAPI para tutoriais detalhados sobre o uso do X DevAPI.

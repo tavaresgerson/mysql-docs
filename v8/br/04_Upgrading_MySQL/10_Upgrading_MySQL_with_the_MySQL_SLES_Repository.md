@@ -1,0 +1,3 @@
+## 3.10 Atualizando o MySQL com o Repositório MySQL SLES
+
+Na plataforma SUSE Linux Enterprise Server (SLES), para realizar uma atualização in-place do MySQL e seus componentes, use o repositório SLES MySQL. Veja [Atualizando o MySQL com o repositório SLES MySQL][(/doc/mysql-sles-repo-quick-guide/en/index.html#repo-qg-sles-upgrading)] em [Um guia rápido para usar o repositório SLES MySQL][(/doc/mysql-sles-repo-quick-guide/en/)].

@@ -1,0 +1,241 @@
+## 27.7 Registro binário de programas armazenados
+
+O log binário contém informações sobre declarações SQL que modificam o conteúdo do banco de dados. Essas informações são armazenadas na forma de "eventos" que descrevem as modificações. (Os eventos do log binário diferem dos objetos de eventos armazenados agendados.) O log binário tem dois propósitos importantes:
+
+* Para a replicação, o log binário é usado nos servidores de replicação de origem como um registro das declarações que serão enviadas aos servidores replicados. A origem envia os eventos contidos em seu log binário para suas réplicas, que executam esses eventos para realizar as mesmas alterações de dados que foram feitas na origem. Veja a Seção 19.2, “Implementação de Replicação”.
+
+* Algumas operações de recuperação de dados exigem o uso do log binário. Após o arquivo de backup ter sido restaurado, os eventos no log binário que foram registrados após a realização do backup são reexecutados. Esses eventos atualizam as bases de dados a partir do ponto do backup. Veja a Seção 9.3.2, “Usando backups para recuperação”.
+
+No entanto, se o registro ocorrer no nível de declaração, há certos problemas de registro binário em relação a programas armazenados (procedimentos e funções armazenados, gatilhos e eventos):
+
+* Em alguns casos, uma declaração pode afetar diferentes conjuntos de linhas no banco de dados de origem e na replica.
+
+* As declarações replicadas executadas em uma réplica são processadas pelo fio aplicador da réplica. A menos que você implemente verificações de privilégios de replicação, que estão disponíveis a partir do MySQL 8.0.18 (consulte Seção 19.3.3, “Verificações de Privilégios de Replicação”), o fio aplicador tem privilégios completos. Nessa situação, é possível que um procedimento siga caminhos de execução diferentes nos servidores fonte e réplica, de modo que um usuário possa escrever uma rotina contendo uma declaração perigosa que é executada apenas na réplica.
+
+* Se um programa armazenado que modifica dados for não determinístico, ele não é repetiível. Isso pode resultar em dados diferentes na fonte e na replica, ou fazer com que os dados restaurados se diferenciem dos dados originais.
+
+Esta seção descreve como o MySQL lida com o registro binário para programas armazenados. Ela afirma as condições atuais que a implementação coloca sobre o uso de programas armazenados e o que você pode fazer para evitar problemas de registro. Ela também fornece informações adicionais sobre as razões dessas condições.
+
+A menos que haja indicação em contrário, as observações aqui assumem que o registro binário está habilitado no servidor (consulte a Seção 7.4.4, “O Registro Binário”). Se o registro binário não estiver habilitado, a replicação não é possível, e o registro binário também não está disponível para recuperação de dados. A partir do MySQL 8.0, o registro binário é habilitado por padrão e só é desativado se você especificar a opção `--skip-log-bin` ou `--disable-log-bin` na inicialização.
+
+Em geral, os problemas descritos aqui ocorrem quando o registro binário ocorre no nível do comando SQL (registro binário baseado em declaração). Se você usar o registro binário baseado em linha, o registro contém as alterações feitas em linhas individuais como resultado da execução de declarações SQL. Quando rotinas ou gatilhos são executados, as alterações de linha são registradas, não as declarações que fazem as alterações. Para procedimentos armazenados, isso significa que a declaração `CALL` não é registrada. Para funções armazenadas, as alterações de linha feitas dentro da função são registradas, não a invocação da função. Para gatilhos, as alterações de linha feitas pelo gatilho são registradas. No lado da replica, apenas as alterações de linha são vistas, não a invocação do programa armazenado.
+
+O registro binário de formato misto (`binlog_format=MIXED`) utiliza registro binário baseado em declarações, exceto nos casos em que apenas o registro binário baseado em linhas garante resultados adequados. Com o formato misto, quando uma função armazenada, um procedimento armazenado, um gatilho, um evento ou uma declaração preparada contém algo que não é seguro para registro binário baseado em declarações, toda a declaração é marcada como insegura e registrada em formato de linha. As declarações usadas para criar e descartar procedimentos, funções, gatilhos e eventos são sempre seguras e são registradas em formato de declaração. Para mais informações sobre registro baseado em linha, misto e baseado em declarações, e como os termos seguros e inseguro são determinados, consulte a Seção 19.2.1, “Formatos de Replicação”.
+
+As condições para o uso de funções armazenadas no MySQL podem ser resumidas da seguinte forma. Essas condições não se aplicam a procedimentos armazenados ou eventos do Agendamento de Eventos e não se aplicam a menos que o registro binário esteja habilitado.
+
+* Para criar ou alterar uma função armazenada, você deve ter o privilégio `SET_USER_ID` (ou o privilégio descontinuado `SUPER`, além do privilégio `CREATE ROUTINE` ou `ALTER ROUTINE` que normalmente é necessário. (Dependendo do valor `DEFINER` na definição da função, `SET_USER_ID` ou `SUPER` pode ser necessário, independentemente de a log de binário estar habilitada. Veja a Seção 15.1.17, “Declarações CREATE PROCEDURE e CREATE FUNCTION”).
+
+* Ao criar uma função armazenada, você deve declarar que ela é determinada ou que não modifica dados. Caso contrário, ela pode não ser segura para recuperação ou replicação de dados.
+
+Por padrão, para que uma declaração `CREATE FUNCTION` (create-function.html "15.1.14 CREATE FUNCTION Statement") seja aceita, pelo menos uma das declarações `DETERMINISTIC`, `NO SQL` ou `READS SQL DATA` deve ser especificada explicitamente. Caso contrário, ocorre um erro:
+
+  ```
+  ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL,
+  or READS SQL DATA in its declaration and binary logging is enabled
+  (you *might* want to use the less safe log_bin_trust_function_creators
+  variable)
+  ```
+
+Essa função é determinada (e não modifica dados), portanto, é segura:
+
+  ```
+  CREATE FUNCTION f1(i INT)
+  RETURNS INT
+  DETERMINISTIC
+  READS SQL DATA
+  BEGIN
+    RETURN i;
+  END;
+  ```
+
+Essa função usa `UUID()`, que não é determinada, portanto, a função também não é determinada e não é segura:
+
+  ```
+  CREATE FUNCTION f2()
+  RETURNS CHAR(36) CHARACTER SET utf8mb4
+  BEGIN
+    RETURN UUID();
+  END;
+  ```
+
+Essa função modifica dados, então ela pode não ser segura:
+
+  ```
+  CREATE FUNCTION f3(p_id INT)
+  RETURNS INT
+  BEGIN
+    UPDATE t SET modtime = NOW() WHERE id = p_id;
+    RETURN ROW_COUNT();
+  END;
+  ```
+
+A avaliação da natureza de uma função é baseada na "honestidade" do criador. O MySQL não verifica se uma função declarada `DETERMINISTIC` está livre de declarações que produzem resultados não determinísticos.
+
+* Quando você tenta executar uma função armazenada, se `binlog_format=STATEMENT` estiver definido, a palavra-chave `DETERMINISTIC` deve ser especificada na definição da função. Se este não for o caso, um erro é gerado e a função não é executada, a menos que `log_bin_trust_function_creators=1` seja especificado para ignorar essa verificação (veja abaixo). Para chamadas recursivas de função, a palavra-chave `DETERMINISTIC` é necessária apenas na chamada mais externa. Se o registro baseado em linha ou binário misto estiver em uso, a declaração é aceita e replicada mesmo se a função foi definida sem a palavra-chave `DETERMINISTIC`.
+
+* Como o MySQL não verifica se uma função é realmente determinística no momento da criação, a invocação de uma função armazenada com a palavra-chave `DETERMINISTIC` pode realizar uma ação que é insegura para o registro baseado em declarações, ou invocar uma função ou procedimento que contenha declarações inseguras. Se isso ocorrer quando o `binlog_format=STATEMENT` estiver definido, uma mensagem de aviso é emitida. Se o registro baseado em linhas ou misto binário estiver em uso, não é emitido nenhum aviso e a declaração é replicada no formato baseado em linha.
+
+* Para relaxar as condições anteriores sobre a criação de funções (que você deve ter o privilégio `SUPER` e que uma função deve ser declarada determinística ou não modificar dados), defina a variável de sistema global `log_bin_trust_function_creators` para 1. Por padrão, essa variável tem um valor de 0, mas você pode alterá-la da seguinte forma:
+
+  ```
+  mysql> SET GLOBAL log_bin_trust_function_creators = 1;
+  ```
+
+Você também pode definir essa variável na inicialização do servidor.
+
+Se o registro binário não estiver habilitado, `log_bin_trust_function_creators` não se aplica. `SUPER` não é necessário para a criação de funções, a menos que, conforme descrito anteriormente, o valor `DEFINER` na definição da função o exija.
+
+* Para informações sobre funções embutidas que podem ser inseguras para replicação (e, portanto, fazer com que as funções armazenadas que as utilizam também sejam inseguras), consulte a Seção 19.5.1, “Recursos e problemas de replicação”.
+
+Os gatilhos são semelhantes às funções armazenadas, então as observações anteriores sobre as funções também se aplicam aos gatilhos, com a seguinte exceção: `CREATE TRIGGER` não tem uma característica opcional `DETERMINISTIC`, então os gatilhos são assumidos como sempre determinísticos. No entanto, essa suposição pode ser inválida em alguns casos. Por exemplo, a função `UUID()` não é determinística (e não replica). Tenha cuidado ao usar tais funções em gatilhos.
+
+Os gatilhos podem atualizar tabelas, portanto, mensagens de erro semelhantes às das funções armazenadas ocorrem com `CREATE TRIGGER`(create-trigger.html "15.1.22 CREATE TRIGGER Statement") se você não tiver os privilégios necessários. No lado da replica, a replica usa o atributo `DEFINER` para determinar qual usuário é considerado o criador do gatilho.
+
+O restante desta seção fornece detalhes adicionais sobre a implementação de registro e suas implicações. Você não precisa lê-la, a menos que esteja interessado no contexto sobre a justificativa para as atuais condições relacionadas ao registro de uso de rotina armazenada. Esta discussão se aplica apenas ao registro baseado em declarações, e não ao registro baseado em linhas, com exceção do primeiro item: as declarações `CREATE` e `DROP` são registradas como declarações, independentemente do modo de registro.
+
+* O servidor escreve as declarações `CREATE EVENT`, `CREATE PROCEDURE`, `CREATE FUNCTION`, `ALTER EVENT`, `ALTER PROCEDURE`, `ALTER FUNCTION`, `DROP EVENT`, `DROP PROCEDURE` e `DROP FUNCTION` no log binário.
+
+* Uma invocação de função armazenada é registrada como uma declaração `SELECT` se a função alterar dados e ocorrer dentro de uma declaração que, de outra forma, não seria registrada. Isso previne a não replicação de alterações de dados que resultam do uso de funções armazenadas em declarações não registradas. Por exemplo, declarações `SELECT` não são escritas no log binário, mas uma `SELECT` pode invocar uma função armazenada que faça alterações. Para lidar com isso, uma declaração `SELECT func_name()` é escrita no log binário quando a função fornecida faz uma alteração. Suponha que os seguintes comandos sejam executados no servidor de origem:
+
+  ```
+  CREATE FUNCTION f1(a INT) RETURNS INT
+  BEGIN
+    IF (a < 3) THEN
+      INSERT INTO t2 VALUES (a);
+    END IF;
+    RETURN 0;
+  END;
+
+  CREATE TABLE t1 (a INT);
+  INSERT INTO t1 VALUES (1),(2),(3);
+
+  SELECT f1(a) FROM t1;
+  ```
+
+Quando a declaração `SELECT` é executada, a função `f1()` é invocada três vezes. Duas dessas invocações inserem uma linha, e o MySQL registra uma declaração `SELECT` para cada uma delas. Ou seja, o MySQL escreve as seguintes declarações no log binário:
+
+  ```
+  SELECT f1(1);
+  SELECT f1(2);
+  ```
+
+O servidor também registra uma declaração `SELECT` para uma invocação de função armazenada quando a função invoca um procedimento armazenado que causa um erro. Neste caso, o servidor escreve a declaração `SELECT` no log juntamente com o código de erro esperado. Na replica, se o mesmo erro ocorrer, esse é o resultado esperado e a replicação continua. Caso contrário, a replicação é interrompida.
+
+* A contabilização das invocações de funções armazenadas, em vez das declarações executadas por uma função, tem implicações de segurança para a replicação, que surgem de dois fatores:
+
+É possível que uma função siga diferentes caminhos de execução nos servidores de origem e réplica.
+
++ As declarações executadas em uma réplica são processadas pelo fio do aplicável da réplica. A menos que você implemente verificações de privilégios de replicação, que estão disponíveis a partir do MySQL 8.0.18 (consulte Seção 19.3.3, “Verificações de Privilégios de Replicação”), o fio do aplicável tem privilégios completos.
+
+A implicação é que, embora o usuário deva ter o privilégio `CREATE ROUTINE` para criar uma função, ele pode escrever uma função que contenha uma declaração perigosa que seja executada apenas na réplica onde ela é processada por um thread que tenha privilégios completos. Por exemplo, se os servidores de origem e réplica tiverem os valores de ID de servidor 1 e 2, respectivamente, um usuário no servidor de origem pode criar e invocar uma função insegura `unsafe_func()` da seguinte forma:
+
+  ```
+  mysql> delimiter //
+  mysql> CREATE FUNCTION unsafe_func () RETURNS INT
+      -> BEGIN
+      ->   IF @@server_id=2 THEN dangerous_statement; END IF;
+      ->   RETURN 1;
+      -> END;
+      -> //
+  mysql> delimiter ;
+  mysql> INSERT INTO t VALUES(unsafe_func());
+  ```
+
+As declarações `CREATE FUNCTION` e `INSERT` são escritas no log binário, então a replica as executa. Como o thread do aplicável da replica tem privilégios completos, ele executa a declaração perigosa. Assim, a invocação da função tem efeitos diferentes na fonte e na replica e não é segura para replicação.
+
+Para se proteger contra esse perigo em servidores que têm registro binário habilitado, os criadores de funções armazenadas devem ter o privilégio `SUPER`, além do privilégio usual `CREATE ROUTINE` que é necessário. Da mesma forma, para usar `ALTER FUNCTION`, você deve ter o privilégio `SUPER`, além do privilégio `ALTER ROUTINE`. Sem o privilégio `SUPER`, ocorre um erro:
+
+  ```
+  ERROR 1419 (HY000): You do not have the SUPER privilege and
+  binary logging is enabled (you *might* want to use the less safe
+  log_bin_trust_function_creators variable)
+  ```
+
+Se você não quiser exigir que os criadores de funções tenham o privilégio `SUPER` (por exemplo, se todos os usuários com o privilégio [`CREATE ROUTINE`](privileges-provided.html#priv_create-routine) no seu sistema são desenvolvedores de aplicativos experientes), defina a variável de sistema global `log_bin_trust_function_creators` para 1. Você também pode definir essa variável na inicialização do servidor. Se o registro binário não estiver habilitado, `log_bin_trust_function_creators` não se aplica. `SUPER` não é necessário para a criação de funções, a menos que, como descrito anteriormente, o valor `DEFINER` na definição da função o exija.
+
+* O uso de verificações de privilégios de replicação, quando disponíveis (a partir do MySQL 8.0.18), é recomendado, independentemente da escolha que você faça sobre os privilégios dos criadores de funções. As verificações de privilégios de replicação podem ser configuradas para garantir que apenas as operações esperadas e relevantes sejam autorizadas para o canal de replicação. Para obter instruções sobre como fazer isso, consulte a Seção 19.3.3, “Verificações de Privilégios de Replicação”.
+
+* Se uma função que realiza atualizações for não determinística, ela não é repetiível. Isso pode ter dois efeitos indesejáveis:
+
++ Isso faz com que uma réplica se diferencie da fonte.
++ Os dados restaurados não correspondem aos dados originais.
+
+Para lidar com esses problemas, o MySQL exige o seguinte requisito: em um servidor de origem, a criação e alteração de uma função são recusadas, a menos que você declare que a função é determinística ou que não modifique dados. Dois conjuntos de características de função se aplicam aqui:
+
++ As características `DETERMINISTIC` e `NOT DETERMINISTIC` indicam se uma função sempre produz o mesmo resultado para entradas dadas. O padrão é `NOT DETERMINISTIC` se nenhuma das características for especificada. Para declarar que uma função é determinística, você deve especificar explicitamente `DETERMINISTIC`.
+
++ As características `CONTAINS SQL`, `NO SQL`, `READS SQL DATA` e `MODIFIES SQL DATA` fornecem informações sobre se a função lê ou escreve dados. Ou `NO SQL` ou `READS SQL DATA` indica que uma função não altera dados, mas você deve especificar explicitamente uma dessas características, pois o padrão é `CONTAINS SQL` se nenhuma característica for fornecida.
+
+Por padrão, para que uma declaração `CREATE FUNCTION` (create-function.html "15.1.14 CREATE FUNCTION Statement") seja aceita, pelo menos uma das declarações `DETERMINISTIC`, `NO SQL` ou `READS SQL DATA` deve ser especificada explicitamente. Caso contrário, ocorre um erro:
+
+  ```
+  ERROR 1418 (HY000): This function has none of DETERMINISTIC, NO SQL,
+  or READS SQL DATA in its declaration and binary logging is enabled
+  (you *might* want to use the less safe log_bin_trust_function_creators
+  variable)
+  ```
+
+Se você definir `log_bin_trust_function_creators` para 1, a exigência de que as funções sejam determinísticas ou não modifiquem dados é descartada.
+
+* As chamadas de procedimento armazenado são registradas no nível da declaração em vez do nível `CALL`. Isso significa que o servidor não registra a declaração `CALL`, mas registra as declarações dentro do procedimento que realmente são executadas. Como resultado, as mesmas alterações que ocorrem no servidor de origem também ocorrem nas réplicas. Isso previne problemas que poderiam resultar de um procedimento ter caminhos de execução diferentes em diferentes máquinas.
+
+Em geral, as declarações executadas dentro de um procedimento armazenado são escritas no log binário usando as mesmas regras que seriam aplicadas se as declarações fossem executadas de forma independente. Algum cuidado especial é tomado ao registrar declarações de procedimentos porque a execução de declarações dentro de procedimentos não é exatamente a mesma que em contexto não de procedimento:
+
++ Uma declaração que será registrada pode conter referências a variáveis de procedimento local. Essas variáveis não existem fora do contexto do procedimento armazenado, portanto, uma declaração que se refere a tal variável não pode ser registrada literalmente. Em vez disso, cada referência a uma variável local é substituída por essa construção para fins de registro:
+
+    ```
+    NAME_CONST(var_name, var_value)
+    ```
+
+*`var_name`* é o nome da variável local, e *`var_value`* é uma constante que indica o valor que a variável tem no momento em que a declaração é registrada. `NAME_CONST()` tem um valor de *`var_value`*, e um "nome" de *`var_name`*. Assim, se você invocar diretamente essa função, você obterá um resultado como este:
+
+    ```
+    mysql> SELECT NAME_CONST('myname', 14);
+    +--------+
+    | myname |
+    +--------+
+    |     14 |
+    +--------+
+    ```
+
+`NAME_CONST()` permite que uma declaração isolada registrada seja executada em uma réplica com o mesmo efeito que a declaração original que foi executada na fonte dentro de um procedimento armazenado.
+
+O uso de `NAME_CONST()` pode resultar em um problema para as declarações de `CREATE TABLE ... SELECT`(create-table.html "15.1.20 CREATE TABLE Statement") quando as expressões das colunas de origem se referem a variáveis locais. A conversão dessas referências em expressões de `NAME_CONST()` pode resultar em nomes de colunas diferentes nos servidores de origem e replicação, ou nomes que são muito longos para serem identificadores legais de coluna. Uma solução é fornecer aliases para colunas que se referem a variáveis locais. Considere esta declaração quando `myvar` tem um valor de 1:
+
+    ```
+    CREATE TABLE t1 SELECT myvar;
+    ```
+
+Isso é reescrito da seguinte forma:
+
+    ```
+    CREATE TABLE t1 SELECT NAME_CONST(myvar, 1);
+    ```
+
+Para garantir que as tabelas de origem e replicação tenham os mesmos nomes de coluna, escreva a declaração da seguinte forma:
+
+    ```
+    CREATE TABLE t1 SELECT myvar AS myvar;
+    ```
+
+A declaração reescrita se torna:
+
+    ```
+    CREATE TABLE t1 SELECT NAME_CONST(myvar, 1) AS myvar;
+    ```
+
++ Uma declaração que deve ser registrada pode conter referências a variáveis definidas pelo usuário. Para lidar com isso, o MySQL escreve uma declaração `SET` no log binário para garantir que a variável exista na replica com o mesmo valor que na fonte. Por exemplo, se uma declaração se refere a uma variável `@my_var`, essa declaração é precedida no log binário pela seguinte declaração, onde *`value`* é o valor de `@my_var` na fonte:
+
+    ```
+    SET @my_var = value;
+    ```
+
+As chamadas de procedimento podem ocorrer dentro de uma transação comprometida ou desdobrada. O contexto transacional é considerado para que os aspectos transacionais da execução do procedimento sejam replicados corretamente. Ou seja, o servidor registra as declarações dentro do procedimento que realmente executam e modificam dados, e também registra as declarações `BEGIN`, `COMMIT` e `ROLLBACK` conforme necessário. Por exemplo, se um procedimento atualiza apenas tabelas transacionais e é executado dentro de uma transação que é desdobrada, essas atualizações não são registradas. Se o procedimento ocorre dentro de uma transação comprometida, as declarações `BEGIN` e `COMMIT` são registradas com as atualizações. Para um procedimento que é executado dentro de uma transação desdobrada, suas declarações são registradas usando as mesmas regras que seriam aplicadas se as declarações fossem executadas de forma independente:
+
+- As atualizações nas tabelas transacionais não são registradas.
+- As atualizações nas tabelas não transacionais são registradas, pois o rollback não as cancela.
+
+- As atualizações de uma mistura de tabelas transacionais e não transacionais são registradas cercadas por `BEGIN` e `ROLLBACK`, para que as réplicas façam as mesmas alterações e reversões que na fonte.
+
+* Uma chamada de procedimento armazenado não é escrita no log binário no nível de declaração se o procedimento for invocado dentro de uma função armazenada. Nesse caso, a única coisa registrada é a declaração que invoca a função (se ocorrer dentro de uma declaração que é registrada) ou uma declaração `DO` (se ocorrer dentro de uma declaração que não é registrada). Por essa razão, deve-se ter cuidado no uso de funções armazenadas que invocam um procedimento, mesmo que o procedimento seja seguro em si mesmo.

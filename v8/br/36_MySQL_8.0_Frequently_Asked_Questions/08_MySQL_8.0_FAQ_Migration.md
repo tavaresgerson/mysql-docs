@@ -1,0 +1,5 @@
+## A.8 Perguntas frequentes sobre o MySQL 8.0: Migração
+
+A.8.1. Onde posso encontrar informações sobre como fazer uma atualização ou uma desativação do MySQL?
+
+<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.8.1.</b></p></td><td align="left" valign="top"><p>Onde posso encontrar informações sobre como fazer uma atualização ou uma desativação do MySQL?</p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>Para informações detalhadas sobre a atualização, consulte o Capítulo 3,<i>Atualizando o MySQL</i>Não ignore uma versão importante ao fazer uma atualização, mas complete o processo em etapas, atualizando de uma versão principal para a próxima em cada etapa. Isso pode parecer mais complicado, mas, no final, economiza tempo e problemas. Se você encontrar problemas durante a atualização, sua origem é mais fácil de identificar, seja por você ou, se você tiver uma assinatura da MySQL Enterprise, pelo suporte da MySQL.</p></td></tr></tbody></table>
